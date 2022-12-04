@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-5660-Markets-Mayhem-Book/infrastructure.html/unit-4-decisions/mdp.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Probability, Random Variables and Stochastic Processes" href="probability-random-variables.html" />
+    <link rel="prev" title="Estimating Statistical Properties From Data" href="moments.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,20 +112,69 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../landing.html">
-                    CHEME 1800 Course Outline and Information
+                    Principles of Computational Thinking for Engineers
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-1-basics/basics-landing.html">
    Unit 1. Basics
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/types.html">
+     Data types and mutable/immutable data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/functions.html">
+     Functions, Loops and Control Flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/data-file-io.html">
+     Data Files and Application Programming Interfaces (APIs)
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-2-data/data-landing.html">
    Unit 2. Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
+     Vectors, matrices, and the introduction of numerical linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Technical Computing Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/measures.html">
+     Measurements and Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/laes.html">
+     Solution of Linear Algebraic Equations
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../unit-3-learning/learning-landing.html">
@@ -136,8 +185,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="decisions-landing.html">
    Unit 4. Decisions
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -145,6 +194,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="probability-random-variables.html">
      Probability, Random Variables and Stochastic Processes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="moments.html">
+     Estimating Statistical Properties From Data
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -517,7 +571,7 @@ title="Print to PDF"
 <figure class="align-default" id="fig-discrete-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Markov-Model.pdf" style="height: 120px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
@@ -528,7 +582,7 @@ title="Print to PDF"
 0.6 &amp; 0.4 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>shown in (<a class="reference internal" href="#fig-discrete-markov-model"><span class="std std-numref">Fig. 1</span></a>). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations <span class="math notranslate nohighlight">\(n\)</span> becomes large the system state converges to a stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>; for <span class="math notranslate nohighlight">\(n&gt;13\)</span> the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> is given by:</p>
+<p>shown in (<a class="reference internal" href="#fig-discrete-markov-model"><span class="std std-numref">Fig. 3</span></a>). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations <span class="math notranslate nohighlight">\(n\)</span> becomes large the system state converges to a stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>; for <span class="math notranslate nohighlight">\(n&gt;13\)</span> the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\pi = (0.8571, 0.1428)\]</div>
 <p>Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
@@ -545,7 +599,7 @@ title="Print to PDF"
 <figure class="align-default" id="fig-discrete-hidden-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" style="height: 280px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of a discrete two-state time-invariant hidden Markov model (HMM); <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of a discrete two-state time-invariant hidden Markov model (HMM); <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
@@ -556,7 +610,7 @@ title="Print to PDF"
 0.6 &amp; 0.4 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>shown in (<a class="reference internal" href="#fig-discrete-hidden-markov-model"><span class="std std-numref">Fig. 2</span></a>). Let <span class="math notranslate nohighlight">\(Y_{1}\)</span> denote the observable value for state 1, while <span class="math notranslate nohighlight">\(Y_{2}\)</span> denotes the observable value of
+<p>shown in (<a class="reference internal" href="#fig-discrete-hidden-markov-model"><span class="std std-numref">Fig. 4</span></a>). Let <span class="math notranslate nohighlight">\(Y_{1}\)</span> denote the observable value for state 1, while <span class="math notranslate nohighlight">\(Y_{2}\)</span> denotes the observable value of
 state 2. The transition matrix admits the stationary (non-periodic) stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> given by:</p>
 <div class="math notranslate nohighlight">
 \[\pi = (0.66, 0.33)\]</div>
@@ -570,7 +624,7 @@ state 2. The transition matrix admits the stationary (non-periodic) stationary d
 <figure class="align-default" id="fig-discrete-hidden-markov-model-sim-up">
 <a class="reference internal image-reference" href="../_images/Fig-HMM-up-SRA-N250.pdf"><img alt="../_images/Fig-HMM-up-SRA-N250.pdf" src="../_images/Fig-HMM-up-SRA-N250.pdf" style="height: 360px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Simulation of an asset price governed by <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. The solid line denotes the mean predicted price; shaded regions denote the 68% and 95% confidence regions. <em>parameters</em>: <span class="math notranslate nohighlight">\(S_{o}\)</span> = 100, <span class="math notranslate nohighlight">\(\Delta{T}\)</span> = (1/365), <span class="math notranslate nohighlight">\(T\)</span> = 45 days and IV = 24.20%.
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Simulation of an asset price governed by <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. The solid line denotes the mean predicted price; shaded regions denote the 68% and 95% confidence regions. <em>parameters</em>: <span class="math notranslate nohighlight">\(S_{o}\)</span> = 100, <span class="math notranslate nohighlight">\(\Delta{T}\)</span> = (1/365), <span class="math notranslate nohighlight">\(T\)</span> = 45 days and IV = 24.20%.
 The trajectory was computed by sampling a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> distribution constructed from the HMM stationary distribution.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model-sim-up" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -622,10 +676,10 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 <figure class="align-default" id="fig-linear-mdp-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Linear-MDP-Schematic.pdf"><img alt="../_images/Fig-Linear-MDP-Schematic.pdf" src="../_images/Fig-Linear-MDP-Schematic.pdf" style="height: 110px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, two-action Markov decision process. A tiger hides behind the red door while freedom awaits behind the green door.</span><a class="headerlink" href="#fig-linear-mdp-schematic" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, two-action Markov decision process. A tiger hides behind the red door while freedom awaits behind the green door.</span><a class="headerlink" href="#fig-linear-mdp-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>An agent trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-linear-mdp-schematic"><span class="std std-numref">Fig. 4</span></a>). Behind the red door is a tiger (and certain death), while behind the green door is freedom. If the agent opens the red door, the agent is eaten (and receives a large negative reward). However, if the agent opens the green door, it escapes and gets a positive reward.</p>
+<p>An agent trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-linear-mdp-schematic"><span class="std std-numref">Fig. 6</span></a>). Behind the red door is a tiger (and certain death), while behind the green door is freedom. If the agent opens the red door, the agent is eaten (and receives a large negative reward). However, if the agent opens the green door, it escapes and gets a positive reward.</p>
 <p>For this problem, the MDP has the tuple components:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \left\{1,2,\dots,N\right\}\)</span> while the action set is <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{a_{1},a_{2}\right\}\)</span>; action <span class="math notranslate nohighlight">\(a_{1}\)</span> moves the agent one state to the right, action <span class="math notranslate nohighlight">\(a_{2}\)</span> moves the agent one state to the left.</p></li>
@@ -664,10 +718,10 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
 <figure class="align-default" id="fig-branched-mdp-schematic-mod">
 <a class="reference internal image-reference" href="../_images/Fig-Branched-MDP-Schematic.pdf"><img alt="../_images/Fig-Branched-MDP-Schematic.pdf" src="../_images/Fig-Branched-MDP-Schematic.pdf" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, four-action (left, right, up, down) Markov decision process. The hallway has three types of paths: unobstructed (white, free), mildly obstructed (light gray, small cost), and obstructed (dark gray, large cost).</span><a class="headerlink" href="#fig-branched-mdp-schematic-mod" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, four-action (left, right, up, down) Markov decision process. The hallway has three types of paths: unobstructed (white, free), mildly obstructed (light gray, small cost), and obstructed (dark gray, large cost).</span><a class="headerlink" href="#fig-branched-mdp-schematic-mod" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>An agent is trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-branched-mdp-schematic-mod"><span class="std std-numref">Fig. 5</span></a>). Behind the green door is a tiger (and certain death), while behind the red door is freedom. If the agent opens the green door, the agent is eaten (and receives a large negative reward). However, if the agent opens the red door, it escapes and gets a positive reward.</p>
+<p>An agent is trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-branched-mdp-schematic-mod"><span class="std std-numref">Fig. 7</span></a>). Behind the green door is a tiger (and certain death), while behind the red door is freedom. If the agent opens the green door, the agent is eaten (and receives a large negative reward). However, if the agent opens the red door, it escapes and gets a positive reward.</p>
 <p>For this problem, the MDP has the tuple components:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \left\{1,2,\dots,N\right\}\)</span> while the action set is <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{a_{1},a_{2}, a_{3}, a_{4}\right\}\)</span>; action <span class="math notranslate nohighlight">\(a_{1}\)</span> moves the agent one state to the left, action <span class="math notranslate nohighlight">\(a_{2}\)</span> moves the agent one state to the right, action <span class="math notranslate nohighlight">\(a_{3}\)</span> moves the agent one stop up, and action <span class="math notranslate nohighlight">\(a_{4}\)</span> moves the agent one step down.</p></li>
@@ -719,11 +773,11 @@ introduced tools to compute the utility of a decision-making policy and the valu
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="probability-random-variables.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="moments.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Probability, Random Variables and Stochastic Processes</p>
+            <p class="prev-next-title">Estimating Statistical Properties From Data</p>
         </div>
     </a>
 </div>
