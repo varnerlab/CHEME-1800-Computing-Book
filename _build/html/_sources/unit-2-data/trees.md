@@ -1,2 +1,2 @@
-# Technical Computing Data Structures
+# Data Structures
 Fill me in.

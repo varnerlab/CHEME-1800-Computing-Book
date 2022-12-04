@@ -1,2 +1,2 @@
-# Data types and mutable/immutable data
+# Data Types
 Fill me in.
