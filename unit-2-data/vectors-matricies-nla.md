@@ -3,7 +3,7 @@
 ## Introduction
 Fill me in. 
 
-## Vectors and Matricies
+## Matricies and vectors
 Matrices are two-dimensional rectangular arrays of numbers, widgets, etc with $m$ rows and $n$ columns:
 
 $$\mathbf{A} = 
@@ -71,7 +71,7 @@ The _right multiplication operation_ can be represented graphically ({numref}`fi
 
 ```{figure} ./figs/Fig-Ab-Multiplication.pdf
 ---
-height: 160px
+height: 140px
 name: fig-right-multiplication-matrix-vector
 ---
 Caption goes here
@@ -99,6 +99,35 @@ name: fig-left-multiplication-matrix-vector
 ---
 Caption goes here
 ```
+
+#### Matrix-Matrix multiplication
+Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
+Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only _compatible_ matrices can be 
+multiplied together. For example, consider two matrices $\mathbf{A}$ and $\mathbf{B}$. For $\mathbf{A}$ and $\mathbf{B}$ to be compatible, 
+meaning we can compute the matrix product $\mathbf{C} = \mathbf{A}\mathbf{B}$, the number of columns of $\mathbf{A}$ must be same as the number of rows of $\mathbf{B}$. 
+
+Given a matrix $\mathbf{A}$ with _m_ rows and _n_ columns, and a matrix $\mathbf{B}$ with _n_ rows and _p_ columns, the 
+product matrix $\mathbf{C}$ is a matrix with _m_ rows and _p_ columns in which the (i,j)th element of $\mathbf{C}$ is given by:
+
+$$c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m;~j=1,2,\cdots,p}$$
+
+The _matrix-matrix multiplication_ operation can be represented graphically ({numref}`fig-multiplication-matrix-matrix`):
+
+```{figure} ./figs/Fig-AB-Matrix-Matrix-Multiplication.pdf
+---
+height: 360px
+name: fig-multiplication-matrix-matrix
+---
+Caption goes here
+```
+
+In general, matrix multiplication is not communinative e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$, thus the order of multiplication matters (unlike multiplying two scalar numbers together). However, while matrix multiplication is not communinative, it is distributive:
+
+$$\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$$
+
+and associative:
+
+$$\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}$$
 
 ## Summary
 Fill me in. 

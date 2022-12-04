@@ -392,8 +392,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vectors-and-matricies">
-   Vectors and Matricies
+  <a class="reference internal nav-link" href="#matricies-and-vectors">
+   Matricies and vectors
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -424,6 +424,11 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#left-multiplication-of-a-matrix-by-a-vector">
        Left multiplication of a matrix by a vector
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-matrix-multiplication">
+       Matrix-Matrix multiplication
       </a>
      </li>
     </ul>
@@ -465,8 +470,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vectors-and-matricies">
-   Vectors and Matricies
+  <a class="reference internal nav-link" href="#matricies-and-vectors">
+   Matricies and vectors
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -499,6 +504,11 @@ title="Print to PDF"
        Left multiplication of a matrix by a vector
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-matrix-multiplication">
+       Matrix-Matrix multiplication
+      </a>
+     </li>
     </ul>
    </li>
   </ul>
@@ -529,8 +539,8 @@ title="Print to PDF"
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
 </section>
-<section id="vectors-and-matricies">
-<h2>Vectors and Matricies<a class="headerlink" href="#vectors-and-matricies" title="Permalink to this headline">#</a></h2>
+<section id="matricies-and-vectors">
+<h2>Matricies and vectors<a class="headerlink" href="#matricies-and-vectors" title="Permalink to this headline">#</a></h2>
 <p>Matrices are two-dimensional rectangular arrays of numbers, widgets, etc with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{A} = 
@@ -591,7 +601,7 @@ Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <s
 \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
 <p>The <em>right multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 1</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
-<a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 160px;" /></a>
+<a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -616,6 +626,30 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="matrix-matrix-multiplication">
+<h4>Matrix-Matrix multiplication<a class="headerlink" href="#matrix-matrix-multiplication" title="Permalink to this headline">#</a></h4>
+<p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
+Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only <em>compatible</em> matrices can be
+multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
+meaning we can compute the matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span>, the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must be same as the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
+<p>Given a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with <em>m</em> rows and <em>n</em> columns, and a matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> with <em>n</em> rows and <em>p</em> columns, the
+product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a matrix with <em>m</em> rows and <em>p</em> columns in which the (i,j)th element of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m;~j=1,2,\cdots,p}\]</div>
+<p>The <em>matrix-matrix multiplication</em> operation can be represented graphically (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 3</span></a>):</p>
+<figure class="align-default" id="fig-multiplication-matrix-matrix">
+<a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 360px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In general, matrix multiplication is not communinative e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>, thus the order of multiplication matters (unlike multiplying two scalar numbers together). However, while matrix multiplication is not communinative, it is distributive:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\]</div>
+<p>and associative:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}\]</div>
 </section>
 </section>
 </section>
