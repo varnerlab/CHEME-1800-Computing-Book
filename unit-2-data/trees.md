@@ -1,2 +1,7 @@
 # Data Structures
-Fill me in.
+
+## Introduction
+Fill me in. 
+
+## Summary 
+Fill me in. 
