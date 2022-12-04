@@ -1,4 +1,4 @@
-# CHEME 1800 Principles of Computational Thinking for Engineers
+# Principles of Computational Thinking for Engineers
 
 ## Description
 Engineering practice increasingly relies on computational tools and data analysis approaches. This one-semester course introduces computational thinking into engineering analysis. We integrate data science and statistics, artificial intelligence, and mathematical modeling approaches into the context of contemporary problems in the design and analysis of processes, products, and systems. The course is agnostic to platforms and tools; we’ll focus on paradigms, not syntax. However, we’ll use the Julia programming language and its associated toolchain when transitioning from idea to implementation. In addition, we’ll use cloud computing resources for course materials, assignments, and projects. Weekly labs provide guided practice on the computer, with teaching staff present. Course assignments use data sets and examples to develop fluency and understanding of real-life problems. 
@@ -10,7 +10,7 @@ Upon completion of this course, students will be able to:
 * Demonstrate mastery of quantitative decision-making and risk management approaches in the context of a process, product, or system design
 
 ## Topics
-Lectures are organized into Units, each having roughly four weeks of class time
+Lectures are organized into units, each having roughly four weeks of class time
 * [Unit 1: Technical computing basics](./unit-1-basics/basics-landing.md)
 * [Unit 2: Data, Algorithms, and Linear Algebra](./unit-2-data/data-landing.md)
 * [Unit 3: The Learning Problem: Models, Learning, and Optimization](./unit-3-learning/learning-landing.md)
