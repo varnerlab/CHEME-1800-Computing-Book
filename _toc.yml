@@ -1,0 +1,24 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: landing.md
+chapters:
+- file: unit-1-basics/basics-landing
+  title: Unit 1. Basics
+- file: unit-2-data/data-landing
+  title: Unit 2. Data
+  sections:
+  - file: unit-2-data/vectors-matricies-nla
+  - file: unit-2-data/trees
+  - file: unit-2-data/measures
+  - file: unit-2-data/laes
+- file: unit-3-learning/learning-landing
+  title: Unit 3. Learning
+- file: unit-4-decisions/decisions-landing
+  title: Unit 4. Decisions
+  sections:
+  - file: unit-4-decisions/probability-random-variables
+  - file: unit-4-decisions/moments
+  - file: unit-4-decisions/mdp
+- file: References
