@@ -9,12 +9,12 @@ Upon completion of this course, students will be able to:
 * Identify and test quantitative models of process and product performance using real-time dynamic and static data sets 
 * Demonstrate mastery of quantitative decision-making and risk management approaches in the context of a process, product, or system design
 
-## Topics
+### Topics
 Lectures are organized into units, each having roughly four weeks of class time
 * [Unit 1: Technical computing basics](./unit-1-basics/basics-landing.md)
 * [Unit 2: Data, Algorithms, and Linear Algebra](./unit-2-data/data-landing.md)
 * [Unit 3: The Learning Problem: Models, Learning, and Optimization](./unit-3-learning/learning-landing.md)
-* [Unit 4: he Decision Problem: Probability, Random Process, and Decisions](./unit-4-decisions/decisions-landing.md)
+* [Unit 4: The Decision Problem: Probability, Random Process, and Decisions](./unit-4-decisions/decisions-landing.md)
 
 ## Grading
 We expect this course to draw from a spectrum of students, including “those less comfortable with computing,” “those more comfortable with computing,” and those in between. However, what ultimately matters is not where you end up relative to your classmates but where you are relative to yourself. 
