@@ -1,4 +1,4 @@
-# Vectors, matrices, and the introduction of numerical linear algebra
+# Vectors and Matrices
 
 ## Introduction
 Fill me in. 
@@ -38,13 +38,52 @@ Just like numbers, vectors and matrices can participate in typical mathematical 
 ## Operations
 
 ### Addition and subtraction
-Vectors and matrices must be the _same dimension_ to be compatible for addition or subtraction operations. 
-This is because adding (or subtracting) Matrices or vectors, as well as multiplying these objects by a scalar constant, is done element wise. 
-For example, suppose we have two $n\times{1}$ vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$, then the sum $\mathbf{v}$ is given by:
+Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible:
 
-$$\mathbf{v} = \mathbf{v}_{1} + \mathbf{v}_{2}$$
+```{prf:remark}
+:label: rem-vector-matrix-compatible
+Vectors and matrices must be the _same dimension_ to be compatible with addition or subtraction operations. 
+```
 
-where the ith element of $\mathbf{v}$ is given by: $v_{i} = v_{i,1}+ v_{i,2}$
+The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don't have the same number of 
+elements, then addition and subtraction operations don't make sense. 
+
+````{prf:observation} Vector addition
+:label: obs-same-dimension
+Suppose we have two $n\times{1}$ vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$. The sum of these vectors is given by:
+
+$$\mathbf{y} = \mathbf{v}_{1} + \mathbf{v}_{2}$$
+
+where the ith element of the sum $\mathbf{y}$ is given by: $v_{i} = v_{i,1}+ v_{i,2}$. If however, $\mathbf{v}_{1}$ had $m>n$ elements, then the vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$ are not compatible. A similar arguement can be made about matrices.
+````
+
+Vector addition is strarighforward to implement; for example, consider {prf:ref}`algo-vector-addition`:
+
+````{prf:algorithm} Naive vector addition
+:label: algo-vector-addition
+
+**Inputs** Compatible vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$
+
+**Outputs** Vector sum $\mathbf{y}$
+
+**Initialize**
+1. N $\leftarrow$ length($\mathbf{v}_{1}$)
+1. $\mathbf{y}\leftarrow$ zeros(N)
+
+**Main**
+1. for i $\in$ 1 to N
+    1. $y[i]\leftarrow~v_{1}[i] + v_{2}[i]$
+
+**Return**
+$\mathbf{y}$
+````
+
+where the braket notation $y[\star]$ denotes element $\star$ of the vector $\mathbf{y}$. However, {prf:ref}`algo-vector-addition` may not be the _best_ way to implement vector (or matrix) addition or subtract operations.
+
+#### Vectorized addition and subtraction operators
+Many modern programming languages and libraries, e.g., [the Numpy library in Python](https://numpy.org) or [Julia](https://julialang.org), support _vectorization_, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write `for` loops. Vectorized code often executes faster than Naive implementation such as {prf:ref}`algo-vector-addition` because the _vectorization_ can take advantage of advanced techniques to improve performance. 
+
+You can use the `.+` operator for element-wise addition, while element-wise subtraction can be encoded with the `.-` operator.
 
 ### Multiplication
 

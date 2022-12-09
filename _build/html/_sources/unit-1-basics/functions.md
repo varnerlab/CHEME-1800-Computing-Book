@@ -1,2 +1,2 @@
-# Functions, Loops and Control Flow
+# Functions, Loops and Control
 Fill me in

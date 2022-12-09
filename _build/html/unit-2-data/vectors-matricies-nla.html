@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Vectors, matrices, and the introduction of numerical linear algebra &#8212; CHEME 1800</title>
+    <title>Vectors and Matrices &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -130,17 +130,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/types.html">
-     Data Types
+     Types
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/functions.html">
-     Functions, Loops and Control Flow
+     Functions, Loops and Control
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/data-file-io.html">
-     Data Files and Application Programming Interfaces (APIs)
+     Files and Application Programming Interfaces (APIs)
     </a>
    </li>
   </ul>
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Vectors, matrices, and the introduction of numerical linear algebra
+     Vectors and Matrices
     </a>
    </li>
    <li class="toctree-l2">
@@ -405,6 +405,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#addition-and-subtraction">
      Addition and subtraction
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vectorized-addition-and-subtraction-operators">
+       Vectorized addition and subtraction operators
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multiplication">
@@ -454,7 +461,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Vectors, matrices, and the introduction of numerical linear algebra</h1>
+                <h1>Vectors and Matrices</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -483,6 +490,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#addition-and-subtraction">
      Addition and subtraction
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vectorized-addition-and-subtraction-operators">
+       Vectorized addition and subtraction operators
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multiplication">
@@ -533,8 +547,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="vectors-matrices-and-the-introduction-of-numerical-linear-algebra">
-<h1>Vectors, matrices, and the introduction of numerical linear algebra<a class="headerlink" href="#vectors-matrices-and-the-introduction-of-numerical-linear-algebra" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="vectors-and-matrices">
+<h1>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
@@ -572,12 +586,50 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h2>
 <section id="addition-and-subtraction">
 <h3>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Permalink to this headline">#</a></h3>
-<p>Vectors and matrices must be the <em>same dimension</em> to be compatible for addition or subtraction operations.
-This is because adding (or subtracting) Matrices or vectors, as well as multiplying these objects by a scalar constant, is done element wise.
-For example, suppose we have two <span class="math notranslate nohighlight">\(n\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span>, then the sum <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is given by:</p>
+<p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible:</p>
+<div class="proof remark admonition" id="rem-vector-matrix-compatible">
+<p class="admonition-title"><span class="caption-number">Remark 1 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
+</section>
+</div><p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of
+elements, then addition and subtraction operations don’t make sense.</p>
+<div class="proof observation admonition" id="obs-same-dimension">
+<p class="admonition-title"><span class="caption-number">Observation 1 </span> (Vector addition)</p>
+<section class="observation-content" id="proof-content">
+<p>Suppose we have two <span class="math notranslate nohighlight">\(n\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span>. The sum of these vectors is given by:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{v} = \mathbf{v}_{1} + \mathbf{v}_{2}\]</div>
-<p>where the ith element of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is given by: <span class="math notranslate nohighlight">\(v_{i} = v_{i,1}+ v_{i,2}\)</span></p>
+\[\mathbf{y} = \mathbf{v}_{1} + \mathbf{v}_{2}\]</div>
+<p>where the ith element of the sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is given by: <span class="math notranslate nohighlight">\(v_{i} = v_{i,1}+ v_{i,2}\)</span>. If however, <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> had <span class="math notranslate nohighlight">\(m&gt;n\)</span> elements, then the vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span> are not compatible. A similar arguement can be made about matrices.</p>
+</section>
+</div><p>Vector addition is strarighforward to implement; for example, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a>:</p>
+<div class="proof algorithm admonition" id="algo-vector-addition">
+<p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Naive vector addition)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Compatible vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span></p>
+<p><strong>Outputs</strong> Vector sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>N <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\leftarrow\)</span> zeros(N)</p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to N</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(y[i]\leftarrow~v_{1}[i] + v_{2}[i]\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong>
+<span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
+</section>
+</div><p>where the braket notation <span class="math notranslate nohighlight">\(y[\star]\)</span> denotes element <span class="math notranslate nohighlight">\(\star\)</span> of the vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. However, <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.</p>
+<section id="vectorized-addition-and-subtraction-operators">
+<h4>Vectorized addition and subtraction operators<a class="headerlink" href="#vectorized-addition-and-subtraction-operators" title="Permalink to this headline">#</a></h4>
+<p>Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Vectorized code often executes faster than Naive implementation such as <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a> because the <em>vectorization</em> can take advantage of advanced techniques to improve performance.</p>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator.</p>
+</section>
 </section>
 <section id="multiplication">
 <h3>Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">#</a></h3>
