@@ -1,4 +1,4 @@
-# Data Files and Application Programming Interfaces (APIs)
+# Files and Application Programming Interfaces (APIs)
 
 ## Introduction
 Working with data is one of the most common tasks in any computational project. For example, loading data into a program, doing some calculations using that data, and then saving the results to a file (either locally or in the cloud) describes the majority of programs you will write in this course, and likely in your future career. 

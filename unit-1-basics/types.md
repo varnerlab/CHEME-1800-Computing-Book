@@ -1,4 +1,4 @@
-# Data Types
+# Types
 
 ## Introduction
 Fill me in. 
