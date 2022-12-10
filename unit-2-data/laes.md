@@ -136,6 +136,37 @@ $$
 \end{eqnarray}
 $$
 
+Putting all these ideas together, where $\mathcal{M}=\left\{S, P, E, E:S, E:P\right\}$ and $\mathcal{R} =\left\{1, 2, 3, 4\right\}$, gives the 5$\times$4 system:
+
+$$
+\begin{bmatrix}
+-1 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+-1 & 1 & 0 & 1 \\
+1 & -1 & -1 & 0 \\
+0 & 0 & 1 & -1
+\end{bmatrix}
+\begin{pmatrix}
+\dot{\epsilon}_{1} \\
+\dot{\epsilon}_{2} \\
+\dot{\epsilon}_{3} \\
+\dot{\epsilon}_{4} 
+\end{pmatrix} = 
+\begin{pmatrix}
+\dot{n}_{1,2} - \dot{n}_{1,1}\\
+\dot{n}_{2,2} - \dot{n}_{2,1}\\
+\dot{n}_{3,2} - \dot{n}_{3,1}\\
+\dot{n}_{4,2} - \dot{n}_{4,1}\\
+\dot{n}_{5,2} - \dot{n}_{5,1}
+\end{pmatrix}
+$$
+
+where can be re-written in matrix-vector form as:
+
+```{math}
+:label: eqn-system-mole-balances
+\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}
+```
 
 ### Rank
 What is interesting about $\mathbf{A}^{-1}$ are the conditions governing its existence, and in one particular a concept called [matrix rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)). The rank of a matrix _r_:

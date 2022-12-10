@@ -678,6 +678,33 @@ C_{i,3}
 \text{E:P} &amp;\stackrel{\rm 4}{\longrightarrow}&amp; \text{E+P}
 \end{eqnarray}
 \end{split}\]</div>
+<p>Putting all these ideas together, where <span class="math notranslate nohighlight">\(\mathcal{M}=\left\{S, P, E, E:S, E:P\right\}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{R} =\left\{1, 2, 3, 4\right\}\)</span>, gives the 5<span class="math notranslate nohighlight">\(\times\)</span>4 system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+-1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+-1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; -1 &amp; -1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; -1
+\end{bmatrix}
+\begin{pmatrix}
+\dot{\epsilon}_{1} \\
+\dot{\epsilon}_{2} \\
+\dot{\epsilon}_{3} \\
+\dot{\epsilon}_{4} 
+\end{pmatrix} = 
+\begin{pmatrix}
+\dot{n}_{1,2} - \dot{n}_{1,1}\\
+\dot{n}_{2,2} - \dot{n}_{2,1}\\
+\dot{n}_{3,2} - \dot{n}_{3,1}\\
+\dot{n}_{4,2} - \dot{n}_{4,1}\\
+\dot{n}_{5,2} - \dot{n}_{5,1}
+\end{pmatrix}
+\end{split}\]</div>
+<p>where can be re-written in matrix-vector form as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-system-mole-balances">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
 </section>
 <section id="rank">
 <h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>
