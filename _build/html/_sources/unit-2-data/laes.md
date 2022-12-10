@@ -1,5 +1,16 @@
 # Linear Algebraic Equations
 
+<!-- In the special case where the number of rows and columns of $\mathbf{A}$ are equal ($m=n$), and some additional conditions are true, we can calculate a unique solution for Eqn. {eq}`eqn-general-system-laes` and the inverse $\mathbf{A}^{\dagger} = \mathbf{A}^{-1}$  has the 
+special property: -->
+
+<!-- If an inverse exists, then it has 
+the special property:
+
+$$\mathbf{A}^{\dagger}\mathbf{A} = \mathbf{I}$$
+
+where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix); the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix) is a diagonal matrix with 1's on the diagonal and 0's everywhere else. -->
+
+
 ## Introduction 
 Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we'll explore both _direct_ and _iterative_ methods to solve the generic system of LAEs:
 
@@ -12,15 +23,17 @@ where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\time
 
 $$\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}$$
 
-where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$. In the special case where the number of rows and columns of $\mathbf{A}$ are equal ($m=n$), and some additional conditions are true, we can calculate a unique solution for Eqn. {eq}`eqn-general-system-laes` and the inverse $\mathbf{A}^{\dagger} = \mathbf{A}^{-1}$  has the 
-special property:
+where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$. 
 
-$$\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$$
+In this lecture, we'll look at techniques to compute $\mathbf{A}^{\dagger}$. We will:
 
-where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix); the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix) is a diagonal matrix with 1's on the diagonal and 0's everywhere else. 
-
+* Begin by introducing some {ref}`content:references:motivating-examples` that will be handy later to frame our discussion.
+* Next, we will introduce {ref}`content:references:solution-approaches` to solve square systems of linear algebraic equations.
+* Finally, we'll conclude with a discussion of {ref}`content:references:solution-approaches-non-square`. These approaches can compute approximate inverses for non-square systems of linear algebraic equations.
 ---
 
+
+(content:references:motivating-examples)=
 ## Motivating examples and concepts
 
 ### Underdetermined systems
@@ -179,7 +192,9 @@ is at most equal to the smallest dimesion of the matrix (full rank). Rank is a m
 
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
-## Solutions
+
+(content:references:solution-approaches)=
+## Direct and iterative solution approaches
 The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
 $$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
@@ -232,8 +247,7 @@ In Gauss-Seidel, the best estimate of the proceeding $x_{i}$'s are used in the c
 #### Successive Overrelaxation
 Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of $x_{i}$ is further modified
 before proceeding to the evaluation of the next equations. Suppose we define the best estimate
-for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then _before_ processing the next Gauss-Seidel type step we update the best 
-guess for $x_{i}$ using the rule:
+for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then _before_ processing the next Gauss-Seidel type step we update the best guess for $x_{i}$ using the rule:
 
 $$\hat{x}_{i,k}=\lambda\hat{x}_{i,k}+\left(1-\lambda\right)\hat{x}_{i,k-1}\qquad{i=1,2,\cdots,n}$$
 
@@ -259,6 +273,10 @@ While the true solution is not explicitly known, you can calculate the squared d
 $$e_{k}=\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)^{T}$$
 
 where $e_{k}$ denotes the squared error for solution at iteration k of the algorithm. 
+
+(content:references:solution-approaches-non-square)=
+## Generalized inverses and pseudoinverses
+Fill me in. 
 
 ---
 

@@ -419,8 +419,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solutions">
-   Solutions
+  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches">
+   Direct and iterative solution approaches
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -456,6 +456,11 @@ title="Print to PDF"
     </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-inverses-and-pseudoinverses">
+   Generalized inverses and pseudoinverses
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -514,8 +519,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solutions">
-   Solutions
+  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches">
+   Direct and iterative solution approaches
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -553,6 +558,11 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-inverses-and-pseudoinverses">
+   Generalized inverses and pseudoinverses
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
@@ -569,6 +579,14 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="linear-algebraic-equations">
 <h1>Linear Algebraic Equations<a class="headerlink" href="#linear-algebraic-equations" title="Permalink to this headline">#</a></h1>
+<!-- In the special case where the number of rows and columns of $\mathbf{A}$ are equal ($m=n$), and some additional conditions are true, we can calculate a unique solution for Eqn. {eq}`eqn-general-system-laes` and the inverse $\mathbf{A}^{\dagger} = \mathbf{A}^{-1}$  has the 
+special property: -->
+<!-- If an inverse exists, then it has 
+the special property:
+
+$$\mathbf{A}^{\dagger}\mathbf{A} = \mathbf{I}$$
+
+where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix); the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix) is a diagonal matrix with 1's on the diagonal and 0's everywhere else. -->
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
@@ -577,15 +595,17 @@ title="Print to PDF"
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector. To compute a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we compute a <a class="reference external" href="https://mathworld.wolfram.com/MatrixInverse.html">matrix inverse</a>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span> denotes the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. In the special case where the number of rows and columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> are equal (<span class="math notranslate nohighlight">\(m=n\)</span>), and some additional conditions are true, we can calculate a unique solution for Eqn. <a class="reference internal" href="#equation-eqn-general-system-laes">(1)</a> and the inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger} = \mathbf{A}^{-1}\)</span>  has the
-special property:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix">identity Matrix</a>; the <a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix">identity Matrix</a> is a diagonal matrix with 1’s on the diagonal and 0’s everywhere else.</p>
-</section>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span> denotes the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>In this lecture, we’ll look at techniques to compute <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span>. We will:</p>
+<ul class="simple">
+<li><p>Begin by introducing some <a class="reference internal" href="#content-references-motivating-examples"><span class="std std-ref">Motivating examples and concepts</span></a> that will be handy later to frame our discussion.</p></li>
+<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Direct and iterative solution approaches</span></a> to solve square systems of linear algebraic equations.</p></li>
+<li><p>Finally, we’ll conclude with a discussion of <a class="reference internal" href="#content-references-solution-approaches-non-square"><span class="std std-ref">Generalized inverses and pseudoinverses</span></a>. These approaches can compute approximate inverses for non-square systems of linear algebraic equations.</p></li>
+</ul>
 <hr class="docutils" />
+</section>
 <section id="motivating-examples-and-concepts">
-<h2>Motivating examples and concepts<a class="headerlink" href="#motivating-examples-and-concepts" title="Permalink to this headline">#</a></h2>
+<span id="content-references-motivating-examples"></span><h2>Motivating examples and concepts<a class="headerlink" href="#motivating-examples-and-concepts" title="Permalink to this headline">#</a></h2>
 <section id="underdetermined-systems">
 <h3>Underdetermined systems<a class="headerlink" href="#underdetermined-systems" title="Permalink to this headline">#</a></h3>
 <p>Suppose you had two steady-state blending tanks <span class="math notranslate nohighlight">\(T_{1}\)</span> and <span class="math notranslate nohighlight">\(T_{2}\)</span> in series, each with two input streams and a single output stream (<a class="reference internal" href="#fig-blending-tanks-example"><span class="std std-numref">Fig. 4</span></a>):</p>
@@ -723,8 +743,8 @@ C_{i,3}
 <p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
 </section>
 </section>
-<section id="solutions">
-<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">#</a></h2>
+<section id="direct-and-iterative-solution-approaches">
+<span id="content-references-solution-approaches"></span><h2>Direct and iterative solution approaches<a class="headerlink" href="#direct-and-iterative-solution-approaches" title="Permalink to this headline">#</a></h2>
 <p>The naive way to solve a system of LAEs for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to directly compute the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>. A matrix inverse has the property <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <em>identity matrix</em>.  Thus, if a matrix inverse exists, the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be computed as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
@@ -773,8 +793,7 @@ for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at 
 <h4>Successive Overrelaxation<a class="headerlink" href="#successive-overrelaxation" title="Permalink to this headline">#</a></h4>
 <p>Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> is further modified
 before proceeding to the evaluation of the next equations. Suppose we define the best estimate
-for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then <em>before</em> processing the next Gauss-Seidel type step we update the best
-guess for <span class="math notranslate nohighlight">\(x_{i}\)</span> using the rule:</p>
+for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then <em>before</em> processing the next Gauss-Seidel type step we update the best guess for <span class="math notranslate nohighlight">\(x_{i}\)</span> using the rule:</p>
 <div class="math notranslate nohighlight">
 \[\hat{x}_{i,k}=\lambda\hat{x}_{i,k}+\left(1-\lambda\right)\hat{x}_{i,k-1}\qquad{i=1,2,\cdots,n}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is an adjustable parameter governed by <span class="math notranslate nohighlight">\(0&lt;\lambda\leq{2}\)</span>. The value of <span class="math notranslate nohighlight">\(\lambda\)</span> can dramatically speed-up <em>or</em>
@@ -801,6 +820,10 @@ While the true solution is not explicitly known, you can calculate the squared d
 <p>where <span class="math notranslate nohighlight">\(e_{k}\)</span> denotes the squared error for solution at iteration k of the algorithm.</p>
 </section>
 </section>
+</section>
+<section id="generalized-inverses-and-pseudoinverses">
+<span id="content-references-solution-approaches-non-square"></span><h2>Generalized inverses and pseudoinverses<a class="headerlink" href="#generalized-inverses-and-pseudoinverses" title="Permalink to this headline">#</a></h2>
+<p>Fill me in.</p>
 </section>
 <hr class="docutils" />
 <section id="summary">
