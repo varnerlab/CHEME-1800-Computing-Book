@@ -3,6 +3,7 @@
 
 format: jb-book
 root: landing.md
+title: Description
 chapters:
 - file: unit-1-basics/basics-landing
   title: Unit 1. Basics
