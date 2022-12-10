@@ -651,15 +651,24 @@ C_{i,3}
 </section>
 <section id="overdetermined-systems">
 <h3>Overdetermined systems<a class="headerlink" href="#overdetermined-systems" title="Permalink to this headline">#</a></h3>
-<p>Overdetermined systems have more equations than unknonws. As our motivating example for this class of system, consider the four elementary steps in a idealized enzyme catalyzed reaction <a class="reference internal" href="#fig-enzyme-catalyzed-rxn-example"><span class="std std-numref">Fig. 5</span></a>:</p>
+<p>As our motivating example for overdetermined systems, which have more equations than unknowns, let’s consider the classic machine in a box problem (<a class="reference internal" href="#fig-enzyme-catalyzed-rxn-example"><span class="std std-numref">Fig. 5</span></a>). In this problem, we’ll consider a particular type of molecular machine, an enzyme. <a class="reference external" href="https://en.wikipedia.org/wiki/Enzyme">Enzymes</a> are molecular machines that convert a starting material (called a substrate) into a product.</p>
 <figure class="align-default" id="fig-enzyme-catalyzed-rxn-example">
-<a class="reference internal image-reference" href="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf"><img alt="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" src="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" style="height: 440px;" /></a>
+<a class="reference internal image-reference" href="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf"><img alt="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" src="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" style="height: 540px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-enzyme-catalyzed-rxn-example" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In the first elementary reaction, enzyme <span class="math notranslate nohighlight">\(E\)</span> binds substrate <span class="math notranslate nohighlight">\(S\)</span> to form the enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span>. The enzyme-substrate complex can fall apart (elementary reaction 2) or produce the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span>. Finally, the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span> can disassociate, giving the product <span class="math notranslate nohighlight">\(P\)</span> and the enzyme <span class="math notranslate nohighlight">\(E\)</span>; the enzyme is free to bind with another substrate molecule and run the cycle over again.</p>
-<p>In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions:</p>
+<p>The process of converting substrate <span class="math notranslate nohighlight">\(S\)</span> to product <span class="math notranslate nohighlight">\(P\)</span> can be modeled as four elementary steps:</p>
+<ul class="simple">
+<li><p>Step 1: The enzyme <span class="math notranslate nohighlight">\(E\)</span> binds substrate <span class="math notranslate nohighlight">\(S\)</span> to form the enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span>.</p></li>
+<li><p>Step 2: The enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span> can fall apart giving back <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>Step 3: Alternatively, enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span> can form the the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span>.</p></li>
+<li><p>Step 4: Finally, the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span> can disassociate, giving the product <span class="math notranslate nohighlight">\(P\)</span> and the enzyme <span class="math notranslate nohighlight">\(E\)</span>; the enzyme <span class="math notranslate nohighlight">\(E\)</span> is free to bind with another substrate molecule and run the cycle over again.</p></li>
+</ul>
+<p>Let’s assume the box has a single input (<span class="math notranslate nohighlight">\(s=1\)</span>) and a single output stream (<span class="math notranslate nohighlight">\(s=2\)</span>). Then, the steady-state species mole balance equations for chemical component <span class="math notranslate nohighlight">\(i\)</span> are given by:</p>
+<div class="math notranslate nohighlight">
+\[\dot{n}_{i,1} - \dot{n}_{i,2} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_{ir}\)</span> denotes the stoichiometric coefficient for species <span class="math notranslate nohighlight">\(i\)</span> in reaction <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\dot{\epsilon}_{r}\)</span> denotes the open extent of reaction (units: mole/time) for reaction <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> denotes the set of chemical reactions that occur in the box. In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}

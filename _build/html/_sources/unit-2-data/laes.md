@@ -105,20 +105,27 @@ where $\dot{\mathbf{V}}$ is now a 2$\times$2 square matrix, and $\mathbf{C}$ is 
 2$\times$1 column-vector $\mathbf{b}$ which holds the new information about the measured inputs. 
 
 ### Overdetermined systems
-Overdetermined systems have more equations than unknonws. As our motivating example for this class of system, consider the four elementary steps in a idealized enzyme catalyzed reaction {numref}`fig-enzyme-catalyzed-rxn-example`:
+As our motivating example for overdetermined systems, which have more equations than unknowns, let's consider the classic machine in a box problem ({numref}`fig-enzyme-catalyzed-rxn-example`). In this problem, we'll consider a particular type of molecular machine, an enzyme. [Enzymes](https://en.wikipedia.org/wiki/Enzyme) are molecular machines that convert a starting material (called a substrate) into a product.
 
 ```{figure} ./figs/Fig-Enzyme-Catalyzed-Reaction.pdf
 ---
-height: 440px
+height: 540px
 name: fig-enzyme-catalyzed-rxn-example
 ---
 Caption goes here
 ```
 
+The process of converting substrate $S$ to product $P$ can be modeled as four elementary steps:
+* Step 1: The enzyme $E$ binds substrate $S$ to form the enzyme-substrate complex $E:S$. 
+* Step 2: The enzyme-substrate complex $E:S$ can fall apart giving back $E$ and $S$. 
+* Step 3: Alternatively, enzyme-substrate complex $E:S$ can form the the enzyme-product complex $E:P$. 
+* Step 4: Finally, the enzyme-product complex $E:P$ can disassociate, giving the product $P$ and the enzyme $E$; the enzyme $E$ is free to bind with another substrate molecule and run the cycle over again. 
 
-In the first elementary reaction, enzyme $E$ binds substrate $S$ to form the enzyme-substrate complex $E:S$. The enzyme-substrate complex can fall apart (elementary reaction 2) or produce the enzyme-product complex $E:P$. Finally, the enzyme-product complex $E:P$ can disassociate, giving the product $P$ and the enzyme $E$; the enzyme is free to bind with another substrate molecule and run the cycle over again. 
+Let's assume the box has a single input ($s=1$) and a single output stream ($s=2$). Then, the steady-state species mole balance equations for chemical component $i$ are given by:
 
-In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions: 
+$$\dot{n}_{i,1} - \dot{n}_{i,2} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0$$
+
+where $\sigma_{ir}$ denotes the stoichiometric coefficient for species $i$ in reaction $r$, $\dot{\epsilon}_{r}$ denotes the open extent of reaction (units: mole/time) for reaction $r$ and $\mathcal{R}$ denotes the set of chemical reactions that occur in the box. In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions: 
 
 $$
 \begin{eqnarray}
