@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Solution of Linear Algebraic Equations &#8212; CHEME 1800</title>
+    <title>Linear Algebraic Equations &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -172,7 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Solution of Linear Algebraic Equations
+     Linear Algebraic Equations
     </a>
    </li>
   </ul>
@@ -392,9 +392,31 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rank">
-   Rank
+  <a class="reference internal nav-link" href="#motivating-examples">
+   Motivating examples
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#underdetermined-systems">
+     Underdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#square-systems">
+     Square systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overdetermined-systems">
+     Overdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank">
+     Rank
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#guassian-elimination">
@@ -444,7 +466,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Solution of Linear Algebraic Equations</h1>
+                <h1>Linear Algebraic Equations</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -460,9 +482,31 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rank">
-   Rank
+  <a class="reference internal nav-link" href="#motivating-examples">
+   Motivating examples
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#underdetermined-systems">
+     Underdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#square-systems">
+     Square systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overdetermined-systems">
+     Overdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank">
+     Rank
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#guassian-elimination">
@@ -513,28 +557,127 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="solution-of-linear-algebraic-equations">
-<h1>Solution of Linear Algebraic Equations<a class="headerlink" href="#solution-of-linear-algebraic-equations" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-algebraic-equations">
+<h1>Linear Algebraic Equations<a class="headerlink" href="#linear-algebraic-equations" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these types of equations naturally arise from steady-state materials balances as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
+<p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for) and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector.</p>
-<p>There are two broad categories of methods to solve for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, direct methods such as those based upon <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> and iterative methods such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Gauss–Seidel method</a>. Here we consider iterative methods in depth and will only briefly desribe direct substitution approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>.</p>
-<p>In all the disucssion below we assume:</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector. To compute a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we compute a <a class="reference external" href="https://mathworld.wolfram.com/MatrixInverse.html">matrix inverse</a>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x} = \mathbf{A}^{\#}\mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}^{\#}\)</span> is an inverse of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>There are two broad categories of methods to solve for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, direct methods, such as those based upon <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, and iterative methods, such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Gauss–Seidel method</a>. Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>.</p>
+<p>In all the discussion below, we assume:</p>
 <ul class="simple">
-<li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <strong>square</strong> meaning <span class="math notranslate nohighlight">\(m=n\)</span>; we’ll see how we can treat non-square stystems later.</p></li>
+<li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <strong>square</strong> meaning <span class="math notranslate nohighlight">\(m=n\)</span>; we’ll see how we can treat non-square systems later.</p></li>
 <li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has full rank or equivalently <span class="math notranslate nohighlight">\(\det{\mathbf{A}}\neq{0}\)</span>.</p></li>
 </ul>
 </section>
+<hr class="docutils" />
+<section id="motivating-examples">
+<h2>Motivating examples<a class="headerlink" href="#motivating-examples" title="Permalink to this headline">#</a></h2>
+<section id="underdetermined-systems">
+<h3>Underdetermined systems<a class="headerlink" href="#underdetermined-systems" title="Permalink to this headline">#</a></h3>
+<p>Suppose you had two steady-state blending tanks <span class="math notranslate nohighlight">\(T_{1}\)</span> and <span class="math notranslate nohighlight">\(T_{2}\)</span> in series, each with two input streams and a single output stream (<a class="reference internal" href="#fig-blending-tanks-example"><span class="std std-numref">Fig. 4</span></a>):</p>
+<figure class="align-default" id="fig-blending-tanks-example">
+<a class="reference internal image-reference" href="../_images/Fig-Blending-Tanks-Example.pdf"><img alt="../_images/Fig-Blending-Tanks-Example.pdf" src="../_images/Fig-Blending-Tanks-Example.pdf" style="height: 140px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-blending-tanks-example" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Further, we have species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> in this system and no chemical reactions. Then, the steady-state species concentration balances for component <span class="math notranslate nohighlight">\(i\in\mathcal{M}\)</span> in blending tanks 1 and 2 can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\dot{V}_{1}C_{i,1} + \dot{V}_{4}C_{i,4}-\dot{V}_{2}C_{i,2} &amp; = &amp; 0\\
+\dot{V}_{2}C_{i,2} + \dot{V}_{5}C_{i,5}-\dot{V}_{3}C_{i,3} &amp; = &amp; 0
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\dot{V}_{j}\)</span> denotes the volumetric flow-rate of stream <span class="math notranslate nohighlight">\(j\)</span> (units: volume/time), and <span class="math notranslate nohighlight">\(C_{i,j}\)</span> denotes the
+concentration of component <span class="math notranslate nohighlight">\(i\)</span> in stream <span class="math notranslate nohighlight">\(j\)</span> (units: mole/volume). This system of concentration balances can be re-written as a matrix-vector product:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+\dot{V}_{1} &amp; -\dot{V}_{2} &amp; 0 &amp; \dot{V}_{4} &amp; 0 \\
+0 &amp; \dot{V}_{2} &amp; -\dot{V}_{3} &amp; 0 &amp; \dot{V}_{5} 
+\end{bmatrix}
+\begin{pmatrix}
+C_{i,1} \\
+C_{i,2} \\
+C_{i,3} \\
+C_{i,4} \\
+C_{i,5}
+\end{pmatrix} = 
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+0
+\end{pmatrix}
+\end{split}\]</div>
+<p>or in matrix-vector notation:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-matrix-vector-notation-tanks">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
+<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(1)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
+</section>
+<section id="square-systems">
+<h3>Square systems<a class="headerlink" href="#square-systems" title="Permalink to this headline">#</a></h3>
+<p>Instead of knowing nothing, suppose in our blending tank example we know the concentrations of component <span class="math notranslate nohighlight">\(i\)</span> in the input streams (1,4 and 5). Then, we only need to calculate the concentrations of component <span class="math notranslate nohighlight">\(i\)</span> in streams 2 and 3.
+We know have a <em>square</em> system, i.e., the number of equations (rows) and the number of unknowns (columns) are equal.</p>
+<p>In this case, we can rearrange our concentration balance equations, moving the knowns to the right-hand side:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+-\dot{V}_{2} &amp; 0 \\
+0 &amp; -\dot{V}_{2}
+\end{bmatrix}
+\begin{pmatrix}
+C_{i,2} \\
+C_{i,3}
+\end{pmatrix} = 
+\begin{pmatrix}
+-\dot{V}_{1}C_{i,1} - \dot{V}_{4}C_{i,4} \\
+-\dot{V}_{5}C_{i,5}
+\end{pmatrix}
+\end{split}\]</div>
+<p>The additional information gives a 2<span class="math notranslate nohighlight">\(\times\)</span>2 system, i.e., a <em>sqaure</em> system of equations. A <em>square</em> system of equations, depending upon the properties of the system can have a unique solution. The system above can be written in matrix-vector form as:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\dot{\mathbf{V}}\)</span> is now a 2<span class="math notranslate nohighlight">\(\times\)</span>2 square matrix, and <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a 2<span class="math notranslate nohighlight">\(\times\)</span>1 column-vector. However, unlike the previous underdetermined case, the right-hand side is now replaced by the
+2<span class="math notranslate nohighlight">\(\times\)</span>1 column-vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> which holds the new information about the measured inputs.</p>
+</section>
+<section id="overdetermined-systems">
+<h3>Overdetermined systems<a class="headerlink" href="#overdetermined-systems" title="Permalink to this headline">#</a></h3>
+<p>Overdetermined systems have more equations than unknonws. As our motivating example for this class of system, consider the four elementary steps in a idealized enzyme catalyzed reaction <a class="reference internal" href="#fig-enzyme-catalyzed-rxn-example"><span class="std std-numref">Fig. 5</span></a>:</p>
+<figure class="align-default" id="fig-enzyme-catalyzed-rxn-example">
+<a class="reference internal image-reference" href="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf"><img alt="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" src="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" style="height: 440px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-enzyme-catalyzed-rxn-example" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the first elementary reaction, enzyme <span class="math notranslate nohighlight">\(E\)</span> binds substrate <span class="math notranslate nohighlight">\(S\)</span> to form the enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span>. The enzyme-substrate complex can fall apart (elementary reaction 2) or produce the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span>. Finally, the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span> can disassociate, giving the product <span class="math notranslate nohighlight">\(P\)</span> and the enzyme <span class="math notranslate nohighlight">\(E\)</span>; the enzyme is free to bind with another substrate molecule and run the cycle over again.</p>
+<p>In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{S + E} &amp;\stackrel{\rm 1}{\longrightarrow}&amp; \text{E:S}\\
+\text{E:S} &amp;\stackrel{\rm 2}{\longrightarrow}&amp; \text{S+E}\\
+\text{E:S} &amp;\stackrel{\rm 3}{\longrightarrow}&amp; \text{E:P}\\
+\text{E:P} &amp;\stackrel{\rm 4}{\longrightarrow}&amp; \text{E+P}
+\end{eqnarray}
+\end{split}\]</div>
+</section>
 <section id="rank">
-<h2>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h2>
+<h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>
 <p>What is interesting about <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> are the conditions governing its existence, and in one particular a concept called <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">matrix rank</a>. The rank of a matrix <em>r</em>:</p>
 <div class="math notranslate nohighlight">
 \[r\leq\min\left(m,n\right)\]</div>
 <p>is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\mathbf{A}}=0\)</span>, and an inverse will <strong>not</strong> exist.</p>
 <p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
+</section>
 </section>
 <section id="guassian-elimination">
 <h2>Guassian elimination<a class="headerlink" href="#guassian-elimination" title="Permalink to this headline">#</a></h2>
@@ -608,6 +751,7 @@ While the true solution is not explicitly known, you can calculate the squared d
 <p>where <span class="math notranslate nohighlight">\(e_{k}\)</span> denotes the squared error for solution at iteration k of the algorithm.</p>
 </section>
 </section>
+<hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>Fill me in</p>

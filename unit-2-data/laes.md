@@ -1,20 +1,136 @@
-# Solution of Linear Algebraic Equations
+# Linear Algebraic Equations
 
 ## Introduction 
-Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these types of equations naturally arise from steady-state materials balances as we have seen. In this lecture, we'll explore both _direct_ and _iterative_ methods to solve the generic system of LAEs:
+Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we'll explore both _direct_ and _iterative_ methods to solve the generic system of LAEs:
 
 $$\mathbf{A}\mathbf{x} = \mathbf{b}$$
 
-where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\times{1}$ column vector of unknowns (what we want to solve for) and $\mathbf{b}$ denotes a $m\times{1}$ vector.
+where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\times{1}$ column vector of unknowns (what we want to solve for), and $\mathbf{b}$ denotes a $m\times{1}$ vector. To compute a value for the unknown vector $\mathbf{x}$ we compute a [matrix inverse](https://mathworld.wolfram.com/MatrixInverse.html):
 
-There are two broad categories of methods to solve for $\mathbf{x}$, direct methods such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) and iterative methods such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in depth and will only briefly desribe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
+$$\mathbf{x} = \mathbf{A}^{\#}\mathbf{b}$$
 
-In all the disucssion below we assume:
+where $\mathbf{A}^{\#}$ is an inverse of matrix $\mathbf{A}$. 
 
-* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square stystems later.
+There are two broad categories of methods to solve for $\mathbf{x}$, direct methods, such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), and iterative methods, such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
+
+In all the discussion below, we assume:
+
+* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
 * The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
+---
 
-## Rank
+## Motivating examples
+
+### Underdetermined systems
+Suppose you had two steady-state blending tanks $T_{1}$ and $T_{2}$ in series, each with two input streams and a single output stream ({numref}`fig-blending-tanks-example`):
+
+```{figure} ./figs/Fig-Blending-Tanks-Example.pdf
+---
+height: 140px
+name: fig-blending-tanks-example
+---
+Caption goes here
+```
+
+Further, we have species set $\mathcal{M}$ in this system and no chemical reactions. Then, the steady-state species concentration balances for component $i\in\mathcal{M}$ in blending tanks 1 and 2 can be written as:
+
+$$
+\begin{eqnarray}
+\dot{V}_{1}C_{i,1} + \dot{V}_{4}C_{i,4}-\dot{V}_{2}C_{i,2} & = & 0\\
+\dot{V}_{2}C_{i,2} + \dot{V}_{5}C_{i,5}-\dot{V}_{3}C_{i,3} & = & 0
+\end{eqnarray}
+$$
+
+where $\dot{V}_{j}$ denotes the volumetric flow-rate of stream $j$ (units: volume/time), and $C_{i,j}$ denotes the 
+concentration of component $i$ in stream $j$ (units: mole/volume). This system of concentration balances can be re-written as a matrix-vector product:
+
+$$
+\begin{bmatrix}
+\dot{V}_{1} & -\dot{V}_{2} & 0 & \dot{V}_{4} & 0 \\
+0 & \dot{V}_{2} & -\dot{V}_{3} & 0 & \dot{V}_{5} 
+\end{bmatrix}
+\begin{pmatrix}
+C_{i,1} \\
+C_{i,2} \\
+C_{i,3} \\
+C_{i,4} \\
+C_{i,5}
+\end{pmatrix} = 
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+0
+\end{pmatrix}
+$$
+
+or in matrix-vector notation:
+
+```{math}
+:label: eqn-matrix-vector-notation-tanks
+\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}
+```
+
+Eqn {eq}`eqn-matrix-vector-notation-tanks` is an _underdetermined_ system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution. 
+
+### Square systems
+Instead of knowing nothing, suppose in our blending tank example we know the concentrations of component $i$ in the input streams (1,4 and 5). Then, we only need to calculate the concentrations of component $i$ in streams 2 and 3. 
+We know have a _square_ system, i.e., the number of equations (rows) and the number of unknowns (columns) are equal. 
+
+In this case, we can rearrange our concentration balance equations, moving the knowns to the right-hand side:
+
+$$
+\begin{bmatrix}
+-\dot{V}_{2} & 0 \\
+0 & -\dot{V}_{2}
+\end{bmatrix}
+\begin{pmatrix}
+C_{i,2} \\
+C_{i,3}
+\end{pmatrix} = 
+\begin{pmatrix}
+-\dot{V}_{1}C_{i,1} - \dot{V}_{4}C_{i,4} \\
+-\dot{V}_{5}C_{i,5}
+\end{pmatrix}
+$$
+
+The additional information gives a 2$\times$2 system, i.e., a _sqaure_ system of equations. A _square_ system of equations, depending upon the properties of the system can have a unique solution. The system above can be written in matrix-vector form as:
+
+```{math}
+\dot{\mathbf{V}}\mathbf{C} = \mathbf{b}
+```
+
+where $\dot{\mathbf{V}}$ is now a 2$\times$2 square matrix, and $\mathbf{C}$ is a 2$\times$1 column-vector. However, unlike the previous underdetermined case, the right-hand side is now replaced by the 
+2$\times$1 column-vector $\mathbf{b}$ which holds the new information about the measured inputs. 
+
+### Overdetermined systems
+Overdetermined systems have more equations than unknonws. As our motivating example for this class of system, consider the four elementary steps in a idealized enzyme catalyzed reaction {numref}`fig-enzyme-catalyzed-rxn-example`:
+
+```{figure} ./figs/Fig-Enzyme-Catalyzed-Reaction.pdf
+---
+height: 440px
+name: fig-enzyme-catalyzed-rxn-example
+---
+Caption goes here
+```
+
+
+In the first elementary reaction, enzyme $E$ binds substrate $S$ to form the enzyme-substrate complex $E:S$. The enzyme-substrate complex can fall apart (elementary reaction 2) or produce the enzyme-product complex $E:P$. Finally, the enzyme-product complex $E:P$ can disassociate, giving the product $P$ and the enzyme $E$; the enzyme is free to bind with another substrate molecule and run the cycle over again. 
+
+In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions: 
+
+$$
+\begin{eqnarray}
+\text{S + E} &\stackrel{\rm 1}{\longrightarrow}& \text{E:S}\\
+\text{E:S} &\stackrel{\rm 2}{\longrightarrow}& \text{S+E}\\
+\text{E:S} &\stackrel{\rm 3}{\longrightarrow}& \text{E:P}\\
+\text{E:P} &\stackrel{\rm 4}{\longrightarrow}& \text{E+P}
+\end{eqnarray}
+$$
+
+
+### Rank
 What is interesting about $\mathbf{A}^{-1}$ are the conditions governing its existence, and in one particular a concept called [matrix rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)). The rank of a matrix _r_:
 
 $$r\leq\min\left(m,n\right)$$
@@ -96,6 +212,8 @@ While the true solution is not explicitly known, you can calculate the squared d
 $$e_{k}=\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)^{T}$$
 
 where $e_{k}$ denotes the squared error for solution at iteration k of the algorithm. 
+
+---
 
 ## Summary
 Fill me in
