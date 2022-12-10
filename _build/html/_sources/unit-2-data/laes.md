@@ -121,7 +121,7 @@ The process of converting substrate $S$ to product $P$ can be modeled as four el
 * Step 3: Alternatively, enzyme-substrate complex $E:S$ can form the the enzyme-product complex $E:P$. 
 * Step 4: Finally, the enzyme-product complex $E:P$ can disassociate, giving the product $P$ and the enzyme $E$; the enzyme $E$ is free to bind with another substrate molecule and run the cycle over again. 
 
-Let's assume the box has a single input ($s=1$) and a single output stream ($s=2$). Then, the steady-state species mole balance equations for chemical component $i$ are given by:
+Let's assume the box has a single input ($s=1$) and a single output stream ($s=2$). Then, the steady-state species mole balance equations for chemical component $i$ in the set of chemical species $\mathcal{M}$ and reactions $\mathcal{R}$ are given by:
 
 $$\dot{n}_{i,1} - \dot{n}_{i,2} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0$$
 
@@ -169,7 +169,7 @@ where can be re-written in matrix-vector form as:
 ```
 
 ### Rank
-What is interesting about $\mathbf{A}^{-1}$ are the conditions governing its existence, and in one particular a concept called [matrix rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)). The rank of a matrix _r_:
+What is interesting about $\mathbf{A}^{\#}$ are the conditions governing its existence, and in one particular a concept called [matrix rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)). The rank of a matrix _r_:
 
 $$r\leq\min\left(m,n\right)$$
 
