@@ -51,11 +51,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-5660-Markets-Mayhem-Book/infrastructure.html/unit-2-data/measures.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linear Algebraic Equations" href="laes.html" />
-    <link rel="prev" title="Data Structures" href="trees.html" />
+    <link rel="next" title="Data Structures" href="trees.html" />
+    <link rel="prev" title="Vectors and Matrices" href="vectors-matricies-nla.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -163,14 +165,14 @@ const thebe_selector_output = ".output, .cell_output"
      Vectors and Matrices
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="trees.html">
-     Data Structures
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Measurements and Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trees.html">
+     Data Structures
     </a>
    </li>
    <li class="toctree-l2">
@@ -180,17 +182,44 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-3-learning/learning-landing.html">
    Unit 3. Learning
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/learning-types.html">
+     Learning problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/penalty.html">
+     Unconstrained and Constrained Least Squares
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/lp.html">
+     Linear Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/multiobjective.html">
+     Multiple Objectives
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-4-decisions/decisions-landing.html">
    Unit 4. Decisions
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -398,6 +427,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#vector-and-matrix-norms">
    Vector and matrix norms
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-vector-norms">
+     Properties of vector norms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-matrix-norms">
+     Properties of matrix norms
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#clustering">
@@ -442,6 +483,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#vector-and-matrix-norms">
    Vector and matrix norms
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-vector-norms">
+     Properties of vector norms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-matrix-norms">
+     Properties of matrix norms
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#clustering">
@@ -477,7 +530,33 @@ title="Print to PDF"
 <hr class="docutils" />
 <section id="vector-and-matrix-norms">
 <h2>Vector and matrix norms<a class="headerlink" href="#vector-and-matrix-norms" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Norm_(mathematics)">norm</a> is a function that measures the length of vectors or matrices. The notion of length is handy because it enables us to define distance, i.e., similarity between vectors (or matrices) in applications such as machine learning.</p>
+<section id="properties-of-vector-norms">
+<h3>Properties of vector norms<a class="headerlink" href="#properties-of-vector-norms" title="Permalink to this headline">#</a></h3>
+<p>A vector norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{n}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
+<ul class="simple">
+<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{x}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span></p></li>
+<li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{x}|| = \alpha{||\mathbf{x}||}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
+<li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
+</ul>
+<div class="proof definition admonition" id="defn-vector-p-norm">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (p-norm)</p>
+<section class="definition-content" id="proof-content">
+<p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
+</section>
+</div></section>
+<section id="properties-of-matrix-norms">
+<h3>Properties of matrix norms<a class="headerlink" href="#properties-of-matrix-norms" title="Permalink to this headline">#</a></h3>
+<p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
+<ul class="simple">
+<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{A}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{A}||=0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{A}=0\)</span>.</p></li>
+<li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{A}|| = \alpha{||\mathbf{A}||}\)</span> for any <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
+<li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
+</ul>
+</section>
 </section>
 <section id="clustering">
 <h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">#</a></h2>
@@ -521,17 +600,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="trees.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="vectors-matricies-nla.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Data Structures</p>
+            <p class="prev-next-title">Vectors and Matrices</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="laes.html" title="next page">
+    <a class='right-next' id="next-link" href="trees.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Algebraic Equations</p>
+        <p class="prev-next-title">Data Structures</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

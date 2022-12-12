@@ -1,16 +1,19 @@
-# Multiple Learning Objectives
-Fill me in
+# Multiple Objectives
 
 ## Introduction
 Fill me in
 
 ---
 
+## Weighted sum methods
+Fill me in
+
 ## Pareto optimality and dominance
 Fill me in
 
-## Pareto ranking methods
+### Pareto ranking methods
 Fill me in
+
 
 ---
 

@@ -16,16 +16,16 @@ chapters:
   title: Unit 2. Data
   sections:
   - file: unit-2-data/vectors-matricies-nla
-  - file: unit-2-data/trees
   - file: unit-2-data/measures
+  - file: unit-2-data/trees
   - file: unit-2-data/laes
 - file: unit-3-learning/learning-landing
   title: Unit 3. Learning
   sections: 
   - file: unit-3-learning/learning-types
   - file: unit-3-learning/penalty
-  - file: unit-3-learning/multiobjective
   - file: unit-3-learning/lp
+  - file: unit-3-learning/multiobjective
 - file: unit-4-decisions/decisions-landing
   title: Unit 4. Decisions
   sections:
