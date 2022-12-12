@@ -11,6 +11,7 @@ chapters:
   - file: unit-1-basics/types
   - file: unit-1-basics/functions
   - file: unit-1-basics/data-file-io
+  - file: unit-1-basics/programs
 - file: unit-2-data/data-landing
   title: Unit 2. Data
   sections:
@@ -20,6 +21,11 @@ chapters:
   - file: unit-2-data/laes
 - file: unit-3-learning/learning-landing
   title: Unit 3. Learning
+  sections: 
+  - file: unit-3-learning/learning-types
+  - file: unit-3-learning/penalty
+  - file: unit-3-learning/multiobjective
+  - file: unit-3-learning/lp
 - file: unit-4-decisions/decisions-landing
   title: Unit 4. Decisions
   sections:
