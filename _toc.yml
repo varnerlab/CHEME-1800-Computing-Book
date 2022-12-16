@@ -20,16 +20,18 @@ chapters:
   - file: unit-2-data/trees
   - file: unit-2-data/laes
 - file: unit-3-learning/learning-landing
-  title: Unit 3. Learning
+  title: Unit 3. Optimization
   sections: 
   - file: unit-3-learning/learning-types
   - file: unit-3-learning/penalty
+  - file: unit-3-learning/combitorial
   - file: unit-3-learning/lp
-  - file: unit-3-learning/multiobjective
 - file: unit-4-decisions/decisions-landing
   title: Unit 4. Decisions
   sections:
   - file: unit-4-decisions/probability-random-variables
   - file: unit-4-decisions/moments
   - file: unit-4-decisions/mdp
+  - file: unit-4-decisions/multi-arm-bandits
+
 - file: References

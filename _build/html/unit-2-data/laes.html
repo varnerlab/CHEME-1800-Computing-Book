@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The Learning Problem: Models, Learning, and Optimization" href="../unit-3-learning/learning-landing.html" />
-    <link rel="prev" title="Measurements and Distances" href="measures.html" />
+    <link rel="prev" title="Data Structures" href="trees.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/types.html">
-     Data Types
+     Types and Expressions
     </a>
    </li>
    <li class="toctree-l2">
@@ -145,7 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/programs.html">
-     Programs
+     Programs, Modules and Functions
     </a>
    </li>
   </ul>
@@ -166,13 +166,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="trees.html">
-     Data Structures
+    <a class="reference internal" href="measures.html">
+     Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="measures.html">
-     Measurements and Distances
+    <a class="reference internal" href="trees.html">
+     Data Structures
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-3-learning/learning-landing.html">
-   Unit 3. Learning
+   Unit 3. Optimization
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -203,13 +203,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-3-learning/lp.html">
-     Linear Programming
+    <a class="reference internal" href="../unit-3-learning/combitorial.html">
+     Combitorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-3-learning/multiobjective.html">
-     Multiple Objectives
+    <a class="reference internal" href="../unit-3-learning/lp.html">
+     Linear Programming
     </a>
    </li>
   </ul>
@@ -237,6 +237,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/mdp.html">
      Markov decision process (MDPs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
+     Multiple Arm Bandit Problems
     </a>
    </li>
   </ul>
@@ -623,7 +628,7 @@ where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/I
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-general-system-laes">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector. To compute a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we compute a <a class="reference external" href="https://mathworld.wolfram.com/MatrixInverse.html">matrix inverse</a>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}\]</div>
@@ -680,8 +685,8 @@ C_{i,5}
 \end{split}\]</div>
 <p>or in matrix-vector notation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-vector-notation-tanks">
-<span class="eqno">(3)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
-<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(3)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
+<span class="eqno">(4)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
+<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(4)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
 </section>
 <section id="square-systems">
 <h3>Square systems<a class="headerlink" href="#square-systems" title="Permalink to this headline">#</a></h3>
@@ -764,7 +769,7 @@ C_{i,3}
 \end{split}\]</div>
 <p>where can be re-written in matrix-vector form as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-system-mole-balances">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
+<span class="eqno">(5)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
 </section>
 <section id="rank">
 <h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>
@@ -891,11 +896,11 @@ While the true solution is not explicitly known, you can calculate the squared d
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="measures.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="trees.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Measurements and Distances</p>
+            <p class="prev-next-title">Data Structures</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../unit-3-learning/learning-landing.html" title="next page">
