@@ -1,4 +1,4 @@
-# Unconstrained and Constrained Least Squares
+# Ordinary Least Squares
 
 ## Introduction
 Fill me in
