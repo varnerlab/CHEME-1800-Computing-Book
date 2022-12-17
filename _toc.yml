@@ -22,7 +22,6 @@ chapters:
 - file: unit-3-learning/learning-landing
   title: Unit 3. Optimization
   sections: 
-  - file: unit-3-learning/learning-types
   - file: unit-3-learning/penalty
   - file: unit-3-learning/combitorial
   - file: unit-3-learning/lp
