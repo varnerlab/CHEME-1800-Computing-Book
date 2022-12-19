@@ -194,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/penalty.html">
-     Unconstrained and Constrained Least Squares
+     Ordinary Least Squares
     </a>
    </li>
    <li class="toctree-l2">
@@ -554,11 +554,11 @@ title="Print to PDF"
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 1 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 2 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div></section>
@@ -579,11 +579,11 @@ title="Print to PDF"
 <h3>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">#</a></h3>
 <p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
 <div class="proof definition admonition" id="defn-kmeans-problem">
-<p class="admonition-title"><span class="caption-number">Definition 2 </span> (k-means clustering)</p>
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (k-means clustering)</p>
 <section class="definition-content" id="proof-content">
 <p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
+<span class="eqno">(4)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
 </section>
 </div></section>

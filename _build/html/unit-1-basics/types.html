@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-5660-Markets-Mayhem-Book/infrastructure.html/unit-1-basics/types.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -192,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/penalty.html">
-     Unconstrained and Constrained Least Squares
+     Ordinary Least Squares
     </a>
    </li>
    <li class="toctree-l2">
@@ -427,18 +429,59 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-types">
-     Numerical types
+    <a class="reference internal nav-link" href="#types">
+     Types
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-and-logical-types">
+       Numerical and logical types
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#integers">
+         Integers
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#what-about-negative-integers">
+           What about negative integers?
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#floating-point-values">
+         Floating point values
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#boolean-values">
+         Boolean values
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#collection-types">
+       Collection types
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#character-and-string-types">
+       Character and string types
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#custom-types">
+       Custom types
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#character-and-string-types">
-     Character and string types
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#collection-types">
-     Collection types
+    <a class="reference internal nav-link" href="#expressions">
+     Expressions
     </a>
    </li>
   </ul>
@@ -478,18 +521,59 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-types">
-     Numerical types
+    <a class="reference internal nav-link" href="#types">
+     Types
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-and-logical-types">
+       Numerical and logical types
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#integers">
+         Integers
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#what-about-negative-integers">
+           What about negative integers?
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#floating-point-values">
+         Floating point values
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#boolean-values">
+         Boolean values
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#collection-types">
+       Collection types
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#character-and-string-types">
+       Character and string types
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#custom-types">
+       Custom types
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#character-and-string-types">
-     Character and string types
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#collection-types">
-     Collection types
+    <a class="reference internal nav-link" href="#expressions">
+     Expressions
     </a>
    </li>
   </ul>
@@ -516,16 +600,83 @@ title="Print to PDF"
 <p>Fill me in.</p>
 </section>
 <hr class="docutils" />
-<section id="numerical-types">
-<h2>Numerical types<a class="headerlink" href="#numerical-types" title="Permalink to this headline">#</a></h2>
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline">#</a></h2>
+<section id="numerical-and-logical-types">
+<h3>Numerical and logical types<a class="headerlink" href="#numerical-and-logical-types" title="Permalink to this headline">#</a></h3>
+<p>Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives.</span></code> On the other hand, the models of integers, floating-point numbers, etc., as immediate values that humans understand in code are called numeric literals, e.g., <code class="docutils literal notranslate"><span class="pre">1</span></code> is an integer literal, and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a floating-point literal. Modern programming languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them.</p>
+<p>At the smallest scale in the computer, information is stored as bits and bytes. A <code class="docutils literal notranslate"><span class="pre">bit</span></code> is the smallest unit of storage on a computer; a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is a <code class="docutils literal notranslate"><span class="pre">0</span></code> or a <code class="docutils literal notranslate"><span class="pre">1</span></code>. However, a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is too tiny for practical computing tasks. Instead, <code class="docutils literal notranslate"><span class="pre">bits</span></code> are grouped into <code class="docutils literal notranslate"><span class="pre">bytes</span></code>; a group of 8 bits equals  1 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">byte</span></code>.</p>
+<p>The in-memory representation of integers, floating-point, and logical values is referred to as <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives</span></code>; numeric primitives, which the computer understands, are binary numbers (numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>). However, there are also other interesting number systems that you may see, e.g., numbers written in the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) or <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) system:</p>
+<div class="proof definition admonition" id="defn-number-system">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Base <span class="math notranslate nohighlight">\(b\)</span> numbers)</p>
+<section class="definition-content" id="proof-content">
+<p>The base <span class="math notranslate nohighlight">\(b\)</span> representation of a number is a way of writing numbers using the digits:</p>
+<div class="math notranslate nohighlight">
+\[\left\{0, 1, \dots, (b − 1)\right\}\]</div>
+<p>For any <span class="math notranslate nohighlight">\(n\geq{0}\)</span> and <span class="math notranslate nohighlight">\(b\geq{2}\)</span>, there is a string of digits <span class="math notranslate nohighlight">\(\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}\)</span> such that:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-base-b-number">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-base-b-number" title="Permalink to this equation">#</a></span>\[n = \sum_{j=0}^{k-1}a_{j}b^{j}\]</div>
+<p>The quantity <span class="math notranslate nohighlight">\(k\)</span> denotes the number of bits; <span class="math notranslate nohighlight">\(k\)</span> depends upon the computing hardware and the type of data being represented.</p>
+</section>
+</div><section id="integers">
+<h4>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">#</a></h4>
+<p>Integers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, are the positive and negative natural numbers along with zero, e.g., (<span class="math notranslate nohighlight">\(\dots\)</span>, -3,-2, -1, 0, 1, 2, 3, <span class="math notranslate nohighlight">\(\dots\)</span>). The in-memory representation of integers, i.e., their <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitive</span></code> representation, is typically a 4 <span class="math notranslate nohighlight">\(\times\)</span> byte (32-bit) or 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number.</p>
+<div class="proof example admonition" id="example-binary-128">
+<p class="admonition-title"><span class="caption-number">Example 1 </span> (64-bit integer)</p>
+<section class="example-content" id="proof-content">
+<p>Show that the 64-bit representation of the integer <span class="math notranslate nohighlight">\(x=1800\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[(0000000000000000000000000000000000000000000000000000011100001000)_{2}\]</div>
+<p><strong>Solution</strong>:
+First, this is a binary number, i.e., a number to the base <code class="docutils literal notranslate"><span class="pre">2</span></code>; thus, it is composed of the digit set <span class="math notranslate nohighlight">\(\left\{0,1\right\}\)</span>. Next, we know that k = 64-bits; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> will run from <span class="math notranslate nohighlight">\(0\rightarrow{63}\)</span>. However, all the digits are zero <em>except</em> for a few positions; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> is given by:</p>
+<div class="math notranslate nohighlight">
+\[1800 = 2^{3}+2^{8}+2^{9}+2^{10}\]</div>
+<p><strong>Tip</strong>: The <a class="reference external" href="https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring">bitstring</a> functioin in <a class="reference external" href="https://docs.julialang.org/en/v1/">Julia</a> displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.</p>
+</section>
+</div><section id="what-about-negative-integers">
+<h5>What about negative integers?<a class="headerlink" href="#what-about-negative-integers" title="Permalink to this headline">#</a></h5>
+<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows how we can represent numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set of integers <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent this type of number in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system? When representing integers using a fixed number of bits, negative integers are typically represented using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and next adding a place value of <code class="docutils literal notranslate"><span class="pre">1</span></code> to the inverted number. Let’s consider an example:</p>
+<div class="proof example admonition" id="example-twos-complement">
+<p class="admonition-title"><span class="caption-number">Example 2 </span> (Two’s complement)</p>
+<section class="example-content" id="proof-content">
+<p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(\bar{x}=-8\)</span> using twos complement.</p>
+<p><strong>Solution</strong>: The 64-bit patterm for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-64-bit-value-positive-8">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0000000000000000000000000000000000000000000000000000000000001000\right)_{2}\]</div>
+<p><em>Step 1</em>: Flip all the bits:</p>
+<div class="math notranslate nohighlight">
+\[\left(1111111111111111111111111111111111111111111111111111111111110111\right)_{2}\]</div>
+<p><em>Step 2</em>: What is going here? Finish me.</p>
+</section>
+</div></section>
+</section>
+<section id="floating-point-values">
+<h4>Floating point values<a class="headerlink" href="#floating-point-values" title="Permalink to this headline">#</a></h4>
+<p>Scalar floating numbers are stored using four bytes (32-bits) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>.</p>
+</section>
+<section id="boolean-values">
+<h4>Boolean values<a class="headerlink" href="#boolean-values" title="Permalink to this headline">#</a></h4>
+<p>Fill me in.</p>
+</section>
+</section>
+<section id="collection-types">
+<h3>Collection types<a class="headerlink" href="#collection-types" title="Permalink to this headline">#</a></h3>
 <p>Fill me in.</p>
 </section>
 <section id="character-and-string-types">
-<h2>Character and string types<a class="headerlink" href="#character-and-string-types" title="Permalink to this headline">#</a></h2>
+<h3>Character and string types<a class="headerlink" href="#character-and-string-types" title="Permalink to this headline">#</a></h3>
+<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are related to a sequence of individual characters, each of the type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.
+Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
+<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have more sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types, but at their heart, in many ways, they still share features of the older representation of text.</p>
+</section>
+<section id="custom-types">
+<h3>Custom types<a class="headerlink" href="#custom-types" title="Permalink to this headline">#</a></h3>
 <p>Fill me in</p>
 </section>
-<section id="collection-types">
-<h2>Collection types<a class="headerlink" href="#collection-types" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
 </section>
 </section>
