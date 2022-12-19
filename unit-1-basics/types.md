@@ -57,7 +57,7 @@ __Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bit
 ````
 
 ##### What about negative integers?
-{prf:ref}`defn-number-system` shows how we can represent numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set of integers $\mathbb{Z}$ also contains negative numbers; how can we represent this type of number in a `base 2` system? When representing integers using a fixed number of bits, negative integers are typically represented using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.
+{prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set of integers $\mathbb{Z}$ also contains negative numbers; how can we represent this type of number in a `base 2` system? When representing integers using a fixed number of bits, negative integers are typically represented using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.
 
 [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` to `1` and vice-versa, and next adding a place value of `1` to the inverted number. Let's consider an example:
 
@@ -84,7 +84,7 @@ _Step 2_: What is going here? Finish me.
 ````
 
 #### Floating point values
-Scalar floating numbers are stored using four bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754).
+Scalar floating numbers, represented by the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754).
 
 #### Boolean values
 Fill me in.
@@ -93,9 +93,14 @@ Fill me in.
 Fill me in.
 
 ### Character and string types
-Textual data on a computer is represented as the `String` type. Strings are related to a sequence of individual characters, each of the type `Char`. 
+Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, each of the type `Char`. 
+
+#### Characters
+Characters on the computer, e.g., the letter `A` are of type `Char`. 
+
+#### Strings
 Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a `String` type; instead, strings were arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
-[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have more sophisticated `String` types, but at their heart, in many ways, they still share features of the older representation of text.
+[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have much more sophisticated `String` types that incorporate many different types of characters. However, at their heart, in many ways, they still share features of the older representation of text.
 
 ### Custom types
 Fill me in

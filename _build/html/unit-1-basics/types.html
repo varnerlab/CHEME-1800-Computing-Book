@@ -471,6 +471,18 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#character-and-string-types">
        Character and string types
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#characters">
+         Characters
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#strings">
+         Strings
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#custom-types">
@@ -563,6 +575,18 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#character-and-string-types">
        Character and string types
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#characters">
+         Characters
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#strings">
+         Strings
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#custom-types">
@@ -635,7 +659,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 </div><section id="what-about-negative-integers">
 <h5>What about negative integers?<a class="headerlink" href="#what-about-negative-integers" title="Permalink to this headline">#</a></h5>
-<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows how we can represent numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set of integers <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent this type of number in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system? When representing integers using a fixed number of bits, negative integers are typically represented using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.</p>
+<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set of integers <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent this type of number in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system? When representing integers using a fixed number of bits, negative integers are typically represented using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and next adding a place value of <code class="docutils literal notranslate"><span class="pre">1</span></code> to the inverted number. Let’s consider an example:</p>
 <div class="proof example admonition" id="example-twos-complement">
 <p class="admonition-title"><span class="caption-number">Example 2 </span> (Two’s complement)</p>
@@ -653,7 +677,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 <section id="floating-point-values">
 <h4>Floating point values<a class="headerlink" href="#floating-point-values" title="Permalink to this headline">#</a></h4>
-<p>Scalar floating numbers are stored using four bytes (32-bits) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>.</p>
+<p>Scalar floating numbers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, are stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>.</p>
 </section>
 <section id="boolean-values">
 <h4>Boolean values<a class="headerlink" href="#boolean-values" title="Permalink to this headline">#</a></h4>
@@ -666,9 +690,16 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 <section id="character-and-string-types">
 <h3>Character and string types<a class="headerlink" href="#character-and-string-types" title="Permalink to this headline">#</a></h3>
-<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are related to a sequence of individual characters, each of the type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.
-Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
-<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have more sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types, but at their heart, in many ways, they still share features of the older representation of text.</p>
+<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are modeled as a sequence of characters, each of the type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
+<section id="characters">
+<h4>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">#</a></h4>
+<p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are of type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
+</section>
+<section id="strings">
+<h4>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">#</a></h4>
+<p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
+<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have much more sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types that incorporate many different types of characters. However, at their heart, in many ways, they still share features of the older representation of text.</p>
+</section>
 </section>
 <section id="custom-types">
 <h3>Custom types<a class="headerlink" href="#custom-types" title="Permalink to this headline">#</a></h3>
