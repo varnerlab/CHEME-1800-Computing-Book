@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Julia
+  language: julia
+  name: julia-1.8
+---
+
 # Types and Expressions 
 
 ## Introduction
@@ -38,6 +50,7 @@ The quantity $k$ denotes the number of bits; $k$ depends upon the computing hard
 Integers, represented by the set $\mathbb{Z}$, are the positive and negative natural numbers along with zero, e.g., ($\dots$, -3,-2, -1, 0, 1, 2, 3, $\dots$). The in-memory representation of integers, i.e., their `numeric primitive` representation, is typically a 4 $\times$ byte (32-bit) or 8 $\times$ byte (64-bit) binary number.
 
 ````{prf:example} 64-bit integer
+:class: dropdown
 :label: example-binary-128
 
 Show that the 64-bit representation of the integer $x=1800$ is given by:
@@ -62,6 +75,7 @@ __Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bit
 [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` to `1` and vice-versa, and next adding a place value of `1` to the inverted number. Let's consider an example:
 
 ````{prf:example} Two's complement
+:class: dropdown
 :label: example-twos-complement
 
 Develop the 64-bit pattern for $\bar{x}=-8$ using twos complement. 
@@ -93,16 +107,58 @@ Fill me in.
 Fill me in.
 
 ### Character and string types
-Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters. 
+Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.
 
 #### Characters
-Characters on the computer, e.g., the letter `A` are of type `Char`. Traditionnally, characters were represented via the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII) system, as 1 $\times$ byte (8-bit) integers; thus, there were $0,\dots,255$ possible character values. For example, 
-the character `A` is index 65 in the ACSII system. However, all modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which enodes approximately 150,000 characters, where the first 128 of these are the same as the ASCII set; [Unicode](https://en.wikipedia.org/wiki/Unicode) characters typically user 2-bytes per character.
+Characters on the computer, e.g., the letter `A` are type `Char`. Traditionally, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of 7-bit teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values.
 
+However, modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
 
 #### Strings
-Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a `String` type; instead, strings were arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
-[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have much more sophisticated `String` types that incorporate many different types of characters. However, in many ways, they still share features of the older representation of text.
+Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a formal `String` type; instead, strings were encoded as arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
+[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character system. 
+
+While the number and types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, strings in modern languages share features with the older representation of text. `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
+
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+# This is an expression to create a string in Julia
+string = "Julia strings use double quotes"
+```
+````
+
+````{tab-item} python
+```python
+# This is an expression to create a string in Python
+string = 'Python strings use single quotes. Why python, why?'
+```
+````
+`````
+
+A `String` can be indexed like an array in both [Julia](https://docs.julialang.org) and  [Python](https://www.python.org), for example:
+
+```{code-cell} julia
+# This is an expression to create a string in Julia
+string = "Julia strings use double quotes"
+
+# grab a range of characters
+println(string[1:5])
+```
+
+Fragments of strings, e.g., the range `string[1:5]` shown above are also `Strings`:
+
+```{code-cell} julia
+# This is an expression to create a string in Julia
+string = "Julia strings use double quotes"
+
+# grab a range of characters
+fragment = string[1:5]
+
+# what type is the stuff that I just grabbed?
+println("The fragment is type -> $(typeof(fragment))")
+```
 
 ### Custom types
 Fill me in

@@ -292,6 +292,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/varnerlab/CHEME-5660-Markets-Mayhem-Book/main?urlpath=tree/unit-1-basics/types.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -358,6 +387,23 @@ title="Open an issue"
   </button>
   <div class="menu-dropdown__content">
     <ul>
+      <li>
+        <a href="../_sources/unit-1-basics/types.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
       <li>
         <a href="../_sources/unit-1-basics/types.md"
    class="headerbtn"
@@ -645,7 +691,7 @@ title="Print to PDF"
 </div><section id="integers">
 <h4>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">#</a></h4>
 <p>Integers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, are the positive and negative natural numbers along with zero, e.g., (<span class="math notranslate nohighlight">\(\dots\)</span>, -3,-2, -1, 0, 1, 2, 3, <span class="math notranslate nohighlight">\(\dots\)</span>). The in-memory representation of integers, i.e., their <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitive</span></code> representation, is typically a 4 <span class="math notranslate nohighlight">\(\times\)</span> byte (32-bit) or 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number.</p>
-<div class="proof example admonition" id="example-binary-128">
+<div class="proof example dropdown admonition" id="example-binary-128">
 <p class="admonition-title"><span class="caption-number">Example 1 </span> (64-bit integer)</p>
 <section class="example-content" id="proof-content">
 <p>Show that the 64-bit representation of the integer <span class="math notranslate nohighlight">\(x=1800\)</span> is given by:</p>
@@ -661,7 +707,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <h5>What about negative integers?<a class="headerlink" href="#what-about-negative-integers" title="Permalink to this headline">#</a></h5>
 <p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set of integers <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent this type of number in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system? When representing integers using a fixed number of bits, negative integers are typically represented using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and next adding a place value of <code class="docutils literal notranslate"><span class="pre">1</span></code> to the inverted number. Let’s consider an example:</p>
-<div class="proof example admonition" id="example-twos-complement">
+<div class="proof example dropdown admonition" id="example-twos-complement">
 <p class="admonition-title"><span class="caption-number">Example 2 </span> (Two’s complement)</p>
 <section class="example-content" id="proof-content">
 <p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(\bar{x}=-8\)</span> using twos complement.</p>
@@ -690,16 +736,72 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 <section id="character-and-string-types">
 <h3>Character and string types<a class="headerlink" href="#character-and-string-types" title="Permalink to this headline">#</a></h3>
-<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are modeled as a sequence of characters.</p>
+<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are modeled as a sequence of characters, where each character is of type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
 <section id="characters">
 <h4>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">#</a></h4>
-<p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are of type <code class="docutils literal notranslate"><span class="pre">Char</span></code>. Traditionnally, characters were represented via the <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">American Standard Code for Information Interchange (ASCII)</a> system, as 1 <span class="math notranslate nohighlight">\(\times\)</span> byte (8-bit) integers; thus, there were <span class="math notranslate nohighlight">\(0,\dots,255\)</span> possible character values. For example,
-the character <code class="docutils literal notranslate"><span class="pre">A</span></code> is index 65 in the ACSII system. However, all modern computer systems use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard, which enodes approximately 150,000 characters, where the first 128 of these are the same as the ASCII set; <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters typically user 2-bytes per character.</p>
+<p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are type <code class="docutils literal notranslate"><span class="pre">Char</span></code>. Traditionally, characters were represented via the <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">American Standard Code for Information Interchange (ASCII) system</a>, which was a set of 7-bit teleprinter codes for the <a class="reference external" href="https://www.att.com">AT&amp;T</a> Teletypewriter exchange (TWX) network. For example, the character <code class="docutils literal notranslate"><span class="pre">A</span></code> in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Extended_ASCII">extended ASCII systems</a>, which had <span class="math notranslate nohighlight">\(0,\dots,255\)</span> possible character values.</p>
+<p>However, modern computer systems use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number systems.</p>
 </section>
 <section id="strings">
 <h4>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">#</a></h4>
-<p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
-<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have much more sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types that incorporate many different types of characters. However, in many ways, they still share features of the older representation of text.</p>
+<p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were encoded as arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
+<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character system.</p>
+<p>While the number and types of characters that can be incorporated into a <a class="reference external" href="https://docs.julialang.org">Julia</a> <code class="docutils literal notranslate"><span class="pre">String</span></code> is more diverse, in many ways, strings in modern languages share features with the older representation of text. <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="a94301dd-e8e3-46f3-a761-849b25c80417" name="447a660f-e335-4f6d-a96e-756089b5149d" type="radio">
+</input><label class="sd-tab-label" for="a94301dd-e8e3-46f3-a761-849b25c80417">
+julia</label><div class="sd-tab-content docutils">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="f8625e16-0b59-4d42-9834-e59133352a37" name="447a660f-e335-4f6d-a96e-756089b5149d" type="radio">
+</input><label class="sd-tab-label" for="f8625e16-0b59-4d42-9834-e59133352a37">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">String</span></code> can be indexed like an array in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and  <a class="reference external" href="https://www.python.org">Python</a>, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
+
+<span class="c"># grab a range of characters</span>
+<span class="n">println</span><span class="p">(</span><span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Julia
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fragments of strings, e.g., the range <code class="docutils literal notranslate"><span class="pre">string[1:5]</span></code> shown above are also <code class="docutils literal notranslate"><span class="pre">Strings</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
+
+<span class="c"># grab a range of characters</span>
+<span class="n">fragment</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c"># what type is the stuff that I just grabbed?</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The fragment is type -&gt; </span><span class="si">$</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">fragment</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The fragment is type -&gt; String
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="custom-types">
@@ -727,16 +829,16 @@ the character <code class="docutils literal notranslate"><span class="pre">A</sp
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.8"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "julia-1.8",
             path: "./unit-1-basics"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.8'</script>
 
               </div>
               
