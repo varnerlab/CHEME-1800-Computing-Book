@@ -690,15 +690,16 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 <section id="character-and-string-types">
 <h3>Character and string types<a class="headerlink" href="#character-and-string-types" title="Permalink to this headline">#</a></h3>
-<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are modeled as a sequence of characters, each of the type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
+<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are modeled as a sequence of characters.</p>
 <section id="characters">
 <h4>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">#</a></h4>
-<p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are of type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
+<p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are of type <code class="docutils literal notranslate"><span class="pre">Char</span></code>. Traditionnally, characters were represented via the American Standard Code for Information Interchange (ASCII) system, as 1 <span class="math notranslate nohighlight">\(\times\)</span> byte (8-bit) integers; thus, there were <span class="math notranslate nohighlight">\(0,\dots,255\)</span> possible character values. For example,
+the character <code class="docutils literal notranslate"><span class="pre">A</span></code> is index 65 in the ACSII system. However, all modern computer systems use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard, which enodes approximately 150,000 characters, where the first 128 of these are the same as the ASCII set; <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters typically user 2-bytes per character.</p>
 </section>
 <section id="strings">
 <h4>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">#</a></h4>
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
-<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have much more sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types that incorporate many different types of characters. However, at their heart, in many ways, they still share features of the older representation of text.</p>
+<a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have much more sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types that incorporate many different types of characters. However, in many ways, they still share features of the older representation of text.</p>
 </section>
 </section>
 <section id="custom-types">

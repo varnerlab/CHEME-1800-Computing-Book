@@ -93,14 +93,16 @@ Fill me in.
 Fill me in.
 
 ### Character and string types
-Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, each of the type `Char`. 
+Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters. 
 
 #### Characters
-Characters on the computer, e.g., the letter `A` are of type `Char`. 
+Characters on the computer, e.g., the letter `A` are of type `Char`. Traditionnally, characters were represented via the American Standard Code for Information Interchange (ASCII) system, as 1 $\times$ byte (8-bit) integers; thus, there were $0,\dots,255$ possible character values. For example, 
+the character `A` is index 65 in the ACSII system. However, all modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which enodes approximately 150,000 characters, where the first 128 of these are the same as the ASCII set; [Unicode](https://en.wikipedia.org/wiki/Unicode) characters typically user 2-bytes per character.
+
 
 #### Strings
 Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a `String` type; instead, strings were arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
-[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have much more sophisticated `String` types that incorporate many different types of characters. However, at their heart, in many ways, they still share features of the older representation of text.
+[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have much more sophisticated `String` types that incorporate many different types of characters. However, in many ways, they still share features of the older representation of text.
 
 ### Custom types
 Fill me in
