@@ -91,7 +91,7 @@ __Solution__: The 64-bit patterm for $x=8$ is given by:
 8 = \left(0\dots00001000\right)_{2}
 ```
 
-Step 1: Flip all the bits:
+Step 1: Flip all the bits from `0` $\rightarrow$ `1` and vice-versa:
 
 ```{math}
 \left(1\dots11110111\right)_{2}
@@ -133,7 +133,7 @@ __Solution__: The character `J` has index 74 in the ASCII table (which is includ
 
 Hexadecimal numbers use decimal digits and six extra symbols; the decimal values $(0,1,\dots,9)$, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, thru hexadecimal F = decimal 15 are used in the hexadecimal numbering system.
 
-Approach:
+__Approach__:
 * Step 1: Divide the given decimal number by 16 and write down the quotient and remainder
 * Step 2: Divide the previous quotient by 16 and write the down the quotient and remainder
 * Step 3: Repeat steps 1 and 2 until the quotient equals zero.
@@ -142,7 +142,7 @@ Approach:
 
 Let's compute the hexadecimal equivalent of 74:
 
-| value | quotient | remainder | hex |
+| value | quotient | remainder | hex code |
 | ----- | -------- | --------- | ------- |
 74/16 | 4 | 10 | A |
 4/16 | 0 | 4 | 4 |

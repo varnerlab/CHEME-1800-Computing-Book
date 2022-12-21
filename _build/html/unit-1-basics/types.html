@@ -719,7 +719,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <p><strong>Solution</strong>: The 64-bit patterm for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-64-bit-value-positive-8">
 <span class="eqno">(2)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0\dots00001000\right)_{2}\]</div>
-<p>Step 1: Flip all the bits:</p>
+<p>Step 1: Flip all the bits from <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa:</p>
 <div class="math notranslate nohighlight">
 \[\left(1\dots11110111\right)_{2}\]</div>
 <p>Step 2: Add a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least-significant bit which gives:</p>
@@ -754,7 +754,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <p>Compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index for the character <code class="docutils literal notranslate"><span class="pre">J</span></code>.</p>
 <p><strong>Solution</strong>: The character <code class="docutils literal notranslate"><span class="pre">J</span></code> has index 74 in the ASCII table (which is included in the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> system). Thus, first, we must convert 74 to a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number and then convert that to the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index format; <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> indexes left-pad the hexadecimal character value with zeros until a 4-digit code is generated, and then <code class="docutils literal notranslate"><span class="pre">U+</span></code> is appended to the four-digit code.</p>
 <p>Hexadecimal numbers use decimal digits and six extra symbols; the decimal values <span class="math notranslate nohighlight">\((0,1,\dots,9)\)</span>, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, thru hexadecimal F = decimal 15 are used in the hexadecimal numbering system.</p>
-<p>Approach:</p>
+<p><strong>Approach</strong>:</p>
 <ul class="simple">
 <li><p>Step 1: Divide the given decimal number by 16 and write down the quotient and remainder</p></li>
 <li><p>Step 2: Divide the previous quotient by 16 and write the down the quotient and remainder</p></li>
@@ -768,7 +768,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <tr class="row-odd"><th class="head"><p>value</p></th>
 <th class="head"><p>quotient</p></th>
 <th class="head"><p>remainder</p></th>
-<th class="head"><p>hex</p></th>
+<th class="head"><p>hex code</p></th>
 </tr>
 </thead>
 <tbody>
@@ -793,16 +793,16 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character system.</p>
 <p>While the number and types of characters that can be incorporated into a <a class="reference external" href="https://docs.julialang.org">Julia</a> <code class="docutils literal notranslate"><span class="pre">String</span></code> is more diverse, in many ways, strings in modern languages share features with the older representation of text. <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="d1ac8255-a001-4006-8475-7ed3280a1c7e" name="fb5e2f99-ee05-49a7-bdea-b3009bd776e5" type="radio">
-</input><label class="sd-tab-label" for="d1ac8255-a001-4006-8475-7ed3280a1c7e">
+<input checked="checked" id="51cba0d8-f7f1-4cad-9b0f-f1facd8d63c8" name="92388d78-6d08-4f48-8f86-6f372414cecf" type="radio">
+</input><label class="sd-tab-label" for="51cba0d8-f7f1-4cad-9b0f-f1facd8d63c8">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="2fe44b2f-6bba-499c-9c99-2559af49a6b1" name="fb5e2f99-ee05-49a7-bdea-b3009bd776e5" type="radio">
-</input><label class="sd-tab-label" for="2fe44b2f-6bba-499c-9c99-2559af49a6b1">
+<input id="d6b0a518-2334-4a3d-8e12-9c5041c23f9a" name="92388d78-6d08-4f48-8f86-6f372414cecf" type="radio">
+</input><label class="sd-tab-label" for="d6b0a518-2334-4a3d-8e12-9c5041c23f9a">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
