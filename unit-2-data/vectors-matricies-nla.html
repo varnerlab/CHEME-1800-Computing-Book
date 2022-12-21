@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Vectors and Matrices &#8212; CHEME 1800</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://varnerlab.github.io/CHEME-5660-Markets-Mayhem-Book/infrastructure.html/unit-2-data/vectors-matricies-nla.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Measurements and Distances" href="measures.html" />
+    <link rel="prev" title="Data, Algorithms, and Linear Algebra" href="data-landing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/cornell_seal_simple_black.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CHEME 1800</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Principles of Computational Thinking for Engineers
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-1-basics/basics-landing.html">
+   Unit 1. Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/types.html">
+     Types and Expressions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/functions.html">
+     Functions, Iteration and Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/data-file-io.html">
+     Data Input and Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/programs.html">
+     Programs, Modules and Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="data-landing.html">
+   Unit 2. Data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Vectors and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="measures.html">
+     Measurements and Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="laes.html">
+     Linear Algebraic Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-3-learning/learning-landing.html">
+   Unit 3. Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/penalty.html">
+     Ordinary Least Squares
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/combitorial.html">
+     Combitorial Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/lp.html">
+     Linear Programming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-4-decisions/decisions-landing.html">
+   Unit 4. Decisions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/probability-random-variables.html">
+     Probability, Random Variables and Stochastic Processes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/moments.html">
+     Estimating Statistical Properties From Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/mdp.html">
+     Markov decision process (MDPs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
+     Multiple Arm Bandit Problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Book/issues/new?title=Issue%20on%20page%20%2Funit-2-data/vectors-matricies-nla.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/unit-2-data/vectors-matricies-nla.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matricies-and-vectors">
+   Matricies and vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operations">
+   Operations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#addition-and-subtraction">
+     Addition and subtraction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vectorized-addition-and-subtraction-operators">
+       Vectorized addition and subtraction operators
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiplication">
+     Multiplication
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multiplication-of-a-matrix-or-vector-by-a-constant">
+       Multiplication of a matrix or vector by a constant
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#right-multiplication-of-a-matrix-by-a-vector">
+       Right multiplication of a matrix by a vector
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#left-multiplication-of-a-matrix-by-a-vector">
+       Left multiplication of a matrix by a vector
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-matrix-multiplication">
+       Matrix-Matrix multiplication
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additonal-resources">
+   Additonal resources
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Vectors and Matrices</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matricies-and-vectors">
+   Matricies and vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operations">
+   Operations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#addition-and-subtraction">
+     Addition and subtraction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vectorized-addition-and-subtraction-operators">
+       Vectorized addition and subtraction operators
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiplication">
+     Multiplication
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multiplication-of-a-matrix-or-vector-by-a-constant">
+       Multiplication of a matrix or vector by a constant
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#right-multiplication-of-a-matrix-by-a-vector">
+       Right multiplication of a matrix by a vector
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#left-multiplication-of-a-matrix-by-a-vector">
+       Left multiplication of a matrix by a vector
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-matrix-multiplication">
+       Matrix-Matrix multiplication
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additonal-resources">
+   Additonal resources
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="vectors-and-matrices">
+<h1>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Fill me in.</p>
+</section>
+<section id="matricies-and-vectors">
+<h2>Matricies and vectors<a class="headerlink" href="#matricies-and-vectors" title="Permalink to this headline">#</a></h2>
+<p>Matrices are two-dimensional rectangular arrays of numbers, widgets, etc with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A} = 
+\begin{pmatrix}
+a_{1,1} &amp; a_{1,2} &amp; \cdots &amp; a_{1,n} \\
+a_{2,1} &amp; a_{2,2} &amp; \cdots &amp; a_{2,n} \\
+\vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
+a_{m,1} &amp; a_{m,2} &amp; \cdots &amp; a_{m,n} 
+\end{pmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{ij}\)</span> denotes the <em>element</em> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> that lives on the <span class="math notranslate nohighlight">\(i\)</span>th row and <span class="math notranslate nohighlight">\(j\)</span>th col. By convention, the row index is always the first subscript while the column index is always listed second. If <span class="math notranslate nohighlight">\(m=n\)</span> the matrix is called a <em>square</em> matrix; square Matrices have some special properties (as we shall see later).</p>
+<p>Vectors are a specal type of matrix that is one-dimensional, where <em>elements</em> are arranged as either a single row or single column. For example, a <span class="math notranslate nohighlight">\(m\times{1}\)</span> <em>column</em> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{a} = 
+\begin{pmatrix}
+a_{1} \\
+a_{2} \\
+\vdots \\
+a_{m}
+\end{pmatrix}\end{split}\]</div>
+<p>while a <span class="math notranslate nohighlight">\(n\times{1}\)</span> dimensional <em>row</em> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{a} = 
+\begin{pmatrix}
+a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
+\end{pmatrix}\]</div>
+<p>Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers.</p>
+</section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h2>
+<section id="addition-and-subtraction">
+<h3>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Permalink to this headline">#</a></h3>
+<p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible:</p>
+<div class="proof remark admonition" id="rem-vector-matrix-compatible">
+<p class="admonition-title"><span class="caption-number">Remark 1 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
+</section>
+</div><p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of
+elements, then addition and subtraction operations don’t make sense.</p>
+<div class="proof observation admonition" id="obs-same-dimension">
+<p class="admonition-title"><span class="caption-number">Observation 1 </span> (Vector addition)</p>
+<section class="observation-content" id="proof-content">
+<p>Suppose we have two <span class="math notranslate nohighlight">\(n\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span>. The sum of these vectors is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = \mathbf{v}_{1} + \mathbf{v}_{2}\]</div>
+<p>where the ith element of the sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is given by: <span class="math notranslate nohighlight">\(v_{i} = v_{i,1}+ v_{i,2}\)</span>. If however, <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> had <span class="math notranslate nohighlight">\(m&gt;n\)</span> elements, then the vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span> are not compatible. A similar arguement can be made about matrices.</p>
+</section>
+</div><p>Vector addition is strarighforward to implement; for example, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a>:</p>
+<div class="proof algorithm admonition" id="algo-vector-addition">
+<p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Naive vector addition)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Compatible vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span></p>
+<p><strong>Outputs</strong> Vector sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>N <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\leftarrow\)</span> zeros(N)</p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to N</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(y[i]\leftarrow~v_{1}[i] + v_{2}[i]\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong>
+<span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
+</section>
+</div><p>where the braket notation <span class="math notranslate nohighlight">\(y[\star]\)</span> denotes element <span class="math notranslate nohighlight">\(\star\)</span> of the vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. However, <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.</p>
+<section id="vectorized-addition-and-subtraction-operators">
+<h4>Vectorized addition and subtraction operators<a class="headerlink" href="#vectorized-addition-and-subtraction-operators" title="Permalink to this headline">#</a></h4>
+<p>Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Vectorized code often executes faster than Naive implementation such as <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a> because the <em>vectorization</em> can take advantage of advanced techniques to improve performance.</p>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator.</p>
+</section>
+</section>
+<section id="multiplication">
+<h3>Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">#</a></h3>
+<section id="multiplication-of-a-matrix-or-vector-by-a-constant">
+<h4>Multiplication of a matrix or vector by a constant<a class="headerlink" href="#multiplication-of-a-matrix-or-vector-by-a-constant" title="Permalink to this headline">#</a></h4>
+<p>Multiplying a matrix (or vector) by a constant is also done element wise. For example, suppose we have a <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and a contants <em>c</em>. Then the product:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = c\mathbf{v}\]</div>
+<p>has elements: <span class="math notranslate nohighlight">\(y_{i} = cv_{i}\)</span>.</p>
+</section>
+<section id="right-multiplication-of-a-matrix-by-a-vector">
+<h4>Right multiplication of a matrix by a vector<a class="headerlink" href="#right-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
+<p>A common operation is the <em>right multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.
+Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector. The <em>right product</em> given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = 
+\mathbf{A}\mathbf{x}\]</div>
+<p>generates a <span class="math notranslate nohighlight">\(m\times{1}\)</span> column vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, where the <span class="math notranslate nohighlight">\(i\)</span>th element is given by:</p>
+<div class="math notranslate nohighlight">
+\[y_{i} =
+\sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
+<p>The <em>right multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 1</span></a>):</p>
+<figure class="align-default" id="fig-right-multiplication-matrix-vector">
+<a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="left-multiplication-of-a-matrix-by-a-vector">
+<h4>Left multiplication of a matrix by a vector<a class="headerlink" href="#left-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
+<p>We could also consider the <em>left multiplication</em> of a matrix by a vector.
+Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> col vector, then the <em>left product</em> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = 
+\mathbf{x}^{T}\mathbf{A}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.
+The <em>left product</em> generates a <span class="math notranslate nohighlight">\(1\times{n}\)</span> row vector with elements:</p>
+<div class="math notranslate nohighlight">
+\[y_{i} = 
+\sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}\]</div>
+<p>The <em>left multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 2</span></a>):</p>
+<figure class="align-default" id="fig-left-multiplication-matrix-vector">
+<a class="reference internal image-reference" href="../_images/Fig-bA-Left-Multiplication.pdf"><img alt="../_images/Fig-bA-Left-Multiplication.pdf" src="../_images/Fig-bA-Left-Multiplication.pdf" style="height: 160px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="matrix-matrix-multiplication">
+<h4>Matrix-Matrix multiplication<a class="headerlink" href="#matrix-matrix-multiplication" title="Permalink to this headline">#</a></h4>
+<p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
+Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only <em>compatible</em> matrices can be
+multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
+meaning we can compute the matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span>, the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must be same as the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
+<p>Given a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with <em>m</em> rows and <em>n</em> columns, and a matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> with <em>n</em> rows and <em>p</em> columns, the
+product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a matrix with <em>m</em> rows and <em>p</em> columns in which the (i,j)th element of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m;~j=1,2,\cdots,p}\]</div>
+<p>The <em>matrix-matrix multiplication</em> operation can be represented graphically (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 3</span></a>):</p>
+<figure class="align-default" id="fig-multiplication-matrix-matrix">
+<a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 360px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In general, matrix multiplication is not communinative e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>, thus the order of multiplication matters (unlike multiplying two scalar numbers together). However, while matrix multiplication is not communinative, it is distributive:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\]</div>
+<p>and associative:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}\]</div>
+</section>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<p>Fill me in.</p>
+</section>
+<section id="additonal-resources">
+<h2>Additonal resources<a class="headerlink" href="#additonal-resources" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The matrix vector and matrix <span class="math notranslate nohighlight">\(\times\)</span> matrix product figures were inspired <a class="reference external" href="https://dzone.com/articles/visualizing-matrix">Visualizing Matrix Multiplication as a Linear Combination, Eli Bendersky, Apr. 12, 15 · Big Data Zone</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./unit-2-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="data-landing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data, Algorithms, and Linear Algebra</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="measures.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Measurements and Distances</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varner<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

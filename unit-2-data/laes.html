@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Linear Algebraic Equations &#8212; CHEME 1800</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://varnerlab.github.io/CHEME-5660-Markets-Mayhem-Book/infrastructure.html/unit-2-data/laes.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Learning Problem: Models, Learning, and Optimization" href="../unit-3-learning/learning-landing.html" />
+    <link rel="prev" title="Data Structures" href="trees.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/cornell_seal_simple_black.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CHEME 1800</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Principles of Computational Thinking for Engineers
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-1-basics/basics-landing.html">
+   Unit 1. Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/types.html">
+     Types and Expressions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/functions.html">
+     Functions, Iteration and Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/data-file-io.html">
+     Data Input and Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/programs.html">
+     Programs, Modules and Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="data-landing.html">
+   Unit 2. Data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="vectors-matricies-nla.html">
+     Vectors and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="measures.html">
+     Measurements and Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Linear Algebraic Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-3-learning/learning-landing.html">
+   Unit 3. Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/penalty.html">
+     Ordinary Least Squares
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/combitorial.html">
+     Combitorial Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/lp.html">
+     Linear Programming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-4-decisions/decisions-landing.html">
+   Unit 4. Decisions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/probability-random-variables.html">
+     Probability, Random Variables and Stochastic Processes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/moments.html">
+     Estimating Statistical Properties From Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/mdp.html">
+     Markov decision process (MDPs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
+     Multiple Arm Bandit Problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Book/issues/new?title=Issue%20on%20page%20%2Funit-2-data/laes.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/unit-2-data/laes.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivating-examples-and-concepts">
+   Motivating examples and concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#underdetermined-systems">
+     Underdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#square-systems">
+     Square systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overdetermined-systems">
+     Overdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank">
+     Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches">
+   Direct and iterative solution approaches
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#guassian-elimination">
+     Guassian elimination
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterative-methods">
+     Iterative methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jacobi-iteration">
+       Jacobi iteration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-seidel-iteration">
+       Gauss-Seidel iteration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#successive-overrelaxation">
+       Successive Overrelaxation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence-of-iterative-methods">
+       Convergence of iterative methods
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-inverses-and-pseudoinverses">
+   Generalized inverses and pseudoinverses
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Linear Algebraic Equations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivating-examples-and-concepts">
+   Motivating examples and concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#underdetermined-systems">
+     Underdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#square-systems">
+     Square systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overdetermined-systems">
+     Overdetermined systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rank">
+     Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches">
+   Direct and iterative solution approaches
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#guassian-elimination">
+     Guassian elimination
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterative-methods">
+     Iterative methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jacobi-iteration">
+       Jacobi iteration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-seidel-iteration">
+       Gauss-Seidel iteration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#successive-overrelaxation">
+       Successive Overrelaxation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence-of-iterative-methods">
+       Convergence of iterative methods
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-inverses-and-pseudoinverses">
+   Generalized inverses and pseudoinverses
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-algebraic-equations">
+<h1>Linear Algebraic Equations<a class="headerlink" href="#linear-algebraic-equations" title="Permalink to this headline">#</a></h1>
+<!-- In the special case where the number of rows and columns of $\mathbf{A}$ are equal ($m=n$), and some additional conditions are true, we can calculate a unique solution for Eqn. {eq}`eqn-general-system-laes` and the inverse $\mathbf{A}^{\dagger} = \mathbf{A}^{-1}$  has the 
+special property: -->
+<!-- If an inverse exists, then it has 
+the special property:
+
+$$\mathbf{A}^{\dagger}\mathbf{A} = \mathbf{I}$$
+
+where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix); the [identity Matrix](https://en.wikipedia.org/wiki/Identity_matrix) is a diagonal matrix with 1's on the diagonal and 0's everywhere else. -->
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-general-system-laes">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector. To compute a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we compute a <a class="reference external" href="https://mathworld.wolfram.com/MatrixInverse.html">matrix inverse</a>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span> denotes the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>In this lecture, we’ll look at techniques to compute <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span>. We will:</p>
+<ul class="simple">
+<li><p>Begin by introducing some <a class="reference internal" href="#content-references-motivating-examples"><span class="std std-ref">Motivating examples and concepts</span></a> that will be handy later to frame our discussion.</p></li>
+<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Direct and iterative solution approaches</span></a> to solve square systems of linear algebraic equations.</p></li>
+<li><p>Finally, we’ll conclude with a discussion of <a class="reference internal" href="#content-references-solution-approaches-non-square"><span class="std std-ref">Generalized inverses and pseudoinverses</span></a>. These approaches can compute approximate inverses for non-square systems of linear algebraic equations.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="motivating-examples-and-concepts">
+<span id="content-references-motivating-examples"></span><h2>Motivating examples and concepts<a class="headerlink" href="#motivating-examples-and-concepts" title="Permalink to this headline">#</a></h2>
+<section id="underdetermined-systems">
+<h3>Underdetermined systems<a class="headerlink" href="#underdetermined-systems" title="Permalink to this headline">#</a></h3>
+<p>Suppose you had two steady-state blending tanks <span class="math notranslate nohighlight">\(T_{1}\)</span> and <span class="math notranslate nohighlight">\(T_{2}\)</span> in series, each with two input streams and a single output stream (<a class="reference internal" href="#fig-blending-tanks-example"><span class="std std-numref">Fig. 4</span></a>):</p>
+<figure class="align-default" id="fig-blending-tanks-example">
+<a class="reference internal image-reference" href="../_images/Fig-Blending-Tanks-Example.pdf"><img alt="../_images/Fig-Blending-Tanks-Example.pdf" src="../_images/Fig-Blending-Tanks-Example.pdf" style="height: 140px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-blending-tanks-example" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Further, we have species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> in this system and no chemical reactions. Then, the steady-state species concentration balances for component <span class="math notranslate nohighlight">\(i\in\mathcal{M}\)</span> in blending tanks 1 and 2 can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\dot{V}_{1}C_{i,1} + \dot{V}_{4}C_{i,4}-\dot{V}_{2}C_{i,2} &amp; = &amp; 0\\
+\dot{V}_{2}C_{i,2} + \dot{V}_{5}C_{i,5}-\dot{V}_{3}C_{i,3} &amp; = &amp; 0
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\dot{V}_{j}\)</span> denotes the volumetric flow-rate of stream <span class="math notranslate nohighlight">\(j\)</span> (units: volume/time), and <span class="math notranslate nohighlight">\(C_{i,j}\)</span> denotes the
+concentration of component <span class="math notranslate nohighlight">\(i\)</span> in stream <span class="math notranslate nohighlight">\(j\)</span> (units: mole/volume). This system of concentration balances can be re-written as a matrix-vector product:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+\dot{V}_{1} &amp; -\dot{V}_{2} &amp; 0 &amp; \dot{V}_{4} &amp; 0 \\
+0 &amp; \dot{V}_{2} &amp; -\dot{V}_{3} &amp; 0 &amp; \dot{V}_{5} 
+\end{bmatrix}
+\begin{pmatrix}
+C_{i,1} \\
+C_{i,2} \\
+C_{i,3} \\
+C_{i,4} \\
+C_{i,5}
+\end{pmatrix} = 
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+0
+\end{pmatrix}
+\end{split}\]</div>
+<p>or in matrix-vector notation:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-matrix-vector-notation-tanks">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
+<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(6)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
+</section>
+<section id="square-systems">
+<h3>Square systems<a class="headerlink" href="#square-systems" title="Permalink to this headline">#</a></h3>
+<p>Instead of knowing nothing, suppose in our blending tank example we know the concentrations of component <span class="math notranslate nohighlight">\(i\)</span> in the input streams (1,4 and 5). Then, we only need to calculate the concentrations of component <span class="math notranslate nohighlight">\(i\)</span> in streams 2 and 3.
+We know have a <em>square</em> system, i.e., the number of equations (rows) and the number of unknowns (columns) are equal.</p>
+<p>In this case, we can rearrange our concentration balance equations, moving the knowns to the right-hand side:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+-\dot{V}_{2} &amp; 0 \\
+0 &amp; -\dot{V}_{2}
+\end{bmatrix}
+\begin{pmatrix}
+C_{i,2} \\
+C_{i,3}
+\end{pmatrix} = 
+\begin{pmatrix}
+-\dot{V}_{1}C_{i,1} - \dot{V}_{4}C_{i,4} \\
+-\dot{V}_{5}C_{i,5}
+\end{pmatrix}
+\end{split}\]</div>
+<p>The additional information gives a 2<span class="math notranslate nohighlight">\(\times\)</span>2 system, i.e., a <em>sqaure</em> system of equations. A <em>square</em> system of equations, depending upon the properties of the system can have a unique solution. The system above can be written in matrix-vector form as:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\dot{\mathbf{V}}\)</span> is now a 2<span class="math notranslate nohighlight">\(\times\)</span>2 square matrix, and <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a 2<span class="math notranslate nohighlight">\(\times\)</span>1 column-vector. However, unlike the previous underdetermined case, the right-hand side is now replaced by the
+2<span class="math notranslate nohighlight">\(\times\)</span>1 column-vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> which holds the new information about the measured inputs.</p>
+</section>
+<section id="overdetermined-systems">
+<h3>Overdetermined systems<a class="headerlink" href="#overdetermined-systems" title="Permalink to this headline">#</a></h3>
+<p>As our motivating example for overdetermined systems, which have more equations than unknowns, let’s consider the classic machine in a box problem (<a class="reference internal" href="#fig-enzyme-catalyzed-rxn-example"><span class="std std-numref">Fig. 5</span></a>). In this problem, we’ll consider a particular type of molecular machine, an enzyme. <a class="reference external" href="https://en.wikipedia.org/wiki/Enzyme">Enzymes</a> are molecular machines that convert a starting material (called a substrate) into a product.</p>
+<figure class="align-default" id="fig-enzyme-catalyzed-rxn-example">
+<a class="reference internal image-reference" href="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf"><img alt="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" src="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" style="height: 540px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-enzyme-catalyzed-rxn-example" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The process of converting substrate <span class="math notranslate nohighlight">\(S\)</span> to product <span class="math notranslate nohighlight">\(P\)</span> can be modeled as four elementary steps:</p>
+<ul class="simple">
+<li><p>Step 1: The enzyme <span class="math notranslate nohighlight">\(E\)</span> binds substrate <span class="math notranslate nohighlight">\(S\)</span> to form the enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span>.</p></li>
+<li><p>Step 2: The enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span> can fall apart giving back <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>Step 3: Alternatively, enzyme-substrate complex <span class="math notranslate nohighlight">\(E:S\)</span> can form the the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span>.</p></li>
+<li><p>Step 4: Finally, the enzyme-product complex <span class="math notranslate nohighlight">\(E:P\)</span> can disassociate, giving the product <span class="math notranslate nohighlight">\(P\)</span> and the enzyme <span class="math notranslate nohighlight">\(E\)</span>; the enzyme <span class="math notranslate nohighlight">\(E\)</span> is free to bind with another substrate molecule and run the cycle over again.</p></li>
+</ul>
+<p>Let’s assume the box has a single input (<span class="math notranslate nohighlight">\(s=1\)</span>) and a single output stream (<span class="math notranslate nohighlight">\(s=2\)</span>). Then, the steady-state species mole balance equations for chemical component <span class="math notranslate nohighlight">\(i\)</span> in the set of chemical species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> are given by:</p>
+<div class="math notranslate nohighlight">
+\[\dot{n}_{i,1} - \dot{n}_{i,2} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_{ir}\)</span> denotes the stoichiometric coefficient for species <span class="math notranslate nohighlight">\(i\)</span> in reaction <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\dot{\epsilon}_{r}\)</span> denotes the open extent of reaction (units: mole/time) for reaction <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> denotes the set of chemical reactions that occur in the box. In terms of elementary chemical reactions, this cycle can be written as the four elementary reactions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{S + E} &amp;\stackrel{\rm 1}{\longrightarrow}&amp; \text{E:S}\\
+\text{E:S} &amp;\stackrel{\rm 2}{\longrightarrow}&amp; \text{S+E}\\
+\text{E:S} &amp;\stackrel{\rm 3}{\longrightarrow}&amp; \text{E:P}\\
+\text{E:P} &amp;\stackrel{\rm 4}{\longrightarrow}&amp; \text{E+P}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Putting all these ideas together, where <span class="math notranslate nohighlight">\(\mathcal{M}=\left\{S, P, E, E:S, E:P\right\}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{R} =\left\{1, 2, 3, 4\right\}\)</span>, gives the 5<span class="math notranslate nohighlight">\(\times\)</span>4 system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+-1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+-1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; -1 &amp; -1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; -1
+\end{bmatrix}
+\begin{pmatrix}
+\dot{\epsilon}_{1} \\
+\dot{\epsilon}_{2} \\
+\dot{\epsilon}_{3} \\
+\dot{\epsilon}_{4} 
+\end{pmatrix} = 
+\begin{pmatrix}
+\dot{n}_{1,2} - \dot{n}_{1,1}\\
+\dot{n}_{2,2} - \dot{n}_{2,1}\\
+\dot{n}_{3,2} - \dot{n}_{3,1}\\
+\dot{n}_{4,2} - \dot{n}_{4,1}\\
+\dot{n}_{5,2} - \dot{n}_{5,1}
+\end{pmatrix}
+\end{split}\]</div>
+<p>where can be re-written in matrix-vector form as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-system-mole-balances">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
+</section>
+<section id="rank">
+<h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>
+<p>What is interesting about <span class="math notranslate nohighlight">\(\mathbf{A}^{\#}\)</span> are the conditions governing its existence, and in one particular a concept called <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">matrix rank</a>. The rank of a matrix <em>r</em>:</p>
+<div class="math notranslate nohighlight">
+\[r\leq\min\left(m,n\right)\]</div>
+<p>is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\mathbf{A}}=0\)</span>, and an inverse will <strong>not</strong> exist.</p>
+<p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
+</section>
+</section>
+<section id="direct-and-iterative-solution-approaches">
+<span id="content-references-solution-approaches"></span><h2>Direct and iterative solution approaches<a class="headerlink" href="#direct-and-iterative-solution-approaches" title="Permalink to this headline">#</a></h2>
+<p>The naive way to solve a system of LAEs for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to directly compute the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>. A matrix inverse has the property <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <em>identity matrix</em>.  Thus, if a matrix inverse exists, the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
+<p>Directly computing the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.</p>
+<p>There are two broad categories of methods to solve for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, direct methods, such as those based upon <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, and iterative methods, such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Gauss–Seidel method</a>. Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>.</p>
+<p>In all the discussion below, we assume:</p>
+<ul class="simple">
+<li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <strong>square</strong> meaning <span class="math notranslate nohighlight">\(m=n\)</span>; we’ll see how we can treat non-square systems later.</p></li>
+<li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has full rank or equivalently <span class="math notranslate nohighlight">\(\det{\mathbf{A}}\neq{0}\)</span>.</p></li>
+</ul>
+<section id="guassian-elimination">
+<h3>Guassian elimination<a class="headerlink" href="#guassian-elimination" title="Permalink to this headline">#</a></h3>
+<p>Fill me in.</p>
+</section>
+<section id="iterative-methods">
+<h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
+<p>An iterative method takes an initial solution guess, and refines it by substituting
+this guess back into into the linear algebraic equations. The guess is then updated over and over again until either we exhaust the number of iterations we can take, or we converge to a solution. Two key iterative methods are: <a class="reference external" href="https://en.wikipedia.org/wiki/Jacobi_method">Jacobi Iteration</a> and
+<a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Gauss-Seidel</a>. The central difference between these two methods is how they update the best estimate of a solution at any given iteration.</p>
+<p>In either case, we start with the ith equation (in index form):</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{m}}\]</div>
+<p>and solve it for <em>an estimate</em> of <span class="math notranslate nohighlight">\(x_{i}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{m}}\]</div>
+<p>denoted by <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>. As the number of iterations increases (and the system of LAEs is <em>convergent</em>) <span class="math notranslate nohighlight">\(\hat{x}_{i}\rightarrow{x_{i}}\)</span> for <span class="math notranslate nohighlight">\(i=1,2,\cdots,m\)</span>.</p>
+<section id="jacobi-iteration">
+<h4>Jacobi iteration<a class="headerlink" href="#jacobi-iteration" title="Permalink to this headline">#</a></h4>
+<p>Jacobi iteration <strong>batch updates</strong> the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> at the <em>end</em> of each iteration. Suppose we define the best estimate
+for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
+<p>In Jacobi iteration, the best estimate for all variables from the previous iteration is used and we do not update the guess until
+we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,m\)</span> equations.</p>
+</section>
+<section id="gauss-seidel-iteration">
+<h4>Gauss-Seidel iteration<a class="headerlink" href="#gauss-seidel-iteration" title="Permalink to this headline">#</a></h4>
+<p>Gauss-Seidel <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,2,\cdots,m\)</span>, generally leading to
+better convergence properties when compared with Jacobi iteration. Suppose we define the best estimate
+for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
+<p>In Gauss-Seidel, the best estimate of the proceeding <span class="math notranslate nohighlight">\(x_{i}\)</span>’s are used in the calculation of the current <span class="math notranslate nohighlight">\(x_{i}\)</span>.</p>
+</section>
+<section id="successive-overrelaxation">
+<h4>Successive Overrelaxation<a class="headerlink" href="#successive-overrelaxation" title="Permalink to this headline">#</a></h4>
+<p>Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> is further modified
+before proceeding to the evaluation of the next equations. Suppose we define the best estimate
+for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then <em>before</em> processing the next Gauss-Seidel type step we update the best guess for <span class="math notranslate nohighlight">\(x_{i}\)</span> using the rule:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i,k}=\lambda\hat{x}_{i,k}+\left(1-\lambda\right)\hat{x}_{i,k-1}\qquad{i=1,2,\cdots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is an adjustable parameter governed by <span class="math notranslate nohighlight">\(0&lt;\lambda\leq{2}\)</span>. The value of <span class="math notranslate nohighlight">\(\lambda\)</span> can dramatically speed-up <em>or</em>
+slow-down the convergence to the correct solution, so care should be taken when choosing it.
+The value of <span class="math notranslate nohighlight">\(\lambda\)</span> can be in one of three regimes:</p>
+<ul class="simple">
+<li><p>Underrelaxation <span class="math notranslate nohighlight">\(0&lt;\lambda&lt;1\)</span>: Can help solve systems that have problematic convergence</p></li>
+<li><p>Nominal <span class="math notranslate nohighlight">\(\lambda=1\)</span>: Regular Gauss-Seidel algorithm</p></li>
+<li><p>Overrelaxation <span class="math notranslate nohighlight">\(1&lt;\lambda\leq{2}\)</span>: This regime will increase the rate of convergence provided the algorithm can converge</p></li>
+</ul>
+</section>
+<section id="convergence-of-iterative-methods">
+<h4>Convergence of iterative methods<a class="headerlink" href="#convergence-of-iterative-methods" title="Permalink to this headline">#</a></h4>
+<p>A sufficient condition for the convergence of Jacobi or Gauss-Seidel Iteration is the well known diagonal dominance condition:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=1,i}^{n}\lvert{a_{ij}}\rvert&lt;\lvert{a_{ii}}\rvert\qquad\forall{i}\]</div>
+<p>Diagonal dominance is a sufficient (but not necessary) condition for convergence of an iterative method. Of course, this condition says
+nothing regarding the rate of convergence. Convergence, which is a measure of the distance between the current
+best solution and the true solution, can be calculated using any one of several metrics. Two common techniques are the calculation of the
+percentage change in the solution as well as the measurement in a least-squares sense of the distance between the solutions.
+While the true solution is not explicitly known, you can calculate the squared difference between the known right-hand side vector, <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, and your current best estimate, <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}_{k}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[e_{k}=\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)^{T}\]</div>
+<p>where <span class="math notranslate nohighlight">\(e_{k}\)</span> denotes the squared error for solution at iteration k of the algorithm.</p>
+</section>
+</section>
+</section>
+<section id="generalized-inverses-and-pseudoinverses">
+<span id="content-references-solution-approaches-non-square"></span><h2>Generalized inverses and pseudoinverses<a class="headerlink" href="#generalized-inverses-and-pseudoinverses" title="Permalink to this headline">#</a></h2>
+<p>Fill me in.</p>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<p>Fill me in</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./unit-2-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="trees.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data Structures</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../unit-3-learning/learning-landing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Learning Problem: Models, Learning, and Optimization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varner<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
