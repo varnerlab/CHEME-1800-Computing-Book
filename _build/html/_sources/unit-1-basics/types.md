@@ -105,19 +105,27 @@ Step 2: Add a `1` to the least-significant bit which gives:
 
 ````
 
+##### Boolean values
+Boolean values, e.g., values of `true` and `false` are represented in modern languages using a `Bool` type. For example, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have built-in Boolean types. However, foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) do not have a dedicated Boolean type; instead, Boolean values in [C](https://en.wikipedia.org/wiki/C_(programming_language)) were represented by integers, i.e., `true = 1` and `false = 0`. Thus, it should not be surprising that in languages such as [Julia](https://docs.julialang.org), which is a distant relative of [C](https://en.wikipedia.org/wiki/C_(programming_language)), that `Bool` is implemented as a subtype of integer. 
+
+In [Julia](https://docs.julialang.org) values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` in [Julia](https://docs.julialang.org) (because a `Bool` can only assume one of two possible values):
+
+```{code-cell} julia
+# These are examples a expressions, that set a Bool value
+value_true = true
+value_false = false
+
+# What is the bitstring that encodes this value?
+println("False: $(bitstring(value_false)) and True: $(bitstring(value_true))")
+```
+
 #### Floating point values
-Scalar floating numbers, represented by the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754).
+Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). However, unlike integer values, which can be represented exactly, floating-point numbers are can only be _approximated_ in a computer system. 
 
-#### Boolean values
-Fill me in.
-
-### Collection types
-Fill me in.
-
-### Character and string types
+### Character and string values
 Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.
 
-#### Characters
+#### Character values
 Characters on the computer, e.g., the letter `A` are type `Char`. Traditionally, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of 7-bit teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values.
 
 Modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
@@ -151,7 +159,7 @@ Thus, the hexadecimal equivalent of 74 is 4A, and the [Unicode](https://en.wikip
 
 ````
 
-#### Strings
+#### String values
 Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a formal `String` type; instead, strings were encoded as arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
 [Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character system. 
 

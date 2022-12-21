@@ -31,7 +31,8 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
-  baseurl: "https://varnerlab.github.io/CHEME-5660-Markets-Mayhem-Book/infrastructure.html"
+  baseurl: "https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html"
+  google_analytics_id: G-VQRVBL1C02
 
 # In _config.yml
 sphinx:
