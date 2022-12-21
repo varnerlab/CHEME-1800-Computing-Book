@@ -10,21 +10,26 @@ kernelspec:
   name: julia-1.8
 ---
 
-# Types and Expressions 
+# Variables, Types and Expressions 
 
 ## Introduction
 Fill me in. 
 
 ---
 
-## Types
+## Variables and Types
+A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
+
+>"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer is eager to do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
+
+However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`. From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. 
+
+At the smallest scale, information is stored as bits and bytes in the computer. A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`. Different types of things, e.g., integers or text are then represented as different numbers of `bytes`.
 
 ### Numerical and logical types
-Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of integers, floating-point numbers, etc., as immediate values that humans understand in code are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them. 
+Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.
 
-At the smallest scale in the computer, information is stored as bits and bytes. A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`.  
-
-The in-memory representation of integers, floating-point, and logical values is referred to as `numeric primitives`; numeric primitives, which the computer understands, are binary numbers (numbers written to the `base 2`). However, there are also other interesting number systems that you may see, e.g., numbers written in the `base 8` (octal) or `base 16` (hexadecimal) system:
+The in-memory `numeric primitives` representation of integers, floating-point, and logical values is referred to as ; numeric primitives, which the computer understands, are binary numbers (numbers written to the `base 2`). However, there are also other interesting number systems that you may also see, e.g., numbers written in the `base 8` (octal) or `base 16` (hexadecimal) system:
 
 ````{prf:definition} Base $b$ numbers
 :label: defn-number-system
@@ -45,11 +50,10 @@ n = \sum_{j=0}^{k-1}a_{j}b^{j}
 The quantity $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
 ````
 
-
 #### Integers
 Integers, represented by the set $\mathbb{Z}$, are the positive and negative natural numbers along with zero, e.g., ($\dots$, -3,-2, -1, 0, 1, 2, 3, $\dots$). The in-memory representation of integers, i.e., their `numeric primitive` representation, is typically a 4 $\times$ byte (32-bit) or 8 $\times$ byte (64-bit) binary number.
 
-````{prf:example} 64-bit integer
+````{prf:example} 64-bit integer in binary format
 :class: dropdown
 :label: example-binary-128
 
@@ -70,30 +74,34 @@ __Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bit
 ````
 
 ##### What about negative integers?
-{prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set of integers $\mathbb{Z}$ also contains negative numbers; how can we represent this type of number in a `base 2` system? When representing integers using a fixed number of bits, negative integers are typically represented using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.
+{prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set $\mathbb{Z}$ also contains negative numbers; how can we represent negative numbers in a `base 2` system? 
 
-[Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` to `1` and vice-versa, and next adding a place value of `1` to the inverted number. Let's consider an example:
+Negative integers are created using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value. [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then addding (using binary addition) a `1` to the least signaficant digit (far right bit) of the result. 
 
 ````{prf:example} Two's complement
 :class: dropdown
 :label: example-twos-complement
 
-Develop the 64-bit pattern for $\bar{x}=-8$ using twos complement. 
+Develop the 64-bit pattern for $\bar{x}=-8$ using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement). 
 
 __Solution__: The 64-bit patterm for $x=8$ is given by:
 
 ```{math}
 :label: eqn-64-bit-value-positive-8
-8 = \left(0000000000000000000000000000000000000000000000000000000000001000\right)_{2}
+8 = \left(0\dots00001000\right)_{2}
 ```
 
-_Step 1_: Flip all the bits:
+Step 1: Flip all the bits:
 
 ```{math}
-\left(1111111111111111111111111111111111111111111111111111111111110111\right)_{2}
+\left(1\dots11110111\right)_{2}
 ```
 
-_Step 2_: What is going here? Finish me.
+Step 2: Add a `1` to the least-significant bit which gives:
+
+```{math}
+-8 = \left(1\dots11111000\right)_{2}
+```
 
 ````
 
@@ -112,7 +120,36 @@ Textual data on a computer is represented as the `String` type. Strings are mode
 #### Characters
 Characters on the computer, e.g., the letter `A` are type `Char`. Traditionally, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of 7-bit teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values.
 
-However, modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
+Modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
+
+
+````{prf:example} Unicode and Hexadecimal 
+:class: dropdown
+:label: example-unicode-J
+
+Compute the [Unicode](https://en.wikipedia.org/wiki/Unicode) index for the character `J`. 
+
+__Solution__: The character `J` has index 74 in the ASCII table (which is included in the [Unicode](https://en.wikipedia.org/wiki/Unicode) system). Thus, first, we must convert 74 to a `base 16` (hexadecimal) number and then convert that to the [Unicode](https://en.wikipedia.org/wiki/Unicode) index format; [Unicode](https://en.wikipedia.org/wiki/Unicode) indexes left-pad the hexadecimal character value with zeros until a 4-digit code is generated, and then `U+` is appended to the four-digit code. 
+
+Hexadecimal numbers use decimal digits and six extra symbols; the decimal values $(0,1,\dots,9)$, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, thru hexadecimal F = decimal 15 are used in the hexadecimal numbering system.
+
+Approach:
+* Step 1: Divide the given decimal number by 16 and write down the quotient and remainder
+* Step 2: Divide the previous quotient by 16 and write the down the quotient and remainder
+* Step 3: Repeat steps 1 and 2 until the quotient equals zero.
+* Step 4: Map all the remainder values to their corresponding hexadecimal equivalents 
+* Step 5: Starting with the last value and moving to the first, write each of the hexadecimal values
+
+Let's compute the hexadecimal equivalent of 74:
+
+| value | quotient | remainder | hex |
+| ----- | -------- | --------- | ------- |
+74/16 | 4 | 10 | A |
+4/16 | 0 | 4 | 4 |
+
+Thus, the hexadecimal equivalent of 74 is 4A, and the [Unicode](https://en.wikipedia.org/wiki/Unicode) index for `J` is `U+004A`.
+
+````
 
 #### Strings
 Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a formal `String` type; instead, strings were encoded as arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
@@ -143,11 +180,11 @@ A `String` can be indexed like an array in both [Julia](https://docs.julialang.o
 # This is an expression to create a string in Julia
 string = "Julia strings use double quotes"
 
-# grab a range of characters
+# grab a range of characters (from 1 to 5)
 println(string[1:5])
 ```
 
-Fragments of strings, e.g., the range `string[1:5]` shown above are also `Strings`:
+The fragments generated by indexing, e.g., the range `string[1:5]` operation shown above are also `Strings`:
 
 ```{code-cell} julia
 # This is an expression to create a string in Julia
@@ -158,6 +195,16 @@ fragment = string[1:5]
 
 # what type is the stuff that I just grabbed?
 println("The fragment is type -> $(typeof(fragment))")
+```
+
+However, if you want (or need) to work with the invidual characters, you can convert a `String` type into a `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
+
+```{code-cell} julia
+# This is an expression to create a string in Julia
+string = "Julia rocks the house"
+
+# Make an array of characters 
+array = collect(string)
 ```
 
 ### Custom types

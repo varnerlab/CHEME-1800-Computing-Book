@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Types and Expressions &#8212; CHEME 1800</title>
+    <title>Variables, Types and Expressions &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -130,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Types and Expressions
+     Variables, Types and Expressions
     </a>
    </li>
    <li class="toctree-l2">
@@ -466,7 +466,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Types and Expressions
+   Variables, Types and Expressions
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -475,8 +475,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#types">
-     Types
+    <a class="reference internal nav-link" href="#variables-and-types">
+     Variables and Types
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -558,7 +558,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Types and Expressions</h1>
+                <h1>Variables, Types and Expressions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -570,7 +570,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Types and Expressions
+   Variables, Types and Expressions
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -579,8 +579,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#types">
-     Types
+    <a class="reference internal nav-link" href="#variables-and-types">
+     Variables and Types
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -663,20 +663,25 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="types-and-expressions">
-<h1>Types and Expressions<a class="headerlink" href="#types-and-expressions" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="variables-types-and-expressions">
+<h1>Variables, Types and Expressions<a class="headerlink" href="#variables-types-and-expressions" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
 </section>
 <hr class="docutils" />
-<section id="types">
-<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline">#</a></h2>
+<section id="variables-and-types">
+<h2>Variables and Types<a class="headerlink" href="#variables-and-types" title="Permalink to this headline">#</a></h2>
+<p>A <em>variable</em> is like a box that holds a value, and that value has a <em>type</em>. For example, types can be numbers such as <code class="docutils literal notranslate"><span class="pre">3</span></code>, Boolean values like <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> or text like:</p>
+<blockquote>
+<div><p>“Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer is eager to do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!”</p>
+</div></blockquote>
+<p>However, computers and Humans don’t speak the same language. Humans understand that <code class="docutils literal notranslate"><span class="pre">3</span></code> is an integer, and <code class="docutils literal notranslate"><span class="pre">Julia</span> <span class="pre">rocks</span></code> is text, but the computer doesn’t see these values the same way we do. For a computer, everything is a <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_number">binary number</a>, i.e., numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>. From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc.</p>
+<p>At the smallest scale, information is stored as bits and bytes in the computer. A <code class="docutils literal notranslate"><span class="pre">bit</span></code> is the smallest unit of storage on a computer; a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is a <code class="docutils literal notranslate"><span class="pre">0</span></code> or a <code class="docutils literal notranslate"><span class="pre">1</span></code>. However, a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is too tiny for practical computing tasks. Instead, <code class="docutils literal notranslate"><span class="pre">bits</span></code> are grouped into <code class="docutils literal notranslate"><span class="pre">bytes</span></code>; a group of 8 bits equals  1 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">byte</span></code>. Different types of things, e.g., integers or text are then represented as different numbers of <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
 <section id="numerical-and-logical-types">
 <h3>Numerical and logical types<a class="headerlink" href="#numerical-and-logical-types" title="Permalink to this headline">#</a></h3>
-<p>Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives.</span></code> On the other hand, the models of integers, floating-point numbers, etc., as immediate values that humans understand in code are called numeric literals, e.g., <code class="docutils literal notranslate"><span class="pre">1</span></code> is an integer literal, and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a floating-point literal. Modern programming languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them.</p>
-<p>At the smallest scale in the computer, information is stored as bits and bytes. A <code class="docutils literal notranslate"><span class="pre">bit</span></code> is the smallest unit of storage on a computer; a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is a <code class="docutils literal notranslate"><span class="pre">0</span></code> or a <code class="docutils literal notranslate"><span class="pre">1</span></code>. However, a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is too tiny for practical computing tasks. Instead, <code class="docutils literal notranslate"><span class="pre">bits</span></code> are grouped into <code class="docutils literal notranslate"><span class="pre">bytes</span></code>; a group of 8 bits equals  1 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">byte</span></code>.</p>
-<p>The in-memory representation of integers, floating-point, and logical values is referred to as <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives</span></code>; numeric primitives, which the computer understands, are binary numbers (numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>). However, there are also other interesting number systems that you may see, e.g., numbers written in the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) or <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) system:</p>
+<p>Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives.</span></code> On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., <code class="docutils literal notranslate"><span class="pre">1</span></code> is an integer literal, and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a floating-point literal. Modern programming languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.</p>
+<p>The in-memory <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives</span></code> representation of integers, floating-point, and logical values is referred to as ; numeric primitives, which the computer understands, are binary numbers (numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>). However, there are also other interesting number systems that you may also see, e.g., numbers written in the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) or <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) system:</p>
 <div class="proof definition admonition" id="defn-number-system">
 <p class="admonition-title"><span class="caption-number">Definition 1 </span> (Base <span class="math notranslate nohighlight">\(b\)</span> numbers)</p>
 <section class="definition-content" id="proof-content">
@@ -692,7 +697,7 @@ title="Print to PDF"
 <h4>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">#</a></h4>
 <p>Integers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, are the positive and negative natural numbers along with zero, e.g., (<span class="math notranslate nohighlight">\(\dots\)</span>, -3,-2, -1, 0, 1, 2, 3, <span class="math notranslate nohighlight">\(\dots\)</span>). The in-memory representation of integers, i.e., their <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitive</span></code> representation, is typically a 4 <span class="math notranslate nohighlight">\(\times\)</span> byte (32-bit) or 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number.</p>
 <div class="proof example dropdown admonition" id="example-binary-128">
-<p class="admonition-title"><span class="caption-number">Example 1 </span> (64-bit integer)</p>
+<p class="admonition-title"><span class="caption-number">Example 1 </span> (64-bit integer in binary format)</p>
 <section class="example-content" id="proof-content">
 <p>Show that the 64-bit representation of the integer <span class="math notranslate nohighlight">\(x=1800\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
@@ -705,19 +710,21 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 </div><section id="what-about-negative-integers">
 <h5>What about negative integers?<a class="headerlink" href="#what-about-negative-integers" title="Permalink to this headline">#</a></h5>
-<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set of integers <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent this type of number in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system? When representing integers using a fixed number of bits, negative integers are typically represented using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and next adding a place value of <code class="docutils literal notranslate"><span class="pre">1</span></code> to the inverted number. Let’s consider an example:</p>
+<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent negative numbers in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system?</p>
+<p>Negative integers are created using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value. <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and then addding (using binary addition) a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least signaficant digit (far right bit) of the result.</p>
 <div class="proof example dropdown admonition" id="example-twos-complement">
 <p class="admonition-title"><span class="caption-number">Example 2 </span> (Two’s complement)</p>
 <section class="example-content" id="proof-content">
-<p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(\bar{x}=-8\)</span> using twos complement.</p>
+<p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(\bar{x}=-8\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>.</p>
 <p><strong>Solution</strong>: The 64-bit patterm for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-64-bit-value-positive-8">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0000000000000000000000000000000000000000000000000000000000001000\right)_{2}\]</div>
-<p><em>Step 1</em>: Flip all the bits:</p>
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0\dots00001000\right)_{2}\]</div>
+<p>Step 1: Flip all the bits:</p>
 <div class="math notranslate nohighlight">
-\[\left(1111111111111111111111111111111111111111111111111111111111110111\right)_{2}\]</div>
-<p><em>Step 2</em>: What is going here? Finish me.</p>
+\[\left(1\dots11110111\right)_{2}\]</div>
+<p>Step 2: Add a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least-significant bit which gives:</p>
+<div class="math notranslate nohighlight">
+\[-8 = \left(1\dots11111000\right)_{2}\]</div>
 </section>
 </div></section>
 </section>
@@ -740,24 +747,62 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <section id="characters">
 <h4>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">#</a></h4>
 <p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are type <code class="docutils literal notranslate"><span class="pre">Char</span></code>. Traditionally, characters were represented via the <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">American Standard Code for Information Interchange (ASCII) system</a>, which was a set of 7-bit teleprinter codes for the <a class="reference external" href="https://www.att.com">AT&amp;T</a> Teletypewriter exchange (TWX) network. For example, the character <code class="docutils literal notranslate"><span class="pre">A</span></code> in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Extended_ASCII">extended ASCII systems</a>, which had <span class="math notranslate nohighlight">\(0,\dots,255\)</span> possible character values.</p>
-<p>However, modern computer systems use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number systems.</p>
+<p>Modern computer systems use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number systems.</p>
+<div class="proof example dropdown admonition" id="example-unicode-J">
+<p class="admonition-title"><span class="caption-number">Example 3 </span> (Unicode and Hexadecimal )</p>
+<section class="example-content" id="proof-content">
+<p>Compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index for the character <code class="docutils literal notranslate"><span class="pre">J</span></code>.</p>
+<p><strong>Solution</strong>: The character <code class="docutils literal notranslate"><span class="pre">J</span></code> has index 74 in the ASCII table (which is included in the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> system). Thus, first, we must convert 74 to a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number and then convert that to the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index format; <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> indexes left-pad the hexadecimal character value with zeros until a 4-digit code is generated, and then <code class="docutils literal notranslate"><span class="pre">U+</span></code> is appended to the four-digit code.</p>
+<p>Hexadecimal numbers use decimal digits and six extra symbols; the decimal values <span class="math notranslate nohighlight">\((0,1,\dots,9)\)</span>, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, thru hexadecimal F = decimal 15 are used in the hexadecimal numbering system.</p>
+<p>Approach:</p>
+<ul class="simple">
+<li><p>Step 1: Divide the given decimal number by 16 and write down the quotient and remainder</p></li>
+<li><p>Step 2: Divide the previous quotient by 16 and write the down the quotient and remainder</p></li>
+<li><p>Step 3: Repeat steps 1 and 2 until the quotient equals zero.</p></li>
+<li><p>Step 4: Map all the remainder values to their corresponding hexadecimal equivalents</p></li>
+<li><p>Step 5: Starting with the last value and moving to the first, write each of the hexadecimal values</p></li>
+</ul>
+<p>Let’s compute the hexadecimal equivalent of 74:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>value</p></th>
+<th class="head"><p>quotient</p></th>
+<th class="head"><p>remainder</p></th>
+<th class="head"><p>hex</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>74/16</p></td>
+<td><p>4</p></td>
+<td><p>10</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-odd"><td><p>4/16</p></td>
+<td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+<p>Thus, the hexadecimal equivalent of 74 is 4A, and the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index for <code class="docutils literal notranslate"><span class="pre">J</span></code> is <code class="docutils literal notranslate"><span class="pre">U+004A</span></code>.</p>
 </section>
+</div></section>
 <section id="strings">
 <h4>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">#</a></h4>
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> didn’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings were encoded as arrays of characters, i.e., strings were of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. However, modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character system.</p>
 <p>While the number and types of characters that can be incorporated into a <a class="reference external" href="https://docs.julialang.org">Julia</a> <code class="docutils literal notranslate"><span class="pre">String</span></code> is more diverse, in many ways, strings in modern languages share features with the older representation of text. <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a94301dd-e8e3-46f3-a761-849b25c80417" name="447a660f-e335-4f6d-a96e-756089b5149d" type="radio">
-</input><label class="sd-tab-label" for="a94301dd-e8e3-46f3-a761-849b25c80417">
+<input checked="checked" id="d1ac8255-a001-4006-8475-7ed3280a1c7e" name="fb5e2f99-ee05-49a7-bdea-b3009bd776e5" type="radio">
+</input><label class="sd-tab-label" for="d1ac8255-a001-4006-8475-7ed3280a1c7e">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="f8625e16-0b59-4d42-9834-e59133352a37" name="447a660f-e335-4f6d-a96e-756089b5149d" type="radio">
-</input><label class="sd-tab-label" for="f8625e16-0b59-4d42-9834-e59133352a37">
+<input id="2fe44b2f-6bba-499c-9c99-2559af49a6b1" name="fb5e2f99-ee05-49a7-bdea-b3009bd776e5" type="radio">
+</input><label class="sd-tab-label" for="2fe44b2f-6bba-499c-9c99-2559af49a6b1">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
@@ -771,7 +816,7 @@ python</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 
-<span class="c"># grab a range of characters</span>
+<span class="c"># grab a range of characters (from 1 to 5)</span>
 <span class="n">println</span><span class="p">(</span><span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -782,7 +827,7 @@ python</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>Fragments of strings, e.g., the range <code class="docutils literal notranslate"><span class="pre">string[1:5]</span></code> shown above are also <code class="docutils literal notranslate"><span class="pre">Strings</span></code>:</p>
+<p>The fragments generated by indexing, e.g., the range <code class="docutils literal notranslate"><span class="pre">string[1:5]</span></code> operation shown above are also <code class="docutils literal notranslate"><span class="pre">Strings</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
@@ -798,6 +843,44 @@ python</label><div class="sd-tab-content docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The fragment is type -&gt; String
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, if you want (or need) to work with the invidual characters, you can convert a <code class="docutils literal notranslate"><span class="pre">String</span></code> type into a <code class="docutils literal notranslate"><span class="pre">Array{Char,1}</span></code> type using the <code class="docutils literal notranslate"><span class="pre">collect</span></code> function in <a class="reference external" href="https://docs.julialang.org">Julia</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia rocks the house&quot;</span>
+
+<span class="c"># Make an array of characters </span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21-element Vector{Char}:
+ &#39;J&#39;: ASCII/Unicode U+004A (category Lu: Letter, uppercase)
+ &#39;u&#39;: ASCII/Unicode U+0075 (category Ll: Letter, lowercase)
+ &#39;l&#39;: ASCII/Unicode U+006C (category Ll: Letter, lowercase)
+ &#39;i&#39;: ASCII/Unicode U+0069 (category Ll: Letter, lowercase)
+ &#39;a&#39;: ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
+ &#39; &#39;: ASCII/Unicode U+0020 (category Zs: Separator, space)
+ &#39;r&#39;: ASCII/Unicode U+0072 (category Ll: Letter, lowercase)
+ &#39;o&#39;: ASCII/Unicode U+006F (category Ll: Letter, lowercase)
+ &#39;c&#39;: ASCII/Unicode U+0063 (category Ll: Letter, lowercase)
+ &#39;k&#39;: ASCII/Unicode U+006B (category Ll: Letter, lowercase)
+ &#39;s&#39;: ASCII/Unicode U+0073 (category Ll: Letter, lowercase)
+ &#39; &#39;: ASCII/Unicode U+0020 (category Zs: Separator, space)
+ &#39;t&#39;: ASCII/Unicode U+0074 (category Ll: Letter, lowercase)
+ &#39;h&#39;: ASCII/Unicode U+0068 (category Ll: Letter, lowercase)
+ &#39;e&#39;: ASCII/Unicode U+0065 (category Ll: Letter, lowercase)
+ &#39; &#39;: ASCII/Unicode U+0020 (category Zs: Separator, space)
+ &#39;h&#39;: ASCII/Unicode U+0068 (category Ll: Letter, lowercase)
+ &#39;o&#39;: ASCII/Unicode U+006F (category Ll: Letter, lowercase)
+ &#39;u&#39;: ASCII/Unicode U+0075 (category Ll: Letter, lowercase)
+ &#39;s&#39;: ASCII/Unicode U+0073 (category Ll: Letter, lowercase)
+ &#39;e&#39;: ASCII/Unicode U+0065 (category Ll: Letter, lowercase)
 </pre></div>
 </div>
 </div>
