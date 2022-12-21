@@ -34,43 +34,58 @@ The in-memory `numeric primitives` representation of integers, floating-point, a
 ````{prf:definition} Base $b$ numbers
 :label: defn-number-system
 
-The base $b$ representation of a number is a way of writing numbers using the digits:
+The base $b$ representation of a number is a way of writing numbers using the digit set:
 
 ```{math}
-\left\{0, 1, \dots, (b − 1)\right\}
+\mathcal{D} = \left\{0, 1, \dots, (b − 1)\right\}
 ```
 
-For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ such that:
+For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}$ for all $k$ such that:
 
 ```{math}
 :label: eqn-base-b-number
-n = \sum_{j=0}^{k-1}a_{j}b^{j}
+n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}
 ```
 
-The quantity $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
+The quantity $a_{j}$ denotes the digit in position $j$, $b$ denotes the base and $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
 ````
 
 #### Integers
-Integers, represented by the set $\mathbb{Z}$, are the positive and negative natural numbers along with zero, e.g., ($\dots$, -3,-2, -1, 0, 1, 2, 3, $\dots$). The in-memory representation of integers, i.e., their `numeric primitive` representation, is typically a 4 $\times$ byte (32-bit) or 8 $\times$ byte (64-bit) binary number.
+Signed integers, represented by the set $\mathbb{Z}$, are the positive and negative natural numbers along with zero:
+
+```{math}
+\mathbb{Z} = \left\{\dots, -3,-2, -1, 0, 1, 2, 3, \dots\right\}
+```
+
+The in-memory representation of signed integers, i.e., their `numeric primitive` representation, is typically a 4 $\times$ byte (32-bit) or 8 $\times$ byte (64-bit) binary number; on newer hardware and operating systems, the default value for a signed integer is an 8 $\times$ byte (64-bit) binary number.
 
 ````{prf:example} 64-bit integer in binary format
 :class: dropdown
-:label: example-binary-128
+:label: example-binary-1800
 
-Show that the 64-bit representation of the integer $x=1800$ is given by:
+Show that the 64-bit binary representation of the integer value `1800` is given by:
 
 ```{math}
-(0000000000000000000000000000000000000000000000000000011100001000)_{2}
+:label: eqn-bitstring-1800-64bit
+1800 \stackrel{?}{=} (0000000000000000000000000000000000000000000000000000011100001000)_{2}
 ```
 
 __Solution__:
-First, this is a binary number, i.e., a number to the base `2`; thus, it is composed of the digit set $\left\{0,1\right\}$. Next, we know that k = 64-bits; thus, the summation in {prf:ref}`defn-number-system` will run from $0\rightarrow{63}$. However, all the digits are zero _except_ for a few positions; thus, the summation in {prf:ref}`defn-number-system` is given by:
+Equation {eq}`eqn-bitstring-1800-64bit` is a binary number, i.e., a number written with respect to the `base 2`; thus, $b=2$ and we have the digit set $\mathcal{D}=\left\{0,1\right\}$. Further, we know that k = 64-bits; thus, the summation in {prf:ref}`defn-number-system` runs from $0\rightarrow{63}$:
 
 ```{math}
-1800 = 2^{3}+2^{8}+2^{9}+2^{10}
+:label: eqn-binary-1800-sum
+1800 \stackrel{?}{=} \sum_{j=0}^{63}a_{j}\cdot{2^j}
 ```
 
-__Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring) functioin in [Julia](https://docs.julialang.org/en/v1/) displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.
+where $a_{j}$ denotes the value in the jth position of the binary number, i.e., $a_{j}=0$ or $a_{j}=1$ in position $j$. Most of the the $a_{j}$ values in Eq {eq}`eqn-bitstring-1800-64bit` are zero _except_ for a few positions; thus, the summation in {prf:ref}`defn-number-system` reduces to:
+
+```{math}
+1800 \stackrel{?}{=} 2^{3}+2^{8}+2^{9}+2^{10}
+```
+
+__Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring) function in [Julia](https://docs.julialang.org/en/v1/) displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.
+
 ````
 
 ##### What about negative integers?
@@ -120,7 +135,9 @@ println("False: $(bitstring(value_false)) and True: $(bitstring(value_true))")
 ```
 
 #### Floating point values
-Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). However, unlike integer values, which can be represented exactly, floating-point numbers are can only be _approximated_ in a computer system. 
+Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). However, unlike integer values, which can be represented exactly, floating-point numbers can only be _approximated_ in a computer system. 
+
+
 
 ### Character and string values
 Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.

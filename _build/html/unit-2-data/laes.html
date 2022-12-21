@@ -631,7 +631,7 @@ where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/I
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-general-system-laes">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector. To compute a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we compute a <a class="reference external" href="https://mathworld.wolfram.com/MatrixInverse.html">matrix inverse</a>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}\]</div>
@@ -688,8 +688,8 @@ C_{i,5}
 \end{split}\]</div>
 <p>or in matrix-vector notation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-vector-notation-tanks">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
-<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(6)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
+<span class="eqno">(8)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
+<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(8)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
 </section>
 <section id="square-systems">
 <h3>Square systems<a class="headerlink" href="#square-systems" title="Permalink to this headline">#</a></h3>
@@ -772,7 +772,7 @@ C_{i,3}
 \end{split}\]</div>
 <p>where can be re-written in matrix-vector form as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-system-mole-balances">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
+<span class="eqno">(9)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
 </section>
 <section id="rank">
 <h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>

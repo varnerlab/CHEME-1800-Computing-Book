@@ -683,28 +683,34 @@ title="Print to PDF"
 <div class="proof definition admonition" id="defn-number-system">
 <p class="admonition-title"><span class="caption-number">Definition 1 </span> (Base <span class="math notranslate nohighlight">\(b\)</span> numbers)</p>
 <section class="definition-content" id="proof-content">
-<p>The base <span class="math notranslate nohighlight">\(b\)</span> representation of a number is a way of writing numbers using the digits:</p>
+<p>The base <span class="math notranslate nohighlight">\(b\)</span> representation of a number is a way of writing numbers using the digit set:</p>
 <div class="math notranslate nohighlight">
-\[\left\{0, 1, \dots, (b − 1)\right\}\]</div>
-<p>For any <span class="math notranslate nohighlight">\(n\geq{0}\)</span> and <span class="math notranslate nohighlight">\(b\geq{2}\)</span>, there is a string of digits <span class="math notranslate nohighlight">\(\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}\)</span> such that:</p>
+\[\mathcal{D} = \left\{0, 1, \dots, (b − 1)\right\}\]</div>
+<p>For any <span class="math notranslate nohighlight">\(n\geq{0}\)</span> and <span class="math notranslate nohighlight">\(b\geq{2}\)</span>, there is a string of digits <span class="math notranslate nohighlight">\(\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}\)</span> where <span class="math notranslate nohighlight">\(a_{k}\in\mathcal{D}\)</span> for all <span class="math notranslate nohighlight">\(k\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-base-b-number">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-base-b-number" title="Permalink to this equation">#</a></span>\[n = \sum_{j=0}^{k-1}a_{j}b^{j}\]</div>
-<p>The quantity <span class="math notranslate nohighlight">\(k\)</span> denotes the number of bits; <span class="math notranslate nohighlight">\(k\)</span> depends upon the computing hardware and the type of data being represented.</p>
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-base-b-number" title="Permalink to this equation">#</a></span>\[n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}\]</div>
+<p>The quantity <span class="math notranslate nohighlight">\(a_{j}\)</span> denotes the digit in position <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(b\)</span> denotes the base and <span class="math notranslate nohighlight">\(k\)</span> denotes the number of bits; <span class="math notranslate nohighlight">\(k\)</span> depends upon the computing hardware and the type of data being represented.</p>
 </section>
 </div><section id="integers">
 <h4>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">#</a></h4>
-<p>Integers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, are the positive and negative natural numbers along with zero, e.g., (<span class="math notranslate nohighlight">\(\dots\)</span>, -3,-2, -1, 0, 1, 2, 3, <span class="math notranslate nohighlight">\(\dots\)</span>). The in-memory representation of integers, i.e., their <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitive</span></code> representation, is typically a 4 <span class="math notranslate nohighlight">\(\times\)</span> byte (32-bit) or 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number.</p>
-<div class="proof example dropdown admonition" id="example-binary-128">
+<p>Signed integers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, are the positive and negative natural numbers along with zero:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{Z} = \left\{\dots, -3,-2, -1, 0, 1, 2, 3, \dots\right\}\]</div>
+<p>The in-memory representation of signed integers, i.e., their <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitive</span></code> representation, is typically a 4 <span class="math notranslate nohighlight">\(\times\)</span> byte (32-bit) or 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number; on newer hardware and operating systems, the default value for a signed integer is an 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number.</p>
+<div class="proof example dropdown admonition" id="example-binary-1800">
 <p class="admonition-title"><span class="caption-number">Example 1 </span> (64-bit integer in binary format)</p>
 <section class="example-content" id="proof-content">
-<p>Show that the 64-bit representation of the integer <span class="math notranslate nohighlight">\(x=1800\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[(0000000000000000000000000000000000000000000000000000011100001000)_{2}\]</div>
+<p>Show that the 64-bit binary representation of the integer value <code class="docutils literal notranslate"><span class="pre">1800</span></code> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-bitstring-1800-64bit">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-bitstring-1800-64bit" title="Permalink to this equation">#</a></span>\[1800 \stackrel{?}{=} (0000000000000000000000000000000000000000000000000000011100001000)_{2}\]</div>
 <p><strong>Solution</strong>:
-First, this is a binary number, i.e., a number to the base <code class="docutils literal notranslate"><span class="pre">2</span></code>; thus, it is composed of the digit set <span class="math notranslate nohighlight">\(\left\{0,1\right\}\)</span>. Next, we know that k = 64-bits; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> will run from <span class="math notranslate nohighlight">\(0\rightarrow{63}\)</span>. However, all the digits are zero <em>except</em> for a few positions; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> is given by:</p>
+Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit">(2)</a> is a binary number, i.e., a number written with respect to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>; thus, <span class="math notranslate nohighlight">\(b=2\)</span> and we have the digit set <span class="math notranslate nohighlight">\(\mathcal{D}=\left\{0,1\right\}\)</span>. Further, we know that k = 64-bits; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> runs from <span class="math notranslate nohighlight">\(0\rightarrow{63}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-binary-1800-sum">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eqn-binary-1800-sum" title="Permalink to this equation">#</a></span>\[1800 \stackrel{?}{=} \sum_{j=0}^{63}a_{j}\cdot{2^j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{j}\)</span> denotes the value in the jth position of the binary number, i.e., <span class="math notranslate nohighlight">\(a_{j}=0\)</span> or <span class="math notranslate nohighlight">\(a_{j}=1\)</span> in position <span class="math notranslate nohighlight">\(j\)</span>. Most of the the <span class="math notranslate nohighlight">\(a_{j}\)</span> values in Eq <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit">(2)</a> are zero <em>except</em> for a few positions; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> reduces to:</p>
 <div class="math notranslate nohighlight">
-\[1800 = 2^{3}+2^{8}+2^{9}+2^{10}\]</div>
-<p><strong>Tip</strong>: The <a class="reference external" href="https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring">bitstring</a> functioin in <a class="reference external" href="https://docs.julialang.org/en/v1/">Julia</a> displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.</p>
+\[1800 \stackrel{?}{=} 2^{3}+2^{8}+2^{9}+2^{10}\]</div>
+<p><strong>Tip</strong>: The <a class="reference external" href="https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring">bitstring</a> function in <a class="reference external" href="https://docs.julialang.org/en/v1/">Julia</a> displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.</p>
 </section>
 </div><section id="what-about-negative-integers">
 <h5>What about negative integers?<a class="headerlink" href="#what-about-negative-integers" title="Permalink to this headline">#</a></h5>
@@ -716,7 +722,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(\bar{x}=-8\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>.</p>
 <p><strong>Solution</strong>: The 64-bit patterm for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-64-bit-value-positive-8">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0\dots00001000\right)_{2}\]</div>
+<span class="eqno">(4)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0\dots00001000\right)_{2}\]</div>
 <p>Step 1: Flip all the bits from <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa:</p>
 <div class="math notranslate nohighlight">
 \[\left(1\dots11110111\right)_{2}\]</div>
@@ -750,7 +756,7 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 </section>
 <section id="floating-point-values">
 <h4>Floating point values<a class="headerlink" href="#floating-point-values" title="Permalink to this headline">#</a></h4>
-<p>Scalar floating point numbers, i.e., decimal numbers in the set <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, are stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>. However, unlike integer values, which can be represented exactly, floating-point numbers are can only be <em>approximated</em> in a computer system.</p>
+<p>Scalar floating point numbers, i.e., decimal numbers in the set <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, are stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>. However, unlike integer values, which can be represented exactly, floating-point numbers can only be <em>approximated</em> in a computer system.</p>
 </section>
 </section>
 <section id="character-and-string-values">
@@ -805,16 +811,16 @@ First, this is a binary number, i.e., a number to the base <code class="docutils
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character system.</p>
 <p>While the number and types of characters that can be incorporated into a <a class="reference external" href="https://docs.julialang.org">Julia</a> <code class="docutils literal notranslate"><span class="pre">String</span></code> is more diverse, in many ways, strings in modern languages share features with the older representation of text. <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a64a0af2-bd43-4b87-a379-40f0ee0128f1" name="b00adefb-438c-4ee3-a7b4-832dd5908ca9" type="radio">
-</input><label class="sd-tab-label" for="a64a0af2-bd43-4b87-a379-40f0ee0128f1">
+<input checked="checked" id="2f0e89d8-55d9-437a-ba2d-803145c4ef1d" name="a824b82c-5870-4547-a678-247810d8863a" type="radio">
+</input><label class="sd-tab-label" for="2f0e89d8-55d9-437a-ba2d-803145c4ef1d">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="2829d5af-827b-42d4-96f0-919bb547b30c" name="b00adefb-438c-4ee3-a7b4-832dd5908ca9" type="radio">
-</input><label class="sd-tab-label" for="2829d5af-827b-42d4-96f0-919bb547b30c">
+<input id="217958e6-9222-4667-bd3d-d860a68df95b" name="a824b82c-5870-4547-a678-247810d8863a" type="radio">
+</input><label class="sd-tab-label" for="217958e6-9222-4667-bd3d-d860a68df95b">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
