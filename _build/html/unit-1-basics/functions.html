@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Functions, Iteration and Control &#8212; CHEME 1800</title>
+    <title>Functions, Iteration and Control Statements &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/functions.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -141,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Functions, Iteration and Control
+     Functions, Iteration and Control Statements
     </a>
    </li>
    <li class="toctree-l2">
@@ -151,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -458,7 +460,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Functions, Iteration and Control</h1>
+                <h1>Functions, Iteration and Control Statements</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -503,8 +505,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="functions-iteration-and-control">
-<h1>Functions, Iteration and Control<a class="headerlink" href="#functions-iteration-and-control" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="functions-iteration-and-control-statements">
+<h1>Functions, Iteration and Control Statements<a class="headerlink" href="#functions-iteration-and-control-statements" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
@@ -512,11 +514,18 @@ title="Print to PDF"
 <hr class="docutils" />
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>Most of us are familiar with the idea of a function from mathematics (<a class="reference internal" href="#fig-mathematical-function"><span class="std std-numref">Fig. 1</span></a>). A mathematical function takes input from a collection of possible inputs (called the domain) and maps this input to a set of outputs that lives in a group of possible outcomes (called the range). The function itself <span class="math notranslate nohighlight">\(f\)</span> is the rule that describes how the inputs are transformed into results, while <span class="math notranslate nohighlight">\(y = f(x)\)</span> denotes the output value in the range of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<figure class="align-default" id="fig-mathematical-function">
+<a class="reference internal image-reference" href="../_images/Fig-Mathematical-Function.pdf"><img alt="../_images/Fig-Mathematical-Function.pdf" src="../_images/Fig-Mathematical-Function.pdf" style="height: 240px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematic of a function from mathematics.</span><a class="headerlink" href="#fig-mathematical-function" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, functions in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> can alter and be affected by the global state of the program.</p>
 </section>
 <section id="iteration">
 <h2>Iteration<a class="headerlink" href="#iteration" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>One of the most common programming tasks you will do is iterating over a list of items. For example, suppose you wanted to see all the items on a To Do list for a day.</p>
 </section>
 <section id="control">
 <h2>Control<a class="headerlink" href="#control" title="Permalink to this headline">#</a></h2>
