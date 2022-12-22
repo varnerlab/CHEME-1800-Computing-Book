@@ -123,7 +123,7 @@ Step 2: Add a `1` to the least-significant bit which gives:
 ##### Boolean values
 Boolean values, e.g., values of `true` and `false` are represented in modern languages using a `Bool` type. For example, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have built-in Boolean types. However, foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) do not have a dedicated Boolean type; instead, Boolean values in [C](https://en.wikipedia.org/wiki/C_(programming_language)) were represented by integers, i.e., `true = 1` and `false = 0`. Thus, it should not be surprising that in languages such as [Julia](https://docs.julialang.org), which is a distant relative of [C](https://en.wikipedia.org/wiki/C_(programming_language)), that `Bool` is implemented as a subtype of integer. 
 
-In [Julia](https://docs.julialang.org) values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` in [Julia](https://docs.julialang.org) (because a `Bool` can only assume one of two possible values):
+In [Julia](https://docs.julialang.org) values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` value in [Julia](https://docs.julialang.org); because a `Bool` can only assume one of two possible values the computer doesn't need extra storage:
 
 ```{code-cell} julia
 # These are examples a expressions, that set a Bool value
@@ -133,6 +133,27 @@ value_false = false
 # What is the bitstring that encodes this value?
 println("False: $(bitstring(value_false)) and True: $(bitstring(value_true))")
 ```
+
+Thus, while a `Bool` value will evaluate to either `1` or `0`:
+
+```{code-cell} julia
+# This expression sets a Bool value
+value_true = true
+
+# Does true evaluate to 1 (the == is a test for equality)?
+value_true == 1
+```
+
+it requires less storage than an equivalent `Int` value:
+
+```{code-cell} julia
+# This expression sets a value of 1 (interesting: how does Julia know this is an Int?)
+int_value = 1
+
+# What is the bitstring that encodes this value?
+bitstring(int_value)
+```
+
 
 #### Floating point values
 Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). However, unlike integer values, which can be represented exactly, floating-point numbers can only be _approximated_ in a computer system. 
@@ -177,10 +198,8 @@ Thus, the hexadecimal equivalent of 74 is 4A, and the [Unicode](https://en.wikip
 ````
 
 #### String values
-Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) didn't have a formal `String` type; instead, strings were encoded as arrays of characters, i.e., strings were of type `Char[]`. However, modern languages, such as 
-[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character system. 
-
-While the number and types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, strings in modern languages share features with the older representation of text. `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
+Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) don't have a formal `String` type; instead, strings are encoded as arrays of characters, i.e., strings are of type `Char[]`. Modern languages, such as 
+[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character system.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
 
 
 `````{tab-set}
@@ -199,17 +218,17 @@ string = 'Python strings use single quotes. Why python, why?'
 ````
 `````
 
-A `String` can be indexed like an array in both [Julia](https://docs.julialang.org) and  [Python](https://www.python.org), for example:
+However, while the number and types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, strings in modern languages share features with the older representation of text. For example, a `String` can be indexed like an array in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
 
 ```{code-cell} julia
-# This is an expression to create a string in Julia
+# This is a Julia expression to create a string
 string = "Julia strings use double quotes"
 
 # grab a range of characters (from 1 to 5)
 println(string[1:5])
 ```
 
-The fragments generated by indexing, e.g., the range `string[1:5]` operation shown above are also `Strings`:
+The fragment generated by indexing, e.g., the sequence of characters in the range $1\rightarrow{5}$ shown above, is also of type `String`:
 
 ```{code-cell} julia
 # This is an expression to create a string in Julia
@@ -222,7 +241,7 @@ fragment = string[1:5]
 println("The fragment is type -> $(typeof(fragment))")
 ```
 
-However, if you want (or need) to work with the invidual characters, you can convert a `String` type into a `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
+However, if you want (or need) to work with the invidual characters in text, you can convert a `String` type into a `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
 
 ```{code-cell} julia
 # This is an expression to create a string in Julia
@@ -231,6 +250,8 @@ string = "Julia rocks the house"
 # Make an array of characters 
 array = collect(string)
 ```
+
+Each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage; thus, a value of type `String` with $c$ characters requires $4c\times$bytes (32$\cdot{c}$-bits).
 
 ### Custom types
 Fill me in
