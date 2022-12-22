@@ -199,7 +199,7 @@ Thus, the hexadecimal equivalent of 74 is 4A, and the [Unicode](https://en.wikip
 
 #### String values
 Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) don't have a formal `String` type; instead, strings are encoded as arrays of characters, i.e., strings are of type `Char[]`. Modern languages, such as 
-[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character system.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
+[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
 
 
 `````{tab-set}
@@ -251,7 +251,7 @@ string = "Julia rocks the house"
 array = collect(string)
 ```
 
-Each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage; thus, a value of type `String` with $c$ characters requires $4c\times$bytes (32$\cdot{c}$-bits).
+By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage; thus, a value of type `String` with $c$ characters requires at most $4c\times$bytes (32$\cdot{c}$-bits). 
 
 ### Custom types
 Fill me in
