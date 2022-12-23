@@ -7,7 +7,8 @@ Fill me in.
 
 ## Functions
 
-Most of us are familiar with the idea of a function from mathematics ({numref}`fig-mathematical-function`). A mathematical function takes input from a collection of possible inputs (called the domain) and maps this input to an output that lives in a group of possible outcomes (called the range). The function $f$ is the rule that describes how the inputs are transformed into results, while $y = f(x)$ denotes the output value in the range of the function $f$.
+### Mathematical functions
+Most of us are familiar with the idea of a function from mathematics ({numref}`fig-mathematical-function`). A mathematical function takes input from a domain (the set of possible inputs) and converts this input to an output that lives in the codomain. The codomain is the set of all possible output values, while the range (which is a subset of the codomain) is the set of values we actually observe. 
 
 ```{figure} ./figs/Fig-Mathematical-Function.pdf
 ---
@@ -17,11 +18,29 @@ name: fig-mathematical-function
 Schematic of a function from mathematics. 
 ```
 
-Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org) can alter and be affected by the global state of the program.
+Formally a mathematical function is defined as ({prf:ref}`defn-mathematical-function`):
 
-The basic syntax for defining functions in [Julia](https://docs.julialang.org) or [Python](https://www.python.org) involves defining a function name, the set of input arguments, the return values, and finally, the logic required to transform the input arguments to the return values. 
+````{prf:definition} Mathematical function
+:label: defn-mathematical-function
 
-Let's compare and contrast the structure and syntax of a simple function named `linear` to compute the value $y = mx+b$ written in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)):
+In mathematics, a function from a set $X$ to a set $Y$ assigns to each element of $X$ exactly one element of $Y$. The set $X$ is the domain of the function while the set $Y$ is called the codomain of the function. A function, its domain, and its codomain, are declared using the notation:
+
+```{math}
+f:X\rightarrow{Y}
+```
+
+where the value of a function $f$ at an element $x\in{X}$, denoted by $f(x)$, is called the image of $x$ under $f$, or the value of $f$ applied to the argument $x$.
+````
+
+The function $f$ is the rule that describes how the inputs are transformed into results, while $y = f(x)$ denotes the output value in the range of the function $f$.
+
+
+### Computer functions
+Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as [Julia](https://docs.julialang.org), [Python](https://www.python.org), or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) can alter and be affected by the global state of your program.
+
+The basic syntax for defining functions in [Julia](https://docs.julialang.org), [Python](https://www.python.org) or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values. 
+
+Let's compare and contrast the structure and syntax of a simple function named `linear` which computes the value $y = mx+b$ written in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)):
 
 
 `````{tab-set}
@@ -54,10 +73,10 @@ def linear(x,m,b):
 ```c
 double linear(double x, double m, double b) {
 
-    /* initialize */
+    /* define and initialize y */
     double y = 0.0;
     
-    /* Linear transform the x-value */
+    /* Linear transform the x-value to y */
     y = m*x + b;
 
     /* return y */

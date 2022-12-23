@@ -435,6 +435,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#functions">
    Functions
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-functions">
+     Mathematical functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computer-functions">
+     Computer functions
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iteration">
@@ -479,6 +491,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#functions">
    Functions
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-functions">
+     Mathematical functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computer-functions">
+     Computer functions
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iteration">
@@ -514,19 +538,34 @@ title="Print to PDF"
 <hr class="docutils" />
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
-<p>Most of us are familiar with the idea of a function from mathematics (<a class="reference internal" href="#fig-mathematical-function"><span class="std std-numref">Fig. 1</span></a>). A mathematical function takes input from a collection of possible inputs (called the domain) and maps this input to an output that lives in a group of possible outcomes (called the range). The function <span class="math notranslate nohighlight">\(f\)</span> is the rule that describes how the inputs are transformed into results, while <span class="math notranslate nohighlight">\(y = f(x)\)</span> denotes the output value in the range of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<section id="mathematical-functions">
+<h3>Mathematical functions<a class="headerlink" href="#mathematical-functions" title="Permalink to this headline">#</a></h3>
+<p>Most of us are familiar with the idea of a function from mathematics (<a class="reference internal" href="#fig-mathematical-function"><span class="std std-numref">Fig. 1</span></a>). A mathematical function takes input from a domain (the set of possible inputs) and converts this input to an output that lives in the codomain. The codomain is the set of all possible output values, while the range (which is a subset of the codomain) is the set of values we actually observe.</p>
 <figure class="align-default" id="fig-mathematical-function">
 <a class="reference internal image-reference" href="../_images/Fig-Mathematical-Function.pdf"><img alt="../_images/Fig-Mathematical-Function.pdf" src="../_images/Fig-Mathematical-Function.pdf" style="height: 240px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematic of a function from mathematics.</span><a class="headerlink" href="#fig-mathematical-function" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> can alter and be affected by the global state of the program.</p>
-<p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> involves defining a function name, the set of input arguments, the return values, and finally, the logic required to transform the input arguments to the return values.</p>
-<p>Let’s compare and contrast the structure and syntax of a simple function named <code class="docutils literal notranslate"><span class="pre">linear</span></code> to compute the value <span class="math notranslate nohighlight">\(y = mx+b\)</span> written in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
+<p>Formally a mathematical function is defined as (<a class="reference internal" href="#defn-mathematical-function">Definition 2</a>):</p>
+<div class="proof definition admonition" id="defn-mathematical-function">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span> (Mathematical function)</p>
+<section class="definition-content" id="proof-content">
+<p>In mathematics, a function from a set <span class="math notranslate nohighlight">\(X\)</span> to a set <span class="math notranslate nohighlight">\(Y\)</span> assigns to each element of <span class="math notranslate nohighlight">\(X\)</span> exactly one element of <span class="math notranslate nohighlight">\(Y\)</span>. The set <span class="math notranslate nohighlight">\(X\)</span> is the domain of the function while the set <span class="math notranslate nohighlight">\(Y\)</span> is called the codomain of the function. A function, its domain, and its codomain, are declared using the notation:</p>
+<div class="math notranslate nohighlight">
+\[f:X\rightarrow{Y}\]</div>
+<p>where the value of a function <span class="math notranslate nohighlight">\(f\)</span> at an element <span class="math notranslate nohighlight">\(x\in{X}\)</span>, denoted by <span class="math notranslate nohighlight">\(f(x)\)</span>, is called the image of <span class="math notranslate nohighlight">\(x\)</span> under <span class="math notranslate nohighlight">\(f\)</span>, or the value of <span class="math notranslate nohighlight">\(f\)</span> applied to the argument <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+</div><p>The function <span class="math notranslate nohighlight">\(f\)</span> is the rule that describes how the inputs are transformed into results, while <span class="math notranslate nohighlight">\(y = f(x)\)</span> denotes the output value in the range of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</section>
+<section id="computer-functions">
+<h3>Computer functions<a class="headerlink" href="#computer-functions" title="Permalink to this headline">#</a></h3>
+<p>Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> can alter and be affected by the global state of your program.</p>
+<p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values.</p>
+<p>Let’s compare and contrast the structure and syntax of a simple function named <code class="docutils literal notranslate"><span class="pre">linear</span></code> which computes the value <span class="math notranslate nohighlight">\(y = mx+b\)</span> written in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="5a44c4f6-1501-4538-8616-a240d40d6352" name="6d3e9d9c-5f49-4af5-8088-7ec1cca81169" type="radio">
-</input><label class="sd-tab-label" for="5a44c4f6-1501-4538-8616-a240d40d6352">
+<input checked="checked" id="14aba053-c048-4eac-b988-a243b2fe05e7" name="67c15eac-06e6-49a0-bebc-a0070b6a412f" type="radio">
+</input><label class="sd-tab-label" for="14aba053-c048-4eac-b988-a243b2fe05e7">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
     
@@ -539,8 +578,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3cbc4b74-abcd-4803-8a40-bd2dad902a92" name="6d3e9d9c-5f49-4af5-8088-7ec1cca81169" type="radio">
-</input><label class="sd-tab-label" for="3cbc4b74-abcd-4803-8a40-bd2dad902a92">
+<input id="bcec410b-7cad-41c8-8c24-43071bfdcf70" name="67c15eac-06e6-49a0-bebc-a0070b6a412f" type="radio">
+</input><label class="sd-tab-label" for="bcec410b-7cad-41c8-8c24-43071bfdcf70">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
 
@@ -552,15 +591,15 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e6374594-0876-48d9-a781-eaaa26ef2768" name="6d3e9d9c-5f49-4af5-8088-7ec1cca81169" type="radio">
-</input><label class="sd-tab-label" for="e6374594-0876-48d9-a781-eaaa26ef2768">
+<input id="320e3371-4033-4376-a9f6-18d2a8acee28" name="67c15eac-06e6-49a0-bebc-a0070b6a412f" type="radio">
+</input><label class="sd-tab-label" for="320e3371-4033-4376-a9f6-18d2a8acee28">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="w">    </span><span class="cm">/* initialize */</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* define and initialize y */</span><span class="w"></span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span>
-<span class="w">    </span><span class="cm">/* Linear transform the x-value */</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* Linear transform the x-value to y */</span><span class="w"></span>
 <span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="cm">/* return y */</span><span class="w"></span>
@@ -581,6 +620,7 @@ C</label><div class="sd-tab-content docutils">
 <li><p>Functions in the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> <em>strictly require</em> type information about the arguments, but neither <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> requires this information; it is recommended in <a class="reference external" href="https://docs.julialang.org">Julia</a> but not required, and while newer <a class="reference external" href="https://www.python.org">Python</a> versions have support for typing, the <a class="reference external" href="https://www.python.org">Python</a> runtime does not enforce function and variable type annotations.</p></li>
 <li><p>Finally, the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> requires that variables be defined before they are used, while both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> do not require this step.</p></li>
 </ul>
+</section>
 </section>
 <section id="iteration">
 <h2>Iteration<a class="headerlink" href="#iteration" title="Permalink to this headline">#</a></h2>
