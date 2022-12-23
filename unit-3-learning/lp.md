@@ -32,13 +32,20 @@ The components of $\mathbf{x}$ are the variables to be determined, $c_{i}$ are c
 
 ````
 
-
+### Simplex algorithm
+Fill me in.
 
 ## Duality
 Every linear programming problem, referred to as a primal problem, can be converted into a dual problem, which provides an upper bound to the optimal value of the primal problem. 
 
-## Simplex algorithm
-Fill me in.
+The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical "resource allocation" problem, then its dual can be interpreted as a "resource valuation" problem.
+
+The dual of a given linear program (LP) is another linear program that is derived from the original (the primal problem) in using the scheme:
+
+* Each variable in the primal linear program becomes a constraint in the dual linear program
+* Each constraint in the primal linear program becomes a variable in the dual linear program
+* The objective direction is inversed – maximum in the primal becomes minimum in the dual and vice versa
+
 
 ---
 
