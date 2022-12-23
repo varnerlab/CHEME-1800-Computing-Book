@@ -95,11 +95,93 @@ However, many structural and syntactic features are different between the langua
 * Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) _strictly require_ type information about the arguments, but neither [Julia](https://docs.julialang.org) or [Python](https://www.python.org) requires this information; it is recommended in [Julia](https://docs.julialang.org) but not required, and while newer [Python](https://www.python.org) versions have support for typing, the [Python](https://www.python.org) runtime does not enforce function and variable type annotations.
 * Finally, the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) requires that variables be defined before they are used, while both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) do not require this step.
 
-## Iteration
-One of the most common programming tasks you will do is iterating over a list of items. For example, suppose you wanted to see all the items on a To Do list for a day. 
+## Control statements
 
-## Control
+### If-else conditional statements
+A common programming task is to check whether a condition is `true` or `false` and then execute tasks depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with `if-else` statements.
+
+Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Let's consider the anatomy of the `if-elseif-else` conditional syntax in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)):
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+if condition_1
+    # code statememts executed if condition_1 == true
+elseif condition_2
+    # code statememts executed if condition_2 == true
+else
+    # code statememts executed if condition_1 == false AND condition_2 == false
+end
+```
+````
+
+````{tab-item} python
+```python
+if condition_1:
+    # code statememts executed if condition_1 == true
+elif condition_2:
+    # code statememts executed if condition_2 == true
+else: 
+    # code statememts executed if condition_1 == false AND condition_2 == false
+````
+
+````{tab-item} C
+```c
+if (condition_1) {
+  /* block of code to be executed if condition_1 is true */
+} else if (condition_2) {
+  /* block of code to be executed if condition_2 is true */
+} else {
+  /* code statememts executed if condition_1 == false AND condition_2 == false */
+}
+```
+````
+`````
+
+### Iteration
+Another common programming tasks you'll encounter is iterating over a list of items, and perhaps performning a task using each item. For example, finding the sum of a list experimental values so that you can estimate a mean value, or translating words in an article from language to another, etc. Let's consider two ways to iterate over a collection of items, a `for-loop` and a `while-loop`. 
+
+#### For-loops
+[For-loops have a long history dating back to the late 1950s](https://en.wikipedia.org/wiki/For_loop).  For-loops are key language constructs in most traditional and modern programming languages. For-loops have two parts: a header and a body. 
+
+The header of a `for-loop` defines the iteration while body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. 
+
+````{prf:remark} For-loop use case
+:label: remark-for-loops
+For-loops are used when the number of iterations is known before entering the loop. 
+````
+
+Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating a fixed range:
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+for i = 1:10 # gives i values from 1 to 10 inclusive
+    # loop body: holds statements to be executed at each iteration
+end
+```
+````
+
+````{tab-item} python
+```python
+for i in range(1, 10):  # gives i values from 1 to 9 inclusive (but not 10)
+    # loop body: holds statements to be executed at each iteration
+````
+
+````{tab-item} C
+```c
+/* Using for-loop iteration range 0 -> 9 */
+int sum = 0;
+for (int i = 0; i < 10; i++) {
+    /* body: holds statements to be executed at each iteration */
+}
+```
+````
+`````
+
+#### While-loops
 Fill me in.
+
 
 ---
 
