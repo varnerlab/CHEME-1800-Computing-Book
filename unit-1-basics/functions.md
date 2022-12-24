@@ -218,7 +218,7 @@ end
 
 
 #### While-loops
-A [while-loop](https://en.wikipedia.org/wiki/While_loop) is another control flow statement that allows a block of code in the loop’s body to be executed repeatedly based on the evaluation of a Boolean control expression in the header of the `while-loop`.
+A [while-loop](https://en.wikipedia.org/wiki/While_loop) is a control structure that allows a program to repeat a block of code in the loop’s body as long as a particular condition, which is encoded in the loop's header, is true.
 
 The header of a `while-loop` evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to `true`, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a `for-loop` that iterates over a fixed (specfied) range of values, a `while-loop` can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop. 
 
@@ -280,7 +280,32 @@ while (count > 1) {
 
 
 ## Recursion
-Fill me in.
+Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
+
+The body of a recursive function typically has two parts:
+
+* __Base case__: This is the condition that stops the recursion. When the function reaches the base case, it returns a result without calling itself again. This is necessary to prevent the function from entering an infinite loop.
+* __Recursive case__: This is the part of the function that calls itself with a modified version of its input. The recursive case is responsible for breaking the problem down into smaller subproblems and solving them using the function itself.
+
+Let's consider an example where we compute $n!$ using recursion in [Julia](https://docs.julialang.org):
+
+```julia
+
+function factorial(n::Int64)::Int64
+
+    # check: is n legit? if n < 0 through an error
+    # ...
+
+    if (n == 0 || n == 1) # base case -
+        return 1;
+    else # recursive case
+        return n*factorial(n-1); 
+    end
+end
+
+```
+
+In the `factorial` example above, when `factorial` is called with an input of $n$, it will check if $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$ or $n\neq{1}$, the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
 
 ---
 
