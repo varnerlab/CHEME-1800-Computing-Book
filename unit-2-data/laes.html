@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The Learning Problem: Models, Learning, and Optimization" href="../unit-3-learning/learning-landing.html" />
-    <link rel="prev" title="Data Structures" href="trees.html" />
+    <link rel="prev" title="Measurements and Distances" href="measures.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -143,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/functions.html">
-     Functions, Iteration and Control
+     Functions, Control Statements, and Recursion
     </a>
    </li>
    <li class="toctree-l2">
@@ -153,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -169,6 +169,11 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="vectors-matricies-nla.html">
      Vectors and Matrices
     </a>
@@ -176,11 +181,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="measures.html">
      Measurements and Distances
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="trees.html">
-     Data Structures
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -648,11 +648,11 @@ where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/I
 <span id="content-references-motivating-examples"></span><h2>Motivating examples and concepts<a class="headerlink" href="#motivating-examples-and-concepts" title="Permalink to this headline">#</a></h2>
 <section id="underdetermined-systems">
 <h3>Underdetermined systems<a class="headerlink" href="#underdetermined-systems" title="Permalink to this headline">#</a></h3>
-<p>Suppose you had two steady-state blending tanks <span class="math notranslate nohighlight">\(T_{1}\)</span> and <span class="math notranslate nohighlight">\(T_{2}\)</span> in series, each with two input streams and a single output stream (<a class="reference internal" href="#fig-blending-tanks-example"><span class="std std-numref">Fig. 4</span></a>):</p>
+<p>Suppose you had two steady-state blending tanks <span class="math notranslate nohighlight">\(T_{1}\)</span> and <span class="math notranslate nohighlight">\(T_{2}\)</span> in series, each with two input streams and a single output stream (<a class="reference internal" href="#fig-blending-tanks-example"><span class="std std-numref">Fig. 5</span></a>):</p>
 <figure class="align-default" id="fig-blending-tanks-example">
 <a class="reference internal image-reference" href="../_images/Fig-Blending-Tanks-Example.pdf"><img alt="../_images/Fig-Blending-Tanks-Example.pdf" src="../_images/Fig-Blending-Tanks-Example.pdf" style="height: 140px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-blending-tanks-example" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-blending-tanks-example" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Further, we have species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> in this system and no chemical reactions. Then, the steady-state species concentration balances for component <span class="math notranslate nohighlight">\(i\in\mathcal{M}\)</span> in blending tanks 1 and 2 can be written as:</p>
@@ -719,11 +719,11 @@ C_{i,3}
 </section>
 <section id="overdetermined-systems">
 <h3>Overdetermined systems<a class="headerlink" href="#overdetermined-systems" title="Permalink to this headline">#</a></h3>
-<p>As our motivating example for overdetermined systems, which have more equations than unknowns, let’s consider the classic machine in a box problem (<a class="reference internal" href="#fig-enzyme-catalyzed-rxn-example"><span class="std std-numref">Fig. 5</span></a>). In this problem, we’ll consider a particular type of molecular machine, an enzyme. <a class="reference external" href="https://en.wikipedia.org/wiki/Enzyme">Enzymes</a> are molecular machines that convert a starting material (called a substrate) into a product.</p>
+<p>As our motivating example for overdetermined systems, which have more equations than unknowns, let’s consider the classic machine in a box problem (<a class="reference internal" href="#fig-enzyme-catalyzed-rxn-example"><span class="std std-numref">Fig. 6</span></a>). In this problem, we’ll consider a particular type of molecular machine, an enzyme. <a class="reference external" href="https://en.wikipedia.org/wiki/Enzyme">Enzymes</a> are molecular machines that convert a starting material (called a substrate) into a product.</p>
 <figure class="align-default" id="fig-enzyme-catalyzed-rxn-example">
 <a class="reference internal image-reference" href="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf"><img alt="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" src="../_images/Fig-Enzyme-Catalyzed-Reaction.pdf" style="height: 540px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-enzyme-catalyzed-rxn-example" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-enzyme-catalyzed-rxn-example" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The process of converting substrate <span class="math notranslate nohighlight">\(S\)</span> to product <span class="math notranslate nohighlight">\(P\)</span> can be modeled as four elementary steps:</p>
@@ -899,11 +899,11 @@ While the true solution is not explicitly known, you can calculate the squared d
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="trees.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="measures.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Data Structures</p>
+            <p class="prev-next-title">Measurements and Distances</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../unit-3-learning/learning-landing.html" title="next page">

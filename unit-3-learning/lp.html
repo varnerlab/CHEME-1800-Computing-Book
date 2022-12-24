@@ -143,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/functions.html">
-     Functions, Iteration and Control
+     Functions, Control Statements, and Recursion
     </a>
    </li>
    <li class="toctree-l2">
@@ -153,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -169,6 +169,11 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
      Vectors and Matrices
     </a>
@@ -176,11 +181,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/measures.html">
      Measurements and Distances
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/trees.html">
-     Data Structures
     </a>
    </li>
    <li class="toctree-l2">
@@ -435,15 +435,17 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#primal-linear-programs">
    Primal linear programs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplex-algorithm">
+     Simplex algorithm
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#duality">
    Duality
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simplex-algorithm">
-   Simplex algorithm
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -479,15 +481,17 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#primal-linear-programs">
    Primal linear programs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplex-algorithm">
+     Simplex algorithm
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#duality">
    Duality
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simplex-algorithm">
-   Simplex algorithm
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -517,7 +521,7 @@ title="Print to PDF"
 <h2>Primal linear programs<a class="headerlink" href="#primal-linear-programs" title="Permalink to this headline">#</a></h2>
 <p>Linear programs maximize (or minimize) a <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> subject to <em>linear</em> constraints and bounds on the variables we are searching over.</p>
 <div class="proof definition admonition" id="defn-primael-linear program">
-<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Primal Linear Program)</p>
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Primal Linear Program)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we wish to estimate the value of an M-dimensional (continuous) decision variable vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, e.g., the best possible allocation of some scarce resource such as cars to people in a ride-sharing application, or money to stocks. Further, our problem can be represented as a system of linear equations.</p>
 <p>Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by solving the linear program (canonical form):</p>
@@ -531,14 +535,21 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>The components of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are the variables to be determined, <span class="math notranslate nohighlight">\(c_{i}\)</span> are constant coefficients in the <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(N\times{M}\)</span> matrix and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is a <span class="math notranslate nohighlight">\(N\times{1}\)</span> (constant) vector.</p>
 </section>
-</div></section>
+</div><section id="simplex-algorithm">
+<h3>Simplex algorithm<a class="headerlink" href="#simplex-algorithm" title="Permalink to this headline">#</a></h3>
+<p>Fill me in.</p>
+</section>
+</section>
 <section id="duality">
 <h2>Duality<a class="headerlink" href="#duality" title="Permalink to this headline">#</a></h2>
 <p>Every linear programming problem, referred to as a primal problem, can be converted into a dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
-</section>
-<section id="simplex-algorithm">
-<h2>Simplex algorithm<a class="headerlink" href="#simplex-algorithm" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical “resource allocation” problem, then its dual can be interpreted as a “resource valuation” problem.</p>
+<p>The dual of a given linear program (LP) is another linear program that is derived from the original (the primal problem) in using the scheme:</p>
+<ul class="simple">
+<li><p>Each variable in the primal linear program becomes a constraint in the dual linear program</p></li>
+<li><p>Each constraint in the primal linear program becomes a variable in the dual linear program</p></li>
+<li><p>The objective direction is inversed – maximum in the primal becomes minimum in the dual and vice versa</p></li>
+</ul>
 </section>
 <hr class="docutils" />
 <section id="summary">

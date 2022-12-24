@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/combitorial.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -141,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/functions.html">
-     Functions, Iteration and Control
+     Functions, Control Statements, and Recursion
     </a>
    </li>
    <li class="toctree-l2">
@@ -151,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -167,6 +169,11 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
      Vectors and Matrices
     </a>
@@ -174,11 +181,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/measures.html">
      Measurements and Distances
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/trees.html">
-     Data Structures
     </a>
    </li>
    <li class="toctree-l2">
@@ -502,12 +504,57 @@ title="Print to PDF"
 <hr class="docutils" />
 <section id="dynamic-programming">
 <h2>Dynamic programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>Dynamic programming is an approach developed by <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman in the 1950s</a> that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency. Dynamic programming is used in numerous fields ranging from engineering to economics.</p>
+<p>Dynamic programming is typically used for problems that can be divided into overlapping subproblems, which means that the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have <em>optimal substructure</em>.</p>
+<p>If dynamic programming methods are applicable, then there is a relationship between the value of the larger problem and the values of the subproblems; this relationship is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Bellman_equation">Bellman equation</a>.</p>
+<p>Dynamic programming can be a valuable tool for solving many problems, but it can be computationally intensive and may only sometimes be the most efficient solution. When deciding whether to use dynamic programming, it is essential to consider the trade-offs between the algorithm’s efficiency and the problem’s complexity.</p>
 </section>
 <section id="branch-and-bound">
 <h2>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.</p>
+<p>Let’s consider minimizing an arbitrary objective function <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="proof algorithm admonition" id="algo-branch-bound-generic">
+<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Branch and Bound Algorithm)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> the objective function <span class="math notranslate nohighlight">\(f\)</span>, a branch function, and a bound function</p>
+<p><strong>Outputs</strong> the minimum function value <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\mathcal{B}\leftarrow\infty\)</span> where <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is the best solution found so far</p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(Q\)</span>, a queue holding problem variables</p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>while <span class="math notranslate nohighlight">\(Q\)</span> is not empty</p>
+<ol class="simple">
+<li><p>Take a node <span class="math notranslate nohighlight">\(N\)</span> from the queue: <span class="math notranslate nohighlight">\(N\leftarrow\text{dequeue}(Q)\)</span></p></li>
+<li><p>Evaluate the objective function value of node <span class="math notranslate nohighlight">\(N\)</span>: <span class="math notranslate nohighlight">\(B_{N}\leftarrow{f(x_{N})}\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(B_{N}&lt;\mathcal{B}\)</span></p>
+<ol class="simple">
+<li><p>Update best solution: <span class="math notranslate nohighlight">\(\mathcal{B}\leftarrow{B_{N}}\)</span></p></li>
+</ol>
+</li>
+<li><p>else</p>
+<ol class="simple">
+<li><p>Branch on node <span class="math notranslate nohighlight">\(N\)</span> to produce new candidate nodes: <span class="math notranslate nohighlight">\((N_{1},\dots) \leftarrow\text{branch}(N)\)</span></p></li>
+<li><p>for N <span class="math notranslate nohighlight">\(\in\left(N_{1},\dots\right)\)</span></p>
+<ol class="simple">
+<li><p>if bound(N) <span class="math notranslate nohighlight">\(\leq\mathcal{B}\)</span></p>
+<ol class="simple">
+<li><p>Q <span class="math notranslate nohighlight">\(\leftarrow\)</span> enqueue(Q, N)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong>
+the minimum function value <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>
 </section>
+</div></section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>

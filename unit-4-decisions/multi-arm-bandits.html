@@ -142,7 +142,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/functions.html">
-     Functions, Iteration and Control
+     Functions, Control Statements, and Recursion
     </a>
    </li>
    <li class="toctree-l2">
@@ -152,7 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -168,6 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
      Vectors and Matrices
     </a>
@@ -175,11 +180,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/measures.html">
      Measurements and Distances
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/trees.html">
-     Data Structures
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,13 +488,13 @@ title="Print to PDF"
 <h1>Multiple Arm Bandit Problems<a class="headerlink" href="#multiple-arm-bandit-problems" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning (RL)</a> agents learn by performing actions in the world and then analyzing the rewards they receive (<a class="reference internal" href="#fig-rl-schematic"><span class="std std-numref">Fig. 11</span></a>). Thus, reinforcement learning differs from other machine learning approaches, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> because labeled input/output pairs, e.g., what actions lead to positive rewards are not presented to the agent <em>a priori</em>.  Instead, reinforcement learning agents learn what is good or bad by trying different actions.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning (RL)</a> agents learn by performing actions in the world and then analyzing the rewards they receive (<a class="reference internal" href="#fig-rl-schematic"><span class="std std-numref">Fig. 12</span></a>). Thus, reinforcement learning differs from other machine learning approaches, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> because labeled input/output pairs, e.g., what actions lead to positive rewards are not presented to the agent <em>a priori</em>.  Instead, reinforcement learning agents learn what is good or bad by trying different actions.</p>
 <p>Reinforcement learning agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.</p>
 <hr class="docutils" />
 <figure class="align-default" id="fig-rl-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Schematic-RL.pdf"><img alt="../_images/Fig-Schematic-RL.pdf" src="../_images/Fig-Schematic-RL.pdf" style="height: 260px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Schematic of the reinforcement learning (RL) process. An agent takes action <span class="math notranslate nohighlight">\(a\)</span> and then observes reward <span class="math notranslate nohighlight">\(r\)</span> and changes in the state of the environment (<span class="math notranslate nohighlight">\(s\rightarrow{s^{\prime}}\)</span>) following the action <span class="math notranslate nohighlight">\(a\)</span>.</span><a class="headerlink" href="#fig-rl-schematic" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Schematic of the reinforcement learning (RL) process. An agent takes action <span class="math notranslate nohighlight">\(a\)</span> and then observes reward <span class="math notranslate nohighlight">\(r\)</span> and changes in the state of the environment (<span class="math notranslate nohighlight">\(s\rightarrow{s^{\prime}}\)</span>) following the action <span class="math notranslate nohighlight">\(a\)</span>.</span><a class="headerlink" href="#fig-rl-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -504,18 +504,18 @@ title="Print to PDF"
 <p>A classic approach to understanding the exploration and exploitation tradeoff, which itself has many real-world applications, is the <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">multi arm bandit problem</a>. A general bandit problem is a sequential game played between an agent and the environment. The game is played over <span class="math notranslate nohighlight">\(n\)</span> rounds called the <em>horizon</em>. In each round the agent chooses an action <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> and the environment then reveals a reward <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <p>Let’s look at a particular sub-type of multi-arm bandit problem, namely, the Bernoulli bandit problem and Thompson sampling, a particular solution approach to this class of problem <span id="id1">[]</span>:</p>
 <div class="proof definition admonition" id="defn-multi-arm-bernoulli-bandit-problem">
-<p class="admonition-title"><span class="caption-number">Definition 21 </span> (Binary Bernoulli bandit problem)</p>
+<p class="admonition-title"><span class="caption-number">Definition 22 </span> (Binary Bernoulli bandit problem)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose an agent has a choice between <span class="math notranslate nohighlight">\(K\)</span> possible actions <span class="math notranslate nohighlight">\(\mathcal{A}=\left\{a_{1},a_{2},\dots,a_{K}\right\}\)</span>. Further, the success or failure of any action <span class="math notranslate nohighlight">\(a_{i}\in\mathcal{A}\)</span> is governed by a Bernoulli random variable (see <a class="reference internal" href="probability-random-variables.html#defn-pmf-bernouli">Definition 15</a>).</p>
+<p>Suppose an agent has a choice between <span class="math notranslate nohighlight">\(K\)</span> possible actions <span class="math notranslate nohighlight">\(\mathcal{A}=\left\{a_{1},a_{2},\dots,a_{K}\right\}\)</span>. Further, the success or failure of any action <span class="math notranslate nohighlight">\(a_{i}\in\mathcal{A}\)</span> is governed by a Bernoulli random variable (see <a class="reference internal" href="probability-random-variables.html#defn-pmf-bernouli">Definition 16</a>).</p>
 <p>The agent receives a reward of <span class="math notranslate nohighlight">\(R_{a_{i}} = 1\)</span> (success) with probability <span class="math notranslate nohighlight">\(p_{a_{i}}\)</span>, and <span class="math notranslate nohighlight">\(R_{a_{i}} = 0\)</span> (failure) otherwise.</p>
 <p>The success probabilities of any action <span class="math notranslate nohighlight">\(p_{a_{i}}\)</span>, while static over the horizon of the game, are unknown to the agent, but they can be learned by experimentation. The agent’s objective is to maximize the cumulative number of successes over the game horizon, e.g., T-periods, where <span class="math notranslate nohighlight">\(T\gg{K}\)</span>.</p>
 </section>
-</div><p>There are multiple heuristic strategies to solve the Binary Bernoulli bandit problem described in <a class="reference internal" href="#defn-multi-arm-bernoulli-bandit-problem">Definition 21</a>:</p>
+</div><p>There are multiple heuristic strategies to solve the Binary Bernoulli bandit problem described in <a class="reference internal" href="#defn-multi-arm-bernoulli-bandit-problem">Definition 22</a>:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> which is shown in <a class="reference internal" href="#algo-thompson-sampling">Algorithm 2</a> consists of choosing the action that maximizes the expected reward with respect to a randomly drawn belief, where the belief distribution follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> which is shown in <a class="reference internal" href="#algo-thompson-sampling">Algorithm 3</a> consists of choosing the action that maximizes the expected reward with respect to a randomly drawn belief, where the belief distribution follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a>.</p></li>
 </ul>
 <div class="proof algorithm admonition" id="algo-thompson-sampling">
-<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Thompson-sampling)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Thompson-sampling)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong>  number of time periods in the horizon <span class="math notranslate nohighlight">\(T\)</span>, the dimension of the action space <span class="math notranslate nohighlight">\(K = |\mathcal{A}|\)</span>, and
 <span class="math notranslate nohighlight">\(\alpha_{1},\dots,\alpha_{K}\)</span> and <span class="math notranslate nohighlight">\(\beta_{1},\dots,\beta_{K}\)</span> the initial values (prior) for the parameters that appear in the
@@ -546,10 +546,10 @@ a Beta-distribution for each action using initial values <span class="math notra
 <span class="math notranslate nohighlight">\((\alpha_{1},\dots,\alpha_{K})\)</span> and <span class="math notranslate nohighlight">\((\beta_{1},\dots,\beta_{K})\)</span></p>
 </section>
 </div><ul class="simple">
-<li><p>An obvious (but naive) alternative approach is to allocate a fixed fraction of the time steps in the time horizon, say <span class="math notranslate nohighlight">\(\epsilon\)</span>, to explore purely random actions. In contrast, in the remaining periods, only successful actions are chosen via <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> or another exploitation approach. This strategy, called <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration, is shown in <a class="reference internal" href="#algo-e-greedy">Algorithm 3</a> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> exploitation step:</p></li>
+<li><p>An obvious (but naive) alternative approach is to allocate a fixed fraction of the time steps in the time horizon, say <span class="math notranslate nohighlight">\(\epsilon\)</span>, to explore purely random actions. In contrast, in the remaining periods, only successful actions are chosen via <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> or another exploitation approach. This strategy, called <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration, is shown in <a class="reference internal" href="#algo-e-greedy">Algorithm 4</a> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> exploitation step:</p></li>
 </ul>
 <div class="proof algorithm admonition" id="algo-e-greedy">
-<p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (<span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (<span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong>  the pure exploration parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, the number of time periods in the horizon <span class="math notranslate nohighlight">\(T\)</span>, the dimension of the action space <span class="math notranslate nohighlight">\(K = |\mathcal{A}|\)</span>, and
 <span class="math notranslate nohighlight">\(\alpha_{1},\dots,\alpha_{K}\)</span> and <span class="math notranslate nohighlight">\(\beta_{1},\dots,\beta_{K}\)</span> the initial values (prior) for the parameters that appear in the
