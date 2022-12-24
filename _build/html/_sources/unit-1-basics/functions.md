@@ -1,4 +1,4 @@
-# Functions, Iteration and Control Statements
+# Functions, Control Statements, and Recursion
 
 ## Introduction 
 Fill me in.
@@ -139,19 +139,14 @@ if (condition_1) {
 `````
 
 ### Iteration
-Another common programming tasks you'll encounter is iterating over a list of items, and perhaps performning a task using each item. For example, finding the sum of a list experimental values so that you can estimate a mean value, or translating words in an article from language to another, etc. Let's consider two ways to iterate over a collection of items, a `for-loop` and a `while-loop`. 
+Another common programming tasks you'll encounter is iterating over a list of items, and perhaps performning a task using each item. For example, finding the sum of a list experimental values so that you can estimate a mean value, or translating words in an article from language to another, etc. Consider two ways to iterate over a collection of items, a `for-loop` and a `while-loop`. 
 
 #### For-loops
 [For-loops have a long history dating back to the late 1950s](https://en.wikipedia.org/wiki/For_loop).  For-loops are key language constructs in most traditional and modern programming languages. For-loops have two parts: a header and a body. 
 
-The header of a `for-loop` defines the iteration while body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. 
+The header of a `for-loop` defines the iteration while body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
 
-````{prf:remark} For-loop use case
-:label: remark-for-loops
-For-loops are used when the number of iterations is known before entering the loop. 
-````
-
-Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating a fixed range:
+Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
 
 `````{tab-set}
 ````{tab-item} julia
@@ -179,9 +174,55 @@ for (int i = 0; i < 10; i++) {
 ````
 `````
 
+Let's consider an example to illustrate the `for-loop` and functions where we iteratively compute [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number). 
+
+````{prf:example} Compute the Fibonacci sequence
+:class: dropdown
+:label: example-iteration-fibonacci-numbers
+
+Develop a `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence.
+
+__Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
+
+```{math}
+F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
+```
+
+where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
+
+```julia
+function fibonacci(n::Int64)::Array{Int64,1}
+
+    # check: is n legit? n>=1
+    # ...
+
+    # initialize -
+    sequence = zeros(n);
+
+    # we know the first two elements -
+    sequence[1] = 0;
+    sequence[2] = 1;
+
+    # main loop -
+    for i in 3:n
+        sequence[i] = sequence[i-1] + sequence[i-2]
+    end
+
+    # return -
+    return sequence
+end 
+```
+
+
+
+````
+
+
 #### While-loops
 Fill me in.
 
+## Recursion
+Fill me in.
 
 ---
 
