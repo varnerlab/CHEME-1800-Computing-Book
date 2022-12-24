@@ -430,8 +430,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#files">
-   Files
+  <a class="reference internal nav-link" href="#file-input-and-output-file-i-o">
+   File Input and Output (File I/O)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -469,8 +469,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#files">
-   Files
+  <a class="reference internal nav-link" href="#file-input-and-output-file-i-o">
+   File Input and Output (File I/O)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -501,21 +501,22 @@ title="Print to PDF"
 <p>There are various tools and approaches to reading and writing data files, and for accessing data from online resources. This lecture will introduce a few common patterns, and data types and introduce some patterns for working with data from online data sources.</p>
 </section>
 <hr class="docutils" />
-<section id="files">
-<h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<section id="file-input-and-output-file-i-o">
+<h2>File Input and Output (File I/O)<a class="headerlink" href="#file-input-and-output-file-i-o" title="Permalink to this headline">#</a></h2>
+<p>File Input/Output (File I/O) are operations for reading and writing data to and from files on your computer system. File I/O is a common task in programming, as it allows you to store and retrieve data from persistent storage, such as a hard drive or a cloud service, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Box_(company)">Box</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Drive">Google Drive</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/OneDrive">One Drive</a>.</p>
+<p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files.</p>
 </section>
 <section id="application-programming-interfaces-apis">
 <h2>Application Programming Interfaces (APIs)<a class="headerlink" href="#application-programming-interfaces-apis" title="Permalink to this headline">#</a></h2>
-<p>An <a class="reference external" href="https://en.wikipedia.org/wiki/API">application programming interface (API)</a> is a set of rules, protocols, and tools for building and interacting with software applications. A RESTful API is an API that follows the architectural style of REST (Representational State Transfer), which is a design pattern for creating web services.</p>
-<p>RESTful APIs are designed to be lightweight, flexible, and scalable, and they are based on the principles of REST, which include:</p>
+<p>An <a class="reference external" href="https://en.wikipedia.org/wiki/API">application programming interface (API)</a> is a set of rules, protocols, and tools for building and interacting with software applications. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.</p>
+<p>RESTful APIs are designed to be lightweight, flexible, and scalable. They are based on the REST principles:</p>
 <ul class="simple">
-<li><p><strong>Client-server architecture</strong>: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the API more flexible and scalable.</p></li>
-<li><p><strong>Statelessness</strong>: In a RESTful API, the server does not maintain any state about interactions with the client. This means that each request from the client to the server must contain all the information required to understand and process the request; the server does not store any information about the client between requests. This makes the API easier to scale and maintain, as the server does not need to keep track of information about the client state.</p></li>
-<li><p><strong>Cacheability</strong>: RESTful APIs are designed to be cacheable, which means that the responses from the server can be stored and reused by the client or a cache in the network. This makes the API more efficient, as it reduces the need to make unnecessary requests to the server.</p></li>
-<li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, where each server serves a specific purpose. This makes the API more scalable and maintainable, as it can be built and deployed modularly.</p></li>
+<li><p><strong>Client-server architecture</strong>: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud, are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the system more flexible and scalable.</p></li>
+<li><p><strong>Statelessness</strong>: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the necessary information to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.</p></li>
+<li><p><strong>Cacheability</strong>: RESTful APIs are designed to be cacheable, meaning that the server’s responses can be stored and reused by the client or a cache in the network. This increases the system’s efficiency; it reduces the need to make unnecessary requests to the server.</p></li>
+<li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.</p></li>
 </ul>
-<p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in modern web and mobile development and are essential tools for building modern applications.</p>
+<p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.</p>
 </section>
 <hr class="docutils" />
 <section id="summary">
