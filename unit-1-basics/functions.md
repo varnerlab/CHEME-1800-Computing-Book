@@ -1,7 +1,9 @@
 # Functions, Control Statements, and Recursion
 
 ## Introduction 
-Fill me in.
+
+In this lecture, we introduce functions, control statements, and the concept of recursion. A function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
+
 
 ---
 
