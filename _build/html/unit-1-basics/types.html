@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Variables, Types and Expressions &#8212; CHEME 1800</title>
+    <title>Expressions, Variables and Types &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/types.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Functions, Iteration and Control" href="functions.html" />
+    <link rel="next" title="Functions, Control Statements, and Recursion" href="functions.html" />
     <link rel="prev" title="Technical computing basics" href="basics-landing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -138,12 +138,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Variables, Types and Expressions
+     Expressions, Variables and Types
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="functions.html">
-     Functions, Iteration and Control
+     Functions, Control Statements, and Recursion
     </a>
    </li>
    <li class="toctree-l2">
@@ -153,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -169,6 +169,11 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
      Vectors and Matrices
     </a>
@@ -176,11 +181,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/measures.html">
      Measurements and Distances
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/trees.html">
-     Data Structures
     </a>
    </li>
    <li class="toctree-l2">
@@ -474,12 +474,17 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Variables, Types and Expressions
+   Expressions, Variables and Types
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#introduction">
      Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expressions">
+     Expressions
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -539,11 +544,6 @@ title="Print to PDF"
       </a>
      </li>
     </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expressions">
-     Expressions
-    </a>
    </li>
   </ul>
  </li>
@@ -561,7 +561,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Variables, Types and Expressions</h1>
+                <h1>Expressions, Variables and Types</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -573,12 +573,17 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Variables, Types and Expressions
+   Expressions, Variables and Types
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#introduction">
      Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expressions">
+     Expressions
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -638,11 +643,6 @@ title="Print to PDF"
       </a>
      </li>
     </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expressions">
-     Expressions
-    </a>
    </li>
   </ul>
  </li>
@@ -661,13 +661,26 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="variables-types-and-expressions">
-<h1>Variables, Types and Expressions<a class="headerlink" href="#variables-types-and-expressions" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="expressions-variables-and-types">
+<h1>Expressions, Variables and Types<a class="headerlink" href="#expressions-variables-and-types" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>In this lecture, we introduce expressions, variables, and types. An expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables. On the other hand, a variable is a named location in memory where a value, e.g., perhaps an output from an expression, can be stored and accessed. Variables store data that can be used and manipulated by your programs. In most languages, variables have a specific type, which determines the kind of data that can be stored in the variable. A type is a classification of data that defines the values a variable can store and the operations that can be performed on those values. Most programming languages have a set of built-in types, such as integers, floating-point numbers, and character strings, and some languages also allow you to define your custom types. Types are essential because they will enable the compiler or interpreter to verify that you are using the correct data in your program and generate efficient code. They also allow you to write more readable and maintainable code, as you can use meaningful names for your variables and use type annotations to document the expected types of your variables and functions.</p>
 </section>
 <hr class="docutils" />
+<section id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
+<p>In programming, an expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.</p>
+<p>Here are some common examples of expressions in the <a class="reference external" href="https://docs.julialang.org">Julia programming language</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span></code>: This expression evaluates to the value 5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>: This expression evaluates to the product of the variables x and y.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x and y are equal, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if they are not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x is greater than y, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if it is not.</p></li>
+</ul>
+<p>Expressions can be used independently or as part of a larger statement. For example, you can use an expression as an argument to a function or assign the result of an expression to a variable using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<p>Expressions are powerful tools for manipulating data in your programs and are an essential part of most programming languages.</p>
+</section>
 <section id="variables-and-types">
 <h2>Variables and Types<a class="headerlink" href="#variables-and-types" title="Permalink to this headline">#</a></h2>
 <p>A <em>variable</em> is like a box that holds a value, and that value has a <em>type</em>. For example, types can be numbers such as <code class="docutils literal notranslate"><span class="pre">3</span></code>, Boolean values like <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> or text like:</p>
@@ -844,16 +857,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters, i.e., strings are of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. Modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="35aff6bb-d3de-4f45-a867-a045c14a6376" name="d08ce9db-effa-46ac-92e6-fd44b92338cb" type="radio">
-</input><label class="sd-tab-label" for="35aff6bb-d3de-4f45-a867-a045c14a6376">
+<input checked="checked" id="2e0436e8-c81a-4d7f-9582-2886d2ed89ea" name="99680af3-f196-4f97-aca3-6d90e940a2f7" type="radio">
+</input><label class="sd-tab-label" for="2e0436e8-c81a-4d7f-9582-2886d2ed89ea">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="c4839d6f-2f70-424d-baae-b7200869cd30" name="d08ce9db-effa-46ac-92e6-fd44b92338cb" type="radio">
-</input><label class="sd-tab-label" for="c4839d6f-2f70-424d-baae-b7200869cd30">
+<input id="73e7e9a9-fee5-4f41-88c1-d5e7abc5ac20" name="99680af3-f196-4f97-aca3-6d90e940a2f7" type="radio">
+</input><label class="sd-tab-label" for="73e7e9a9-fee5-4f41-88c1-d5e7abc5ac20">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
@@ -944,10 +957,6 @@ python</label><div class="sd-tab-content docutils">
 <p>Fill me in</p>
 </section>
 </section>
-<section id="expressions">
-<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
-</section>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="summary">
@@ -992,7 +1001,7 @@ python</label><div class="sd-tab-content docutils">
     <a class='right-next' id="next-link" href="functions.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Functions, Iteration and Control</p>
+        <p class="prev-next-title">Functions, Control Statements, and Recursion</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

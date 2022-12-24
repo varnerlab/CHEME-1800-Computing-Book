@@ -10,12 +10,26 @@ kernelspec:
   name: julia-1.8
 ---
 
-# Variables, Types and Expressions 
+# Expressions, Variables and Types
 
 ## Introduction
-Fill me in. 
+In this lecture, we introduce expressions, variables, and types. An expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables. On the other hand, a variable is a named location in memory where a value, e.g., perhaps an output from an expression, can be stored and accessed. Variables store data that can be used and manipulated by your programs. In most languages, variables have a specific type, which determines the kind of data that can be stored in the variable. A type is a classification of data that defines the values a variable can store and the operations that can be performed on those values. Most programming languages have a set of built-in types, such as integers, floating-point numbers, and character strings, and some languages also allow you to define your custom types. Types are essential because they will enable the compiler or interpreter to verify that you are using the correct data in your program and generate efficient code. They also allow you to write more readable and maintainable code, as you can use meaningful names for your variables and use type annotations to document the expected types of your variables and functions.
 
 ---
+
+## Expressions
+In programming, an expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
+
+Here are some common examples of expressions in the [Julia programming language](https://docs.julialang.org):
+
+* `2 + 3`: This expression evaluates to the value 5.
+* `x * y`: This expression evaluates to the product of the variables x and y.
+* `x == y`: This expression evaluates to `true` if x and y are equal, and `false` if they are not.
+* `x > y`: This expression evaluates to `true` if x is greater than y, and `false` if it is not.
+
+Expressions can be used independently or as part of a larger statement. For example, you can use an expression as an argument to a function or assign the result of an expression to a variable using the assignment operator `=`.
+
+Expressions are powerful tools for manipulating data in your programs and are an essential part of most programming languages.
 
 ## Variables and Types
 A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
@@ -256,8 +270,6 @@ By default each character in a [Julia](https://docs.julialang.org) string requir
 ### Custom types
 Fill me in
 
-## Expressions
-Fill me in.
 
 ---
 

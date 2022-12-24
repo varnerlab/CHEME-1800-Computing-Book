@@ -12,6 +12,9 @@ File Input/Output (File I/O) are operations for reading and writing data to and 
 
 In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files. 
 
+
+File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.
+
 ## Application Programming Interfaces (APIs)
 
 An [application programming interface (API)](https://en.wikipedia.org/wiki/API) is a set of rules, protocols, and tools for building and interacting with software applications. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.
