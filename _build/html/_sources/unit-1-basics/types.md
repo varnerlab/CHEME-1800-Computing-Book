@@ -40,6 +40,8 @@ However, computers and Humans don't speak the same language. Humans understand t
 
 At the smallest scale, information is stored as bits and bytes in the computer. A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`. Different types of things, e.g., integers or text are then represented as different numbers of `bytes`.
 
+Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code.
+
 ### Numerical and logical types
 Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.
 
