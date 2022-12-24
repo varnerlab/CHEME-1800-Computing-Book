@@ -142,9 +142,10 @@ if (condition_1) {
 Another common programming tasks you'll encounter is iterating over a list of items, and perhaps performning a task using each item. For example, finding the sum of a list experimental values so that you can estimate a mean value, or translating words in an article from language to another, etc. Consider two ways to iterate over a collection of items, a `for-loop` and a `while-loop`. 
 
 #### For-loops
-[For-loops have a long history dating back to the late 1950s](https://en.wikipedia.org/wiki/For_loop).  For-loops are key language constructs in most traditional and modern programming languages. For-loops have two parts: a header and a body. 
+[For-loops](https://en.wikipedia.org/wiki/For_loop) execute a block of code a fixed number of times. 
+[For-loops](https://en.wikipedia.org/wiki/For_loop) have a long history in computing dating back to the late 1950s. For-loops are key language constructs in all modern programming languages. For-loops have two parts: a header and a body. 
 
-The header of a `for-loop` defines the iteration while body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
+The header of a `for-loop` defines the iteration count while body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
 
 Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
 
@@ -215,8 +216,68 @@ end
 ````
 
 
+
 #### While-loops
-Fill me in.
+A [while-loop](https://en.wikipedia.org/wiki/While_loop) is another control flow statement that allows a block of code in the loop’s body to be executed repeatedly based on the evaluation of a Boolean control expression in the header of the `while-loop`.
+
+The header of a `while-loop` evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to `true`, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a `for-loop` that iterates over a fixed (specfied) range of values, a `while-loop` can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop. 
+
+Let's look at the structure and syntax of a `while-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
+
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+
+# initialize 
+counter = 5;   # counter variable
+factorial = 1  # initial value
+
+# while loop -
+while (counter > 0)
+
+    # compute 
+    factorial *= counter # short hand for: factorial = counter*factorial
+
+    # update the counter -
+    counter -= 1 # short hand for: counter = counter - 1
+end
+
+```
+````
+
+````{tab-item} python
+```python
+# initialize
+counter = 5                           # Set the value to 5 
+factorial = 1                         # Set the value to 1
+
+# while loop
+while counter > 0:                    # While counter(5) is greater than 0  
+    factorial *= counter              # Set new value of factorial to counter.
+    counter -= 1                      # Set the counter to counter - 1.
+
+````
+
+````{tab-item} C
+```c
+/* declare and initialize */
+int count = 5;
+int factorial = 1;
+
+/* while loop */
+while (count > 1) {
+
+    /* compute */
+    factorial *= count;
+
+    /* update the counter */
+    counter--;
+}
+```
+````
+`````
+
 
 ## Recursion
 Fill me in.
