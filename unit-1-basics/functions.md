@@ -151,7 +151,7 @@ Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.j
 `````{tab-set}
 ````{tab-item} julia
 ```julia
-for i = 1:10 # gives i values from 1 to 10 inclusive
+for i in 1:10 # gives i values from 1 to 10 inclusive
     # loop body: holds statements to be executed at each iteration
 end
 ```
@@ -174,7 +174,7 @@ for (int i = 0; i < 10; i++) {
 ````
 `````
 
-Let's consider an example to illustrate the `for-loop` and functions where we iteratively compute [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number). 
+Let's illustrate the `for-loop` and functions by developing a function that iteratively computes [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) ({prf:ref}`example-iteration-fibonacci-numbers`):
 
 ````{prf:example} Compute the Fibonacci sequence
 :class: dropdown
@@ -197,14 +197,14 @@ function fibonacci(n::Int64)::Array{Int64,1}
     # ...
 
     # initialize -
-    sequence = zeros(n);
+    sequence = zeros(n+1); # why n+1 (and not n)?
 
     # we know the first two elements -
     sequence[1] = 0;
     sequence[2] = 1;
 
     # main loop -
-    for i in 3:n
+    for i in 3:(n+1)
         sequence[i] = sequence[i-1] + sequence[i-2]
     end
 
@@ -212,9 +212,6 @@ function fibonacci(n::Int64)::Array{Int64,1}
     return sequence
 end 
 ```
-
-
-
 ````
 
 
