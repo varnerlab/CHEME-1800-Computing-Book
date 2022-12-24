@@ -141,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/functions.html">
-     Functions, Iteration and Control
+     Functions, Control Statements, and Recursion
     </a>
    </li>
    <li class="toctree-l2">
@@ -151,7 +151,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-1-basics/programs.html">
-     Programs, Modules and Functions
+     Modules and Programs
     </a>
    </li>
   </ul>
@@ -611,12 +611,20 @@ title="Print to PDF"
 <h1>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:</p>
+<ul class="simple">
+<li><p><strong>Arrays</strong>: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it.</p></li>
+<li><p><strong>Linked lists</strong>: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.</p></li>
+<li><p><strong>Stacks</strong>: A stack is a linear data structure that follows the “last-in, first-out” (LIFO) principle. This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing.</p></li>
+<li><p><strong>Queues</strong>: A queue is a linear data structure that follows the “first-in, first-out” (FIFO) principle. This means that the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.</p></li>
+<li><p><strong>Trees</strong>: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.</p></li>
+<li><p><strong>Graphs</strong>: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.</p></li>
+</ul>
 </section>
 <hr class="docutils" />
 <section id="linear-data-structures">
 <h2>Linear data structures<a class="headerlink" href="#linear-data-structures" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts non-linear data structures, which do not have a strict sequential order.</p>
 <section id="arrays">
 <h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h3>
 <p>Fill me in</p>
@@ -627,11 +635,53 @@ title="Print to PDF"
 </section>
 <section id="stacks">
 <h3>Stacks<a class="headerlink" href="#stacks" title="Permalink to this headline">#</a></h3>
-<p>Fill me in</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">stack</span></code> is a linear data structure that follows the “last-in, first-out” (LIFO) principle. Thus, the last element added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> will be the first one to be removed.</p>
+<p>Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on a <code class="docutils literal notranslate"><span class="pre">stack</span></code> (referred to as the <code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">stack</span></code>) until the function returns.</p>
+<p>In a <code class="docutils literal notranslate"><span class="pre">stack</span></code>, elements can be added to the top (also known as <code class="docutils literal notranslate"><span class="pre">pushing</span></code>) and removed from the top (also known as <code class="docutils literal notranslate"><span class="pre">popping</span></code>). This means that new elements are continually added to the top of the stack, and elements are always drawn from the top.</p>
+<p>Here is an example of an integer <code class="docutils literal notranslate"><span class="pre">stack</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a> implemented by the <a class="reference external" href="https://github.com/JuliaCollections/DataStructures.jl">DataStructures.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataStructures</span> <span class="c"># import the DataStructures package</span>
+
+<span class="c"># create an empty Stack that holds Int64 values</span>
+<span class="n">s</span> <span class="o">=</span> <span class="kt">Stack</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}()</span>
+
+<span class="c"># add some values to the Stack using the push! operation</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="c"># Grab a value from the Stack using the pop! operation</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">pop!</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="c"># print x</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;What value did we get from the Stack = </span><span class="si">$</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, the elements 1, 2, and 3 are added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in that order using the <code class="docutils literal notranslate"><span class="pre">push!</span></code> function. The call to the <code class="docutils literal notranslate"><span class="pre">pop!</span></code> function removes the top element in the <code class="docutils literal notranslate"><span class="pre">stack</span></code>, i.e., the value 3 (the last item added); <code class="docutils literal notranslate"><span class="pre">pop!</span></code> removes elements from the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in the <em>opposite order</em> they were added.</p>
 </section>
 <section id="queues">
 <h3>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">#</a></h3>
-<p>Fill me in</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">queue</span></code> is a linear data structure that follows the “first-in, first-out” (FIFO) principle. This means that the first element added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> will be the first one to be removed.</p>
+<p>Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer <code class="docutils literal notranslate"><span class="pre">queue</span></code> might store print jobs that need to be printed in the order they were received, or a task <code class="docutils literal notranslate"><span class="pre">queue</span></code> might store tasks that need to be completed by a group of workers.</p>
+<p>In a <code class="docutils literal notranslate"><span class="pre">queue</span></code>, elements are added to the end (also known as <em>enqueuing</em>) and removed from the front of the queue (also known as <em>dequeuing</em>). This means that new elements are continually added to the back of the queue, and removed elements are always taken from the front.</p>
+<p>Here is an example of an integer <code class="docutils literal notranslate"><span class="pre">queue</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a> implemented by the <a class="reference external" href="https://github.com/JuliaCollections/DataStructures.jl">DataStructures.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataStructures</span> <span class="c"># import the DataStructures package</span>
+
+<span class="c"># create an empty Queue that holds Int64 values</span>
+<span class="n">q</span> <span class="o">=</span> <span class="kt">Queue</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}()</span>
+
+<span class="c"># add some values to the Queue using the enqueue! operation</span>
+<span class="n">enqueue!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">enqueue!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">enqueue!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="c"># Grab a value from the Queue using the dequeue! operation</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">dequeue!</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+
+<span class="c"># print x</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;What value did we get from the Queue = </span><span class="si">$</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, the elements 1, 2, and 3 are added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> in that order using the <code class="docutils literal notranslate"><span class="pre">enqueue!</span></code> function. The call to the <code class="docutils literal notranslate"><span class="pre">dequeue!</span></code> function removes the top element in the <code class="docutils literal notranslate"><span class="pre">queue</span></code>, i.e., the value 1 (the first item added); <code class="docutils literal notranslate"><span class="pre">dequeue!</span></code> removes elements from the <code class="docutils literal notranslate"><span class="pre">queue</span></code> in the order they were added.</p>
 </section>
 </section>
 <section id="non-linear-data-structures">

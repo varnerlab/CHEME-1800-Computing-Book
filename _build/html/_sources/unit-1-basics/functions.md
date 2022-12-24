@@ -304,8 +304,7 @@ function factorial(n::Int64)::Int64
 end
 
 ```
-
-In the `factorial` example above, when `factorial` is called with an input of $n$, it will check if $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$ or $n\neq{1}$, the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
+When the `factorial` function is called, it checks if the input $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$ or $n\neq{1}$, the process enters the recursive case; the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
 
 ---
 
