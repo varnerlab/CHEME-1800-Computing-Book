@@ -1,7 +1,9 @@
 # Vectors and Matrices
 
 ## Introduction
-Fill me in. 
+In this lecture, we'll introduce Vectors, Matricies and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important.
+
+---
 
 ## Matricies and vectors
 Matrices are two-dimensional rectangular arrays of numbers, widgets, etc with $m$ rows and $n$ columns:
