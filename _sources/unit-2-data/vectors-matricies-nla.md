@@ -1,7 +1,10 @@
 # Vectors and Matrices
 
 ## Introduction
-In this lecture, we'll introduce Vectors, Matricies and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important.
+This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important.
+
+* __Vectors__: Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations.
+* __Matrix__: A matrix is a two-dimensional array of numbers. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to represent linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent and describe data sets, with each row representing a different data point and each column representing a distinct feature.
 
 ---
 
@@ -118,6 +121,30 @@ name: fig-right-multiplication-matrix-vector
 Caption goes here
 ```
 
+```{prf:algorithm} Naive right multiplication of a matrix by a vector
+:label: algo-right-multiplication-matrix-vector
+
+**Inputs:** Matrix $\mathbf{A}$, and vector $\mathbf{x}$
+
+**Outputs:** Vector $\mathbf{y} = \mathbf{A}\times\mathbf{x}$.
+
+**Initialize**
+1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
+1. initialize (rowsx) $\leftarrow$ length($\mathbf{x}$)
+1. initialize vector $\mathbf{y}~\leftarrow$ zeros(rowsA)
+
+**Check**
+1. if colsA $\neq$ rowsx
+    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and vector $\mathbf{x}$ cannot be multiplied
+  
+**Main**
+1. for i $\in$ 1 to rowsA:
+    1. for j $\in$ 1 to colsA:
+        1. $y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}$
+
+**Return** vector $\mathbf{y}$
+```
+
 #### Left multiplication of a matrix by a vector
 We could also consider the _left multiplication_ of a matrix by a vector. 
 Suppose $\mathbf{A}$ is a $m\times{n}$ matrix, and $\mathbf{x}$ is a $m\times{1}$ col vector, then the _left product_ is given by:
@@ -130,6 +157,31 @@ The _left product_ generates a $1\times{n}$ row vector with elements:
 
 $$y_{i} = 
 \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}$$
+
+```{prf:algorithm} Naive left multiplication of a matrix by a vector
+:label: algo-left-multiplication-matrix-vector
+
+**Inputs:** Matrix $\mathbf{A}$, and vector $\mathbf{x}$
+
+**Outputs:** Vector $\mathbf{y} = \mathbf{A}\times\mathbf{x}$.
+
+**Initialize**
+1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
+1. initialize (rowsx) $\leftarrow$ length($\mathbf{x}$)
+1. initialize vector $\mathbf{y}~\leftarrow$ zeros(rowsA)
+
+**Check**
+1. if colsA $\neq$ rowsx
+    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and vector $\mathbf{x}$ cannot be multiplied
+  
+**Main**
+1. for i $\in$ 1 to rowsA:
+    1. for j $\in$ 1 to colsA:
+        1. $y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}$
+
+**Return** vector $\mathbf{y}$
+```
+
 
 The _left multiplication operation_ can be represented graphically ({numref}`fig-left-multiplication-matrix-vector`):
 
@@ -147,6 +199,32 @@ Matrix-matrix products have different properties compared with the product of tw
 multiplied together. For example, consider two matrices $\mathbf{A}$ and $\mathbf{B}$. For $\mathbf{A}$ and $\mathbf{B}$ to be compatible, 
 meaning we can compute the matrix product $\mathbf{C} = \mathbf{A}\mathbf{B}$, the number of columns of $\mathbf{A}$ must be same as the number of rows of $\mathbf{B}$. 
 
+````{prf:algorithm} Naive Matrix $\times$ Matrix multiplication
+:label: algo-matrix-matrix-code
+
+**Inputs** Matrix $\mathbf{A}$, and matrix $\mathbf{B}$
+
+**Outputs** Matrix $\mathbf{C} = \mathbf{A}\times\mathbf{B}$.
+
+**Initialize**
+
+1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
+2. initialize (rowsB, colsB) $\leftarrow$ size($\mathbf{B}$)
+3. initialize matrix $\mathbf{C}~\leftarrow$ zeros(rowsA, colsB)
+
+**Check**
+1. if colsA $\neq$ rowsB
+    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and Matrix $\mathbf{B}$ cannot be multiplied
+
+**Main**
+1. for i $\in$ 1 to rowsA:
+    1. for j $\in$ 1 to colsB:
+        1. for k $\in$ 1 to colsA:
+            1. $C[i,j]~\leftarrow~C[i,j] + A[i,k]\times{B[k,j]}$
+
+**Return** matrix $\mathbf{C}$
+````
+
 Given a matrix $\mathbf{A}$ with _m_ rows and _n_ columns, and a matrix $\mathbf{B}$ with _n_ rows and _p_ columns, the 
 product matrix $\mathbf{C}$ is a matrix with _m_ rows and _p_ columns in which the (i,j)th element of $\mathbf{C}$ is given by:
 
@@ -162,6 +240,7 @@ name: fig-multiplication-matrix-matrix
 Caption goes here
 ```
 
+
 In general, matrix multiplication is not communinative e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$, thus the order of multiplication matters (unlike multiplying two scalar numbers together). However, while matrix multiplication is not communinative, it is distributive:
 
 $$\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$$
@@ -169,6 +248,8 @@ $$\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}
 and associative:
 
 $$\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}$$
+
+---
 
 ## Summary
 Fill me in. 
