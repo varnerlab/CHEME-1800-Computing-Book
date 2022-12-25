@@ -699,7 +699,40 @@ Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <s
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="proof algorithm admonition" id="algo-right-multiplication-matrix-vector">
+<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Naive right multiplication of a matrix by a vector)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p><strong>Outputs:</strong> Vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{A}\times\mathbf{x}\)</span>.</p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
+<li><p>initialize (rowsx) <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>)</p></li>
+<li><p>initialize vector <span class="math notranslate nohighlight">\(\mathbf{y}~\leftarrow\)</span> zeros(rowsA)</p></li>
+</ol>
+<p><strong>Check</strong></p>
+<ol class="simple">
+<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsx</p>
+<ol class="simple">
+<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> cannot be multiplied</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<ol class="simple">
+<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
 </section>
+</div></section>
 <section id="left-multiplication-of-a-matrix-by-a-vector">
 <h4>Left multiplication of a matrix by a vector<a class="headerlink" href="#left-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
 <p>We could also consider the <em>left multiplication</em> of a matrix by a vector.
@@ -712,7 +745,40 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 <div class="math notranslate nohighlight">
 \[y_{i} = 
 \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}\]</div>
-<p>The <em>left multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 3</span></a>):</p>
+<div class="proof algorithm admonition" id="algo-left-multiplication-matrix-vector">
+<p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Naive left multiplication of a matrix by a vector)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p><strong>Outputs:</strong> Vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{A}\times\mathbf{x}\)</span>.</p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
+<li><p>initialize (rowsx) <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>)</p></li>
+<li><p>initialize vector <span class="math notranslate nohighlight">\(\mathbf{y}~\leftarrow\)</span> zeros(rowsA)</p></li>
+</ol>
+<p><strong>Check</strong></p>
+<ol class="simple">
+<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsx</p>
+<ol class="simple">
+<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> cannot be multiplied</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<ol class="simple">
+<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
+</section>
+</div><p>The <em>left multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 3</span></a>):</p>
 <figure class="align-default" id="fig-left-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-bA-Left-Multiplication.pdf"><img alt="../_images/Fig-bA-Left-Multiplication.pdf" src="../_images/Fig-bA-Left-Multiplication.pdf" style="height: 160px;" /></a>
 <figcaption>
@@ -726,7 +792,44 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only <em>compatible</em> matrices can be
 multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
 meaning we can compute the matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span>, the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must be same as the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
-<p>Given a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with <em>m</em> rows and <em>n</em> columns, and a matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> with <em>n</em> rows and <em>p</em> columns, the
+<div class="proof algorithm admonition" id="algo-matrix-matrix-code">
+<p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
+<p><strong>Outputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span>.</p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
+<li><p>initialize (rowsB, colsB) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>)</p></li>
+<li><p>initialize matrix <span class="math notranslate nohighlight">\(\mathbf{C}~\leftarrow\)</span> zeros(rowsA, colsB)</p></li>
+</ol>
+<p><strong>Check</strong></p>
+<ol class="simple">
+<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsB</p>
+<ol class="simple">
+<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and Matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> cannot be multiplied</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<ol class="simple">
+<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsB:</p>
+<ol class="simple">
+<li><p>for k <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(C[i,j]~\leftarrow~C[i,j] + A[i,k]\times{B[k,j]}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span></p>
+</section>
+</div><p>Given a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with <em>m</em> rows and <em>n</em> columns, and a matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> with <em>n</em> rows and <em>p</em> columns, the
 product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a matrix with <em>m</em> rows and <em>p</em> columns in which the (i,j)th element of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m;~j=1,2,\cdots,p}\]</div>
