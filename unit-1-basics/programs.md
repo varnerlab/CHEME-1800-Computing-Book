@@ -1,7 +1,9 @@
 # Programs and Modules
 
 ## Introduction
-Fill me in
+This lecture introduces computer programs and the concept of modules. A program is a set of instructions that a computer follows to perform a specific set of tasks. Program usually consist of one or more modules that are used to solve specific problems or accomplish particular tasks. On the other hand, module are a collection of related functions, variables, and other types of data organized with some intent, e.g., a module that provides types and functions to work with probability; modules organize code and make it easier to reuse and maintain.
+
+Modules can be imported and used in many programs, which makes it easier to reuse code and avoid repeating the same functionality in multiple programs. This helps to make programs more efficient and easier to maintain. For example, imagine you have a program that needs to perform mathematical calculations. Instead of writing all of the necessary code from scratch, you could create a module containing functions for performing the calculations and importing that into your program. This way, you can reuse the code in the module in multiple programs, saving time and making it easier to maintain the code.
 
 ---
 
@@ -49,4 +51,6 @@ end
 ---
 
 ## Summary
-Fill me in.
+This lecture introduced computer programs and modules. A program is a set of instructions that a computer follows to perform a specific set of tasks. Program usually consist of one or more modules that are used to solve specific problems or accomplish particular tasks. On the other hand, module are a collection of related functions, variables, and other types of data organized with some intent, e.g., a module that provides types and functions to work with probability; modules organize code and make it easier to reuse and maintain.
+
+In summary, programs are sets of instructions that are used to solve specific problems or accomplish specific tasks while modules are used to organize code and make it easier to reuse.
