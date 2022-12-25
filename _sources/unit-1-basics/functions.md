@@ -290,6 +290,7 @@ while (count > 1) {
 `````
 
 
+(content:references:recursion-functions)=
 ## Recursion
 Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
 
