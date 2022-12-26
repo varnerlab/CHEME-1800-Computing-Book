@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-In this lecture, we introduce functions, control statements, and the concept of recursion. A function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
+We introduce functions, control statements, and the concept of recursion in this lecture. A function is a block of code that performs a specific task and may return a value. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
 
 
 ---
@@ -316,9 +316,49 @@ function factorial(n::Int64)::Int64
 end
 
 ```
-When the `factorial` function is called, it checks if the input $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$ or $n\neq{1}$, the process enters the recursive case; the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
+When the `factorial` function is called, it checks if the input $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$, the process enters the recursive case; the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
+
+Let's reimagine the computation of the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) using a recursive strategy ({prf:ref}`example-iteration-fibonacci-numbers-recursive`):
+
+````{prf:example} Recursive calculation of the Fibonacci numbers
+:class: dropdown
+:label: example-iteration-fibonacci-numbers-recursive
+
+Develop a recursive `fibonacci` function which takes an integer $n$ as an argument and returns the corresponding Fibonacci number.
+
+__Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
+
+```{math}
+F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
+```
+
+where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
+
+```julia
+function fibonacci(n::Int64)::Int64
+
+    if (n == 0)  # base case
+        return 0;
+    elseif (n == 1) # base case
+        return 1; 
+    else
+        return fibonacci(n-1) + fibonacci(n-2);
+    end
+end
+```
+````
+
+### Mutating functions
+A mutating function is a function that modifies the state of an object or variable in a way that is observable outside the function. This means that the function changes the object or variable in a way that is not reversible, and the change is visible to other parts of the program. Not all functions are mutating. Some functions, called pure functions, do not modify the state of any objects or variables and instead return a new value or object based on the input. These functions are often easier to reason about and test because their behavior is predictable and does not depend on the state of the program.
+
+In some programming languages, it is possible to mark functions as mutating to indicate to other programmers that the function may change the state of an object or variable. This can help prevent bugs caused by unexpected changes to the state of the program.
+
+
+### Memoization
+Memoization is a technique for improving the performance of a computer program by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other types of programs to optimize the performance of expensive function calls.
+
 
 ---
 
 ## Summary
-Fill me in. 
+In this lecture, we introduced functions, control statements, recursion. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; control statements allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed;
