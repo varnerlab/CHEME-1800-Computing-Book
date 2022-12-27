@@ -217,8 +217,8 @@ For the study of the different solution approaches, let's consider a motivating 
 :label: algo-ge-basic
 
 **Main**
-1. for j in 1 to n-1
-    1. for i in j+1 to n
+1. for $j\in{1\dots{n-1}}$
+    1. for $i\in{j+1}\dots,n$
         1. compute $m_{ij}\leftarrow{a_{ij}/a_{jj}}$
             1. compute $a_{ik}\leftarrow{a_{ik}} - m_{ij}a_{ak}$
         1. compute $b_{i}\leftarrow{b_{i}} - m_{ij}b_{j}$
