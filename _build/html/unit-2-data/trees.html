@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-2-data/trees.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -717,9 +719,9 @@ title="Print to PDF"
 <h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
 <p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 2</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
-<a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 240px;" /></a>
+<a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of a function from mathematics.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

@@ -194,7 +194,7 @@ There are many different ways to compute rank, however, we'll use the [rank](htt
 
 
 (content:references:solution-approaches)=
-## Direct and iterative solution approaches
+## Solution approaches for square systems
 The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
 $$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
@@ -208,8 +208,11 @@ In all the discussion below, we assume:
 * The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
 * The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
 
+For the study of the different solution approaches, let's consider a motivating example. 
+
 ### Guassian elimination 
-Fill me in.
+[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
+
 
 ### Iterative methods
 An iterative method takes an initial solution guess, and refines it by substituting

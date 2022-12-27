@@ -123,10 +123,10 @@ One tool to diagram how a recursive function works is by develiping a call tree.
 
 ```{figure} ./figs/Fig-Fib-4-Recursive-Tree.pdf
 ---
-height: 240px
+height: 260px
 name: fig-recursive-fib-4-call-tree
 ---
-Schematic of a function from mathematics. 
+Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
 ```
 
 

@@ -459,8 +459,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches">
-   Direct and iterative solution approaches
+  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches-for-square-systems">
+   Direct and iterative solution approaches for square systems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -559,8 +559,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches">
-   Direct and iterative solution approaches
+  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches-for-square-systems">
+   Direct and iterative solution approaches for square systems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -639,7 +639,7 @@ where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/I
 <p>In this lecture, we’ll look at techniques to compute <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span>. We will:</p>
 <ul class="simple">
 <li><p>Begin by introducing some <a class="reference internal" href="#content-references-motivating-examples"><span class="std std-ref">Motivating examples and concepts</span></a> that will be handy later to frame our discussion.</p></li>
-<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Direct and iterative solution approaches</span></a> to solve square systems of linear algebraic equations.</p></li>
+<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Direct and iterative solution approaches for square systems</span></a> to solve square systems of linear algebraic equations.</p></li>
 <li><p>Finally, we’ll conclude with a discussion of <a class="reference internal" href="#content-references-solution-approaches-non-square"><span class="std std-ref">Generalized inverses and pseudoinverses</span></a>. These approaches can compute approximate inverses for non-square systems of linear algebraic equations.</p></li>
 </ul>
 <hr class="docutils" />
@@ -783,8 +783,8 @@ C_{i,3}
 <p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
 </section>
 </section>
-<section id="direct-and-iterative-solution-approaches">
-<span id="content-references-solution-approaches"></span><h2>Direct and iterative solution approaches<a class="headerlink" href="#direct-and-iterative-solution-approaches" title="Permalink to this headline">#</a></h2>
+<section id="direct-and-iterative-solution-approaches-for-square-systems">
+<span id="content-references-solution-approaches"></span><h2>Direct and iterative solution approaches for square systems<a class="headerlink" href="#direct-and-iterative-solution-approaches-for-square-systems" title="Permalink to this headline">#</a></h2>
 <p>The naive way to solve a system of LAEs for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to directly compute the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>. A matrix inverse has the property <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <em>identity matrix</em>.  Thus, if a matrix inverse exists, the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be computed as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
@@ -797,7 +797,7 @@ C_{i,3}
 </ul>
 <section id="guassian-elimination">
 <h3>Guassian elimination<a class="headerlink" href="#guassian-elimination" title="Permalink to this headline">#</a></h3>
-<p>Fill me in.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
 </section>
 <section id="iterative-methods">
 <h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
