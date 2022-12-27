@@ -194,7 +194,7 @@ There are many different ways to compute rank, however, we'll use the [rank](htt
 
 
 (content:references:solution-approaches)=
-## Direct and iterative solution approaches for square systems
+## Solution approaches for square systems
 The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
 $$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
@@ -208,8 +208,123 @@ In all the discussion below, we assume:
 * The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
 * The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
 
+For the study of the different solution approaches, let's consider a motivating example. 
+
 ### Guassian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
+
+````{prf:algorithm} Naive Gaussian Elimination
+:label: algo-ge-basic
+
+**Main**
+1. for j in 1 to n-1
+    1. for i in j+1 to n
+        1. compute $m_{ij}\leftarrow{a_{ij}/a_{jj}}$
+            1. compute $a_{ik}\leftarrow{a_{ik}} - m_{ij}a_{ak}$
+        1. compute $b_{i}\leftarrow{b_{i}} - m_{ij}b_{j}$
+
+````
+
+Let's walkthrough a simple generic example using {numref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
+
+```{math}
+:label: eqn-ge-test-system
+
+\begin{bmatrix}
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2
+\end{bmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}
+```
+
+__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$. The augemented matrix $\bar{\mathbf{A}}$ is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
+
+```{math}
+:label: eqn-augmented-array-A
+\bar{\mathbf{A}} = \begin{bmatrix}
+2 & -1 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+__Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{A}}$ to [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form):
+
+1. Starting with the first column, move to the next column (to the right) until we encounter a non-zero element.
+1. One we encounter a column that has nonzero entries, interchange rows, if necessary, to get a nonzero entry on top.
+1. Change the top entry to 1: If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
+1. For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.
+1. Carry out this procedure until the augmented matrix $\bar{\mathbf{A}}$ is in [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form).
+
+In Eqn {eq}`eqn-augmented-array-A`, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let's move to step 3:
+
+```{math}
+:label: eqn-augmented-array-A-step3
+\bar{\mathbf{A}} = \begin{bmatrix}
+2 & -1 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case $i=1$, $j=1$ and $k=1$ which gives the operation: $R_{2}\leftarrow{R}_{2} + R_{1}$:
+
+```{math}
+:label: eqn-augmented-array-A-step4
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1.5 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.
+
+__Step 3__: Solve for unknown variables using back-substitution.
+
+```{math}
+:label: eqn-back-sub-matrix-A
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1 & -0.66 &\bigm| & 0.66 \\
+0 & 0 & 1 &\bigm| & 0.49
+\end{bmatrix}
+```
+
+This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations, then:
+
+````{prf:algorithm} Naive back substitution
+:label: algo-ge-basic-back-sub
+
+**Main**
+1. for $i\in{n},n-1,\dots,1$
+    1. set $x_{i}\leftarrow{y_{i}}$
+        1. for $j\in{i+1},i+2,\dots,n$
+            1. set $x_{i}\leftarrow{x_{i}}-u_{ij}x_{j}$
+
+````
+
 
 ### Iterative methods
 An iterative method takes an initial solution guess, and refines it by substituting

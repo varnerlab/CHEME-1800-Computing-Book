@@ -459,8 +459,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches-for-square-systems">
-   Direct and iterative solution approaches for square systems
+  <a class="reference internal nav-link" href="#solution-approaches-for-square-systems">
+   Solution approaches for square systems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -559,8 +559,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#direct-and-iterative-solution-approaches-for-square-systems">
-   Direct and iterative solution approaches for square systems
+  <a class="reference internal nav-link" href="#solution-approaches-for-square-systems">
+   Solution approaches for square systems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -639,7 +639,7 @@ where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/I
 <p>In this lecture, we’ll look at techniques to compute <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span>. We will:</p>
 <ul class="simple">
 <li><p>Begin by introducing some <a class="reference internal" href="#content-references-motivating-examples"><span class="std std-ref">Motivating examples and concepts</span></a> that will be handy later to frame our discussion.</p></li>
-<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Direct and iterative solution approaches for square systems</span></a> to solve square systems of linear algebraic equations.</p></li>
+<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Solution approaches for square systems</span></a> to solve square systems of linear algebraic equations.</p></li>
 <li><p>Finally, we’ll conclude with a discussion of <a class="reference internal" href="#content-references-solution-approaches-non-square"><span class="std std-ref">Generalized inverses and pseudoinverses</span></a>. These approaches can compute approximate inverses for non-square systems of linear algebraic equations.</p></li>
 </ul>
 <hr class="docutils" />
@@ -783,8 +783,8 @@ C_{i,3}
 <p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
 </section>
 </section>
-<section id="direct-and-iterative-solution-approaches-for-square-systems">
-<span id="content-references-solution-approaches"></span><h2>Direct and iterative solution approaches for square systems<a class="headerlink" href="#direct-and-iterative-solution-approaches-for-square-systems" title="Permalink to this headline">#</a></h2>
+<section id="solution-approaches-for-square-systems">
+<span id="content-references-solution-approaches"></span><h2>Solution approaches for square systems<a class="headerlink" href="#solution-approaches-for-square-systems" title="Permalink to this headline">#</a></h2>
 <p>The naive way to solve a system of LAEs for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to directly compute the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>. A matrix inverse has the property <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <em>identity matrix</em>.  Thus, if a matrix inverse exists, the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be computed as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
@@ -795,10 +795,118 @@ C_{i,3}
 <li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <strong>square</strong> meaning <span class="math notranslate nohighlight">\(m=n\)</span>; we’ll see how we can treat non-square systems later.</p></li>
 <li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has full rank or equivalently <span class="math notranslate nohighlight">\(\det{\mathbf{A}}\neq{0}\)</span>.</p></li>
 </ul>
+<p>For the study of the different solution approaches, let’s consider a motivating example.</p>
 <section id="guassian-elimination">
 <h3>Guassian elimination<a class="headerlink" href="#guassian-elimination" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
+<div class="proof algorithm admonition" id="algo-ge-basic">
+<p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive Gaussian Elimination)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for j in 1 to n-1</p>
+<ol class="simple">
+<li><p>for i in j+1 to n</p>
+<ol class="simple">
+<li><p>compute <span class="math notranslate nohighlight">\(m_{ij}\leftarrow{a_{ij}/a_{jj}}\)</span></p>
+<ol class="simple">
+<li><p>compute <span class="math notranslate nohighlight">\(a_{ik}\leftarrow{a_{ik}} - m_{ij}a_{ak}\)</span></p></li>
+</ol>
+</li>
+<li><p>compute <span class="math notranslate nohighlight">\(b_{i}\leftarrow{b_{i}} - m_{ij}b_{j}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 </section>
+</div><p>Let’s walkthrough a simple generic example using <code class="xref std std-numref docutils literal notranslate"><span class="pre">algo-ge-basic</span></code> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+2 &amp; -1 &amp; 0 \\
+-1 &amp; 2 &amp; -1 \\
+0 &amp; -1 &amp; 2
+\end{bmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}\end{split}\]</div>
+<p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span>. The augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p><strong>Step 2</strong>: Perform row operations to reduce the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> to <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>:</p>
+<ol class="simple">
+<li><p>Starting with the first column, move to the next column (to the right) until we encounter a non-zero element.</p></li>
+<li><p>One we encounter a column that has nonzero entries, interchange rows, if necessary, to get a nonzero entry on top.</p></li>
+<li><p>Change the top entry to 1: If the first nonzero entry of row <span class="math notranslate nohighlight">\(R_{i}\)</span> is <span class="math notranslate nohighlight">\(\lambda\)</span>, we can convert to <span class="math notranslate nohighlight">\(1\)</span> through the operation: <span class="math notranslate nohighlight">\(R_{i}\leftarrow{1/\lambda}R_{i}\)</span></p></li>
+<li><p>For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.</p></li>
+<li><p>Carry out this procedure until the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is in <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>.</p></li>
+</ol>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(11)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
+\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}
+\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
+\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1.5 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
+<p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
+<div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
+0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
+\end{bmatrix}\end{split}\]</div>
+<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(14)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
+<div class="proof algorithm admonition" id="algo-ge-basic-back-sub">
+<p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive back substitution)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{n},n-1,\dots,1\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(x_{i}\leftarrow{y_{i}}\)</span></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1},i+2,\dots,n\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(x_{i}\leftarrow{x_{i}}-u_{ij}x_{j}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+</div></section>
 <section id="iterative-methods">
 <h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
 <p>An iterative method takes an initial solution guess, and refines it by substituting
