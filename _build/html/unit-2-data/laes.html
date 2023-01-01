@@ -937,13 +937,13 @@ this guess back into into the linear algebraic equations. The guess is then upda
 \[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
 <p>In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
 we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,n\)</span> equations. We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
-<p>Let’s look at a psuedo code for Jacobi’s method <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 7</a>:</p>
+<p>Let’s look at a psuedo code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 7</a>:</p>
 <div class="proof algorithm admonition" id="algo-jacobi-iteration">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Jacobi method)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong>:
+<p><strong>Input</strong>:
 Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
-<p><strong>Outputs</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
+<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
 <p><strong>Initialize</strong>:</p>
 <ol class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\)</span>length(<span class="math notranslate nohighlight">\(\mathbf{b}\)</span>)</p></li>
@@ -966,7 +966,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </li>
 </ol>
 </li>
-<li><p>set <span class="math notranslate nohighlight">\(x^{\prime}_{j}\leftarrow(1/a_{jj})\times\left(b_{j} - s\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)\)</span></p></li>
 </ol>
 </li>
 <li><p>if <span class="math notranslate nohighlight">\(||\mathbf{x}^{\prime} - \mathbf{x}|| &lt; \epsilon\)</span></p>

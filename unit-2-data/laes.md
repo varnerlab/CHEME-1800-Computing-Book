@@ -365,15 +365,15 @@ $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k
 In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
 we have processed all $i=1,2,\cdots,n$ equations. We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
 
-Let's look at a psuedo code for Jacobi's method {prf:ref}`algo-jacobi-iteration`:
+Let's look at a psuedo code for Jacobi's method in {prf:ref}`algo-jacobi-iteration`:
 
 ````{prf:algorithm} Jacobi method
 :label: algo-jacobi-iteration
 
-**Inputs**: 
+**Input**: 
 Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
 
-**Outputs**: solution $\hat{\mathbf{x}}$
+**Output**: solution $\mathbf{x}$
 
 **Initialize**:
 1. set $n\leftarrow$length($\mathbf{b}$)
@@ -387,7 +387,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
         1. for $k\in{1}\dots{n}$
             1. if $k\neq{j}$
                 1. set $s\leftarrow{s} + a_{ik}\times{x_{k}}$
-        1. set $x^{\prime}_{j}\leftarrow(1/a_{jj})\times\left(b_{j} - s\right)$
+        1. set $x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)$
     1. if $||\mathbf{x}^{\prime} - \mathbf{x}|| < \epsilon$
         1. return $\mathbf{x}$
     1. else 
