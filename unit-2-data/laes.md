@@ -327,7 +327,7 @@ This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitu
 
 
 ### Iterative methods
-Iterative methods are algorithms used to find approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
+Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
 
 One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let's outline the basic idea of an interative solution method in {prf:ref}`obs-basic-iterative-method-outline`:
 
@@ -373,11 +373,11 @@ Let's look at a psuedo code for Jacobi's method in {prf:ref}`algo-jacobi-iterati
 **Input**: 
 Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
 
-**Output**: solution $\mathbf{x}$
+**Output**: solution $\hat{\mathbf{x}}$
 
 **Initialize**:
 1. set $n\leftarrow$length($\mathbf{b}$)
-1. set $\mathbf{x}\leftarrow\mathbf{x}_{o}$
+1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}$
 
 **Main**
 1. for $i\in{1}\dots\mathcal{M}_{\infty}$
@@ -386,13 +386,13 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
         1. set $s\leftarrow{0}$
         1. for $k\in{1}\dots{n}$
             1. if $k\neq{j}$
-                1. set $s\leftarrow{s} + a_{ik}\times{x_{k}}$
+                1. set $s\leftarrow{s} + a_{ik}\times\hat{x}_{k}$
         1. set $x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)$
-    1. if $||\mathbf{x}^{\prime} - \mathbf{x}|| < \epsilon$
-        1. return $\mathbf{x}$
+    1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
+        1. return $\hat{\mathbf{x}}$
     1. else 
-        1. set $\mathbf{x}\leftarrow\mathbf{x}^{\prime}$
-1. return $\mathbf{x}$
+        1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}$
+1. return $\hat{\mathbf{x}}$
 ````
 
 #### Gauss-Seidel method

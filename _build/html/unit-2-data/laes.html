@@ -909,7 +909,7 @@ x_{3}
 </div></section>
 <section id="iterative-methods">
 <h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
-<p>Iterative methods are algorithms used to find approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.</p>
+<p>Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.</p>
 <p>One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let’s outline the basic idea of an interative solution method in <a class="reference internal" href="#obs-basic-iterative-method-outline">Observation 2</a>:</p>
 <!-- 
 An iterative method takes an initial solution guess, and refines it by substituting
@@ -943,11 +943,11 @@ we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,
 <section class="algorithm-content" id="proof-content">
 <p><strong>Input</strong>:
 Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
-<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
 <p><strong>Initialize</strong>:</p>
 <ol class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\)</span>length(<span class="math notranslate nohighlight">\(\mathbf{b}\)</span>)</p></li>
-<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}\leftarrow\mathbf{x}_{o}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}\)</span></p></li>
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
@@ -961,7 +961,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <ol class="simple">
 <li><p>if <span class="math notranslate nohighlight">\(k\neq{j}\)</span></p>
 <ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{s} + a_{ik}\times{x_{k}}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{s} + a_{ik}\times\hat{x}_{k}\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -969,19 +969,19 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <li><p>set <span class="math notranslate nohighlight">\(x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)\)</span></p></li>
 </ol>
 </li>
-<li><p>if <span class="math notranslate nohighlight">\(||\mathbf{x}^{\prime} - \mathbf{x}|| &lt; \epsilon\)</span></p>
+<li><p>if <span class="math notranslate nohighlight">\(||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| &lt; \epsilon\)</span></p>
 <ol class="simple">
-<li><p>return <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p></li>
+<li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p></li>
 </ol>
 </li>
 <li><p>else</p>
 <ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}\leftarrow\mathbf{x}^{\prime}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}\)</span></p></li>
 </ol>
 </li>
 </ol>
 </li>
-<li><p>return <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p></li>
+<li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p></li>
 </ol>
 </section>
 </div></section>
