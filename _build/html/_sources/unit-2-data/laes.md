@@ -210,7 +210,7 @@ In all the discussion below, we assume:
 
 For the study of the different solution approaches, let's consider a motivating example. 
 
-### Guassian elimination 
+### Gaussian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
 ````{prf:algorithm} Naive Gaussian Elimination
@@ -327,30 +327,75 @@ This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitu
 
 
 ### Iterative methods
+Iterative methods are algorithms used to find approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
+
+One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let's outline the basic idea of an interative solution method in {prf:ref}`obs-basic-iterative-method-outline`:
+
+<!-- 
 An iterative method takes an initial solution guess, and refines it by substituting
 this guess back into into the linear algebraic equations. The guess is then updated over and over again until either we exhaust the number of iterations we can take, or we converge to a solution. Two key iterative methods are: [Jacobi Iteration](https://en.wikipedia.org/wiki/Jacobi_method) and
-[Gauss-Seidel](https://en.wikipedia.org/wiki/Gauss–Seidel_method). The central difference between these two methods is how they update the best estimate of a solution at any given iteration. 
+[Gauss-Seidel](https://en.wikipedia.org/wiki/Gauss–Seidel_method). The central difference between these two methods is how they update the best estimate of a solution at any given iteration.  -->
 
-In either case, we start with the ith equation (in index form):
+````{prf:observation} Basic iterative method
+:label: obs-basic-iterative-method-outline
+Suppose we have an $n\times{n}$ system of linear algebraic equations of the form:
 
-$$\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{m}}$$
+```{math}
+\mathbf{A}\mathbf{x} = \mathbf{b}
+```
 
-and solve it for _an estimate_ of $x_{i}$:
+where $\mathbf{A}$ denotes a $n\times{n}$ matrix of coefficients, $\mathbf{x}$ denotes the $n\times{1}$ vector of unknowns that we are trying to estimate, and $\mathbf{b}$ denotes the $n\times{1}$ vector of right-hand-side values. 
 
-$$\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{m}}$$
+We start with the ith equation in a system of $n$ equations, written in index form as:
 
-denoted by $\hat{x}_{i}$. As the number of iterations increases (and the system of LAEs is _convergent_) $\hat{x}_{i}\rightarrow{x_{i}}$ for $i=1,2,\cdots,m$.
+$$\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{n}}$$
 
-#### Jacobi iteration
-Jacobi iteration __batch updates__ the best estimate of $x_{i}$ at the _end_ of each iteration. Suppose we define the best estimate
-for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
+and solve it for _an estimate_ of the ith unknown:
+
+$$\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{n}}$$
+
+denoted by $\hat{x}_{i}$, where $\sum_{j=1,i}^{n}$ does not include index $i$. What we do next, with the estimated value of $\hat{x}_{i}$, is the key difference between Jacobi's method and the Gauss-Seidel method.
+````
+
+#### Jacobi's method
+Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each iteration. Suppose we define the estimate of the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then, the value of $x_{i}$ at iteration $k+1$ is given by:
 
 $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}$$
 
-In Jacobi iteration, the best estimate for all variables from the previous iteration is used and we do not update the guess until
-we have processed all $i=1,2,\cdots,m$ equations.
+In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
+we have processed all $i=1,2,\cdots,n$ equations. We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
 
-#### Gauss-Seidel iteration
+Let's look at a psuedo code for Jacobi's method {prf:ref}`algo-jacobi-iteration`:
+
+````{prf:algorithm} Jacobi method
+:label: algo-jacobi-iteration
+
+**Inputs**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+
+**Outputs**: solution $\hat{\mathbf{x}}$
+
+**Initialize**:
+1. set $n\leftarrow$length($\mathbf{b}$)
+1. set $\mathbf{x}\leftarrow\mathbf{x}_{o}$
+
+**Main**
+1. for $i\in{1}\dots\mathcal{M}_{\infty}$
+    1. set $\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)$
+    1. for $j\in{1}\dots{n}$
+        1. set $s\leftarrow{0}$
+        1. for $k\in{1}\dots{n}$
+            1. if $k\neq{j}$
+                1. set $s\leftarrow{s} + a_{ik}\times{x_{k}}$
+        1. set $x^{\prime}_{j}\leftarrow(1/a_{jj})\times\left(b_{j} - s\right)$
+    1. if $||\mathbf{x}^{\prime} - \mathbf{x}|| < \epsilon$
+        1. return $\mathbf{x}$
+    1. else 
+        1. set $\mathbf{x}\leftarrow\mathbf{x}^{\prime}$
+1. return $\mathbf{x}$
+````
+
+#### Gauss-Seidel method
 Gauss-Seidel __live updates__ the best estimate of $x_{i}$ _during_ the processing of equations $i=1,2,\cdots,m$, generally leading to
 better convergence properties when compared with Jacobi iteration. Suppose we define the best estimate
 for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
