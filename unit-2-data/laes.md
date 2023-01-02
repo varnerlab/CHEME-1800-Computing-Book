@@ -365,9 +365,10 @@ $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k
 In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
 we have processed all $i=1,2,\cdots,n$ equations. We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
 
-Let's look at a psuedo code for Jacobi's method in {prf:ref}`algo-jacobi-iteration`:
+Let's look at psuedo code for Jacobi's method in {prf:ref}`algo-jacobi-iteration`:
 
-````{prf:algorithm} Jacobi method
+````{prf:algorithm} Jacobi iteration
+:class: dropdown
 :label: algo-jacobi-iteration
 
 **Input**: 
@@ -396,13 +397,44 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 ````
 
 #### Gauss-Seidel method
-Gauss-Seidel __live updates__ the best estimate of $x_{i}$ _during_ the processing of equations $i=1,2,\cdots,m$, generally leading to
-better convergence properties when compared with Jacobi iteration. Suppose we define the best estimate
-for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
+The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables. The process is repeated until the solution converges to within a certain tolerance or reaches a maximum number of iterations.
+
+Gauss-Seidel __live updates__ the best estimate of $\hat{x}_{i}$ _during_ the processing of equations $i=1,\cdots,m$. Gauss-Seidel generally has
+better convergence properties compared with the Jacobi method. Suppose we define the best estimate for variable $i$
+at iteration $k$ as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
 
 $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}$$
 
-In Gauss-Seidel, the best estimate of the proceeding $x_{i}$'s are used in the calculation of the current $x_{i}$. 
+Let's look at a psuedo code for the Gauss Seidel method in {prf:ref}`algo-gauss-seidel-method`:
+
+````{prf:algorithm} Gauss-Seidel method
+:class: dropdown
+:label: algo-gauss-seidel-method
+
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+
+**Output**: solution $\hat{\mathbf{x}}$, converged flag
+
+**Initialize**:
+1. set $n\leftarrow$length($\mathbf{b}$)
+1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}$
+1. set converged $\leftarrow$ false
+
+**Main**
+1. for $i\in{1}\dots\mathcal{M}_{\infty}$
+    1. set $\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)$
+    1. for $j\in{1}\dots{n}$
+        1. code here
+    
+    1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
+        1. set converged $\leftarrow$ true
+        1. break
+    
+    1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}$
+
+1. return $\hat{\mathbf{x}}$, converged
+````
 
 #### Successive Overrelaxation
 Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of $x_{i}$ is further modified

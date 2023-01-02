@@ -937,9 +937,9 @@ this guess back into into the linear algebraic equations. The guess is then upda
 \[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
 <p>In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
 we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,n\)</span> equations. We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
-<p>Let’s look at a psuedo code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 7</a>:</p>
-<div class="proof algorithm admonition" id="algo-jacobi-iteration">
-<p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Jacobi method)</p>
+<p>Let’s look at psuedo code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 7</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-jacobi-iteration">
+<p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Jacobi iteration)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Input</strong>:
 Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
@@ -987,13 +987,48 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </div></section>
 <section id="gauss-seidel-method">
 <h4>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h4>
-<p>Gauss-Seidel <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,2,\cdots,m\)</span>, generally leading to
-better convergence properties when compared with Jacobi iteration. Suppose we define the best estimate
-for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
+<p>The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables. The process is repeated until the solution converges to within a certain tolerance or reaches a maximum number of iterations.</p>
+<p>Gauss-Seidel <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,\cdots,m\)</span>. Gauss-Seidel generally has
+better convergence properties compared with the Jacobi method. Suppose we define the best estimate for variable <span class="math notranslate nohighlight">\(i\)</span>
+at iteration <span class="math notranslate nohighlight">\(k\)</span> as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
-<p>In Gauss-Seidel, the best estimate of the proceeding <span class="math notranslate nohighlight">\(x_{i}\)</span>’s are used in the calculation of the current <span class="math notranslate nohighlight">\(x_{i}\)</span>.</p>
+<p>Let’s look at a psuedo code for the Gauss Seidel method in <a class="reference internal" href="#algo-gauss-seidel-method">Algorithm 8</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-gauss-seidel-method">
+<p class="admonition-title"><span class="caption-number">Algorithm 8 </span> (Gauss-Seidel method)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Input</strong>:
+Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
+<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span>, converged flag</p>
+<p><strong>Initialize</strong>:</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\)</span>length(<span class="math notranslate nohighlight">\(\mathbf{b}\)</span>)</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}\)</span></p></li>
+<li><p>set converged <span class="math notranslate nohighlight">\(\leftarrow\)</span> false</p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1}\dots\mathcal{M}_{\infty}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1}\dots{n}\)</span></p>
+<ol class="simple">
+<li><p>code here</p></li>
+</ol>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| &lt; \epsilon\)</span></p>
+<ol class="simple">
+<li><p>set converged <span class="math notranslate nohighlight">\(\leftarrow\)</span> true</p></li>
+<li><p>break</p></li>
+</ol>
+</li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}\)</span></p></li>
+</ol>
+</li>
+<li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span>, converged</p></li>
+</ol>
 </section>
+</div></section>
 <section id="successive-overrelaxation">
 <h4>Successive Overrelaxation<a class="headerlink" href="#successive-overrelaxation" title="Permalink to this headline">#</a></h4>
 <p>Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> is further modified
