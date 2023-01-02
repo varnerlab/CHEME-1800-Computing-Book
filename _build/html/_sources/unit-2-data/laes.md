@@ -425,7 +425,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 1. for $i\in{1}\dots\mathcal{M}_{\infty}$
     1. set $\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)$
     1. for $j\in{1}\dots{n}$
-        1. code here
+        1. compute $x_{j}^{\prime}$
     
     1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
         1. set converged $\leftarrow$ true
