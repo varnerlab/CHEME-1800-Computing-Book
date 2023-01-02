@@ -214,15 +214,36 @@ For the study of the different solution approaches, let's consider a motivating 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
 ````{prf:algorithm} Naive Gaussian Elimination
+:class: dropdown
 :label: algo-ge-basic
 
-**Main**
-1. for $j\in{1\dots{n-1}}$
-    1. for $i\in{j+1}\dots,n$
-        1. compute $m_{ij}\leftarrow{a_{ij}/a_{jj}}$
-            1. compute $a_{ik}\leftarrow{a_{ik}} - m_{ij}a_{ak}$
-        1. compute $b_{i}\leftarrow{b_{i}} - m_{ij}b_{j}$
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
 
+**Output**: solution $\hat{\mathbf{x}}$
+
+**Initialize**:
+1. set $(n,m)\leftarrow\text{size}(\mathbf{A})$
+1. set $\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})$
+
+**Main**
+1. for $i\in{1}\dots{n-1}$
+    1. set $\text{pivot}\leftarrow{a_{ii}}$
+    2. set $\text{pivotRow}\leftarrow{i}$
+
+    1. for $j\in{i+1}\dots{n}$
+        1. if $\text{abs}(\bar{a}_{ji}) > \text{abs}(\text{pivot})$
+            1. set $\text{pivot}\leftarrow\bar{a}_{ji}$
+            2. set $\text{pivotRow}\leftarrow{j}$
+    
+    1. set $\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})$
+    
+    1. for $j\in{i+1}\dots{n}$
+        1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
+        1. for k = i to m:
+            1. Ab[j][k] = Ab[j][k] - factor * Ab[i][k]
+
+    
 ````
 
 Let's walkthrough a simple generic example using {numref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
@@ -397,13 +418,13 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 ````
 
 #### Gauss-Seidel method
-The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables. The process is repeated until the solution converges to within a certain tolerance or reaches a maximum number of iterations.
+The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables. 
 
-Gauss-Seidel __live updates__ the best estimate of $\hat{x}_{i}$ _during_ the processing of equations $i=1,\cdots,m$. Gauss-Seidel generally has
-better convergence properties compared with the Jacobi method. Suppose we define the best estimate for variable $i$
-at iteration $k$ as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
+Gauss-Seidel __live updates__ the best estimate of $\hat{x}_{i}$ _during_ the processing of equations $i=1,\cdots,n$. The update procedure of Gauss-Seidel generally leads to better convergence properties than the Jacobi method. Suppose we define the best estimate for variable $i$ at iteration $k$ as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
 
 $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}$$
+
+We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k{\rightarrow}k+1$ is below some specified tolerance $\epsilon$.
 
 Let's look at a psuedo code for the Gauss Seidel method in {prf:ref}`algo-gauss-seidel-method`:
 
@@ -425,7 +446,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 1. for $i\in{1}\dots\mathcal{M}_{\infty}$
     1. set $\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)$
     1. for $j\in{1}\dots{n}$
-        1. compute $x_{j}^{\prime}$
+        1. compute new value $x_{j}^{\prime}$
     
     1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
         1. set converged $\leftarrow$ true
