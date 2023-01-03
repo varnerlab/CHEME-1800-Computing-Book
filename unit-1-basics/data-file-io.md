@@ -28,12 +28,14 @@ RESTful APIs are designed to be lightweight, flexible, and scalable. They are ba
 RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the [HTTP request-response model](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications. 
 
 ### What is HTTP?
-The [Hypertext Transfer Protocol (HTTP)](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled. For example, when looking for our class notes:
+The [Hypertext Transfer Protocol (HTTP)](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled. 
+
+For example, when looking for our class notes website:
 
 * __Request__: When you enter a URL into your web browser, the browser sends an [HTTP request message](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) to the server hosting the website. Thus, an HTTP request message is a question to a server written in a particular format that the server understands. 
 * __Response__: Upon receiving the request, a server responds with an [HTTP response message](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status), which includes the website’s content and information about how to display it in the browser. 
 
-Requesting data from an application programming interface works similarly; we make an HTTP request to the server for the data, and we get the data back from the server in the form of an HTTP response object. However, in this case, we don’t get a webpage back; instead, we get data, typically organized in some text format such as [JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) that we can read on our program. Alternatively, we get an error message or condition indicating that something went wrong with our request. 
+Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back data as an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as [JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request. 
 
 ---
 
