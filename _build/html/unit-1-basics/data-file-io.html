@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/data-file-io.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Modules and Programs" href="programs.html" />
+    <link rel="next" title="Programs and Modules" href="programs.html" />
     <link rel="prev" title="Functions, Control Statements, and Recursion" href="functions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -136,7 +136,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="types.html">
-     Variables, Types and Expressions
+     Expressions, Variables and Types
     </a>
    </li>
    <li class="toctree-l2">
@@ -151,7 +151,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="programs.html">
-     Modules and Programs
+     Programs and Modules
     </a>
    </li>
   </ul>
@@ -438,6 +438,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
    Application Programming Interfaces (APIs)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-http">
+     What is HTTP?
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -477,6 +484,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
    Application Programming Interfaces (APIs)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-http">
+     What is HTTP?
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -518,6 +532,15 @@ title="Print to PDF"
 <li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.</p></li>
 </ul>
 <p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.</p>
+<section id="what-is-http">
+<h3>What is HTTP?<a class="headerlink" href="#what-is-http" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol (HTTP)</a> is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled. For example, when looking for our class notes:</p>
+<ul class="simple">
+<li><p><strong>Request</strong>: When you enter a URL into your web browser, the browser sends an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP request message</a> to the server hosting the website. Thus, an HTTP request message is a question to a server written in a particular format that the server understands.</p></li>
+<li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
+</ul>
+<p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server for the data, and we get the data back from the server in the form of an HTTP response object. However, in this case, we don’t get a webpage back; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read on our program. Alternatively, we get an error message or condition indicating that something went wrong with our request.</p>
+</section>
 </section>
 <hr class="docutils" />
 <section id="summary">
@@ -563,7 +586,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="programs.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modules and Programs</p>
+        <p class="prev-next-title">Programs and Modules</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
