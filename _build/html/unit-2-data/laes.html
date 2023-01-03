@@ -832,7 +832,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <li><p>set <span class="math notranslate nohighlight">\(\text{factor}\leftarrow{a_{ji}}/\text{pivot}\)</span></p></li>
 <li><p>for k = i to m:</p>
 <ol class="simple">
-<li><p>Ab[j][k] = Ab[j][k] - factor * Ab[i][k]</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -840,6 +840,25 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </ol>
 </li>
 </ol>
+<p><strong>Backtrace</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\text{zeros}(n)\)</span></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{n\dots{1}}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i-1\dots{1}}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong>
+<span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
 </section>
 </div><p>Let’s walkthrough a simple generic example using <code class="xref std std-numref docutils literal notranslate"><span class="pre">algo-ge-basic</span></code> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">

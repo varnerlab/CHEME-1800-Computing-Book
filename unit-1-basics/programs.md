@@ -33,6 +33,51 @@ The structure of a computer program typically includes the following elements:
 
 Overall, the structure of a computer program is designed to take in data, process it in some way, and produce output. The specific details of the structure will depend on the problem or task the program is trying to solve.
 
+### Anatomy of a program
+The structure of programs in modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org), and older foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) are remakarbaly conserved. Let's look at a skeleton of an _executable_ program in various langues and compare and contrast the stucrure:
+
+
+`````{tab-set}
+
+````{tab-item} julia
+```julia
+# import functions from external modules here
+# using or import keywords in Julia
+
+# put your custom functions here
+# ...
+
+# main
+function main()
+    # do stuff here ...
+end
+
+# call main 
+main()
+```
+````
+
+````{tab-item} python
+```python
+
+
+def main():
+    return
+```
+````
+
+````{tab-item} C
+```c
+#include <iostream>
+
+int main() {
+  std::cout << "Hello World!" << std::endl;
+}
+```
+````
+`````
+
+
 ### How do we execute a Julia program?
 Let's build an example program in [Julia](https://docs.julialang.org) and execute that program; let's consider the recursive `factorial` function that we developed in the {ref}`content:references:recursion-functions` section:
 

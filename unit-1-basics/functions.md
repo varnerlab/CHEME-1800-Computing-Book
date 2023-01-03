@@ -42,7 +42,7 @@ where the value of a function $f$ at an element $x\in{X}$, denoted by $f(x)$, is
 The function $f$ is the rule that describes how the inputs are transformed into results, while $y = f(x)$ denotes the output value in the range of the function $f$.
 
 
-### Computer functions
+### Computer science functions
 Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as [Julia](https://docs.julialang.org), [Python](https://www.python.org), or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) can alter and be affected by the global state of your program.
 
 The basic syntax for defining functions in [Julia](https://docs.julialang.org), [Python](https://www.python.org) or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values. 
@@ -341,7 +341,7 @@ function fibonacci(n::Int64)::Int64
         return 0;
     elseif (n == 1) # base case
         return 1; 
-    else
+    else # recursive case
         return fibonacci(n-1) + fibonacci(n-2);
     end
 end
@@ -349,14 +349,83 @@ end
 ````
 
 ### Mutating functions
-A mutating function is a function that modifies the state of an object or variable in a way that is observable outside the function. This means that the function changes the object or variable in a way that is not reversible, and the change is visible to other parts of the program. Not all functions are mutating. Some functions, called pure functions, do not modify the state of any objects or variables and instead return a new value or object based on the input. These functions are often easier to reason about and test because their behavior is predictable and does not depend on the state of the program.
+A mutating function is a function that irreversibly modifies the state of an object or variable in a way that is observable outside the function. This is the crucial difference between mathematical and computer science functions. 
 
-In some programming languages, it is possible to mark functions as mutating to indicate to other programmers that the function may change the state of an object or variable. This can help prevent bugs caused by unexpected changes to the state of the program.
+Of course, not all computer science functions are mutating. Some functions, called pure functions, do not modify the state of any objects or variables and instead return a new value or object based on the input; pure functions act like mathematical functions. Pure functions are often easier to reason about and test because their behavior is predictable and does not depend on the program’s state.
+
+Distinguishing between pure and mutating functions can help prevent bugs caused by unexpected changes to the program’s state. In some programming languages, it is possible to mark functions as mutating to indicate to other programmers that the function may change the state of an object or variable. For example, in [Julia](https://docs.julialang.org), we mark (by convention) mutating functions with a `!` at the end of the function name, e.g., the function `foo()` is a pure function while `foo!()` is marked as a mutating function.
+
+Let's create a recursive mutating `fibonacci!()` function to compute the Fibonacci sequence:
+
+````{prf:example} Recursive mutating Fibonacci sequence
+:class: dropdown
+:label: example-iteration-fibonacci-series-recursive
+
+Develop a recursive mutating `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence up to and including $n$.
+
+__Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
+
+```{math}
+F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
+```
+
+where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of a mutating Fibonacci sequence function is given by:
+
+```julia
+function fibonacci!(n::Int64, series::Dict{Int64,Int64})
+
+    if (n == 0)  # base case
+        return 0;
+    elseif (n == 1) # base case
+        return 1; 
+    else
+        series[n] = fibonacci!(n-1, series) + fibonacci!(n-2, series);
+    end
+end
+```
+````
+
+
 
 
 ### Memoization
-Memoization is a technique for improving the performance of a computer program by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other types of programs to optimize the performance of expensive function calls.
+Memoization is a technique for improving the performance of a computer program, especially for functions involving recursion, by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other programs to optimize the performance of expensive function calls.
 
+The critical idea of Memoization: don't do extra work! Instead, try to recycle your answers if possible. If we've already done the work to compute a value, or run a program, store these values in case you need them again.
+
+Let's develop one last version of the `fibonacci!()` function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make:
+
+
+````{prf:example} Recursive mutating memoization Fibonacci sequence
+:class: dropdown
+:label: example-iteration-fibonacci-series-recursive-memoization
+
+Develop a recursive mutating `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence up to and including $n$.
+Implement a memoization scheme to recycle the work done by previous function calls.
+
+__Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
+
+```{math}
+F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
+```
+
+where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of a mutating Fibonacci sequence function is given by:
+
+```julia
+function fibonacci!(n::Int64, series::Dict{Int64,Int64})
+
+    if (n == 0)  # base case
+        series[n] = 0;
+    elseif (n == 1) # base case
+        series[n] = 1;
+    elseif (haskey(series,n) == true) # memoization
+        return series[n];
+    else # recursive case
+        series[n] = fibonacci!(n-1, series) + fibonacci!(n-2, series);
+    end
+end
+```
+````
 
 ---
 

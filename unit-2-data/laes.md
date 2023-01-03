@@ -241,9 +241,17 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
     1. for $j\in{i+1}\dots{n}$
         1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
         1. for k = i to m:
-            1. Ab[j][k] = Ab[j][k] - factor * Ab[i][k]
+            1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
 
-    
+**Backtrace**
+1. set $\hat{\mathbf{x}}\leftarrow\text{zeros}(n)$
+    1. for $i\in{n\dots{1}}$
+        1. set $\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}$
+        1. for $j\in{i-1\dots{1}}$
+            1. set $\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}$
+
+**Return**
+$\hat{\mathbf{x}}$
 ````
 
 Let's walkthrough a simple generic example using {numref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
