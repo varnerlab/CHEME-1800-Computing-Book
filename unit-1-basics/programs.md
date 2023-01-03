@@ -33,7 +33,7 @@ The structure of a computer program typically includes the following elements:
 
 Overall, the structure of a computer program is designed to take in data, process it in some way, and produce output. The specific details of the structure will depend on the problem or task the program is trying to solve.
 
-### Anatomy of a program
+### Anatomy of an executable program
 The structure of programs in modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org), and older foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) are remakarbaly conserved. Let's look at a skeleton of an _executable_ program in various langues and compare and contrast the stucrure:
 
 
@@ -41,15 +41,16 @@ The structure of programs in modern languages such as [Julia](https://docs.julia
 
 ````{tab-item} julia
 ```julia
-# import functions from external modules here
-# using or import keywords in Julia
+# 0. copyright/licensing information
+# 1. import functions from external modules here
+# ...
 
-# put your custom functions here
+# 2. include your custom functions here
 # ...
 
 # main
 function main()
-    # do stuff here ...
+    # 3. do stuff here ...
 end
 
 # call main 
@@ -59,20 +60,38 @@ main()
 
 ````{tab-item} python
 ```python
+# 0. copyright/licensing information
+# 1. import functions from external modules here
+# ...
 
+# 2. include your custom functions here
+# ...
 
+# main
 def main():
-    return
+    # do stuff here ...
+
+if __name__ == "__main__":
+    main()
 ```
 ````
 
 ````{tab-item} C
 ```c
-#include <iostream>
+/* 0 copyright/licensing */
+/* 1 includes */
+/* 2 defines */
+/* 3 global variable declarations */
+/* 4 function prototypes */
 
-int main() {
-  std::cout << "Hello World!" << std::endl;
+/* main */
+int main(int argc, char *argv[]) {
+    /* 5 command-line parsing */
+    /* do stuff ... */
+    return 0;
 }
+
+/* 6 function declarations */
 ```
 ````
 `````
