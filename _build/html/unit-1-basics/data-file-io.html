@@ -433,6 +433,28 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#file-input-and-output-file-i-o">
    File Input and Output (File I/O)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comma-seperated-value-files">
+     Comma seperated value files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toml-files">
+     TOML files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json-files">
+     JSON files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yaml-files">
+     YAML files
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
@@ -479,6 +501,28 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#file-input-and-output-file-i-o">
    File Input and Output (File I/O)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comma-seperated-value-files">
+     Comma seperated value files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toml-files">
+     TOML files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json-files">
+     JSON files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yaml-files">
+     YAML files
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
@@ -518,8 +562,108 @@ title="Print to PDF"
 <section id="file-input-and-output-file-i-o">
 <h2>File Input and Output (File I/O)<a class="headerlink" href="#file-input-and-output-file-i-o" title="Permalink to this headline">#</a></h2>
 <p>File Input/Output (File I/O) are operations for reading and writing data to and from files on your computer system. File I/O is a common task in programming, as it allows you to store and retrieve data from persistent storage, such as a hard drive or a cloud service, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Box_(company)">Box</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Drive">Google Drive</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/OneDrive">One Drive</a>.</p>
-<p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files.</p>
-<p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p>
+<p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files of standard types such as <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value (CSV)</a> files, or modern file types such as the <a class="reference external" href="https://toml.io/en/">Tom’s Obvious Minimal Language (TOML) format</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JavaScript Object Notation (JSON) format</a> or <a class="reference external" href="https://yaml.org">YAML files</a>, YAML is a human-friendly data serialization
+language for all programming languages.</p>
+<section id="comma-seperated-value-files">
+<h3>Comma seperated value files<a class="headerlink" href="#comma-seperated-value-files" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma separated value (CSV)</a> files are delimited text files that uses a comma to separate values. Each line of the file is a record, each record consists of of one or more fields, separated by commas (or some other deliminator, such as a <code class="docutils literal notranslate"><span class="pre">tab</span></code> or <code class="docutils literal notranslate"><span class="pre">space</span></code> character). A CSV file is typically used to store tabular data (numbers and text) in plain text, where each line has the same number of fields.</p>
+</section>
+<section id="toml-files">
+<h3>TOML files<a class="headerlink" href="#toml-files" title="Permalink to this headline">#</a></h3>
+<p>TOML (Tom’s Obvious, Minimal Language) is a configuration file format that is intended to be easy to read and write and is also easy to parse. It is used to store configuration data for applications. TOML files consist of key-value pairs, similar to a dictionary in Julia or Python, and can also include nested groups of keys. TOML files often have a <code class="docutils literal notranslate"><span class="pre">.toml</span></code> file extension.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a TOML configuration file for a database</span><span class="w"></span>
+
+<span class="c1"># The database hostname</span><span class="w"></span>
+<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w"></span>
+
+<span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5432</span><span class="w"></span>
+
+<span class="c1"># The name of the database</span><span class="w"></span>
+<span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydatabase&quot;</span><span class="w"></span>
+
+<span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myuser&quot;</span><span class="w"></span>
+
+<span class="c1"># The password for the user</span><span class="w"></span>
+<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mypassword&quot;</span><span class="w"></span>
+
+<span class="c1"># The maximum number of connections to allow at once</span><span class="w"></span>
+<span class="n">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+
+<span class="c1"># The amount of time to wait before timing out a connection</span><span class="w"></span>
+<span class="n">connection_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;30s&quot;</span><span class="w"></span>
+
+<span class="c1"># A group of database options</span><span class="w"></span>
+<span class="k">[options]</span><span class="w"></span>
+
+<span class="c1"># Whether to enable SSL connections to the database</span><span class="w"></span>
+<span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+
+<span class="c1"># The preferred SSL mode to use</span><span class="w"></span>
+<span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="json-files">
+<h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this headline">#</a></h3>
+<p>JSON (JavaScript Object Notation) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays (called objects). JSON is composed of two data structures:</p>
+<ul class="simple">
+<li><p>A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</p></li>
+<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
+Here is an example of a JSON file that stores information about a collection of books:</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;555-555-5555&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Smith&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane@example.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;444-444-4444&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This JSON file defines an object with a single key, “people”, that has a value that is a list of objects, each representing a person. Each person object has three keys, “name”, “email”, and “</p>
+</section>
+<section id="yaml-files">
+<h3>YAML files<a class="headerlink" href="#yaml-files" title="Permalink to this headline">#</a></h3>
+<p>YAML (YAML Ain’t Markup Language) is a human-readable data serialization language that is used to transmit data between systems. It is often used as a configuration file format for applications, and is similar to JSON and TOML, but is generally considered to be more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, similar to a dictionary in Python, and can also include nested groups of keys. They use indentation to denote structure, similar to Python, and use a variety of data types, including strings, numbers, booleans, and lists. YAML files often have a .yaml or .yml file extension.</p>
+<p>Here is an example of a YAML file that could be used to store configuration data for an application:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a YAML configuration file for an application</span><span class="w"></span>
+
+<span class="c1"># The application&#39;s name</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My App</span><span class="w"></span>
+
+<span class="c1"># The version of the application</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w"></span>
+
+<span class="c1"># The hostname to bind the application to</span><span class="w"></span>
+<span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
+
+<span class="c1"># The port to bind the application to</span><span class="w"></span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"></span>
+
+<span class="c1"># A group of database options</span><span class="w"></span>
+<span class="nt">database</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The database hostname</span><span class="w"></span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The name of the database</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mydatabase</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The password for the user</span><span class="w"></span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="application-programming-interfaces-apis">
 <h2>Application Programming Interfaces (APIs)<a class="headerlink" href="#application-programming-interfaces-apis" title="Permalink to this headline">#</a></h2>
@@ -540,13 +684,16 @@ title="Print to PDF"
 <li><p><strong>Request</strong>: When you enter a URL into your web browser, the browser sends an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP request message</a> to the server hosting the website. Thus, an HTTP request message is a question to a server written in a particular format that the server understands.</p></li>
 <li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
 </ul>
-<p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back data as an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
+<p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
 </section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>In this lecture we introduced topcs in data input and output.</p>
+<ul class="simple">
+<li><p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p></li>
+</ul>
 </section>
 </section>
 
