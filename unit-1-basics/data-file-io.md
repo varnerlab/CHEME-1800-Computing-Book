@@ -137,6 +137,51 @@ For example, when looking for our class notes website:
 
 Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as [JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request. 
 
+Let's develop a function that makes a `GET` request from a [dummy application programming interface](http://dummy.restapiexample.com) shown in {prf:ref}`example-get-API-example`:
+
+````{prf:example} GET request example
+:class: dropdown
+:label: example-get-API-example
+
+Develop a function that calls an application programming interface (API) to retrive a list of employees. 
+
+__Solution__: The executable Julia script below makes an API call and transforms the JSON data returned from the server into a Julia dictionary. The `makeapicallget(url::String)::Dict{String,Any}` calls the server and transforms the data into the final format.
+
+```julia
+# load external packages
+using HTTP
+using JSON
+
+function makeapicallget(url::String)::Dict{String,Any}
+
+    # ok, so we are going to make a HTTP GET call with the 
+    # URL that was passed in -
+    response = HTTP.request("GET", url; status_exception = false)
+
+    # let's get the data contained in the response 
+    # the data is conatined in body section of the response message
+    data = String(response.body);
+
+    # convert the JSON response body to a dictionary -
+    response_body_dictionary = JSON.parse(data)
+
+    # return -
+    return response_body_dictionary;
+end
+
+# We are going to use a "fake" API to show the steps of making an API call
+# http://dummy.restapiexample.com
+
+# setup the url string -
+url = "https://dummy.restapiexample.com/api/v1/employees"
+
+# make the api call - data gets returned as JSON, 
+# we then turn JSON into a Dict{String,Any} type
+response_dictionary = makeapicallget(url);
+```
+
+````
+
 ---
 
 ## Summary

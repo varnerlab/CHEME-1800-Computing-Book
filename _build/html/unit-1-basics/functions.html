@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/functions.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data Input and Output" href="data-file-io.html" />
+    <link rel="next" title="Programs and Modules" href="programs.html" />
     <link rel="prev" title="Expressions, Variables and Types" href="types.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -147,13 +147,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="data-file-io.html">
-     Data Input and Output
+    <a class="reference internal" href="programs.html">
+     Programs and Modules
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="programs.html">
-     Programs and Modules
+    <a class="reference internal" href="data-file-io.html">
+     Data Input and Output
     </a>
    </li>
   </ul>
@@ -639,8 +639,8 @@ title="Print to PDF"
 <p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values.</p>
 <p>Let’s compare and contrast the structure and syntax of a simple function named <code class="docutils literal notranslate"><span class="pre">linear</span></code> which computes the value <span class="math notranslate nohighlight">\(y = mx+b\)</span> written in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7428751c-6db5-4848-a3d3-2d759e74fd83" name="d07eabf5-9d2f-449e-a8f0-4131a9da12de" type="radio">
-</input><label class="sd-tab-label" for="7428751c-6db5-4848-a3d3-2d759e74fd83">
+<input checked="checked" id="6f42779a-c47d-4e05-9c75-1591b6113a1c" name="c661bab4-7380-49db-aede-d153f6857982" type="radio">
+</input><label class="sd-tab-label" for="6f42779a-c47d-4e05-9c75-1591b6113a1c">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
     
@@ -653,8 +653,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="4ebb885f-c71a-4dbd-8d16-1afc611e2c5e" name="d07eabf5-9d2f-449e-a8f0-4131a9da12de" type="radio">
-</input><label class="sd-tab-label" for="4ebb885f-c71a-4dbd-8d16-1afc611e2c5e">
+<input id="c58e76ed-7368-4f06-8368-4b8008bc8352" name="c661bab4-7380-49db-aede-d153f6857982" type="radio">
+</input><label class="sd-tab-label" for="c58e76ed-7368-4f06-8368-4b8008bc8352">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
 
@@ -666,8 +666,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dea28d75-fdfd-47dd-bd8a-ee07a9419ade" name="d07eabf5-9d2f-449e-a8f0-4131a9da12de" type="radio">
-</input><label class="sd-tab-label" for="dea28d75-fdfd-47dd-bd8a-ee07a9419ade">
+<input id="76ee409c-4465-4d65-9479-71dbc9ae23e9" name="c661bab4-7380-49db-aede-d153f6857982" type="radio">
+</input><label class="sd-tab-label" for="76ee409c-4465-4d65-9479-71dbc9ae23e9">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
@@ -706,8 +706,8 @@ C</label><div class="sd-tab-content docutils">
 <p>A common programming task is to check whether a condition is <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> and then execute tasks depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements.</p>
 <p>Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Let’s consider the anatomy of the <code class="docutils literal notranslate"><span class="pre">if-elseif-else</span></code> conditional syntax in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="cda10dea-b3fc-42d9-bd2b-7c5c790a2a60" name="4e629e88-8318-437f-907e-c7cc2f1747cd" type="radio">
-</input><label class="sd-tab-label" for="cda10dea-b3fc-42d9-bd2b-7c5c790a2a60">
+<input checked="checked" id="b72fe8c1-8a88-4420-962a-b240b4d930cf" name="cf4af7be-2b24-4ad0-8da9-7c70135c1c22" type="radio">
+</input><label class="sd-tab-label" for="b72fe8c1-8a88-4420-962a-b240b4d930cf">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
     <span class="c"># code statememts executed if condition_1 == true</span>
@@ -719,8 +719,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dfcda174-d1d7-4162-93b9-d7d4d700d69b" name="4e629e88-8318-437f-907e-c7cc2f1747cd" type="radio">
-</input><label class="sd-tab-label" for="dfcda174-d1d7-4162-93b9-d7d4d700d69b">
+<input id="e13953c3-b05f-457f-a665-b4672ea9e9b2" name="cf4af7be-2b24-4ad0-8da9-7c70135c1c22" type="radio">
+</input><label class="sd-tab-label" for="e13953c3-b05f-457f-a665-b4672ea9e9b2">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
     <span class="c1"># code statememts executed if condition_1 == true</span>
@@ -731,8 +731,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="74f917a0-a1de-4cff-ab2f-a183c6c6dbe6" name="4e629e88-8318-437f-907e-c7cc2f1747cd" type="radio">
-</input><label class="sd-tab-label" for="74f917a0-a1de-4cff-ab2f-a183c6c6dbe6">
+<input id="102f0e47-8661-4ddd-b319-1e034e2bb79f" name="cf4af7be-2b24-4ad0-8da9-7c70135c1c22" type="radio">
+</input><label class="sd-tab-label" for="102f0e47-8661-4ddd-b319-1e034e2bb79f">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition_1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="cm">/* block of code to be executed if condition_1 is true */</span><span class="w"></span>
@@ -756,8 +756,8 @@ C</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> defines the iteration count while body holds the code that is executed once per iteration. The header of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> are used when the number of iterations is known before entering the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4611c0c7-da03-442d-bb8c-a4dbab1a271d" name="8f2a399b-69db-4a1a-82ee-ca119a4074e4" type="radio">
-</input><label class="sd-tab-label" for="4611c0c7-da03-442d-bb8c-a4dbab1a271d">
+<input checked="checked" id="053fcdb0-9c37-4683-b3cb-7e81083734a5" name="c2a5e287-f207-4376-9655-131a2547b919" type="radio">
+</input><label class="sd-tab-label" for="053fcdb0-9c37-4683-b3cb-7e81083734a5">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span> <span class="c"># gives i values from 1 to 10 inclusive</span>
     <span class="c"># loop body: holds statements to be executed at each iteration</span>
@@ -765,16 +765,16 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9ea47f49-2c6c-4c63-a4a0-4d971afa98a3" name="8f2a399b-69db-4a1a-82ee-ca119a4074e4" type="radio">
-</input><label class="sd-tab-label" for="9ea47f49-2c6c-4c63-a4a0-4d971afa98a3">
+<input id="0ed69dec-8ff4-4181-9e69-abcff4b3c235" name="c2a5e287-f207-4376-9655-131a2547b919" type="radio">
+</input><label class="sd-tab-label" for="0ed69dec-8ff4-4181-9e69-abcff4b3c235">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>  <span class="c1"># gives i values from 1 to 9 inclusive (but not 10)</span>
     <span class="c1"># loop body: holds statements to be executed at each iteration</span>
 </pre></div>
 </div>
 </div>
-<input id="4b3524a5-d4e7-4227-9f10-1b7dec0848ec" name="8f2a399b-69db-4a1a-82ee-ca119a4074e4" type="radio">
-</input><label class="sd-tab-label" for="4b3524a5-d4e7-4227-9f10-1b7dec0848ec">
+<input id="247b119a-4c9c-40d0-8972-00fe5454b95f" name="c2a5e287-f207-4376-9655-131a2547b919" type="radio">
+</input><label class="sd-tab-label" for="247b119a-4c9c-40d0-8972-00fe5454b95f">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Using for-loop iteration range 0 -&gt; 9 */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -824,8 +824,8 @@ C</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> that iterates over a fixed (specfied) range of values, a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ea74ad09-88d4-48de-a88a-66e26f5a5d82" name="d8eda274-970b-4865-a2e4-5723bb817a87" type="radio">
-</input><label class="sd-tab-label" for="ea74ad09-88d4-48de-a88a-66e26f5a5d82">
+<input checked="checked" id="21e79429-2fcf-42f6-9b16-252eeb4127fe" name="2a4ed8e0-6a05-4d01-bc33-62ca1c1f6d68" type="radio">
+</input><label class="sd-tab-label" for="21e79429-2fcf-42f6-9b16-252eeb4127fe">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize </span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>   <span class="c"># counter variable</span>
@@ -843,8 +843,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="76a407cd-4ce7-462e-9a08-6a1f767045ed" name="d8eda274-970b-4865-a2e4-5723bb817a87" type="radio">
-</input><label class="sd-tab-label" for="76a407cd-4ce7-462e-9a08-6a1f767045ed">
+<input id="fda97837-37ac-478a-9585-bf78db9fd0c6" name="2a4ed8e0-6a05-4d01-bc33-62ca1c1f6d68" type="radio">
+</input><label class="sd-tab-label" for="fda97837-37ac-478a-9585-bf78db9fd0c6">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span>                           <span class="c1"># Set the value to 5 </span>
@@ -858,8 +858,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a3b466d5-15b6-459b-b59a-35796bce3823" name="d8eda274-970b-4865-a2e4-5723bb817a87" type="radio">
-</input><label class="sd-tab-label" for="a3b466d5-15b6-459b-b59a-35796bce3823">
+<input id="cd867a37-c78e-4651-be91-d1b85d016749" name="2a4ed8e0-6a05-4d01-bc33-62ca1c1f6d68" type="radio">
+</input><label class="sd-tab-label" for="cd867a37-c78e-4651-be91-d1b85d016749">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* declare and initialize */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
@@ -1026,10 +1026,10 @@ Implement a memoization scheme to recycle the work done by previous function cal
             <p class="prev-next-title">Expressions, Variables and Types</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="data-file-io.html" title="next page">
+    <a class='right-next' id="next-link" href="programs.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data Input and Output</p>
+        <p class="prev-next-title">Programs and Modules</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

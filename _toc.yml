@@ -10,8 +10,8 @@ chapters:
   sections:
   - file: unit-1-basics/types
   - file: unit-1-basics/functions
-  - file: unit-1-basics/data-file-io
   - file: unit-1-basics/programs
+  - file: unit-1-basics/data-file-io
 - file: unit-2-data/data-landing
   title: Unit 2. Data
   sections:

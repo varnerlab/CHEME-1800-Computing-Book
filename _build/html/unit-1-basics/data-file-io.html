@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/data-file-io.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Programs and Modules" href="programs.html" />
-    <link rel="prev" title="Functions, Control Statements, and Recursion" href="functions.html" />
+    <link rel="next" title="Data, Algorithms, and Linear Algebra" href="../unit-2-data/data-landing.html" />
+    <link rel="prev" title="Programs and Modules" href="programs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,14 +144,14 @@ const thebe_selector_output = ".output, .cell_output"
      Functions, Control Statements, and Recursion
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Data Input and Output
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="programs.html">
      Programs and Modules
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Data Input and Output
     </a>
    </li>
   </ul>
@@ -685,7 +685,46 @@ Here is an example of a JSON file that stores information about a collection of 
 <li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
 </ul>
 <p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
+<p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 8</a>:</p>
+<div class="proof example dropdown admonition" id="example-get-API-example">
+<p class="admonition-title"><span class="caption-number">Example 8 </span> (GET request example)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a function that calls an application programming interface (API) to retrive a list of employees.</p>
+<p><strong>Solution</strong>: The executable Julia script below makes an API call and transforms the JSON data returned from the server into a Julia dictionary. The <code class="docutils literal notranslate"><span class="pre">makeapicallget(url::String)::Dict{String,Any}</span></code> calls the server and transforms the data into the final format.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load external packages</span>
+<span class="k">using</span> <span class="n">HTTP</span>
+<span class="k">using</span> <span class="n">JSON</span>
+
+<span class="k">function</span> <span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># ok, so we are going to make a HTTP GET call with the </span>
+    <span class="c"># URL that was passed in -</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HTTP</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">;</span> <span class="n">status_exception</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+
+    <span class="c"># let&#39;s get the data contained in the response </span>
+    <span class="c"># the data is conatined in body section of the response message</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">);</span>
+
+    <span class="c"># convert the JSON response body to a dictionary -</span>
+    <span class="n">response_body_dictionary</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">response_body_dictionary</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c"># We are going to use a &quot;fake&quot; API to show the steps of making an API call</span>
+<span class="c"># http://dummy.restapiexample.com</span>
+
+<span class="c"># setup the url string -</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://dummy.restapiexample.com/api/v1/employees&quot;</span>
+
+<span class="c"># make the api call - data gets returned as JSON, </span>
+<span class="c"># we then turn JSON into a Dict{String,Any} type</span>
+<span class="n">response_dictionary</span> <span class="o">=</span> <span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
+</div></section>
 </section>
 <hr class="docutils" />
 <section id="summary">
@@ -724,17 +763,17 @@ Here is an example of a JSON file that stores information about a collection of 
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="functions.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="programs.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Functions, Control Statements, and Recursion</p>
+            <p class="prev-next-title">Programs and Modules</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="programs.html" title="next page">
+    <a class='right-next' id="next-link" href="../unit-2-data/data-landing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Programs and Modules</p>
+        <p class="prev-next-title">Data, Algorithms, and Linear Algebra</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
