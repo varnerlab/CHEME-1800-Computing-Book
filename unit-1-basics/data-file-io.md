@@ -81,7 +81,7 @@ Here is an example of a JSON file that stores information about a collection of 
 This JSON file defines an object with a single key, "people", that has a value that is a list of objects, each representing a person. Each person object has three keys, "name", "email", and "
 
 ### YAML files
-YAML (YAML Ain't Markup Language) is a human-readable data serialization language that is used to transmit data between systems. It is often used as a configuration file format for applications, and is similar to JSON and TOML, but is generally considered to be more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, similar to a dictionary in Python, and can also include nested groups of keys. They use indentation to denote structure, similar to Python, and use a variety of data types, including strings, numbers, booleans, and lists. YAML files often have a .yaml or .yml file extension.
+YAML (YAML Ain't Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a `.yaml` or `.yml` file extension.
 
 Here is an example of a YAML file that could be used to store configuration data for an application:
 
