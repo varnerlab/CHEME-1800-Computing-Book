@@ -1,2 +1,6 @@
-# Data, Algorithms, and Linear Algebra
-Fill me in
+# Data structures, Algorithms, and Linear Algebra
+In this unit, we'll introduce tools and concepts for working with data structures, writing algorithms to solve problems, and solving systems of linear algebraic equations:
+
+* [Data structures](./trees.md) are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Some common data structures include arrays, linked lists, stacks, queues, and trees. Different data structures are suited to other kinds of applications, and choosing an appropriate data structure can be crucial to the efficiency of an algorithm. Algorithms are sets of steps or procedures that are followed to solve a problem or achieve a goal. They are an essential part of computer science and can be used to solve problems ranging from simple arithmetic to complex tasks like image recognition and natural language processing.
+
+* [Linear algebra](./vectors-matricies-nla.md) is a branch of mathematics that deals with linear equations and linear transformations. It is a fundamental mathematical tool in many fields, including computer science, engineering, and physics. Linear algebra concepts such as vectors, matrices, and eigenvalues are used in many areas of technical computing, including machine learning and data analysis.
