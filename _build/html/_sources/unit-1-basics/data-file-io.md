@@ -13,8 +13,104 @@ File Input/Output (File I/O) are operations for reading and writing data to and 
 In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files of standard types such as [comma separated value (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) files, or modern file types such as the [Tom's Obvious Minimal Language (TOML) format](https://toml.io/en/), [JavaScript Object Notation (JSON) format](https://en.wikipedia.org/wiki/JSON) or [YAML files](https://yaml.org), YAML is a human-friendly data serialization
 language for all programming languages. 
 
-### Comma seperated value files
-[Comma separated value (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) files are delimited text files that uses a comma to separate values. Each line of the file is a record, each record consists of of one or more fields, separated by commas (or some other deliminator, such as a `tab` or `space` character). A CSV file is typically used to store tabular data (numbers and text) in plain text, where each line has the same number of fields.
+### CSV files
+[Comma-separated value (CSV)](https://en.wikipedia.org/wiki/Comma-separated_values) files are delimited text files that use a comma to separate values. A CSV file typically stores tabular data (numbers and text) in plain text, where each line has the same number of fields. Each line of the file is a record, and each record consists of one or more fields, separated by commas (or other characters such as a `tab` or `space` character).
+
+In engineering or other quantitative applications, [comma-separated value files](https://en.wikipedia.org/wiki/Comma-separated_values) are typically used to store, transmit and work with numerical data. Consider a comma-separated value file holding interest rate data for the last year:
+
+```CSV
+Date,T=20-year-percentage,T=30-year-percentage
+2021-09-17,1.82,1.88
+2021-09-24,1.84,1.89
+2021-10-01,2.00,2.05
+2021-10-08,2.05,2.10
+....
+```
+
+This data file has a header row that contains column labels (which are text), while the other rows contain numerical data. Each row holds a data record, that is composed of fields that hold a type of data, e.g., the date or values for [the spot rate](https://www.investopedia.com/terms/s/spot_rate.asp) for [fixed income United States treasury debt securities](https://www.investopedia.com/ask/answers/033115/what-are-differences-between-treasury-bond-and-treasury-note-and-treasury-bill-tbill.asp).
+
+#### Program: Read and write a CSV file
+
+Let's develop a [Julia](https://docs.julialang.org) function that loads a [comma-separated value file](https://en.wikipedia.org/wiki/Comma-separated_values) from the local filesystem; first, let's use the [CSV.jl](https://github.com/JuliaData/CSV.jl) package, which is a 
+specialized package to work with [comma-separated value files](https://en.wikipedia.org/wiki/Comma-separated_values):
+
+```julia
+using DataFrames
+using CSV
+
+function loadcsvfile(path::String)::DataFrame
+    
+    # check: is the path arg legit?
+    # ...
+    return CSV.read(path, DataFrame)
+end
+
+# set the path -
+path_to_file = "Treasury-HistoricalData-09-09-22.csv";
+
+# load csv file -
+df = loadcsvfile(path_to_file);
+```
+
+This first example, which takes advantage of the [CSV.jl](https://github.com/JuliaData/CSV.jl) package, returns a table-like data structure called a `DataFrame` (which is implemented by the [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl) package). The `DataFrame` data structure (which we'll explore later) offers several standard and advanced features for working with tabular data. 
+
+One possible criticism of the first `loadcsvfile()` implementation is that all the details of what is going on are hidden in the `CSV.read()` call. However, there may be cases or applications where we may want more control when reading (or writing) [comma-separated value files](https://en.wikipedia.org/wiki/Comma-separated_values). 
+
+
+#### Program: Read a CSV file refactored
+Let's [refactor](https://en.wikipedia.org/wiki/Code_refactoring) the previous `loadcsvfile()` function so that we have access to each record as it is beging loaded:
+
+```julia
+function loadcsvfile(path::String; delim::Char=',', keyindex::Int64 = 1)::Tuple{Array{String,1}, Dict{String,Array{Number,1}}}
+    
+    # check: is the path arg legit?
+    # ....
+
+    # initialize
+    counter = 1
+    header = Array{String,1}()
+    data = Dict{String,Array{Float64,1}}()
+
+    # main -
+    open(path, "r") do io # open a stream to the file
+        for line in eachline(io) # read each line from the stream
+            
+            # split the line around the delim -
+            fields = split(line, delim);
+            if (counter == 1)
+                
+                # package the hedaer -
+                for value in fields
+                    push!(header, value)
+                end
+
+                # update the counter -
+                counter = counter + 1
+            else
+
+                # package -
+                tmp = Array{Float64,1}()
+                keyfield = fields[keyindex]
+                for (i,value) in enumerate(fields)
+                    if (i != keyindex)
+                        push!(tmp, parse(Float64,value))
+                    end
+                end
+                data[keyfield] = tmp;
+            end
+        end
+    end
+
+    # return -
+    return (header, data)
+end
+
+# set the path -
+path_to_file = "Treasury-HistoricalData-09-09-22.csv";
+
+# load file -
+(h,d) = loadcsvfile(path_to_file);
+```
 
 
 ### TOML files
@@ -139,7 +235,7 @@ Requesting data from an application programming interface works similarly; we ma
 
 Let's develop a function that makes a `GET` request from a [dummy application programming interface](http://dummy.restapiexample.com) shown in {prf:ref}`example-get-API-example`:
 
-````{prf:example} GET request example
+````{prf:example} GET Request
 :class: dropdown
 :label: example-get-API-example
 
@@ -178,6 +274,12 @@ url = "https://dummy.restapiexample.com/api/v1/employees"
 # make the api call - data gets returned as JSON, 
 # we then turn JSON into a Dict{String,Any} type
 response_dictionary = makeapicallget(url);
+```
+
+To execute this program in [Julia](https://docs.julialang.org), save it to a file called `myapiexample.jl` and then use the [include](https://docs.julialang.org/en/v1/base/base/#Base.include) function from the [Julia REPL](https://docs.julialang.org/en/v1/stdlib/REPL/) to execute it:
+
+```julia
+include("myapiexample.jl")
 ```
 
 ````

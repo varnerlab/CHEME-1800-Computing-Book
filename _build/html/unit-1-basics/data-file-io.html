@@ -435,9 +435,21 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comma-seperated-value-files">
-     Comma seperated value files
+    <a class="reference internal nav-link" href="#csv-files">
+     CSV files
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-and-write-a-csv-file">
+       Program: Read and write a CSV file
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-a-csv-file-refactored">
+       Program: Read a CSV file refactored
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#toml-files">
@@ -503,9 +515,21 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comma-seperated-value-files">
-     Comma seperated value files
+    <a class="reference internal nav-link" href="#csv-files">
+     CSV files
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-and-write-a-csv-file">
+       Program: Read and write a CSV file
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-a-csv-file-refactored">
+       Program: Read a CSV file refactored
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#toml-files">
@@ -564,9 +588,98 @@ title="Print to PDF"
 <p>File Input/Output (File I/O) are operations for reading and writing data to and from files on your computer system. File I/O is a common task in programming, as it allows you to store and retrieve data from persistent storage, such as a hard drive or a cloud service, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Box_(company)">Box</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Drive">Google Drive</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/OneDrive">One Drive</a>.</p>
 <p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files of standard types such as <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value (CSV)</a> files, or modern file types such as the <a class="reference external" href="https://toml.io/en/">Tom’s Obvious Minimal Language (TOML) format</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JavaScript Object Notation (JSON) format</a> or <a class="reference external" href="https://yaml.org">YAML files</a>, YAML is a human-friendly data serialization
 language for all programming languages.</p>
-<section id="comma-seperated-value-files">
-<h3>Comma seperated value files<a class="headerlink" href="#comma-seperated-value-files" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma separated value (CSV)</a> files are delimited text files that uses a comma to separate values. Each line of the file is a record, each record consists of of one or more fields, separated by commas (or some other deliminator, such as a <code class="docutils literal notranslate"><span class="pre">tab</span></code> or <code class="docutils literal notranslate"><span class="pre">space</span></code> character). A CSV file is typically used to store tabular data (numbers and text) in plain text, where each line has the same number of fields.</p>
+<section id="csv-files">
+<h3>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma-separated value (CSV)</a> files are delimited text files that use a comma to separate values. A CSV file typically stores tabular data (numbers and text) in plain text, where each line has the same number of fields. Each line of the file is a record, and each record consists of one or more fields, separated by commas (or other characters such as a <code class="docutils literal notranslate"><span class="pre">tab</span></code> or <code class="docutils literal notranslate"><span class="pre">space</span></code> character).</p>
+<p>In engineering or other quantitative applications, <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a> are typically used to store, transmit and work with numerical data. Consider a comma-separated value file holding interest rate data for the last year:</p>
+<div class="highlight-CSV notranslate"><div class="highlight"><pre><span></span>Date,T=20-year-percentage,T=30-year-percentage
+2021-09-17,1.82,1.88
+2021-09-24,1.84,1.89
+2021-10-01,2.00,2.05
+2021-10-08,2.05,2.10
+....
+</pre></div>
+</div>
+<p>This data file has a header row that contains column labels (which are text), while the other rows contain numerical data. Each row holds a data record, that is composed of fields that hold a type of data, e.g., the date or values for <a class="reference external" href="https://www.investopedia.com/terms/s/spot_rate.asp">the spot rate</a> for <a class="reference external" href="https://www.investopedia.com/ask/answers/033115/what-are-differences-between-treasury-bond-and-treasury-note-and-treasury-bill-tbill.asp">fixed income United States treasury debt securities</a>.</p>
+<section id="program-read-and-write-a-csv-file">
+<h4>Program: Read and write a CSV file<a class="headerlink" href="#program-read-and-write-a-csv-file" title="Permalink to this headline">#</a></h4>
+<p>Let’s develop a <a class="reference external" href="https://docs.julialang.org">Julia</a> function that loads a <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value file</a> from the local filesystem; first, let’s use the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, which is a
+specialized package to work with <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataFrames</span>
+<span class="k">using</span> <span class="n">CSV</span>
+
+<span class="k">function</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">DataFrame</span>
+    
+    <span class="c"># check: is the path arg legit?</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># set the path -</span>
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="s">&quot;Treasury-HistoricalData-09-09-22.csv&quot;</span><span class="p">;</span>
+
+<span class="c"># load csv file -</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This first example, which takes advantage of the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, returns a table-like data structure called a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (which is implemented by the <a class="reference external" href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> package). The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> data structure (which we’ll explore later) offers several standard and advanced features for working with tabular data.</p>
+<p>One possible criticism of the first <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> implementation is that all the details of what is going on are hidden in the <code class="docutils literal notranslate"><span class="pre">CSV.read()</span></code> call. However, there may be cases or applications where we may want more control when reading (or writing) <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a>.</p>
+</section>
+<section id="program-read-a-csv-file-refactored">
+<h4>Program: Read a CSV file refactored<a class="headerlink" href="#program-read-a-csv-file-refactored" title="Permalink to this headline">#</a></h4>
+<p>Let’s <a class="reference external" href="https://en.wikipedia.org/wiki/Code_refactoring">refactor</a> the previous <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> function so that we have access to each record as it is beging loaded:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span> <span class="n">delim</span><span class="o">::</span><span class="kt">Char</span><span class="o">=</span><span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="n">keyindex</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">::</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Number</span><span class="p">,</span><span class="mi">1</span><span class="p">}}}</span>
+    
+    <span class="c"># check: is the path arg legit?</span>
+    <span class="c"># ....</span>
+
+    <span class="c"># initialize</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}}()</span>
+
+    <span class="c"># main -</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">io</span> <span class="c"># open a stream to the file</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">eachline</span><span class="p">(</span><span class="n">io</span><span class="p">)</span> <span class="c"># read each line from the stream</span>
+            
+            <span class="c"># split the line around the delim -</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">delim</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+                
+                <span class="c"># package the hedaer -</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="k">in</span> <span class="n">fields</span>
+                    <span class="n">push!</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="k">end</span>
+
+                <span class="c"># update the counter -</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span>
+
+                <span class="c"># package -</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span>
+                <span class="n">keyfield</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="n">keyindex</span><span class="p">]</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="k">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">keyindex</span><span class="p">)</span>
+                        <span class="n">push!</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">parse</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="n">value</span><span class="p">))</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">keyfield</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># set the path -</span>
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="s">&quot;Treasury-HistoricalData-09-09-22.csv&quot;</span><span class="p">;</span>
+
+<span class="c"># load file -</span>
+<span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="toml-files">
 <h3>TOML files<a class="headerlink" href="#toml-files" title="Permalink to this headline">#</a></h3>
@@ -685,9 +798,9 @@ Here is an example of a JSON file that stores information about a collection of 
 <li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
 </ul>
 <p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
-<p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 8</a>:</p>
+<p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 9</a>:</p>
 <div class="proof example dropdown admonition" id="example-get-API-example">
-<p class="admonition-title"><span class="caption-number">Example 8 </span> (GET request example)</p>
+<p class="admonition-title"><span class="caption-number">Example 9 </span> (GET Request)</p>
 <section class="example-content" id="proof-content">
 <p>Develop a function that calls an application programming interface (API) to retrive a list of employees.</p>
 <p><strong>Solution</strong>: The executable Julia script below makes an API call and transforms the JSON data returned from the server into a Julia dictionary. The <code class="docutils literal notranslate"><span class="pre">makeapicallget(url::String)::Dict{String,Any}</span></code> calls the server and transforms the data into the final format.</p>
@@ -721,6 +834,10 @@ Here is an example of a JSON file that stores information about a collection of 
 <span class="c"># make the api call - data gets returned as JSON, </span>
 <span class="c"># we then turn JSON into a Dict{String,Any} type</span>
 <span class="n">response_dictionary</span> <span class="o">=</span> <span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To execute this program in <a class="reference external" href="https://docs.julialang.org">Julia</a>, save it to a file called <code class="docutils literal notranslate"><span class="pre">myapiexample.jl</span></code> and then use the <a class="reference external" href="https://docs.julialang.org/en/v1/base/base/#Base.include">include</a> function from the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">Julia REPL</a> to execute it:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="p">(</span><span class="s">&quot;myapiexample.jl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
