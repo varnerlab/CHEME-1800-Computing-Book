@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-2-data/trees.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -145,13 +147,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-1-basics/data-file-io.html">
-     Data Input and Output
+    <a class="reference internal" href="../unit-1-basics/programs.html">
+     Programs and Modules
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-1-basics/programs.html">
-     Modules and Programs
+    <a class="reference internal" href="../unit-1-basics/data-file-io.html">
+     Data Input and Output
     </a>
    </li>
   </ul>
@@ -511,6 +513,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#trees">
      Trees
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#revisit-recursive-fibonacci-and-memoization">
+       Revisit: Recursive Fibonacci and Memoization
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#graphs">
@@ -584,6 +593,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#trees">
      Trees
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#revisit-recursive-fibonacci-and-memoization">
+       Revisit: Recursive Fibonacci and Memoization
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#graphs">
@@ -699,6 +715,16 @@ title="Print to PDF"
 <p>Trees are widely-used non-linear data structures that simulate a hierarchical tree structure, with nodes representing the hierarchy. In a tree, each node has one or more child nodes, each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node. The nodes that do not have any children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.</p>
 <p>Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision.</p>
 <p>There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.</p>
+<section id="revisit-recursive-fibonacci-and-memoization">
+<h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
+<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 2</span></a>)</p>
+<figure class="align-default" id="fig-recursive-fib-4-call-tree">
+<a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 <section id="graphs">
 <span id="content-references-data-structure-graphs"></span><h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">#</a></h3>

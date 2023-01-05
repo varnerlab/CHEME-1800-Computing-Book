@@ -19,6 +19,7 @@ Modules can be imported and used in many programs, which makes it easier to reus
 
 ---
 
+(content:references:programs-structure)=
 ## Programs
 A computer program is a set of instructions that tells a computer what to do. It is written in a programming language, such as [Julia](https://docs.julialang.org), [Python](https://www.python.org), and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)), and can be compiled into machine code that a computer can execute.
 
@@ -33,10 +34,80 @@ The structure of a computer program typically includes the following elements:
 
 Overall, the structure of a computer program is designed to take in data, process it in some way, and produce output. The specific details of the structure will depend on the problem or task the program is trying to solve.
 
-### How do we execute a Julia program?
-Let's build an example program in [Julia](https://docs.julialang.org) and execute that program; let's consider the recursive `factorial` function that we developed in the {ref}`content:references:recursion-functions` section:
+### Anatomy of an executable program
+The structure of programs in modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org), and older foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) are remarkably conserved. Let's look at a skeleton of an _executable_ program in various languages and compare and contrast the structure:
+
+`````{tab-set}
+
+````{tab-item} julia
+```julia
+# 0. copyright/licensing information
+# 1. import functions from external modules here
+# ...
+
+# 2. include your custom functions here
+# ...
+
+# main
+function main()
+    # 3. do stuff here ...
+end
+
+# call main 
+main()
+```
+````
+
+````{tab-item} python
+```python
+# 0. copyright/licensing information
+# 1. import functions from external modules here
+# ...
+
+# 2. include your custom functions here
+# ...
+
+# main
+def main():
+    # do stuff here ...
+
+if __name__ == "__main__":
+    main()
+```
+````
+
+````{tab-item} C
+```c
+/* 0 copyright/licensing */
+/* 1 includes */
+/* 2 defines */
+/* 3 global variable declarations */
+/* 4 function prototypes */
+
+/* main */
+int main(int argc, char *argv[]) {
+    /* 5 command-line parsing */
+    /* do stuff ... */
+    return 0;
+}
+
+/* 6 function declarations */
+```
+````
+`````
+
+Let's develop an _executable_ script in [Julia](https://docs.julialang.org) to compute the factorial $n!$ ({prf:ref}`example-exe-julia-script`):
+
+````{prf:example} Execute a Julia program
+:class: dropdown
+:label: example-exe-julia-script
+
+Build an example program in [Julia](https://docs.julialang.org) and execute that program; consider the recursive `factorial` function that we developed in the {ref}`content:references:recursion-functions` section:
 
 ```julia
+
+# load external modules
+# ...
 
 # define the recursive factorial function
 function factorial(n)
@@ -66,9 +137,11 @@ println("The factorial of ", n, " is ", result)
 To execute this program in [Julia](https://docs.julialang.org), you can save it to a file called `myfactorial.jl` and then use the [include](https://docs.julialang.org/en/v1/base/base/#Base.include) function from the [Julia REPL](https://docs.julialang.org/en/v1/stdlib/REPL/) to execute it:
 
 ```julia
-include("myfactorial.jl")
+julia> include("myfactorial.jl")
 ```
+````
 
+(content:references:module-structure)=
 ## Modules
 A module is a collection of related functions, variables, and other types of data that can be imported and used in other programs. Modules are used to organize code and make it easier to reuse and maintain.
 

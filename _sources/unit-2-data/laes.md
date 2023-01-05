@@ -194,7 +194,7 @@ There are many different ways to compute rank, however, we'll use the [rank](htt
 
 
 (content:references:solution-approaches)=
-## Direct and iterative solution approaches
+## Solution approaches for square systems
 The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
 $$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
@@ -208,41 +208,262 @@ In all the discussion below, we assume:
 * The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
 * The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
 
-### Guassian elimination 
-Fill me in.
+For the study of the different solution approaches, let's consider a motivating example. 
+
+### Gaussian elimination 
+[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
+
+````{prf:algorithm} Naive Gaussian Elimination
+:class: dropdown
+:label: algo-ge-basic
+
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+
+**Output**: solution $\hat{\mathbf{x}}$
+
+**Initialize**:
+1. set $(n,m)\leftarrow\text{size}(\mathbf{A})$
+1. set $\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})$
+
+**Main**
+1. for $i\in{1}\dots{n-1}$
+    1. set $\text{pivot}\leftarrow{a_{ii}}$
+    2. set $\text{pivotRow}\leftarrow{i}$
+
+    1. for $j\in{i+1}\dots{n}$
+        1. if $\text{abs}(\bar{a}_{ji}) > \text{abs}(\text{pivot})$
+            1. set $\text{pivot}\leftarrow\bar{a}_{ji}$
+            2. set $\text{pivotRow}\leftarrow{j}$
+    
+    1. set $\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})$
+    
+    1. for $j\in{i+1}\dots{n}$
+        1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
+        1. for k = i to m:
+            1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
+
+**Backtrace**
+1. set $\hat{\mathbf{x}}\leftarrow\text{zeros}(n)$
+    1. for $i\in{n\dots{1}}$
+        1. set $\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}$
+        1. for $j\in{i-1\dots{1}}$
+            1. set $\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}$
+
+**Return**
+$\hat{\mathbf{x}}$
+````
+
+Let's walkthrough a simple generic example using {numref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
+
+```{math}
+:label: eqn-ge-test-system
+
+\begin{bmatrix}
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2
+\end{bmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}
+```
+
+__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$. The augemented matrix $\bar{\mathbf{A}}$ is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
+
+```{math}
+:label: eqn-augmented-array-A
+\bar{\mathbf{A}} = \begin{bmatrix}
+2 & -1 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+__Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{A}}$ to [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form):
+
+1. Starting with the first column, move to the next column (to the right) until we encounter a non-zero element.
+1. One we encounter a column that has nonzero entries, interchange rows, if necessary, to get a nonzero entry on top.
+1. Change the top entry to 1: If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
+1. For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.
+1. Carry out this procedure until the augmented matrix $\bar{\mathbf{A}}$ is in [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form).
+
+In Eqn {eq}`eqn-augmented-array-A`, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let's move to step 3:
+
+```{math}
+:label: eqn-augmented-array-A-step3
+\bar{\mathbf{A}} = \begin{bmatrix}
+2 & -1 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case $i=1$, $j=1$ and $k=1$ which gives the operation: $R_{2}\leftarrow{R}_{2} + R_{1}$:
+
+```{math}
+:label: eqn-augmented-array-A-step4
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1.5 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.
+
+__Step 3__: Solve for unknown variables using back-substitution.
+
+```{math}
+:label: eqn-back-sub-matrix-A
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1 & -0.66 &\bigm| & 0.66 \\
+0 & 0 & 1 &\bigm| & 0.49
+\end{bmatrix}
+```
+
+This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations, then:
+
+````{prf:algorithm} Naive back substitution
+:label: algo-ge-basic-back-sub
+
+**Main**
+1. for $i\in{n},n-1,\dots,1$
+    1. set $x_{i}\leftarrow{y_{i}}$
+        1. for $j\in{i+1},i+2,\dots,n$
+            1. set $x_{i}\leftarrow{x_{i}}-u_{ij}x_{j}$
+
+````
+
 
 ### Iterative methods
+Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
+
+One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let's outline the basic idea of an interative solution method in {prf:ref}`obs-basic-iterative-method-outline`:
+
+<!-- 
 An iterative method takes an initial solution guess, and refines it by substituting
 this guess back into into the linear algebraic equations. The guess is then updated over and over again until either we exhaust the number of iterations we can take, or we converge to a solution. Two key iterative methods are: [Jacobi Iteration](https://en.wikipedia.org/wiki/Jacobi_method) and
-[Gauss-Seidel](https://en.wikipedia.org/wiki/Gauss–Seidel_method). The central difference between these two methods is how they update the best estimate of a solution at any given iteration. 
+[Gauss-Seidel](https://en.wikipedia.org/wiki/Gauss–Seidel_method). The central difference between these two methods is how they update the best estimate of a solution at any given iteration.  -->
 
-In either case, we start with the ith equation (in index form):
+````{prf:observation} Basic iterative method
+:label: obs-basic-iterative-method-outline
+Suppose we have an $n\times{n}$ system of linear algebraic equations of the form:
 
-$$\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{m}}$$
+```{math}
+\mathbf{A}\mathbf{x} = \mathbf{b}
+```
 
-and solve it for _an estimate_ of $x_{i}$:
+where $\mathbf{A}$ denotes a $n\times{n}$ matrix of coefficients, $\mathbf{x}$ denotes the $n\times{1}$ vector of unknowns that we are trying to estimate, and $\mathbf{b}$ denotes the $n\times{1}$ vector of right-hand-side values. 
 
-$$\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{m}}$$
+We start with the ith equation in a system of $n$ equations, written in index form as:
 
-denoted by $\hat{x}_{i}$. As the number of iterations increases (and the system of LAEs is _convergent_) $\hat{x}_{i}\rightarrow{x_{i}}$ for $i=1,2,\cdots,m$.
+$$\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{n}}$$
 
-#### Jacobi iteration
-Jacobi iteration __batch updates__ the best estimate of $x_{i}$ at the _end_ of each iteration. Suppose we define the best estimate
-for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
+and solve it for _an estimate_ of the ith unknown:
+
+$$\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{n}}$$
+
+denoted by $\hat{x}_{i}$, where $\sum_{j=1,i}^{n}$ does not include index $i$. What we do next, with the estimated value of $\hat{x}_{i}$, is the key difference between Jacobi's method and the Gauss-Seidel method.
+````
+
+#### Jacobi's method
+Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each iteration. Suppose we define the estimate of the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then, the value of $x_{i}$ at iteration $k+1$ is given by:
 
 $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}$$
 
-In Jacobi iteration, the best estimate for all variables from the previous iteration is used and we do not update the guess until
-we have processed all $i=1,2,\cdots,m$ equations.
+In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
+we have processed all $i=1,2,\cdots,n$ equations. We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
 
-#### Gauss-Seidel iteration
-Gauss-Seidel __live updates__ the best estimate of $x_{i}$ _during_ the processing of equations $i=1,2,\cdots,m$, generally leading to
-better convergence properties when compared with Jacobi iteration. Suppose we define the best estimate
-for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
+Let's look at psuedo code for Jacobi's method in {prf:ref}`algo-jacobi-iteration`:
+
+````{prf:algorithm} Jacobi iteration
+:class: dropdown
+:label: algo-jacobi-iteration
+
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+
+**Output**: solution $\hat{\mathbf{x}}$
+
+**Initialize**:
+1. set $n\leftarrow$length($\mathbf{b}$)
+1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}$
+
+**Main**
+1. for $i\in{1}\dots\mathcal{M}_{\infty}$
+    1. set $\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)$
+    1. for $j\in{1}\dots{n}$
+        1. set $s\leftarrow{0}$
+        1. for $k\in{1}\dots{n}$
+            1. if $k\neq{j}$
+                1. set $s\leftarrow{s} + a_{ik}\times\hat{x}_{k}$
+        1. set $x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)$
+    1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
+        1. return $\hat{\mathbf{x}}$
+    1. else 
+        1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}$
+1. return $\hat{\mathbf{x}}$
+````
+
+#### Gauss-Seidel method
+The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables. 
+
+Gauss-Seidel __live updates__ the best estimate of $\hat{x}_{i}$ _during_ the processing of equations $i=1,\cdots,n$. The update procedure of Gauss-Seidel generally leads to better convergence properties than the Jacobi method. Suppose we define the best estimate for variable $i$ at iteration $k$ as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
 
 $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}$$
 
-In Gauss-Seidel, the best estimate of the proceeding $x_{i}$'s are used in the calculation of the current $x_{i}$. 
+We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k{\rightarrow}k+1$ is below some specified tolerance $\epsilon$.
+
+Let's look at a psuedo code for the Gauss Seidel method in {prf:ref}`algo-gauss-seidel-method`:
+
+````{prf:algorithm} Gauss-Seidel method
+:class: dropdown
+:label: algo-gauss-seidel-method
+
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+
+**Output**: solution $\hat{\mathbf{x}}$, converged flag
+
+**Initialize**:
+1. set $n\leftarrow$length($\mathbf{b}$)
+1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}$
+1. set converged $\leftarrow$ false
+
+**Main**
+1. for $i\in{1}\dots\mathcal{M}_{\infty}$
+    1. set $\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)$
+    1. for $j\in{1}\dots{n}$
+        1. compute new value $x_{j}^{\prime}$
+    
+    1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
+        1. set converged $\leftarrow$ true
+        1. break
+    
+    1. set $\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}$
+
+1. return $\hat{\mathbf{x}}$, converged
+````
 
 #### Successive Overrelaxation
 Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of $x_{i}$ is further modified

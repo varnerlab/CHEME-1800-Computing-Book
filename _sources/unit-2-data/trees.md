@@ -118,6 +118,18 @@ Trees are often used to represent hierarchical relationships, such as in file sy
 
 There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.
 
+#### Revisit: Recursive Fibonacci and Memoization
+One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) numbers. The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`)
+
+```{figure} ./figs/Fig-Fib-4-Recursive-Tree.pdf
+---
+height: 260px
+name: fig-recursive-fib-4-call-tree
+---
+Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
+```
+
+
 (content:references:data-structure-graphs)=
 ### Graphs
 A graph is a data structure in computer science that consists of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected.

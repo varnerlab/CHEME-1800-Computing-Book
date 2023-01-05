@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/data-file-io.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Modules and Programs" href="programs.html" />
-    <link rel="prev" title="Functions, Control Statements, and Recursion" href="functions.html" />
+    <link rel="next" title="Data, Algorithms, and Linear Algebra" href="../unit-2-data/data-landing.html" />
+    <link rel="prev" title="Programs and Modules" href="programs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -136,7 +136,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="types.html">
-     Variables, Types and Expressions
+     Expressions, Variables and Types
     </a>
    </li>
    <li class="toctree-l2">
@@ -144,14 +144,14 @@ const thebe_selector_output = ".output, .cell_output"
      Functions, Control Statements, and Recursion
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="programs.html">
+     Programs and Modules
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Data Input and Output
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="programs.html">
-     Modules and Programs
     </a>
    </li>
   </ul>
@@ -433,11 +433,52 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#file-input-and-output-file-i-o">
    File Input and Output (File I/O)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#csv-files">
+     CSV files
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-and-write-a-csv-file">
+       Program: Read and write a CSV file
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-a-csv-file-refactored">
+       Program: Read a CSV file refactored
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toml-files">
+     TOML files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json-files">
+     JSON files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yaml-files">
+     YAML files
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
    Application Programming Interfaces (APIs)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-http">
+     What is HTTP?
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -472,11 +513,52 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#file-input-and-output-file-i-o">
    File Input and Output (File I/O)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#csv-files">
+     CSV files
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-and-write-a-csv-file">
+       Program: Read and write a CSV file
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#program-read-a-csv-file-refactored">
+       Program: Read a CSV file refactored
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toml-files">
+     TOML files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json-files">
+     JSON files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yaml-files">
+     YAML files
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
    Application Programming Interfaces (APIs)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-http">
+     What is HTTP?
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -504,8 +586,197 @@ title="Print to PDF"
 <section id="file-input-and-output-file-i-o">
 <h2>File Input and Output (File I/O)<a class="headerlink" href="#file-input-and-output-file-i-o" title="Permalink to this headline">#</a></h2>
 <p>File Input/Output (File I/O) are operations for reading and writing data to and from files on your computer system. File I/O is a common task in programming, as it allows you to store and retrieve data from persistent storage, such as a hard drive or a cloud service, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Box_(company)">Box</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Drive">Google Drive</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/OneDrive">One Drive</a>.</p>
-<p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files.</p>
-<p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p>
+<p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files of standard types such as <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value (CSV)</a> files, or modern file types such as the <a class="reference external" href="https://toml.io/en/">Tom’s Obvious Minimal Language (TOML) format</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JavaScript Object Notation (JSON) format</a> or <a class="reference external" href="https://yaml.org">YAML files</a>, YAML is a human-friendly data serialization
+language for all programming languages.</p>
+<section id="csv-files">
+<h3>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma-separated value (CSV)</a> files are delimited text files that use a comma to separate values. A CSV file typically stores tabular data (numbers and text) in plain text, where each line has the same number of fields. Each line of the file is a record, and each record consists of one or more fields, separated by commas (or other characters such as a <code class="docutils literal notranslate"><span class="pre">tab</span></code> or <code class="docutils literal notranslate"><span class="pre">space</span></code> character).</p>
+<p>In engineering or other quantitative applications, <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a> are typically used to store, transmit and work with numerical data. Consider a comma-separated value file holding interest rate data for the last year:</p>
+<div class="highlight-CSV notranslate"><div class="highlight"><pre><span></span>Date,T=20-year-percentage,T=30-year-percentage
+2021-09-17,1.82,1.88
+2021-09-24,1.84,1.89
+2021-10-01,2.00,2.05
+2021-10-08,2.05,2.10
+....
+</pre></div>
+</div>
+<p>This data file has a header row that contains column labels (which are text), while the other rows contain numerical data. Each row holds a data record, that is composed of fields that hold a type of data, e.g., the date or values for <a class="reference external" href="https://www.investopedia.com/terms/s/spot_rate.asp">the spot rate</a> for <a class="reference external" href="https://www.investopedia.com/ask/answers/033115/what-are-differences-between-treasury-bond-and-treasury-note-and-treasury-bill-tbill.asp">fixed income United States treasury debt securities</a>.</p>
+<section id="program-read-and-write-a-csv-file">
+<h4>Program: Read and write a CSV file<a class="headerlink" href="#program-read-and-write-a-csv-file" title="Permalink to this headline">#</a></h4>
+<p>Let’s develop a <a class="reference external" href="https://docs.julialang.org">Julia</a> function that loads a <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value file</a> from the local filesystem; first, let’s use the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, which is a
+specialized package to work with <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataFrames</span>
+<span class="k">using</span> <span class="n">CSV</span>
+
+<span class="k">function</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">DataFrame</span>
+    
+    <span class="c"># check: is the path arg legit?</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># set the path -</span>
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="s">&quot;Treasury-HistoricalData-09-09-22.csv&quot;</span><span class="p">;</span>
+
+<span class="c"># load csv file -</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This first example, which takes advantage of the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, returns a table-like data structure called a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (which is implemented by the <a class="reference external" href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> package). The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> data structure (which we’ll explore later) offers several standard and advanced features for working with tabular data.</p>
+<p>One possible criticism of the first <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> implementation is that all the details of what is going on are hidden in the <code class="docutils literal notranslate"><span class="pre">CSV.read()</span></code> call. However, there may be cases or applications where we may want more control when reading (or writing) <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a>.</p>
+</section>
+<section id="program-read-a-csv-file-refactored">
+<h4>Program: Read a CSV file refactored<a class="headerlink" href="#program-read-a-csv-file-refactored" title="Permalink to this headline">#</a></h4>
+<p>Let’s <a class="reference external" href="https://en.wikipedia.org/wiki/Code_refactoring">refactor</a> the previous <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> function so that we have access to each record as it is beging loaded:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span> <span class="n">delim</span><span class="o">::</span><span class="kt">Char</span><span class="o">=</span><span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="n">keyindex</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">::</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Number</span><span class="p">,</span><span class="mi">1</span><span class="p">}}}</span>
+    
+    <span class="c"># check: is the path arg legit?</span>
+    <span class="c"># ....</span>
+
+    <span class="c"># initialize</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}}()</span>
+
+    <span class="c"># main -</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">io</span> <span class="c"># open a stream to the file</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">eachline</span><span class="p">(</span><span class="n">io</span><span class="p">)</span> <span class="c"># read each line from the stream</span>
+            
+            <span class="c"># split the line around the delim -</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">delim</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+                
+                <span class="c"># package the hedaer -</span>
+                <span class="k">for</span> <span class="n">value</span> <span class="k">in</span> <span class="n">fields</span>
+                    <span class="n">push!</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="k">end</span>
+
+                <span class="c"># update the counter -</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span>
+
+                <span class="c"># package -</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span>
+                <span class="n">keyfield</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="n">keyindex</span><span class="p">]</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="k">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">keyindex</span><span class="p">)</span>
+                        <span class="n">push!</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">parse</span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="n">value</span><span class="p">))</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">keyfield</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># set the path -</span>
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="s">&quot;Treasury-HistoricalData-09-09-22.csv&quot;</span><span class="p">;</span>
+
+<span class="c"># load file -</span>
+<span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="toml-files">
+<h3>TOML files<a class="headerlink" href="#toml-files" title="Permalink to this headline">#</a></h3>
+<p>TOML (Tom’s Obvious, Minimal Language) is a configuration file format that is intended to be easy to read and write and is also easy to parse. It is used to store configuration data for applications. TOML files consist of key-value pairs, similar to a dictionary in Julia or Python, and can also include nested groups of keys. TOML files often have a <code class="docutils literal notranslate"><span class="pre">.toml</span></code> file extension.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a TOML configuration file for a database</span><span class="w"></span>
+
+<span class="c1"># The database hostname</span><span class="w"></span>
+<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w"></span>
+
+<span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5432</span><span class="w"></span>
+
+<span class="c1"># The name of the database</span><span class="w"></span>
+<span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydatabase&quot;</span><span class="w"></span>
+
+<span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myuser&quot;</span><span class="w"></span>
+
+<span class="c1"># The password for the user</span><span class="w"></span>
+<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mypassword&quot;</span><span class="w"></span>
+
+<span class="c1"># The maximum number of connections to allow at once</span><span class="w"></span>
+<span class="n">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+
+<span class="c1"># The amount of time to wait before timing out a connection</span><span class="w"></span>
+<span class="n">connection_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;30s&quot;</span><span class="w"></span>
+
+<span class="c1"># A group of database options</span><span class="w"></span>
+<span class="k">[options]</span><span class="w"></span>
+
+<span class="c1"># Whether to enable SSL connections to the database</span><span class="w"></span>
+<span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+
+<span class="c1"># The preferred SSL mode to use</span><span class="w"></span>
+<span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="json-files">
+<h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this headline">#</a></h3>
+<p>JSON (JavaScript Object Notation) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays (called objects). JSON is composed of two data structures:</p>
+<ul class="simple">
+<li><p>A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</p></li>
+<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
+Here is an example of a JSON file that stores information about a collection of books:</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;555-555-5555&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Smith&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane@example.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;444-444-4444&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This JSON file defines an object with a single key, “people”, that has a value that is a list of objects, each representing a person. Each person object has three keys, “name”, “email”, and “</p>
+</section>
+<section id="yaml-files">
+<h3>YAML files<a class="headerlink" href="#yaml-files" title="Permalink to this headline">#</a></h3>
+<p>YAML (YAML Ain’t Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
+<p>Here is an example of a YAML file that could be used to store configuration data for an application:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a YAML configuration file for an application</span><span class="w"></span>
+
+<span class="c1"># The application&#39;s name</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My App</span><span class="w"></span>
+
+<span class="c1"># The version of the application</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w"></span>
+
+<span class="c1"># The hostname to bind the application to</span><span class="w"></span>
+<span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
+
+<span class="c1"># The port to bind the application to</span><span class="w"></span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"></span>
+
+<span class="c1"># A group of database options</span><span class="w"></span>
+<span class="nt">database</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The database hostname</span><span class="w"></span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The name of the database</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mydatabase</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># The password for the user</span><span class="w"></span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="application-programming-interfaces-apis">
 <h2>Application Programming Interfaces (APIs)<a class="headerlink" href="#application-programming-interfaces-apis" title="Permalink to this headline">#</a></h2>
@@ -518,11 +789,67 @@ title="Print to PDF"
 <li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.</p></li>
 </ul>
 <p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.</p>
+<section id="what-is-http">
+<h3>What is HTTP?<a class="headerlink" href="#what-is-http" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol (HTTP)</a> is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled.</p>
+<p>For example, when looking for our class notes website:</p>
+<ul class="simple">
+<li><p><strong>Request</strong>: When you enter a URL into your web browser, the browser sends an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP request message</a> to the server hosting the website. Thus, an HTTP request message is a question to a server written in a particular format that the server understands.</p></li>
+<li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
+</ul>
+<p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
+<p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 9</a>:</p>
+<div class="proof example dropdown admonition" id="example-get-API-example">
+<p class="admonition-title"><span class="caption-number">Example 9 </span> (GET Request)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a function that calls an application programming interface (API) to retrive a list of employees.</p>
+<p><strong>Solution</strong>: The executable Julia script below makes an API call and transforms the JSON data returned from the server into a Julia dictionary. The <code class="docutils literal notranslate"><span class="pre">makeapicallget(url::String)::Dict{String,Any}</span></code> calls the server and transforms the data into the final format.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load external packages</span>
+<span class="k">using</span> <span class="n">HTTP</span>
+<span class="k">using</span> <span class="n">JSON</span>
+
+<span class="k">function</span> <span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># ok, so we are going to make a HTTP GET call with the </span>
+    <span class="c"># URL that was passed in -</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HTTP</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">;</span> <span class="n">status_exception</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+
+    <span class="c"># let&#39;s get the data contained in the response </span>
+    <span class="c"># the data is conatined in body section of the response message</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">);</span>
+
+    <span class="c"># convert the JSON response body to a dictionary -</span>
+    <span class="n">response_body_dictionary</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">response_body_dictionary</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c"># We are going to use a &quot;fake&quot; API to show the steps of making an API call</span>
+<span class="c"># http://dummy.restapiexample.com</span>
+
+<span class="c"># setup the url string -</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://dummy.restapiexample.com/api/v1/employees&quot;</span>
+
+<span class="c"># make the api call - data gets returned as JSON, </span>
+<span class="c"># we then turn JSON into a Dict{String,Any} type</span>
+<span class="n">response_dictionary</span> <span class="o">=</span> <span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To execute this program in <a class="reference external" href="https://docs.julialang.org">Julia</a>, save it to a file called <code class="docutils literal notranslate"><span class="pre">myapiexample.jl</span></code> and then use the <a class="reference external" href="https://docs.julialang.org/en/v1/base/base/#Base.include">include</a> function from the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">Julia REPL</a> to execute it:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="p">(</span><span class="s">&quot;myapiexample.jl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</div></section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>In this lecture we introduced topcs in data input and output.</p>
+<ul class="simple">
+<li><p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p></li>
+</ul>
 </section>
 </section>
 
@@ -553,17 +880,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="functions.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="programs.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Functions, Control Statements, and Recursion</p>
+            <p class="prev-next-title">Programs and Modules</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="programs.html" title="next page">
+    <a class='right-next' id="next-link" href="../unit-2-data/data-landing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modules and Programs</p>
+        <p class="prev-next-title">Data, Algorithms, and Linear Algebra</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

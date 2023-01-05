@@ -51,11 +51,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/programs.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data, Algorithms, and Linear Algebra" href="../unit-2-data/data-landing.html" />
-    <link rel="prev" title="Data Input and Output" href="data-file-io.html" />
+    <link rel="next" title="Data Input and Output" href="data-file-io.html" />
+    <link rel="prev" title="Functions, Control Statements, and Recursion" href="functions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,14 +146,14 @@ const thebe_selector_output = ".output, .cell_output"
      Functions, Control Statements, and Recursion
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="data-file-io.html">
-     Data Input and Output
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Programs and Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data-file-io.html">
+     Data Input and Output
     </a>
    </li>
   </ul>
@@ -481,8 +483,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-execute-a-julia-program">
-     How do we execute a Julia program?
+    <a class="reference internal nav-link" href="#anatomy-of-an-executable-program">
+     Anatomy of an executable program
     </a>
    </li>
   </ul>
@@ -534,8 +536,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-execute-a-julia-program">
-     How do we execute a Julia program?
+    <a class="reference internal nav-link" href="#anatomy-of-an-executable-program">
+     Anatomy of an executable program
     </a>
    </li>
   </ul>
@@ -573,10 +575,10 @@ title="Print to PDF"
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>This lecture introduces computer programs and the concept of modules. A program is a set of instructions that a computer follows to perform a specific set of tasks. Program usually consist of one or more modules that are used to solve specific problems or accomplish particular tasks. On the other hand, module are a collection of related functions, variables, and other types of data organized with some intent, e.g., a module that provides types and functions to work with probability; modules organize code and make it easier to reuse and maintain.</p>
 <p>Modules can be imported and used in many programs, which makes it easier to reuse code and avoid repeating the same functionality in multiple programs. This helps to make programs more efficient and easier to maintain. For example, imagine you have a program that needs to perform mathematical calculations. Instead of writing all of the necessary code from scratch, you could create a module containing functions for performing the calculations and importing that into your program. This way, you can reuse the code in the module in multiple programs, saving time and making it easier to maintain the code.</p>
-</section>
 <hr class="docutils" />
+</section>
 <section id="programs">
-<h2>Programs<a class="headerlink" href="#programs" title="Permalink to this headline">#</a></h2>
+<span id="content-references-programs-structure"></span><h2>Programs<a class="headerlink" href="#programs" title="Permalink to this headline">#</a></h2>
 <p>A computer program is a set of instructions that tells a computer what to do. It is written in a programming language, such as <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>, and can be compiled into machine code that a computer can execute.</p>
 <p>The structure of a computer program typically includes the following elements:</p>
 <ul class="simple">
@@ -588,10 +590,79 @@ title="Print to PDF"
 <li><p>Functions: These are blocks of code that perform a specific task and can be called from other parts of the program. Functions can take arguments (input) and return a value (output).</p></li>
 </ul>
 <p>Overall, the structure of a computer program is designed to take in data, process it in some way, and produce output. The specific details of the structure will depend on the problem or task the program is trying to solve.</p>
-<section id="how-do-we-execute-a-julia-program">
-<h3>How do we execute a Julia program?<a class="headerlink" href="#how-do-we-execute-a-julia-program" title="Permalink to this headline">#</a></h3>
-<p>Let’s build an example program in <a class="reference external" href="https://docs.julialang.org">Julia</a> and execute that program; let’s consider the recursive <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function that we developed in the <a class="reference internal" href="functions.html#content-references-recursion-functions"><span class="std std-ref">Recursion</span></a> section:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># define the recursive factorial function</span>
+<section id="anatomy-of-an-executable-program">
+<h3>Anatomy of an executable program<a class="headerlink" href="#anatomy-of-an-executable-program" title="Permalink to this headline">#</a></h3>
+<p>The structure of programs in modern languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, and older foundational languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> are remarkably conserved. Let’s look at a skeleton of an <em>executable</em> program in various languages and compare and contrast the structure:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c009d8df-aeeb-42c5-92a1-ddd00457e39c" name="c0ce0fa6-1ee6-4154-a681-848cf18af0e4" type="radio">
+</input><label class="sd-tab-label" for="c009d8df-aeeb-42c5-92a1-ddd00457e39c">
+julia</label><div class="sd-tab-content docutils">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 0. copyright/licensing information</span>
+<span class="c"># 1. import functions from external modules here</span>
+<span class="c"># ...</span>
+
+<span class="c"># 2. include your custom functions here</span>
+<span class="c"># ...</span>
+
+<span class="c"># main</span>
+<span class="k">function</span> <span class="n">main</span><span class="p">()</span>
+    <span class="c"># 3. do stuff here ...</span>
+<span class="k">end</span>
+
+<span class="c"># call main </span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input id="bb083806-2528-4eda-8f9a-8900ad66ad0b" name="c0ce0fa6-1ee6-4154-a681-848cf18af0e4" type="radio">
+</input><label class="sd-tab-label" for="bb083806-2528-4eda-8f9a-8900ad66ad0b">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 0. copyright/licensing information</span>
+<span class="c1"># 1. import functions from external modules here</span>
+<span class="c1"># ...</span>
+
+<span class="c1"># 2. include your custom functions here</span>
+<span class="c1"># ...</span>
+
+<span class="c1"># main</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># do stuff here ...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input id="654e7126-6a8c-43c2-9c98-181206180d95" name="c0ce0fa6-1ee6-4154-a681-848cf18af0e4" type="radio">
+</input><label class="sd-tab-label" for="654e7126-6a8c-43c2-9c98-181206180d95">
+C</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 0 copyright/licensing */</span><span class="w"></span>
+<span class="cm">/* 1 includes */</span><span class="w"></span>
+<span class="cm">/* 2 defines */</span><span class="w"></span>
+<span class="cm">/* 3 global variable declarations */</span><span class="w"></span>
+<span class="cm">/* 4 function prototypes */</span><span class="w"></span>
+
+<span class="cm">/* main */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* 5 command-line parsing */</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* do stuff ... */</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="cm">/* 6 function declarations */</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s develop an <em>executable</em> script in <a class="reference external" href="https://docs.julialang.org">Julia</a> to compute the factorial <span class="math notranslate nohighlight">\(n!\)</span> (<a class="reference internal" href="#example-exe-julia-script">Example 8</a>):</p>
+<div class="proof example dropdown admonition" id="example-exe-julia-script">
+<p class="admonition-title"><span class="caption-number">Example 8 </span> (Execute a Julia program)</p>
+<section class="example-content" id="proof-content">
+<p>Build an example program in <a class="reference external" href="https://docs.julialang.org">Julia</a> and execute that program; consider the recursive <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function that we developed in the <a class="reference internal" href="functions.html#content-references-recursion-functions"><span class="std std-ref">Recursion</span></a> section:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load external modules</span>
+<span class="c"># ...</span>
+
+<span class="c"># define the recursive factorial function</span>
 <span class="k">function</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     
     <span class="c"># check: is n legit? if n &lt; 0 through an error</span>
@@ -617,13 +688,14 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>To execute this program in <a class="reference external" href="https://docs.julialang.org">Julia</a>, you can save it to a file called <code class="docutils literal notranslate"><span class="pre">myfactorial.jl</span></code> and then use the <a class="reference external" href="https://docs.julialang.org/en/v1/base/base/#Base.include">include</a> function from the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">Julia REPL</a> to execute it:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="p">(</span><span class="s">&quot;myfactorial.jl&quot;</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">include</span><span class="p">(</span><span class="s">&quot;myfactorial.jl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
+</div></section>
 </section>
 <section id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h2>
+<span id="content-references-module-structure"></span><h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h2>
 <p>A module is a collection of related functions, variables, and other types of data that can be imported and used in other programs. Modules are used to organize code and make it easier to reuse and maintain.</p>
 <section id="julia">
 <h3>Julia<a class="headerlink" href="#julia" title="Permalink to this headline">#</a></h3>
@@ -680,17 +752,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="data-file-io.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="functions.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Data Input and Output</p>
+            <p class="prev-next-title">Functions, Control Statements, and Recursion</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../unit-2-data/data-landing.html" title="next page">
+    <a class='right-next' id="next-link" href="data-file-io.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data, Algorithms, and Linear Algebra</p>
+        <p class="prev-next-title">Data Input and Output</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

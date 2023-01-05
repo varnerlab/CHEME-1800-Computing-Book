@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/functions.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data Input and Output" href="data-file-io.html" />
+    <link rel="next" title="Programs and Modules" href="programs.html" />
     <link rel="prev" title="Expressions, Variables and Types" href="types.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -147,13 +147,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="data-file-io.html">
-     Data Input and Output
+    <a class="reference internal" href="programs.html">
+     Programs and Modules
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="programs.html">
-     Programs and Modules
+    <a class="reference internal" href="data-file-io.html">
+     Data Input and Output
     </a>
    </li>
   </ul>
@@ -442,8 +442,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computer-functions">
-     Computer functions
+    <a class="reference internal nav-link" href="#computer-science-functions">
+     Computer science functions
     </a>
    </li>
   </ul>
@@ -481,6 +481,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#recursion">
    Recursion
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mutating-functions">
+     Mutating functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memoization">
+     Memoization
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -522,8 +534,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computer-functions">
-     Computer functions
+    <a class="reference internal nav-link" href="#computer-science-functions">
+     Computer science functions
     </a>
    </li>
   </ul>
@@ -561,6 +573,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#recursion">
    Recursion
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mutating-functions">
+     Mutating functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memoization">
+     Memoization
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -581,7 +605,7 @@ title="Print to PDF"
 <h1>Functions, Control Statements, and Recursion<a class="headerlink" href="#functions-control-statements-and-recursion" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>In this lecture, we introduce functions, control statements, and the concept of recursion. A function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.</p>
+<p>We introduce functions, control statements, and the concept of recursion in this lecture. A function is a block of code that performs a specific task and may return a value. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.</p>
 </section>
 <hr class="docutils" />
 <section id="functions">
@@ -609,14 +633,14 @@ title="Print to PDF"
 </section>
 </div><p>The function <span class="math notranslate nohighlight">\(f\)</span> is the rule that describes how the inputs are transformed into results, while <span class="math notranslate nohighlight">\(y = f(x)\)</span> denotes the output value in the range of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </section>
-<section id="computer-functions">
-<h3>Computer functions<a class="headerlink" href="#computer-functions" title="Permalink to this headline">#</a></h3>
+<section id="computer-science-functions">
+<h3>Computer science functions<a class="headerlink" href="#computer-science-functions" title="Permalink to this headline">#</a></h3>
 <p>Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> can alter and be affected by the global state of your program.</p>
 <p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values.</p>
 <p>Let’s compare and contrast the structure and syntax of a simple function named <code class="docutils literal notranslate"><span class="pre">linear</span></code> which computes the value <span class="math notranslate nohighlight">\(y = mx+b\)</span> written in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7039307a-ce83-437c-b0e6-73b410761098" name="6bbfd662-0d4a-46e8-8e97-09e45c0aebc0" type="radio">
-</input><label class="sd-tab-label" for="7039307a-ce83-437c-b0e6-73b410761098">
+<input checked="checked" id="6f42779a-c47d-4e05-9c75-1591b6113a1c" name="c661bab4-7380-49db-aede-d153f6857982" type="radio">
+</input><label class="sd-tab-label" for="6f42779a-c47d-4e05-9c75-1591b6113a1c">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
     
@@ -629,8 +653,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="41e6da9c-fa21-4732-a950-a2e09edd3721" name="6bbfd662-0d4a-46e8-8e97-09e45c0aebc0" type="radio">
-</input><label class="sd-tab-label" for="41e6da9c-fa21-4732-a950-a2e09edd3721">
+<input id="c58e76ed-7368-4f06-8368-4b8008bc8352" name="c661bab4-7380-49db-aede-d153f6857982" type="radio">
+</input><label class="sd-tab-label" for="c58e76ed-7368-4f06-8368-4b8008bc8352">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
 
@@ -642,8 +666,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="71e1d1b9-29b3-41f8-82f8-9163b010f71f" name="6bbfd662-0d4a-46e8-8e97-09e45c0aebc0" type="radio">
-</input><label class="sd-tab-label" for="71e1d1b9-29b3-41f8-82f8-9163b010f71f">
+<input id="76ee409c-4465-4d65-9479-71dbc9ae23e9" name="c661bab4-7380-49db-aede-d153f6857982" type="radio">
+</input><label class="sd-tab-label" for="76ee409c-4465-4d65-9479-71dbc9ae23e9">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
@@ -682,8 +706,8 @@ C</label><div class="sd-tab-content docutils">
 <p>A common programming task is to check whether a condition is <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> and then execute tasks depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements.</p>
 <p>Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Let’s consider the anatomy of the <code class="docutils literal notranslate"><span class="pre">if-elseif-else</span></code> conditional syntax in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1c952161-add5-45a0-9147-37c6b4439c0b" name="c4a1fa27-daf5-4ef0-b921-a39c8f3518e3" type="radio">
-</input><label class="sd-tab-label" for="1c952161-add5-45a0-9147-37c6b4439c0b">
+<input checked="checked" id="b72fe8c1-8a88-4420-962a-b240b4d930cf" name="cf4af7be-2b24-4ad0-8da9-7c70135c1c22" type="radio">
+</input><label class="sd-tab-label" for="b72fe8c1-8a88-4420-962a-b240b4d930cf">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
     <span class="c"># code statememts executed if condition_1 == true</span>
@@ -695,8 +719,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8de34be5-18fe-420a-9c75-6dadcd75e6a5" name="c4a1fa27-daf5-4ef0-b921-a39c8f3518e3" type="radio">
-</input><label class="sd-tab-label" for="8de34be5-18fe-420a-9c75-6dadcd75e6a5">
+<input id="e13953c3-b05f-457f-a665-b4672ea9e9b2" name="cf4af7be-2b24-4ad0-8da9-7c70135c1c22" type="radio">
+</input><label class="sd-tab-label" for="e13953c3-b05f-457f-a665-b4672ea9e9b2">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
     <span class="c1"># code statememts executed if condition_1 == true</span>
@@ -707,8 +731,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="28117fd7-6772-4952-b0e3-fa799f270e2a" name="c4a1fa27-daf5-4ef0-b921-a39c8f3518e3" type="radio">
-</input><label class="sd-tab-label" for="28117fd7-6772-4952-b0e3-fa799f270e2a">
+<input id="102f0e47-8661-4ddd-b319-1e034e2bb79f" name="cf4af7be-2b24-4ad0-8da9-7c70135c1c22" type="radio">
+</input><label class="sd-tab-label" for="102f0e47-8661-4ddd-b319-1e034e2bb79f">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition_1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="cm">/* block of code to be executed if condition_1 is true */</span><span class="w"></span>
@@ -732,8 +756,8 @@ C</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> defines the iteration count while body holds the code that is executed once per iteration. The header of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> are used when the number of iterations is known before entering the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="032063c3-5ef4-4446-8841-a94fd6e4237c" name="a62843f5-2447-4a30-9669-42e6415a5e86" type="radio">
-</input><label class="sd-tab-label" for="032063c3-5ef4-4446-8841-a94fd6e4237c">
+<input checked="checked" id="053fcdb0-9c37-4683-b3cb-7e81083734a5" name="c2a5e287-f207-4376-9655-131a2547b919" type="radio">
+</input><label class="sd-tab-label" for="053fcdb0-9c37-4683-b3cb-7e81083734a5">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span> <span class="c"># gives i values from 1 to 10 inclusive</span>
     <span class="c"># loop body: holds statements to be executed at each iteration</span>
@@ -741,16 +765,16 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8edae5b3-6e34-4005-a3c0-cf9e372a395d" name="a62843f5-2447-4a30-9669-42e6415a5e86" type="radio">
-</input><label class="sd-tab-label" for="8edae5b3-6e34-4005-a3c0-cf9e372a395d">
+<input id="0ed69dec-8ff4-4181-9e69-abcff4b3c235" name="c2a5e287-f207-4376-9655-131a2547b919" type="radio">
+</input><label class="sd-tab-label" for="0ed69dec-8ff4-4181-9e69-abcff4b3c235">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>  <span class="c1"># gives i values from 1 to 9 inclusive (but not 10)</span>
     <span class="c1"># loop body: holds statements to be executed at each iteration</span>
 </pre></div>
 </div>
 </div>
-<input id="ed23c06e-c752-4736-89a5-8ca17bdfea38" name="a62843f5-2447-4a30-9669-42e6415a5e86" type="radio">
-</input><label class="sd-tab-label" for="ed23c06e-c752-4736-89a5-8ca17bdfea38">
+<input id="247b119a-4c9c-40d0-8972-00fe5454b95f" name="c2a5e287-f207-4376-9655-131a2547b919" type="radio">
+</input><label class="sd-tab-label" for="247b119a-4c9c-40d0-8972-00fe5454b95f">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Using for-loop iteration range 0 -&gt; 9 */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -800,8 +824,8 @@ C</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> that iterates over a fixed (specfied) range of values, a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="942d9025-605d-4bd5-90b0-372aaf11428a" name="16e319ef-2b14-4597-bab2-77850eae135b" type="radio">
-</input><label class="sd-tab-label" for="942d9025-605d-4bd5-90b0-372aaf11428a">
+<input checked="checked" id="21e79429-2fcf-42f6-9b16-252eeb4127fe" name="2a4ed8e0-6a05-4d01-bc33-62ca1c1f6d68" type="radio">
+</input><label class="sd-tab-label" for="21e79429-2fcf-42f6-9b16-252eeb4127fe">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize </span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>   <span class="c"># counter variable</span>
@@ -819,8 +843,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="39803ca6-559f-49f5-8ccc-af6225e298b8" name="16e319ef-2b14-4597-bab2-77850eae135b" type="radio">
-</input><label class="sd-tab-label" for="39803ca6-559f-49f5-8ccc-af6225e298b8">
+<input id="fda97837-37ac-478a-9585-bf78db9fd0c6" name="2a4ed8e0-6a05-4d01-bc33-62ca1c1f6d68" type="radio">
+</input><label class="sd-tab-label" for="fda97837-37ac-478a-9585-bf78db9fd0c6">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span>                           <span class="c1"># Set the value to 5 </span>
@@ -834,8 +858,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d8791119-bef7-48ca-80ea-7ad0e06a5fbf" name="16e319ef-2b14-4597-bab2-77850eae135b" type="radio">
-</input><label class="sd-tab-label" for="d8791119-bef7-48ca-80ea-7ad0e06a5fbf">
+<input id="cd867a37-c78e-4651-be91-d1b85d016749" name="2a4ed8e0-6a05-4d01-bc33-62ca1c1f6d68" type="radio">
+</input><label class="sd-tab-label" for="cd867a37-c78e-4651-be91-d1b85d016749">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* declare and initialize */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
@@ -879,12 +903,92 @@ C</label><div class="sd-tab-content docutils">
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>When the <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function is called, it checks if the input <span class="math notranslate nohighlight">\(n\)</span> equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if <span class="math notranslate nohighlight">\(n\neq{0}\)</span> or <span class="math notranslate nohighlight">\(n\neq{1}\)</span>, the process enters the recursive case; the function calls itself with an input of <span class="math notranslate nohighlight">\(n-1\)</span> and returns the result of <span class="math notranslate nohighlight">\(n\)</span> multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function is called, it checks if the input <span class="math notranslate nohighlight">\(n\)</span> equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if <span class="math notranslate nohighlight">\(n\neq{0}\)</span>, the process enters the recursive case; the function calls itself with an input of <span class="math notranslate nohighlight">\(n-1\)</span> and returns the result of <span class="math notranslate nohighlight">\(n\)</span> multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.</p>
+<p>Let’s reimagine the computation of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> using a recursive strategy (<a class="reference internal" href="#example-iteration-fibonacci-numbers-recursive">Example 5</a>):</p>
+<div class="proof example dropdown admonition" id="example-iteration-fibonacci-numbers-recursive">
+<p class="admonition-title"><span class="caption-number">Example 5 </span> (Recursive calculation of the Fibonacci numbers)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a recursive <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function which takes an integer <span class="math notranslate nohighlight">\(n\)</span> as an argument and returns the corresponding Fibonacci number.</p>
+<p><strong>Solution</strong>: The Fibonacci numbers, denoted as <span class="math notranslate nohighlight">\(F_{n}\)</span>, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:</p>
+<div class="math notranslate nohighlight">
+\[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A recursive <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function is given by:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># base case</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="c"># base case</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> 
+    <span class="k">else</span> <span class="c"># recursive case</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+</div><section id="mutating-functions">
+<h3>Mutating functions<a class="headerlink" href="#mutating-functions" title="Permalink to this headline">#</a></h3>
+<p>A mutating function is a function that irreversibly modifies the state of an object or variable in a way that is observable outside the function. This is the crucial difference between mathematical and computer science functions.</p>
+<p>Of course, not all computer science functions are mutating. Some functions, called pure functions, do not modify the state of any objects or variables and instead return a new value or object based on the input; pure functions act like mathematical functions. Pure functions are often easier to reason about and test because their behavior is predictable and does not depend on the program’s state.</p>
+<p>Distinguishing between pure and mutating functions can help prevent bugs caused by unexpected changes to the program’s state. In some programming languages, it is possible to mark functions as mutating to indicate to other programmers that the function may change the state of an object or variable. For example, in <a class="reference external" href="https://docs.julialang.org">Julia</a>, we mark (by convention) mutating functions with a <code class="docutils literal notranslate"><span class="pre">!</span></code> at the end of the function name, e.g., the function <code class="docutils literal notranslate"><span class="pre">foo()</span></code> is a pure function while <code class="docutils literal notranslate"><span class="pre">foo!()</span></code> is marked as a mutating function.</p>
+<p>Let’s create a recursive mutating <code class="docutils literal notranslate"><span class="pre">fibonacci!()</span></code> function to compute the Fibonacci sequence:</p>
+<div class="proof example dropdown admonition" id="example-iteration-fibonacci-series-recursive">
+<p class="admonition-title"><span class="caption-number">Example 6 </span> (Recursive mutating Fibonacci sequence)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a recursive mutating <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function which takes an integer <span class="math notranslate nohighlight">\(n\)</span> as an argument and returns the Fibonacci sequence up to and including <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><strong>Solution</strong>: The Fibonacci numbers, denoted as <span class="math notranslate nohighlight">\(F_{n}\)</span>, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:</p>
+<div class="math notranslate nohighlight">
+\[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A recursive <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of a mutating Fibonacci sequence function is given by:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">series</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">})</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># base case</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="c"># base case</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> 
+    <span class="k">else</span>
+        <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">series</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+</div></section>
+<section id="memoization">
+<h3>Memoization<a class="headerlink" href="#memoization" title="Permalink to this headline">#</a></h3>
+<p>Memoization is a technique for improving the performance of a computer program, especially for functions involving recursion, by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other programs to optimize the performance of expensive function calls.</p>
+<p>The critical idea of Memoization: don’t do extra work! Instead, try to recycle your answers if possible. If we’ve already done the work to compute a value, or run a program, store these values in case you need them again.</p>
+<p>Let’s develop one last version of the <code class="docutils literal notranslate"><span class="pre">fibonacci!()</span></code> function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make:</p>
+<div class="proof example dropdown admonition" id="example-iteration-fibonacci-series-recursive-memoization">
+<p class="admonition-title"><span class="caption-number">Example 7 </span> (Recursive mutating memoization Fibonacci sequence)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a recursive mutating <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function which takes an integer <span class="math notranslate nohighlight">\(n\)</span> as an argument and returns the Fibonacci sequence up to and including <span class="math notranslate nohighlight">\(n\)</span>.
+Implement a memoization scheme to recycle the work done by previous function calls.</p>
+<p><strong>Solution</strong>: The Fibonacci numbers, denoted as <span class="math notranslate nohighlight">\(F_{n}\)</span>, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:</p>
+<div class="math notranslate nohighlight">
+\[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A recursive <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of a mutating Fibonacci sequence function is given by:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">series</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">})</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># base case</span>
+        <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="c"># base case</span>
+        <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="p">(</span><span class="n">haskey</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="c"># memoization</span>
+        <span class="k">return</span> <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="k">else</span> <span class="c"># recursive case</span>
+        <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">series</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+</div></section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>In this lecture, we introduced functions, control statements, recursion. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; control statements allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed;</p>
 </section>
 </section>
 
@@ -922,10 +1026,10 @@ C</label><div class="sd-tab-content docutils">
             <p class="prev-next-title">Expressions, Variables and Types</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="data-file-io.html" title="next page">
+    <a class='right-next' id="next-link" href="programs.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data Input and Output</p>
+        <p class="prev-next-title">Programs and Modules</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
