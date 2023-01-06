@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-2-data/vectors-matricies-nla.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Measurements and Distances" href="measures.html" />
+    <link rel="next" title="Linear Algebraic Equations" href="laes.html" />
     <link rel="prev" title="Data Structures" href="trees.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -179,11 +179,6 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="measures.html">
-     Measurements and Distances
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="laes.html">
      Linear Algebraic Equations
     </a>
@@ -239,12 +234,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -483,6 +478,42 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurements-and-distances">
+   Measurements and Distances
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vector-and-matrix-norms">
+     Vector and matrix norms
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties-of-vector-norms">
+       Properties of vector norms
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties-of-matrix-norms">
+       Properties of matrix norms
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensionality-reduction">
+   Dimensionality reduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-clustering">
+     k-means clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
@@ -568,6 +599,42 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurements-and-distances">
+   Measurements and Distances
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vector-and-matrix-norms">
+     Vector and matrix norms
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties-of-vector-norms">
+       Properties of vector norms
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties-of-matrix-norms">
+       Properties of matrix norms
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensionality-reduction">
+   Dimensionality reduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-clustering">
+     k-means clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
@@ -631,14 +698,8 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h2>
 <section id="addition-and-subtraction">
 <h3>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Permalink to this headline">#</a></h3>
-<p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible:</p>
-<div class="proof remark admonition" id="rem-vector-matrix-compatible">
-<p class="admonition-title"><span class="caption-number">Remark 1 </span></p>
-<section class="remark-content" id="proof-content">
-<p>Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
-</section>
-</div><p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of
-elements, then addition and subtraction operations don’t make sense.</p>
+<p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
+<p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
 <div class="proof observation admonition" id="obs-same-dimension">
 <p class="admonition-title"><span class="caption-number">Observation 1 </span> (Vector addition)</p>
 <section class="observation-content" id="proof-content">
@@ -648,7 +709,7 @@ elements, then addition and subtraction operations don’t make sense.</p>
 <p>where the ith element of the sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is given by: <span class="math notranslate nohighlight">\(v_{i} = v_{i,1}+ v_{i,2}\)</span>. If however, <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> had <span class="math notranslate nohighlight">\(m&gt;n\)</span> elements, then the vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span> are not compatible. A similar arguement can be made about matrices.</p>
 </section>
 </div><p>Vector addition is strarighforward to implement; for example, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a>:</p>
-<div class="proof algorithm admonition" id="algo-vector-addition">
+<div class="proof algorithm dropdown admonition" id="algo-vector-addition">
 <p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Naive vector addition)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> Compatible vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span></p>
@@ -703,7 +764,7 @@ Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <s
 <p><span class="caption-number">Fig. 3 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<div class="proof algorithm admonition" id="algo-right-multiplication-matrix-vector">
+<div class="proof algorithm dropdown admonition" id="algo-right-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Naive right multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
@@ -749,7 +810,7 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 <div class="math notranslate nohighlight">
 \[y_{i} = 
 \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}\]</div>
-<div class="proof algorithm admonition" id="algo-left-multiplication-matrix-vector">
+<div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Naive left multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
@@ -796,7 +857,7 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only <em>compatible</em> matrices can be
 multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
 meaning we can compute the matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span>, the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must be same as the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
-<div class="proof algorithm admonition" id="algo-matrix-matrix-code">
+<div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
@@ -854,6 +915,56 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 </section>
 </section>
 <hr class="docutils" />
+<section id="measurements-and-distances">
+<h2>Measurements and Distances<a class="headerlink" href="#measurements-and-distances" title="Permalink to this headline">#</a></h2>
+<section id="vector-and-matrix-norms">
+<h3>Vector and matrix norms<a class="headerlink" href="#vector-and-matrix-norms" title="Permalink to this headline">#</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Norm_(mathematics)">norm</a> is a function that measures the length of vectors or matrices. The notion of length is handy because it enables us to define distance, i.e., similarity between vectors (or matrices) in applications such as machine learning.</p>
+<section id="properties-of-vector-norms">
+<h4>Properties of vector norms<a class="headerlink" href="#properties-of-vector-norms" title="Permalink to this headline">#</a></h4>
+<p>A vector norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{n}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
+<ul class="simple">
+<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{x}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span></p></li>
+<li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{x}|| = \alpha{||\mathbf{x}||}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
+<li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
+</ul>
+<div class="proof definition admonition" id="defn-vector-p-norm">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (p-norm)</p>
+<section class="definition-content" id="proof-content">
+<p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
+</section>
+</div></section>
+<section id="properties-of-matrix-norms">
+<h4>Properties of matrix norms<a class="headerlink" href="#properties-of-matrix-norms" title="Permalink to this headline">#</a></h4>
+<p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
+<ul class="simple">
+<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{A}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{A}||=0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{A}=0\)</span>.</p></li>
+<li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{A}|| = \alpha{||\mathbf{A}||}\)</span> for any <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
+<li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="dimensionality-reduction">
+<h2>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h2>
+<p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
+<section id="k-means-clustering">
+<h3>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">#</a></h3>
+<p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
+<div class="proof definition admonition" id="defn-kmeans-problem">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (k-means clustering)</p>
+<section class="definition-content" id="proof-content">
+<p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
+<div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
+</section>
+</div></section>
+</section>
+<hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
@@ -900,10 +1011,10 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
             <p class="prev-next-title">Data Structures</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="measures.html" title="next page">
+    <a class='right-next' id="next-link" href="laes.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Measurements and Distances</p>
+        <p class="prev-next-title">Linear Algebraic Equations</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -13,10 +13,15 @@ In particular, we discuss:
 
 (content:references:ols-unconstrained-problem)=
 ## Unconstrained problems
-Fill me in
+In an unconstrained least-squares problem, we are trying to find the values of a set of parameters that minimize the difference between the predictions of a model and the observed data. This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.
+
+Least-squares problems are called "unconstrained" because there are no constraints on the values of the parameters. This means that the optimization algorithm can choose any values for the parameters that minimize the cost function.
+
+Many optimization algorithms can solve least-squares problems, including gradient descent, Levenberg-Marquardt, and Gauss-Newton algorithms. The choice of algorithm will depend on the problem being solved and the characteristics of the data.
+
 
 (content:references:ols-constrained-problem)=
-## Constraints and non-linear models
+## Constraints
 Constrained least squares is a method of estimating the parameters of a linear regression model subject to one or more constraints on the values the parameters can take. This is often used when prior knowledge or physical constraints must be satisfied by the estimates. To solve a constrained least squares problem, we first define the linear regression model and the constraints on the parameters. We then define an objective function that measures the model’s fit to the data subject to the constraints. We minimize this objective function to find the estimates of the parameters that best fit the data while satisfying the constraints.
 
 ### Penalty methods
