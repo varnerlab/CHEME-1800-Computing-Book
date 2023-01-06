@@ -110,6 +110,10 @@ Non-linear data structures can be more efficient than linear data structures, su
 
 Let's consider two handy non-linear data structures, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`. 
 
+(content:references:data-structure-hashmap-and-sets)=
+### Hashmaps and sets
+Fill me in.
+
 (content:references:data-structure-tree)=
 ### Trees
 Trees are widely-used non-linear data structures that simulate a hierarchical tree structure, with nodes representing the hierarchy. In a tree, each node has one or more child nodes, each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node. The nodes that do not have any children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.
