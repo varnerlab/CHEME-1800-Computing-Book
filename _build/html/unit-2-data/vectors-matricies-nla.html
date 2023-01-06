@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Vectors and Matrices &#8212; CHEME 1800</title>
+    <title>Vectors, Matrices, Measurements and Distances &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -175,7 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Vectors and Matrices
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -202,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/combitorial.html">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -507,6 +507,11 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
+     Eigenvalue-eigenvector problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#k-means-clustering">
      k-means clustering
     </a>
@@ -532,7 +537,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Vectors and Matrices</h1>
+                <h1>Vectors, Matrices, Measurements and Distances</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -628,6 +633,11 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
+     Eigenvalue-eigenvector problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#k-means-clustering">
      k-means clustering
     </a>
@@ -654,8 +664,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="vectors-and-matrices">
-<h1>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="vectors-matrices-measurements-and-distances">
+<h1>Vectors, Matrices, Measurements and Distances<a class="headerlink" href="#vectors-matrices-measurements-and-distances" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_algebra">linear algebra</a>, a branch of mathematics that deals with linear systems of equations and transformations.  Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important.</p>
@@ -950,16 +960,26 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 </section>
 <section id="dimensionality-reduction">
 <h2>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h2>
-<p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
+<p>Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. It simplifies data, removes noise, and makes patterns in the data more visible. Dimensionality reduction can help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p>
+<p>There are many techniques for dimensionality reduction, including <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>, which are both based on computing eigenvalues and eigenvectors, and other approaches, such as clustering and <a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding (t-SNE)</a>, which are based upon minimizing some distance measure.</p>
+<section id="eigenvalue-eigenvector-problems">
+<h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
+<p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
+<p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
+</section>
 <section id="k-means-clustering">
 <h3>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">#</a></h3>
+<p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
 <p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
 <div class="proof definition admonition" id="defn-kmeans-problem">
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (k-means clustering)</p>
 <section class="definition-content" id="proof-content">
 <p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
+<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
 </section>
 </div></section>

@@ -1,4 +1,4 @@
-# Vectors and Matrices
+# Vectors, Matrices, Measurements and Distances
 
 ## Introduction
 This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important.
@@ -282,9 +282,29 @@ A matrix norm is any function $||\star||:\mathbb{R}^{m\times{n}}\rightarrow\math
 * Triangle inequality: $||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||$ for any matrices $\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}$
 
 ## Dimensionality reduction
-Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.
+Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. It simplifies data, removes noise, and makes patterns in the data more visible. Dimensionality reduction can help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
+
+There are many techniques for dimensionality reduction, including [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), which are both based on computing eigenvalues and eigenvectors, and other approaches, such as clustering and [t-distributed stochastic neighbor embedding (t-SNE)](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding), which are based upon minimizing some distance measure.  
+
+
+### Eigenvalue-eigenvector problems
+Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:
+
+```{math}
+:label: eqn-eigenvalue-eigenvector-problem
+\mathbf{A}\mathbf{v} = \lambda\mathbf{v}
+```
+
+where $\mathbf{A}$ is a $n\times{n}$ square matrix, $\mathbf{v}$ is a $n\times{1}$ column vector (also called an eigenvector), and $\lambda$ is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection. 
+
+Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis), and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
+
+
+
 
 ### k-means clustering
+Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.
+
 k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster. 
 
 ````{prf:definition} k-means clustering
