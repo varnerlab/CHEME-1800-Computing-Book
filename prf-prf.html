@@ -177,12 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="unit-2-data/vectors-matricies-nla.html">
-     Vectors and Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="unit-2-data/measures.html">
-     Measurements and Distances
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -194,7 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="unit-3-learning/learning-landing.html">
-   Unit 3. Optimization
+   Unit 3. Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -209,7 +204,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="unit-3-learning/combitorial.html">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -235,18 +230,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="unit-4-decisions/moments.html">
-     Estimating Statistical Properties From Data
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="unit-4-decisions/mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="unit-4-decisions/multi-arm-bandits.html">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -441,9 +431,9 @@ title="Open an issue"
    <a href="#cap-example-twos-complement"><strong>example-twos-complement</strong></a> | 
    <a href="#cap-example-unicode-J"><strong>example-unicode-J</strong></a> | 
    <a href="#cap-obs-basic-iterative-method-outline"><strong>obs-basic-iterative-method-outline</strong></a> | 
+   <a href="#cap-obs-incremental-update-rule"><strong>obs-incremental-update-rule</strong></a> | 
    <a href="#cap-obs-n-transition"><strong>obs-n-transition</strong></a> | 
-   <a href="#cap-obs-same-dimension"><strong>obs-same-dimension</strong></a> | 
-   <a href="#cap-rem-vector-matrix-compatible"><strong>rem-vector-matrix-compatible</strong></a>
+   <a href="#cap-obs-same-dimension"><strong>obs-same-dimension</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -597,7 +587,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/measures.html#defn-kmeans-problem"><code class="xref">defn-kmeans-problem</code></a> <em>(unit-2-data/measures)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-kmeans-problem"><code class="xref">defn-kmeans-problem</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-law-total-probability"><td></td><td>
@@ -733,7 +723,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/measures.html#defn-vector-p-norm"><code class="xref">defn-vector-p-norm</code></a> <em>(unit-2-data/measures)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-vector-p-norm"><code class="xref">defn-vector-p-norm</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-event-card-suits"><td></td><td>
@@ -872,6 +862,14 @@ title="Open an issue"
        <a href="unit-2-data/laes.html#obs-basic-iterative-method-outline"><code class="xref">obs-basic-iterative-method-outline</code></a> <em>(unit-2-data/laes)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-incremental-update-rule"><td></td><td>
+       <strong>obs-incremental-update-rule</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-decisions/multi-arm-bandits.html#obs-incremental-update-rule"><code class="xref">obs-incremental-update-rule</code></a> <em>(unit-4-decisions/multi-arm-bandits)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-n-transition"><td></td><td>
        <strong>obs-n-transition</strong></td><td></td></tr>
      <tr>
@@ -887,14 +885,6 @@ title="Open an issue"
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#obs-same-dimension"><code class="xref">obs-same-dimension</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>observation</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-rem-vector-matrix-compatible"><td></td><td>
-       <strong>rem-vector-matrix-compatible</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#rem-vector-matrix-compatible"><code class="xref">rem-vector-matrix-compatible</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
-       <em>remark</em></td></tr>
    </table>
 
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Combitorial Optimization &#8212; CHEME 1800</title>
+    <title>Combinatorial Optimization &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -175,12 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
-     Vectors and Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/measures.html">
-     Measurements and Distances
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -192,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="learning-landing.html">
-   Unit 3. Optimization
+   Unit 3. Learning
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -207,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -233,18 +228,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-4-decisions/moments.html">
-     Estimating Statistical Properties From Data
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -455,7 +445,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Combitorial Optimization</h1>
+                <h1>Combinatorial Optimization</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -495,22 +485,28 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="combitorial-optimization">
-<h1>Combitorial Optimization<a class="headerlink" href="#combitorial-optimization" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="combinatorial-optimization">
+<h1>Combinatorial Optimization<a class="headerlink" href="#combinatorial-optimization" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
-</section>
+<p>Combinatorial optimization is a branch of computer science and mathematics that deals with the optimization of combinatorial objects, such as graphs, functions, and strings. It involves finding the best solution to a problem among a finite or countably infinite set of possible solutions. Combinatorial optimization has many applications in computer science, engineering, and other fields.</p>
+<p>There are many different approaches to solving combinatorial optimization problems, including exact algorithms, approximation algorithms, and heuristics. The choice of method depends on the specific problem and the desired level of accuracy and efficiency.</p>
+<p>In this lecture we’ll introduce two approaches for the solution of Combinatorial optimization problems:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-dynamic-programming"><span class="std std-ref">Dynamic programming</span></a> solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.</p></li>
+<li><p><a class="reference internal" href="#content-references-branch-and-bound"><span class="std std-ref">Branch and Bound</span></a> is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.</p></li>
+</ul>
 <hr class="docutils" />
+</section>
 <section id="dynamic-programming">
-<h2>Dynamic programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this headline">#</a></h2>
+<span id="content-references-dynamic-programming"></span><h2>Dynamic programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this headline">#</a></h2>
 <p>Dynamic programming is an approach developed by <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman in the 1950s</a> that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency. Dynamic programming is used in numerous fields ranging from engineering to economics.</p>
 <p>Dynamic programming is typically used for problems that can be divided into overlapping subproblems, which means that the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have <em>optimal substructure</em>.</p>
 <p>If dynamic programming methods are applicable, then there is a relationship between the value of the larger problem and the values of the subproblems; this relationship is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Bellman_equation">Bellman equation</a>.</p>
 <p>Dynamic programming can be a valuable tool for solving many problems, but it can be computationally intensive and may only sometimes be the most efficient solution. When deciding whether to use dynamic programming, it is essential to consider the trade-offs between the algorithm’s efficiency and the problem’s complexity.</p>
 </section>
 <section id="branch-and-bound">
-<h2>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this headline">#</a></h2>
+<span id="content-references-branch-and-bound"></span><h2>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this headline">#</a></h2>
 <p>Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.</p>
 <p>Let’s consider minimizing an arbitrary objective function <span class="math notranslate nohighlight">\(f\)</span>:</p>
 <div class="proof algorithm admonition" id="algo-branch-bound-generic">

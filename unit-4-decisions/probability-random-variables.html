@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-4-decisions/probability-random-variables.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Estimating Statistical Properties From Data" href="moments.html" />
-    <link rel="prev" title="The Decision Problem: Probability, Random Process, and Decisions" href="decisions-landing.html" />
+    <link rel="next" title="Markov Decision Processes" href="mdp.html" />
+    <link rel="prev" title="The Decision Problem: Probability, Random Processes, and Decisions" href="decisions-landing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -175,12 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
-     Vectors and Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/measures.html">
-     Measurements and Distances
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -192,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-3-learning/learning-landing.html">
-   Unit 3. Optimization
+   Unit 3. Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -207,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/combitorial.html">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -233,18 +228,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="moments.html">
-     Estimating Statistical Properties From Data
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="multi-arm-bandits.html">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -920,7 +910,7 @@ For example, suppose the collection of sets <span class="math notranslate nohigh
 Then, for any set <span class="math notranslate nohighlight">\(B\subseteq\Omega\)</span> we can decompose <span class="math notranslate nohighlight">\(B\)</span> into smaller disjoint components <span class="math notranslate nohighlight">\(B\cap{A_{i}}\)</span>
 (the elements of <span class="math notranslate nohighlight">\(B\)</span> that are in <span class="math notranslate nohighlight">\(A_{i}\)</span>):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-decomp-partition">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-decomp-partition" title="Permalink to this equation">#</a></span>\[\bigcup_{i=1}^{n}B\cap{A_{i}} = B\]</div>
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-decomp-partition" title="Permalink to this equation">#</a></span>\[\bigcup_{i=1}^{n}B\cap{A_{i}} = B\]</div>
 </section>
 </section>
 <section id="probability-space">
@@ -1113,7 +1103,7 @@ and <span class="math notranslate nohighlight">\(b\geq{1}\)</span> are constants
 <h4>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> (or mean), which measures the central tendency of a random variable <span class="math notranslate nohighlight">\(X\)</span>, is given by (discrete <span class="math notranslate nohighlight">\(X\)</span>):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-expectation">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
+<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
 <p>The expectation of a random variable <span class="math notranslate nohighlight">\(X\)</span> (discrete or continuous) has several useful (and important) properties:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(c\right) = c\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
@@ -1128,7 +1118,7 @@ and <span class="math notranslate nohighlight">\(b\geq{1}\)</span> are constants
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> measures the expected dispersion for
 individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (mean). The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-variance">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
+<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value (mean) of the random variable <span class="math notranslate nohighlight">\(X\)</span>.
 Like the mean, the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> has a few interesting (and important) properties:</p>
 <ul class="simple">
@@ -1143,7 +1133,7 @@ is related to the variance: <span class="math notranslate nohighlight">\(\sigma_
 <h4>Skewness<a class="headerlink" href="#skewness" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Skewness">skewness</a> measures the expected asymmetry of a random variable about its mean (expected value):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-skewness">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-skewness" title="Permalink to this equation">#</a></span>\[\gamma(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^3\Biggr]\]</div>
+<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-skewness" title="Permalink to this equation">#</a></span>\[\gamma(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^3\Biggr]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu\)</span> denotes the mean (expected value), and <span class="math notranslate nohighlight">\(\sigma\)</span> denotes the standard deviation.
 The skewness parameter <span class="math notranslate nohighlight">\(\gamma(X)\)</span> can be positive, zero, negative, or undefined.</p>
 </section>
@@ -1153,7 +1143,7 @@ The skewness parameter <span class="math notranslate nohighlight">\(\gamma(X)\)<
 The <a class="reference external" href="https://en.wikipedia.org/wiki/Kurtosis">kurtosis</a> of a random variable <span class="math notranslate nohighlight">\(X\)</span>, denoted as
 <span class="math notranslate nohighlight">\(\text{Kurt}(X)\)</span>, is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-kurtosis">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-kurtosis" title="Permalink to this equation">#</a></span>\[\kappa(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^4\Biggr]\]</div>
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-kurtosis" title="Permalink to this equation">#</a></span>\[\kappa(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^4\Biggr]\]</div>
 <p>Large <span class="math notranslate nohighlight">\(\kappa(X)\)</span> values arise when most <span class="math notranslate nohighlight">\(X\)</span> values are near the mean, but a few values are very far away from the mean. Additionally, <span class="math notranslate nohighlight">\(\kappa(X)\)</span> can arise from the majority of <span class="math notranslate nohighlight">\(X\)</span> being near the tail of the distribution.</p>
 <!-- High values of  arise when $X$ is concentrated around the mean and the data-generating process produces occasional values very far away from the mean, or
 when $X$ is concentrated in the tails of the distribution. -->
@@ -1312,13 +1302,13 @@ a geometric random variable describes the number of failures obtained before fin
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The Decision Problem: Probability, Random Process, and Decisions</p>
+            <p class="prev-next-title">The Decision Problem: Probability, Random Processes, and Decisions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="moments.html" title="next page">
+    <a class='right-next' id="next-link" href="mdp.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Estimating Statistical Properties From Data</p>
+        <p class="prev-next-title">Markov Decision Processes</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

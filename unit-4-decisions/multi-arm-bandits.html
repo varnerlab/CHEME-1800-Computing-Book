@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Multiple Arm Bandit Problems &#8212; CHEME 1800</title>
+    <title>Multiple Arm Bandit Problems and Reinforcement Learning &#8212; CHEME 1800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-4-decisions/multi-arm-bandits.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Markov decision process (MDPs)" href="mdp.html" />
+    <link rel="prev" title="Markov Decision Processes" href="mdp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -174,12 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
-     Vectors and Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/measures.html">
-     Measurements and Distances
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -191,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-3-learning/learning-landing.html">
-   Unit 3. Optimization
+   Unit 3. Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -206,7 +201,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/combitorial.html">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -232,18 +227,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="moments.html">
-     Estimating Statistical Properties From Data
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -431,9 +421,33 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bandit-problems">
-   Bandit Problems
+  <a class="reference internal nav-link" href="#exploration-exploitation-and-bandit-problems">
+   Exploration, exploitation and bandit problems
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-free-reinforcement-learning">
+   Model-free reinforcement learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incremental-updates">
+     Incremental updates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-learning">
+     Q-learning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incremental-q-table-updates">
+       Incremental Q-table updates
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -449,7 +463,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Multiple Arm Bandit Problems</h1>
+                <h1>Multiple Arm Bandit Problems and Reinforcement Learning</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -465,9 +479,33 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bandit-problems">
-   Bandit Problems
+  <a class="reference internal nav-link" href="#exploration-exploitation-and-bandit-problems">
+   Exploration, exploitation and bandit problems
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-free-reinforcement-learning">
+   Model-free reinforcement learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incremental-updates">
+     Incremental updates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-learning">
+     Q-learning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incremental-q-table-updates">
+       Incremental Q-table updates
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -484,8 +522,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="multiple-arm-bandit-problems">
-<h1>Multiple Arm Bandit Problems<a class="headerlink" href="#multiple-arm-bandit-problems" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="multiple-arm-bandit-problems-and-reinforcement-learning">
+<h1>Multiple Arm Bandit Problems and Reinforcement Learning<a class="headerlink" href="#multiple-arm-bandit-problems-and-reinforcement-learning" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning (RL)</a> agents learn by performing actions in the world and then analyzing the rewards they receive (<a class="reference internal" href="#fig-rl-schematic"><span class="std std-numref">Fig. 13</span></a>). Thus, reinforcement learning differs from other machine learning approaches, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> because labeled input/output pairs, e.g., what actions lead to positive rewards are not presented to the agent <em>a priori</em>.  Instead, reinforcement learning agents learn what is good or bad by trying different actions.</p>
@@ -498,8 +536,8 @@ title="Print to PDF"
 </figcaption>
 </figure>
 </section>
-<section id="bandit-problems">
-<h2>Bandit Problems<a class="headerlink" href="#bandit-problems" title="Permalink to this headline">#</a></h2>
+<section id="exploration-exploitation-and-bandit-problems">
+<h2>Exploration, exploitation and bandit problems<a class="headerlink" href="#exploration-exploitation-and-bandit-problems" title="Permalink to this headline">#</a></h2>
 <p>Learning agents must balance exploration of the environment, e.g., taking random actions with exploiting knowledge already obtained through interacting with the world. Pure exploration allows agents to construct a comprehensive model of their environment, but likely at the expense of positive reward. On the other hand, pure exploitation has the agent continually choosing the action it thinks best to accumulate reward, but different, better actions could be taken.</p>
 <p>A classic approach to understanding the exploration and exploitation tradeoff, which itself has many real-world applications, is the <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">multi arm bandit problem</a>. A general bandit problem is a sequential game played between an agent and the environment. The game is played over <span class="math notranslate nohighlight">\(n\)</span> rounds called the <em>horizon</em>. In each round the agent chooses an action <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> and the environment then reveals a reward <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <p>Let’s look at a particular sub-type of multi-arm bandit problem, namely, the Bernoulli bandit problem and Thompson sampling, a particular solution approach to this class of problem <span id="id1">[]</span>:</p>
@@ -589,6 +627,61 @@ A Beta-distribution for each action using initial values <span class="math notra
 <span class="math notranslate nohighlight">\((\alpha_{1},\dots,\alpha_{K})\)</span> and <span class="math notranslate nohighlight">\((\beta_{1},\dots,\beta_{K})\)</span></p>
 </section>
 </div></section>
+<section id="model-free-reinforcement-learning">
+<span id="content-references-model-free-reinforcement-learning"></span><h2>Model-free reinforcement learning<a class="headerlink" href="#model-free-reinforcement-learning" title="Permalink to this headline">#</a></h2>
+<p>Model-free reinforcement learning does not require transition or reward models. Instead, model-free methods, like bandit problems, iteratively construct a policy by interacting with the world. However, unlike bandit problems, model-free reinforcement learning builds the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> directly, e.g., by incrementally estimating the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> from samples using the <em>Q-learning</em> approach.</p>
+<section id="incremental-updates">
+<h3>Incremental updates<a class="headerlink" href="#incremental-updates" title="Permalink to this headline">#</a></h3>
+<p>Model-free methods incrementally estimate the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> by sampling the world. To understand the structure of the update procedures, which we’ll discuss later, let’s take a quick detour and look at how we incrementally estimate the mean of a single variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>Suppose we are interested in computing the mean of <span class="math notranslate nohighlight">\(X\)</span> from <span class="math notranslate nohighlight">\(m\)</span> samples:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-simple-mean">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-simple-mean" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \frac{1}{m}\sum_{i=1}^{m}x^{(i)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x^{(i)}\)</span> denotes the ith sample. However, model-free RL incrementally updates <span class="math notranslate nohighlight">\(Q(s,a)\)</span>; thus, we need to develop an incremental estimation calculation.
+Equation <a class="reference internal" href="#equation-eqn-simple-mean">(27)</a> can be re-written as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-simple-mean-1">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-simple-mean-1" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \frac{1}{m}\left(x^{(m)}+\sum_{i=1}^{m-1}x^{(i)}\right)\]</div>
+<p>but the summation term is mean from <span class="math notranslate nohighlight">\(m-1\)</span> samples or:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-simple-mean-2">
+<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-simple-mean-2" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \frac{1}{m}\left(x^{(m)}+(m-1)\hat{x}_{m-1}\right)\]</div>
+<p>which can be rearranged to give the incremental update expression:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-simple-mean-3">
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-simple-mean-3" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \hat{x}_{m-1} + \frac{1}{m}\left(x^{(m)}-\hat{x}_{m-1}\right)\]</div>
+<p>Equation <a class="reference internal" href="#equation-eqn-simple-mean-3">(30)</a> can be generalized to give the incremental update rule:</p>
+<div class="proof observation admonition" id="obs-incremental-update-rule">
+<p class="admonition-title"><span class="caption-number">Observation 4 </span> (Incremental update rule)</p>
+<section class="observation-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\hat{x}_{m-1}\)</span> denote the mean value computed from <span class="math notranslate nohighlight">\(m-1\)</span> samples. The value of <span class="math notranslate nohighlight">\(\hat{x}_{m}\)</span> given the the next sample <span class="math notranslate nohighlight">\(x^{(m)}\)</span> can be written as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-next-sample-mean">
+<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-next-sample-mean" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \hat{x}_{m-1} + \alpha\left(m\right)\left(x^{(m)}-\hat{x}_{m-1}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> is the <em>learning rate</em> function.</p>
+<p>The learning rate can be any function of <span class="math notranslate nohighlight">\(m\)</span>; however, to ensure convergence
+<span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> must have the properties: the sum of <span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> as <span class="math notranslate nohighlight">\(m\rightarrow\infty\)</span> can be unbounded, but the sum of <span class="math notranslate nohighlight">\(\alpha\left(m\right)^{2}\)</span> as <span class="math notranslate nohighlight">\(m\rightarrow\infty\)</span> is bounded.</p>
+</section>
+</div></section>
+<section id="q-learning">
+<h3>Q-learning<a class="headerlink" href="#q-learning" title="Permalink to this headline">#</a></h3>
+<p>The Q-learning approach incrementally estimates the action value function <span class="math notranslate nohighlight">\(Q(s,a)\)</span> using the action value form of the <em>Bellman expectation equation</em>.
+From our discussion of <a class="reference internal" href="mdp.html"><span class="doc std std-doc">Markov decision process (MDPs)</span></a>, we know that the action-value function (the <span class="math notranslate nohighlight">\(Q\)</span>-function) is defined as:</p>
+<div class="math notranslate nohighlight">
+\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
+<p>However, we do know that:</p>
+<div class="math notranslate nohighlight">
+\[U(s) = \max_{a} Q(s,a)\]</div>
+<p>thus:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-bellman-expectation-eqn">
+<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-bellman-expectation-eqn" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)\left(\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right)\]</div>
+<p>Here’s the catch: in a model-free universe, we don’t know the rewards or physics of the world, i.e., we don’t know the rewards <span class="math notranslate nohighlight">\(R(s,a)\)</span> or the probability array <span class="math notranslate nohighlight">\(T(s^{\prime} | s, a)\)</span> that appear in Eqn. <a class="reference internal" href="#equation-eqn-bellman-expectation-eqn">(32)</a>. Instead of computing the rewards and transitions from a model we develop, we estimate them from samples received:</p>
+<div class="math notranslate nohighlight">
+\[Q(s,a) = \mathbb{E}_{r,s^{\prime}}\left[r+\gamma\cdot\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right]\]</div>
+<section id="incremental-q-table-updates">
+<h4>Incremental Q-table updates<a class="headerlink" href="#incremental-q-table-updates" title="Permalink to this headline">#</a></h4>
+<p>We can use the incremental update rule shown in Eqn. <a class="reference internal" href="#equation-eqn-next-sample-mean">(31)</a> to develop an an expression that incrementally updates our estimate of <span class="math notranslate nohighlight">\(Q(s,a)\)</span> as more data becomes available:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-q-learning-update-rule">
+<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-q-learning-update-rule" title="Permalink to this equation">#</a></span>\[Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> denotes a <em>learning rate hyperparameter</em>.</p>
+</section>
+</section>
+</section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
@@ -627,7 +720,7 @@ A Beta-distribution for each action using initial values <span class="math notra
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Markov decision process (MDPs)</p>
+            <p class="prev-next-title">Markov Decision Processes</p>
         </div>
     </a>
 </div>

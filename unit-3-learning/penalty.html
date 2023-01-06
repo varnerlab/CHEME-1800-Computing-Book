@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/penalty.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Combitorial Optimization" href="combitorial.html" />
+    <link rel="next" title="Combinatorial Optimization" href="combitorial.html" />
     <link rel="prev" title="The Learning Problem: Models, Learning, and Optimization" href="learning-landing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -173,12 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
-     Vectors and Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/measures.html">
-     Measurements and Distances
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -190,7 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="learning-landing.html">
-   Unit 3. Optimization
+   Unit 3. Learning
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -205,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="combitorial.html">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -231,18 +226,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-4-decisions/moments.html">
-     Estimating Statistical Properties From Data
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -435,8 +425,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constraints-and-non-linear-models">
-   Constraints and non-linear models
+  <a class="reference internal nav-link" href="#constraints">
+   Constraints
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -481,8 +471,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constraints-and-non-linear-models">
-   Constraints and non-linear models
+  <a class="reference internal nav-link" href="#constraints">
+   Constraints
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -516,16 +506,18 @@ title="Print to PDF"
 <p>In particular, we discuss:</p>
 <ul class="simple">
 <li><p>Ordinary least squares (OLS) approaches for <a class="reference internal" href="#content-references-ols-unconstrained-problem"><span class="std std-ref">Unconstrained problems</span></a>. In this class or problem, the model parameters can take on any values</p></li>
-<li><p>We then switch to <a class="reference internal" href="#content-references-ols-constrained-problem"><span class="std std-ref">Constraints and non-linear models</span></a> in which the model parameters can be bound in some way, and the parameters can appear non-linearly in the model.</p></li>
+<li><p>We then switch to <a class="reference internal" href="#content-references-ols-constrained-problem"><span class="std std-ref">Constraints</span></a> in which the model parameters can be bound in some way, and the parameters can appear non-linearly in the model.</p></li>
 </ul>
 <hr class="docutils" />
 </section>
 <section id="unconstrained-problems">
 <span id="content-references-ols-unconstrained-problem"></span><h2>Unconstrained problems<a class="headerlink" href="#unconstrained-problems" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>In an unconstrained least-squares problem, we are trying to find the values of a set of parameters that minimize the difference between the predictions of a model and the observed data. This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.</p>
+<p>Least-squares problems are called “unconstrained” because there are no constraints on the values of the parameters. This means that the optimization algorithm can choose any values for the parameters that minimize the cost function.</p>
+<p>Many optimization algorithms can solve least-squares problems, including gradient descent, Levenberg-Marquardt, and Gauss-Newton algorithms. The choice of algorithm will depend on the problem being solved and the characteristics of the data.</p>
 </section>
-<section id="constraints-and-non-linear-models">
-<span id="content-references-ols-constrained-problem"></span><h2>Constraints and non-linear models<a class="headerlink" href="#constraints-and-non-linear-models" title="Permalink to this headline">#</a></h2>
+<section id="constraints">
+<span id="content-references-ols-constrained-problem"></span><h2>Constraints<a class="headerlink" href="#constraints" title="Permalink to this headline">#</a></h2>
 <p>Constrained least squares is a method of estimating the parameters of a linear regression model subject to one or more constraints on the values the parameters can take. This is often used when prior knowledge or physical constraints must be satisfied by the estimates. To solve a constrained least squares problem, we first define the linear regression model and the constraints on the parameters. We then define an objective function that measures the model’s fit to the data subject to the constraints. We minimize this objective function to find the estimates of the parameters that best fit the data while satisfying the constraints.</p>
 <section id="penalty-methods">
 <h3>Penalty methods<a class="headerlink" href="#penalty-methods" title="Permalink to this headline">#</a></h3>
@@ -584,7 +576,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="combitorial.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Combitorial Optimization</p>
+        <p class="prev-next-title">Combinatorial Optimization</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

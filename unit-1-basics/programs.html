@@ -175,12 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
-     Vectors and Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-2-data/measures.html">
-     Measurements and Distances
+     Vectors, Matrices, Measurements and Distances
     </a>
    </li>
    <li class="toctree-l2">
@@ -192,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../unit-3-learning/learning-landing.html">
-   Unit 3. Optimization
+   Unit 3. Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -207,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/combitorial.html">
-     Combitorial Optimization
+     Combinatorial Optimization
     </a>
    </li>
    <li class="toctree-l2">
@@ -233,18 +228,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../unit-4-decisions/moments.html">
-     Estimating Statistical Properties From Data
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/mdp.html">
-     Markov decision process (MDPs)
+     Markov Decision Processes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
-     Multiple Arm Bandit Problems
+     Multiple Arm Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -594,8 +584,8 @@ title="Print to PDF"
 <h3>Anatomy of an executable program<a class="headerlink" href="#anatomy-of-an-executable-program" title="Permalink to this headline">#</a></h3>
 <p>The structure of programs in modern languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, and older foundational languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> are remarkably conserved. Let’s look at a skeleton of an <em>executable</em> program in various languages and compare and contrast the structure:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c009d8df-aeeb-42c5-92a1-ddd00457e39c" name="c0ce0fa6-1ee6-4154-a681-848cf18af0e4" type="radio">
-</input><label class="sd-tab-label" for="c009d8df-aeeb-42c5-92a1-ddd00457e39c">
+<input checked="checked" id="1e0e5bdc-0a61-4c88-89aa-744602fc874f" name="7aa92a2d-bb09-47d1-9da9-79c8c369193d" type="radio">
+</input><label class="sd-tab-label" for="1e0e5bdc-0a61-4c88-89aa-744602fc874f">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 0. copyright/licensing information</span>
 <span class="c"># 1. import functions from external modules here</span>
@@ -614,8 +604,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="bb083806-2528-4eda-8f9a-8900ad66ad0b" name="c0ce0fa6-1ee6-4154-a681-848cf18af0e4" type="radio">
-</input><label class="sd-tab-label" for="bb083806-2528-4eda-8f9a-8900ad66ad0b">
+<input id="59be9e21-26e7-497d-8db9-c722467c63e0" name="7aa92a2d-bb09-47d1-9da9-79c8c369193d" type="radio">
+</input><label class="sd-tab-label" for="59be9e21-26e7-497d-8db9-c722467c63e0">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 0. copyright/licensing information</span>
 <span class="c1"># 1. import functions from external modules here</span>
@@ -633,8 +623,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="654e7126-6a8c-43c2-9c98-181206180d95" name="c0ce0fa6-1ee6-4154-a681-848cf18af0e4" type="radio">
-</input><label class="sd-tab-label" for="654e7126-6a8c-43c2-9c98-181206180d95">
+<input id="dc3290a6-2f32-4a9a-8d67-ce75e6595a2f" name="7aa92a2d-bb09-47d1-9da9-79c8c369193d" type="radio">
+</input><label class="sd-tab-label" for="dc3290a6-2f32-4a9a-8d67-ce75e6595a2f">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 0 copyright/licensing */</span><span class="w"></span>
 <span class="cm">/* 1 includes */</span><span class="w"></span>

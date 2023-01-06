@@ -13,7 +13,7 @@ kernelspec:
 # Expressions, Variables and Types
 
 ## Introduction
-In this lecture, we introduce expressions, variables, and types. An expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables. On the other hand, a variable is a named location in memory where a value, e.g., perhaps an output from an expression, can be stored and accessed. Variables store data that can be used and manipulated by your programs. In most languages, variables have a specific type, which determines the kind of data that can be stored in the variable. A type is a classification of data that defines the values a variable can store and the operations that can be performed on those values. Most programming languages have a set of built-in types, such as integers, floating-point numbers, and character strings, and some languages also allow you to define your custom types. Types are essential because they will enable the compiler or interpreter to verify that you are using the correct data in your program and generate efficient code. They also allow you to write more readable and maintainable code, as you can use meaningful names for your variables and use type annotations to document the expected types of your variables and functions.
+In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In some traditional programming languages, it is important to declare the variable type before using it so that the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) can check the correctness of the program and allocate the appropriate amount of memory to store the variable. However, modern languages can guess (or infer) the type. But, declaring types is still good practice because it helps with the readability of the compute code. 
 
 ---
 
@@ -34,7 +34,7 @@ Expressions are powerful tools for manipulating data in your programs and are an
 ## Variables and Types
 A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
 
->"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer is eager to do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
+>"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
 
 However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`. From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. 
 

@@ -1,2 +1,8 @@
-# Data, Algorithms, and Linear Algebra
-Fill me in
+# Data Structures, Matrices, and Linear Algebra
+In this unit, we'll introduce tools and concepts for working with data structures, working with vectors, and matrices and solving systems of linear algebraic equations:
+
+* [Data structures](./trees.md) are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Some common data structures include arrays, linked lists, stacks, queues, and trees. Different data structures are suited to other kinds of applications, and choosing an appropriate data structure can be crucial to the efficiency of an algorithm. Algorithms are sets of steps or procedures that are followed to solve a problem or achieve a goal. They are an essential part of computer science and can be used to solve problems ranging from simple arithmetic to complex tasks like image recognition and natural language processing.
+
+* [Vectors and Matrices](./vectors-matricies-nla.md) are ordered lists of objects, e.g., names, addresses, or numbers; let's focus on numerical things. A vector is an ordered list of numbers. Vectors can be added and subtracted element-wise, and they can be multiplied by a scalar. On the other hand, a matrix is a two-dimensional data structure used to describe a collection of numbers. It consists of rows and columns, with the numbers in the matrix referred to as its elements or entries. Matrices can be added and subtracted element-wise, and they can be multiplied by a scalar or by another matrix. Matrices are often used to represent linear transformations, which are functions that take one vector as input and return another vector as output.
+
+* [Linear algebra](./laes.md) is a branch of mathematics that deals with linear equations and transformations. It is a fundamental mathematical tool in many fields, including computer science, engineering, and physics. Linear algebra concepts such as vectors, matrices, and eigenvalues are used in many areas of technical computing, including machine learning and data analysis.
