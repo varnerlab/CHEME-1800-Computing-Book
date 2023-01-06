@@ -680,7 +680,7 @@ title="Print to PDF"
 <h2>Variables and Types<a class="headerlink" href="#variables-and-types" title="Permalink to this headline">#</a></h2>
 <p>A <em>variable</em> is like a box that holds a value, and that value has a <em>type</em>. For example, types can be numbers such as <code class="docutils literal notranslate"><span class="pre">3</span></code>, Boolean values like <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> or text like:</p>
 <blockquote>
-<div><p>“Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer is eager to do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!”</p>
+<div><p>“Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!”</p>
 </div></blockquote>
 <p>However, computers and Humans don’t speak the same language. Humans understand that <code class="docutils literal notranslate"><span class="pre">3</span></code> is an integer, and <code class="docutils literal notranslate"><span class="pre">Julia</span> <span class="pre">rocks</span></code> is text, but the computer doesn’t see these values the same way we do. For a computer, everything is a <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_number">binary number</a>, i.e., numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>. From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc.</p>
 <p>At the smallest scale, information is stored as bits and bytes in the computer. A <code class="docutils literal notranslate"><span class="pre">bit</span></code> is the smallest unit of storage on a computer; a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is a <code class="docutils literal notranslate"><span class="pre">0</span></code> or a <code class="docutils literal notranslate"><span class="pre">1</span></code>. However, a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is too tiny for practical computing tasks. Instead, <code class="docutils literal notranslate"><span class="pre">bits</span></code> are grouped into <code class="docutils literal notranslate"><span class="pre">bytes</span></code>; a group of 8 bits equals  1 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">byte</span></code>. Different types of things, e.g., integers or text are then represented as different numbers of <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
@@ -853,16 +853,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters, i.e., strings are of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. Modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="3f8d993e-ad82-4418-8441-e491c2f1bcf7" name="f5f38c4c-f770-4ce0-8d5c-5d73708043ca" type="radio">
-</input><label class="sd-tab-label" for="3f8d993e-ad82-4418-8441-e491c2f1bcf7">
+<input checked="checked" id="4b6e064f-7fad-40ea-bb9c-4929cbbf7b83" name="174c7db8-d1d3-4c86-ab7c-3c8fe65c8217" type="radio">
+</input><label class="sd-tab-label" for="4b6e064f-7fad-40ea-bb9c-4929cbbf7b83">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="9b92323e-1f5f-49c1-a069-05d914b61cc4" name="f5f38c4c-f770-4ce0-8d5c-5d73708043ca" type="radio">
-</input><label class="sd-tab-label" for="9b92323e-1f5f-49c1-a069-05d914b61cc4">
+<input id="e0c9d4ad-0cf5-4a61-a00f-5799c08aa1b0" name="174c7db8-d1d3-4c86-ab7c-3c8fe65c8217" type="radio">
+</input><label class="sd-tab-label" for="e0c9d4ad-0cf5-4a61-a00f-5799c08aa1b0">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>

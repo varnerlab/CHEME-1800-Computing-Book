@@ -34,7 +34,7 @@ Expressions are powerful tools for manipulating data in your programs and are an
 ## Variables and Types
 A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
 
->"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer is eager to do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
+>"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
 
 However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`. From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. 
 
