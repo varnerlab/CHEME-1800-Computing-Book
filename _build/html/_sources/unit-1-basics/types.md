@@ -171,10 +171,17 @@ bitstring(int_value)
 ```
 
 
-#### Floating point values
-Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). However, unlike integer values, which can be represented exactly, floating-point numbers can only be _approximated_ in a computer system. 
+#### Floating point numbers
+Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) or 8$\times$bytes (64-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Floating point numbers stored using 4$\times$bytes (32-bits) are called single precision numbers, while 8$\times$bytes (64-bits) are double precision numbers. However, regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ in a computer system.
 
+In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
 
+```{math}
+:label: eqn-floating-point-bumbecalled _single_ precision, while 8$\times$bytes (64-bits) floating point numbers are called _double_ precision.r
+x = -1^{S}\times{M}\times{2}^{E}
+```
+
+where $S$ denotes the sign bit, $M$ denotes the mantissa and $E$ denotes the exponent. For a 32-bit floating point number in [Julia](https://docs.julialang.org) which has type `Float32`, $S$ is the value in bit 31, $M$ is encoded in bitS $0\rightarrow{22}$ and $E$ is encoded by bits $23\rightarrow{30}$. On the other hand, a 64-bit floating point number, which has type `Float64` in [Julia](https://docs.julialang.org), the sign bit $S$ is the value in bit 63, the mantissa $M$ is the number encoded by bits $0\rightarrow{51}$, and the exponent $E$ is encoded by bits $52\rightarrow{62}$.
 
 ### Character and string values
 Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.

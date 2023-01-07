@@ -621,7 +621,7 @@ where $\mathbf{I}$ denotes the [identity Matrix](https://en.wikipedia.org/wiki/I
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state materials balances, as we have seen. In this lecture, we’ll explore both <em>direct</em> and <em>iterative</em> methods to solve the generic system of LAEs:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-general-system-laes">
-<span class="eqno">(8)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<span class="eqno">(9)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector. To compute a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we compute a <a class="reference external" href="https://mathworld.wolfram.com/MatrixInverse.html">matrix inverse</a>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}\]</div>
@@ -678,8 +678,8 @@ C_{i,5}
 \end{split}\]</div>
 <p>or in matrix-vector notation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-vector-notation-tanks">
-<span class="eqno">(9)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
-<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(9)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
+<span class="eqno">(10)<a class="headerlink" href="#equation-eqn-matrix-vector-notation-tanks" title="Permalink to this equation">#</a></span>\[\dot{\mathbf{V}}\mathbf{C} = \mathbf{0}\]</div>
+<p>Eqn <a class="reference internal" href="#equation-eqn-matrix-vector-notation-tanks">(10)</a> is an <em>underdetermined</em> system, i.e., we have more unknowns (in this case, five) than equations (only two equations). Thus, without additional information, this system of equations does not have a unique solution.</p>
 </section>
 <section id="square-systems">
 <h3>Square systems<a class="headerlink" href="#square-systems" title="Permalink to this headline">#</a></h3>
@@ -762,7 +762,7 @@ C_{i,3}
 \end{split}\]</div>
 <p>where can be re-written in matrix-vector form as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-system-mole-balances">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
+<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
 </section>
 <section id="rank">
 <h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>
@@ -852,7 +852,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </section>
 </div><p>Let’s walkthrough a simple generic example using <code class="xref std std-numref docutils literal notranslate"><span class="pre">algo-ge-basic</span></code> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 2 &amp; -1 &amp; 0 \\
 -1 &amp; 2 &amp; -1 \\
 0 &amp; -1 &amp; 2
@@ -869,7 +869,7 @@ x_{3}
 \end{pmatrix}\end{split}\]</div>
 <p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span>. The augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -882,9 +882,9 @@ x_{3}
 <li><p>For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.</p></li>
 <li><p>Carry out this procedure until the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is in <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>.</p></li>
 </ol>
-<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(12)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(13)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -896,7 +896,7 @@ x_{3}
 \end{bmatrix}\end{split}\]</div>
 <p>After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -910,12 +910,12 @@ x_{3}
 <p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
 <p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
 0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
 \end{bmatrix}\end{split}\]</div>
-<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(15)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
+<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(16)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
 <div class="proof algorithm admonition" id="algo-ge-basic-back-sub">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive back substitution)</p>
 <section class="algorithm-content" id="proof-content">
