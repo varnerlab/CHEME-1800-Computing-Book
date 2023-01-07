@@ -316,4 +316,10 @@ In other mainstream programming languages, e.g., [Python](https://www.python.org
 ---
 
 # Summary
-Fill me in.
+In this lecture, we introduced expressions, variables, and types. Understanding expressions, variables, and types are fundamental to writing programs in any programming language.
+
+* Expressions are combinations of values, variables, and operators that produce a new value when evaluated. 
+* Variables are named storage locations that can hold values and are used to store values that may change during the execution of a program. 
+* Types are categories of values, and every value belongs to a specific type. Programming languages have many different types, including primitive types (such as numbers and booleans) and composite types (such as arrays and objects). 
+
+Next, we build upon our introduction of expressions, variables, and types and consider some other technical computing build blocks and strategies, namely [Functions, Control Statements, and Recursion](./functions.md).
