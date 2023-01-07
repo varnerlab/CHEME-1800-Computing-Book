@@ -808,11 +808,21 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 </section>
 <section id="floating-point-numbers">
 <h4>Floating point numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this headline">#</a></h4>
+<figure class="align-default" id="fig-32bit-floating-point-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-Float32-bit-pattern.pdf"><img alt="../_images/Fig-Float32-bit-pattern.pdf" src="../_images/Fig-Float32-bit-pattern.pdf" style="height: 140px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematic of the bit-pattern for a 4<span class="math notranslate nohighlight">\(\times\)</span>byte (32-bit) floating point number</span><a class="headerlink" href="#fig-32bit-floating-point-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Scalar floating point numbers, i.e., decimal numbers in the set <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, are stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) or 8<span class="math notranslate nohighlight">\(\times\)</span>bytes (64-bits) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>. Floating point numbers stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) are called single precision numbers, while 8<span class="math notranslate nohighlight">\(\times\)</span>bytes (64-bits) are double precision numbers. However, regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be <em>approximated</em> in a computer system.</p>
-<p>In the computer, a floating point number <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> is represented as:</p>
+<p>In the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a> specification, the different components of the floating number of encoded in different segements of the 32- or 64-bits (Fig. <a class="reference internal" href="#fig-32bit-floating-point-schematic"><span class="std std-numref">Fig. 1</span></a>). In the computer, a floating point number <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> is represented as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-floating-point-bumbecalled-single-precision-while-8-times-bytes-64-bits-floating-point-numbers-are-called-double-precision-r">
 <span class="eqno">(5)<a class="headerlink" href="#equation-eqn-floating-point-bumbecalled-single-precision-while-8-times-bytes-64-bits-floating-point-numbers-are-called-double-precision-r" title="Permalink to this equation">#</a></span>\[x = -1^{S}\times{M}\times{2}^{E}\]</div>
-<p>where <span class="math notranslate nohighlight">\(S\)</span> denotes the sign bit, <span class="math notranslate nohighlight">\(M\)</span> denotes the mantissa and <span class="math notranslate nohighlight">\(E\)</span> denotes the exponent. For a 32-bit floating point number in <a class="reference external" href="https://docs.julialang.org">Julia</a> which has type <code class="docutils literal notranslate"><span class="pre">Float32</span></code>, <span class="math notranslate nohighlight">\(S\)</span> is the value in bit 31, <span class="math notranslate nohighlight">\(M\)</span> is encoded in bitS <span class="math notranslate nohighlight">\(0\rightarrow{22}\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(23\rightarrow{30}\)</span>. On the other hand, a 64-bit floating point number, which has type <code class="docutils literal notranslate"><span class="pre">Float64</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the sign bit <span class="math notranslate nohighlight">\(S\)</span> is the value in bit 63, the mantissa <span class="math notranslate nohighlight">\(M\)</span> is the number encoded by bits <span class="math notranslate nohighlight">\(0\rightarrow{51}\)</span>, and the exponent <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(52\rightarrow{62}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(S\)</span> denotes the sign bit, <span class="math notranslate nohighlight">\(M\)</span> denotes the mantissa and <span class="math notranslate nohighlight">\(E\)</span> denotes the exponent.</p>
+<ul class="simple">
+<li><p>For a 32-bit floating point number, which has type <code class="docutils literal notranslate"><span class="pre">Float32</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <span class="math notranslate nohighlight">\(S\)</span> is the value in bit 31, <span class="math notranslate nohighlight">\(M\)</span> is encoded in bits <span class="math notranslate nohighlight">\(0\rightarrow{22}\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(23\rightarrow{30}\)</span>.</p></li>
+<li><p>On the other hand, a 64-bit floating point number, which has type <code class="docutils literal notranslate"><span class="pre">Float64</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the sign bit <span class="math notranslate nohighlight">\(S\)</span> is the value in bit 63, the mantissa <span class="math notranslate nohighlight">\(M\)</span> is the number encoded by bits <span class="math notranslate nohighlight">\(0\rightarrow{51}\)</span>, and the exponent <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(52\rightarrow{62}\)</span>.</p></li>
+</ul>
 </section>
 </section>
 <section id="character-and-string-values">
@@ -866,16 +876,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters, i.e., strings are of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. Modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4678459e-c2e9-49ce-8d95-2ab921449756" name="b87484ac-e47f-4a92-8144-b807e36502fa" type="radio">
-</input><label class="sd-tab-label" for="4678459e-c2e9-49ce-8d95-2ab921449756">
+<input checked="checked" id="a90ee5ca-cc26-4229-8a6d-595cc1ed6542" name="57bc3917-d3b4-483d-8cbb-4a225229e135" type="radio">
+</input><label class="sd-tab-label" for="a90ee5ca-cc26-4229-8a6d-595cc1ed6542">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="250cfa73-bf44-4543-926f-05a2316bbcfd" name="b87484ac-e47f-4a92-8144-b807e36502fa" type="radio">
-</input><label class="sd-tab-label" for="250cfa73-bf44-4543-926f-05a2316bbcfd">
+<input id="b6ba6484-6f17-43b5-a657-61f63f2120fe" name="57bc3917-d3b4-483d-8cbb-4a225229e135" type="radio">
+</input><label class="sd-tab-label" for="b6ba6484-6f17-43b5-a657-61f63f2120fe">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
