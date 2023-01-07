@@ -529,9 +529,16 @@ title="Print to PDF"
       </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#custom-types">
-       Custom types
+      <a class="reference internal nav-link" href="#composite-types">
+       Composite types
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aside-what-is-an-object-oriented-language">
+         Aside: What is an object-oriented language?
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -628,9 +635,16 @@ title="Print to PDF"
       </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#custom-types">
-       Custom types
+      <a class="reference internal nav-link" href="#composite-types">
+       Composite types
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aside-what-is-an-object-oriented-language">
+         Aside: What is an object-oriented language?
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -848,16 +862,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters, i.e., strings are of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. Modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c1ceae61-ada1-4774-a3dd-8b2e09385f64" name="f308bcd4-e5ea-4fcb-ac9a-70edccfdd2d4" type="radio">
-</input><label class="sd-tab-label" for="c1ceae61-ada1-4774-a3dd-8b2e09385f64">
+<input checked="checked" id="e91cdc2e-4c71-4787-9f7a-6339974a4403" name="f825fd2c-fcd1-469e-81de-538dc848a895" type="radio">
+</input><label class="sd-tab-label" for="e91cdc2e-4c71-4787-9f7a-6339974a4403">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="d7fc5331-f84c-40eb-9664-a6d204792230" name="f308bcd4-e5ea-4fcb-ac9a-70edccfdd2d4" type="radio">
-</input><label class="sd-tab-label" for="d7fc5331-f84c-40eb-9664-a6d204792230">
+<input id="55872228-5bed-4041-a3b8-729c8326227a" name="f825fd2c-fcd1-469e-81de-538dc848a895" type="radio">
+</input><label class="sd-tab-label" for="55872228-5bed-4041-a3b8-729c8326227a">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
@@ -943,9 +957,44 @@ python</label><div class="sd-tab-content docutils">
 <p>By default each character in a <a class="reference external" href="https://docs.julialang.org">Julia</a> string requires 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) of storage; thus, a value of type <code class="docutils literal notranslate"><span class="pre">String</span></code> with <span class="math notranslate nohighlight">\(c\)</span> characters requires at most <span class="math notranslate nohighlight">\(4c\times\)</span>bytes (32<span class="math notranslate nohighlight">\(\cdot{c}\)</span>-bits).</p>
 </section>
 </section>
-<section id="custom-types">
-<h3>Custom types<a class="headerlink" href="#custom-types" title="Permalink to this headline">#</a></h3>
-<p>Fill me in</p>
+<section id="composite-types">
+<h3>Composite types<a class="headerlink" href="#composite-types" title="Permalink to this headline">#</a></h3>
+<p>Composite types are custom data types that are made up of one or more other data types. In <a class="reference external" href="https://docs.julialang.org">Julia</a>, there are two main composite types: <a class="reference external" href="https://docs.julialang.org/en/v1/manual/types/#Composite-Types">structs</a> and <a class="reference external" href="https://docs.julialang.org/en/v1/base/arrays/#lib-arrays">arrays</a>.</p>
+<p>A struct is a composite data type that allows you to store data in named fields. You define a struct by using the <code class="docutils literal notranslate"><span class="pre">struct</span></code> keyword followed by a name for the struct and a list of field names and types. For example, let’s define an immutable <code class="docutils literal notranslate"><span class="pre">Student</span></code> struct that has a <code class="docutils literal notranslate"><span class="pre">sid</span></code> and a <code class="docutils literal notranslate"><span class="pre">netid</span></code> field:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">Student</span>
+    
+    <span class="c"># data fields </span>
+    <span class="n">sid</span><span class="o">::</span><span class="kt">Int64</span>
+    <span class="n">netid</span><span class="o">::</span><span class="kt">String</span>
+<span class="k">end</span>
+
+<span class="c"># build an instance -</span>
+<span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;xyz123&quot;</span><span class="p">);</span> <span class="c"># we pass the required data into the struct as args </span>
+</pre></div>
+</div>
+<p>A mutable struct is a struct whose fields can be modified after it is created. You can create a mutable struct by using the <code class="docutils literal notranslate"><span class="pre">mutable</span> <span class="pre">struct</span></code> keyword instead of struct and by adding a <em>constructor</em> method:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">mutable struct</span> <span class="kt">Student</span>
+    
+    <span class="c"># data fields </span>
+    <span class="n">sid</span><span class="o">::</span><span class="kt">Int64</span>
+    <span class="n">netid</span><span class="o">::</span><span class="kt">String</span>
+
+    <span class="c"># constructor: builds a new empty Student</span>
+    <span class="n">Student</span><span class="p">()</span> <span class="o">=</span> <span class="n">new</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="c"># build an empty instance -</span>
+<span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">();</span> <span class="c"># contains no data</span>
+<span class="n">student</span><span class="o">.</span><span class="n">sid</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">student</span><span class="o">.</span><span class="n">netid</span> <span class="o">=</span> <span class="s">&quot;xyz123&quot;</span> <span class="c"># we add data using the &quot;dot&quot; notation</span>
+</pre></div>
+</div>
+<p>The struct composite data type contains only data; in the examples above the <code class="docutils literal notranslate"><span class="pre">Student</span></code> datatype holds two values, <code class="docutils literal notranslate"><span class="pre">sid</span></code> is an integer type and <code class="docutils literal notranslate"><span class="pre">netid</span></code> is a string type. Except for the special case of the constructur on the mutable <code class="docutils literal notranslate"><span class="pre">Student</span></code> struct, composite types in <a class="reference external" href="https://docs.julialang.org">Julia</a> do not have functions attached to them.</p>
+<section id="aside-what-is-an-object-oriented-language">
+<h4>Aside: What is an object-oriented language?<a class="headerlink" href="#aside-what-is-an-object-oriented-language" title="Permalink to this headline">#</a></h4>
+<p>In other mainstream programming languages, e.g., <a class="reference external" href="https://www.python.org">Python</a>, <a class="reference external" href="https://www.oracle.com/java/">Java</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> or <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> composite types also have named functions associated with them, and the combination is called an <code class="docutils literal notranslate"><span class="pre">object</span></code>. In purer object-oriented languages, such as <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Smalltalk">Smalltalk</a>, all values are objects whether they are composites or not. In less refined object-oriented languages, including <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> and <a class="reference external" href="https://www.oracle.com/java/">Java</a>, some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In <a class="reference external" href="https://docs.julialang.org">Julia</a>, all values are objects, but functions are not bundled with the objects they operate on.</p>
+<!-- and a single optional function called a constructor, which is called to build an instance of the struct. -->
+</section>
 </section>
 </section>
 </section>

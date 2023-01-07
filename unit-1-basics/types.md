@@ -269,8 +269,48 @@ array = collect(string)
 
 By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage; thus, a value of type `String` with $c$ characters requires at most $4c\times$bytes (32$\cdot{c}$-bits). 
 
-### Custom types
-Fill me in
+### Composite types
+Composite types are custom data types that are made up of one or more other data types. In [Julia](https://docs.julialang.org), there are two main composite types: [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays).
+
+A struct is a composite data type that allows you to store data in named fields. You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
+
+```julia
+struct Student
+    
+    # data fields 
+    sid::Int64
+    netid::String
+end
+
+# build an instance -
+student = Student(1,"xyz123"); # we pass the required data into the struct as args 
+```
+
+A mutable struct is a struct whose fields can be modified after it is created. You can create a mutable struct by using the `mutable struct` keyword instead of struct and by adding a _constructor_ method:
+
+```julia
+mutable struct Student
+    
+    # data fields 
+    sid::Int64
+    netid::String
+
+    # constructor: builds a new empty Student
+    Student() = new()
+end
+
+# build an empty instance -
+student = Student(); # contains no data
+student.sid = 1
+student.netid = "xyz123" # we add data using the "dot" notation
+```
+
+The struct composite data type contains only data; in the examples above the `Student` datatype holds two values, `sid` is an integer type and `netid` is a string type. Except for the special case of the constructur on the mutable `Student` struct, composite types in [Julia](https://docs.julialang.org) do not have functions attached to them. 
+
+#### Aside: What is an object-oriented language?
+In other mainstream programming languages, e.g., [Python](https://www.python.org), [Java](https://www.oracle.com/java/), [C++](https://en.wikipedia.org/wiki/C%2B%2B) or [Ruby](https://www.ruby-lang.org/en/) composite types also have named functions associated with them, and the combination is called an `object`. In purer object-oriented languages, such as [Ruby](https://www.ruby-lang.org/en/) or [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk), all values are objects whether they are composites or not. In less refined object-oriented languages, including [C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Java](https://www.oracle.com/java/), some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In [Julia](https://docs.julialang.org), all values are objects, but functions are not bundled with the objects they operate on. 
+
+<!-- and a single optional function called a constructor, which is called to build an instance of the struct. -->
 
 
 ---

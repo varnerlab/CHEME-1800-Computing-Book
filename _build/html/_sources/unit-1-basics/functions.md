@@ -246,10 +246,11 @@ end
 ````{tab-item} python
 ```python
 
-# Assume: list_of_)chemicals defined above somewhere 
+# Assume: list_of_chemicals defined above somewhere 
 
 for chemical in list_of_chemicals:  # gives each chemical in the list
     # loop body: holds statements to be executed at each iteration
+
 ````
 `````
 
