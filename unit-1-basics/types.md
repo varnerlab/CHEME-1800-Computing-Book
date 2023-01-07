@@ -182,18 +182,49 @@ Schematic of the bit-pattern for a 4$\times$byte (32-bit) floating point number
 ```
 
 
-Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) or 8$\times$bytes (64-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Floating point numbers stored using 4$\times$bytes (32-bits) are called single precision numbers, while 8$\times$bytes (64-bits) are double precision numbers. However, regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ in a computer system.
+Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored using 4$\times$bytes (32-bits; single-precision) or 8$\times$bytes (64-bits; double-precision) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ in a computer system.
 
-In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number of encoded in different segements of the 32- or 64-bits (Fig. {numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
+In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits (Fig. {numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
 
 ```{math}
 :label: eqn-floating-point-bumbecalled _single_ precision, while 8$\times$bytes (64-bits) floating point numbers are called _double_ precision.r
-x = -1^{S}\times{M}\times{2}^{E}
+x = -1^{S}\times{M}\times{2}^{(E-127)}
 ```
 
-where $S$ denotes the sign bit, $M$ denotes the mantissa and $E$ denotes the exponent. 
+where $S$ denotes the sign bit, $M$ denotes the mantissa (fraction) and $E$ denotes the exponent. 
 * For a 32-bit floating point number, which has type `Float32` in [Julia](https://docs.julialang.org), $S$ is the value in bit 31, $M$ is encoded in bits $0\rightarrow{22}$ and $E$ is encoded by bits $23\rightarrow{30}$.
 * On the other hand, a 64-bit floating point number, which has type `Float64` in [Julia](https://docs.julialang.org), the sign bit $S$ is the value in bit 63, the mantissa $M$ is the number encoded by bits $0\rightarrow{51}$, and the exponent $E$ is encoded by bits $52\rightarrow{62}$.
+
+Let's consider the representation of a `Float32` value ({prf:ref}`example-float32-representation`):
+
+````{prf:example} Float32 representation
+:class: dropdown
+:label: example-float32-representation
+
+Compute the $S, M$ and $E$ components of the 32-bit floating point number $x=3.14159$. 
+
+__Solution__: The bitstring representation of $x$ is given by:
+
+```{math}
+:label: eqn-32bit-bitstring
+3.14159 = \left(01000000010010010000111111010000\right)_{2}
+```
+
+The sign bit in {eq}`eqn-32bit-bitstring` is $S=0$. While the fraction $M$ is expressed as:
+
+```{math}
+:label: eqn-M-expression
+M = \left(1+\sum_{i=1}^{23}b_{23-i}2^{-i}\right)
+```
+
+and the exponent $E$ is given by:
+
+```{math}
+:label: eqn-E-expression
+E = \sum_{i=0}^{7}b_{23+i}2^{i}
+```
+
+````
 
 ### Character and string values
 Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.
