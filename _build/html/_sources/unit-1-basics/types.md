@@ -13,7 +13,7 @@ kernelspec:
 # Expressions, Variables and Types
 
 ## Introduction
-In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In some traditional programming languages, it is important to declare the variable type before using it so that the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) can check the correctness of the program and allocate the appropriate amount of memory to store the variable. However, modern languages can guess (or infer) the type. But, declaring types is still good practice because it helps with the readability of the compute code. 
+In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In some traditional programming languages, it is important to declare the variable type before using it so that the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) can check the correctness of the program and allocate the appropriate amount of memory to store the variable. However, while most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code. 
 
 ---
 
@@ -64,6 +64,17 @@ n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}
 ```
 
 The quantity $a_{j}$ denotes the digit in position $j$, $b$ denotes the base and $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
+````
+
+Let's look at example of converting a `base 10` number to `base 8` ({prf:ref}`example-base-8-number`):
+
+````{prf:example} Base 8 representation
+:class: dropdown
+:label: example-base-8-number
+
+Write the octal number $\left(112\right)_{8}$ in `base 10` 
+
+
 ````
 
 #### Integers
@@ -181,10 +192,10 @@ name: fig-32bit-floating-point-schematic
 Schematic of the bit-pattern for a 4$\times$byte (32-bit) floating point number
 ```
 
+##### Scalar 32- and 64-bit floating point numbers
+Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored using 4$\times$bytes (32-bits; single-precision) or 8$\times$bytes (64-bits; double-precision) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ by a computer system.
 
-Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored using 4$\times$bytes (32-bits; single-precision) or 8$\times$bytes (64-bits; double-precision) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ in a computer system.
-
-In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits (Fig. {numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
+In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits ({numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
 
 ```{math}
 :label: eqn-floating-point-bumbecalled _single_ precision, while 8$\times$bytes (64-bits) floating point numbers are called _double_ precision.r
@@ -192,25 +203,10 @@ x = -1^{S}\times{M}\times{2}^{(E-127)}
 ```
 
 where $S$ denotes the sign bit, $M$ denotes the mantissa (fraction) and $E$ denotes the exponent. 
-* For a 32-bit floating point number, which has type `Float32` in [Julia](https://docs.julialang.org), $S$ is the value in bit 31, $M$ is encoded in bits $0\rightarrow{22}$ and $E$ is encoded by bits $23\rightarrow{30}$.
-* On the other hand, a 64-bit floating point number, which has type `Float64` in [Julia](https://docs.julialang.org), the sign bit $S$ is the value in bit 63, the mantissa $M$ is the number encoded by bits $0\rightarrow{51}$, and the exponent $E$ is encoded by bits $52\rightarrow{62}$.
+* For a 32-bit floating point number, $S$ is bit 31 denoted by $b_{31}$, $M$ is encoded in bits $b_0\rightarrow{b_{22}}$ and $E$ is encoded by bits $b_{23}\rightarrow{b_{30}}$.
+* On the other hand, in a 64-bit floating point number the sign bit $S$ is $b_{63}$, the mantissa $M$ is the number encoded by bits $b_0\rightarrow{b_{51}}$, and the exponent $E$ is encoded by bits $b_{52}\rightarrow{b_{62}}$.
 
-Let's consider the representation of a `Float32` value ({prf:ref}`example-float32-representation`):
-
-````{prf:example} Float32 representation
-:class: dropdown
-:label: example-float32-representation
-
-Compute the $S, M$ and $E$ components of the 32-bit floating point number $x=3.14159$. 
-
-__Solution__: The bitstring representation of $x$ is given by:
-
-```{math}
-:label: eqn-32bit-bitstring
-3.14159 = \left(01000000010010010000111111010000\right)_{2}
-```
-
-The sign bit in {eq}`eqn-32bit-bitstring` is $S=0$. While the fraction $M$ is expressed as:
+Thus, for a 32-bit floating point number, the sign bit is $b_{31}$, while the fraction $M$ is expressed as:
 
 ```{math}
 :label: eqn-M-expression
@@ -222,6 +218,29 @@ and the exponent $E$ is given by:
 ```{math}
 :label: eqn-E-expression
 E = \sum_{i=0}^{7}b_{23+i}2^{i}
+```
+
+Let's consider the representation of a `Float32` value for $\pi$ ({prf:ref}`example-float32-representation`):
+
+````{prf:example} Float32 representation in Julia
+:class: dropdown
+:label: example-float32-representation
+
+Compute the $S, M$ and $E$ components of the 32-bit floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
+
+__Solution__: The bitstring representation of $x$ is given by:
+
+```{math}
+:label: eqn-32bit-bitstring
+3.14159 = \left(01000000010010010000111111010000\right)_{2}
+```
+
+Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. However, we can convert a `Float64` to a `Float32` using the `convert(Float32,x)` command.  
+
+The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
+
+```{math}
+3.1459 = 1\times{1.570795}\times{2}
 ```
 
 ````
