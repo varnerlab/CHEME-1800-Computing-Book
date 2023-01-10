@@ -17,7 +17,7 @@ Lectures are organized into units, each having roughly four weeks of class time
 * [Unit 4: The Decision Problem: Probability, Random Process, and Decisions](./unit-4-decisions/decisions-landing.md)
 
 ### Repository
-All examples, labs, and other codes used in this course are available on the course GitHub repository: [https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git).
+Examples, labs, and other codes used throughout the course are available on our GitHub repository: [https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git).
 
 ## Grading
 We expect this course to draw from a spectrum of students, including “those less comfortable with computing,” “those more comfortable with computing,” and those in between. However, what ultimately matters is not where you end up relative to your classmates but where you are relative to yourself. 
