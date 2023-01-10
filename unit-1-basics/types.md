@@ -53,10 +53,11 @@ The in-memory `numeric primitives` representation of integers, floating-point, a
 The base $b$ representation of a number is a way of writing numbers using the digit set:
 
 ```{math}
+:label: eqn-base-b-numbers-digits
 \mathcal{D} = \left\{0, 1, \dots, (b − 1)\right\}
 ```
 
-For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}$ for all $k$ such that:
+For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}$ for all $k$ such that the `base 10` value $n$ is given by:
 
 ```{math}
 :label: eqn-base-b-number
@@ -66,15 +67,22 @@ n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}
 The quantity $a_{j}$ denotes the digit in position $j$, $b$ denotes the base and $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
 ````
 
-Let's look at example of converting a `base 10` number to `base 8` ({prf:ref}`example-base-8-number`):
+Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
 
 ````{prf:example} Base 8 representation
 :class: dropdown
 :label: example-base-8-number
 
-Write the octal number $\left(112\right)_{8}$ in `base 10` 
+Write the octal number $\left(112\right)_{8}$ in `base 10`. 
 
+__Solution__: For a `base 8` (octal) number, $b=8$; the octal number $\left(112\right)_{8}$ can be expanded using Eqn. {eq}`eqn-base-b-number` as:
 
+```{math}
+:label: example-eqn-base-8-expansion
+n = 2\times{8}^{0}+1\times{8}^{1}+1\times{8}^2
+```
+
+or $n = 74$.
 ````
 
 #### Integers
