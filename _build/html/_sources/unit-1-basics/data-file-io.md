@@ -211,17 +211,23 @@ database:
 ```
 
 
-## Application Programming Interfaces (APIs)
+## Web services and APIs
+A web service is a software system that enables machine-to-machine interaction over a network. Web services are often used to make the functionality of one application available to other applications or to provide data from one application to other. Web services can be accessed through a specified set of rules called an [application programming interfaces (APIs)](https://en.wikipedia.org/wiki/API). 
 
-An [application programming interface (API)](https://en.wikipedia.org/wiki/API) is a set of rules, protocols, and tools for building and interacting with software applications. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.
+* An API is a set of programming instructions for accessing a web-based software application. It specifies how software components should interact and allows communication between different systems. Thus, an API defines how a developer writes a program that requests services, e.g., data over the internet.
+* A web service is a specific type of API that uses the [HTTP protocol](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) to exchange data over the internet. Web services can transfer data in various formats, such as JSON or CSV.
+* Finally, APIs are often associated with a specific implementation of a web service, although the terms are used interchangeably. For example, a website may have a public API and various internal APIs to manage its different components and features.
+
+### RESTful APIs
+Here we explore a particular type of API called a RESTful API. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.
 
 RESTful APIs are designed to be lightweight, flexible, and scalable. They are based on the REST principles:
 * __Client-server architecture__: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud, are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the system more flexible and scalable.
-* __Statelessness__: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the necessary information to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.
+* __Statelessness__: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the information required to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.
 * __Cacheability__: RESTful APIs are designed to be cacheable, meaning that the server’s responses can be stored and reused by the client or a cache in the network. This increases the system’s efficiency; it reduces the need to make unnecessary requests to the server.
 * __Layered system__: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.
 
-RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the [HTTP request-response model](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications. 
+RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the [HTTP request-response model](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.
 
 ### What is HTTP?
 The [Hypertext Transfer Protocol (HTTP)](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled. 
