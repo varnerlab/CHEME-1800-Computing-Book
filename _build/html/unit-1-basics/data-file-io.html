@@ -445,25 +445,11 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#toml-files">
      TOML files
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#additional-resources">
-       Additional resources
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#json-files">
      JSON files
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Additional resources
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#yaml-files">
@@ -493,6 +479,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional resources
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -544,25 +537,11 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#toml-files">
      TOML files
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#additional-resources">
-       Additional resources
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#json-files">
      JSON files
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Additional resources
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#yaml-files">
@@ -592,6 +571,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional resources
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -755,16 +741,10 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="n">d</span> <span class="o">=</span> <span class="n">readtomlfile</span><span class="p">(</span><span class="n">path_to_toml_file</span><span class="p">);</span>
 </pre></div>
 </div>
-<section id="additional-resources">
-<h4>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the format and the different types of data that can be stored in a TOML file.</p></li>
-</ul>
-</section>
 </section>
 <section id="json-files">
 <h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays.</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on a subset of the <a class="reference external" href="https://en.wikipedia.org/wiki/JavaScript">JavaScript programming language</a> and is used to represent simple data structures and associative arrays.</p>
 <p>JSON is composed of two data structures:</p>
 <ul class="simple">
 <li><p>A collection of name/value pairs typically realized as a struct, dictionary, keyed list, or associative array.</p></li>
@@ -787,14 +767,15 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This JSON file defines an object with a single key, <code class="docutils literal notranslate"><span class="pre">people</span></code>; the <code class="docutils literal notranslate"><span class="pre">people</span></code> key has a value that is a list of objects, each representing a person. Each person object has three keys, the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, and <code class="docutils literal notranslate"><span class="pre">phone</span></code> key. However, unlike TOML, the JSON format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for reading and writing JSON files.</p>
+<p>This JSON file defines an object with a single key, <code class="docutils literal notranslate"><span class="pre">people</span></code>; the <code class="docutils literal notranslate"><span class="pre">people</span></code> key has a value that is a list of objects, each representing a person. Each person object has three keys, the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, and <code class="docutils literal notranslate"><span class="pre">phone</span></code> key. However, unlike TOML, the JSON format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for reading and writing JSON files, e.g., the <a class="reference external" href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> package:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load required packages</span>
 <span class="k">using</span> <span class="n">JSON</span>
 
 <span class="s">&quot;&quot;&quot;</span>
 <span class="s">    readjsonfile(path::String)::Dict{String,Any}</span>
 
-<span class="s">Load the JSON file at the path arg. Returns a Dict{String,Any} containing the JSON data.</span>
+<span class="s">Load the JSON file at the path arg. Returns a Dict{String,Any} </span>
+<span class="s">containing the JSON data.</span>
 <span class="s">&quot;&quot;&quot;</span>
 <span class="k">function</span> <span class="n">readjsonfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
 
@@ -811,43 +792,51 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="n">d</span> <span class="o">=</span> <span class="n">readjsonfile</span><span class="p">(</span><span class="n">path_to_json_file</span><span class="p">);</span>
 </pre></div>
 </div>
-<section id="id1">
-<h4>Additional resources<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
-<ul class="simple">
-<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the format and the different types of data that can be stored in a JSON file.</p></li>
-</ul>
-</section>
 </section>
 <section id="yaml-files">
 <h3>YAML files<a class="headerlink" href="#yaml-files" title="Permalink to this headline">#</a></h3>
-<p>YAML (YAML Ain’t Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
+<p><a class="reference external" href="https://yaml.org">YAML (YAML Ain’t Markup Language)</a> is a human-readable data serialization language that can be used to transmit data between systems. YAML is often a configuration file format for applications and is similar to TOML. YAML files use a simple syntax that consists of key-value pairs and can also include nested groups of keys. YAML uses indentation to denote structure, similar to <a class="reference external" href="https://www.python.org">Python</a>. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
 <p>Here is an example of a YAML file that could be used to store configuration data for an application:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a YAML configuration file for an application</span><span class="w"></span>
 
-<span class="c1"># The application&#39;s name</span><span class="w"></span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My App</span><span class="w"></span>
-
-<span class="c1"># The version of the application</span><span class="w"></span>
-<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w"></span>
-
-<span class="c1"># The hostname to bind the application to</span><span class="w"></span>
-<span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
-
-<span class="c1"># The port to bind the application to</span><span class="w"></span>
-<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"></span>
+<span class="c1"># Meta data about MyApp</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyApp</span><span class="w">             </span><span class="c1"># The application&#39;s name</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w">          </span><span class="c1"># The version of the application</span><span class="w"></span>
+<span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w">         </span><span class="c1"># The hostname to bind the application to</span><span class="w"></span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w">              </span><span class="c1"># The port to bind the application to</span><span class="w"></span>
 
 <span class="c1"># A group of database options</span><span class="w"></span>
 <span class="nt">database</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The database hostname</span><span class="w"></span>
-<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
-<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The name of the database</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mydatabase</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
-<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The password for the user</span><span class="w"></span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w"></span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w">       </span><span class="c1"># The database hostname</span><span class="w"></span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span><span class="w">            </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mydatabase</span><span class="w">      </span><span class="c1"># The name of the database</span><span class="w"></span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="w">          </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w">  </span><span class="c1"># The password for the user</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Unlike TOML, the YAML format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for working with YAML files, e.g., the <a class="reference external" href="https://github.com/JuliaData/YAML.jl">YAML.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load packages </span>
+<span class="k">using</span> <span class="n">YAML</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    readyamlfile(path::String)::Dict{String,Any}</span>
+
+<span class="s">Load the YAML file at the path arg. Returns a Dict{String,Any} </span>
+<span class="s">containing the YAML data.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">readyamlfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># check: does path point to a yaml file?</span>
+    <span class="c"># ...</span>
+
+    <span class="k">return</span> <span class="n">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># setup path -</span>
+<span class="n">path_to_yaml_file</span> <span class="o">=</span> <span class="s">&quot;MyApp.yaml&quot;</span>
+
+<span class="c"># load -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">readyamlfile</span><span class="p">(</span><span class="n">path_to_yaml_file</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -933,6 +922,14 @@ specialized package to work with <a class="reference external" href="https://en.
 <ul class="simple">
 <li><p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p></li>
 </ul>
+<section id="additional-resources">
+<h3>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the TOML format and the different types of data that can be stored in a TOML file.</p></li>
+<li><p>The <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON specification</a> describes the JSON format and the different types of data that can be stored in a JSON file.</p></li>
+<li><p>The <a class="reference external" href="https://yaml.org">YAML specification</a> describes the YAML format and the different types of data that can be stored in a YAML file.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

@@ -162,12 +162,9 @@ path_to_toml_file = "Database.toml"
 d = readtomlfile(path_to_toml_file);
 ```
 
-#### Additional resources
-* The [TOML specification](https://toml.io/en/) describes the format and the different types of data that can be stored in a TOML file.
-
 
 ### JSON files
-[JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays. 
+[JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on a subset of the [JavaScript programming language](https://en.wikipedia.org/wiki/JavaScript) and is used to represent simple data structures and associative arrays.  
 
 JSON is composed of two data structures:
 
@@ -193,7 +190,7 @@ Here is an example of a JSON file that stores contact information:
 }
 ```
 
-This JSON file defines an object with a single key, `people`; the `people` key has a value that is a list of objects, each representing a person. Each person object has three keys, the `name`, `email`, and `phone` key. However, unlike TOML, the JSON format is not included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Instead, there a variety of third-party packages available for reading and writing JSON files. 
+This JSON file defines an object with a single key, `people`; the `people` key has a value that is a list of objects, each representing a person. Each person object has three keys, the `name`, `email`, and `phone` key. However, unlike TOML, the JSON format is not included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Instead, there a variety of third-party packages available for reading and writing JSON files, e.g., the [JSON.jl](https://github.com/JuliaIO/JSON.jl) package:
 
 ```julia
 # load required packages
@@ -202,7 +199,8 @@ using JSON
 """
     readjsonfile(path::String)::Dict{String,Any}
 
-Load the JSON file at the path arg. Returns a Dict{String,Any} containing the JSON data.
+Load the JSON file at the path arg. Returns a Dict{String,Any} 
+containing the JSON data.
 """
 function readjsonfile(path::String)::Dict{String,Any}
 
@@ -219,41 +217,56 @@ path_to_json_file = "Contacts.json"
 d = readjsonfile(path_to_json_file);
 ```
 
-#### Additional resources
-* The [TOML specification](https://toml.io/en/) describes the format and the different types of data that can be stored in a JSON file.
+
 
 ### YAML files
-YAML (YAML Ain't Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a `.yaml` or `.yml` file extension.
+[YAML (YAML Ain't Markup Language)](https://yaml.org) is a human-readable data serialization language that can be used to transmit data between systems. YAML is often a configuration file format for applications and is similar to TOML. YAML files use a simple syntax that consists of key-value pairs and can also include nested groups of keys. YAML uses indentation to denote structure, similar to [Python](https://www.python.org). YAML files often have a `.yaml` or `.yml` file extension.
 
 Here is an example of a YAML file that could be used to store configuration data for an application:
 
 ```yaml
 # This is a YAML configuration file for an application
 
-# The application's name
-name: My App
-
-# The version of the application
-version: 1.0.0
-
-# The hostname to bind the application to
-host: localhost
-
-# The port to bind the application to
-port: 8080
+# Meta data about MyApp
+name: MyApp             # The application's name
+version: 1.0.0          # The version of the application
+host: localhost         # The hostname to bind the application to
+port: 8080              # The port to bind the application to
 
 # A group of database options
 database:
-  # The database hostname
-  host: localhost
-  # The port to connect to the database on
-  port: 5432
-  # The name of the database
-  name: mydatabase
-  # The username to connect to the database with
-  user: myuser
-  # The password for the user
-  password: mypassword
+  host: localhost       # The database hostname
+  port: 5432            # The port to connect to the database on
+  name: mydatabase      # The name of the database
+  user: myuser          # The username to connect to the database with
+  password: mypassword  # The password for the user
+```
+
+Unlike TOML, the YAML format is not included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Instead, there a variety of third-party packages available for working with YAML files, e.g., the [YAML.jl](https://github.com/JuliaData/YAML.jl) package:
+
+```julia
+# load packages 
+using YAML
+
+"""
+    readyamlfile(path::String)::Dict{String,Any}
+
+Load the YAML file at the path arg. Returns a Dict{String,Any} 
+containing the YAML data.
+"""
+function readyamlfile(path::String)::Dict{String,Any}
+
+    # check: does path point to a yaml file?
+    # ...
+
+    return YAML.load_file(path)
+end
+
+# setup path -
+path_to_yaml_file = "MyApp.yaml"
+
+# load -
+d = readyamlfile(path_to_yaml_file);
 ```
 
 
@@ -342,3 +355,8 @@ include("myapiexample.jl")
 In this lecture we introduced topcs in data input and output.
 
 * File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.
+
+### Additional resources
+* The [TOML specification](https://toml.io/en/) describes the TOML format and the different types of data that can be stored in a TOML file.
+* The [JSON specification](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) describes the JSON format and the different types of data that can be stored in a JSON file.
+* The [YAML specification](https://yaml.org) describes the YAML format and the different types of data that can be stored in a YAML file.
