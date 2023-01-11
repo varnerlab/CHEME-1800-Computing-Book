@@ -489,6 +489,16 @@ title="Print to PDF"
      Julia
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#are-there-differences-between-julia-and-python-modules">
+     Are there differences between Julia and Python modules?
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -542,6 +552,16 @@ title="Print to PDF"
      Julia
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#are-there-differences-between-julia-and-python-modules">
+     Are there differences between Julia and Python modules?
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -584,8 +604,8 @@ title="Print to PDF"
 <h3>Anatomy of an executable program<a class="headerlink" href="#anatomy-of-an-executable-program" title="Permalink to this headline">#</a></h3>
 <p>The structure of programs in modern languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, and older foundational languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> are remarkably conserved. Let’s look at a skeleton of an <em>executable</em> program in various languages and compare and contrast the structure:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1e0e5bdc-0a61-4c88-89aa-744602fc874f" name="7aa92a2d-bb09-47d1-9da9-79c8c369193d" type="radio">
-</input><label class="sd-tab-label" for="1e0e5bdc-0a61-4c88-89aa-744602fc874f">
+<input checked="checked" id="3cc08969-f99c-440d-9c45-c0a6c0fd7889" name="6e0b260a-a122-40fc-ad85-25cd17a4fe19" type="radio">
+</input><label class="sd-tab-label" for="3cc08969-f99c-440d-9c45-c0a6c0fd7889">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 0. copyright/licensing information</span>
 <span class="c"># 1. import functions from external modules here</span>
@@ -604,8 +624,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="59be9e21-26e7-497d-8db9-c722467c63e0" name="7aa92a2d-bb09-47d1-9da9-79c8c369193d" type="radio">
-</input><label class="sd-tab-label" for="59be9e21-26e7-497d-8db9-c722467c63e0">
+<input id="3ea9d30f-c65c-49f1-9896-93bb8493a872" name="6e0b260a-a122-40fc-ad85-25cd17a4fe19" type="radio">
+</input><label class="sd-tab-label" for="3ea9d30f-c65c-49f1-9896-93bb8493a872">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 0. copyright/licensing information</span>
 <span class="c1"># 1. import functions from external modules here</span>
@@ -623,8 +643,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dc3290a6-2f32-4a9a-8d67-ce75e6595a2f" name="7aa92a2d-bb09-47d1-9da9-79c8c369193d" type="radio">
-</input><label class="sd-tab-label" for="dc3290a6-2f32-4a9a-8d67-ce75e6595a2f">
+<input id="bc0c629c-8059-4edf-aac4-70784facef6c" name="6e0b260a-a122-40fc-ad85-25cd17a4fe19" type="radio">
+</input><label class="sd-tab-label" for="bc0c629c-8059-4edf-aac4-70784facef6c">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 0 copyright/licensing */</span><span class="w"></span>
 <span class="cm">/* 1 includes */</span><span class="w"></span>
@@ -644,9 +664,9 @@ C</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>Let’s develop an <em>executable</em> script in <a class="reference external" href="https://docs.julialang.org">Julia</a> to compute the factorial <span class="math notranslate nohighlight">\(n!\)</span> (<a class="reference internal" href="#example-exe-julia-script">Example 8</a>):</p>
+<p>Let’s develop an <em>executable</em> script in <a class="reference external" href="https://docs.julialang.org">Julia</a> to compute the factorial <span class="math notranslate nohighlight">\(n!\)</span> (<a class="reference internal" href="#example-exe-julia-script">Example 11</a>):</p>
 <div class="proof example dropdown admonition" id="example-exe-julia-script">
-<p class="admonition-title"><span class="caption-number">Example 8 </span> (Execute a Julia program)</p>
+<p class="admonition-title"><span class="caption-number">Example 11 </span> (Execute a Julia program)</p>
 <section class="example-content" id="proof-content">
 <p>Build an example program in <a class="reference external" href="https://docs.julialang.org">Julia</a> and execute that program; consider the recursive <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function that we developed in the <a class="reference internal" href="functions.html#content-references-recursion-functions"><span class="std std-ref">Recursion</span></a> section:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load external modules</span>
@@ -705,6 +725,36 @@ C</label><div class="sd-tab-content docutils">
 <span class="k">end</span>
 </pre></div>
 </div>
+</section>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h3>
+<p>A Python module is a file containing Python definitions and statements. The file name is the module name with the suffix <code class="docutils literal notranslate"><span class="pre">.py</span></code> added to the filename. Other Python programs can import Python modules, and the functions or types defined in the module can be used by the importing program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">multiply</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># prints 12</span>
+</pre></div>
+</div>
+<p>The if <strong>name</strong> == ‘<strong>main</strong>’: block at the bottom allows you to test the function by running the module as a script. For example, you could save the above code to a file named <a class="reference external" href="http://mymodule.py">mymodule.py</a>, then run it from the command line like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>$ python mymodule.py
+</pre></div>
+</div>
+<p>Of course, you can also import this module in another python script or program and use your implementation of the <code class="docutils literal notranslate"><span class="pre">multiply</span></code> function using the <code class="docutils literal notranslate"><span class="pre">import</span></code> keyword:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mymodule</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># prints 30</span>
+</pre></div>
+</div>
+</section>
+<section id="are-there-differences-between-julia-and-python-modules">
+<h3>Are there differences between Julia and Python modules?<a class="headerlink" href="#are-there-differences-between-julia-and-python-modules" title="Permalink to this headline">#</a></h3>
+<p>Modules in Python and Julia offer a mechanism to organize and reuse code, but the two have minor syntactical and semantic differences. A Python module is a file containing Python definitions and statements, which can be imported and used by other Python scripts. Julia modules are similar because they also organize code and data, which can be imported into another Julia script. However, there are some subtle differences in how modules are defined and imported in Julia.</p>
+<ul class="simple">
+<li><p><strong>Privacy</strong>: One key difference is that in Julia, all the functions, types, and variables defined inside a module are private by default, unlike python, where everything described inside the module is public and can be imported and used. Julia has the export keyword to make the functions, types, and variables inside the module public and accessible from the outside.</p></li>
+<li><p><strong>Management</strong>: Another difference is that Julia has a concept of a package, a collection of modules and external libraries that can be easily installed and imported using a single unified package management system. <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/Pkg/">Julia’s package manager Pkg</a> allows you to install, update, and manage packages and their dependencies, so you can easily use and share code between different projects. However, python has several package installers/managers, e.g., <a class="reference external" href="https://pypi.org/project/pip/">the package installer for python (pip)</a> or <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a>; thus, while the package ecosystem in Python is vibrant, it can seem fractured and overly complicated.</p></li>
+</ul>
 </section>
 </section>
 <hr class="docutils" />

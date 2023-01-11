@@ -459,10 +459,15 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
-   Application Programming Interfaces (APIs)
+  <a class="reference internal nav-link" href="#web-services-and-apis">
+   Web services and APIs
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restful-apis">
+     RESTful APIs
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-is-http">
      What is HTTP?
@@ -474,6 +479,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional resources
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -539,10 +551,15 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-programming-interfaces-apis">
-   Application Programming Interfaces (APIs)
+  <a class="reference internal nav-link" href="#web-services-and-apis">
+   Web services and APIs
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restful-apis">
+     RESTful APIs
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-is-http">
      What is HTTP?
@@ -554,6 +571,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional resources
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -676,46 +700,57 @@ specialized package to work with <a class="reference external" href="https://en.
 <p>TOML (Tom’s Obvious, Minimal Language) is a configuration file format that is intended to be easy to read and write and is also easy to parse. It is used to store configuration data for applications. TOML files consist of key-value pairs, similar to a dictionary in Julia or Python, and can also include nested groups of keys. TOML files often have a <code class="docutils literal notranslate"><span class="pre">.toml</span></code> file extension.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a TOML configuration file for a database</span><span class="w"></span>
 
-<span class="c1"># The database hostname</span><span class="w"></span>
-<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w"></span>
+<span class="c1"># section: holds connection information</span><span class="w"></span>
+<span class="k">[connection]</span><span class="w"></span>
+<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w">      </span><span class="c1"># The database hostname</span><span class="w"></span>
+<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5432</span><span class="w">             </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydatabase&quot;</span><span class="w"> </span><span class="c1"># The name of the database</span><span class="w"></span>
+<span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myuser&quot;</span><span class="w">         </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mypassword&quot;</span><span class="w"> </span><span class="c1"># The password for the user</span><span class="w"></span>
+<span class="n">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">    </span><span class="c1"># The maximum number of connections to allow at once</span><span class="w"></span>
+<span class="n">connection_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="c1"># The amount of time to wait before timing out a connection</span><span class="w"></span>
 
-<span class="c1"># The port to connect to the database on</span><span class="w"></span>
-<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5432</span><span class="w"></span>
-
-<span class="c1"># The name of the database</span><span class="w"></span>
-<span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydatabase&quot;</span><span class="w"></span>
-
-<span class="c1"># The username to connect to the database with</span><span class="w"></span>
-<span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myuser&quot;</span><span class="w"></span>
-
-<span class="c1"># The password for the user</span><span class="w"></span>
-<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mypassword&quot;</span><span class="w"></span>
-
-<span class="c1"># The maximum number of connections to allow at once</span><span class="w"></span>
-<span class="n">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
-
-<span class="c1"># The amount of time to wait before timing out a connection</span><span class="w"></span>
-<span class="n">connection_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;30s&quot;</span><span class="w"></span>
-
-<span class="c1"># A group of database options</span><span class="w"></span>
+<span class="c1"># section: holds a group of database options</span><span class="w"></span>
 <span class="k">[options]</span><span class="w"></span>
+<span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true</span><span class="w">              </span><span class="c1"># Whether to enable SSL connections to the database</span><span class="w"></span>
+<span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w">    </span><span class="c1"># The preferred SSL mode to use</span><span class="w"></span>
+</pre></div>
+</div>
+<p>TOML files are widely used for storing configuration information. For example, in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the <a class="reference external" href="https://pkgdocs.julialang.org/v1/">package manager Pkg.jl</a> stores information about the packages required for a project in a <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code> file (which is automatically created when a project is activated). Because of its central role in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <code class="docutils literal notranslate"><span class="pre">TOML.jl</span></code>, the package to read and write TOML files, is included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Thus, we don’t need to install it and can access it by placing the <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">TOML</span></code> file at the start of our program.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load packages </span>
+<span class="k">using</span> <span class="n">TOML</span>
 
-<span class="c1"># Whether to enable SSL connections to the database</span><span class="w"></span>
-<span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    readtomlfile(path::String)::Dict{String,Any}</span>
 
-<span class="c1"># The preferred SSL mode to use</span><span class="w"></span>
-<span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w"></span>
+<span class="s">Load the TOML file at the path arg. Returns a Dict{String,Any} </span>
+<span class="s">containing the TOML data.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">readtomlfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># check: does path point to a toml file?</span>
+    <span class="c"># ...</span>
+
+    <span class="k">return</span> <span class="n">TOML</span><span class="o">.</span><span class="n">parsefile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># setup path -</span>
+<span class="n">path_to_toml_file</span> <span class="o">=</span> <span class="s">&quot;Database.toml&quot;</span>
+
+<span class="c"># load -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">readtomlfile</span><span class="p">(</span><span class="n">path_to_toml_file</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="json-files">
 <h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this headline">#</a></h3>
-<p>JSON (JavaScript Object Notation) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays (called objects). JSON is composed of two data structures:</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on a subset of the <a class="reference external" href="https://en.wikipedia.org/wiki/JavaScript">JavaScript programming language</a> and is used to represent simple data structures and associative arrays.</p>
+<p>JSON is composed of two data structures:</p>
 <ul class="simple">
-<li><p>A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</p></li>
-<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
-Here is an example of a JSON file that stores information about a collection of books:</p></li>
+<li><p>A collection of name/value pairs typically realized as a struct, dictionary, keyed list, or associative array.</p></li>
+<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.</p></li>
 </ul>
+<p>Here is an example of a JSON file that stores contact information:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -732,53 +767,100 @@ Here is an example of a JSON file that stores information about a collection of 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This JSON file defines an object with a single key, “people”, that has a value that is a list of objects, each representing a person. Each person object has three keys, “name”, “email”, and “</p>
+<p>This JSON file defines an object with a single key, <code class="docutils literal notranslate"><span class="pre">people</span></code>; the <code class="docutils literal notranslate"><span class="pre">people</span></code> key has a value that is a list of objects, each representing a person. Each person object has three keys, the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, and <code class="docutils literal notranslate"><span class="pre">phone</span></code> key. However, unlike TOML, the JSON format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for reading and writing JSON files, e.g., the <a class="reference external" href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load required packages</span>
+<span class="k">using</span> <span class="n">JSON</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    readjsonfile(path::String)::Dict{String,Any}</span>
+
+<span class="s">Load the JSON file at the path arg. Returns a Dict{String,Any} </span>
+<span class="s">containing the JSON data.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">readjsonfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># check: does path point to a json file?</span>
+    <span class="c"># ...</span>
+
+    <span class="k">return</span> <span class="n">JSON</span><span class="o">.</span><span class="n">parsefile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># setup path -</span>
+<span class="n">path_to_json_file</span> <span class="o">=</span> <span class="s">&quot;Contacts.json&quot;</span>
+
+<span class="c"># load -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">readjsonfile</span><span class="p">(</span><span class="n">path_to_json_file</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="yaml-files">
 <h3>YAML files<a class="headerlink" href="#yaml-files" title="Permalink to this headline">#</a></h3>
-<p>YAML (YAML Ain’t Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
+<p><a class="reference external" href="https://yaml.org">YAML (YAML Ain’t Markup Language)</a> is a human-readable data serialization language that can be used to transmit data between systems. YAML is often a configuration file format for applications and is similar to TOML. YAML files use a simple syntax that consists of key-value pairs and can also include nested groups of keys. YAML uses indentation to denote structure, similar to <a class="reference external" href="https://www.python.org">Python</a>. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
 <p>Here is an example of a YAML file that could be used to store configuration data for an application:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a YAML configuration file for an application</span><span class="w"></span>
 
-<span class="c1"># The application&#39;s name</span><span class="w"></span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My App</span><span class="w"></span>
-
-<span class="c1"># The version of the application</span><span class="w"></span>
-<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w"></span>
-
-<span class="c1"># The hostname to bind the application to</span><span class="w"></span>
-<span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
-
-<span class="c1"># The port to bind the application to</span><span class="w"></span>
-<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"></span>
+<span class="c1"># Meta data about MyApp</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyApp</span><span class="w">             </span><span class="c1"># The application&#39;s name</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span><span class="w">          </span><span class="c1"># The version of the application</span><span class="w"></span>
+<span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w">         </span><span class="c1"># The hostname to bind the application to</span><span class="w"></span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w">              </span><span class="c1"># The port to bind the application to</span><span class="w"></span>
 
 <span class="c1"># A group of database options</span><span class="w"></span>
 <span class="nt">database</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The database hostname</span><span class="w"></span>
-<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
-<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The name of the database</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mydatabase</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
-<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># The password for the user</span><span class="w"></span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w"></span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w">       </span><span class="c1"># The database hostname</span><span class="w"></span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span><span class="w">            </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mydatabase</span><span class="w">      </span><span class="c1"># The name of the database</span><span class="w"></span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myuser</span><span class="w">          </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w">  </span><span class="c1"># The password for the user</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Unlike TOML, the YAML format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for working with YAML files, e.g., the <a class="reference external" href="https://github.com/JuliaData/YAML.jl">YAML.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load packages </span>
+<span class="k">using</span> <span class="n">YAML</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    readyamlfile(path::String)::Dict{String,Any}</span>
+
+<span class="s">Load the YAML file at the path arg. Returns a Dict{String,Any} </span>
+<span class="s">containing the YAML data.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">readyamlfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># check: does path point to a yaml file?</span>
+    <span class="c"># ...</span>
+
+    <span class="k">return</span> <span class="n">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># setup path -</span>
+<span class="n">path_to_yaml_file</span> <span class="o">=</span> <span class="s">&quot;MyApp.yaml&quot;</span>
+
+<span class="c"># load -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">readyamlfile</span><span class="p">(</span><span class="n">path_to_yaml_file</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="application-programming-interfaces-apis">
-<h2>Application Programming Interfaces (APIs)<a class="headerlink" href="#application-programming-interfaces-apis" title="Permalink to this headline">#</a></h2>
-<p>An <a class="reference external" href="https://en.wikipedia.org/wiki/API">application programming interface (API)</a> is a set of rules, protocols, and tools for building and interacting with software applications. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.</p>
+<section id="web-services-and-apis">
+<h2>Web services and APIs<a class="headerlink" href="#web-services-and-apis" title="Permalink to this headline">#</a></h2>
+<p>A web service is a software system that enables machine-to-machine interaction over a network. Web services are often used to make the functionality of one application available to other applications or to provide data from one application to other. Web services can be accessed through a specified set of rules called an <a class="reference external" href="https://en.wikipedia.org/wiki/API">application programming interfaces (APIs)</a>.</p>
+<ul class="simple">
+<li><p>An API is a set of programming instructions for accessing a web-based software application. It specifies how software components should interact and allows communication between different systems. Thus, an API defines how a developer writes a program that requests services, e.g., data over the internet.</p></li>
+<li><p>A web service is a specific type of API that uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP protocol</a> to exchange data over the internet. Web services can transfer data in various formats, such as JSON or CSV.</p></li>
+<li><p>Finally, APIs are often associated with a specific implementation of a web service, although the terms are used interchangeably. For example, a website may have a public API and various internal APIs to manage its different components and features.</p></li>
+</ul>
+<section id="restful-apis">
+<h3>RESTful APIs<a class="headerlink" href="#restful-apis" title="Permalink to this headline">#</a></h3>
+<p>Here we explore a particular type of API called a RESTful API. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.</p>
 <p>RESTful APIs are designed to be lightweight, flexible, and scalable. They are based on the REST principles:</p>
 <ul class="simple">
 <li><p><strong>Client-server architecture</strong>: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud, are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the system more flexible and scalable.</p></li>
-<li><p><strong>Statelessness</strong>: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the necessary information to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.</p></li>
+<li><p><strong>Statelessness</strong>: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the information required to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.</p></li>
 <li><p><strong>Cacheability</strong>: RESTful APIs are designed to be cacheable, meaning that the server’s responses can be stored and reused by the client or a cache in the network. This increases the system’s efficiency; it reduces the need to make unnecessary requests to the server.</p></li>
 <li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.</p></li>
 </ul>
 <p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.</p>
+</section>
 <section id="what-is-http">
 <h3>What is HTTP?<a class="headerlink" href="#what-is-http" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol (HTTP)</a> is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled.</p>
@@ -788,9 +870,9 @@ Here is an example of a JSON file that stores information about a collection of 
 <li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
 </ul>
 <p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
-<p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 9</a>:</p>
+<p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 12</a>:</p>
 <div class="proof example dropdown admonition" id="example-get-API-example">
-<p class="admonition-title"><span class="caption-number">Example 9 </span> (GET Request)</p>
+<p class="admonition-title"><span class="caption-number">Example 12 </span> (GET Request)</p>
 <section class="example-content" id="proof-content">
 <p>Develop a function that calls an application programming interface (API) to retrive a list of employees.</p>
 <p><strong>Solution</strong>: The executable Julia script below makes an API call and transforms the JSON data returned from the server into a Julia dictionary. The <code class="docutils literal notranslate"><span class="pre">makeapicallget(url::String)::Dict{String,Any}</span></code> calls the server and transforms the data into the final format.</p>
@@ -840,6 +922,14 @@ Here is an example of a JSON file that stores information about a collection of 
 <ul class="simple">
 <li><p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p></li>
 </ul>
+<section id="additional-resources">
+<h3>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the TOML format and the different types of data that can be stored in a TOML file.</p></li>
+<li><p>The <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON specification</a> describes the JSON format and the different types of data that can be stored in a JSON file.</p></li>
+<li><p>The <a class="reference external" href="https://yaml.org">YAML specification</a> describes the YAML format and the different types of data that can be stored in a YAML file.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

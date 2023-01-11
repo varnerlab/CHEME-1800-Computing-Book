@@ -90,7 +90,7 @@ __source__: Fill me in.
 ### Hidden Markov Models (HMMs)
 Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations. 
 
-Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [CRR binomial lattice](../chapter-3-dir/contracts.md):
+Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [CRR binomial lattice](https://en.wikipedia.org/wiki/Binomial_options_pricing_model):
 
 ````{prf:example} Stationary hidden Markov model
 :label: example-dicrete-mchain-hmm

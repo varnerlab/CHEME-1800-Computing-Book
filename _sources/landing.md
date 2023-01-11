@@ -1,7 +1,12 @@
 # Principles of Computational Thinking for Engineers
 
 ## Description
-Engineering practice increasingly relies on computational tools and data analysis approaches. This one-semester course introduces computational thinking into engineering analysis. We integrate data science and statistics, artificial intelligence, and mathematical modeling approaches into the context of contemporary problems in the design and analysis of processes, products, and systems. The course is agnostic to platforms and tools; we’ll focus on paradigms, not syntax. However, we’ll use the Julia programming language and its associated toolchain when transitioning from idea to implementation. In addition, we’ll use cloud computing resources for course materials, assignments, and projects. Weekly labs provide guided practice on the computer, with teaching staff present. Course assignments use data sets and examples to develop fluency and understanding of real-life problems. 
+Engineering practice increasingly relies on computational tools and data analysis approaches. This one-semester course introduces computational thinking into engineering analysis. We integrate data science and statistics, artificial intelligence, and mathematical modeling approaches into the context of contemporary problems in the design and analysis of processes, products, and systems. The course is agnostic to platforms and tools; we’ll focus on paradigms, not syntax. However, we’ll use the [Julia programming language](https://julialang.org) and its associated toolchain when transitioning from idea to implementation. In addition, we’ll use cloud computing resources for course materials, assignments, and projects. Weekly labs provide guided practice on the computer, with teaching staff present. Course assignments use data sets and examples to develop fluency and understanding of real-life problems. 
+
+### Time, place and website
+* __Credits__: 4-credits
+* __Lectures and discussions__: Lecture at TuTh 9:05 AM - 9:55 AM and Discussion at TuTh 1:30 PM - 2:20 PM in Olin 245
+* __Website__: Canvas and GitHub. Examples, labs, and other codes used throughout the course are available on our GitHub repository: [https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git).
 
 ### Outcomes
 Upon completion of this course, students will be able to:
@@ -15,6 +20,9 @@ Lectures are organized into units, each having roughly four weeks of class time
 * [Unit 2: Data, Algorithms, and Linear Algebra](./unit-2-data/data-landing.md)
 * [Unit 3: The Learning Problem: Models, Learning, and Optimization](./unit-3-learning/learning-landing.md)
 * [Unit 4: The Decision Problem: Probability, Random Process, and Decisions](./unit-4-decisions/decisions-landing.md)
+
+### Schedule
+The lecture, lab and problem set schedule can be viewed at (requires Cornell login): [https://cornell.box.com/s/dwv40d6f6em33djv98bcsf2gk767hamk](https://cornell.box.com/s/dwv40d6f6em33djv98bcsf2gk767hamk)
 
 ## Grading
 We expect this course to draw from a spectrum of students, including “those less comfortable with computing,” “those more comfortable with computing,” and those in between. However, what ultimately matters is not where you end up relative to your classmates but where you are relative to yourself. 
@@ -40,10 +48,10 @@ Each student’s final grade is individually determined at the end of the semest
 * Exam re-grade requests must be submitted in writing within one week of the return of the exam document. The entire exam document will be re-graded in addition to addressing the re-grade request. 
 * If you need to request an extension on a problem set because of an extenuating circumstance, please get in touch with Professor Varner before the problem set is due to discuss an extension. 
 * All required submissions (should there be any) must be sent to the teaching team email: (course email goes here). Each submission should include your name(s) or netID(s) on the first page of the assignment. Except for computer code, written submissions should consist of a single PDF document generated using the LaTeX document preparation system. For any computing assignments, you may be required to publish code to GitHub or submit files to Gradescope; in these cases, specific instructions and procedures will be given.
-* The course will officially support numerical computing in various programming languages (open source and platform agnostic). We’ll use Visual Studio Code (VSCode) as our Integrated Development Environment (IDE).
+* The course will officially support numerical computing in various programming languages (open source and platform agnostic). We’ll use [Visual Studio Code (VSCode)](https://code.visualstudio.com) as our Integrated Development Environment (IDE).
 
 ## Disabilities statement
-If you have a disability-related need for reasonable academic adjustments in this course, please provide Professor Varner with an accommodation letter from Student Disability Services. Students are expected to give a two weeks notice of the need for accommodations. 
+If you have a disability-related need for reasonable academic adjustments in this course, please provide Professor Varner with an accommodation letter from [Student Disability Services](https://sds.cornell.edu). Students are expected to give two weeks’ notice of the need for accommodations.  
 
 ## Diversity statement
 We aspire to create an environment for learning, intellectual discourse, and professional and social interactions where everyone feels welcome and valued. We recognize all course participants as responsible adults with differing perspectives based partly on their unique experiences. [We espouse the broader mission and values of the Smith School](https://www.cheme.cornell.edu/cbe/about/mission).

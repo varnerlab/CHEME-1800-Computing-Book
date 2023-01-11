@@ -13,7 +13,7 @@ kernelspec:
 # Expressions, Variables and Types
 
 ## Introduction
-In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In some traditional programming languages, it is important to declare the variable type before using it so that the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) can check the correctness of the program and allocate the appropriate amount of memory to store the variable. However, modern languages can guess (or infer) the type. But, declaring types is still good practice because it helps with the readability of the compute code. 
+In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In some traditional programming languages, it is important to declare the variable type before using it so that the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) can check the correctness of the program and allocate the appropriate amount of memory to store the variable. However, while most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code. 
 
 ---
 
@@ -53,10 +53,11 @@ The in-memory `numeric primitives` representation of integers, floating-point, a
 The base $b$ representation of a number is a way of writing numbers using the digit set:
 
 ```{math}
+:label: eqn-base-b-numbers-digits
 \mathcal{D} = \left\{0, 1, \dots, (b − 1)\right\}
 ```
 
-For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}$ for all $k$ such that:
+For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}$ for all $k$ such that the `base 10` value $n$ is given by:
 
 ```{math}
 :label: eqn-base-b-number
@@ -64,6 +65,24 @@ n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}
 ```
 
 The quantity $a_{j}$ denotes the digit in position $j$, $b$ denotes the base and $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
+````
+
+Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
+
+````{prf:example} Base 8 representation
+:class: dropdown
+:label: example-base-8-number
+
+Write the octal number $\left(112\right)_{8}$ in `base 10`. 
+
+__Solution__: For a `base 8` (octal) number, $b=8$; the octal number $\left(112\right)_{8}$ can be expanded using Eqn. {eq}`eqn-base-b-number` as:
+
+```{math}
+:label: example-eqn-base-8-expansion
+n = 2\times{8}^{0}+1\times{8}^{1}+1\times{8}^2
+```
+
+or $n = 74$.
 ````
 
 #### Integers
@@ -171,10 +190,68 @@ bitstring(int_value)
 ```
 
 
-#### Floating point values
-Scalar floating point numbers, i.e., decimal numbers in the set $\mathbb{R}$, are stored using 4$\times$bytes (32-bits) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). However, unlike integer values, which can be represented exactly, floating-point numbers can only be _approximated_ in a computer system. 
+#### Floating point numbers
 
+```{figure} ./figs/Fig-Float32-bit-pattern.pdf
+---
+height: 140px
+name: fig-32bit-floating-point-schematic
+---
+Schematic of the bit-pattern for a 4$\times$byte (32-bit) floating point number
+```
 
+##### Scalar 32- and 64-bit floating point numbers
+Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored using 4$\times$bytes (32-bits; single-precision) or 8$\times$bytes (64-bits; double-precision) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ by a computer system.
+
+In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits ({numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
+
+```{math}
+:label: eqn-floating-point-bumbecalled _single_ precision, while 8$\times$bytes (64-bits) floating point numbers are called _double_ precision.r
+x = -1^{S}\times{M}\times{2}^{(E-127)}
+```
+
+where $S$ denotes the sign bit, $M$ denotes the mantissa (fraction) and $E$ denotes the exponent. 
+* For a 32-bit floating point number, $S$ is bit 31 denoted by $b_{31}$, $M$ is encoded in bits $b_0\rightarrow{b_{22}}$ and $E$ is encoded by bits $b_{23}\rightarrow{b_{30}}$.
+* On the other hand, in a 64-bit floating point number the sign bit $S$ is $b_{63}$, the mantissa $M$ is the number encoded by bits $b_0\rightarrow{b_{51}}$, and the exponent $E$ is encoded by bits $b_{52}\rightarrow{b_{62}}$.
+
+Thus, for a 32-bit floating point number, the sign bit is $b_{31}$, while the fraction $M$ is expressed as:
+
+```{math}
+:label: eqn-M-expression
+M = \left(1+\sum_{i=1}^{23}b_{23-i}2^{-i}\right)
+```
+
+and the exponent $E$ is given by:
+
+```{math}
+:label: eqn-E-expression
+E = \sum_{i=0}^{7}b_{23+i}2^{i}
+```
+
+Let's consider the representation of a `Float32` value for $\pi$ ({prf:ref}`example-float32-representation`):
+
+````{prf:example} Float32 representation in Julia
+:class: dropdown
+:label: example-float32-representation
+
+Compute the $S, M$ and $E$ components of the 32-bit floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
+
+__Solution__: The bitstring representation of $x$ is given by:
+
+```{math}
+:label: eqn-32bit-bitstring
+3.14159 = \left(01000000010010010000111111010000\right)_{2}
+```
+
+Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. However, we can convert a `Float64` to a `Float32` using the `convert(Float32,x)` command.  
+
+The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
+
+```{math}
+3.1459 = 1\times{1.570795}\times{2}
+```
+
+````
 
 ### Character and string values
 Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.
@@ -269,11 +346,57 @@ array = collect(string)
 
 By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage; thus, a value of type `String` with $c$ characters requires at most $4c\times$bytes (32$\cdot{c}$-bits). 
 
-### Custom types
-Fill me in
+### Composite types
+Composite types are custom data types that are made up of one or more other data types. In [Julia](https://docs.julialang.org), there are two main composite types: [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays).
+
+A struct is a composite data type that allows you to store data in named fields. You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
+
+```julia
+struct Student
+    
+    # data fields 
+    sid::Int64
+    netid::String
+end
+
+# build an instance -
+student = Student(1,"xyz123"); # we pass the required data into the struct as args 
+```
+
+A mutable struct is a struct whose fields can be modified after it is created. You can create a mutable struct by using the `mutable struct` keyword instead of struct and by adding a _constructor_ method:
+
+```julia
+mutable struct Student
+    
+    # data fields 
+    sid::Int64
+    netid::String
+
+    # constructor: builds a new empty Student
+    Student() = new()
+end
+
+# build an empty instance -
+student = Student(); # contains no data
+student.sid = 1
+student.netid = "xyz123" # we add data using the "dot" notation
+```
+
+The struct composite data type contains only data; in the examples above the `Student` datatype holds two values, `sid` is an integer type and `netid` is a string type. Except for the special case of the constructur on the mutable `Student` struct, composite types in [Julia](https://docs.julialang.org) do not have functions attached to them. 
+
+#### Aside: What is an object-oriented language?
+In other mainstream programming languages, e.g., [Python](https://www.python.org), [Java](https://www.oracle.com/java/), [C++](https://en.wikipedia.org/wiki/C%2B%2B) or [Ruby](https://www.ruby-lang.org/en/) composite types also have named functions associated with them, and the combination is called an `object`. In purer object-oriented languages, such as [Ruby](https://www.ruby-lang.org/en/) or [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk), all values are objects whether they are composites or not. In less refined object-oriented languages, including [C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Java](https://www.oracle.com/java/), some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In [Julia](https://docs.julialang.org), all values are objects, but functions are not bundled with the objects they operate on. 
+
+<!-- and a single optional function called a constructor, which is called to build an instance of the struct. -->
 
 
 ---
 
 # Summary
-Fill me in.
+In this lecture, we introduced expressions, variables, and types. Understanding expressions, variables, and types are fundamental to writing programs in any programming language.
+
+* Expressions are combinations of values, variables, and operators that produce a new value when evaluated. 
+* Variables are named storage locations that can hold values and are used to store values that may change during the execution of a program. 
+* Types are categories of values, and every value belongs to a specific type. Programming languages have many different types, including primitive types (such as numbers and booleans) and composite types (such as arrays and objects). 
+
+Next, we build upon our introduction of expressions, variables, and types and consider some other technical computing build blocks and strategies, namely [Functions, Control Statements, and Recursion](./functions.md).

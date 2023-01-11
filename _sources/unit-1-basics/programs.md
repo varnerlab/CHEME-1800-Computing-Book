@@ -165,6 +165,38 @@ module MyExampleModule
 end
 ```
 
+### Python
+A Python module is a file containing Python definitions and statements. The file name is the module name with the suffix `.py` added to the filename. Other Python programs can import Python modules, and the functions or types defined in the module can be used by the importing program:
+
+```python
+def multiply(x, y):
+    return x * y
+
+if __name__ == '__main__':
+    result = multiply(3, 4)
+    print(result) # prints 12
+```
+
+The if __name__ == '__main__': block at the bottom allows you to test the function by running the module as a script. For example, you could save the above code to a file named mymodule.py, then run it from the command line like this:
+
+```python
+$ python mymodule.py
+```
+
+Of course, you can also import this module in another python script or program and use your implementation of the `multiply` function using the `import` keyword:
+
+```python
+import mymodule
+result = mymodule.multiply(5, 6)
+print(result) # prints 30
+```
+
+### Are there differences between Julia and Python modules?
+Modules in Python and Julia offer a mechanism to organize and reuse code, but the two have minor syntactical and semantic differences. A Python module is a file containing Python definitions and statements, which can be imported and used by other Python scripts. Julia modules are similar because they also organize code and data, which can be imported into another Julia script. However, there are some subtle differences in how modules are defined and imported in Julia. 
+
+* __Privacy__: One key difference is that in Julia, all the functions, types, and variables defined inside a module are private by default, unlike python, where everything described inside the module is public and can be imported and used. Julia has the export keyword to make the functions, types, and variables inside the module public and accessible from the outside.
+
+* __Management__: Another difference is that Julia has a concept of a package, a collection of modules and external libraries that can be easily installed and imported using a single unified package management system. [Julia's package manager Pkg](https://docs.julialang.org/en/v1/stdlib/Pkg/) allows you to install, update, and manage packages and their dependencies, so you can easily use and share code between different projects. However, python has several package installers/managers, e.g., [the package installer for python (pip)](https://pypi.org/project/pip/) or [conda](https://docs.conda.io/en/latest/); thus, while the package ecosystem in Python is vibrant, it can seem fractured and overly complicated. 
 
 ---
 

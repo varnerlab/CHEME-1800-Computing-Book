@@ -910,7 +910,7 @@ For example, suppose the collection of sets <span class="math notranslate nohigh
 Then, for any set <span class="math notranslate nohighlight">\(B\subseteq\Omega\)</span> we can decompose <span class="math notranslate nohighlight">\(B\)</span> into smaller disjoint components <span class="math notranslate nohighlight">\(B\cap{A_{i}}\)</span>
 (the elements of <span class="math notranslate nohighlight">\(B\)</span> that are in <span class="math notranslate nohighlight">\(A_{i}\)</span>):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-decomp-partition">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-decomp-partition" title="Permalink to this equation">#</a></span>\[\bigcup_{i=1}^{n}B\cap{A_{i}} = B\]</div>
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-decomp-partition" title="Permalink to this equation">#</a></span>\[\bigcup_{i=1}^{n}B\cap{A_{i}} = B\]</div>
 </section>
 </section>
 <section id="probability-space">
@@ -925,8 +925,8 @@ Then, for any set <span class="math notranslate nohighlight">\(B\subseteq\Omega\
 <h3>Sample space <span class="math notranslate nohighlight">\(\Omega\)</span><a class="headerlink" href="#sample-space-omega" title="Permalink to this headline">#</a></h3>
 <p>We start by defining the sample space <span class="math notranslate nohighlight">\(\Omega\)</span>. Given an experiment, the sample space <span class="math notranslate nohighlight">\(\Omega\)</span> is the
 set containing all possible outcomes of that experiment. These experimental outcomes can be numbers, alphabets, vectors, or functions, as well as, images, videos, EEG signals, audio speeches, etc.</p>
-<div class="proof example admonition" id="ex-sample-space-dice">
-<p class="admonition-title"><span class="caption-number">Example 10 </span> (Sample space <span class="math notranslate nohighlight">\(\Omega\)</span> )</p>
+<div class="proof example dropdown admonition" id="ex-sample-space-dice">
+<p class="admonition-title"><span class="caption-number">Example 13 </span> (Sample space <span class="math notranslate nohighlight">\(\Omega\)</span> )</p>
 <section class="example-content" id="proof-content">
 <p>Suppose we were intersted in the outcome of experiment where a six sided dice was rolled on time.
 Then the sample space for this experiment <span class="math notranslate nohighlight">\(\Omega\)</span> is given by:</p>
@@ -943,8 +943,8 @@ where the elements of these sets share some common trait
 e.g., even integers, or the set of face cards, etc. These subsets are called events <span class="math notranslate nohighlight">\(E\subseteq\Omega\)</span> and
 the set of all possible events, denoted as <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>, is called the event space.
 Thus, the event space <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is a special set of sets, it’s the sets of all possible subsets.</p>
-<div class="proof example admonition" id="ex-event-card-suits">
-<p class="admonition-title"><span class="caption-number">Example 11 </span> (Enumerate the event space <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> )</p>
+<div class="proof example dropdown admonition" id="ex-event-card-suits">
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (Enumerate the event space <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> )</p>
 <section class="example-content" id="proof-content">
 <p>Let’s construct the event space <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> for the sample space
 <span class="math notranslate nohighlight">\(\Omega=\left\{\clubsuit, \diamondsuit, \heartsuit, \spadesuit\right\}\)</span>.
@@ -1101,39 +1101,47 @@ and <span class="math notranslate nohighlight">\(b\geq{1}\)</span> are constants
 </section>
 </div><section id="expectation">
 <h4>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h4>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> (or mean), which measures the central tendency of a random variable <span class="math notranslate nohighlight">\(X\)</span>, is given by (discrete <span class="math notranslate nohighlight">\(X\)</span>):</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> measures the central tendency of the values of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation is defined as a weighted sum (for discrete <span class="math notranslate nohighlight">\(X\)</span>):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-expectation">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability mass function evaluated at <span class="math notranslate nohighlight">\(X=x\)</span>; a A probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value.</p>
+<div class="proof observation admonition" id="obs-expectation-props">
+<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Properties of expectation)</p>
+<section class="observation-content" id="proof-content">
 <p>The expectation of a random variable <span class="math notranslate nohighlight">\(X\)</span> (discrete or continuous) has several useful (and important) properties:</p>
-<ul class="simple">
+<ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(c\right) = c\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(cX\right) = c\times\mathbb{E}\left(X\right)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(g(X)\right) = \sum_{x\in{X(\Omega)}}g(x)p_{X}(x)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(g(X)+h(X)\right) = \mathbb{E}(g(X)) + \mathbb{E}(h(X))\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(X+c\right) = \mathbb{E}(X) + c\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
-</ul>
+</ol>
 </section>
+</div></section>
 <section id="variance">
 <h4>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> measures the expected dispersion for
 individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (mean). The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-variance">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value (mean) of the random variable <span class="math notranslate nohighlight">\(X\)</span>.
-Like the mean, the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> has a few interesting (and important) properties:</p>
+<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="proof observation admonition" id="obs-variances-var">
+<p class="admonition-title"><span class="caption-number">Observation 4 </span></p>
+<section class="observation-content" id="proof-content">
+<p>Like the expected value, the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> has a few interesting (and important) properties:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \left(\mu\right)^2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{Var}(cX) = {c^2}\text{Var}(X)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{Var}(X+c) = \text{Var}(X)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 </ul>
-<p>The more common quantity that is used to measure dispersion, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>,
-is related to the variance: <span class="math notranslate nohighlight">\(\sigma_{X} = \sqrt{\text{Var}(X)}\)</span>.</p>
+</section>
+</div><p>The more common quantity that is used to measure dispersion, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>, is related to the variance: <span class="math notranslate nohighlight">\(\sigma_{X} = \sqrt{\text{Var}(X)}\)</span>.</p>
 </section>
 <section id="skewness">
 <h4>Skewness<a class="headerlink" href="#skewness" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Skewness">skewness</a> measures the expected asymmetry of a random variable about its mean (expected value):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-skewness">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-skewness" title="Permalink to this equation">#</a></span>\[\gamma(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^3\Biggr]\]</div>
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-skewness" title="Permalink to this equation">#</a></span>\[\gamma(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^3\Biggr]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu\)</span> denotes the mean (expected value), and <span class="math notranslate nohighlight">\(\sigma\)</span> denotes the standard deviation.
 The skewness parameter <span class="math notranslate nohighlight">\(\gamma(X)\)</span> can be positive, zero, negative, or undefined.</p>
 </section>
@@ -1143,7 +1151,7 @@ The skewness parameter <span class="math notranslate nohighlight">\(\gamma(X)\)<
 The <a class="reference external" href="https://en.wikipedia.org/wiki/Kurtosis">kurtosis</a> of a random variable <span class="math notranslate nohighlight">\(X\)</span>, denoted as
 <span class="math notranslate nohighlight">\(\text{Kurt}(X)\)</span>, is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-kurtosis">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-kurtosis" title="Permalink to this equation">#</a></span>\[\kappa(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^4\Biggr]\]</div>
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-kurtosis" title="Permalink to this equation">#</a></span>\[\kappa(X) = \mathbb{E}\Biggl[\left(\frac{X - \mu}{\sigma}\right)^4\Biggr]\]</div>
 <p>Large <span class="math notranslate nohighlight">\(\kappa(X)\)</span> values arise when most <span class="math notranslate nohighlight">\(X\)</span> values are near the mean, but a few values are very far away from the mean. Additionally, <span class="math notranslate nohighlight">\(\kappa(X)\)</span> can arise from the majority of <span class="math notranslate nohighlight">\(X\)</span> being near the tail of the distribution.</p>
 <!-- High values of  arise when $X$ is concentrated around the mean and the data-generating process produces occasional values very far away from the mean, or
 when $X$ is concentrated in the tails of the distribution. -->
@@ -1165,15 +1173,8 @@ obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <sp
 <div class="math notranslate nohighlight">
 \[\sum_{x\in{X(\Omega)}}p_{X}(x)=1\]</div>
 </section>
-</div><p>The PMF is the weighing function for discrete random variables. To illustrate this idea, lets consider an example:</p>
-<div class="proof example admonition" id="ex-pmf-double-coin-flip">
-<p class="admonition-title"><span class="caption-number">Example 12 </span> (PMF example)</p>
-<section class="example-content" id="proof-content">
-<p>Let’s consider an experiment where we flip a coin 2 times. The sample space <span class="math notranslate nohighlight">\(\Omega\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\Omega = \left\{(HH),(HT),(TH),(TT)\right\}\]</div>
-</section>
-</div><section id="bernoulli-random-variable">
+</div><p>The PMF is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.</p>
+<section id="bernoulli-random-variable">
 <h3>Bernoulli random variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this headline">#</a></h3>
 <p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
 outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of 0 is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
@@ -1257,8 +1258,18 @@ a geometric random variable describes the number of failures obtained before fin
 </section>
 <section id="probability-distribution-functions">
 <span id="content-references-prob-distribution-functions"></span><h2>Probability distribution functions<a class="headerlink" href="#probability-distribution-functions" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability distribution function (PDF)</a> is a function that describes the likelihood or probability of a continuous random variable taking on a specific value or range of values. Another way to think about the PDF, is that the probability density is the probability per unit length.</p>
+<div class="proof definition admonition" id="defn-pdf">
+<p class="admonition-title"><span class="caption-number">Definition 20 </span> (Probability Density Function)</p>
+<section class="definition-content" id="proof-content">
+<p>The probability distribution function (PDF) of a continuous random variable <span class="math notranslate nohighlight">\(X\)</span>, denoted by <span class="math notranslate nohighlight">\(f_{X}(x)\)</span>, is a function that specifies the probability that a continuous random variable <span class="math notranslate nohighlight">\(X\)</span> is bounded by <span class="math notranslate nohighlight">\(a\leq{X}\leq{b}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[P(a\leq{x}\leq{b}) = \int_{a}^{b}f_{X}(x)dx\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{\infty}f_{X}(x)dx = 1\]</div>
 </section>
+</div></section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>

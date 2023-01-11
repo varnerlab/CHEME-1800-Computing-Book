@@ -119,43 +119,59 @@ TOML (Tom's Obvious, Minimal Language) is a configuration file format that is in
 ```toml
 # This is a TOML configuration file for a database
 
-# The database hostname
-host = "localhost"
+# section: holds connection information
+[connection]
+host = "localhost"      # The database hostname
+port = 5432             # The port to connect to the database on
+database = "mydatabase" # The name of the database
+user = "myuser"         # The username to connect to the database with
+password = "mypassword" # The password for the user
+max_connections = 10    # The maximum number of connections to allow at once
+connection_timeout = 30 # The amount of time to wait before timing out a connection
 
-# The port to connect to the database on
-port = 5432
-
-# The name of the database
-database = "mydatabase"
-
-# The username to connect to the database with
-user = "myuser"
-
-# The password for the user
-password = "mypassword"
-
-# The maximum number of connections to allow at once
-max_connections = 10
-
-# The amount of time to wait before timing out a connection
-connection_timeout = "30s"
-
-# A group of database options
+# section: holds a group of database options
 [options]
-
-# Whether to enable SSL connections to the database
-ssl = true
-
-# The preferred SSL mode to use
-ssl_mode = "require"
+ssl = true              # Whether to enable SSL connections to the database
+ssl_mode = "require"    # The preferred SSL mode to use
 ```
 
-### JSON files
-JSON (JavaScript Object Notation) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays (called objects). JSON is composed of two data structures:
+TOML files are widely used for storing configuration information. For example, in [Julia](https://docs.julialang.org), the [package manager Pkg.jl](https://pkgdocs.julialang.org/v1/) stores information about the packages required for a project in a `Project.toml` file (which is automatically created when a project is activated). Because of its central role in [Julia](https://docs.julialang.org), `TOML.jl`, the package to read and write TOML files, is included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Thus, we don't need to install it and can access it by placing the `using TOML` file at the start of our program.
 
-* A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array. 
+```julia
+# load packages 
+using TOML
+
+"""
+    readtomlfile(path::String)::Dict{String,Any}
+
+Load the TOML file at the path arg. Returns a Dict{String,Any} 
+containing the TOML data.
+"""
+function readtomlfile(path::String)::Dict{String,Any}
+
+    # check: does path point to a toml file?
+    # ...
+
+    return TOML.parsefile(path)
+end
+
+# setup path -
+path_to_toml_file = "Database.toml"
+
+# load -
+d = readtomlfile(path_to_toml_file);
+```
+
+
+### JSON files
+[JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on a subset of the [JavaScript programming language](https://en.wikipedia.org/wiki/JavaScript) and is used to represent simple data structures and associative arrays.  
+
+JSON is composed of two data structures:
+
+* A collection of name/value pairs typically realized as a struct, dictionary, keyed list, or associative array. 
 * An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
-Here is an example of a JSON file that stores information about a collection of books:
+
+Here is an example of a JSON file that stores contact information:
 
 ```json
 {
@@ -174,54 +190,103 @@ Here is an example of a JSON file that stores information about a collection of 
 }
 ```
 
-This JSON file defines an object with a single key, "people", that has a value that is a list of objects, each representing a person. Each person object has three keys, "name", "email", and "
+This JSON file defines an object with a single key, `people`; the `people` key has a value that is a list of objects, each representing a person. Each person object has three keys, the `name`, `email`, and `phone` key. However, unlike TOML, the JSON format is not included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Instead, there a variety of third-party packages available for reading and writing JSON files, e.g., the [JSON.jl](https://github.com/JuliaIO/JSON.jl) package:
+
+```julia
+# load required packages
+using JSON
+
+"""
+    readjsonfile(path::String)::Dict{String,Any}
+
+Load the JSON file at the path arg. Returns a Dict{String,Any} 
+containing the JSON data.
+"""
+function readjsonfile(path::String)::Dict{String,Any}
+
+    # check: does path point to a json file?
+    # ...
+
+    return JSON.parsefile(path)
+end
+
+# setup path -
+path_to_json_file = "Contacts.json"
+
+# load -
+d = readjsonfile(path_to_json_file);
+```
+
+
 
 ### YAML files
-YAML (YAML Ain't Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a `.yaml` or `.yml` file extension.
+[YAML (YAML Ain't Markup Language)](https://yaml.org) is a human-readable data serialization language that can be used to transmit data between systems. YAML is often a configuration file format for applications and is similar to TOML. YAML files use a simple syntax that consists of key-value pairs and can also include nested groups of keys. YAML uses indentation to denote structure, similar to [Python](https://www.python.org). YAML files often have a `.yaml` or `.yml` file extension.
 
 Here is an example of a YAML file that could be used to store configuration data for an application:
 
 ```yaml
 # This is a YAML configuration file for an application
 
-# The application's name
-name: My App
-
-# The version of the application
-version: 1.0.0
-
-# The hostname to bind the application to
-host: localhost
-
-# The port to bind the application to
-port: 8080
+# Meta data about MyApp
+name: MyApp             # The application's name
+version: 1.0.0          # The version of the application
+host: localhost         # The hostname to bind the application to
+port: 8080              # The port to bind the application to
 
 # A group of database options
 database:
-  # The database hostname
-  host: localhost
-  # The port to connect to the database on
-  port: 5432
-  # The name of the database
-  name: mydatabase
-  # The username to connect to the database with
-  user: myuser
-  # The password for the user
-  password: mypassword
+  host: localhost       # The database hostname
+  port: 5432            # The port to connect to the database on
+  name: mydatabase      # The name of the database
+  user: myuser          # The username to connect to the database with
+  password: mypassword  # The password for the user
+```
+
+Unlike TOML, the YAML format is not included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Instead, there a variety of third-party packages available for working with YAML files, e.g., the [YAML.jl](https://github.com/JuliaData/YAML.jl) package:
+
+```julia
+# load packages 
+using YAML
+
+"""
+    readyamlfile(path::String)::Dict{String,Any}
+
+Load the YAML file at the path arg. Returns a Dict{String,Any} 
+containing the YAML data.
+"""
+function readyamlfile(path::String)::Dict{String,Any}
+
+    # check: does path point to a yaml file?
+    # ...
+
+    return YAML.load_file(path)
+end
+
+# setup path -
+path_to_yaml_file = "MyApp.yaml"
+
+# load -
+d = readyamlfile(path_to_yaml_file);
 ```
 
 
-## Application Programming Interfaces (APIs)
+## Web services and APIs
+A web service is a software system that enables machine-to-machine interaction over a network. Web services are often used to make the functionality of one application available to other applications or to provide data from one application to other. Web services can be accessed through a specified set of rules called an [application programming interfaces (APIs)](https://en.wikipedia.org/wiki/API). 
 
-An [application programming interface (API)](https://en.wikipedia.org/wiki/API) is a set of rules, protocols, and tools for building and interacting with software applications. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.
+* An API is a set of programming instructions for accessing a web-based software application. It specifies how software components should interact and allows communication between different systems. Thus, an API defines how a developer writes a program that requests services, e.g., data over the internet.
+* A web service is a specific type of API that uses the [HTTP protocol](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) to exchange data over the internet. Web services can transfer data in various formats, such as JSON or CSV.
+* Finally, APIs are often associated with a specific implementation of a web service, although the terms are used interchangeably. For example, a website may have a public API and various internal APIs to manage its different components and features.
+
+### RESTful APIs
+Here we explore a particular type of API called a RESTful API. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.
 
 RESTful APIs are designed to be lightweight, flexible, and scalable. They are based on the REST principles:
 * __Client-server architecture__: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud, are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the system more flexible and scalable.
-* __Statelessness__: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the necessary information to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.
+* __Statelessness__: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the information required to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.
 * __Cacheability__: RESTful APIs are designed to be cacheable, meaning that the server’s responses can be stored and reused by the client or a cache in the network. This increases the system’s efficiency; it reduces the need to make unnecessary requests to the server.
 * __Layered system__: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.
 
-RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the [HTTP request-response model](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications. 
+RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the [HTTP request-response model](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.
 
 ### What is HTTP?
 The [Hypertext Transfer Protocol (HTTP)](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is a network protocol used for the transmission of data on the World Wide Web. HTTP allows for communication between clients (such as web browsers) and servers on the web. [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is based on a request-response model, where the client sends a request to the server, and the server responds with the requested resource or an error message if the request cannot be fulfilled. 
@@ -281,7 +346,6 @@ To execute this program in [Julia](https://docs.julialang.org), save it to a fil
 ```julia
 include("myapiexample.jl")
 ```
-
 ````
 
 ---
@@ -291,3 +355,8 @@ include("myapiexample.jl")
 In this lecture we introduced topcs in data input and output.
 
 * File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.
+
+### Additional resources
+* The [TOML specification](https://toml.io/en/) describes the TOML format and the different types of data that can be stored in a TOML file.
+* The [JSON specification](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) describes the JSON format and the different types of data that can be stored in a JSON file.
+* The [YAML specification](https://yaml.org) describes the YAML format and the different types of data that can be stored in a YAML file.

@@ -43,7 +43,7 @@ The function $f$ is the rule that describes how the inputs are transformed into 
 
 
 ### Computer science functions
-Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as [Julia](https://docs.julialang.org), [Python](https://www.python.org), or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) can alter and be affected by the global state of your program.
+Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as [Julia](https://docs.julialang.org), [Python](https://www.python.org), or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) can alter (and be affected by) the global state of your program.
 
 The basic syntax for defining functions in [Julia](https://docs.julialang.org), [Python](https://www.python.org) or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values. 
 
@@ -98,12 +98,11 @@ The different implementations of the `linear` function share common features:
 * Next, the implementation of $y = mx+b$ looks the same in each language; there is a conserved set of operations, e.g., the addition `+` and multiplication `*` operators defined in each language which are similar across many languages. 
 
 However, many structural and syntactic features are different between the languages:
-* Functions in [Julia](https://docs.julialang.org) start with the function keyword and stop with an enclosing end keyword. Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) begin with the return type, and the function body is enclosed in braces `{...}`. Functions in [Python](https://www.python.org) start with the `def` keyword followed by the name, args, and a colon, while the return statement marks the end of a [Python](https://www.python.org) function; there is no other closing keyword or character.
+* Functions in [Julia](https://docs.julialang.org) start with the `function` keyword and stop with an enclosing `end` keyword. Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) begin with the return type, and the function body is enclosed in braces `{...}`. Functions in [Python](https://www.python.org) start with the `def` keyword followed by the name, args, and a colon, while the return statement marks the end of a [Python](https://www.python.org) function; there is no other closing keyword or character.
 * Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) _strictly require_ type information about the arguments, but neither [Julia](https://docs.julialang.org) or [Python](https://www.python.org) requires this information; it is recommended in [Julia](https://docs.julialang.org) but not required, and while newer [Python](https://www.python.org) versions have support for typing, the [Python](https://www.python.org) runtime does not enforce function and variable type annotations.
 * Finally, the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) requires that variables be defined before they are used, while both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) do not require this step.
 
 ## Control statements
-
 Control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code should be executed and enable you to create loops that repeat a block of code until a specific condition is met.
 
 Control statements are an essential part of programming, and they allow you to create programs that can make decisions and perform tasks based on certain conditions. They are used to create complex logic and to write code that can be executed repeatedly with different inputs.
@@ -152,7 +151,7 @@ if (condition_1) {
 ### Iteration
 Another common programming tasks you'll encounter is iterating over a list of items, and perhaps performning a task using each item. For example, finding the sum of a list experimental values so that you can estimate a mean value, or translating words in an article from language to another, etc. Consider two ways to iterate over a collection of items, a `for-loop` and a `while-loop`. 
 
-#### For-loops
+#### For-loops using a loop counter
 [For-loops](https://en.wikipedia.org/wiki/For_loop) execute a block of code a fixed number of times. 
 [For-loops](https://en.wikipedia.org/wiki/For_loop) have a long history in computing dating back to the late 1950s. For-loops are key language constructs in all modern programming languages. For-loops have two parts: a header and a body. 
 
@@ -188,7 +187,7 @@ for (int i = 0; i < 10; i++) {
 
 Let's illustrate the `for-loop` and functions by developing a function that iteratively computes [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) ({prf:ref}`example-iteration-fibonacci-numbers`):
 
-````{prf:example} Compute the Fibonacci sequence
+````{prf:example} Fibonacci sequence for-loop
 :class: dropdown
 :label: example-iteration-fibonacci-numbers
 
@@ -226,6 +225,33 @@ end
 ```
 ````
 
+#### Another for-loop pattern?
+In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, other iteration patterns could have been used. Modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) implement collections in which the elements can accessed directly without the need to keep a loop counter. 
+
+Imagine that we have a list of chemical names stored in a collection, and we want to iterate through the list directly (without a loop counter):
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+
+# Assume: list_of_chemicals defined above somewhere 
+
+for chemical in list_of_chemicals # gives each chemical in the list
+    # loop body: holds statements to be executed at each iteration
+end
+```
+````
+
+````{tab-item} python
+```python
+
+# Assume: list_of_chemicals defined above somewhere 
+
+for chemical in list_of_chemicals:  # gives each chemical in the list
+    # loop body: holds statements to be executed at each iteration
+
+````
+`````
 
 
 #### While-loops
@@ -289,6 +315,57 @@ while (count > 1) {
 ````
 `````
 
+````{prf:example} Fibonacci while-loop
+:class: dropdown
+:label: example-iteration-fibonacci-seq-while
+
+Develop a `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence using a `while-loop`. 
+
+__Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
+
+```{math}
+F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
+```
+
+where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function using a `while-loop` is given by:
+
+```julia
+function fibonacci(n::Int64)::Dict{Int64, Int64}
+
+    # check: is n legit?
+    # n >= 0
+
+    # initilize -
+    fibonacci_seq::Dict{Int64,Int64} = Dict{Int64, Int64}()
+    should_loop_continue::Bool = true
+    i::Int64 = 0;
+
+    # main loop 
+    while (should_loop_continue == true)
+       
+        # conditional logic: hardcode 0, 1 else gets all other cases
+        if (i == 0)
+            fibonacci_seq[i] = 0; 
+        elseif (i == 1)
+            fibonacci_seq[i] = 1;
+        else
+            fibonacci_seq[i] = fibonacci_seq[i-1] + fibonacci_seq[i-2]
+        end
+
+        # update i -
+        i = i + 1;
+
+        # check: should we go around again?
+        if (i>n)
+            should_loop_continue = false;
+        end
+    end
+    
+    # return dictionary -
+    return fibonacci_seq;
+end
+```
+````
 
 (content:references:recursion-functions)=
 ## Recursion
