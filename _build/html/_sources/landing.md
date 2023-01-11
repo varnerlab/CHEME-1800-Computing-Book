@@ -3,6 +3,11 @@
 ## Description
 Engineering practice increasingly relies on computational tools and data analysis approaches. This one-semester course introduces computational thinking into engineering analysis. We integrate data science and statistics, artificial intelligence, and mathematical modeling approaches into the context of contemporary problems in the design and analysis of processes, products, and systems. The course is agnostic to platforms and tools; we’ll focus on paradigms, not syntax. However, we’ll use the [Julia programming language](https://julialang.org) and its associated toolchain when transitioning from idea to implementation. In addition, we’ll use cloud computing resources for course materials, assignments, and projects. Weekly labs provide guided practice on the computer, with teaching staff present. Course assignments use data sets and examples to develop fluency and understanding of real-life problems. 
 
+### Time, place and website
+* __Credits__: 4-credits
+* __Lectures and discussions__: Lecture at TuTh 9:05 AM - 9:55 AM and Discussion at TuTh 1:30 PM - 2:20 PM in Olin 245
+* __Website__: Canvas and GitHub. Examples, labs, and other codes used throughout the course are available on our GitHub repository: [https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git).
+
 ### Outcomes
 Upon completion of this course, students will be able to:
 * Analyze process and product data sets using tools from data science/statistics, and machine learning (ML)
@@ -16,8 +21,8 @@ Lectures are organized into units, each having roughly four weeks of class time
 * [Unit 3: The Learning Problem: Models, Learning, and Optimization](./unit-3-learning/learning-landing.md)
 * [Unit 4: The Decision Problem: Probability, Random Process, and Decisions](./unit-4-decisions/decisions-landing.md)
 
-### Repository
-Examples, labs, and other codes used throughout the course are available on our GitHub repository: [https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git).
+### Schedule
+The lecture, lab and problem set schedule can be viewed at (requires Cornell login): [https://cornell.box.com/s/dwv40d6f6em33djv98bcsf2gk767hamk](https://cornell.box.com/s/dwv40d6f6em33djv98bcsf2gk767hamk)
 
 ## Grading
 We expect this course to draw from a spectrum of students, including “those less comfortable with computing,” “those more comfortable with computing,” and those in between. However, what ultimately matters is not where you end up relative to your classmates but where you are relative to yourself. 
