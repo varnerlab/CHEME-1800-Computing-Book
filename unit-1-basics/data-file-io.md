@@ -119,43 +119,62 @@ TOML (Tom's Obvious, Minimal Language) is a configuration file format that is in
 ```toml
 # This is a TOML configuration file for a database
 
-# The database hostname
-host = "localhost"
+# section: holds connection information
+[connection]
+host = "localhost"      # The database hostname
+port = 5432             # The port to connect to the database on
+database = "mydatabase" # The name of the database
+user = "myuser"         # The username to connect to the database with
+password = "mypassword" # The password for the user
+max_connections = 10    # The maximum number of connections to allow at once
+connection_timeout = 30 # The amount of time to wait before timing out a connection
 
-# The port to connect to the database on
-port = 5432
-
-# The name of the database
-database = "mydatabase"
-
-# The username to connect to the database with
-user = "myuser"
-
-# The password for the user
-password = "mypassword"
-
-# The maximum number of connections to allow at once
-max_connections = 10
-
-# The amount of time to wait before timing out a connection
-connection_timeout = "30s"
-
-# A group of database options
+# section: holds a group of database options
 [options]
-
-# Whether to enable SSL connections to the database
-ssl = true
-
-# The preferred SSL mode to use
-ssl_mode = "require"
+ssl = true              # Whether to enable SSL connections to the database
+ssl_mode = "require"    # The preferred SSL mode to use
 ```
 
-### JSON files
-JSON (JavaScript Object Notation) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays (called objects). JSON is composed of two data structures:
+TOML files are widely used for storing configuration information. For example, in [Julia](https://docs.julialang.org), the [package manager Pkg.jl](https://pkgdocs.julialang.org/v1/) stores information about the packages required for a project in a `Project.toml` file (which is automatically created when a project is activated). Because of its central role in [Julia](https://docs.julialang.org), `TOML.jl`, the package to read and write TOML files, is included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Thus, we don't need to install it and can access it by placing the `using TOML` file at the start of our program.
 
-* A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array. 
+```julia
+# load packages 
+using TOML
+
+"""
+    readtomlfile(path::String)::Dict{String,Any}
+
+Load the TOML file at the path arg. Returns a Dict{String,Any} 
+containing the TOML data.
+"""
+function readtomlfile(path::String)::Dict{String,Any}
+
+    # check: does path point to a toml file?
+    # ...
+
+    return TOML.parsefile(path)
+end
+
+# setup path -
+path_to_toml_file = "Database.toml"
+
+# load -
+d = readtomlfile(path_to_toml_file);
+```
+
+#### Additional resources
+* The [TOML specification](https://toml.io/en/) describes the format and the different types of data that can be stored in a TOML file.
+
+
+### JSON files
+[JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays. 
+
+JSON is composed of two data structures:
+
+* A collection of name/value pairs typically realized as a struct, dictionary, keyed list, or associative array. 
 * An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
-Here is an example of a JSON file that stores information about a collection of books:
+
+Here is an example of a JSON file that stores contact information:
 
 ```json
 {
@@ -174,7 +193,34 @@ Here is an example of a JSON file that stores information about a collection of 
 }
 ```
 
-This JSON file defines an object with a single key, "people", that has a value that is a list of objects, each representing a person. Each person object has three keys, "name", "email", and "
+This JSON file defines an object with a single key, `people`; the `people` key has a value that is a list of objects, each representing a person. Each person object has three keys, the `name`, `email`, and `phone` key. However, unlike TOML, the JSON format is not included in the [Julia standard library](https://docs.julialang.org/en/v1/stdlib/TOML/). Instead, there a variety of third-party packages available for reading and writing JSON files. 
+
+```julia
+# load required packages
+using JSON
+
+"""
+    readjsonfile(path::String)::Dict{String,Any}
+
+Load the JSON file at the path arg. Returns a Dict{String,Any} containing the JSON data.
+"""
+function readjsonfile(path::String)::Dict{String,Any}
+
+    # check: does path point to a json file?
+    # ...
+
+    return JSON.parsefile(path)
+end
+
+# setup path -
+path_to_json_file = "Contacts.json"
+
+# load -
+d = readjsonfile(path_to_json_file);
+```
+
+#### Additional resources
+* The [TOML specification](https://toml.io/en/) describes the format and the different types of data that can be stored in a JSON file.
 
 ### YAML files
 YAML (YAML Ain't Markup Language) is a human-readable data serialization language used to transmit data between systems. It is often used as a configuration file format for applications and is similar to JSON and TOML, but it is generally considered more readable and easier to write. YAML files use a simple syntax that consists of key-value pairs, and can also include nested groups of keys. They use indentation to denote structure, similar to Python and use various data types, including strings, numbers, booleans, and lists. YAML files often have a `.yaml` or `.yml` file extension.
@@ -287,7 +333,6 @@ To execute this program in [Julia](https://docs.julialang.org), save it to a fil
 ```julia
 include("myapiexample.jl")
 ```
-
 ````
 
 ---

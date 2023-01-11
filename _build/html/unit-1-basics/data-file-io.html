@@ -445,11 +445,25 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#toml-files">
      TOML files
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#additional-resources">
+       Additional resources
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#json-files">
      JSON files
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Additional resources
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#yaml-files">
@@ -530,11 +544,25 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#toml-files">
      TOML files
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#additional-resources">
+       Additional resources
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#json-files">
      JSON files
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Additional resources
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#yaml-files">
@@ -686,46 +714,63 @@ specialized package to work with <a class="reference external" href="https://en.
 <p>TOML (Tom’s Obvious, Minimal Language) is a configuration file format that is intended to be easy to read and write and is also easy to parse. It is used to store configuration data for applications. TOML files consist of key-value pairs, similar to a dictionary in Julia or Python, and can also include nested groups of keys. TOML files often have a <code class="docutils literal notranslate"><span class="pre">.toml</span></code> file extension.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a TOML configuration file for a database</span><span class="w"></span>
 
-<span class="c1"># The database hostname</span><span class="w"></span>
-<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w"></span>
+<span class="c1"># section: holds connection information</span><span class="w"></span>
+<span class="k">[connection]</span><span class="w"></span>
+<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w">      </span><span class="c1"># The database hostname</span><span class="w"></span>
+<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5432</span><span class="w">             </span><span class="c1"># The port to connect to the database on</span><span class="w"></span>
+<span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydatabase&quot;</span><span class="w"> </span><span class="c1"># The name of the database</span><span class="w"></span>
+<span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myuser&quot;</span><span class="w">         </span><span class="c1"># The username to connect to the database with</span><span class="w"></span>
+<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mypassword&quot;</span><span class="w"> </span><span class="c1"># The password for the user</span><span class="w"></span>
+<span class="n">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">    </span><span class="c1"># The maximum number of connections to allow at once</span><span class="w"></span>
+<span class="n">connection_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="c1"># The amount of time to wait before timing out a connection</span><span class="w"></span>
 
-<span class="c1"># The port to connect to the database on</span><span class="w"></span>
-<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5432</span><span class="w"></span>
-
-<span class="c1"># The name of the database</span><span class="w"></span>
-<span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydatabase&quot;</span><span class="w"></span>
-
-<span class="c1"># The username to connect to the database with</span><span class="w"></span>
-<span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myuser&quot;</span><span class="w"></span>
-
-<span class="c1"># The password for the user</span><span class="w"></span>
-<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mypassword&quot;</span><span class="w"></span>
-
-<span class="c1"># The maximum number of connections to allow at once</span><span class="w"></span>
-<span class="n">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
-
-<span class="c1"># The amount of time to wait before timing out a connection</span><span class="w"></span>
-<span class="n">connection_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;30s&quot;</span><span class="w"></span>
-
-<span class="c1"># A group of database options</span><span class="w"></span>
+<span class="c1"># section: holds a group of database options</span><span class="w"></span>
 <span class="k">[options]</span><span class="w"></span>
-
-<span class="c1"># Whether to enable SSL connections to the database</span><span class="w"></span>
-<span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-
-<span class="c1"># The preferred SSL mode to use</span><span class="w"></span>
-<span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w"></span>
+<span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">true</span><span class="w">              </span><span class="c1"># Whether to enable SSL connections to the database</span><span class="w"></span>
+<span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w">    </span><span class="c1"># The preferred SSL mode to use</span><span class="w"></span>
 </pre></div>
 </div>
+<p>TOML files are widely used for storing configuration information. For example, in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the <a class="reference external" href="https://pkgdocs.julialang.org/v1/">package manager Pkg.jl</a> stores information about the packages required for a project in a <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code> file (which is automatically created when a project is activated). Because of its central role in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <code class="docutils literal notranslate"><span class="pre">TOML.jl</span></code>, the package to read and write TOML files, is included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Thus, we don’t need to install it and can access it by placing the <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">TOML</span></code> file at the start of our program.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load packages </span>
+<span class="k">using</span> <span class="n">TOML</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    readtomlfile(path::String)::Dict{String,Any}</span>
+
+<span class="s">Load the TOML file at the path arg. Returns a Dict{String,Any} </span>
+<span class="s">containing the TOML data.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">readtomlfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># check: does path point to a toml file?</span>
+    <span class="c"># ...</span>
+
+    <span class="k">return</span> <span class="n">TOML</span><span class="o">.</span><span class="n">parsefile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># setup path -</span>
+<span class="n">path_to_toml_file</span> <span class="o">=</span> <span class="s">&quot;Database.toml&quot;</span>
+
+<span class="c"># load -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">readtomlfile</span><span class="p">(</span><span class="n">path_to_toml_file</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="additional-resources">
+<h4>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the format and the different types of data that can be stored in a TOML file.</p></li>
+</ul>
+</section>
 </section>
 <section id="json-files">
 <h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this headline">#</a></h3>
-<p>JSON (JavaScript Object Notation) is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays (called objects). JSON is composed of two data structures:</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is based on a subset of the JavaScript programming language, and is used to represent simple data structures and associative arrays.</p>
+<p>JSON is composed of two data structures:</p>
 <ul class="simple">
-<li><p>A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</p></li>
-<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
-Here is an example of a JSON file that stores information about a collection of books:</p></li>
+<li><p>A collection of name/value pairs typically realized as a struct, dictionary, keyed list, or associative array.</p></li>
+<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.</p></li>
 </ul>
+<p>Here is an example of a JSON file that stores contact information:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -742,7 +787,36 @@ Here is an example of a JSON file that stores information about a collection of 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This JSON file defines an object with a single key, “people”, that has a value that is a list of objects, each representing a person. Each person object has three keys, “name”, “email”, and “</p>
+<p>This JSON file defines an object with a single key, <code class="docutils literal notranslate"><span class="pre">people</span></code>; the <code class="docutils literal notranslate"><span class="pre">people</span></code> key has a value that is a list of objects, each representing a person. Each person object has three keys, the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, and <code class="docutils literal notranslate"><span class="pre">phone</span></code> key. However, unlike TOML, the JSON format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for reading and writing JSON files.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load required packages</span>
+<span class="k">using</span> <span class="n">JSON</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    readjsonfile(path::String)::Dict{String,Any}</span>
+
+<span class="s">Load the JSON file at the path arg. Returns a Dict{String,Any} containing the JSON data.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">readjsonfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
+
+    <span class="c"># check: does path point to a json file?</span>
+    <span class="c"># ...</span>
+
+    <span class="k">return</span> <span class="n">JSON</span><span class="o">.</span><span class="n">parsefile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># setup path -</span>
+<span class="n">path_to_json_file</span> <span class="o">=</span> <span class="s">&quot;Contacts.json&quot;</span>
+
+<span class="c"># load -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">readjsonfile</span><span class="p">(</span><span class="n">path_to_json_file</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="id1">
+<h4>Additional resources<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the format and the different types of data that can be stored in a JSON file.</p></li>
+</ul>
+</section>
 </section>
 <section id="yaml-files">
 <h3>YAML files<a class="headerlink" href="#yaml-files" title="Permalink to this headline">#</a></h3>
