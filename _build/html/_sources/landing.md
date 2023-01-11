@@ -51,7 +51,7 @@ Each student’s final grade is individually determined at the end of the semest
 * The course will officially support numerical computing in various programming languages (open source and platform agnostic). We’ll use [Visual Studio Code (VSCode)](https://code.visualstudio.com) as our Integrated Development Environment (IDE).
 
 ## Disabilities statement
-If you have a disability-related need for reasonable academic adjustments in this course, please provide Professor Varner with an accommodation letter from Student Disability Services. Students are expected to give a two weeks notice of the need for accommodations. 
+If you have a disability-related need for reasonable academic adjustments in this course, please provide Professor Varner with an accommodation letter from [Student Disability Services](https://sds.cornell.edu). Students are expected to give two weeks’ notice of the need for accommodations.  
 
 ## Diversity statement
 We aspire to create an environment for learning, intellectual discourse, and professional and social interactions where everyone feels welcome and valued. We recognize all course participants as responsible adults with differing perspectives based partly on their unique experiences. [We espouse the broader mission and values of the Smith School](https://www.cheme.cornell.edu/cbe/about/mission).
