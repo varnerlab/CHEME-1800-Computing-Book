@@ -189,17 +189,7 @@ where can be re-written in matrix-vector form as:
 \mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}
 ```
 
-### Rank
-What is interesting about $\mathbf{A}^{\#}$ are the conditions governing its existence, and in one particular a concept called [matrix rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)). The rank of a matrix _r_:
-
-$$r\leq\min\left(m,n\right)$$
-
-is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then $\det{\mathbf{A}}=0$, and an inverse will __not__ exist. 
-
-There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
-
-
-## Homogeneous system
+## Homogeneous system and rank
 A homogeneous system of linear algebraic equations with coefficient matrix $\mathbf{A}$ 
 
 ```{math}
@@ -207,7 +197,18 @@ A homogeneous system of linear algebraic equations with coefficient matrix $\mat
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-has a solution if and only if the matrix of coefficients $\mathbf{A}$ is singular, meaning that its determinant is zero. However, computing the $\det\mathbf{A}$ directly is computationally expensive. The $\det\mathbf{A} = 0$ condition can be also checked by the rank of matrix A and its augmented matrix; if they are not equal, there is infinite number of solutions. However, if they are equal, then system of equation has a unique solution.
+has a solution if and only if the matrix of coefficients $\mathbf{A}$ is singular, meaning that its determinant is zero, meaning $\det\mathbf{A} = 0$. However, computing the $\det\mathbf{A}$ directly is computationally expensive. The $\det\mathbf{A} = 0$ condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$. 
+
+The rank of a matrix $\mathbf{A}$, denoted by _r_:
+
+```{math}
+:label: eqn-rank-inequality
+r\leq\min\left(m,n\right)
+```
+
+is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then $\det{\mathbf{A}}=0$, and an inverse will __not__ exist. 
+
+There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
 ## Non-homogeneous system
 Fill me in.

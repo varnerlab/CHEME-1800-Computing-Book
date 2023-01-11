@@ -441,16 +441,11 @@ title="Print to PDF"
      Overdetermined systems
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rank">
-     Rank
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#homogeneous-system">
-   Homogeneous system
+  <a class="reference internal nav-link" href="#homogeneous-system-and-rank">
+   Homogeneous system and rank
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -553,16 +548,11 @@ title="Print to PDF"
      Overdetermined systems
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rank">
-     Rank
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#homogeneous-system">
-   Homogeneous system
+  <a class="reference internal nav-link" href="#homogeneous-system-and-rank">
+   Homogeneous system and rank
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -794,21 +784,18 @@ C_{i,3}
 <div class="math notranslate nohighlight" id="equation-eqn-system-mole-balances">
 <span class="eqno">(16)<a class="headerlink" href="#equation-eqn-system-mole-balances" title="Permalink to this equation">#</a></span>\[\mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}\]</div>
 </section>
-<section id="rank">
-<h3>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">#</a></h3>
-<p>What is interesting about <span class="math notranslate nohighlight">\(\mathbf{A}^{\#}\)</span> are the conditions governing its existence, and in one particular a concept called <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">matrix rank</a>. The rank of a matrix <em>r</em>:</p>
-<div class="math notranslate nohighlight">
-\[r\leq\min\left(m,n\right)\]</div>
-<p>is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\mathbf{A}}=0\)</span>, and an inverse will <strong>not</strong> exist.</p>
-<p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
 </section>
-</section>
-<section id="homogeneous-system">
-<h2>Homogeneous system<a class="headerlink" href="#homogeneous-system" title="Permalink to this headline">#</a></h2>
+<section id="homogeneous-system-and-rank">
+<h2>Homogeneous system and rank<a class="headerlink" href="#homogeneous-system-and-rank" title="Permalink to this headline">#</a></h2>
 <p>A homogeneous system of linear algebraic equations with coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eqn-homogenous-laes">
 <span class="eqno">(17)<a class="headerlink" href="#equation-eqn-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{0}\]</div>
-<p>has a solution if and only if the matrix of coefficients <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular, meaning that its determinant is zero. However, computing the <span class="math notranslate nohighlight">\(\det\mathbf{A}\)</span> directly is computationally expensive. The <span class="math notranslate nohighlight">\(\det\mathbf{A} = 0\)</span> condition can be also checked by the rank of matrix A and its augmented matrix; if they are not equal, there is infinite number of solutions. However, if they are equal, then system of equation has a unique solution.</p>
+<p>has a solution if and only if the matrix of coefficients <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular, meaning that its determinant is zero, meaning <span class="math notranslate nohighlight">\(\det\mathbf{A} = 0\)</span>. However, computing the <span class="math notranslate nohighlight">\(\det\mathbf{A}\)</span> directly is computationally expensive. The <span class="math notranslate nohighlight">\(\det\mathbf{A} = 0\)</span> condition can be also checked by computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>The rank of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted by <em>r</em>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-rank-inequality">
+<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
+<p>is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\mathbf{A}}=0\)</span>, and an inverse will <strong>not</strong> exist.</p>
+<p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
 </section>
 <section id="non-homogeneous-system">
 <h2>Non-homogeneous system<a class="headerlink" href="#non-homogeneous-system" title="Permalink to this headline">#</a></h2>
@@ -892,7 +879,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </section>
 </div><p>Let’s walkthrough a simple generic example using <code class="xref std std-numref docutils literal notranslate"><span class="pre">algo-ge-basic</span></code> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 2 &amp; -1 &amp; 0 \\
 -1 &amp; 2 &amp; -1 \\
 0 &amp; -1 &amp; 2
@@ -909,7 +896,7 @@ x_{3}
 \end{pmatrix}\end{split}\]</div>
 <p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span>. The augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -922,9 +909,9 @@ x_{3}
 <li><p>For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.</p></li>
 <li><p>Carry out this procedure until the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is in <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>.</p></li>
 </ol>
-<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(19)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(20)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -936,7 +923,7 @@ x_{3}
 \end{bmatrix}\end{split}\]</div>
 <p>After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -950,12 +937,12 @@ x_{3}
 <p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
 <p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
 0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
 \end{bmatrix}\end{split}\]</div>
-<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(22)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
+<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(23)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
 <div class="proof algorithm admonition" id="algo-ge-basic-back-sub">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive back substitution)</p>
 <section class="algorithm-content" id="proof-content">
