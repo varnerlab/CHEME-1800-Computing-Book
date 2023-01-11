@@ -403,6 +403,7 @@ title="Open an issue"
    <a href="#cap-defn-multi-arm-bernoulli-bandit-problem"><strong>defn-multi-arm-bernoulli-bandit-problem</strong></a> | 
    <a href="#cap-defn-number-system"><strong>defn-number-system</strong></a> | 
    <a href="#cap-defn-partition"><strong>defn-partition</strong></a> | 
+   <a href="#cap-defn-pdf"><strong>defn-pdf</strong></a> | 
    <a href="#cap-defn-pmf"><strong>defn-pmf</strong></a> | 
    <a href="#cap-defn-pmf-bernouli"><strong>defn-pmf-bernouli</strong></a> | 
    <a href="#cap-defn-pmf-binomial"><strong>defn-pmf-binomial</strong></a> | 
@@ -415,7 +416,6 @@ title="Open an issue"
    <a href="#cap-defn-union"><strong>defn-union</strong></a> | 
    <a href="#cap-defn-vector-p-norm"><strong>defn-vector-p-norm</strong></a> | 
    <a href="#cap-ex-event-card-suits"><strong>ex-event-card-suits</strong></a> | 
-   <a href="#cap-ex-pmf-double-coin-flip"><strong>ex-pmf-double-coin-flip</strong></a> | 
    <a href="#cap-ex-sample-space-dice"><strong>ex-sample-space-dice</strong></a> | 
    <a href="#cap-example-MDP-line"><strong>example-MDP-line</strong></a> | 
    <a href="#cap-example-MDP-line-mod"><strong>example-MDP-line-mod</strong></a> | 
@@ -434,9 +434,11 @@ title="Open an issue"
    <a href="#cap-example-twos-complement"><strong>example-twos-complement</strong></a> | 
    <a href="#cap-example-unicode-J"><strong>example-unicode-J</strong></a> | 
    <a href="#cap-obs-basic-iterative-method-outline"><strong>obs-basic-iterative-method-outline</strong></a> | 
+   <a href="#cap-obs-expectation-props"><strong>obs-expectation-props</strong></a> | 
    <a href="#cap-obs-incremental-update-rule"><strong>obs-incremental-update-rule</strong></a> | 
    <a href="#cap-obs-n-transition"><strong>obs-n-transition</strong></a> | 
-   <a href="#cap-obs-same-dimension"><strong>obs-same-dimension</strong></a>
+   <a href="#cap-obs-same-dimension"><strong>obs-same-dimension</strong></a> | 
+   <a href="#cap-obs-variances-var"><strong>obs-variances-var</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -641,6 +643,14 @@ title="Open an issue"
        <a href="unit-4-decisions/probability-random-variables.html#defn-partition"><code class="xref">defn-partition</code></a> <em>(unit-4-decisions/probability-random-variables)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-pdf"><td></td><td>
+       <strong>defn-pdf</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-decisions/probability-random-variables.html#defn-pdf"><code class="xref">defn-pdf</code></a> <em>(unit-4-decisions/probability-random-variables)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-pmf"><td></td><td>
        <strong>defn-pmf</strong></td><td></td></tr>
      <tr>
@@ -735,14 +745,6 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="unit-4-decisions/probability-random-variables.html#ex-event-card-suits"><code class="xref">ex-event-card-suits</code></a> <em>(unit-4-decisions/probability-random-variables)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-ex-pmf-double-coin-flip"><td></td><td>
-       <strong>ex-pmf-double-coin-flip</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="unit-4-decisions/probability-random-variables.html#ex-pmf-double-coin-flip"><code class="xref">ex-pmf-double-coin-flip</code></a> <em>(unit-4-decisions/probability-random-variables)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-sample-space-dice"><td></td><td>
@@ -889,6 +891,14 @@ title="Open an issue"
        <a href="unit-2-data/laes.html#obs-basic-iterative-method-outline"><code class="xref">obs-basic-iterative-method-outline</code></a> <em>(unit-2-data/laes)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-expectation-props"><td></td><td>
+       <strong>obs-expectation-props</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-decisions/probability-random-variables.html#obs-expectation-props"><code class="xref">obs-expectation-props</code></a> <em>(unit-4-decisions/probability-random-variables)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-incremental-update-rule"><td></td><td>
        <strong>obs-incremental-update-rule</strong></td><td></td></tr>
      <tr>
@@ -911,6 +921,14 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#obs-same-dimension"><code class="xref">obs-same-dimension</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-variances-var"><td></td><td>
+       <strong>obs-variances-var</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-decisions/probability-random-variables.html#obs-variances-var"><code class="xref">obs-variances-var</code></a> <em>(unit-4-decisions/probability-random-variables)</em></td><td>
        <em>observation</em></td></tr>
    </table>
 

@@ -192,6 +192,7 @@ We start by defining the sample space $\Omega$. Given an experiment, the sample 
 set containing all possible outcomes of that experiment. These experimental outcomes can be numbers, alphabets, vectors, or functions, as well as, images, videos, EEG signals, audio speeches, etc. 
 
 ````{prf:example} Sample space $\Omega$ 
+:class: dropdown
 :label: ex-sample-space-dice
 
 Suppose we were intersted in the outcome of experiment where a six sided dice was rolled on time. 
@@ -211,6 +212,7 @@ the set of all possible events, denoted as $\mathcal{F}$, is called the event sp
 Thus, the event space $\mathcal{F}$ is a special set of sets, it's the sets of all possible subsets.
 
 ````{prf:example} Enumerate the event space $\mathcal{F}$ 
+:class: dropdown
 :label: ex-event-card-suits
 
 Let's construct the event space $\mathcal{F}$ for the sample space 
@@ -356,21 +358,24 @@ where $\mu = \mathbb{E}(X)$ denotes the mean, and $\sigma$ denotes the standard 
 ````
 
 #### Expectation
-The [expectation](https://en.wikipedia.org/wiki/Expected_value) (or mean), which measures the central tendency of a random variable $X$, is given by (discrete $X$):
+The [expectation](https://en.wikipedia.org/wiki/Expected_value) measures the central tendency of the values of a random variable $X$. The expectation is defined as a weighted sum (for discrete $X$):
 
 ```{math}
 :label: eqn-expectation
-
 \mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)
-
 ```
 
+where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability mass function evaluated at $X=x$; a A probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value.
+
+````{prf:observation} Properties of expectation
+:label: obs-expectation-props
 The expectation of a random variable $X$ (discrete or continuous) has several useful (and important) properties: 
-* $\mathbb{E}\left(c\right) = c$ for any constant $c$
-* $\mathbb{E}\left(cX\right) = c\times\mathbb{E}\left(X\right)$ for any constant $c$
-* $\mathbb{E}\left(g(X)\right) = \sum_{x\in{X(\Omega)}}g(x)p_{X}(x)$
-* $\mathbb{E}\left(g(X)+h(X)\right) = \mathbb{E}(g(X)) + \mathbb{E}(h(X))$
-* $\mathbb{E}\left(X+c\right) = \mathbb{E}(X) + c$ for any constant $c$
+1. $\mathbb{E}\left(c\right) = c$ for any constant $c$
+1. $\mathbb{E}\left(cX\right) = c\times\mathbb{E}\left(X\right)$ for any constant $c$
+1. $\mathbb{E}\left(g(X)\right) = \sum_{x\in{X(\Omega)}}g(x)p_{X}(x)$
+1. $\mathbb{E}\left(g(X)+h(X)\right) = \mathbb{E}(g(X)) + \mathbb{E}(h(X))$
+1. $\mathbb{E}\left(X+c\right) = \mathbb{E}(X) + c$ for any constant $c$
+````
 
 #### Variance
 
@@ -382,15 +387,19 @@ individual values of $X$, i.e., the average distance that values of $X$ are spre
 \text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]
 ```
 
-where $\mu = \mathbb{E}(X)$ denotes the expected value (mean) of the random variable $X$.
-Like the mean, the variance $\text{Var}(X)$ has a few interesting (and important) properties:
+where $\mu = \mathbb{E}(X)$ denotes the expected value of the random variable $X$.
+
+````{prf:observation}
+:label: obs-variances-var
+
+Like the expected value, the variance $\text{Var}(X)$ has a few interesting (and important) properties:
 
 * $\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \left(\mu\right)^2$
 * $\text{Var}(cX) = {c^2}\text{Var}(X)$ for any constant $c$
 * $\text{Var}(X+c) = \text{Var}(X)$ for any constant $c$
 
-The more common quantity that is used to measure dispersion, the standard deviation $\sigma$, 
-is related to the variance: $\sigma_{X} = \sqrt{\text{Var}(X)}$.
+````
+The more common quantity that is used to measure dispersion, the standard deviation $\sigma$, is related to the variance: $\sigma_{X} = \sqrt{\text{Var}(X)}$.
 
 #### Skewness
 The [skewness](https://en.wikipedia.org/wiki/Skewness) measures the expected asymmetry of a random variable about its mean (expected value): 
@@ -440,16 +449,7 @@ The set of all possible outcomes for a discrete random variable $X$ is denoted a
 $$\sum_{x\in{X(\Omega)}}p_{X}(x)=1$$
 ````
 
-The PMF is the weighing function for discrete random variables. To illustrate this idea, lets consider an example:
-
-````{prf:example} PMF example
-:label: ex-pmf-double-coin-flip
-
-Let's consider an experiment where we flip a coin 2 times. The sample space $\Omega$ is given by:
-
-$$\Omega = \left\{(HH),(HT),(TH),(TT)\right\}$$
-
-````
+The PMF is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.
 
 ### Bernoulli random variable
 A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
@@ -565,7 +565,24 @@ while the variance $\text{Var}(X)$ is given by:
 
 (content:references:prob-distribution-functions)=
 ## Probability distribution functions
-Fill me in.
+A [probability distribution function (PDF)](https://en.wikipedia.org/wiki/Probability_density_function) is a function that describes the likelihood or probability of a continuous random variable taking on a specific value or range of values. Another way to think about the PDF, is that the probability density is the probability per unit length.
+
+````{prf:definition} Probability Density Function
+:label: defn-pdf
+
+The probability distribution function (PDF) of a continuous random variable $X$, denoted by $f_{X}(x)$, is a function that specifies the probability that a continuous random variable $X$ is bounded by $a\leq{X}\leq{b}$:
+
+```{math}
+P(a\leq{x}\leq{b}) = \int_{a}^{b}f_{X}(x)dx
+```
+
+where:
+
+```{math}
+\int_{-\infty}^{\infty}f_{X}(x)dx = 1
+```
+
+````
 
 ---
 
