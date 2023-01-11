@@ -19,13 +19,19 @@ Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering
 \mathbf{A}\mathbf{x} = \mathbf{b}
 ```
 
-where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\times{1}$ column vector of unknowns (what we want to solve for), and $\mathbf{b}$ denotes a $m\times{1}$ vector. To compute a value for the unknown vector $\mathbf{x}$ we compute a [matrix inverse](https://mathworld.wolfram.com/MatrixInverse.html):
+where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\times{1}$ column vector of unknowns (what we want to solve for), and $\mathbf{b}$ represents a $m\times{1}$ vector. Let's consider two cases:
+
+* __Homogenous system__: A homogeneous system of linear algebraic equations is a system in which the right-hand side vector $\mathbf{b}=\mathbf{0}$; every entry in the $\mathbf{b}$-vector is equal to zero. The solution set for a homogeneous system is a subspace in linear algebra, which contains all the solutions that can be added to get new solutions.
+
+* __Non-homogeneous system__: A non-homogeneous system of linear algebraic equations is a system in which at least one entry of the right-hand side vector $\mathbf{b}$ is non-zero.
+
+<!-- To compute a value for the unknown vector $\mathbf{x}$ we compute a [matrix inverse](https://mathworld.wolfram.com/MatrixInverse.html):
 
 $$\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}$$
 
-where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$. 
+where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$.  -->
 
-In this lecture, we'll look at techniques to compute $\mathbf{A}^{\dagger}$. We will:
+In this lecture, we'll look at techniques to solve homogeneous and non-homogeneous system of linear algebraic equations. We will:
 
 * Begin by introducing some {ref}`content:references:motivating-examples` that will be handy later to frame our discussion.
 * Next, we will introduce {ref}`content:references:solution-approaches` to solve square systems of linear algebraic equations.
@@ -193,8 +199,21 @@ is at most equal to the smallest dimesion of the matrix (full rank). Rank is a m
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
 
+## Homogeneous system
+A homogeneous system of linear algebraic equations with coefficient matrix $\mathbf{A}$ 
+
+```{math}
+:label: eqn-homogenous-laes
+\mathbf{A}\mathbf{x} = \mathbf{0}
+```
+
+has a solution if and only if the matrix of coefficients $\mathbf{A}$ is singular, meaning that its determinant is zero. However, computing the $\det\mathbf{A}$ directly is computationally expensive. The $\det\mathbf{A} = 0$ condition can be also checked by the rank of matrix A and its augmented matrix; if they are not equal, there is infinite number of solutions. However, if they are equal, then system of equation has a unique solution.
+
+## Non-homogeneous system
+Fill me in.
+
 (content:references:solution-approaches)=
-## Solution approaches for square systems
+### Solution approaches for square systems
 The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
 $$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
@@ -210,7 +229,7 @@ In all the discussion below, we assume:
 
 For the study of the different solution approaches, let's consider a motivating example. 
 
-### Gaussian elimination 
+#### Gaussian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
 ````{prf:algorithm} Naive Gaussian Elimination
@@ -355,7 +374,7 @@ This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitu
 ````
 
 
-### Iterative methods
+#### Iterative methods
 Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
 
 One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let's outline the basic idea of an interative solution method in {prf:ref}`obs-basic-iterative-method-outline`:
@@ -386,7 +405,7 @@ $$\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qqua
 denoted by $\hat{x}_{i}$, where $\sum_{j=1,i}^{n}$ does not include index $i$. What we do next, with the estimated value of $\hat{x}_{i}$, is the key difference between Jacobi's method and the Gauss-Seidel method.
 ````
 
-#### Jacobi's method
+##### Jacobi's method
 Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each iteration. Suppose we define the estimate of the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then, the value of $x_{i}$ at iteration $k+1$ is given by:
 
 $$\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}$$
@@ -425,7 +444,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 1. return $\hat{\mathbf{x}}$
 ````
 
-#### Gauss-Seidel method
+##### Gauss-Seidel method
 The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables. 
 
 Gauss-Seidel __live updates__ the best estimate of $\hat{x}_{i}$ _during_ the processing of equations $i=1,\cdots,n$. The update procedure of Gauss-Seidel generally leads to better convergence properties than the Jacobi method. Suppose we define the best estimate for variable $i$ at iteration $k$ as $\hat{x}_{i,k}$. Then the value of $x_{i}$ at iteration $k+1$ is given by:
@@ -465,7 +484,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 1. return $\hat{\mathbf{x}}$, converged
 ````
 
-#### Successive Overrelaxation
+##### Successive Overrelaxation
 Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of $x_{i}$ is further modified
 before proceeding to the evaluation of the next equations. Suppose we define the best estimate
 for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then _before_ processing the next Gauss-Seidel type step we update the best guess for $x_{i}$ using the rule:
