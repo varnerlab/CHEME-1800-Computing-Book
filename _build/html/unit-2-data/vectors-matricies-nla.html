@@ -713,9 +713,9 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 \[\mathbf{y} = \mathbf{v}_{1} + \mathbf{v}_{2}\]</div>
 <p>where the ith element of the sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is given by: <span class="math notranslate nohighlight">\(v_{i} = v_{i,1}+ v_{i,2}\)</span>. If however, <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> had <span class="math notranslate nohighlight">\(m&gt;n\)</span> elements, then the vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span> are not compatible. A similar arguement can be made about matrices.</p>
 </section>
-</div><p>Vector addition is strarighforward to implement; for example, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a>:</p>
+</div><p>Vector addition is strarighforward to implement; for example, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-vector-addition">
-<p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Naive vector addition)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Naive vector addition)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> Compatible vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span></p>
 <p><strong>Outputs</strong> Vector sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
@@ -735,10 +735,10 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 <p><strong>Return</strong>
 <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
 </section>
-</div><p>where the braket notation <span class="math notranslate nohighlight">\(y[\star]\)</span> denotes element <span class="math notranslate nohighlight">\(\star\)</span> of the vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. However, <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.</p>
+</div><p>where the braket notation <span class="math notranslate nohighlight">\(y[\star]\)</span> denotes element <span class="math notranslate nohighlight">\(\star\)</span> of the vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. However, <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.</p>
 <section id="vectorized-addition-and-subtraction-operators">
 <h4>Vectorized addition and subtraction operators<a class="headerlink" href="#vectorized-addition-and-subtraction-operators" title="Permalink to this headline">#</a></h4>
-<p>Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Vectorized code often executes faster than Naive implementation such as <a class="reference internal" href="#algo-vector-addition">Algorithm 1</a> because the <em>vectorization</em> can take advantage of advanced techniques to improve performance.</p>
+<p>Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Vectorized code often executes faster than Naive implementation such as <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a> because the <em>vectorization</em> can take advantage of advanced techniques to improve performance.</p>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator.</p>
 </section>
 </section>
@@ -770,7 +770,7 @@ Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <s
 </figcaption>
 </figure>
 <div class="proof algorithm dropdown admonition" id="algo-right-multiplication-matrix-vector">
-<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Naive right multiplication of a matrix by a vector)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Naive right multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
 <p><strong>Outputs:</strong> Vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{A}\times\mathbf{x}\)</span>.</p>
@@ -816,7 +816,7 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 \[y_{i} = 
 \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}\]</div>
 <div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
-<p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Naive left multiplication of a matrix by a vector)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive left multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
 <p><strong>Outputs:</strong> Vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{A}\times\mathbf{x}\)</span>.</p>
@@ -863,7 +863,7 @@ Matrix-matrix products have different properties compared with the product of tw
 multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
 meaning we can compute the matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span>, the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must be same as the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
 <div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
-<p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
 <p><strong>Outputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span>.</p>

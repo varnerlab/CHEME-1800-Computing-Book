@@ -16,9 +16,10 @@ kernelspec:
 Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:
 
 * {ref}`content:references:lda-arrays`: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it.
-* {ref}`ontent:references:lda-linked-lists`: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.
+* {ref}`content:references:lda-linked-lists`: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.
 * {ref}`content:references:lda-stacks`: A stack is a linear data structure that follows the "last-in, first-out" (LIFO) principle. This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing.
 * {ref}`content:references:lda-queues`: A queue is a linear data structure that follows the "first-in, first-out" (FIFO) principle. This means that the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.
+* {ref}`content:references:data-structure-hashmap-and-sets`: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.
 * {ref}`content:references:data-structure-tree`: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
 
@@ -112,11 +113,105 @@ Non-linear data structures do not store data in a linear sequence. In other word
 
 Non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations. However, they are also (typically) more complex and require more memory to store the data.
 
-Let's consider two handy non-linear data structures, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`. 
+Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`. 
 
 (content:references:data-structure-hashmap-and-sets)=
 ### Hashmaps and sets
-Fill me in.
+A hashmap is a data structure that stores key-value pairs, where each key value is unique. Hashmaps uses a [hash function](https://en.wikipedia.org/wiki/Hash_function) to map keys to array indexes, thus, allowing for efficient lookups and insertions. Sets are similar to hashmaps but only store keys and do not have values associated with them.
+
+#### Hashmaps
+Hashmaps are implemented in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) as a `dictionary` type; we've already seen several examples of [Julia](https://docs.julialang.org) dictionaries, which are type `Dict`, when working with [JSON, TOML and YAML files](../unit-1-basics/data-file-io.md). [Python](https://www.python.org) dictionaries behave in a similar way as thier [Julia](https://docs.julialang.org) counterparts, with one important exception: in [Python > 3.7](https://www.python.org) dictionaries are _ordered_, while [Julia](https://docs.julialang.org) dictionaries are always _unordered_. 
+
+Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let's look at an example of how to use a dictionary in [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+
+# Initialize and empty dictionary, keys are strings, values can be anything
+car = Dict{String,Any}()
+
+# load key=value pairs into the dictionary
+car["brand"] = "Ford"
+car["model"] = "Mustang"
+car["year"] = 1964
+```
+````
+
+````{tab-item} python
+```python
+# Initialize and empty dictionary
+car = {}
+
+# Add data to car dictionary
+car["brand"] = "Ford"
+car["model"] = "Mustang"
+car["year"] = 1964
+```
+````
+`````
+
+Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`.
+
+#### Sets
+Like dictionaries, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) implement a `Set` type in their respective standard libraries. The `Set` type holds a unique collection of keys but does not associate these keys with any data:
+
+`````{tab-set}
+````{tab-item} julia
+```julia
+
+# Initialize and empty set that stores strings
+fruit = Set{String}()
+
+# add items to a set using push!
+push!(fruit, "Apple")
+push!(fruit, "Pear")
+push!(fruit, "Mango")
+```
+````
+
+````{tab-item} python
+```python
+# Initialize an empty set
+fruit = set()
+
+# Add data to fruit set
+fruit.add("Apple")
+fruit.add("Pear")
+fruit.add("Mango")
+```
+````
+`````
+
+In both [Julia](https://docs.julialang.org) and [Python](https://www.python.org), the `Set` type is _unordered_; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained. 
+
+##### Hash functions
+The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key type to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
+
+A hash function takes an input value, e.g., a key value, and returns a fixed-size string of characters or a number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
+
+Let's look at some psuedo code for a simple hash function ():
+
+````{prf:algorithm} Simple Hash Function
+:label: algo-hash-function-code
+:class: dropdown
+
+**Inputs** String `key`, a `size` parameter, a $\beta$ factor
+
+**Outputs** hash_value 
+
+**Initialize**
+1. set hash $\leftarrow{0}$
+1. set $L\leftarrow\text{length}(\text{key})$
+
+**Main**
+1. for $i\in{0,\dots,L-1}$
+      1. hash $\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)$ % `size`
+
+**Return** hash
+````
+
+If $\beta=31$, then {prf:ref}`algo-hash-function-code` is a variant of the Horner's hashing method. The modulo `%` operation with `size` ensures that the output `hash` value is a valid index within the array.
 
 (content:references:data-structure-tree)=
 ### Trees
