@@ -55,7 +55,7 @@ The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a sc
 ````{prf:definition} Determinant
 :label: defn-det-A
 
-Consider an $n\times{n}$ square matrix $\mathbf{A}$, where we denote the $a_{ij}$ is the entry of $\mathbf{A}$ on row $i$ and column $j$. 
+Consider an $n\times{n}$ matrix $\mathbf{A}$, where $a_{ij}$ is the entry of $\mathbf{A}$ on row $i$ and column $j$. 
 Then, the determinant of the square matrix $\mathbf{A}$, denoted as $\det\left(\mathbf{A}\right)$, is given by:
 
 ```{math}
