@@ -189,7 +189,7 @@ where can be re-written in matrix-vector form as:
 \mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}
 ```
 
-## Solution existence
+## Existence
 
 ### Homogeneous system and rank
 A homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
@@ -288,7 +288,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 $\hat{\mathbf{x}}$
 ````
 
-Let's walkthrough a simple generic example using {numref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
+Let's walkthrough a simple generic example using {prf:ref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
 
 ```{math}
 :label: eqn-ge-test-system

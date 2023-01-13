@@ -19,7 +19,15 @@ a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
 a_{m,1} & a_{m,2} & \cdots & a_{m,n} 
 \end{pmatrix}$$
 
-where $a_{ij}$ denotes the _element_ of the matrix $\mathbf{A}$ that lives on the $i$th row and $j$th col. By convention, the row index is always the first subscript while the column index is always listed second. If $m=n$ the matrix is called a _square_ matrix; square Matrices have some special properties (as we shall see later). 
+where $a_{ij}$ denotes the _element_ of the matrix $\mathbf{A}$ that lives on the $i$th row and $j$th col. By convention, the row index is always the first subscript while the column index is always listed second. 
+
+```{prf:observation} Matrix shape
+Let the matrix $\mathbf{A}$ be an $m\times{n}$ array. Then, the matrix $\mathbf{A}$ is called:
+
+* __Square__: If $m=n$, the matrix is called a _square_ matrix; square matrices have some unique properties (as we shall see later). 
+* __Overdetermined__: If $m>n$, the matrix is called an _overdetermined_ matrix; overdetermined matrices have more rows than columns.
+* __Underdetermined__: If $m<n$, the matrix is called an _underdetermined_ matrix; underdetermined matrices have more columns than rows.
+```
 
 Vectors are a specal type of matrix that is one-dimensional, where _elements_ are arranged as either a single row or single column. For example, a $m\times{1}$ _column_ vector $\mathbf{a}$ is given by:
 
@@ -41,6 +49,37 @@ a_{1} & a_{2} & \cdots & a_{n}
 Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers. 
 
 
+## Determinant and Trace
+The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix. [Determinants](https://en.wikipedia.org/wiki/Determinant) can be used to determine whether a [matrix is invertible](./laes.md), and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The [determinant of square matrix](https://en.wikipedia.org/wiki/Determinant) $\mathbf{A}$ is defined as ({prf:ref}`defn-det-A`):
+
+````{prf:definition} Determinant
+:label: defn-det-A
+
+Consider an $n\times{n}$ square matrix $\mathbf{A}$, where we denote the $a_{ij}$ is the entry of $\mathbf{A}$ on row $i$ and column $j$. 
+Then, the determinant of the square matrix $\mathbf{A}$, denoted as $\det\left(\mathbf{A}\right)$, is given by:
+
+```{math}
+:label: eqn-det-A
+\det\left(\mathbf{A}\right) = \sum_{\sigma\in{S_{n}}}\text{sign}\left(\sigma\right)\prod_{i=1}^{n}a_{i\sigma_{i}}
+```
+
+where $S_{n}$ denotes the Symmtery group of dimension $n$, i.e., the set of all possible permutations of the set ${1,2,\dots,n}$,
+$\text{sign}\left(\sigma\right)$ equals `+1` if the permutation can be obtained with an even number of exchanges; otherwise `-1`. 
+Finally, $a_{i\sigma_{i}}$ denotes the entry of the matrix $\mathbf{A}$ on row $i$, and column $\sigma_{i}$.
+````
+
+On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix ({prf:ref}`defn-trace-A`):
+
+````{prf:definition} Trace
+:label: defn-trace-A
+
+Consider an $n\times{n}$ square matrix $\mathbf{A}$, where we denote the $a_{ij}$ is the entry of $\mathbf{A}$ on row $i$ and column $j$. Then, the trace of the square matrix $\mathbf{A}$, denoted as $\text{tr}\left(\mathbf{A}\right)$, is given by:
+
+```{math}
+:label: eqn-trace-A
+\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}
+```
+````
 
 
 ## Operations

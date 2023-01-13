@@ -427,6 +427,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#determinant-and-trace">
+   Determinant and Trace
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#operations">
    Operations
   </a>
@@ -550,6 +555,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matricies-and-vectors">
    Matricies and vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#determinant-and-trace">
+   Determinant and Trace
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -681,8 +691,18 @@ a_{2,1} &amp; a_{2,2} &amp; \cdots &amp; a_{2,n} \\
 \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
 a_{m,1} &amp; a_{m,2} &amp; \cdots &amp; a_{m,n} 
 \end{pmatrix}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(a_{ij}\)</span> denotes the <em>element</em> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> that lives on the <span class="math notranslate nohighlight">\(i\)</span>th row and <span class="math notranslate nohighlight">\(j\)</span>th col. By convention, the row index is always the first subscript while the column index is always listed second. If <span class="math notranslate nohighlight">\(m=n\)</span> the matrix is called a <em>square</em> matrix; square Matrices have some special properties (as we shall see later).</p>
-<p>Vectors are a specal type of matrix that is one-dimensional, where <em>elements</em> are arranged as either a single row or single column. For example, a <span class="math notranslate nohighlight">\(m\times{1}\)</span> <em>column</em> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is given by:</p>
+<p>where <span class="math notranslate nohighlight">\(a_{ij}\)</span> denotes the <em>element</em> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> that lives on the <span class="math notranslate nohighlight">\(i\)</span>th row and <span class="math notranslate nohighlight">\(j\)</span>th col. By convention, the row index is always the first subscript while the column index is always listed second.</p>
+<div class="proof observation admonition" id="observation-0">
+<p class="admonition-title"><span class="caption-number">Observation 1 </span> (Matrix shape)</p>
+<section class="observation-content" id="proof-content">
+<p>Let the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> be an <span class="math notranslate nohighlight">\(m\times{n}\)</span> array. Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is called:</p>
+<ul class="simple">
+<li><p><strong>Square</strong>: If <span class="math notranslate nohighlight">\(m=n\)</span>, the matrix is called a <em>square</em> matrix; square matrices have some unique properties (as we shall see later).</p></li>
+<li><p><strong>Overdetermined</strong>: If <span class="math notranslate nohighlight">\(m&gt;n\)</span>, the matrix is called an <em>overdetermined</em> matrix; overdetermined matrices have more rows than columns.</p></li>
+<li><p><strong>Underdetermined</strong>: If <span class="math notranslate nohighlight">\(m&lt;n\)</span>, the matrix is called an <em>underdetermined</em> matrix; underdetermined matrices have more columns than rows.</p></li>
+</ul>
+</section>
+</div><p>Vectors are a specal type of matrix that is one-dimensional, where <em>elements</em> are arranged as either a single row or single column. For example, a <span class="math notranslate nohighlight">\(m\times{1}\)</span> <em>column</em> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{a} = 
 \begin{pmatrix}
@@ -699,6 +719,29 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 \end{pmatrix}\]</div>
 <p>Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers.</p>
 </section>
+<section id="determinant-and-trace">
+<h2>Determinant and Trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of a matrix</a> is a scalar value that can be computed from a square matrix. <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">Determinants</a> can be used to determine whether a <a class="reference internal" href="laes.html"><span class="doc std std-doc">matrix is invertible</span></a>, and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of square matrix</a> <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is defined as (<a class="reference internal" href="#defn-det-A">Definition 3</a>):</p>
+<div class="proof definition admonition" id="defn-det-A">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Determinant)</p>
+<section class="definition-content" id="proof-content">
+<p>Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where we denote the <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>.
+Then, the determinant of the square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted as <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span>, is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-det-a">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-det-a" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \sum_{\sigma\in{S_{n}}}\text{sign}\left(\sigma\right)\prod_{i=1}^{n}a_{i\sigma_{i}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{n}\)</span> denotes the Symmtery group of dimension <span class="math notranslate nohighlight">\(n\)</span>, i.e., the set of all possible permutations of the set <span class="math notranslate nohighlight">\({1,2,\dots,n}\)</span>,
+<span class="math notranslate nohighlight">\(\text{sign}\left(\sigma\right)\)</span> equals <code class="docutils literal notranslate"><span class="pre">+1</span></code> if the permutation can be obtained with an even number of exchanges; otherwise <code class="docutils literal notranslate"><span class="pre">-1</span></code>.
+Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> denotes the entry of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span>, and column <span class="math notranslate nohighlight">\(\sigma_{i}\)</span>.</p>
+</section>
+</div><p>On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix (<a class="reference internal" href="#defn-trace-A">Definition 4</a>):</p>
+<div class="proof definition admonition" id="defn-trace-A">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Trace)</p>
+<section class="definition-content" id="proof-content">
+<p>Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where we denote the <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>. Then, the trace of the square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted as <span class="math notranslate nohighlight">\(\text{tr}\left(\mathbf{A}\right)\)</span>, is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-trace-a">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
+</section>
+</div></section>
 <section id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h2>
 <section id="addition-and-subtraction">
@@ -706,7 +749,7 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 <p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
 <p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
 <div class="proof observation admonition" id="obs-same-dimension">
-<p class="admonition-title"><span class="caption-number">Observation 1 </span> (Vector addition)</p>
+<p class="admonition-title"><span class="caption-number">Observation 2 </span> (Vector addition)</p>
 <section class="observation-content" id="proof-content">
 <p>Suppose we have two <span class="math notranslate nohighlight">\(n\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span>. The sum of these vectors is given by:</p>
 <div class="math notranslate nohighlight">
@@ -934,11 +977,11 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 3 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div></section>
@@ -961,7 +1004,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
 <p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 </section>
@@ -970,11 +1013,11 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
 <p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
 <div class="proof definition admonition" id="defn-kmeans-problem">
-<p class="admonition-title"><span class="caption-number">Definition 4 </span> (k-means clustering)</p>
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (k-means clustering)</p>
 <section class="definition-content" id="proof-content">
 <p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
+<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
 </section>
 </div></section>
