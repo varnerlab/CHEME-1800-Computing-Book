@@ -757,8 +757,8 @@ title="Print to PDF"
 <p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f90a426b-66ce-4a81-b20f-17592f1a5f2d" name="154f3b3b-4b7a-4486-88f8-b1490d71f7b0" type="radio">
-</input><label class="sd-tab-label" for="f90a426b-66ce-4a81-b20f-17592f1a5f2d">
+<input checked="checked" id="094ca939-b044-4224-9e76-737c7b7e6930" name="c377d460-4422-45fd-9f2b-27b4f697b194" type="radio">
+</input><label class="sd-tab-label" for="094ca939-b044-4224-9e76-737c7b7e6930">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -770,8 +770,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f66ac09b-c4f5-4499-b665-e6cbc75de6c4" name="154f3b3b-4b7a-4486-88f8-b1490d71f7b0" type="radio">
-</input><label class="sd-tab-label" for="f66ac09b-c4f5-4499-b665-e6cbc75de6c4">
+<input id="d3a922df-7959-4928-85be-c34ccdea8cba" name="c377d460-4422-45fd-9f2b-27b4f697b194" type="radio">
+</input><label class="sd-tab-label" for="d3a922df-7959-4928-85be-c34ccdea8cba">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -790,8 +790,8 @@ python</label><div class="sd-tab-content docutils">
 <h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="8869e4de-a204-4874-8833-4eee7b24a467" name="124fcf42-0109-4025-a95e-90e46a0119fb" type="radio">
-</input><label class="sd-tab-label" for="8869e4de-a204-4874-8833-4eee7b24a467">
+<input checked="checked" id="2f820df4-ac8c-4bbe-b5d3-5ac67b082640" name="7c9fff0e-a485-4437-af96-99554c7c3678" type="radio">
+</input><label class="sd-tab-label" for="2f820df4-ac8c-4bbe-b5d3-5ac67b082640">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -803,8 +803,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c77ac8a3-ab96-4073-9f8c-73369d1cbaea" name="124fcf42-0109-4025-a95e-90e46a0119fb" type="radio">
-</input><label class="sd-tab-label" for="c77ac8a3-ab96-4073-9f8c-73369d1cbaea">
+<input id="ca975427-7fd9-416c-a473-ae62c3e46332" name="7c9fff0e-a485-4437-af96-99554c7c3678" type="radio">
+</input><label class="sd-tab-label" for="ca975427-7fd9-416c-a473-ae62c3e46332">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -820,14 +820,14 @@ python</label><div class="sd-tab-content docutils">
 <p>In both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, the <code class="docutils literal notranslate"><span class="pre">Set</span></code> type is <em>unordered</em>; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained.</p>
 <section id="hash-functions">
 <h5>Hash functions<a class="headerlink" href="#hash-functions" title="Permalink to this headline">#</a></h5>
-<p>The exciting thing about a hashmap implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key type to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
-<p>A hash function takes an input value, e.g., a key value, and returns a fixed-size string of characters or a number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
+<p>The exciting thing about a hashmap implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
 <p>Let’s look at some psuedo code for a simple hash function (<a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-hash-function-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Simple Hash Function)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> String <code class="docutils literal notranslate"><span class="pre">key</span></code>, a <code class="docutils literal notranslate"><span class="pre">size</span></code> parameter, a <span class="math notranslate nohighlight">\(\beta\)</span> factor</p>
-<p><strong>Outputs</strong> hash_value</p>
+<p><strong>Outputs</strong> hash</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
 <li><p>set hash <span class="math notranslate nohighlight">\(\leftarrow{0}\)</span></p></li>
@@ -844,7 +844,34 @@ python</label><div class="sd-tab-content docutils">
 <p><strong>Return</strong> hash</p>
 </section>
 </div><p><a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> is a variant of Horner’s hashing method when <span class="math notranslate nohighlight">\(\beta\)</span> = 31. The <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator</a> <code class="docutils literal notranslate"><span class="pre">%</span></code> computes the remainder, e.g., the expression <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%</span> <span class="pre">3</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">1</span></code>. The modulo <code class="docutils literal notranslate"><span class="pre">%</span></code> operation with <code class="docutils literal notranslate"><span class="pre">size</span></code> ensures that the output <code class="docutils literal notranslate"><span class="pre">hash</span></code> value is a valid index within the array.</p>
+<div class="proof example dropdown admonition" id="example-hashing-example-impl">
+<p class="admonition-title"><span class="caption-number">Example 13 </span> (Hashing example)</p>
+<section class="example-content" id="proof-content">
+<p>Compute the hash value for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code> for an array of <code class="docutils literal notranslate"><span class="pre">size</span></code> of <code class="docutils literal notranslate"><span class="pre">1000</span></code> and expansion factor <span class="math notranslate nohighlight">\(\beta\)</span> = 31.</p>
+<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> in <a class="reference external" href="https://docs.julialang.org">Julia</a></p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    myhash(key::String, β::Int64, size::Int64)::Int64</span>
+
+<span class="s">Convert a String `key` to `Int` for an array of type `size`:</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">myhash</span><span class="p">(</span><span class="n">key</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span> <span class="n">β</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">size</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c"># main loop -</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">L</span>
+        <span class="n">hash</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash</span><span class="o">*</span><span class="n">β</span> <span class="o">+</span> <span class="n">convert</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">%</span> <span class="n">size</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">hash</span>
+<span class="k">end</span>
+</pre></div>
+</div>
 </section>
+</div></section>
 </section>
 </section>
 <section id="trees">

@@ -186,9 +186,9 @@ fruit.add("Mango")
 In both [Julia](https://docs.julialang.org) and [Python](https://www.python.org), the `Set` type is _unordered_; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained. 
 
 ##### Hash functions
-The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key type to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
+The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
 
-A hash function takes an input value, e.g., a key value, and returns a fixed-size string of characters or a number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
+A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
 
 Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-function-code`):
 
@@ -198,7 +198,7 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 
 **Inputs** String `key`, a `size` parameter, a $\beta$ factor
 
-**Outputs** hash_value 
+**Outputs** hash
 
 **Initialize**
 1. set hash $\leftarrow{0}$
@@ -212,6 +212,37 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 ````
 
 {prf:ref}`algo-hash-function-code` is a variant of Horner's hashing method when $\beta$ = 31. The [modulo operator](https://en.wikipedia.org/wiki/Modulo_operation) `%` computes the remainder, e.g., the expression `7 % 3` evaluates to `1`. The modulo `%` operation with `size` ensures that the output `hash` value is a valid index within the array. 
+
+````{prf:example} Hashing example
+:label: example-hashing-example-impl
+:class: dropdown
+
+Compute the hash value for the key = `CHEME-1800` for an array of `size` of `1000` and expansion factor $\beta$ = 31. 
+
+__Solution__: We implemented {prf:ref}`algo-hash-function-code` in [Julia](https://docs.julialang.org)
+
+```julia
+"""
+    myhash(key::String, β::Int64, size::Int64)::Int64
+
+Convert a String `key` to `Int` for an array of type `size`:
+"""
+function myhash(key::String, β::Int64, size::Int64)::Int64
+
+    # initialize -
+    hash = 0
+    L = length(key)
+
+    # main loop -
+    for i ∈ 1:L
+        hash = (hash*β + convert(Int, key[i])) % size
+    end
+
+    # return -
+    return hash
+end
+```
+````
 
 (content:references:data-structure-tree)=
 ### Trees

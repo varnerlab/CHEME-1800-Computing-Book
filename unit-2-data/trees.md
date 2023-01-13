@@ -198,7 +198,7 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 
 **Inputs** String `key`, a `size` parameter, a $\beta$ factor
 
-**Outputs** hash_value 
+**Outputs** hash
 
 **Initialize**
 1. set hash $\leftarrow{0}$
@@ -217,6 +217,31 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 :label: example-hashing-example-impl
 :class: dropdown
 
+Compute the hash value for the key = `CHEME-1800` for an array of `size` of `1000` and expansion factor $\beta$ = 31. 
+
+__Solution__: We implemented {prf:ref}`algo-hash-function-code` in [Julia](https://docs.julialang.org)
+
+```julia
+"""
+    myhash(key::String, β::Int64, size::Int64)::Int64
+
+Convert a String `key` to `Int` for an array of type `size`:
+"""
+function myhash(key::String, β::Int64, size::Int64)::Int64
+
+    # initialize -
+    hash = 0
+    L = length(key)
+
+    # main loop -
+    for i ∈ 1:L
+        hash = (hash*β + convert(Int, key[i])) % size
+    end
+
+    # return -
+    return hash
+end
+```
 ````
 
 (content:references:data-structure-tree)=

@@ -597,7 +597,7 @@ title="Print to PDF"
 \[\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of all 1’s. Let’s consider an example to make these ideas less abstract.</p>
 <div class="proof example admonition" id="example-dicrete-mchain">
-<p class="admonition-title"><span class="caption-number">Example 15 </span> (Discrete Markov chain simulation)</p>
+<p class="admonition-title"><span class="caption-number">Example 16 </span> (Discrete Markov chain simulation)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Markov-Model.pdf" style="height: 120px;" /></a>
@@ -623,9 +623,9 @@ title="Print to PDF"
 <section id="hidden-markov-models-hmms">
 <span id="content-references-structure-of-an-hmm"></span><h3>Hidden Markov Models (HMMs)<a class="headerlink" href="#hidden-markov-models-hmms" title="Permalink to this headline">#</a></h3>
 <p>Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations.</p>
-<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 15</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
+<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 16</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
 <div class="proof example admonition" id="example-dicrete-mchain-hmm">
-<p class="admonition-title"><span class="caption-number">Example 16 </span> (Stationary hidden Markov model)</p>
+<p class="admonition-title"><span class="caption-number">Example 17 </span> (Stationary hidden Markov model)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-hidden-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" style="height: 280px;" /></a>
@@ -702,7 +702,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 </section>
 </div><p>Let’s do an example to illustrate policy evaluation:</p>
 <div class="proof example admonition" id="example-MDP-line">
-<p class="admonition-title"><span class="caption-number">Example 17 </span> (Tiger problem)</p>
+<p class="admonition-title"><span class="caption-number">Example 18 </span> (Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-linear-mdp-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Linear-MDP-Schematic.pdf"><img alt="../_images/Fig-Linear-MDP-Schematic.pdf" src="../_images/Fig-Linear-MDP-Schematic.pdf" style="height: 110px;" /></a>
@@ -744,7 +744,7 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
 \[U_{k+1}(s) = \max_{a}\left(R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U_{k}(s^{\prime})\right)\]</div>
 <p>This procedure is guaranteed to converge to the optimal utility vector (value function).</p>
 <div class="proof example admonition" id="example-MDP-line-mod">
-<p class="admonition-title"><span class="caption-number">Example 18 </span> (Modified Tiger problem)</p>
+<p class="admonition-title"><span class="caption-number">Example 19 </span> (Modified Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-branched-mdp-schematic-mod">
 <a class="reference internal image-reference" href="../_images/Fig-Branched-MDP-Schematic.pdf"><img alt="../_images/Fig-Branched-MDP-Schematic.pdf" src="../_images/Fig-Branched-MDP-Schematic.pdf" style="height: 300px;" /></a>
