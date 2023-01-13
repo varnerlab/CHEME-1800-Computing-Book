@@ -190,7 +190,7 @@ The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Jul
 
 A hash function takes an input value, e.g., a key value, and returns a fixed-size string of characters or a number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
 
-Let's look at some psuedo code for a simple hash function ():
+Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-function-code`):
 
 ````{prf:algorithm} Simple Hash Function
 :label: algo-hash-function-code
@@ -205,13 +205,13 @@ Let's look at some psuedo code for a simple hash function ():
 1. set $L\leftarrow\text{length}(\text{key})$
 
 **Main**
-1. for $i\in{0,\dots,L-1}$
+1. for $i\in{1,\dots,L}$
       1. hash $\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)$ % `size`
 
 **Return** hash
 ````
 
-If $\beta=31$, then {prf:ref}`algo-hash-function-code` is a variant of the Horner's hashing method. The modulo `%` operation with `size` ensures that the output `hash` value is a valid index within the array.
+{prf:ref}`algo-hash-function-code` is a variant of Horner's hashing method when $\beta$ = 31. The [modulo operator](https://en.wikipedia.org/wiki/Modulo_operation) `%` computes the remainder, e.g., the expression `7 % 3` evaluates to `1`. The modulo `%` operation with `size` ensures that the output `hash` value is a valid index within the array. 
 
 (content:references:data-structure-tree)=
 ### Trees
