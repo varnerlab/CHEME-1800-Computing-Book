@@ -199,14 +199,7 @@ A homogeneous system of linear algebraic equations with $n\times{m}$ coefficient
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-has a solution if and only if the coefficient matrix $\mathbf{A}$ is singular; determinant $\det\mathbf{A} = 0$. The determinant condition is an easy theoretical test to check for the existence of a solution to a homogenous system of linear algebraic equations. However, in a practical sense computing the determinant directly is computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$. The rank _r_ of a matrix $\mathbf{A}$:
-
-```{math}
-:label: eqn-rank-inequality
-r\leq\min\left(m,n\right)
-```
-
-is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then $\det{\mathbf{A}}=0$. 
+has a solution if and only if the coefficient matrix $\mathbf{A}$ is singular; determinant $\det\mathbf{A} = 0$. The determinant condition is an easy theoretical test to check for the existence of a solution to a homogenous system of linear algebraic equations. However, in a practical sense computing the determinant directly is computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$.  If a matrix is less than full rank, then $\det{\mathbf{A}}=0$. 
 
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 

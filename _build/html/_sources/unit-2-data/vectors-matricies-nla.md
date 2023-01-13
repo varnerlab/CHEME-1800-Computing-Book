@@ -48,6 +48,20 @@ a_{1} & a_{2} & \cdots & a_{n}
 
 Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers. 
 
+### Special matrices
+Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. Some examples of special matrices include identity matrices, diagonal matrices, triangular matrices, and orthogonal matrices. These matrices have specific properties that make them useful in linear algebra, optimization, and other fields. 
+
+Let’s discuss a few of these special matrices. 
+
+#### Diagonal and identity matrices 
+A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. They are used in matrix algebra to simplify calculations, and they can be created by multiplying an identity matrix by a scalar. The identity matrix is a square matrix with 1s on the diagonal and 0s everywhere else. It represents the identity transformation in linear algebra and is often denoted by the symbol $\mathbf{I}$.
+
+#### Triangular matrices
+A triangular matrix is a square matrix that is either upper triangular or lower triangular. These matrices have zero entries below or above the main diagonal, respectively.
+
+#### Orthogonal matrices
+Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths. Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.
+
 
 ## Determinant and Trace
 The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix. [Determinants](https://en.wikipedia.org/wiki/Determinant) can be used to determine whether a [matrix is invertible](./laes.md), and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The [determinant of square matrix](https://en.wikipedia.org/wiki/Determinant) $\mathbf{A}$ is defined as ({prf:ref}`defn-det-A`):
@@ -81,6 +95,17 @@ Consider an $n\times{n}$ square matrix $\mathbf{A}$, where we denote the $a_{ij}
 ```
 ````
 
+## Rank and Kernel
+The [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns. The rank of a matrix _r_ of a $m\times{n}$ matrix $\mathbf{A}$ is always less than or equal to the minimum of its number of rows and columns:
+
+```{math}
+:label: eqn-rank-inequality
+r\leq\min\left(m,n\right)
+```
+
+Rank can also be considered a measure of the unique information in a matrix; thus, if there is redundant information (rows or columns that are not linearly independent), a matrix will be less than full rank. 
+
+The kernel of a matrix is the set of all solutions to the homogeneous equation $\mathbf{A}\mathbf{x} = \mathbf{0}$, where $\mathbf{A}$ is the matrix, and $\mathbf{x}$ is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.
 
 ## Operations
 
@@ -316,12 +341,32 @@ for any $p>0$.
 
 ````
 
-#### Properties of matrix norms
+#### Matrix norms
 A matrix norm is any function $||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}$ such that following properties are true:
 
-* Non-negativity: $||\mathbf{A}||\geq{0}$ for any vector $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $||\mathbf{A}||=0$ if and only if $\mathbf{A}=0$.
+* Non-negativity: $||\mathbf{A}||\geq{0}$ for any matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $||\mathbf{A}||=0$ if and only if $\mathbf{A}=0$.
 * Multiplication by a scalar: $||\alpha\mathbf{A}|| = \alpha{||\mathbf{A}||}$ for any $m\times{n}$ matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\alpha\in\mathbb{R}$.
 * Triangle inequality: $||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||$ for any matrices $\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}$
+
+````{prf:definition} Properties of Matrix Norms
+:label: defn-compatible-matrix-vector-norm
+
+A matrix norm $||\cdot||$ is _consistent_ with a vector norm $||\cdot||$ if:
+
+```{math}
+:label: eqn-consistent-matrix-norm
+||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||
+```
+
+Further, a matrix norm $||\cdot||$ is _sub-multiplicative_ if $\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and 
+$\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}$ the inequality holds:
+
+```{math}
+:label: eqn-submul-norm
+||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||
+```
+
+````
 
 ## Dimensionality reduction
 Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. It simplifies data, removes noise, and makes patterns in the data more visible. Dimensionality reduction can help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
@@ -340,8 +385,6 @@ Eigenvalue-eigenvector problems are a type of mathematical problem that involves
 where $\mathbf{A}$ is a $n\times{n}$ square matrix, $\mathbf{v}$ is a $n\times{1}$ column vector (also called an eigenvector), and $\lambda$ is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection. 
 
 Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis), and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
-
-
 
 
 ### Clustering and classification

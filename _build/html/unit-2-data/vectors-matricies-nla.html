@@ -425,10 +425,39 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#matricies-and-vectors">
    Matricies and vectors
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#special-matrices">
+     Special matrices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#diagonal-and-identity-matrices">
+       Diagonal and identity matrices
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#triangular-matrices">
+       Triangular matrices
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#orthogonal-matrices">
+       Orthogonal matrices
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#determinant-and-trace">
    Determinant and Trace
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rank-and-kernel">
+   Rank and Kernel
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -493,8 +522,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#properties-of-matrix-norms">
-       Properties of matrix norms
+      <a class="reference internal nav-link" href="#matrix-norms">
+       Matrix norms
       </a>
      </li>
     </ul>
@@ -556,10 +585,39 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#matricies-and-vectors">
    Matricies and vectors
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#special-matrices">
+     Special matrices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#diagonal-and-identity-matrices">
+       Diagonal and identity matrices
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#triangular-matrices">
+       Triangular matrices
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#orthogonal-matrices">
+       Orthogonal matrices
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#determinant-and-trace">
    Determinant and Trace
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rank-and-kernel">
+   Rank and Kernel
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -624,8 +682,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#properties-of-matrix-norms">
-       Properties of matrix norms
+      <a class="reference internal nav-link" href="#matrix-norms">
+       Matrix norms
       </a>
      </li>
     </ul>
@@ -718,6 +776,23 @@ a_{m}
 a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 \end{pmatrix}\]</div>
 <p>Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers.</p>
+<section id="special-matrices">
+<h3>Special matrices<a class="headerlink" href="#special-matrices" title="Permalink to this headline">#</a></h3>
+<p>Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. Some examples of special matrices include identity matrices, diagonal matrices, triangular matrices, and orthogonal matrices. These matrices have specific properties that make them useful in linear algebra, optimization, and other fields.</p>
+<p>Let’s discuss a few of these special matrices.</p>
+<section id="diagonal-and-identity-matrices">
+<h4>Diagonal and identity matrices<a class="headerlink" href="#diagonal-and-identity-matrices" title="Permalink to this headline">#</a></h4>
+<p>A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. They are used in matrix algebra to simplify calculations, and they can be created by multiplying an identity matrix by a scalar. The identity matrix is a square matrix with 1s on the diagonal and 0s everywhere else. It represents the identity transformation in linear algebra and is often denoted by the symbol <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>.</p>
+</section>
+<section id="triangular-matrices">
+<h4>Triangular matrices<a class="headerlink" href="#triangular-matrices" title="Permalink to this headline">#</a></h4>
+<p>A triangular matrix is a square matrix that is either upper triangular or lower triangular. These matrices have zero entries below or above the main diagonal, respectively.</p>
+</section>
+<section id="orthogonal-matrices">
+<h4>Orthogonal matrices<a class="headerlink" href="#orthogonal-matrices" title="Permalink to this headline">#</a></h4>
+<p>Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths. Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.</p>
+</section>
+</section>
 </section>
 <section id="determinant-and-trace">
 <h2>Determinant and Trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h2>
@@ -742,6 +817,14 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(12)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
 </section>
 </div></section>
+<section id="rank-and-kernel">
+<h2>Rank and Kernel<a class="headerlink" href="#rank-and-kernel" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank of a matrix</a> is a measure of the number of linearly independent rows or columns. The rank of a matrix <em>r</em> of a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is always less than or equal to the minimum of its number of rows and columns:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-rank-inequality">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
+<p>Rank can also be considered a measure of the unique information in a matrix; thus, if there is redundant information (rows or columns that are not linearly independent), a matrix will be less than full rank.</p>
+<p>The kernel of a matrix is the set of all solutions to the homogeneous equation <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.</p>
+</section>
 <section id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h2>
 <section id="addition-and-subtraction">
@@ -981,19 +1064,30 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div></section>
-<section id="properties-of-matrix-norms">
-<h4>Properties of matrix norms<a class="headerlink" href="#properties-of-matrix-norms" title="Permalink to this headline">#</a></h4>
+<section id="matrix-norms">
+<h4>Matrix norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">#</a></h4>
 <p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
 <ul class="simple">
-<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{A}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{A}||=0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{A}=0\)</span>.</p></li>
+<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{A}||\geq{0}\)</span> for any matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{A}||=0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{A}=0\)</span>.</p></li>
 <li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{A}|| = \alpha{||\mathbf{A}||}\)</span> for any <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
 </ul>
+<div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Properties of Matrix Norms)</p>
+<section class="definition-content" id="proof-content">
+<p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
+<span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
+</div></section>
 </section>
 </section>
 <section id="dimensionality-reduction">
@@ -1004,7 +1098,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
+<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
 <p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 </section>
@@ -1013,11 +1107,11 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
 <p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
 <div class="proof definition admonition" id="defn-kmeans-problem">
-<p class="admonition-title"><span class="caption-number">Definition 6 </span> (k-means clustering)</p>
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (k-means clustering)</p>
 <section class="definition-content" id="proof-content">
 <p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
+<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
 </section>
 </div></section>
