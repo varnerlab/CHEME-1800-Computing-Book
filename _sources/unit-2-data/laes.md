@@ -19,13 +19,19 @@ Systems of Linear Algebraic Equations (LAEs) arise in many different Engineering
 \mathbf{A}\mathbf{x} = \mathbf{b}
 ```
 
-where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\times{1}$ column vector of unknowns (what we want to solve for), and $\mathbf{b}$ denotes a $m\times{1}$ vector. To compute a value for the unknown vector $\mathbf{x}$ we compute a [matrix inverse](https://mathworld.wolfram.com/MatrixInverse.html):
+where $\mathbf{A}$ denotes a $m\times{n}$ matrix, $\mathbf{x}$ denotes a $n\times{1}$ column vector of unknowns (what we want to solve for), and $\mathbf{b}$ represents a $m\times{1}$ vector. Let's consider two cases:
+
+* __Homogenous system__: A homogeneous system of linear algebraic equations is a system in which the right-hand side vector $\mathbf{b}=\mathbf{0}$; every entry in the $\mathbf{b}$-vector is equal to zero. The solution set for a homogeneous system is a subspace in linear algebra, which contains all the solutions that can be added to get new solutions.
+
+* __Non-homogeneous system__: A non-homogeneous system of linear algebraic equations is a system in which at least one entry of the right-hand side vector $\mathbf{b}$ is non-zero.
+
+<!-- To compute a value for the unknown vector $\mathbf{x}$ we compute a [matrix inverse](https://mathworld.wolfram.com/MatrixInverse.html):
 
 $$\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}$$
 
-where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$. 
+where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$.  -->
 
-In this lecture, we'll look at techniques to compute $\mathbf{A}^{\dagger}$. We will:
+In this lecture, we'll look at techniques to solve homogeneous and non-homogeneous system of linear algebraic equations. We will:
 
 * Begin by introducing some {ref}`content:references:motivating-examples` that will be handy later to frame our discussion.
 * Next, we will introduce {ref}`content:references:solution-approaches` to solve square systems of linear algebraic equations.
@@ -183,18 +189,46 @@ where can be re-written in matrix-vector form as:
 \mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}
 ```
 
-### Rank
-What is interesting about $\mathbf{A}^{\#}$ are the conditions governing its existence, and in one particular a concept called [matrix rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)). The rank of a matrix _r_:
+## Solution existence
 
-$$r\leq\min\left(m,n\right)$$
+### Homogeneous system and rank
+A homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
 
-is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then $\det{\mathbf{A}}=0$, and an inverse will __not__ exist. 
+```{math}
+:label: eqn-homogenous-laes
+\mathbf{A}\mathbf{x} = \mathbf{0}
+```
+
+has a solution if and only if the coefficient matrix $\mathbf{A}$ is singular; determinant $\det\mathbf{A} = 0$. The determinant condition is an easy theoretical test to check for the existence of a solution to a homogenous system of linear algebraic equations. However, in a practical sense computing the determinant directly is computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$. The rank _r_ of a matrix $\mathbf{A}$:
+
+```{math}
+:label: eqn-rank-inequality
+r\leq\min\left(m,n\right)
+```
+
+is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then $\det{\mathbf{A}}=0$. 
 
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
+### Non-homogeneous system
+A non-homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$, unknown vector $\mathbf{x}$ and right-hand-side vector $\mathbf{b}$:
+
+```{math}
+:label: eqn-non-homogenous-laes
+\mathbf{A}\mathbf{x} = \mathbf{b}
+```
+
+will have a solution if there exists a matrix $\mathbf{A}^{\dagger}$ such that:
+
+```{math}
+:label: eqn-non-homogenous-laes-inverse
+\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}
+```
+
+and $\mathbf{A}^{\dagger}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ is the identity matrix and $\mathbf{A}^{\dagger}$ is the matrix inverse of $\mathbf{A}$.
 
 (content:references:solution-approaches)=
-## Solution approaches for square systems
+## Solution approaches
 The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
 $$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$

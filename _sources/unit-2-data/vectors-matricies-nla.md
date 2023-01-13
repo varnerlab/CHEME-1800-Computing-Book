@@ -40,6 +40,9 @@ a_{1} & a_{2} & \cdots & a_{n}
 
 Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers. 
 
+
+
+
 ## Operations
 
 ### Addition and subtraction

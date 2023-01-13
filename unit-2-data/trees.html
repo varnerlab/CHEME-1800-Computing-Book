@@ -503,6 +503,25 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#hashmaps-and-sets">
      Hashmaps and sets
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hashmaps">
+       Hashmaps
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sets">
+       Sets
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#hash-functions">
+         Hash functions
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trees">
@@ -588,6 +607,25 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#hashmaps-and-sets">
      Hashmaps and sets
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hashmaps">
+       Hashmaps
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sets">
+       Sets
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#hash-functions">
+         Hash functions
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trees">
@@ -630,9 +668,10 @@ title="Print to PDF"
 <p>Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-lda-arrays"><span class="std std-ref">Arrays</span></a>: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it.</p></li>
-<li><p><span class="xref std std-ref">ontent:references:lda-linked-lists</span>: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.</p></li>
+<li><p><a class="reference internal" href="#content-references-lda-linked-lists"><span class="std std-ref">Linked lists</span></a>: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.</p></li>
 <li><p><a class="reference internal" href="#content-references-lda-stacks"><span class="std std-ref">Stacks</span></a>: A stack is a linear data structure that follows the “last-in, first-out” (LIFO) principle. This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing.</p></li>
 <li><p><a class="reference internal" href="#content-references-lda-queues"><span class="std std-ref">Queues</span></a>: A queue is a linear data structure that follows the “first-in, first-out” (FIFO) principle. This means that the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.</p></li>
+<li><p><a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Hashmaps and sets</span></a>: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.</p></li>
 </ul>
@@ -709,10 +748,131 @@ title="Print to PDF"
 <h2>Non-linear data structures<a class="headerlink" href="#non-linear-data-structures" title="Permalink to this headline">#</a></h2>
 <p>Non-linear data structures do not store data in a linear sequence. In other words, the data is not linearly organized in a list where each element is connected to the next one. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of the data.</p>
 <p>Non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations. However, they are also (typically) more complex and require more memory to store the data.</p>
-<p>Let’s consider two handy non-linear data structures, <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>, and <a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>.</p>
+<p>Let’s consider a few handy non-linear data structures, <a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Hashmaps and sets</span></a>, <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>, and <a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>.</p>
 <section id="hashmaps-and-sets">
 <span id="content-references-data-structure-hashmap-and-sets"></span><h3>Hashmaps and sets<a class="headerlink" href="#hashmaps-and-sets" title="Permalink to this headline">#</a></h3>
-<p>Fill me in.</p>
+<p>A hashmap is a data structure that stores key-value pairs, where each key value is unique. Hashmaps uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> to map keys to array indexes, thus, allowing for efficient lookups and insertions. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p>
+<section id="hashmaps">
+<h4>Hashmaps<a class="headerlink" href="#hashmaps" title="Permalink to this headline">#</a></h4>
+<p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
+<p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="76b11c68-b47d-4965-8e74-76030eccc13b" name="9119a83e-dc58-48d8-beac-b0cdf719fc71" type="radio">
+</input><label class="sd-tab-label" for="76b11c68-b47d-4965-8e74-76030eccc13b">
+julia</label><div class="sd-tab-content docutils">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
+<span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
+
+<span class="c"># load key=value pairs into the dictionary</span>
+<span class="n">car</span><span class="p">[</span><span class="s">&quot;brand&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Ford&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Mustang&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1964</span>
+</pre></div>
+</div>
+</div>
+<input id="09934e6e-033e-4d8d-898d-cfd08afcbdbc" name="9119a83e-dc58-48d8-beac-b0cdf719fc71" type="radio">
+</input><label class="sd-tab-label" for="09934e6e-033e-4d8d-898d-cfd08afcbdbc">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
+<span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Add data to car dictionary</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;brand&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Ford&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Mustang&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1964</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data can be accessed by passing the key value into the dictionary, e.g., <code class="docutils literal notranslate"><span class="pre">car[&quot;brand&quot;]</span></code> would return <code class="docutils literal notranslate"><span class="pre">Ford</span></code>.</p>
+</section>
+<section id="sets">
+<h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
+<p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="d9cf084c-0e0c-4e08-aab1-75e49cb3cf41" name="23fbcffb-5e78-460c-b675-f667b9b3e7c5" type="radio">
+</input><label class="sd-tab-label" for="d9cf084c-0e0c-4e08-aab1-75e49cb3cf41">
+julia</label><div class="sd-tab-content docutils">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
+<span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
+
+<span class="c"># add items to a set using push!</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="s">&quot;Apple&quot;</span><span class="p">)</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="s">&quot;Pear&quot;</span><span class="p">)</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="s">&quot;Mango&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="aa3929ee-e866-4293-9d92-3b8c469b8582" name="23fbcffb-5e78-460c-b675-f667b9b3e7c5" type="radio">
+</input><label class="sd-tab-label" for="aa3929ee-e866-4293-9d92-3b8c469b8582">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
+<span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="c1"># Add data to fruit set</span>
+<span class="n">fruit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Apple&quot;</span><span class="p">)</span>
+<span class="n">fruit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Pear&quot;</span><span class="p">)</span>
+<span class="n">fruit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Mango&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, the <code class="docutils literal notranslate"><span class="pre">Set</span></code> type is <em>unordered</em>; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained.</p>
+<section id="hash-functions">
+<h5>Hash functions<a class="headerlink" href="#hash-functions" title="Permalink to this headline">#</a></h5>
+<p>The exciting thing about a hashmap implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
+<p>Let’s look at some psuedo code for a simple hash function (<a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a>):</p>
+<div class="proof algorithm dropdown admonition" id="algo-hash-function-code">
+<p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Simple Hash Function)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> String <code class="docutils literal notranslate"><span class="pre">key</span></code>, a <code class="docutils literal notranslate"><span class="pre">size</span></code> parameter, a <span class="math notranslate nohighlight">\(\beta\)</span> factor</p>
+<p><strong>Outputs</strong> hash</p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set hash <span class="math notranslate nohighlight">\(\leftarrow{0}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(L\leftarrow\text{length}(\text{key})\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots,L}\)</span></p>
+<ol class="simple">
+<li><p>hash <span class="math notranslate nohighlight">\(\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)\)</span> % <code class="docutils literal notranslate"><span class="pre">size</span></code></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> hash</p>
+</section>
+</div><p><a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> is a variant of Horner’s hashing method when <span class="math notranslate nohighlight">\(\beta\)</span> = 31. The <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator</a> <code class="docutils literal notranslate"><span class="pre">%</span></code> computes the remainder, e.g., the expression <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%</span> <span class="pre">3</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">1</span></code>. The modulo <code class="docutils literal notranslate"><span class="pre">%</span></code> operation with <code class="docutils literal notranslate"><span class="pre">size</span></code> ensures that the output <code class="docutils literal notranslate"><span class="pre">hash</span></code> value is a valid index within the array.</p>
+<div class="proof example dropdown admonition" id="example-hashing-example-impl">
+<p class="admonition-title"><span class="caption-number">Example 13 </span> (Hashing example)</p>
+<section class="example-content" id="proof-content">
+<p>Compute the hash value for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code> for an array of <code class="docutils literal notranslate"><span class="pre">size</span></code> of <code class="docutils literal notranslate"><span class="pre">1000</span></code> and expansion factor <span class="math notranslate nohighlight">\(\beta\)</span> = 31.</p>
+<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> in <a class="reference external" href="https://docs.julialang.org">Julia</a></p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    myhash(key::String, β::Int64, size::Int64)::Int64</span>
+
+<span class="s">Convert a String `key` to `Int` for an array of type `size`:</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">myhash</span><span class="p">(</span><span class="n">key</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span> <span class="n">β</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">size</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c"># main loop -</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">L</span>
+        <span class="n">hash</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash</span><span class="o">*</span><span class="n">β</span> <span class="o">+</span> <span class="n">convert</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">%</span> <span class="n">size</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">hash</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+</div></section>
+</section>
 </section>
 <section id="trees">
 <span id="content-references-data-structure-tree"></span><h3>Trees<a class="headerlink" href="#trees" title="Permalink to this headline">#</a></h3>
