@@ -51,16 +51,65 @@ Just like numbers, vectors and matrices can participate in typical mathematical 
 ### Special matrices
 Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. Some examples of special matrices include identity matrices, diagonal matrices, triangular matrices, and orthogonal matrices. These matrices have specific properties that make them useful in linear algebra, optimization, and other fields. 
 
-Let’s discuss a few of these special matrices. 
+Let’s discuss a few of these special matrices: {ref}`content:references:diag-id-matrix`, {ref}`content:references:triag-matrix` and {ref}`content:references:orth-matrix`
 
+(content:references:diag-id-matrix)=
 #### Diagonal and identity matrices 
-A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. They are used in matrix algebra to simplify calculations, and they can be created by multiplying an identity matrix by a scalar. The identity matrix is a square matrix with 1s on the diagonal and 0s everywhere else. It represents the identity transformation in linear algebra and is often denoted by the symbol $\mathbf{I}$.
+A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. Diagonal matrices are used in matrix algebra to simplify calculations, and they can be created by multiplying an identity matrix by a scalar. The identity matrix is a square matrix with `1` on the diagonal and `0` everywhere else. It represents the identity transformation in linear algebra and is often denoted by the symbol $\mathbf{I}$.
 
+
+(content:references:triag-matrix)=
 #### Triangular matrices
-A triangular matrix is a square matrix that is either upper triangular or lower triangular. These matrices have zero entries below or above the main diagonal, respectively.
+A triangular matrix is a square matrix that is either upper triangular or lower triangular ({prf:ref}`defn-triangular-matrices`):
 
+````{prf:definition} Triangular matrices
+:label: defn-triangular-matrices
+Triangular matrices are square arrays with zero entries below or above the main diagonal. An $n\times{n}$ lower triangular matrix $\mathbf{L}$:
+
+```{math}
+\mathbf{L} = 
+\begin{pmatrix}
+l_{11} & 0 & \dots & 0 \\
+l_{21} & l_{22} & \dots & 0 \\
+\vdots & \vdots & & \vdots \\
+l_{n1} & l_{n2} & \dots & l_{nn}
+\end{pmatrix}
+```
+
+has entries $l_{ij} = 0$ for $i<j$ (above the diagonal). On the other hand, an $n\times{n}$ upper triangular matrix $\mathbf{U}$:
+
+```{math}
+\mathbf{U} = 
+\begin{pmatrix}
+u_{11} & u_{12} & \dots & u_{nn} \\
+0 & u_{22} & \dots & u_{2n} \\
+\vdots & \vdots & & \vdots \\
+0 & 0 & \dots & u_{nn}
+\end{pmatrix}
+```
+
+has entries $u_{ij} = 0$ for $i>j$ (below the diagonal).
+````
+
+Triangular matrices are useful in various mathematical and computational contexts. For example, they are easy to invert, can be used to represent linear transformations conveniently, and can be used to solve systems of linear algebraic equations efficiently.
+
+(content:references:orth-matrix)=
 #### Orthogonal matrices
-Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths. Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.
+Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths ({prf:ref}`defn-orthogonal-matrix`): 
+
+````{prf:definition} Orthogonal matrices
+:label: defn-orthogonal-matrix
+
+An $n\times{n}$ real matrix $\mathbf{A}$ is an orthogonal matrix if:
+
+```{math}
+:label: eqn-orthogonal-matrices
+\mathbf{A}^{T}\mathbf{A} = \mathbf{A}\mathbf{A}^{T} = \mathbf{I}
+```
+
+where $\mathbf{A}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the matrix $\mathbf{A}$, and $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. 
+````
+Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.
 
 
 ## Determinant and Trace
