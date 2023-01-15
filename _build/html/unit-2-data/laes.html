@@ -422,8 +422,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivating-examples-and-concepts">
-   Motivating examples and concepts
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -449,20 +449,20 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#homogeneous-system-and-rank">
-     Homogeneous system and rank
+    <a class="reference internal nav-link" href="#homogeneous-square-systems">
+     Homogeneous square systems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#non-homogeneous-system">
-     Non-homogeneous system
+    <a class="reference internal nav-link" href="#non-homogeneous-square-systems">
+     Non-homogeneous square systems
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution-approaches">
-   Solution approaches
+  <a class="reference internal nav-link" href="#solutions">
+   Solutions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -534,8 +534,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivating-examples-and-concepts">
-   Motivating examples and concepts
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -561,20 +561,20 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#homogeneous-system-and-rank">
-     Homogeneous system and rank
+    <a class="reference internal nav-link" href="#homogeneous-square-systems">
+     Homogeneous square systems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#non-homogeneous-system">
-     Non-homogeneous system
+    <a class="reference internal nav-link" href="#non-homogeneous-square-systems">
+     Non-homogeneous square systems
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution-approaches">
-   Solution approaches
+  <a class="reference internal nav-link" href="#solutions">
+   Solutions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -658,14 +658,14 @@ $$\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}$$
 where $\mathbf{A}^{\dagger}$ denotes the inverse of the matrix $\mathbf{A}$.  -->
 <p>In this lecture, we’ll look at techniques to solve homogeneous and non-homogeneous system of linear algebraic equations. We will:</p>
 <ul class="simple">
-<li><p>Begin by introducing some <a class="reference internal" href="#content-references-motivating-examples"><span class="std std-ref">Motivating examples and concepts</span></a> that will be handy later to frame our discussion.</p></li>
-<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Solution approaches</span></a> to solve square systems of linear algebraic equations.</p></li>
+<li><p>Begin by introducing some <a class="reference internal" href="#content-references-motivating-examples"><span class="std std-ref">Motivation</span></a> that will be handy later to frame our discussion.</p></li>
+<li><p>Next, we will introduce <a class="reference internal" href="#content-references-solution-approaches"><span class="std std-ref">Solutions</span></a> to solve square systems of linear algebraic equations.</p></li>
 <li><p>Finally, we’ll conclude with a discussion of <a class="reference internal" href="#content-references-solution-approaches-non-square"><span class="std std-ref">Generalized inverses and pseudoinverses</span></a>. These approaches can compute approximate inverses for non-square systems of linear algebraic equations.</p></li>
 </ul>
 <hr class="docutils" />
 </section>
-<section id="motivating-examples-and-concepts">
-<span id="content-references-motivating-examples"></span><h2>Motivating examples and concepts<a class="headerlink" href="#motivating-examples-and-concepts" title="Permalink to this headline">#</a></h2>
+<section id="motivation">
+<span id="content-references-motivating-examples"></span><h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h2>
 <section id="underdetermined-systems">
 <h3>Underdetermined systems<a class="headerlink" href="#underdetermined-systems" title="Permalink to this headline">#</a></h3>
 <p>Suppose you had two steady-state blending tanks <span class="math notranslate nohighlight">\(T_{1}\)</span> and <span class="math notranslate nohighlight">\(T_{2}\)</span> in series, each with two input streams and a single output stream (<a class="reference internal" href="#fig-blending-tanks-example"><span class="std std-numref">Fig. 7</span></a>):</p>
@@ -797,40 +797,54 @@ C_{i,3}
 </section>
 <section id="existence">
 <h2>Existence<a class="headerlink" href="#existence" title="Permalink to this headline">#</a></h2>
-<section id="homogeneous-system-and-rank">
-<h3>Homogeneous system and rank<a class="headerlink" href="#homogeneous-system-and-rank" title="Permalink to this headline">#</a></h3>
-<p>A homogeneous system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{m}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p>The existence of a solution to a system of linear equations depends on the number of equations and the number of variables in the system. Square systems will have at least one solution, which means that there will be values of the variables that can be found that will make all of the equations in the system true simultaneously.</p>
+<section id="homogeneous-square-systems">
+<h3>Homogeneous square systems<a class="headerlink" href="#homogeneous-square-systems" title="Permalink to this headline">#</a></h3>
+<p>For a homogeneous system of linear equations, the trivial solution <span class="math notranslate nohighlight">\(\mathbf{x}=\mathbf{0}\)</span> will always exist, but non-trivial solutions may not be unique. For example, there could be infinitely many <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> values that simultaneously make the system of equations true.</p>
+<p>A homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-homogenous-laes">
 <span class="eqno">(23)<a class="headerlink" href="#equation-eqn-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{0}\]</div>
-<p>has a solution if and only if the coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular; determinant <span class="math notranslate nohighlight">\(\det\mathbf{A} = 0\)</span>. The determinant condition is an easy theoretical test to check for the existence of a solution to a homogenous system of linear algebraic equations. However, in a practical sense computing the determinant directly is computationally expensive. Alternatively, the determinant condition can be also checked by computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.  If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\mathbf{A}}=0\)</span>.</p>
+<p>may or may not have a unique solution. However, there is an easy check to determine the existence of a solution to Eqn. <a class="reference internal" href="#equation-eqn-homogenous-laes">(23)</a>:</p>
+<div class="proof definition admonition" id="defn-homogenous-soln-existence">
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Homogenous solution existence)</p>
+<section class="definition-content" id="proof-content">
+<p>A homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>
+has a unique solution if and only if the coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has determinant:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-det-homogenous-cond">
+<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-det-homogenous-cond" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = 0\]</div>
+<p>The determinant condition is an easy theoretical test to check for the existence of a unique solution to a homogenous system of linear algebraic equations.</p>
+</section>
+</div><p>In practice computing the determinant directly can be computationally expensive. Alternatively, the determinant condition can be also checked by computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.  If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\left(\mathbf{A}\right)}=0\)</span>.</p>
 <p>There are many different ways to compute rank, however, we’ll use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank">rank</a> function in <a class="reference external" href="https://julialang.org">Julia</a>.</p>
 </section>
-<section id="non-homogeneous-system">
-<h3>Non-homogeneous system<a class="headerlink" href="#non-homogeneous-system" title="Permalink to this headline">#</a></h3>
-<p>A non-homogeneous system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{m}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
+<section id="non-homogeneous-square-systems">
+<h3>Non-homogeneous square systems<a class="headerlink" href="#non-homogeneous-square-systems" title="Permalink to this headline">#</a></h3>
+<p>A non-homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-non-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
-<p>will have a solution if there exists a matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span> such that:</p>
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-non-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<p>will have a solution if there exists a matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes-inverse">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-non-homogenous-laes-inverse" title="Permalink to this equation">#</a></span>\[\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}\]</div>
-<p>and <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\mathbf{A}=\mathbf{I}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the identity matrix and <span class="math notranslate nohighlight">\(\mathbf{A}^{\dagger}\)</span> is the matrix inverse of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-non-homogenous-laes-inverse" title="Permalink to this equation">#</a></span>\[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is called the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. However, the inverse may not always exist (<a class="reference internal" href="#defn-matrix-inverse">Definition 11</a>):</p>
+<div class="proof definition admonition" id="defn-matrix-inverse">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Matrix inverse existence)</p>
+<section class="definition-content" id="proof-content">
+<p>An <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has an unique inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-matrix-a">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-matrix-a" title="Permalink to this equation">#</a></span>\[\mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}\]</div>
+<p>if <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\neq{0}\)</span>. If the inverse matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> exists, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is called non-singular, otherwise <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular.</p>
 </section>
+</div></section>
 </section>
-<section id="solution-approaches">
-<span id="content-references-solution-approaches"></span><h2>Solution approaches<a class="headerlink" href="#solution-approaches" title="Permalink to this headline">#</a></h2>
-<p>The naive way to solve a system of LAEs for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to directly compute the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>. A matrix inverse has the property <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <em>identity matrix</em>.  Thus, if a matrix inverse exists, the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be computed as:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
-<p>Directly computing the matrix inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.</p>
-<p>There are two broad categories of methods to solve for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, direct methods, such as those based upon <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, and iterative methods, such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Gauss–Seidel method</a>. Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>.</p>
-<p>In all the discussion below, we assume:</p>
+<section id="solutions">
+<span id="content-references-solution-approaches"></span><h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">#</a></h2>
+<p>Several methods exist to find the solution of a square system of linear equations:</p>
 <ul class="simple">
-<li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is <strong>square</strong> meaning <span class="math notranslate nohighlight">\(m=n\)</span>; we’ll see how we can treat non-square systems later.</p></li>
-<li><p>The matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has full rank or equivalently <span class="math notranslate nohighlight">\(\det{\mathbf{A}}\neq{0}\)</span>.</p></li>
+<li><p><a class="reference internal" href="#content-references-gaussian-elimination"><span class="std std-ref">Gaussian elimination</span></a> solves linear equations by using a sequence of operations to reduce the system to an upper triangular form and then back substitution to find the solution.</p></li>
+<li><p><a class="reference internal" href="#content-references-iterative-methods"><span class="std std-ref">Iterative methods</span></a> are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual solution.</p></li>
 </ul>
-<p>For the study of the different solution approaches, let’s consider a motivating example.</p>
 <section id="gaussian-elimination">
-<h3>Gaussian elimination<a class="headerlink" href="#gaussian-elimination" title="Permalink to this headline">#</a></h3>
+<span id="content-references-gaussian-elimination"></span><h3>Gaussian elimination<a class="headerlink" href="#gaussian-elimination" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
 <div class="proof algorithm dropdown admonition" id="algo-ge-basic">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive Gaussian Elimination)</p>
@@ -895,7 +909,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </section>
 </div><p>Let’s walkthrough a simple generic example using <a class="reference internal" href="#algo-ge-basic">Algorithm 6</a> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 2 &amp; -1 &amp; 0 \\
 -1 &amp; 2 &amp; -1 \\
 0 &amp; -1 &amp; 2
@@ -912,7 +926,7 @@ x_{3}
 \end{pmatrix}\end{split}\]</div>
 <p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span>. The augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -925,9 +939,9 @@ x_{3}
 <li><p>For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.</p></li>
 <li><p>Carry out this procedure until the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is in <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>.</p></li>
 </ol>
-<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(27)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(29)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -939,7 +953,7 @@ x_{3}
 \end{bmatrix}\end{split}\]</div>
 <p>After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -953,12 +967,12 @@ x_{3}
 <p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
 <p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
 0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
 \end{bmatrix}\end{split}\]</div>
-<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(30)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
+<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(32)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
 <div class="proof algorithm admonition" id="algo-ge-basic-back-sub">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Naive back substitution)</p>
 <section class="algorithm-content" id="proof-content">
@@ -981,7 +995,7 @@ x_{3}
 </section>
 </div></section>
 <section id="iterative-methods">
-<h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
+<span id="content-references-iterative-methods"></span><h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
 <p>Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.</p>
 <p>One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let’s outline the basic idea of an interative solution method in <a class="reference internal" href="#obs-basic-iterative-method-outline">Observation 3</a>:</p>
 <!-- 
@@ -1141,7 +1155,20 @@ While the true solution is not explicitly known, you can calculate the squared d
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>Fill me in</p>
-</section>
+<!-- The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
+
+$$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
+
+Directly computing the matrix inverse $\mathbf{A}^{-1}$ is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.
+
+There are two broad categories of methods to solve for $\mathbf{x}$, direct methods, such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), and iterative methods, such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
+
+In all the discussion below, we assume:
+
+* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
+* The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
+
+For the study of the different solution approaches, let's consider a motivating example.  --></section>
 </section>
 
     <script type="text/x-thebe-config">

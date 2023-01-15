@@ -60,7 +60,7 @@ A diagonal matrix is a square matrix in which all entries outside the main diago
 
 (content:references:triag-matrix)=
 #### Triangular matrices
-A triangular matrix is a square matrix that is either upper triangular or lower triangular ({prf:ref}`defn-triangular-matrices`):
+A triangular matrix is a square matrix that is either upper or lower triangular ({prf:ref}`defn-triangular-matrices`):
 
 ````{prf:definition} Triangular matrices
 :label: defn-triangular-matrices

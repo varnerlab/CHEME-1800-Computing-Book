@@ -40,7 +40,7 @@ In this lecture, we'll look at techniques to solve homogeneous and non-homogeneo
 
 
 (content:references:motivating-examples)=
-## Motivating examples and concepts
+## Motivation
 
 ### Underdetermined systems
 Suppose you had two steady-state blending tanks $T_{1}$ and $T_{2}$ in series, each with two input streams and a single output stream ({numref}`fig-blending-tanks-example`):
@@ -190,53 +190,77 @@ where can be re-written in matrix-vector form as:
 ```
 
 ## Existence
+The existence of a solution to a system of linear equations depends on the number of equations and the number of variables in the system. Square systems will have at least one solution, which means that there will be values of the variables that can be found that will make all of the equations in the system true simultaneously.
 
-### Homogeneous system and rank
-A homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
+### Homogeneous square systems
+For a homogeneous system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist, but non-trivial solutions may not be unique. For example, there could be infinitely many $\mathbf{x}$ values that simultaneously make the system of equations true.
+
+A homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$:
 
 ```{math}
 :label: eqn-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-has a solution if and only if the coefficient matrix $\mathbf{A}$ is singular; determinant $\det\mathbf{A} = 0$. The determinant condition is an easy theoretical test to check for the existence of a solution to a homogenous system of linear algebraic equations. However, in a practical sense computing the determinant directly is computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$.  If a matrix is less than full rank, then $\det{\mathbf{A}}=0$. 
+may or may not have a unique solution. However, there is an easy check to determine the existence of a solution to Eqn. {eq}`eqn-homogenous-laes`:
+
+````{prf:definition} Homogenous solution existence
+:label: defn-homogenous-soln-existence
+
+A homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
+has a unique solution if and only if the coefficient matrix $\mathbf{A}$ has determinant:
+
+```{math}
+:label: eqn-det-homogenous-cond
+\det\left(\mathbf{A}\right) = 0
+```
+
+The determinant condition is an easy theoretical test to check for the existence of a unique solution to a homogenous system of linear algebraic equations. 
+````
+
+In practice computing the determinant directly can be computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$.  If a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$. 
 
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
-### Non-homogeneous system
-A non-homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$, unknown vector $\mathbf{x}$ and right-hand-side vector $\mathbf{b}$:
+### Non-homogeneous square systems
+A non-homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$, unknown vector $\mathbf{x}$ and right-hand-side vector $\mathbf{b}$:
 
 ```{math}
 :label: eqn-non-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{b}
 ```
 
-will have a solution if there exists a matrix $\mathbf{A}^{\dagger}$ such that:
+will have a solution if there exists a matrix $\mathbf{A}^{-1}$ such that:
 
 ```{math}
 :label: eqn-non-homogenous-laes-inverse
-\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}
+\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}
 ```
 
-and $\mathbf{A}^{\dagger}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ is the identity matrix and $\mathbf{A}^{\dagger}$ is the matrix inverse of $\mathbf{A}$.
+where the $\mathbf{A}^{-1}$ is called the inverse of the matrix $\mathbf{A}$. However, the inverse may not always exist ({prf:ref}`defn-matrix-inverse`):
+
+
+````{prf:definition} Matrix inverse existence
+:label: defn-matrix-inverse
+
+An $n\times{n}$ square matrix $\mathbf{A}$ has an unique inverse $\mathbf{A}^{-1}$ such that:
+
+```{math}
+:label: eqn-matrix-A
+\mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}
+```
+
+if $\det\left(\mathbf{A}\right)\neq{0}$. If the inverse matrix $\mathbf{A}^{-1}$ exists, the matrix $\mathbf{A}$ is called non-singular, otherwise $\mathbf{A}$ is singular. 
+````
 
 (content:references:solution-approaches)=
-## Solution approaches
-The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
+## Solutions
+Several methods exist to find the solution of a square system of linear equations:
 
-$$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
+* {ref}`content:references:gaussian-elimination` solves linear equations by using a sequence of operations to reduce the system to an upper triangular form and then back substitution to find the solution. 
+* {ref}`content:references:iterative-methods` are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual solution.
 
-Directly computing the matrix inverse $\mathbf{A}^{-1}$ is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.
-
-There are two broad categories of methods to solve for $\mathbf{x}$, direct methods, such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), and iterative methods, such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
-
-In all the discussion below, we assume:
-
-* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
-* The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
-
-For the study of the different solution approaches, let's consider a motivating example. 
-
+(content:references:gaussian-elimination)=
 ### Gaussian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
@@ -381,7 +405,7 @@ This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitu
 
 ````
 
-
+(content:references:iterative-methods)=
 ### Iterative methods
 Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
 
@@ -530,3 +554,19 @@ Fill me in.
 
 ## Summary
 Fill me in
+
+
+<!-- The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
+
+$$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
+
+Directly computing the matrix inverse $\mathbf{A}^{-1}$ is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.
+
+There are two broad categories of methods to solve for $\mathbf{x}$, direct methods, such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), and iterative methods, such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
+
+In all the discussion below, we assume:
+
+* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
+* The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
+
+For the study of the different solution approaches, let's consider a motivating example.  -->
