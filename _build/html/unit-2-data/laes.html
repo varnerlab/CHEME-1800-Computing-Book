@@ -469,6 +469,18 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#gaussian-elimination">
      Gaussian elimination
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#motivation-upper-triangular-system">
+       Motivation: Upper triangular system
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-square-system">
+       General square system
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#iterative-methods">
@@ -581,6 +593,18 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#gaussian-elimination">
      Gaussian elimination
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#motivation-upper-triangular-system">
+       Motivation: Upper triangular system
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-square-system">
+       General square system
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#iterative-methods">
@@ -819,10 +843,10 @@ has a unique solution if and only if the coefficient matrix <span class="math no
 </section>
 <section id="non-homogeneous-square-systems">
 <h3>Non-homogeneous square systems<a class="headerlink" href="#non-homogeneous-square-systems" title="Permalink to this headline">#</a></h3>
-<p>A non-homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
+<p>A non-homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, <span class="math notranslate nohighlight">\(n\times{1}\)</span> unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and the <span class="math notranslate nohighlight">\(n\times{1}\)</span> right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes">
 <span class="eqno">(25)<a class="headerlink" href="#equation-eqn-non-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
-<p>will have a solution if there exists a matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
+<p>will have a unique solution if there exists a matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes-inverse">
 <span class="eqno">(26)<a class="headerlink" href="#equation-eqn-non-homogenous-laes-inverse" title="Permalink to this equation">#</a></span>\[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
 <p>where the <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is called the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. However, the inverse may not always exist (<a class="reference internal" href="#defn-matrix-inverse">Definition 11</a>):</p>
@@ -832,7 +856,7 @@ has a unique solution if and only if the coefficient matrix <span class="math no
 <p>An <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has an unique inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-a">
 <span class="eqno">(27)<a class="headerlink" href="#equation-eqn-matrix-a" title="Permalink to this equation">#</a></span>\[\mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}\]</div>
-<p>if <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\neq{0}\)</span>. If the inverse matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> exists, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is called non-singular, otherwise <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular.</p>
+<p>if <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\neq{0}\)</span>. If the inverse exists, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is called non-singular, otherwise <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular.</p>
 </section>
 </div></section>
 </section>
@@ -846,6 +870,12 @@ has a unique solution if and only if the coefficient matrix <span class="math no
 <section id="gaussian-elimination">
 <span id="content-references-gaussian-elimination"></span><h3>Gaussian elimination<a class="headerlink" href="#gaussian-elimination" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
+<section id="motivation-upper-triangular-system">
+<h4>Motivation: Upper triangular system<a class="headerlink" href="#motivation-upper-triangular-system" title="Permalink to this headline">#</a></h4>
+<p>Fill me in.</p>
+</section>
+<section id="general-square-system">
+<h4>General square system<a class="headerlink" href="#general-square-system" title="Permalink to this headline">#</a></h4>
 <div class="proof algorithm dropdown admonition" id="algo-ge-basic">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive Gaussian Elimination)</p>
 <section class="algorithm-content" id="proof-content">
@@ -994,6 +1024,7 @@ x_{3}
 </ol>
 </section>
 </div></section>
+</section>
 <section id="iterative-methods">
 <span id="content-references-iterative-methods"></span><h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
 <p>Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.</p>

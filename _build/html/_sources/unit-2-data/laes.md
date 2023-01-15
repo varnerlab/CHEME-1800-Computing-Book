@@ -223,14 +223,14 @@ In practice computing the determinant directly can be computationally expensive.
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
 ### Non-homogeneous square systems
-A non-homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$, unknown vector $\mathbf{x}$ and right-hand-side vector $\mathbf{b}$:
+A non-homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$, $n\times{1}$ unknown vector $\mathbf{x}$ and the $n\times{1}$ right-hand-side vector $\mathbf{b}$:
 
 ```{math}
 :label: eqn-non-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{b}
 ```
 
-will have a solution if there exists a matrix $\mathbf{A}^{-1}$ such that:
+will have a unique solution if there exists a matrix $\mathbf{A}^{-1}$ such that:
 
 ```{math}
 :label: eqn-non-homogenous-laes-inverse
@@ -250,7 +250,7 @@ An $n\times{n}$ square matrix $\mathbf{A}$ has an unique inverse $\mathbf{A}^{-1
 \mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}
 ```
 
-if $\det\left(\mathbf{A}\right)\neq{0}$. If the inverse matrix $\mathbf{A}^{-1}$ exists, the matrix $\mathbf{A}$ is called non-singular, otherwise $\mathbf{A}$ is singular. 
+if $\det\left(\mathbf{A}\right)\neq{0}$. If the inverse exists, the matrix $\mathbf{A}$ is called non-singular, otherwise $\mathbf{A}$ is singular. 
 ````
 
 (content:references:solution-approaches)=
@@ -264,6 +264,10 @@ Several methods exist to find the solution of a square system of linear equation
 ### Gaussian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
+#### Motivation: Upper triangular system
+Fill me in.
+
+#### General square system
 ````{prf:algorithm} Naive Gaussian Elimination
 :class: dropdown
 :label: algo-ge-basic
