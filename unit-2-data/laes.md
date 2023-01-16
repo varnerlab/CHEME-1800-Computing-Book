@@ -350,7 +350,7 @@ where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ f
 
 ````
 
-Since we care about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular system of equations, let's develop a _backward substituion_ algorithm ({prf:ref}`algo-backward-substituion`):
+Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`:
 
 
 ````{prf:algorithm} Backward substituion
@@ -377,6 +377,141 @@ Since we care about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussia
 **Return** $\mathbf{x}$
 
 ````
+
+We can implement {prf:ref}`algo-backward-substituion` in cases where have an upper triangular system, but this system structure does not often naturally arise in applications. Thus, a salient question that you may have is why do we care about triangular systems? The answer is that we can often convert a general $n\times{n}$ matrix $\mathbf{A}$ into an upper (lower) triangular systems through a series of row operations.  
+
+#### Row reduction approaches
+Converting a matrix $\mathbf{A}$ to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is `1`, and all the other entries in that column are `0`. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.
+
+
+Let's walkthrough a simple example to illustrate the steps involved with [row reduction](https://en.wikipedia.org/wiki/Row_echelon_form); consider the solution of the 3$\times$3 system:
+
+```{math}
+:label: eqn-ge-test-system
+
+\begin{bmatrix}
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2
+\end{bmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}
+```
+
+__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$ which is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
+
+```{math}
+:label: eqn-augmented-array-A
+\bar{\mathbf{A}} = \begin{bmatrix}
+2 & -1 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+__Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{A}}$ to [the upper triangular row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form). We can perform row operations:
+
+* _Swapping_: We can interchange the order of the rows to get zeros below the main diagonal.
+* _Scaling_:  If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
+* _Addition_: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
+
+In Eqn {eq}`eqn-augmented-array-A`, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not `1`; thus, let's use a scaling row operation:
+
+```{math}
+:label: eqn-augmented-array-A-step3
+\bar{\mathbf{A}} = \begin{bmatrix}
+2 & -1 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+We now eliminate the coefficient below the top row; in this case $i=1$, $j=1$ and $k=1$ which gives the operation: $R_{2}\leftarrow{R}_{2} + R_{1}$:
+
+```{math}
+:label: eqn-augmented-array-A-step4
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+-1 & 2 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1.5 & -1 &\bigm| & 1 \\
+0 & -1 & 2 &\bigm| & 0
+\end{bmatrix}
+```
+
+Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.
+
+__Step 3__: Solve for unknown variables using back-substitution.
+
+```{math}
+:label: eqn-back-sub-matrix-A
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1 & -0.66 &\bigm| & 0.66 \\
+0 & 0 & 1 &\bigm| & 0.49
+\end{bmatrix}
+```
+
+This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations
+
+````{prf:algorithm} Naive Gaussian Elimination
+:class: dropdown
+:label: algo-ge-basic
+
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+
+**Output**: solution $\hat{\mathbf{x}}$
+
+**Initialize**:
+1. set $(n,m)\leftarrow\text{size}(\mathbf{A})$
+1. set $\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})$
+
+**Main**
+1. for $i\in{1}\dots{n-1}$
+    1. set $\text{pivot}\leftarrow{a_{ii}}$
+    2. set $\text{pivotRow}\leftarrow{i}$
+
+    1. for $j\in{i+1}\dots{n}$
+        1. if $\text{abs}(\bar{a}_{ji}) > \text{abs}(\text{pivot})$
+            1. set $\text{pivot}\leftarrow\bar{a}_{ji}$
+            2. set $\text{pivotRow}\leftarrow{j}$
+    
+    1. set $\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})$
+    
+    1. for $j\in{i+1}\dots{n}$
+        1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
+        1. for k = i to m:
+            1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
+
+**Backtrace**
+1. set $\hat{\mathbf{x}}\leftarrow\text{zeros}(n)$
+    1. for $i\in{n\dots{1}}$
+        1. set $\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}$
+        1. for $j\in{i-1\dots{1}}$
+            1. set $\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}$
+
+**Return**
+$\hat{\mathbf{x}}$
+````
+
 
 Let's implement {prf:ref}`algo-backward-substituion` and take a look at its performance ({prf:ref}`example-julia-back-sub-algo`):
 
@@ -429,136 +564,6 @@ end
 ```
 ````
 
-#### General square system
-````{prf:algorithm} Naive Gaussian Elimination
-:class: dropdown
-:label: algo-ge-basic
-
-**Input**: 
-Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
-
-**Output**: solution $\hat{\mathbf{x}}$
-
-**Initialize**:
-1. set $(n,m)\leftarrow\text{size}(\mathbf{A})$
-1. set $\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})$
-
-**Main**
-1. for $i\in{1}\dots{n-1}$
-    1. set $\text{pivot}\leftarrow{a_{ii}}$
-    2. set $\text{pivotRow}\leftarrow{i}$
-
-    1. for $j\in{i+1}\dots{n}$
-        1. if $\text{abs}(\bar{a}_{ji}) > \text{abs}(\text{pivot})$
-            1. set $\text{pivot}\leftarrow\bar{a}_{ji}$
-            2. set $\text{pivotRow}\leftarrow{j}$
-    
-    1. set $\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})$
-    
-    1. for $j\in{i+1}\dots{n}$
-        1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
-        1. for k = i to m:
-            1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
-
-**Backtrace**
-1. set $\hat{\mathbf{x}}\leftarrow\text{zeros}(n)$
-    1. for $i\in{n\dots{1}}$
-        1. set $\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}$
-        1. for $j\in{i-1\dots{1}}$
-            1. set $\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}$
-
-**Return**
-$\hat{\mathbf{x}}$
-````
-
-Let's walkthrough a simple generic example using {prf:ref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
-
-```{math}
-:label: eqn-ge-test-system
-
-\begin{bmatrix}
-2 & -1 & 0 \\
--1 & 2 & -1 \\
-0 & -1 & 2
-\end{bmatrix}
-\begin{pmatrix}
-x_{1} \\
-x_{2} \\
-x_{3}
-\end{pmatrix} =
-\begin{pmatrix}
-0 \\
-1 \\
-0
-\end{pmatrix}
-```
-
-__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$. The augemented matrix $\bar{\mathbf{A}}$ is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
-
-```{math}
-:label: eqn-augmented-array-A
-\bar{\mathbf{A}} = \begin{bmatrix}
-2 & -1 & 0 &\bigm| & 0 \\
--1 & 2 & -1 &\bigm| & 1 \\
-0 & -1 & 2 &\bigm| & 0
-\end{bmatrix}
-```
-
-__Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{A}}$ to [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form):
-
-1. Starting with the first column, move to the next column (to the right) until we encounter a non-zero element.
-1. One we encounter a column that has nonzero entries, interchange rows, if necessary, to get a nonzero entry on top.
-1. Change the top entry to 1: If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
-1. For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.
-1. Carry out this procedure until the augmented matrix $\bar{\mathbf{A}}$ is in [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form).
-
-In Eqn {eq}`eqn-augmented-array-A`, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let's move to step 3:
-
-```{math}
-:label: eqn-augmented-array-A-step3
-\bar{\mathbf{A}} = \begin{bmatrix}
-2 & -1 & 0 &\bigm| & 0 \\
--1 & 2 & -1 &\bigm| & 1 \\
-0 & -1 & 2 &\bigm| & 0
-\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
-\begin{bmatrix}
-1 & -0.5 & 0 &\bigm| & 0 \\
--1 & 2 & -1 &\bigm| & 1 \\
-0 & -1 & 2 &\bigm| & 0
-\end{bmatrix}
-```
-
-After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case $i=1$, $j=1$ and $k=1$ which gives the operation: $R_{2}\leftarrow{R}_{2} + R_{1}$:
-
-```{math}
-:label: eqn-augmented-array-A-step4
-\begin{bmatrix}
-1 & -0.5 & 0 &\bigm| & 0 \\
--1 & 2 & -1 &\bigm| & 1 \\
-0 & -1 & 2 &\bigm| & 0
-\end{bmatrix}
-\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
-\begin{bmatrix}
-1 & -0.5 & 0 &\bigm| & 0 \\
-0 & 1.5 & -1 &\bigm| & 1 \\
-0 & -1 & 2 &\bigm| & 0
-\end{bmatrix}
-```
-
-Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.
-
-__Step 3__: Solve for unknown variables using back-substitution.
-
-```{math}
-:label: eqn-back-sub-matrix-A
-\begin{bmatrix}
-1 & -0.5 & 0 &\bigm| & 0 \\
-0 & 1 & -0.66 &\bigm| & 0.66 \\
-0 & 0 & 1 &\bigm| & 0.49
-\end{bmatrix}
-```
-
-This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations
 
 (content:references:iterative-methods)=
 ### Iterative methods

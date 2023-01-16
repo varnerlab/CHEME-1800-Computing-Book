@@ -476,8 +476,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#general-square-system">
-       General square system
+      <a class="reference internal nav-link" href="#row-reduction-approaches">
+       Row reduction approaches
       </a>
      </li>
     </ul>
@@ -600,8 +600,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#general-square-system">
-       General square system
+      <a class="reference internal nav-link" href="#row-reduction-approaches">
+       Row reduction approaches
       </a>
      </li>
     </ul>
@@ -934,7 +934,7 @@ x_{i} &amp; = &amp; \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\ri
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
-</div><p>Since we care about <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, which produces an upper triangular system of equations, let’s develop a <em>backward substituion</em> algorithm (<a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a>):</p>
+</div><p>Since we talking about <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, which produces an upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, let’s review a <em>backward substitution</em> algorithm to estimate the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> given a non-singular upper triangular <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> based on <a class="reference internal" href="#defn-general-backward-sub">Definition 12</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Backward substituion)</p>
 <section class="algorithm-content" id="proof-content">
@@ -962,55 +962,75 @@ x_{i} &amp; = &amp; \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\ri
 </ol>
 <p><strong>Return</strong> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
 </section>
-</div><p>Let’s implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and take a look at its performance (<a class="reference internal" href="#example-julia-back-sub-algo">Example 14</a>):</p>
-<div class="proof example dropdown admonition" id="example-julia-back-sub-algo">
-<p class="admonition-title"><span class="caption-number">Example 14 </span> (Backward substituion example)</p>
-<section class="example-content" id="proof-content">
-<p>Describe what is going on here.</p>
-<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and computed a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> for the upper triangular system above:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">    backward_substitution(U::Array{Float64,2}, b::Array{Float64,1})::Array{Float64,1}</span>
-
-<span class="s">Takes an upper triangular matrix U and a right-hand-side vector b. </span>
-<span class="s">Returns the solution to Ux = b.</span>
-<span class="s">&quot;&quot;&quot;</span>
-<span class="k">function</span> <span class="n">backward_substitution</span><span class="p">(</span><span class="n">U</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="n">b</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">})</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
-
-    <span class="c"># check: dimensions ok?</span>
-    <span class="c"># ...</span>
-
-    <span class="c"># check: is U upper triangular?</span>
-    <span class="c"># ...</span>
-
-    <span class="c"># initialize -</span>
-    <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span> 
-    <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">];</span> <span class="c"># populate the last solution</span>
-    <span class="n">irange</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">step</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span>
-
-    <span class="c"># main: populate n-1 -&gt; 1</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="n">irange</span>
-        
-        <span class="c"># jrange -</span>
-        <span class="n">jrange</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span>
-        <span class="n">sum_term</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="n">jrange</span>
-            <span class="n">sum_term</span> <span class="o">=</span> <span class="n">sum_term</span> <span class="o">+</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-        <span class="k">end</span>
-
-        <span class="c"># update x -</span>
-        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_term</span><span class="p">)</span>
-    <span class="k">end</span>
-
-    <span class="c"># return -</span>
-    <span class="k">return</span> <span class="n">x</span>
-<span class="k">end</span>
-</pre></div>
-</div>
+</div><p>We can implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> in cases where have an upper triangular system, but this system structure does not often naturally arise in applications. Thus, a salient question that you may have is why do we care about triangular systems? The answer is that we can often convert a general <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> into an upper (lower) triangular systems through a series of row operations.</p>
 </section>
-</div></section>
-<section id="general-square-system">
-<h4>General square system<a class="headerlink" href="#general-square-system" title="Permalink to this headline">#</a></h4>
+<section id="row-reduction-approaches">
+<h4>Row reduction approaches<a class="headerlink" href="#row-reduction-approaches" title="Permalink to this headline">#</a></h4>
+<p>Converting a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is <code class="docutils literal notranslate"><span class="pre">1</span></code>, and all the other entries in that column are <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.</p>
+<p>Let’s walkthrough a simple example to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row reduction</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+2 &amp; -1 &amp; 0 \\
+-1 &amp; 2 &amp; -1 \\
+0 &amp; -1 &amp; 2
+\end{bmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}\end{split}\]</div>
+<p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> which is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
+<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p><strong>Step 2</strong>: Perform row operations to reduce the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> to <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">the upper triangular row echelon form</a>. We can perform row operations:</p>
+<ul class="simple">
+<li><p><em>Swapping</em>: We can interchange the order of the rows to get zeros below the main diagonal.</p></li>
+<li><p><em>Scaling</em>:  If the first nonzero entry of row <span class="math notranslate nohighlight">\(R_{i}\)</span> is <span class="math notranslate nohighlight">\(\lambda\)</span>, we can convert to <span class="math notranslate nohighlight">\(1\)</span> through the operation: <span class="math notranslate nohighlight">\(R_{i}\leftarrow{1/\lambda}R_{i}\)</span></p></li>
+<li><p><em>Addition</em>: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>.</p></li>
+</ul>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(31)</a>, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not <code class="docutils literal notranslate"><span class="pre">1</span></code>; thus, let’s use a scaling row operation:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
+<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
+\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>We now eliminate the coefficient below the top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
+<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}
+\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
+\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1.5 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
+<p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
+<div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
+0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
+\end{bmatrix}\end{split}\]</div>
+<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations</p>
 <div class="proof algorithm dropdown admonition" id="algo-ge-basic">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Naive Gaussian Elimination)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1072,73 +1092,53 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <p><strong>Return</strong>
 <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
 </section>
-</div><p>Let’s walkthrough a simple generic example using <a class="reference internal" href="#algo-ge-basic">Algorithm 7</a> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
-2 &amp; -1 &amp; 0 \\
--1 &amp; 2 &amp; -1 \\
-0 &amp; -1 &amp; 2
-\end{bmatrix}
-\begin{pmatrix}
-x_{1} \\
-x_{2} \\
-x_{3}
-\end{pmatrix} =
-\begin{pmatrix}
-0 \\
-1 \\
-0
-\end{pmatrix}\end{split}\]</div>
-<p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span>. The augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
-<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
-2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
--1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
-0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
-\end{bmatrix}\end{split}\]</div>
-<p><strong>Step 2</strong>: Perform row operations to reduce the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> to <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>:</p>
-<ol class="simple">
-<li><p>Starting with the first column, move to the next column (to the right) until we encounter a non-zero element.</p></li>
-<li><p>One we encounter a column that has nonzero entries, interchange rows, if necessary, to get a nonzero entry on top.</p></li>
-<li><p>Change the top entry to 1: If the first nonzero entry of row <span class="math notranslate nohighlight">\(R_{i}\)</span> is <span class="math notranslate nohighlight">\(\lambda\)</span>, we can convert to <span class="math notranslate nohighlight">\(1\)</span> through the operation: <span class="math notranslate nohighlight">\(R_{i}\leftarrow{1/\lambda}R_{i}\)</span></p></li>
-<li><p>For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.</p></li>
-<li><p>Carry out this procedure until the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is in <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>.</p></li>
-</ol>
-<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(31)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
-<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
-2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
--1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
-0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
-\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
-\begin{bmatrix}
-1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
--1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
-0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
-\end{bmatrix}\end{split}\]</div>
-<p>After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
-1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
--1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
-0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
-\end{bmatrix}
-\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
-\begin{bmatrix}
-1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
-0 &amp; 1.5 &amp; -1 &amp;\bigm| &amp; 1 \\
-0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
-\end{bmatrix}\end{split}\]</div>
-<p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
-<p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
-<div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
-1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
-0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
-0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
-\end{bmatrix}\end{split}\]</div>
-<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations</p>
+</div><p>Let’s implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and take a look at its performance (<a class="reference internal" href="#example-julia-back-sub-algo">Example 14</a>):</p>
+<div class="proof example dropdown admonition" id="example-julia-back-sub-algo">
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (Backward substituion example)</p>
+<section class="example-content" id="proof-content">
+<p>Describe what is going on here.</p>
+<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and computed a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> for the upper triangular system above:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    backward_substitution(U::Array{Float64,2}, b::Array{Float64,1})::Array{Float64,1}</span>
+
+<span class="s">Takes an upper triangular matrix U and a right-hand-side vector b. </span>
+<span class="s">Returns the solution to Ux = b.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">backward_substitution</span><span class="p">(</span><span class="n">U</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="n">b</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">})</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+
+    <span class="c"># check: dimensions ok?</span>
+    <span class="c"># ...</span>
+
+    <span class="c"># check: is U upper triangular?</span>
+    <span class="c"># ...</span>
+
+    <span class="c"># initialize -</span>
+    <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span> 
+    <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">];</span> <span class="c"># populate the last solution</span>
+    <span class="n">irange</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">step</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span>
+
+    <span class="c"># main: populate n-1 -&gt; 1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="n">irange</span>
+        
+        <span class="c"># jrange -</span>
+        <span class="n">jrange</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span>
+        <span class="n">sum_term</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="n">jrange</span>
+            <span class="n">sum_term</span> <span class="o">=</span> <span class="n">sum_term</span> <span class="o">+</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">end</span>
+
+        <span class="c"># update x -</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_term</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="k">end</span>
+</pre></div>
+</div>
 </section>
+</div></section>
 </section>
 <section id="iterative-methods">
 <span id="content-references-iterative-methods"></span><h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
