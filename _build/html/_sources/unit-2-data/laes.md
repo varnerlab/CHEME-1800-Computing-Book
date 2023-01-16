@@ -265,7 +265,36 @@ Several methods exist to find the solution of a square system of linear equation
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
 #### Motivation: Upper triangular system
-Fill me in.
+Let's consider a non-singular $3\times{3}$ lower triangular system of equations:
+
+```{math}
+:label: eqn-triangular-system
+\begin{pmatrix}
+l_{11} & 0 & 0 \\
+l_{21} & l_{22} & 0 \\
+l_{31} & l_{32} & l_{33}
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} = 
+\begin{pmatrix}
+b_{1} \\
+b_{2} \\
+b_{3}
+\end{pmatrix}
+```
+
+Since the matrix is non-singular, the diagonal elements $l_{ii},~i=1,2,3$ are non-zero. This allows us to take advantage of the triangular structure to solve for the unknown $x_{i}$ values:
+
+$$
+\begin{eqnarray}
+x_{1} & = & b_{1}/l_{11} \\
+x_{2} & = & \left(b_{2} - l_{21}x_{1}\right) / l_{22} \\
+x_{3} & = & \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
+\end{eqnarray}
+$$
 
 #### General square system
 ````{prf:algorithm} Naive Gaussian Elimination
