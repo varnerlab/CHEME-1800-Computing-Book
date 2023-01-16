@@ -296,7 +296,7 @@ x_{3} & = & \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
 \end{eqnarray}
 $$
 
-This idea, which is called _forward substitution_. If we extend the _forward substitution_ approach to a $n\times{n}$ system ($n\geq{2}$), we get a general substitution approach {prf:ref}`defn-general-forward-sub`:
+This idea, which is called _forward substitution_. If we extend the _forward substitution_ approach to a $n\times{n}$ system ($n\geq{2}$), we get a general substitution approach ({prf:ref}`defn-general-forward-sub`):
 
 ````{prf:definition} Forward substitution
 :label: defn-general-forward-sub
@@ -317,7 +317,7 @@ x_{i} & = & \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\right)\qqu
 \end{eqnarray}
 $$
 
-The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+where $l_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
 
 ````
 
