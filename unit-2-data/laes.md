@@ -301,7 +301,7 @@ This idea, called _forward substitution_, can be extended to any $n\times{n}$ no
 ````{prf:definition} Forward substitution
 :label: defn-general-forward-sub
 
-Suppose we have an $n\times{n}$ system ($n\geq{2}$) which is lower triangular, and non-singular system of equations of the form:
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is lower triangular, and non-singular of the form:
 
 ```{math}
 :label: eqn-lower-triag-system
