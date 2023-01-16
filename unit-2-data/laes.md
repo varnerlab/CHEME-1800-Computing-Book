@@ -321,7 +321,7 @@ where $l_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ f
 
 ````
 
-Alternatively, we can take this same apprach with an upper triangular system, which is called _backward substituion_, to solve for 
+Alternatively, we can take a similar apprach with an upper triangular system,  called _backward substituion_, to solve for 
 unknow solution vector $\mathbf{x}$ ({prf:ref}`defn-general-backward-sub`):
 
 
