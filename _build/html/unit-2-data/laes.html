@@ -934,10 +934,79 @@ x_{i} &amp; = &amp; \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\ri
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
-</div><p>Since we care about <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, which produces an upper triangular system of equations, let’s develop a <em>backward substituion</em> algorithm ():</p>
+</div><p>Since we care about <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, which produces an upper triangular system of equations, let’s develop a <em>backward substituion</em> algorithm (<a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Backward substituion)</p>
 <section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, column vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
+<p><strong>Outputs</strong> solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\text{nrows}\left(\mathbf{U}\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}\leftarrow\text{zeros}\left(n\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x[n]\leftarrow{b[n]/U[n,n]}\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{n-1\dots,1}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{sum}\leftarrow{0}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1,\dots,n}\)</span></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{sum}\leftarrow\text{sum} + U[i,j]\times{x[j]}\)</span></p></li>
+</ol>
+</li>
+<li><p><span class="math notranslate nohighlight">\(x[i]\leftarrow\left(1/U[i,i]\right)\times\left(b[i] - \text{sum}\right)\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+</section>
+</div><p>Let’s implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and take a look at its performance (<a class="reference internal" href="#example-julia-back-sub-algo">Example 14</a>):</p>
+<div class="proof example dropdown admonition" id="example-julia-back-sub-algo">
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (Backward substituion example)</p>
+<section class="example-content" id="proof-content">
+<p>Describe what is going on here.</p>
+<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and computed a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> for the upper triangular system above:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    backward_substitution(U::Array{Float64,2}, b::Array{Float64,1})::Array{Float64,1}</span>
+
+<span class="s">Takes an upper triangular matrix U and a right-hand-side vector b. </span>
+<span class="s">Returns the solution to Ux = b.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">backward_substitution</span><span class="p">(</span><span class="n">U</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="n">b</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">})</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+
+    <span class="c"># check: dimensions ok?</span>
+    <span class="c"># ...</span>
+
+    <span class="c"># check: is U upper triangular?</span>
+    <span class="c"># ...</span>
+
+    <span class="c"># initialize -</span>
+    <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span> 
+    <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">];</span> <span class="c"># populate the last solution</span>
+    <span class="n">irange</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">step</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span>
+
+    <span class="c"># main: populate n-1 -&gt; 1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="n">irange</span>
+        
+        <span class="c"># jrange -</span>
+        <span class="n">jrange</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span>
+        <span class="n">sum_term</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="n">jrange</span>
+            <span class="n">sum_term</span> <span class="o">=</span> <span class="n">sum_term</span> <span class="o">+</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">end</span>
+
+        <span class="c"># update x -</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_term</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="k">end</span>
+</pre></div>
+</div>
 </section>
 </div></section>
 <section id="general-square-system">

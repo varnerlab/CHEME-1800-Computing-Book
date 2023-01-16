@@ -350,13 +350,83 @@ where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ f
 
 ````
 
-Since we care about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular system of equations, let's develop a _backward substituion_ algorithm ():
+Since we care about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular system of equations, let's develop a _backward substituion_ algorithm ({prf:ref}`algo-backward-substituion`):
 
 
 ````{prf:algorithm} Backward substituion
 :label: algo-backward-substituion
 :class: dropdown
 
+**Inputs** Upper triangular matrix $\mathbf{U}$, column vector $\mathbf{b}$
+
+**Outputs** solution vector $\mathbf{x}$
+
+**Initialize**
+1. set $n\leftarrow\text{nrows}\left(\mathbf{U}\right)$
+1. set $\mathbf{x}\leftarrow\text{zeros}\left(n\right)$
+1. set $x[n]\leftarrow{b[n]/U[n,n]}$
+
+**Main**
+1. for $i\in{n-1\dots,1}$
+    1. set $\text{sum}\leftarrow{0}$
+    1. for $j\in{i+1,\dots,n}$
+        1. $\text{sum}\leftarrow\text{sum} + U[i,j]\times{x[j]}$
+
+    1. $x[i]\leftarrow\left(1/U[i,i]\right)\times\left(b[i] - \text{sum}\right)$
+
+**Return** $\mathbf{x}$
+
+````
+
+Let's implement {prf:ref}`algo-backward-substituion` and take a look at its performance ({prf:ref}`example-julia-back-sub-algo`):
+
+````{prf:example} Backward substituion example
+:label: example-julia-back-sub-algo
+:class: dropdown
+
+Describe what is going on here. 
+
+__Solution__: We implemented {prf:ref}`algo-backward-substituion` and computed a value for the unknown vector $\mathbf{x}$ for the upper triangular system above:
+
+```julia
+"""
+    backward_substitution(U::Array{Float64,2}, b::Array{Float64,1})::Array{Float64,1}
+
+Takes an upper triangular matrix U and a right-hand-side vector b. 
+Returns the solution to Ux = b.
+"""
+function backward_substitution(U::Array{Float64,2}, b::Array{Float64,1})::Array{Float64,1}
+
+    # check: dimensions ok?
+    # ...
+
+    # check: is U upper triangular?
+    # ...
+
+    # initialize -
+    (m,n) = size(U)
+    x = zeros(n); 
+    x[n] = b[n]/U[n,n]; # populate the last solution
+    irange = range(n-1,stop=1,step=-1) |> collect
+
+    # main: populate n-1 -> 1
+    for i ∈ irange
+        
+        # jrange -
+        jrange = range(i+1,stop=n,step=1) |> collect
+        sum_term = 0.0;
+        for j ∈ jrange
+            sum_term = sum_term + U[i,j]*x[j]
+        end
+
+        # update x -
+        x[i] = (1/U[i,i])*(b[i] - sum_term)
+    end
+
+    # return -
+    return x
+end
+```
 ````
 
 #### General square system
