@@ -264,7 +264,7 @@ Several methods exist to find the solution of a square system of linear equation
 ### Gaussian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
 
-#### Motivation: Upper triangular system
+#### Triangular systems
 Let's consider a non-singular $3\times{3}$ lower triangular system of equations:
 
 ```{math}
@@ -295,6 +295,31 @@ x_{2} & = & \left(b_{2} - l_{21}x_{1}\right) / l_{22} \\
 x_{3} & = & \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
 \end{eqnarray}
 $$
+
+This idea, which is called _forward substitution_. If we extend the _forward substitution_ approach to a $n\times{n}$ system ($n\geq{2}$), we get a general substitution approach {prf:ref}`defn-general-forward-sub`:
+
+````{prf:definition} Forward substitution
+:label: defn-general-forward-sub
+
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) which is lower triangular, and non-singular system of equations of the form:
+
+```{math}
+:label: eqn-lower-triag-system
+\mathbf{L}\mathbf{x} = \mathbf{b}
+```
+
+Then, the solution of Eqn. {eq}`eqn-lower-triag-system` is given by:
+
+$$
+\begin{eqnarray}
+x_{1} & = & \frac{b_{1}}{l_{11}} \\
+x_{i} & = & \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\right)\qquad{i=2,\dots,n}
+\end{eqnarray}
+$$
+
+The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+
+````
 
 #### General square system
 ````{prf:algorithm} Naive Gaussian Elimination

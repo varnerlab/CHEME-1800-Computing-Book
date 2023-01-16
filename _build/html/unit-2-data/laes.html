@@ -471,8 +471,8 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#motivation-upper-triangular-system">
-       Motivation: Upper triangular system
+      <a class="reference internal nav-link" href="#triangular-systems">
+       Triangular systems
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -595,8 +595,8 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#motivation-upper-triangular-system">
-       Motivation: Upper triangular system
+      <a class="reference internal nav-link" href="#triangular-systems">
+       Triangular systems
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -870,8 +870,8 @@ has a unique solution if and only if the coefficient matrix <span class="math no
 <section id="gaussian-elimination">
 <span id="content-references-gaussian-elimination"></span><h3>Gaussian elimination<a class="headerlink" href="#gaussian-elimination" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
-<section id="motivation-upper-triangular-system">
-<h4>Motivation: Upper triangular system<a class="headerlink" href="#motivation-upper-triangular-system" title="Permalink to this headline">#</a></h4>
+<section id="triangular-systems">
+<h4>Triangular systems<a class="headerlink" href="#triangular-systems" title="Permalink to this headline">#</a></h4>
 <p>Let’s consider a non-singular <span class="math notranslate nohighlight">\(3\times{3}\)</span> lower triangular system of equations:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-triangular-system">
 <span class="eqno">(28)<a class="headerlink" href="#equation-eqn-triangular-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{pmatrix}
@@ -898,7 +898,24 @@ x_{2} &amp; = &amp; \left(b_{2} - l_{21}x_{1}\right) / l_{22} \\
 x_{3} &amp; = &amp; \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
 \end{eqnarray}
 \end{split}\]</div>
+<p>This idea, which is called <em>forward substitution</em>. If we extend the <em>forward substitution</em> approach to a <span class="math notranslate nohighlight">\(n\times{n}\)</span> system (<span class="math notranslate nohighlight">\(n\geq{2}\)</span>), we get a general substitution approach <a class="reference internal" href="#defn-general-forward-sub">Definition 12</a>:</p>
+<div class="proof definition admonition" id="defn-general-forward-sub">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Forward substitution)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system (<span class="math notranslate nohighlight">\(n\geq{2}\)</span>) which is lower triangular, and non-singular system of equations of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-lower-triag-system">
+<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-lower-triag-system" title="Permalink to this equation">#</a></span>\[\mathbf{L}\mathbf{x} = \mathbf{b}\]</div>
+<p>Then, the solution of Eqn. <a class="reference internal" href="#equation-eqn-lower-triag-system">(29)</a> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+x_{1} &amp; = &amp; \frac{b_{1}}{l_{11}} \\
+x_{i} &amp; = &amp; \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\right)\qquad{i=2,\dots,n}
+\end{eqnarray}
+\end{split}\]</div>
+<p>The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
+</div></section>
 <section id="general-square-system">
 <h4>General square system<a class="headerlink" href="#general-square-system" title="Permalink to this headline">#</a></h4>
 <div class="proof algorithm dropdown admonition" id="algo-ge-basic">
@@ -964,7 +981,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </section>
 </div><p>Let’s walkthrough a simple generic example using <a class="reference internal" href="#algo-ge-basic">Algorithm 6</a> to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 2 &amp; -1 &amp; 0 \\
 -1 &amp; 2 &amp; -1 \\
 0 &amp; -1 &amp; 2
@@ -981,7 +998,7 @@ x_{3}
 \end{pmatrix}\end{split}\]</div>
 <p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span>. The augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -994,9 +1011,9 @@ x_{3}
 <li><p>For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.</p></li>
 <li><p>Carry out this procedure until the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> is in <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row echelon form</a>.</p></li>
 </ol>
-<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(30)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(31)</a>, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let’s move to step 3:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
-<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
 2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -1008,7 +1025,7 @@ x_{3}
 \end{bmatrix}\end{split}\]</div>
 <p>After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
-<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 -1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
@@ -1022,12 +1039,12 @@ x_{3}
 <p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
 <p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+<span class="eqno">(34)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
 0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
 0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
 \end{bmatrix}\end{split}\]</div>
-<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(33)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
+<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations, then:</p>
 <div class="proof algorithm admonition" id="algo-ge-basic-back-sub">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Naive back substitution)</p>
 <section class="algorithm-content" id="proof-content">
