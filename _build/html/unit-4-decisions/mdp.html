@@ -580,9 +580,9 @@ title="Print to PDF"
 <p>where <em>states</em> refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span>, can be encoded in the transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Elements of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, denoted as <span class="math notranslate nohighlight">\(p_{ij}\)</span>, encode the probability of moving from state <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span> during the next time step:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-transition-prob-matrix">
 <span class="eqno">(42)<a class="headerlink" href="#equation-eqn-transition-prob-matrix" title="Permalink to this equation">#</a></span>\[p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)\]</div>
-<p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties. First, the rows of transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is time-invariant, then <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the same at each step. This leads to <a class="reference internal" href="#obs-n-transition">Observation 6</a>:</p>
+<p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties. First, the rows of transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is time-invariant, then <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the same at each step. This leads to <a class="reference internal" href="#obs-n-transition">Observation 7</a>:</p>
 <div class="proof observation admonition" id="obs-n-transition">
-<p class="admonition-title"><span class="caption-number">Observation 6 </span> (Time-invariant state transition)</p>
+<p class="admonition-title"><span class="caption-number">Observation 7 </span> (Time-invariant state transition)</p>
 <section class="observation-content" id="proof-content">
 <p>A Markov chain have finite state set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and the time-invariant state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Further, let the state vector at time <span class="math notranslate nohighlight">\(j\)</span> be given by <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span>, where <span class="math notranslate nohighlight">\(x_{s,j}\geq{0},\forall{s}\in\mathcal{S}\)</span> and:</p>
 <div class="math notranslate nohighlight">
@@ -596,7 +596,7 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of all 1’s. Let’s consider an example to make these ideas less abstract.</p>
-<div class="proof example admonition" id="example-dicrete-mchain">
+<div class="proof example dropdown admonition" id="example-dicrete-mchain">
 <p class="admonition-title"><span class="caption-number">Example 16 </span> (Discrete Markov chain simulation)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-markov-model">
@@ -624,7 +624,7 @@ title="Print to PDF"
 <span id="content-references-structure-of-an-hmm"></span><h3>Hidden Markov Models (HMMs)<a class="headerlink" href="#hidden-markov-models-hmms" title="Permalink to this headline">#</a></h3>
 <p>Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations.</p>
 <p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 16</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
-<div class="proof example admonition" id="example-dicrete-mchain-hmm">
+<div class="proof example dropdown admonition" id="example-dicrete-mchain-hmm">
 <p class="admonition-title"><span class="caption-number">Example 17 </span> (Stationary hidden Markov model)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-hidden-markov-model">

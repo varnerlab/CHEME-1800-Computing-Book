@@ -454,15 +454,22 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#determinant-and-trace">
    Determinant and Trace
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trace">
+     Trace
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rank-and-kernel">
-   Rank and Kernel
+   Rank and kernel
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#operations">
-   Operations
+  <a class="reference internal nav-link" href="#matrix-and-vector-operations">
+   Matrix and vector operations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -478,15 +485,15 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multiplication">
-     Multiplication
+    <a class="reference internal nav-link" href="#scalar-multiplication">
+     Scalar multiplication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-vector-and-matrix-matrix-multiplication">
+     Matrix-vector and matrix-matrix multiplication
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multiplication-of-a-matrix-or-vector-by-a-constant">
-       Multiplication of a matrix or vector by a constant
-      </a>
-     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#right-multiplication-of-a-matrix-by-a-vector">
        Right multiplication of a matrix by a vector
@@ -495,11 +502,6 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#left-multiplication-of-a-matrix-by-a-vector">
        Left multiplication of a matrix by a vector
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#matrix-matrix-multiplication">
-       Matrix-Matrix multiplication
       </a>
      </li>
     </ul>
@@ -538,11 +540,6 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
      Eigenvalue-eigenvector problems
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering-and-classification">
-     Clustering and classification
     </a>
    </li>
   </ul>
@@ -614,15 +611,22 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#determinant-and-trace">
    Determinant and Trace
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trace">
+     Trace
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rank-and-kernel">
-   Rank and Kernel
+   Rank and kernel
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#operations">
-   Operations
+  <a class="reference internal nav-link" href="#matrix-and-vector-operations">
+   Matrix and vector operations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -638,15 +642,15 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multiplication">
-     Multiplication
+    <a class="reference internal nav-link" href="#scalar-multiplication">
+     Scalar multiplication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-vector-and-matrix-matrix-multiplication">
+     Matrix-vector and matrix-matrix multiplication
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multiplication-of-a-matrix-or-vector-by-a-constant">
-       Multiplication of a matrix or vector by a constant
-      </a>
-     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#right-multiplication-of-a-matrix-by-a-vector">
        Right multiplication of a matrix by a vector
@@ -655,11 +659,6 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#left-multiplication-of-a-matrix-by-a-vector">
        Left multiplication of a matrix by a vector
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#matrix-matrix-multiplication">
-       Matrix-Matrix multiplication
       </a>
      </li>
     </ul>
@@ -698,11 +697,6 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
      Eigenvalue-eigenvector problems
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering-and-classification">
-     Clustering and classification
     </a>
    </li>
   </ul>
@@ -841,7 +835,21 @@ Then, the determinant of the square matrix <span class="math notranslate nohighl
 <span class="math notranslate nohighlight">\(\text{sign}\left(\sigma\right)\)</span> equals <code class="docutils literal notranslate"><span class="pre">+1</span></code> if the permutation can be obtained with an even number of exchanges; otherwise <code class="docutils literal notranslate"><span class="pre">-1</span></code>.
 Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> denotes the entry of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span>, and column <span class="math notranslate nohighlight">\(\sigma_{i}\)</span>.</p>
 </section>
-</div><p>On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix (<a class="reference internal" href="#defn-trace-A">Definition 6</a>):</p>
+</div><p>Although the determinant in the general case, as described in <a class="reference internal" href="#defn-det-A">Definition 5</a>, is difficult to calculate, the determinat of triangular matrices is easy to compute:</p>
+<div class="proof observation admonition" id="obs-determinant-triangular-matrix">
+<p class="admonition-title"><span class="caption-number">Observation 2 </span> (Determinant triangular matrix)</p>
+<section class="observation-content" id="proof-content">
+<p>The determinant of a triangular matrix is equal to the product of its diagonal elements. This is true for both upper triangular <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and lower <span class="math notranslate nohighlight">\(\mathbf{L}\)</span> triangular matrices. For the upper triangular <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, the determinant is equal to:</p>
+<div class="math notranslate nohighlight">
+\[\det\left(\mathbf{U}\right) = \prod_{i=1}^{n}u_{ii}\]</div>
+<p>while the determinant of the <span class="math notranslate nohighlight">\(n\times{n}\)</span> lower triangular matrix <span class="math notranslate nohighlight">\(\mathbf{L}\)</span>  is given by:</p>
+<div class="math notranslate nohighlight">
+\[\det\left(\mathbf{L}\right) = \prod_{i=1}^{n}l_{ii}\]</div>
+<p><strong>Idea</strong>: One potential strategy to efficiently compute a determinant is perhaps to convert the general <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to a triangular form (by some theoretical approach). However, will the determinant of the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and its triangular be the same? We’ll need to wait and see.</p>
+</section>
+</div><section id="trace">
+<h3>Trace<a class="headerlink" href="#trace" title="Permalink to this headline">#</a></h3>
+<p>On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix (<a class="reference internal" href="#defn-trace-A">Definition 6</a>):</p>
 <div class="proof definition admonition" id="defn-trace-A">
 <p class="admonition-title"><span class="caption-number">Definition 6 </span> (Trace)</p>
 <section class="definition-content" id="proof-content">
@@ -850,22 +858,24 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(13)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
 </section>
 </div></section>
+</section>
 <section id="rank-and-kernel">
-<h2>Rank and Kernel<a class="headerlink" href="#rank-and-kernel" title="Permalink to this headline">#</a></h2>
+<h2>Rank and kernel<a class="headerlink" href="#rank-and-kernel" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank of a matrix</a> is a measure of the number of linearly independent rows or columns. The rank of a matrix <em>r</em> of a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is always less than or equal to the minimum of its number of rows and columns:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rank-inequality">
 <span class="eqno">(14)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
 <p>Rank can also be considered a measure of the unique information in a matrix; thus, if there is redundant information (rows or columns that are not linearly independent), a matrix will be less than full rank.</p>
 <p>The kernel of a matrix is the set of all solutions to the homogeneous equation <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.</p>
 </section>
-<section id="operations">
-<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h2>
+<section id="matrix-and-vector-operations">
+<h2>Matrix and vector operations<a class="headerlink" href="#matrix-and-vector-operations" title="Permalink to this headline">#</a></h2>
+<p>Matrix and vector operations are mathematical procedures that include addition, subtraction, scalar multiplication, and matrix multiplication, which can be used to represent and manipulate linear transformations. Understanding these operations is crucial for many areas of science, engineering, and computer science.</p>
 <section id="addition-and-subtraction">
 <h3>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Permalink to this headline">#</a></h3>
 <p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
 <p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
 <div class="proof observation admonition" id="obs-same-dimension">
-<p class="admonition-title"><span class="caption-number">Observation 2 </span> (Vector addition)</p>
+<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Vector addition)</p>
 <section class="observation-content" id="proof-content">
 <p>Suppose we have two <span class="math notranslate nohighlight">\(n\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span>. The sum of these vectors is given by:</p>
 <div class="math notranslate nohighlight">
@@ -901,15 +911,15 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator.</p>
 </section>
 </section>
-<section id="multiplication">
-<h3>Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">#</a></h3>
-<section id="multiplication-of-a-matrix-or-vector-by-a-constant">
-<h4>Multiplication of a matrix or vector by a constant<a class="headerlink" href="#multiplication-of-a-matrix-or-vector-by-a-constant" title="Permalink to this headline">#</a></h4>
+<section id="scalar-multiplication">
+<h3>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Permalink to this headline">#</a></h3>
 <p>Multiplying a matrix (or vector) by a constant is also done element wise. For example, suppose we have a <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and a contants <em>c</em>. Then the product:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{y} = c\mathbf{v}\]</div>
 <p>has elements: <span class="math notranslate nohighlight">\(y_{i} = cv_{i}\)</span>.</p>
 </section>
+<section id="matrix-vector-and-matrix-matrix-multiplication">
+<h3>Matrix-vector and matrix-matrix multiplication<a class="headerlink" href="#matrix-vector-and-matrix-matrix-multiplication" title="Permalink to this headline">#</a></h3>
 <section id="right-multiplication-of-a-matrix-by-a-vector">
 <h4>Right multiplication of a matrix by a vector<a class="headerlink" href="#right-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
 <p>A common operation is the <em>right multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.
@@ -1014,9 +1024,6 @@ The <em>left product</em> generates a <span class="math notranslate nohighlight"
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
-<section id="matrix-matrix-multiplication">
-<h4>Matrix-Matrix multiplication<a class="headerlink" href="#matrix-matrix-multiplication" title="Permalink to this headline">#</a></h4>
 <p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
 Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only <em>compatible</em> matrices can be
 multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
@@ -1135,19 +1142,6 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
 <p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 </section>
-<section id="clustering-and-classification">
-<h3>Clustering and classification<a class="headerlink" href="#clustering-and-classification" title="Permalink to this headline">#</a></h3>
-<p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
-<p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
-<div class="proof definition admonition" id="defn-kmeans-problem">
-<p class="admonition-title"><span class="caption-number">Definition 9 </span> (k-means clustering)</p>
-<section class="definition-content" id="proof-content">
-<p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
-<div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
-</section>
-</div></section>
 </section>
 <hr class="docutils" />
 <section id="summary">

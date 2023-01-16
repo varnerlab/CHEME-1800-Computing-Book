@@ -262,7 +262,9 @@ Several methods exist to find the solution of a square system of linear equation
 
 (content:references:gaussian-elimination)=
 ### Gaussian elimination 
-[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
+[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve for the remaining variables one at a time until you have a solution for the entire system.
+
+Let's start exploring this approach by looking at solving a triangular system of equations.
 
 #### Triangular systems
 Let's consider a non-singular $3\times{3}$ lower triangular system of equations:
@@ -345,6 +347,15 @@ x_{i} & = & \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\right)\qqu
 $$
 
 where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+
+````
+
+Since we care about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular system of equations, let's develop a _backward substituion_ algorithm ():
+
+
+````{prf:algorithm} Backward substituion
+:label: algo-backward-substituion
+:class: dropdown
 
 ````
 
@@ -477,18 +488,7 @@ __Step 3__: Solve for unknown variables using back-substitution.
 \end{bmatrix}
 ```
 
-This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations, then:
-
-````{prf:algorithm} Naive back substitution
-:label: algo-ge-basic-back-sub
-
-**Main**
-1. for $i\in{n},n-1,\dots,1$
-    1. set $x_{i}\leftarrow{y_{i}}$
-        1. for $j\in{i+1},i+2,\dots,n$
-            1. set $x_{i}\leftarrow{x_{i}}-u_{ij}x_{j}$
-
-````
+This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations
 
 (content:references:iterative-methods)=
 ### Iterative methods

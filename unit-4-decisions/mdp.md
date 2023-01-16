@@ -58,6 +58,7 @@ where $\mathbf{1}$ is a column vector of all 1's. Let's consider an example to m
 
 
 ````{prf:example} Discrete Markov chain simulation
+:class: dropdown
 :label: example-dicrete-mchain
 
  ```{figure} ./figs/Fig-Ex-Discrete-Markov-Model.pdf
@@ -93,6 +94,7 @@ Hidden Markov models (HMMs) are statistical models in which the system being mod
 Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [CRR binomial lattice](https://en.wikipedia.org/wiki/Binomial_options_pricing_model):
 
 ````{prf:example} Stationary hidden Markov model
+:class: dropdown
 :label: example-dicrete-mchain-hmm
 
  ```{figure} ./figs/Fig-Ex-Discrete-Hidden-Markov-Model.pdf

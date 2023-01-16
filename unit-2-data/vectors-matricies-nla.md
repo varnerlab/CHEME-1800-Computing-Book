@@ -131,6 +131,27 @@ $\text{sign}\left(\sigma\right)$ equals `+1` if the permutation can be obtained 
 Finally, $a_{i\sigma_{i}}$ denotes the entry of the matrix $\mathbf{A}$ on row $i$, and column $\sigma_{i}$.
 ````
 
+Although the determinant in the general case, as described in {prf:ref}`defn-det-A`, is difficult to calculate, the determinat of triangular matrices is easy to compute:
+
+````{prf:observation} Determinant triangular matrix
+:label: obs-determinant-triangular-matrix
+
+The determinant of a triangular matrix is equal to the product of its diagonal elements. This is true for both upper triangular $\mathbf{U}$ and lower $\mathbf{L}$ triangular matrices. For the upper triangular $n\times{n}$ matrix $\mathbf{U}$, the determinant is equal to:
+
+```{math}
+\det\left(\mathbf{U}\right) = \prod_{i=1}^{n}u_{ii}
+```
+
+while the determinant of the $n\times{n}$ lower triangular matrix $\mathbf{L}$  is given by:
+
+```{math}
+\det\left(\mathbf{L}\right) = \prod_{i=1}^{n}l_{ii}
+```
+
+__Idea__: One potential strategy to efficiently compute a determinant is perhaps to convert the general $n\times{n}$ matrix $\mathbf{A}$ to a triangular form (by some theoretical approach). However, will the determinant of the original matrix $\mathbf{A}$ and its triangular be the same? We'll need to wait and see. 
+````
+ 
+### Trace
 On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix ({prf:ref}`defn-trace-A`):
 
 ````{prf:definition} Trace
@@ -144,7 +165,7 @@ Consider an $n\times{n}$ square matrix $\mathbf{A}$, where we denote the $a_{ij}
 ```
 ````
 
-## Rank and Kernel
+## Rank and kernel
 The [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns. The rank of a matrix _r_ of a $m\times{n}$ matrix $\mathbf{A}$ is always less than or equal to the minimum of its number of rows and columns:
 
 ```{math}
@@ -156,7 +177,8 @@ Rank can also be considered a measure of the unique information in a matrix; thu
 
 The kernel of a matrix is the set of all solutions to the homogeneous equation $\mathbf{A}\mathbf{x} = \mathbf{0}$, where $\mathbf{A}$ is the matrix, and $\mathbf{x}$ is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.
 
-## Operations
+## Matrix and vector operations
+Matrix and vector operations are mathematical procedures that include addition, subtraction, scalar multiplication, and matrix multiplication, which can be used to represent and manipulate linear transformations. Understanding these operations is crucial for many areas of science, engineering, and computer science.
 
 ### Addition and subtraction
 Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the _same dimension_ to be compatible with addition or subtraction operations. 
@@ -201,14 +223,14 @@ Many modern programming languages and libraries, e.g., [the Numpy library in Pyt
 
 You can use the `.+` operator for element-wise addition, while element-wise subtraction can be encoded with the `.-` operator.
 
-### Multiplication
-
-#### Multiplication of a matrix or vector by a constant
+### Scalar multiplication
 Multiplying a matrix (or vector) by a constant is also done element wise. For example, suppose we have a $n\times{1}$ vector $\mathbf{v}$ and a contants _c_. Then the product: 
 
 $$\mathbf{y} = c\mathbf{v}$$
 
 has elements: $y_{i} = cv_{i}$.
+
+### Matrix-vector and matrix-matrix multiplication
 
 #### Right multiplication of a matrix by a vector
 A common operation is the _right multiplication_ of a matrix $\mathbf{A}$ by a vector $\mathbf{x}$. 
@@ -306,7 +328,6 @@ name: fig-left-multiplication-matrix-vector
 Caption goes here
 ```
 
-#### Matrix-Matrix multiplication
 Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
 Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only _compatible_ matrices can be 
 multiplied together. For example, consider two matrices $\mathbf{A}$ and $\mathbf{B}$. For $\mathbf{A}$ and $\mathbf{B}$ to be compatible, 
@@ -435,25 +456,6 @@ where $\mathbf{A}$ is a $n\times{n}$ square matrix, $\mathbf{v}$ is a $n\times{1
 
 Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis), and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
 
-
-### Clustering and classification
-Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.
-
-k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster. 
-
-````{prf:definition} k-means clustering
-:label: defn-kmeans-problem
-
-Given a set of observations $\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)$, where each observation is a $n$-dimensional vector, k-means clustering partitions the $d$-observations into $k\leq{d}$ sets $\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}$ so as to minimize the within-cluster sum of squares (WCSS):
-
-```{math}
-:label: eqn-k-means-clustering
-\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}
-```
-
-where $\mu_{i}$ denotes the mean of the points in set $\mathcal{S}_{i}$. 
-
-````
 
 ---
 
