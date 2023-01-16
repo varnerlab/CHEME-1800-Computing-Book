@@ -296,7 +296,7 @@ x_{3} & = & \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
 \end{eqnarray}
 $$
 
-This idea is called _forward substitution_. If we extend _forward substitution_ to a $n\times{n}$ non-singular system ($n\geq{2}$), we get a general approach that can be used for any size lower triangular system ({prf:ref}`defn-general-forward-sub`):
+This idea, called _forward substitution_, can be extended to any $n\times{n}$ non-singular lower triangular system ({prf:ref}`defn-general-forward-sub`):
 
 ````{prf:definition} Forward substitution
 :label: defn-general-forward-sub
