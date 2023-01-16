@@ -321,6 +321,33 @@ where $l_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ f
 
 ````
 
+Alternatively, we can take this same apprach with an upper triangular system, which is called _backward substituion_, to solve for 
+unknow solution vector $\mathbf{x}$ ({prf:ref}`defn-general-backward-sub`):
+
+
+````{prf:definition} Backward substitution
+:label: defn-general-backward-sub
+
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is upper triangular, and non-singular of the form:
+
+```{math}
+:label: eqn-upper-triag-system
+\mathbf{U}\mathbf{x} = \mathbf{b}
+```
+
+Then, the solution of Eqn. {eq}`eqn-upper-triag-system` is given by:
+
+$$
+\begin{eqnarray}
+x_{n} & = & \frac{b_{n}}{u_{nn}} \\
+x_{i} & = & \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\right)\qquad{i=n-1,\dots,1}
+\end{eqnarray}
+$$
+
+where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+
+````
+
 #### General square system
 ````{prf:algorithm} Naive Gaussian Elimination
 :class: dropdown
