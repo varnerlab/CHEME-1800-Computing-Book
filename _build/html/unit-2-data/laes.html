@@ -934,35 +934,8 @@ x_{i} &amp; = &amp; \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\ri
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
-</div><p>Since we talking about <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a>, which produces an upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, let’s review a <em>backward substitution</em> algorithm to estimate the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> given a non-singular upper triangular <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> based on <a class="reference internal" href="#defn-general-backward-sub">Definition 12</a>:</p>
-<div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
-<p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Backward substituion)</p>
-<section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong> Upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, column vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
-<p><strong>Outputs</strong> solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
-<p><strong>Initialize</strong></p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\text{nrows}\left(\mathbf{U}\right)\)</span></p></li>
-<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}\leftarrow\text{zeros}\left(n\right)\)</span></p></li>
-<li><p>set <span class="math notranslate nohighlight">\(x[n]\leftarrow{b[n]/U[n,n]}\)</span></p></li>
-</ol>
-<p><strong>Main</strong></p>
-<ol class="simple">
-<li><p>for <span class="math notranslate nohighlight">\(i\in{n-1\dots,1}\)</span></p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(\text{sum}\leftarrow{0}\)</span></p></li>
-<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1,\dots,n}\)</span></p>
-<ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\text{sum}\leftarrow\text{sum} + U[i,j]\times{x[j]}\)</span></p></li>
-</ol>
-</li>
-<li><p><span class="math notranslate nohighlight">\(x[i]\leftarrow\left(1/U[i,i]\right)\times\left(b[i] - \text{sum}\right)\)</span></p></li>
-</ol>
-</li>
-</ol>
-<p><strong>Return</strong> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
-</section>
-</div><p>We can implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> in cases where have an upper triangular system, but this system structure does not often naturally arise in applications. Thus, a salient question that you may have is why do we care about triangular systems? The answer is that we can often convert a general <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> into an upper (lower) triangular systems through a series of row operations.</p>
+</div><!-- Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`: -->
+<p>Solving a lower or upper triangular system can easily be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems?</p>
 </section>
 <section id="row-reduction-approaches">
 <h4>Row reduction approaches<a class="headerlink" href="#row-reduction-approaches" title="Permalink to this headline">#</a></h4>
@@ -995,7 +968,7 @@ x_{3}
 <ul class="simple">
 <li><p><em>Swapping</em>: We can interchange the order of the rows to get zeros below the main diagonal.</p></li>
 <li><p><em>Scaling</em>:  If the first nonzero entry of row <span class="math notranslate nohighlight">\(R_{i}\)</span> is <span class="math notranslate nohighlight">\(\lambda\)</span>, we can convert to <span class="math notranslate nohighlight">\(1\)</span> through the operation: <span class="math notranslate nohighlight">\(R_{i}\leftarrow{1/\lambda}R_{i}\)</span></p></li>
-<li><p><em>Addition</em>: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>.</p></li>
+<li><p><em>Addition and subtraction</em>: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>.</p></li>
 </ul>
 <p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(31)</a>, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not <code class="docutils literal notranslate"><span class="pre">1</span></code>; thus, let’s use a scaling row operation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
@@ -1022,20 +995,14 @@ x_{3}
 0 &amp; 1.5 &amp; -1 &amp;\bigm| &amp; 1 \\
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
 \end{bmatrix}\end{split}\]</div>
-<p>Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.</p>
-<p><strong>Step 3</strong>: Solve for unknown variables using back-substitution.</p>
-<div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
-1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
-0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
-0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
-\end{bmatrix}\end{split}\]</div>
-<p>This system shown in <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> can be solved by <em>back substitution</em>. In the back substitution algorithm, we assume that the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is the row echelon matrix containing the coefficients of the system, and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is the vector containing the right-hand sides of the equations</p>
+<p>The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc.</p>
+<p>While the logic underlying the row reduction of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to the upper triangular row-echelon form <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> seems simple, the implementation of a general, efficient row reduction function can be complicated; let’s develop a naive implementation of a row reduction
+procedure (<a class="reference internal" href="#algo-ge-basic">Algorithm 6</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-ge-basic">
-<p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Naive Gaussian Elimination)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive Row Reduction)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Input</strong>:
-Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
+Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
 <p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
 <p><strong>Initialize</strong>:</p>
 <ol class="simple">
@@ -1062,7 +1029,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <li><p>for <span class="math notranslate nohighlight">\(j\in{i+1}\dots{n}\)</span></p>
 <ol class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(\text{factor}\leftarrow{a_{ji}}/\text{pivot}\)</span></p></li>
-<li><p>for k = i to m:</p>
+<li><p>for <span class="math notranslate nohighlight">\(k\in{1,\dots,m}\)</span></p>
 <ol class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}\)</span></p></li>
 </ol>
@@ -1072,32 +1039,49 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </ol>
 </li>
 </ol>
-<p><strong>Backtrace</strong></p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\text{zeros}(n)\)</span></p>
-<ol class="simple">
-<li><p>for <span class="math notranslate nohighlight">\(i\in{n\dots{1}}\)</span></p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}\)</span></p></li>
-<li><p>for <span class="math notranslate nohighlight">\(j\in{i-1\dots{1}}\)</span></p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}\)</span></p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><strong>Return</strong>
-<span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
+<p><strong>Return</strong> <span class="math notranslate nohighlight">\(\text{row reduced}~\bar{\mathbf{A}}\)</span></p>
 </section>
-</div><p>Let’s implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and take a look at its performance (<a class="reference internal" href="#example-julia-back-sub-algo">Example 14</a>):</p>
+</div><p><strong>Step 3</strong>: Solve for unknown variables using <em>back substitution</em>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
+0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
+\end{bmatrix}\end{split}\]</div>
+<p>This system in Eqn. <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> is in row reduced form, and can now be solved by <em>back substitution</em>. Based on the <a class="reference internal" href="#defn-general-backward-sub">Definition 12</a>, we implemented a back substitution routine <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
+<p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Backward substituion)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, column vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
+<p><strong>Outputs</strong> solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\text{nrows}\left(\mathbf{U}\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}\leftarrow\text{zeros}\left(n\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x_n\leftarrow{b_n/u_{nn}}\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{n-1\dots,1}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{sum}\leftarrow{0}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1,\dots,n}\)</span></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{sum}\leftarrow\text{sum} + u_{ij}\times{x_{j}}\)</span></p></li>
+</ol>
+</li>
+<li><p><span class="math notranslate nohighlight">\(x_{i}\leftarrow\left(1/u_{ii}\right)\times\left(b_{i} - \text{sum}\right)\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+</section>
+</div><p>Let’s implement <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a> and take a look at its performance (<a class="reference internal" href="#example-julia-back-sub-algo">Example 14</a>):</p>
 <div class="proof example dropdown admonition" id="example-julia-back-sub-algo">
 <p class="admonition-title"><span class="caption-number">Example 14 </span> (Backward substituion example)</p>
 <section class="example-content" id="proof-content">
 <p>Describe what is going on here.</p>
-<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-backward-substituion">Algorithm 6</a> and computed a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> for the upper triangular system above:</p>
+<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a> and computed a value for the unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> for the upper triangular system above:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">    backward_substitution(U::Array{Float64,2}, b::Array{Float64,1})::Array{Float64,1}</span>
 

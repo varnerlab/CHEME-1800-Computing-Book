@@ -350,39 +350,12 @@ where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ f
 
 ````
 
-Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`:
+<!-- Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`: -->
 
-
-````{prf:algorithm} Backward substituion
-:label: algo-backward-substituion
-:class: dropdown
-
-**Inputs** Upper triangular matrix $\mathbf{U}$, column vector $\mathbf{b}$
-
-**Outputs** solution vector $\mathbf{x}$
-
-**Initialize**
-1. set $n\leftarrow\text{nrows}\left(\mathbf{U}\right)$
-1. set $\mathbf{x}\leftarrow\text{zeros}\left(n\right)$
-1. set $x[n]\leftarrow{b[n]/U[n,n]}$
-
-**Main**
-1. for $i\in{n-1\dots,1}$
-    1. set $\text{sum}\leftarrow{0}$
-    1. for $j\in{i+1,\dots,n}$
-        1. $\text{sum}\leftarrow\text{sum} + U[i,j]\times{x[j]}$
-
-    1. $x[i]\leftarrow\left(1/U[i,i]\right)\times\left(b[i] - \text{sum}\right)$
-
-**Return** $\mathbf{x}$
-
-````
-
-We can implement {prf:ref}`algo-backward-substituion` in cases where have an upper triangular system, but this system structure does not often naturally arise in applications. Thus, a salient question that you may have is why do we care about triangular systems? The answer is that we can often convert a general $n\times{n}$ matrix $\mathbf{A}$ into an upper (lower) triangular systems through a series of row operations.  
+Solving a lower or upper triangular system can easily be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems? 
 
 #### Row reduction approaches
 Converting a matrix $\mathbf{A}$ to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is `1`, and all the other entries in that column are `0`. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.
-
 
 Let's walkthrough a simple example to illustrate the steps involved with [row reduction](https://en.wikipedia.org/wiki/Row_echelon_form); consider the solution of the 3$\times$3 system:
 
@@ -421,7 +394,7 @@ __Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{
 
 * _Swapping_: We can interchange the order of the rows to get zeros below the main diagonal.
 * _Scaling_:  If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
-* _Addition_: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
+* _Addition and subtraction_: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
 
 In Eqn {eq}`eqn-augmented-array-A`, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not `1`; thus, let's use a scaling row operation:
 
@@ -456,27 +429,17 @@ We now eliminate the coefficient below the top row; in this case $i=1$, $j=1$ an
 \end{bmatrix}
 ```
 
-Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.
+The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc. 
 
-__Step 3__: Solve for unknown variables using back-substitution.
+While the logic underlying the row reduction of the matrix $\mathbf{A}$ to the upper triangular row-echelon form $\mathbf{U}$ seems simple, the implementation of a general, efficient row reduction function can be complicated; let's develop a naive implementation of a row reduction 
+procedure ({prf:ref}`algo-ge-basic`):
 
-```{math}
-:label: eqn-back-sub-matrix-A
-\begin{bmatrix}
-1 & -0.5 & 0 &\bigm| & 0 \\
-0 & 1 & -0.66 &\bigm| & 0.66 \\
-0 & 0 & 1 &\bigm| & 0.49
-\end{bmatrix}
-```
-
-This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations
-
-````{prf:algorithm} Naive Gaussian Elimination
+````{prf:algorithm} Naive Row Reduction
 :class: dropdown
 :label: algo-ge-basic
 
 **Input**: 
-Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$
 
 **Output**: solution $\hat{\mathbf{x}}$
 
@@ -498,20 +461,49 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
     
     1. for $j\in{i+1}\dots{n}$
         1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
-        1. for k = i to m:
+        1. for $k\in{1,\dots,m}$
             1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
 
-**Backtrace**
-1. set $\hat{\mathbf{x}}\leftarrow\text{zeros}(n)$
-    1. for $i\in{n\dots{1}}$
-        1. set $\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}$
-        1. for $j\in{i-1\dots{1}}$
-            1. set $\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}$
-
-**Return**
-$\hat{\mathbf{x}}$
+**Return** $\text{row reduced}~\bar{\mathbf{A}}$
 ````
 
+__Step 3__: Solve for unknown variables using _back substitution_:
+
+```{math}
+:label: eqn-back-sub-matrix-A
+\begin{bmatrix}
+1 & -0.5 & 0 &\bigm| & 0 \\
+0 & 1 & -0.66 &\bigm| & 0.66 \\
+0 & 0 & 1 &\bigm| & 0.49
+\end{bmatrix}
+```
+
+This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form, and can now be solved by _back substitution_. Based on the {prf:ref}`defn-general-backward-sub`, we implemented a back substitution routine {prf:ref}`algo-backward-substituion`:
+
+````{prf:algorithm} Backward substituion
+:label: algo-backward-substituion
+:class: dropdown
+
+**Inputs** Upper triangular matrix $\mathbf{U}$, column vector $\mathbf{b}$
+
+**Outputs** solution vector $\mathbf{x}$
+
+**Initialize**
+1. set $n\leftarrow\text{nrows}\left(\mathbf{U}\right)$
+1. set $\mathbf{x}\leftarrow\text{zeros}\left(n\right)$
+1. set $x_n\leftarrow{b_n/u_{nn}}$
+
+**Main**
+1. for $i\in{n-1\dots,1}$
+    1. set $\text{sum}\leftarrow{0}$
+    1. for $j\in{i+1,\dots,n}$
+        1. $\text{sum}\leftarrow\text{sum} + u_{ij}\times{x_{j}}$
+
+    1. $x_{i}\leftarrow\left(1/u_{ii}\right)\times\left(b_{i} - \text{sum}\right)$
+
+**Return** $\mathbf{x}$
+
+````
 
 Let's implement {prf:ref}`algo-backward-substituion` and take a look at its performance ({prf:ref}`example-julia-back-sub-algo`):
 
