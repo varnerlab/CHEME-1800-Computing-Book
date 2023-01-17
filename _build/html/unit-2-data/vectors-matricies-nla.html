@@ -476,13 +476,6 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#addition-and-subtraction">
      Addition and subtraction
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vectorized-addition-and-subtraction-operators">
-       Vectorized addition and subtraction operators
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scalar-multiplication">
@@ -490,10 +483,15 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matrix-vector-and-matrix-matrix-multiplication">
-     Matrix-vector and matrix-matrix multiplication
+    <a class="reference internal nav-link" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication">
+     Vector-vector, matrix-vector and matrix-matrix multiplication
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vector-vector-multiplication">
+       Vector-vector multiplication
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#right-multiplication-of-a-matrix-by-a-vector">
        Right multiplication of a matrix by a vector
@@ -633,13 +631,6 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#addition-and-subtraction">
      Addition and subtraction
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vectorized-addition-and-subtraction-operators">
-       Vectorized addition and subtraction operators
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scalar-multiplication">
@@ -647,10 +638,15 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matrix-vector-and-matrix-matrix-multiplication">
-     Matrix-vector and matrix-matrix multiplication
+    <a class="reference internal nav-link" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication">
+     Vector-vector, matrix-vector and matrix-matrix multiplication
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vector-vector-multiplication">
+       Vector-vector multiplication
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#right-multiplication-of-a-matrix-by-a-vector">
        Right multiplication of a matrix by a vector
@@ -874,64 +870,99 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h3>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Permalink to this headline">#</a></h3>
 <p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
 <p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
-<div class="proof observation admonition" id="obs-same-dimension">
-<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Vector addition)</p>
-<section class="observation-content" id="proof-content">
-<p>Suppose we have two <span class="math notranslate nohighlight">\(n\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span>. The sum of these vectors is given by:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{y} = \mathbf{v}_{1} + \mathbf{v}_{2}\]</div>
-<p>where the ith element of the sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is given by: <span class="math notranslate nohighlight">\(v_{i} = v_{i,1}+ v_{i,2}\)</span>. If however, <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> had <span class="math notranslate nohighlight">\(m&gt;n\)</span> elements, then the vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span> are not compatible. A similar arguement can be made about matrices.</p>
+<div class="proof definition admonition" id="obs-same-dimension">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Vector addition)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have two <span class="math notranslate nohighlight">\(m\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The sum of these vectors <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{a} + \mathbf{b}\)</span> is the <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-vector-addition">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-vector-addition" title="Permalink to this equation">#</a></span>\[y_{i} = a_{i} + b_{i}\qquad{i=1,\dots,m}\]</div>
+<p>The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are compatible if they have the same number of elements.</p>
 </section>
-</div><p>Vector addition is strarighforward to implement; for example, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a>:</p>
+</div><p>Vector addition is strarighforward to implement, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-vector-addition">
 <p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Naive vector addition)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong> Compatible vectors <span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{2}\)</span></p>
+<p><strong>Inputs</strong> Compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
 <p><strong>Outputs</strong> Vector sum <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
-<li><p>N <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{v}_{1}\)</span>)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\leftarrow\)</span> zeros(N)</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\text{length}(\mathbf{a})\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{y}\leftarrow\text{zeros}(n)\)</span></p></li>
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
-<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to N</p>
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots,n}\)</span></p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(y[i]\leftarrow~v_{1}[i] + v_{2}[i]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y_{i}\leftarrow~a_{i} + b_{i}\)</span></p></li>
 </ol>
 </li>
 </ol>
-<p><strong>Return</strong>
-<span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
+<p><strong>Return</strong> sum vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
 </section>
-</div><p>where the braket notation <span class="math notranslate nohighlight">\(y[\star]\)</span> denotes element <span class="math notranslate nohighlight">\(\star\)</span> of the vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. However, <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.</p>
-<section id="vectorized-addition-and-subtraction-operators">
-<h4>Vectorized addition and subtraction operators<a class="headerlink" href="#vectorized-addition-and-subtraction-operators" title="Permalink to this headline">#</a></h4>
-<p>Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. Vectorized code often executes faster than Naive implementation such as <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a> because the <em>vectorization</em> can take advantage of advanced techniques to improve performance.</p>
+</div><p><a class="reference internal" href="#algo-vector-addition">Algorithm 2</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.v Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p>
+<p>Vectorized code typically executes faster than naive implementations such as <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a> because the <em>vectorization</em> takes advantage of advanced techniques to improve performance.</p>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator.</p>
-</section>
 </section>
 <section id="scalar-multiplication">
 <h3>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Permalink to this headline">#</a></h3>
-<p>Multiplying a matrix (or vector) by a constant is also done element wise. For example, suppose we have a <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and a contants <em>c</em>. Then the product:</p>
+<p>Multiplying a vector (or a matrix) by a constant is also done element wise.</p>
+<div class="proof definition admonition" id="defn-scalar-multiplication">
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Scalar multiplication)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have a <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and a constant <span class="math notranslate nohighlight">\(c\)</span>. Then the scalar product between a constant <span class="math notranslate nohighlight">\(c\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathbf{y} = c\mathbf{v}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{y} = c\mathbf{v}\]</div>
-<p>has elements: <span class="math notranslate nohighlight">\(y_{i} = cv_{i}\)</span>.</p>
+\[y_{i} = cv_{i}\qquad{i=1,2,\dots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(y_{i}\)</span> and <span class="math notranslate nohighlight">\(v_{i}\)</span> denote the ith component of the product vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, and the input vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
+<p>Likewise, suppose we have an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and constant <span class="math notranslate nohighlight">\(c\)</span>. Then, the scalar product between a constant <span class="math notranslate nohighlight">\(c\)</span> and the matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathbf{Y} = c\mathbf{X}\)</span>, is given by:</p>
+<div class="math notranslate nohighlight">
+\[y_{ij} = cx_{ij}\qquad{i=1,2,\dots,m,~j=1,2,\dots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(y_{ij}\)</span> and <span class="math notranslate nohighlight">\(x_{ij}\)</span> denote the ijth component of the product matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>, and the input matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p>
 </section>
-<section id="matrix-vector-and-matrix-matrix-multiplication">
-<h3>Matrix-vector and matrix-matrix multiplication<a class="headerlink" href="#matrix-vector-and-matrix-matrix-multiplication" title="Permalink to this headline">#</a></h3>
+</div></section>
+<section id="vector-vector-matrix-vector-and-matrix-matrix-multiplication">
+<h3>Vector-vector, matrix-vector and matrix-matrix multiplication<a class="headerlink" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication" title="Permalink to this headline">#</a></h3>
+<section id="vector-vector-multiplication">
+<h4>Vector-vector multiplication<a class="headerlink" href="#vector-vector-multiplication" title="Permalink to this headline">#</a></h4>
+<p><em>Inner products</em>: Two compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multiplied together to produce a <em>scalar</em> in an operation called an <em>inner product</em>:</p>
+<div class="proof definition admonition" id="defn-vector-vector-multiplication">
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Inner product)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are <span class="math notranslate nohighlight">\(m\times{1}\)</span> vectors. Then <em>vector-vector inner product</em> given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-vector-vector-inner-product">
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-vector-vector-inner-product" title="Permalink to this equation">#</a></span>\[y = \mathbf{a}^{T}\mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{a}^{T}\)</span> denotes the transpose of the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and the scalar <span class="math notranslate nohighlight">\(y\)</span> equals:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-vector-inner-product-index-form">
+<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-vector-inner-product-index-form" title="Permalink to this equation">#</a></span>\[y = \sum_{i=1}^{m}a_{i}b_{i}\]</div>
+<p>This operation is possible if the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> have the same number of elements.</p>
+</section>
+</div><p><em>Outer product</em>: Suppose you have an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, and an <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multipled together to form a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix through an <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer product</a>:</p>
+<div class="proof definition admonition" id="defn-vector-vector-multiplication-op">
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Outer product)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector. Then <em>vector-vector outer product</em> given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-vector-vector-outer-product">
+<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-vector-vector-outer-product" title="Permalink to this equation">#</a></span>\[\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}\]</div>
+<p>produces the <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> with elements:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-vector-outer-product-index-form">
+<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-vector-outer-product-index-form" title="Permalink to this equation">#</a></span>\[y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}\]</div>
+</section>
+</div></section>
 <section id="right-multiplication-of-a-matrix-by-a-vector">
 <h4>Right multiplication of a matrix by a vector<a class="headerlink" href="#right-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
-<p>A common operation is the <em>right multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.
-Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector. The <em>right product</em> given by:</p>
+<p>A common operation is <em>right matrix-vector multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. If the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are compatible,  <em>right matrix-vector multiplication</em> will produce a vector with the same number of rows as the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>:</p>
+<div class="proof definition admonition" id="defn-right-matrix-vector-multiplication">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Right matrix-vector multiplication)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector. The <em>right matrix-vector product</em> given by:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{y} = 
 \mathbf{A}\mathbf{x}\]</div>
 <p>generates a <span class="math notranslate nohighlight">\(m\times{1}\)</span> column vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, where the <span class="math notranslate nohighlight">\(i\)</span>th element is given by:</p>
 <div class="math notranslate nohighlight">
-\[y_{i} =
-\sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
-<p>The <em>right multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 4</span></a>):</p>
+\[y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
+<p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is equal to the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+</section>
+</div><p>The <em>right multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 4</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
 <figcaption>
@@ -1100,11 +1131,11 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 7 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div></section>
@@ -1117,15 +1148,15 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
-<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Properties of Matrix Norms)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Properties of Matrix Norms)</p>
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
 <p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
 <span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
 </section>
@@ -1138,7 +1169,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
 <p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 </section>

@@ -185,64 +185,132 @@ Matrices and vectors can be added and subtracted just like scalars quantities wi
 
 The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don't have the same number of elements, then addition and subtraction operations don't make sense. 
 
-````{prf:observation} Vector addition
+````{prf:definition} Vector addition
 :label: obs-same-dimension
-Suppose we have two $n\times{1}$ vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$. The sum of these vectors is given by:
+Suppose we have two $m\times{1}$ vectors $\mathbf{a}$ and $\mathbf{b}$. The sum of these vectors $\mathbf{y} = \mathbf{a} + \mathbf{b}$ is the $m\times{1}$ vector $\mathbf{y}$ given by:
 
-$$\mathbf{y} = \mathbf{v}_{1} + \mathbf{v}_{2}$$
+```{math}
+:label: eqn-vector-addition
+y_{i} = a_{i} + b_{i}\qquad{i=1,\dots,m}
+```
 
-where the ith element of the sum $\mathbf{y}$ is given by: $v_{i} = v_{i,1}+ v_{i,2}$. If however, $\mathbf{v}_{1}$ had $m>n$ elements, then the vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$ are not compatible. A similar arguement can be made about matrices.
+The vectors $\mathbf{a}$ and $\mathbf{b}$ are compatible if they have the same number of elements. 
 ````
 
-Vector addition is strarighforward to implement; for example, consider {prf:ref}`algo-vector-addition`:
+Vector addition is strarighforward to implement, consider {prf:ref}`algo-vector-addition`:
 
 ````{prf:algorithm} Naive vector addition
 :class: dropdown
 :label: algo-vector-addition
 
-**Inputs** Compatible vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$
+**Inputs** Compatible vectors $\mathbf{a}$ and $\mathbf{b}$
 
 **Outputs** Vector sum $\mathbf{y}$
 
 **Initialize**
-1. N $\leftarrow$ length($\mathbf{v}_{1}$)
-1. $\mathbf{y}\leftarrow$ zeros(N)
+1. set $n\leftarrow\text{length}(\mathbf{a})$
+1. set $\mathbf{y}\leftarrow\text{zeros}(n)$
 
 **Main**
-1. for i $\in$ 1 to N
-    1. $y[i]\leftarrow~v_{1}[i] + v_{2}[i]$
+1. for $i\in{1,\dots,n}$
+    1. $y_{i}\leftarrow~a_{i} + b_{i}$
 
-**Return**
-$\mathbf{y}$
+**Return** sum vector $\mathbf{y}$
 ````
 
-where the braket notation $y[\star]$ denotes element $\star$ of the vector $\mathbf{y}$. However, {prf:ref}`algo-vector-addition` may not be the _best_ way to implement vector (or matrix) addition or subtract operations.
+{prf:ref}`algo-vector-addition` may not be the _best_ way to implement vector (or matrix) addition or subtract operations.v Many modern programming languages and libraries, e.g., [the Numpy library in Python](https://numpy.org) or [Julia](https://julialang.org), support _vectorization_, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write `for` loops. 
 
-#### Vectorized addition and subtraction operators
-Many modern programming languages and libraries, e.g., [the Numpy library in Python](https://numpy.org) or [Julia](https://julialang.org), support _vectorization_, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write `for` loops. Vectorized code often executes faster than Naive implementation such as {prf:ref}`algo-vector-addition` because the _vectorization_ can take advantage of advanced techniques to improve performance. 
+Vectorized code typically executes faster than naive implementations such as {prf:ref}`algo-vector-addition` because the _vectorization_ takes advantage of advanced techniques to improve performance. 
 
 You can use the `.+` operator for element-wise addition, while element-wise subtraction can be encoded with the `.-` operator.
 
 ### Scalar multiplication
-Multiplying a matrix (or vector) by a constant is also done element wise. For example, suppose we have a $n\times{1}$ vector $\mathbf{v}$ and a contants _c_. Then the product: 
+Multiplying a vector (or a matrix) by a constant is also done element wise. 
 
-$$\mathbf{y} = c\mathbf{v}$$
+````{prf:definition} Scalar multiplication
+:label: defn-scalar-multiplication
+Suppose we have a $n\times{1}$ vector $\mathbf{v}$ and a constant $c$. Then the scalar product between a constant $c$ and the vector $\mathbf{v}$, denoted by $\mathbf{y} = c\mathbf{v}$, is given by:
 
-has elements: $y_{i} = cv_{i}$.
+```{math}
+y_{i} = cv_{i}\qquad{i=1,2,\dots,n}
+```
 
-### Matrix-vector and matrix-matrix multiplication
+where $y_{i}$ and $v_{i}$ denote the ith component of the product vector $\mathbf{y}$, and the input vector $\mathbf{v}$. 
+
+Likewise, suppose we have an $m\times{n}$ matrix $\mathbf{X}$ and constant $c$. Then, the scalar product between a constant $c$ and the matrix $\mathbf{X}$, denoted by $\mathbf{Y} = c\mathbf{X}$, is given by:
+
+```{math}
+y_{ij} = cx_{ij}\qquad{i=1,2,\dots,m,~j=1,2,\dots,n}
+```
+
+where $y_{ij}$ and $x_{ij}$ denote the ijth component of the product matrix $\mathbf{Y}$, and the input matrix $\mathbf{X}$. 
+````
+
+### Vector-vector, matrix-vector and matrix-matrix multiplication
+
+#### Vector-vector multiplication
+_Inner products_: Two compatible vectors $\mathbf{a}$ and $\mathbf{b}$ can be multiplied together to produce a _scalar_ in an operation called an _inner product_: 
+
+````{prf:definition} Inner product
+:label: defn-vector-vector-multiplication
+
+Suppose $\mathbf{a}$ and $\mathbf{b}$ are $m\times{1}$ vectors. Then _vector-vector inner product_ given by:
+
+```{math}
+:label: eqn-vector-vector-inner-product
+y = \mathbf{a}^{T}\mathbf{b}
+```
+
+where $\mathbf{a}^{T}$ denotes the transpose of the vector $\mathbf{a}$ and the scalar $y$ equals:
+
+```{math}
+:label: eqn-vector-inner-product-index-form
+y = \sum_{i=1}^{m}a_{i}b_{i}
+```
+
+This operation is possible if the vectors $\mathbf{a}$ and $\mathbf{b}$ have the same number of elements.
+````
+
+_Outer product_: Suppose you have an $m\times{1}$ vector $\mathbf{a}$, and an $n\times{1}$ vector $\mathbf{b}$. The vectors $\mathbf{a}$ and $\mathbf{b}$ can be multipled together to form a $m\times{n}$ matrix through an [outer product](https://en.wikipedia.org/wiki/Outer_product):
+
+
+````{prf:definition} Outer product
+:label: defn-vector-vector-multiplication-op
+
+Suppose $\mathbf{a}$ is an $m\times{1}$ vector, and $\mathbf{b}$ are $n\times{1}$ vector. Then _vector-vector outer product_ given by:
+
+```{math}
+:label: eqn-vector-vector-outer-product
+\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}
+```
+
+produces the $m\times{n}$ matrix $\mathbf{Y}$ with elements:
+
+```{math}
+:label: eqn-vector-outer-product-index-form
+y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}
+```
+````
 
 #### Right multiplication of a matrix by a vector
-A common operation is the _right multiplication_ of a matrix $\mathbf{A}$ by a vector $\mathbf{x}$. 
-Suppose $\mathbf{A}$ is a $m\times{n}$ matrix, and $\mathbf{x}$ is a $n\times{1}$ column vector. The _right product_ given by:
+A common operation is _right matrix-vector multiplication_ of a matrix $\mathbf{A}$ by a vector $\mathbf{x}$. If the matrix $\mathbf{A}$ and the vector $\mathbf{x}$ are compatible,  _right matrix-vector multiplication_ will produce a vector with the same number of rows as the original matrix $\mathbf{A}$:
+
+````{prf:definition} Right matrix-vector multiplication
+:label: defn-right-matrix-vector-multiplication
+
+Suppose $\mathbf{A}$ is a $m\times{n}$ matrix, and $\mathbf{x}$ is a $n\times{1}$ column vector. The _right matrix-vector product_ given by:
 
 $$\mathbf{y} = 
 \mathbf{A}\mathbf{x}$$
 
 generates a $m\times{1}$ column vector $\mathbf{y}$, where the $i$th element is given by:
 
-$$y_{i} =
-\sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}$$
+$$y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}$$
+
+This operation is possible if the number of columns of the matrix $\mathbf{A}$ is equal to the number of rows of the vector $\mathbf{x}$.
+````
+
+
 
 The _right multiplication operation_ can be represented graphically ({numref}`fig-right-multiplication-matrix-vector`):
 
