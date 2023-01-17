@@ -40,7 +40,7 @@ In this lecture, we'll look at techniques to solve homogeneous and non-homogeneo
 
 
 (content:references:motivating-examples)=
-## Motivating examples and concepts
+## Motivation
 
 ### Underdetermined systems
 Suppose you had two steady-state blending tanks $T_{1}$ and $T_{2}$ in series, each with two input streams and a single output stream ({numref}`fig-blending-tanks-example`):
@@ -189,106 +189,175 @@ where can be re-written in matrix-vector form as:
 \mathbf{S}\dot{\mathbf{\epsilon}} = \dot{\mathbf{n}}_{2} - \dot{\mathbf{n}}_{1}
 ```
 
-## Solution existence
+## Existence
+The existence of a solution to a system of linear equations depends on the number of equations and the number of variables in the system. Square systems will have at least one solution, which means that there will be values of the variables that can be found that will make all of the equations in the system true simultaneously.
 
-### Homogeneous system and rank
-A homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
+### Homogeneous square systems
+For a homogeneous system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist, but non-trivial solutions may not be unique. For example, there could be infinitely many $\mathbf{x}$ values that simultaneously make the system of equations true.
+
+A homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$:
 
 ```{math}
 :label: eqn-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-has a solution if and only if the coefficient matrix $\mathbf{A}$ is singular; determinant $\det\mathbf{A} = 0$. The determinant condition is an easy theoretical test to check for the existence of a solution to a homogenous system of linear algebraic equations. However, in a practical sense computing the determinant directly is computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$. The rank _r_ of a matrix $\mathbf{A}$:
+may or may not have a unique solution. However, there is an easy check to determine the existence of a solution to Eqn. {eq}`eqn-homogenous-laes`:
+
+````{prf:definition} Homogenous solution existence
+:label: defn-homogenous-soln-existence
+
+A homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
+has a unique solution if and only if the coefficient matrix $\mathbf{A}$ has determinant:
 
 ```{math}
-:label: eqn-rank-inequality
-r\leq\min\left(m,n\right)
+:label: eqn-det-homogenous-cond
+\det\left(\mathbf{A}\right) = 0
 ```
 
-is at most equal to the smallest dimesion of the matrix (full rank). Rank is a measure of the unique information contained in a matrix; thus, if there is redudant information (rows or columns that are not linearly independent) a matrix will be less than full rank. If a matrix is less than full rank, then $\det{\mathbf{A}}=0$. 
+The determinant condition is an easy theoretical test to check for the existence of a unique solution to a homogenous system of linear algebraic equations. 
+````
+
+In practice computing the determinant directly can be computationally expensive. Alternatively, the determinant condition can be also checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$.  If a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$. 
 
 There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org).
 
-### Non-homogeneous system
-A non-homogeneous system of linear algebraic equations with $n\times{m}$ coefficient matrix $\mathbf{A}$, unknown vector $\mathbf{x}$ and right-hand-side vector $\mathbf{b}$:
+### Non-homogeneous square systems
+A non-homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$, $n\times{1}$ unknown vector $\mathbf{x}$ and the $n\times{1}$ right-hand-side vector $\mathbf{b}$:
 
 ```{math}
 :label: eqn-non-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{b}
 ```
 
-will have a solution if there exists a matrix $\mathbf{A}^{\dagger}$ such that:
+will have a unique solution if there exists a matrix $\mathbf{A}^{-1}$ such that:
 
 ```{math}
 :label: eqn-non-homogenous-laes-inverse
-\mathbf{x} = \mathbf{A}^{\dagger}\mathbf{b}
+\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}
 ```
 
-and $\mathbf{A}^{\dagger}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ is the identity matrix and $\mathbf{A}^{\dagger}$ is the matrix inverse of $\mathbf{A}$.
+where the $\mathbf{A}^{-1}$ is called the inverse of the matrix $\mathbf{A}$. However, the inverse may not always exist ({prf:ref}`defn-matrix-inverse`):
 
-(content:references:solution-approaches)=
-## Solution approaches
-The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
 
-$$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
+````{prf:definition} Matrix inverse existence
+:label: defn-matrix-inverse
 
-Directly computing the matrix inverse $\mathbf{A}^{-1}$ is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.
+An $n\times{n}$ square matrix $\mathbf{A}$ has an unique inverse $\mathbf{A}^{-1}$ such that:
 
-There are two broad categories of methods to solve for $\mathbf{x}$, direct methods, such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), and iterative methods, such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
+```{math}
+:label: eqn-matrix-A
+\mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}
+```
 
-In all the discussion below, we assume:
-
-* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
-* The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
-
-For the study of the different solution approaches, let's consider a motivating example. 
-
-### Gaussian elimination 
-[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations so that the coefficients of one variable are eliminated in subsequent equations. This allows you to solve for the remaining variables one at a time until you have a solution for the entire system.
-
-````{prf:algorithm} Naive Gaussian Elimination
-:class: dropdown
-:label: algo-ge-basic
-
-**Input**: 
-Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance $\epsilon$, maximum iterations $\mathcal{M}_{\infty}$.
-
-**Output**: solution $\hat{\mathbf{x}}$
-
-**Initialize**:
-1. set $(n,m)\leftarrow\text{size}(\mathbf{A})$
-1. set $\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})$
-
-**Main**
-1. for $i\in{1}\dots{n-1}$
-    1. set $\text{pivot}\leftarrow{a_{ii}}$
-    2. set $\text{pivotRow}\leftarrow{i}$
-
-    1. for $j\in{i+1}\dots{n}$
-        1. if $\text{abs}(\bar{a}_{ji}) > \text{abs}(\text{pivot})$
-            1. set $\text{pivot}\leftarrow\bar{a}_{ji}$
-            2. set $\text{pivotRow}\leftarrow{j}$
-    
-    1. set $\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})$
-    
-    1. for $j\in{i+1}\dots{n}$
-        1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
-        1. for k = i to m:
-            1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
-
-**Backtrace**
-1. set $\hat{\mathbf{x}}\leftarrow\text{zeros}(n)$
-    1. for $i\in{n\dots{1}}$
-        1. set $\hat{x}_{i}\leftarrow{\bar{a}_{im}}/\bar{a}_{ii}$
-        1. for $j\in{i-1\dots{1}}$
-            1. set $\bar{a}_{jm}\leftarrow\bar{a}_{jm} - \bar{a}_{ji}\times\hat{x}_{i}$
-
-**Return**
-$\hat{\mathbf{x}}$
+if $\det\left(\mathbf{A}\right)\neq{0}$. If the inverse exists, the matrix $\mathbf{A}$ is called non-singular, otherwise $\mathbf{A}$ is singular. 
 ````
 
-Let's walkthrough a simple generic example using {numref}`algo-ge-basic` to illustrate the steps involved with [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination); consider the solution of the 3$\times$3 system:
+(content:references:solution-approaches)=
+## Solutions
+Several methods exist to find the solution of a square system of linear equations:
+
+* {ref}`content:references:gaussian-elimination` solves linear equations by using a sequence of operations to reduce the system to an upper triangular form and then back substitution to find the solution. 
+* {ref}`content:references:iterative-methods` are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual solution.
+
+(content:references:gaussian-elimination)=
+### Gaussian elimination 
+[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve for the remaining variables one at a time until you have a solution for the entire system.
+
+Let's start exploring this approach by looking at solving a triangular system of equations.
+
+#### Triangular systems
+Let's consider a non-singular $3\times{3}$ lower triangular system of equations:
+
+```{math}
+:label: eqn-triangular-system
+\begin{pmatrix}
+l_{11} & 0 & 0 \\
+l_{21} & l_{22} & 0 \\
+l_{31} & l_{32} & l_{33}
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} = 
+\begin{pmatrix}
+b_{1} \\
+b_{2} \\
+b_{3}
+\end{pmatrix}
+```
+
+Since the matrix is non-singular, the diagonal elements $l_{ii},~i=1,2,3$ are non-zero. This allows us to take advantage of the triangular structure to solve for the unknown $x_{i}$ values:
+
+$$
+\begin{eqnarray}
+x_{1} & = & b_{1}/l_{11} \\
+x_{2} & = & \left(b_{2} - l_{21}x_{1}\right) / l_{22} \\
+x_{3} & = & \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
+\end{eqnarray}
+$$
+
+This idea, called _forward substitution_, can be extended to any $n\times{n}$ non-singular lower triangular system ({prf:ref}`defn-general-forward-sub`):
+
+````{prf:definition} Forward substitution
+:label: defn-general-forward-sub
+
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is lower triangular, and non-singular of the form:
+
+```{math}
+:label: eqn-lower-triag-system
+\mathbf{L}\mathbf{x} = \mathbf{b}
+```
+
+Then, the solution of Eqn. {eq}`eqn-lower-triag-system` is given by:
+
+$$
+\begin{eqnarray}
+x_{1} & = & \frac{b_{1}}{l_{11}} \\
+x_{i} & = & \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\right)\qquad{i=2,\dots,n}
+\end{eqnarray}
+$$
+
+where $l_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+
+````
+
+Alternatively, we can take a similar apprach with an upper triangular system,  called _backward substituion_, to solve for 
+unknow solution vector $\mathbf{x}$ ({prf:ref}`defn-general-backward-sub`):
+
+
+````{prf:definition} Backward substitution
+:label: defn-general-backward-sub
+
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is upper triangular, and non-singular of the form:
+
+```{math}
+:label: eqn-upper-triag-system
+\mathbf{U}\mathbf{x} = \mathbf{b}
+```
+
+Then, the solution of Eqn. {eq}`eqn-upper-triag-system` is given by:
+
+$$
+\begin{eqnarray}
+x_{n} & = & \frac{b_{n}}{u_{nn}} \\
+x_{i} & = & \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\right)\qquad{i=n-1,\dots,1}
+\end{eqnarray}
+$$
+
+where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+
+````
+
+<!-- Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`: -->
+
+Solving a lower or upper triangular system can easily be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems? 
+
+#### Row reduction approaches
+Converting a matrix $\mathbf{A}$ to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is `1`, and all the other entries in that column are `0`. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.
+
+Let's walkthrough a simple example to illustrate the steps involved with [row reduction](https://en.wikipedia.org/wiki/Row_echelon_form); consider the solution of the 3$\times$3 system:
 
 ```{math}
 :label: eqn-ge-test-system
@@ -310,7 +379,7 @@ x_{3}
 \end{pmatrix}
 ```
 
-__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$. The augemented matrix $\bar{\mathbf{A}}$ is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
+__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$ which is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
 
 ```{math}
 :label: eqn-augmented-array-A
@@ -321,15 +390,13 @@ __Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$. The augemented matrix
 \end{bmatrix}
 ```
 
-__Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{A}}$ to [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form):
+__Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{A}}$ to [the upper triangular row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form). We can perform row operations:
 
-1. Starting with the first column, move to the next column (to the right) until we encounter a non-zero element.
-1. One we encounter a column that has nonzero entries, interchange rows, if necessary, to get a nonzero entry on top.
-1. Change the top entry to 1: If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
-1. For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. Repeat this operation until all entries are zero in this column expect the top one. When finished move to row 2, step 1.
-1. Carry out this procedure until the augmented matrix $\bar{\mathbf{A}}$ is in [row echelon form](https://en.wikipedia.org/wiki/Row_echelon_form).
+* _Swapping_: We can interchange the order of the rows to get zeros below the main diagonal.
+* _Scaling_:  If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
+* _Addition and subtraction_: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
 
-In Eqn {eq}`eqn-augmented-array-A`, the first column is non-zero, and a interchanging rows will not improve the our progress, thus, let's move to step 3:
+In Eqn {eq}`eqn-augmented-array-A`, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not `1`; thus, let's use a scaling row operation:
 
 ```{math}
 :label: eqn-augmented-array-A-step3
@@ -345,7 +412,7 @@ In Eqn {eq}`eqn-augmented-array-A`, the first column is non-zero, and a intercha
 \end{bmatrix}
 ```
 
-After completing step 3, we can now move to step 4 and eliminate the coefficient below thw top row; in this case $i=1$, $j=1$ and $k=1$ which gives the operation: $R_{2}\leftarrow{R}_{2} + R_{1}$:
+We now eliminate the coefficient below the top row; in this case $i=1$, $j=1$ and $k=1$ which gives the operation: $R_{2}\leftarrow{R}_{2} + R_{1}$:
 
 ```{math}
 :label: eqn-augmented-array-A-step4
@@ -362,9 +429,45 @@ After completing step 3, we can now move to step 4 and eliminate the coefficient
 \end{bmatrix}
 ```
 
-Because row 3 was already zero, we have now completed the operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then substract from row 3, etc.
+The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc. 
 
-__Step 3__: Solve for unknown variables using back-substitution.
+While the logic underlying the row reduction of the matrix $\mathbf{A}$ to the upper triangular row-echelon form $\mathbf{U}$ seems simple, the implementation of a general, efficient row reduction function can be complicated; let's develop a naive implementation of a row reduction 
+procedure ({prf:ref}`algo-ge-basic`):
+
+````{prf:algorithm} Naive Row Reduction
+:class: dropdown
+:label: algo-ge-basic
+
+**Input**: 
+Matrix $\mathbf{A}$, the vector $\mathbf{b}$
+
+**Output**: solution $\hat{\mathbf{x}}$
+
+**Initialize**:
+1. set $(n,m)\leftarrow\text{size}(\mathbf{A})$
+1. set $\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})$
+
+**Main**
+1. for $i\in{1}\dots{n-1}$
+    1. set $\text{pivot}\leftarrow{a_{ii}}$
+    2. set $\text{pivotRow}\leftarrow{i}$
+
+    1. for $j\in{i+1}\dots{n}$
+        1. if $\text{abs}(\bar{a}_{ji}) > \text{abs}(\text{pivot})$
+            1. set $\text{pivot}\leftarrow\bar{a}_{ji}$
+            2. set $\text{pivotRow}\leftarrow{j}$
+    
+    1. set $\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})$
+    
+    1. for $j\in{i+1}\dots{n}$
+        1. set $\text{factor}\leftarrow{a_{ji}}/\text{pivot}$
+        1. for $k\in{1,\dots,m}$
+            1. set $a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}$
+
+**Return** $\text{row reduced}~\bar{\mathbf{A}}$
+````
+
+__Step 3__: Solve for the unknown values $x_{1},\dots,x_{n}$ using _back substitution_:
 
 ```{math}
 :label: eqn-back-sub-matrix-A
@@ -375,20 +478,86 @@ __Step 3__: Solve for unknown variables using back-substitution.
 \end{bmatrix}
 ```
 
-This system shown in {eq}`eqn-back-sub-matrix-A` can be solved by _back substitution_. In the back substitution algorithm, we assume that the matrix $\mathbf{U}$ is the row echelon matrix containing the coefficients of the system, and $\mathbf{y}$ is the vector containing the right-hand sides of the equations, then:
+This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form; thus, it can now be solved using _back substitution_. Based on the {prf:ref}`defn-general-backward-sub`, we implemented a back substitution routine {prf:ref}`algo-backward-substituion`:
 
-````{prf:algorithm} Naive back substitution
-:label: algo-ge-basic-back-sub
+````{prf:algorithm} Backward substituion
+:label: algo-backward-substituion
+:class: dropdown
+
+**Inputs** Upper triangular matrix $\mathbf{U}$, column vector $\mathbf{b}$
+
+**Outputs** solution vector $\mathbf{x}$
+
+**Initialize**
+1. set $n\leftarrow\text{nrows}\left(\mathbf{U}\right)$
+1. set $\mathbf{x}\leftarrow\text{zeros}\left(n\right)$
+1. set $x_n\leftarrow{b_n/u_{nn}}$
 
 **Main**
-1. for $i\in{n},n-1,\dots,1$
-    1. set $x_{i}\leftarrow{y_{i}}$
-        1. for $j\in{i+1},i+2,\dots,n$
-            1. set $x_{i}\leftarrow{x_{i}}-u_{ij}x_{j}$
+1. for $i\in{n-1\dots,1}$
+    1. set $\text{sum}\leftarrow{0}$
+    1. for $j\in{i+1,\dots,n}$
+        1. $\text{sum}\leftarrow\text{sum} + u_{ij}\times{x_{j}}$
+
+    1. $x_{i}\leftarrow\left(1/u_{ii}\right)\times\left(b_{i} - \text{sum}\right)$
+
+**Return** solution vector $\mathbf{x}$
+
+````
+
+Now that we have both row reduction and back substitytion algorithms, let's look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction ({prf:ref}`example-time-discretized-decay`):
+
+````{prf:example} First-order decay
+:label: example-time-discretized-decay
+:class: dropdown
+
+Setup a system of linear algebraic equations whose solution describes the concentration as a function of time for a compound $A$ that undergoes first-order decay in a well-mixed batch reactor. The concentration balance for compound $A$ is given by:
+
+```{math}
+:label: eqn-balance-concentration
+\frac{dC_{A}}{dt} = -\kappa{C_{A}}
+```
+
+where $\kappa$ denotes the first-order rate constant governing the rate of decay (units: 1/time), and the initial condition is given by $C_{A,0}$.
+Let $C_{A,0} = 10~\text{mmol/L}$, $\kappa = 0.5~\text{hr}^{-1}$ and $h = 0.1$. 
+
+__Solution__: Let's discretize the concentration balance using a [forward finte difference](https://en.wikipedia.org/wiki/Finite_difference) approximation of the time derivatrive:
+
+```{math}
+:label: eqn-CA-recursion
+C_{A,j+1} = C_{A,j} - h\kappa{C_{A,j}}
+```
+
+where $h$ denotes the time step-size, and $C_{A,\star}$ denotes the concentration of $A$ at time-step $\star$. Starting with $j=0$, 
+Eqn {eq}`eqn-CA-recursion` can be used to construct a $T{\times}T$ matrix where each rows is a seperate time-step:
+
+```{math}
+:label: eqn-CA-system-TxT
+\begin{pmatrix}
+1 & 0 & \dots & 0 \\
+(\kappa{h} - 1) & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots \\
+0 & \dots & (\kappa{h} - 1) & 1
+\end{pmatrix}
+\begin{pmatrix}
+C_{A,1} \\
+C_{A,2} \\
+\vdots \\
+C_{A,T}
+\end{pmatrix} = 
+\begin{pmatrix}
+C_{A,0}\left(1-h\kappa\right) \\
+0 \\
+\vdots \\
+0 
+\end{pmatrix}
+```
 
 ````
 
 
+
+(content:references:iterative-methods)=
 ### Iterative methods
 Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
 
@@ -537,3 +706,19 @@ Fill me in.
 
 ## Summary
 Fill me in
+
+
+<!-- The naive way to solve a system of LAEs for the unknown vector $\mathbf{x}$ is to directly compute the matrix inverse $\mathbf{A}^{-1}$. A matrix inverse has the property $\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}$, where $\mathbf{I}$ denotes the _identity matrix_.  Thus, if a matrix inverse exists, the unknown vector $\mathbf{x}$ can be computed as:
+
+$$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$$
+
+Directly computing the matrix inverse $\mathbf{A}^{-1}$ is computationally expensive, so we never really do that. Instead, we use substitution or iterative methods to effectively compute the inverse without having to do it for real.
+
+There are two broad categories of methods to solve for $\mathbf{x}$, direct methods, such as those based upon [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), and iterative methods, such as the [Gauss–Seidel method](https://en.wikipedia.org/wiki/Gauss–Seidel_method). Here we consider iterative methods in-depth and will only briefly describe direct substitution approaches such as [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination).
+
+In all the discussion below, we assume:
+
+* The matrix $\mathbf{A}$ is __square__ meaning $m=n$; we'll see how we can treat non-square systems later.
+* The matrix $\mathbf{A}$ has full rank or equivalently $\det{\mathbf{A}}\neq{0}$. 
+
+For the study of the different solution approaches, let's consider a motivating example.  -->

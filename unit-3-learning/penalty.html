@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/penalty.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -437,6 +439,11 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-and-classification">
+   Clustering and classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
@@ -481,6 +488,11 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-and-classification">
+   Clustering and classification
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -533,6 +545,19 @@ title="Print to PDF"
 </section>
 </section>
 <hr class="docutils" />
+<section id="clustering-and-classification">
+<h2>Clustering and classification<a class="headerlink" href="#clustering-and-classification" title="Permalink to this headline">#</a></h2>
+<p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
+<p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
+<div class="proof definition admonition" id="defn-kmeans-problem">
+<p class="admonition-title"><span class="caption-number">Definition 18 </span> (k-means clustering)</p>
+<section class="definition-content" id="proof-content">
+<p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
+<div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
+<span class="eqno">(43)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
+</section>
+</div></section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>Fill me in</p>
