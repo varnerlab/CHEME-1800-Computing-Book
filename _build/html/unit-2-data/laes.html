@@ -1048,7 +1048,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
 0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
 \end{bmatrix}\end{split}\]</div>
-<p>This system in Eqn. <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> is in row reduced form, and can now be solved by <em>back substitution</em>. Based on the <a class="reference internal" href="#defn-general-backward-sub">Definition 12</a>, we implemented a back substitution routine <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a>:</p>
+<p>This system in Eqn. <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(34)</a> is in row reduced form; thus, it can now be solved using <em>back substitution</em>. Based on the <a class="reference internal" href="#defn-general-backward-sub">Definition 12</a>, we implemented a back substitution routine <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Backward substituion)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1075,6 +1075,40 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </li>
 </ol>
 <p><strong>Return</strong> solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+</section>
+</div><p>Now that we have both row reduction and back substitytion algorithms, let’s look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction (<a class="reference internal" href="#example-time-discretized-decay">Example 14</a>):</p>
+<div class="proof example dropdown admonition" id="example-time-discretized-decay">
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (First-order decay)</p>
+<section class="example-content" id="proof-content">
+<p>Setup a system of linear algebraic equations whose solution describes the concentration as a function of time for a compound <span class="math notranslate nohighlight">\(A\)</span> that undergoes first-order decay in a well-mixed batch reactor. The concentration balance for compound <span class="math notranslate nohighlight">\(A\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-balance-concentration">
+<span class="eqno">(35)<a class="headerlink" href="#equation-eqn-balance-concentration" title="Permalink to this equation">#</a></span>\[\frac{dC_{A}}{dt} = -\kappa{C_{A}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\kappa\)</span> denotes the first-order rate constant governing the rate of decay (units: 1/time), and the initial condition is given by <span class="math notranslate nohighlight">\(C_{A,0}\)</span>.
+Let <span class="math notranslate nohighlight">\(C_{A,0} = 10~\text{mmol/L}\)</span>, <span class="math notranslate nohighlight">\(\kappa = 0.5~\text{hr}^{-1}\)</span> and <span class="math notranslate nohighlight">\(h = 0.1\)</span>.</p>
+<p><strong>Solution</strong>: Let’s discretize the concentration balance using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">forward finte difference</a> approximation of the time derivatrive:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ca-recursion">
+<span class="eqno">(36)<a class="headerlink" href="#equation-eqn-ca-recursion" title="Permalink to this equation">#</a></span>\[C_{A,j+1} = C_{A,j} - h\kappa{C_{A,j}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(h\)</span> denotes the time step-size, and <span class="math notranslate nohighlight">\(C_{A,\star}\)</span> denotes the concentration of <span class="math notranslate nohighlight">\(A\)</span> at time-step <span class="math notranslate nohighlight">\(\star\)</span>. Starting with <span class="math notranslate nohighlight">\(j=0\)</span>,
+Eqn <a class="reference internal" href="#equation-eqn-ca-recursion">(36)</a> can be used to construct a <span class="math notranslate nohighlight">\(T{\times}T\)</span> matrix where each rows is a seperate time-step:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ca-system-txt">
+<span class="eqno">(37)<a class="headerlink" href="#equation-eqn-ca-system-txt" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{pmatrix}
+1 &amp; 0 &amp; \dots &amp; 0 \\
+(\kappa{h} - 1) &amp; 1 &amp; \dots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+0 &amp; \dots &amp; (\kappa{h} - 1) &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+C_{A,1} \\
+C_{A,2} \\
+\vdots \\
+C_{A,T}
+\end{pmatrix} = 
+\begin{pmatrix}
+C_{A,0}\left(1-h\kappa\right) \\
+0 \\
+\vdots \\
+0 
+\end{pmatrix}\end{split}\]</div>
 </section>
 </div></section>
 </section>

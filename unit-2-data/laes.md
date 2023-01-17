@@ -478,7 +478,7 @@ __Step 3__: Solve for the unknown values $x_{1},\dots,x_{n}$ using _back substit
 \end{bmatrix}
 ```
 
-This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form, and can now be solved by _back substitution_. Based on the {prf:ref}`defn-general-backward-sub`, we implemented a back substitution routine {prf:ref}`algo-backward-substituion`:
+This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form; thus, it can now be solved using _back substitution_. Based on the {prf:ref}`defn-general-backward-sub`, we implemented a back substitution routine {prf:ref}`algo-backward-substituion`:
 
 ````{prf:algorithm} Backward substituion
 :label: algo-backward-substituion
@@ -504,6 +504,57 @@ This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form, and can 
 **Return** solution vector $\mathbf{x}$
 
 ````
+
+Now that we have both row reduction and back substitytion algorithms, let's look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction ({prf:ref}`example-time-discretized-decay`):
+
+````{prf:example} First-order decay
+:label: example-time-discretized-decay
+:class: dropdown
+
+Setup a system of linear algebraic equations whose solution describes the concentration as a function of time for a compound $A$ that undergoes first-order decay in a well-mixed batch reactor. The concentration balance for compound $A$ is given by:
+
+```{math}
+:label: eqn-balance-concentration
+\frac{dC_{A}}{dt} = -\kappa{C_{A}}
+```
+
+where $\kappa$ denotes the first-order rate constant governing the rate of decay (units: 1/time), and the initial condition is given by $C_{A,0}$.
+Let $C_{A,0} = 10~\text{mmol/L}$, $\kappa = 0.5~\text{hr}^{-1}$ and $h = 0.1$. 
+
+__Solution__: Let's discretize the concentration balance using a [forward finte difference](https://en.wikipedia.org/wiki/Finite_difference) approximation of the time derivatrive:
+
+```{math}
+:label: eqn-CA-recursion
+C_{A,j+1} = C_{A,j} - h\kappa{C_{A,j}}
+```
+
+where $h$ denotes the time step-size, and $C_{A,\star}$ denotes the concentration of $A$ at time-step $\star$. Starting with $j=0$, 
+Eqn {eq}`eqn-CA-recursion` can be used to construct a $T{\times}T$ matrix where each rows is a seperate time-step:
+
+```{math}
+:label: eqn-CA-system-TxT
+\begin{pmatrix}
+1 & 0 & \dots & 0 \\
+(\kappa{h} - 1) & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots \\
+0 & \dots & (\kappa{h} - 1) & 1
+\end{pmatrix}
+\begin{pmatrix}
+C_{A,1} \\
+C_{A,2} \\
+\vdots \\
+C_{A,T}
+\end{pmatrix} = 
+\begin{pmatrix}
+C_{A,0}\left(1-h\kappa\right) \\
+0 \\
+\vdots \\
+0 
+\end{pmatrix}
+```
+
+````
+
 
 
 (content:references:iterative-methods)=
