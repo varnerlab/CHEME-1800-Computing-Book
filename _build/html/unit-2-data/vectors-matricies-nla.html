@@ -502,6 +502,18 @@ title="Print to PDF"
        Left multiplication of a matrix by a vector
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-matrix-products">
+       Matrix-Matrix products
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#matrix-matrix-properties">
+         Matrix-Matrix properties
+        </a>
+       </li>
+      </ul>
+     </li>
     </ul>
    </li>
   </ul>
@@ -656,6 +668,18 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#left-multiplication-of-a-matrix-by-a-vector">
        Left multiplication of a matrix by a vector
       </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-matrix-products">
+       Matrix-Matrix products
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#matrix-matrix-properties">
+         Matrix-Matrix properties
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -962,39 +986,31 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 \[y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
 <p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><p>The <em>right multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 4</span></a>):</p>
+</div><p>The <em>right multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 4</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 11</a> is given in <a class="reference internal" href="#algo-right-multiplication-matrix-vector">Algorithm 3</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-right-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Naive right multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
-<p><strong>Outputs:</strong> Vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{A}\times\mathbf{x}\)</span>.</p>
+<p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span></p>
+<p><strong>Outputs:</strong> Product vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{m\times{1}}\)</span>.</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
-<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
-<li><p>initialize (rowsx) <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>)</p></li>
-<li><p>initialize vector <span class="math notranslate nohighlight">\(\mathbf{y}~\leftarrow\)</span> zeros(rowsA)</p></li>
-</ol>
-<p><strong>Check</strong></p>
-<ol class="simple">
-<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsx</p>
-<ol class="simple">
-<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> cannot be multiplied</p></li>
-</ol>
-</li>
+<li><p>set  <span class="math notranslate nohighlight">\((m, n)\leftarrow\text{size}(\mathbf{A})\)</span></p></li>
+<li><p>initialize <span class="math notranslate nohighlight">\(\mathbf{y}\leftarrow\text{zeros}(m)\)</span></p></li>
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
-<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots,m}\)</span>:</p>
 <ol class="simple">
-<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1,\dots,n}\)</span>:</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y_{i}~\leftarrow y_{i} + a_{ij}\times{x_{j}}\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -1017,32 +1033,31 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(21)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
+</div><p>The <em>left multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 5</span></a>):</p>
+<figure class="align-default" id="fig-left-multiplication-matrix-vector">
+<a class="reference internal image-reference" href="../_images/Fig-bA-Left-Multiplication.pdf"><img alt="../_images/Fig-bA-Left-Multiplication.pdf" src="../_images/Fig-bA-Left-Multiplication.pdf" style="height: 160px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 12</a> is given in <a class="reference internal" href="#algo-left-multiplication-matrix-vector">Algorithm 4</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive left multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
-<p><strong>Outputs:</strong> Vector <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{A}\times\mathbf{x}\)</span>.</p>
+<p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m\times{1}}\)</span></p>
+<p><strong>Outputs:</strong> Product vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{1\times{n}}\)</span>.</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
-<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
-<li><p>initialize (rowsx) <span class="math notranslate nohighlight">\(\leftarrow\)</span> length(<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>)</p></li>
-<li><p>initialize vector <span class="math notranslate nohighlight">\(\mathbf{y}~\leftarrow\)</span> zeros(rowsA)</p></li>
-</ol>
-<p><strong>Check</strong></p>
-<ol class="simple">
-<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsx</p>
-<ol class="simple">
-<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> cannot be multiplied</p></li>
-</ol>
-</li>
+<li><p>set  <span class="math notranslate nohighlight">\((m, n)\leftarrow\text{size}(\mathbf{A})\)</span></p></li>
+<li><p>initialize <span class="math notranslate nohighlight">\(\mathbf{y}\leftarrow\text{zeros}(n)\)</span></p></li>
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
-<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots,n}\)</span>:</p>
 <ol class="simple">
-<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1,\dots,m}\)</span>:</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y_{i}~\leftarrow y_{i} + a_{ji}\times{x_{j}}\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -1050,17 +1065,26 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </ol>
 <p><strong>Return</strong> vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
 </section>
-</div><p>The <em>left multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 5</span></a>):</p>
-<figure class="align-default" id="fig-left-multiplication-matrix-vector">
-<a class="reference internal image-reference" href="../_images/Fig-bA-Left-Multiplication.pdf"><img alt="../_images/Fig-bA-Left-Multiplication.pdf" src="../_images/Fig-bA-Left-Multiplication.pdf" style="height: 160px;" /></a>
+</div></section>
+<section id="matrix-matrix-products">
+<h4>Matrix-Matrix products<a class="headerlink" href="#matrix-matrix-products" title="Permalink to this headline">#</a></h4>
+<p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.</p>
+<div class="proof definition admonition" id="defn-matrix-matrix-product">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Matrix-matrix product)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. The matrix-matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span> produces the matrix <span class="math notranslate nohighlight">\(\mathbf{C}\in\mathbb{R}^{m\times{p}}\)</span> with elements:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-matrix-matrix-product-elements">
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
+<p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
+</section>
+</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
+<figure class="align-default" id="fig-multiplication-matrix-matrix">
+<a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 360px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
-Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only <em>compatible</em> matrices can be
-multiplied together. For example, consider two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. For <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to be compatible,
-meaning we can compute the matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span>, the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must be same as the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 13</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 5</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1098,23 +1122,16 @@ meaning we can compute the matrix product <span class="math notranslate nohighli
 </ol>
 <p><strong>Return</strong> matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span></p>
 </section>
-</div><p>Given a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with <em>m</em> rows and <em>n</em> columns, and a matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> with <em>n</em> rows and <em>p</em> columns, the
-product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a matrix with <em>m</em> rows and <em>p</em> columns in which the (i,j)th element of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m;~j=1,2,\cdots,p}\]</div>
-<p>The <em>matrix-matrix multiplication</em> operation can be represented graphically (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
-<figure class="align-default" id="fig-multiplication-matrix-matrix">
-<a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 360px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>In general, matrix multiplication is not communinative e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>, thus the order of multiplication matters (unlike multiplying two scalar numbers together). However, while matrix multiplication is not communinative, it is distributive:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\]</div>
-<p>and associative:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}\]</div>
+</div><section id="matrix-matrix-properties">
+<h5>Matrix-Matrix properties<a class="headerlink" href="#matrix-matrix-properties" title="Permalink to this headline">#</a></h5>
+<p>Matrix-matrix products have different properties compared with the product of two scalar numbers.</p>
+<ul class="simple">
+<li><p>Non-commutativity: In general, matrix multiplication is not commutative, e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>; thus the order of multiplication matters (unlike multiplying two scalar numbers together).</p></li>
+<li><p>Distributivity: Matrix products are distributive, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)</span>.</p></li>
+<li><p>Associative: Matrix products are associative, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}\)</span>.</p></li>
+<li><p>Transpose: The transpose of a matrix product is the product of transposes, i.e., <span class="math notranslate nohighlight">\(\left(\mathbf{A}\mathbf{B}\right)^{T} = \mathbf{B}^{T}\mathbf{A}^{T}\)</span>.</p></li>
+</ul>
+</section>
 </section>
 </section>
 </section>
@@ -1133,11 +1150,11 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 13 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div></section>
@@ -1150,15 +1167,15 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
-<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Properties of Matrix Norms)</p>
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Properties of Matrix Norms)</p>
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
 <p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
 <span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
 </section>
@@ -1171,7 +1188,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
 <p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 </section>

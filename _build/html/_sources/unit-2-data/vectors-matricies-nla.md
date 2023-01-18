@@ -312,37 +312,34 @@ $$y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}$$
 This operation is possible if the number of columns of the matrix $\mathbf{A}$ equals the number of rows of the vector $\mathbf{x}$.
 ````
 
-The _right multiplication operation_ can be represented graphically ({numref}`fig-right-multiplication-matrix-vector`):
+The _right multiplication operation_ can be represented graphically as a series of scalar$\times$vector multiplication and vector-vector summation operations ({numref}`fig-right-multiplication-matrix-vector`):
 
 ```{figure} ./figs/Fig-Ab-Multiplication.pdf
 ---
 height: 140px
 name: fig-right-multiplication-matrix-vector
 ---
-Caption goes here
+Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar$\times$vector multiplication and vector-vector summation operations. 
 ```
+
+A psuedo code implemetation of {prf:ref}`defn-right-matrix-vector-multiplication` is given in {prf:ref}`algo-right-multiplication-matrix-vector`:
 
 ```{prf:algorithm} Naive right multiplication of a matrix by a vector
 :label: algo-right-multiplication-matrix-vector
 :class: dropdown
 
-**Inputs:** Matrix $\mathbf{A}$, and vector $\mathbf{x}$
+**Inputs:** Matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$
 
-**Outputs:** Vector $\mathbf{y} = \mathbf{A}\times\mathbf{x}$.
+**Outputs:** Product vector $\mathbf{y}\in\mathbb{R}^{m\times{1}}$.
 
 **Initialize**
-1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
-1. initialize (rowsx) $\leftarrow$ length($\mathbf{x}$)
-1. initialize vector $\mathbf{y}~\leftarrow$ zeros(rowsA)
-
-**Check**
-1. if colsA $\neq$ rowsx
-    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and vector $\mathbf{x}$ cannot be multiplied
+1. set  $(m, n)\leftarrow\text{size}(\mathbf{A})$
+1. initialize $\mathbf{y}\leftarrow\text{zeros}(m)$
   
 **Main**
-1. for i $\in$ 1 to rowsA:
-    1. for j $\in$ 1 to colsA:
-        1. $y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}$
+1. for $i\in{1,\dots,m}$:
+    1. for $j\in{1,\dots,n}$:
+        1. $y_{i}~\leftarrow y_{i} + a_{ij}\times{x_{j}}$
 
 **Return** vector $\mathbf{y}$
 ```
@@ -371,47 +368,65 @@ where $\mathbf{x}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Tra
 
 ````
 
-
-```{prf:algorithm} Naive left multiplication of a matrix by a vector
-:class: dropdown
-:label: algo-left-multiplication-matrix-vector
-
-**Inputs:** Matrix $\mathbf{A}$, and vector $\mathbf{x}$
-
-**Outputs:** Vector $\mathbf{y} = \mathbf{A}\times\mathbf{x}$.
-
-**Initialize**
-1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
-1. initialize (rowsx) $\leftarrow$ length($\mathbf{x}$)
-1. initialize vector $\mathbf{y}~\leftarrow$ zeros(rowsA)
-
-**Check**
-1. if colsA $\neq$ rowsx
-    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and vector $\mathbf{x}$ cannot be multiplied
-  
-**Main**
-1. for i $\in$ 1 to rowsA:
-    1. for j $\in$ 1 to colsA:
-        1. $y[i]~\leftarrow y[i] + A[i,j]\times{x[j]}$
-
-**Return** vector $\mathbf{y}$
-```
-
-
-The _left multiplication operation_ can be represented graphically ({numref}`fig-left-multiplication-matrix-vector`):
+The _left multiplication operation_ can be represented graphically as a series of scalar$\times$vector multiplication and vector-vector summation operations ({numref}`fig-left-multiplication-matrix-vector`):
 
 ```{figure} ./figs/Fig-bA-Left-Multiplication.pdf
 ---
 height: 160px
 name: fig-left-multiplication-matrix-vector
 ---
+Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar$\times$vector multiplication and vector-vector summation operations. 
+```
+
+A psuedo code implemetation of {prf:ref}`defn-left-multiply-matrix-vector` is given in {prf:ref}`algo-left-multiplication-matrix-vector`:
+
+```{prf:algorithm} Naive left multiplication of a matrix by a vector
+:class: dropdown
+:label: algo-left-multiplication-matrix-vector
+
+**Inputs:** Matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and vector $\mathbf{x}\in\mathbb{R}^{m\times{1}}$
+
+**Outputs:** Product vector $\mathbf{y}\in\mathbb{R}^{1\times{n}}$.
+
+**Initialize**
+1. set  $(m, n)\leftarrow\text{size}(\mathbf{A})$
+1. initialize $\mathbf{y}\leftarrow\text{zeros}(n)$
+  
+**Main**
+1. for $i\in{1,\dots,n}$:
+    1. for $j\in{1,\dots,m}$:
+        1. $y_{i}~\leftarrow y_{i} + a_{ji}\times{x_{j}}$
+
+**Return** vector $\mathbf{y}$
+```
+
+#### Matrix-Matrix products
+Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
+ 
+````{prf:definition} Matrix-matrix product
+:label: defn-matrix-matrix-product
+
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{B}\in\mathbb{R}^{n\times{p}}$. The matrix-matrix product $\mathbf{C} = \mathbf{A}\times\mathbf{B}$ produces the matrix $\mathbf{C}\in\mathbb{R}^{m\times{p}}$ with elements:
+
+```{math}
+:label: eqn-matrix-matrix-product-elements
+c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}
+```
+
+The matrices $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{B}\in\mathbb{R}^{n\times{p}}$ are compatible if the number of columns of $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ equals the number of rows of $\mathbf{B}\in\mathbb{R}^{n\times{p}}$. Otherwise, the matrices are incompatible and cannot be multiplied. 
+````
+
+The _matrix-matrix multiplication_ operation can be represented graphically ({numref}`fig-multiplication-matrix-matrix`):
+
+```{figure} ./figs/Fig-AB-Matrix-Matrix-Multiplication.pdf
+---
+height: 360px
+name: fig-multiplication-matrix-matrix
+---
 Caption goes here
 ```
 
-Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.
-Matrix-matrix products have different properties compared with the product of two scalar numbers. First, only _compatible_ matrices can be 
-multiplied together. For example, consider two matrices $\mathbf{A}$ and $\mathbf{B}$. For $\mathbf{A}$ and $\mathbf{B}$ to be compatible, 
-meaning we can compute the matrix product $\mathbf{C} = \mathbf{A}\mathbf{B}$, the number of columns of $\mathbf{A}$ must be same as the number of rows of $\mathbf{B}$. 
+A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in {prf:ref}`algo-matrix-matrix-code`:
 
 ````{prf:algorithm} Naive Matrix $\times$ Matrix multiplication
 :class: dropdown
@@ -440,29 +455,13 @@ meaning we can compute the matrix product $\mathbf{C} = \mathbf{A}\mathbf{B}$, t
 **Return** matrix $\mathbf{C}$
 ````
 
-Given a matrix $\mathbf{A}$ with _m_ rows and _n_ columns, and a matrix $\mathbf{B}$ with _n_ rows and _p_ columns, the 
-product matrix $\mathbf{C}$ is a matrix with _m_ rows and _p_ columns in which the (i,j)th element of $\mathbf{C}$ is given by:
+##### Matrix-Matrix properties
+Matrix-matrix products have different properties compared with the product of two scalar numbers.
 
-$$c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m;~j=1,2,\cdots,p}$$
-
-The _matrix-matrix multiplication_ operation can be represented graphically ({numref}`fig-multiplication-matrix-matrix`):
-
-```{figure} ./figs/Fig-AB-Matrix-Matrix-Multiplication.pdf
----
-height: 360px
-name: fig-multiplication-matrix-matrix
----
-Caption goes here
-```
-
-
-In general, matrix multiplication is not communinative e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$, thus the order of multiplication matters (unlike multiplying two scalar numbers together). However, while matrix multiplication is not communinative, it is distributive:
-
-$$\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$$
-
-and associative:
-
-$$\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}$$
+* Non-commutativity: In general, matrix multiplication is not commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$; thus the order of multiplication matters (unlike multiplying two scalar numbers together). 
+* Distributivity: Matrix products are distributive, i.e., $\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$.
+* Associative: Matrix products are associative, i.e., $\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}$.
+* Transpose: The transpose of a matrix product is the product of transposes, i.e., $\left(\mathbf{A}\mathbf{B}\right)^{T} = \mathbf{B}^{T}\mathbf{A}^{T}$.
 
 ---
 
