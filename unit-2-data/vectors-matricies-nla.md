@@ -348,23 +348,29 @@ Caption goes here
 ```
 
 #### Left multiplication of a matrix by a vector
-We could also consider the _left multiplication_ of a matrix by a vector. Suppose $\mathbf{A}$ is an $m\times{n}$ matrix, and $\mathbf{x}$ is a $m\times{1}$ vector, then the _left matrix-vector product_ is given by:
+We could also consider the _left multiplication_ of a matrix by a vector. Suppose $\mathbf{A}$ is an $m\times{n}$ matrix, and $\mathbf{x}$ is a $m\times{1}$ vector, then the _left matrix-vector product_ is a row vector:
 
-````{prf:definition}
+````{prf:definition} Left matrix-vector product
 :label: defn-left-multiply-matrix-vector
 
-Fill me in
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{x}\in\mathbb{R}^{m\times{1}}$. Then, the _left matrix-vector product_:
+
+```{math}
+:label: eqn-left-matrix-vector-product-matrix
+\mathbf{y} = \mathbf{x}^{T}\mathbf{A}
+```
+
+produces the vector $\mathbf{y}\in\mathbb{R}^{1\times{n}}$ such that:
+
+```{math}
+:label: eqn-left-matrix-vector-product-index
+y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}
+```
+
+where $\mathbf{x}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the vector $\mathbf{x}$.
 
 ````
 
-$$\mathbf{y} = 
-\mathbf{x}^{T}\mathbf{A}$$
-
-where $\mathbf{x}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the vector $\mathbf{x}$.
-The _left product_ generates a $1\times{n}$ row vector with elements:
-
-$$y_{i} = 
-\sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}$$
 
 ```{prf:algorithm} Naive left multiplication of a matrix by a vector
 :class: dropdown

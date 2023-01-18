@@ -1005,21 +1005,19 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </div></section>
 <section id="left-multiplication-of-a-matrix-by-a-vector">
 <h4>Left multiplication of a matrix by a vector<a class="headerlink" href="#left-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
-<p>We could also consider the <em>left multiplication</em> of a matrix by a vector. Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, then the <em>left matrix-vector product</em> is given by:</p>
+<p>We could also consider the <em>left multiplication</em> of a matrix by a vector. Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, then the <em>left matrix-vector product</em> is a row vector:</p>
 <div class="proof definition admonition" id="defn-left-multiply-matrix-vector">
-<p class="admonition-title"><span class="caption-number">Definition 12 </span></p>
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Left matrix-vector product)</p>
 <section class="definition-content" id="proof-content">
-<p>Fill me in</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m\times{1}}\)</span>. Then, the <em>left matrix-vector product</em>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-left-matrix-vector-product-matrix">
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{x}^{T}\mathbf{A}\]</div>
+<p>produces the vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{1\times{n}}\)</span> such that:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-left-matrix-vector-product-index">
+<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><div class="math notranslate nohighlight">
-\[\mathbf{y} = 
-\mathbf{x}^{T}\mathbf{A}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.
-The <em>left product</em> generates a <span class="math notranslate nohighlight">\(1\times{n}\)</span> row vector with elements:</p>
-<div class="math notranslate nohighlight">
-\[y_{i} = 
-\sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\cdots,n}\]</div>
-<div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
+</div><div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive left multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs:</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
@@ -1139,7 +1137,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div></section>
@@ -1156,11 +1154,11 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
 <p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
 <span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
 </section>
@@ -1173,7 +1171,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
 <p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 </section>
