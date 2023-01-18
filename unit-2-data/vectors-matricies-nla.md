@@ -455,10 +455,8 @@ A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in
 **Return** matrix $\mathbf{C}$
 ````
 
-##### Matrix-Matrix properties
-Matrix-matrix products have different properties compared with the product of two scalar numbers.
-
-* Non-commutativity: In general, matrix multiplication is not commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$; thus the order of multiplication matters (unlike multiplying two scalar numbers together). 
+Matrix-matrix products have different properties compared with the product of two scalar numbers:
+* Non-commutativity: Matrix multiplication is typically not commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$.
 * Distributivity: Matrix products are distributive, i.e., $\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$.
 * Associative: Matrix products are associative, i.e., $\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}$.
 * Transpose: The transpose of a matrix product is the product of transposes, i.e., $\left(\mathbf{A}\mathbf{B}\right)^{T} = \mathbf{B}^{T}\mathbf{A}^{T}$.
