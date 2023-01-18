@@ -830,7 +830,7 @@ C_{i,3}
 <span class="eqno">(27)<a class="headerlink" href="#equation-eqn-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{0}\]</div>
 <p>may or may not have a unique solution. However, there is an easy check to determine the existence of a solution to Eqn. <a class="reference internal" href="#equation-eqn-homogenous-laes">(27)</a>:</p>
 <div class="proof definition admonition" id="defn-homogenous-soln-existence">
-<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Homogenous solution existence)</p>
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Homogenous solution existence)</p>
 <section class="definition-content" id="proof-content">
 <p>A homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>
 has a unique solution if and only if the coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has determinant:</p>
@@ -849,9 +849,9 @@ has a unique solution if and only if the coefficient matrix <span class="math no
 <p>will have a unique solution if there exists a matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes-inverse">
 <span class="eqno">(30)<a class="headerlink" href="#equation-eqn-non-homogenous-laes-inverse" title="Permalink to this equation">#</a></span>\[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
-<p>where the <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is called the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. However, the inverse may not always exist (<a class="reference internal" href="#defn-matrix-inverse">Definition 15</a>):</p>
+<p>where the <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is called the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. However, the inverse may not always exist (<a class="reference internal" href="#defn-matrix-inverse">Definition 16</a>):</p>
 <div class="proof definition admonition" id="defn-matrix-inverse">
-<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Matrix inverse existence)</p>
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Matrix inverse existence)</p>
 <section class="definition-content" id="proof-content">
 <p>An <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has an unique inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-a">
@@ -899,9 +899,9 @@ x_{2} &amp; = &amp; \left(b_{2} - l_{21}x_{1}\right) / l_{22} \\
 x_{3} &amp; = &amp; \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
 \end{eqnarray}
 \end{split}\]</div>
-<p>This idea, called <em>forward substitution</em>, can be extended to any <span class="math notranslate nohighlight">\(n\times{n}\)</span> non-singular lower triangular system (<a class="reference internal" href="#defn-general-forward-sub">Definition 16</a>):</p>
+<p>This idea, called <em>forward substitution</em>, can be extended to any <span class="math notranslate nohighlight">\(n\times{n}\)</span> non-singular lower triangular system (<a class="reference internal" href="#defn-general-forward-sub">Definition 17</a>):</p>
 <div class="proof definition admonition" id="defn-general-forward-sub">
-<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Forward substitution)</p>
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Forward substitution)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system (<span class="math notranslate nohighlight">\(n\geq{2}\)</span>) of equations which is lower triangular, and non-singular of the form:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-lower-triag-system">
@@ -917,9 +917,9 @@ x_{i} &amp; = &amp; \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\ri
 <p>where <span class="math notranslate nohighlight">\(l_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
 </div><p>Alternatively, we can take a similar apprach with an upper triangular system,  called <em>backward substituion</em>, to solve for
-unknow solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> (<a class="reference internal" href="#defn-general-backward-sub">Definition 17</a>):</p>
+unknow solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> (<a class="reference internal" href="#defn-general-backward-sub">Definition 18</a>):</p>
 <div class="proof definition admonition" id="defn-general-backward-sub">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Backward substitution)</p>
+<p class="admonition-title"><span class="caption-number">Definition 18 </span> (Backward substitution)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system (<span class="math notranslate nohighlight">\(n\geq{2}\)</span>) of equations which is upper triangular, and non-singular of the form:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-upper-triag-system">
@@ -1048,7 +1048,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
 0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
 \end{bmatrix}\end{split}\]</div>
-<p>This system in Eqn. <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(39)</a> is in row reduced form; thus, it can now be solved using <em>back substitution</em>. Based on the <a class="reference internal" href="#defn-general-backward-sub">Definition 17</a>, we implemented a back substitution routine <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a>:</p>
+<p>This system in Eqn. <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(39)</a> is in row reduced form; thus, it can now be solved using <em>back substitution</em>. Based on the <a class="reference internal" href="#defn-general-backward-sub">Definition 18</a>, we implemented a back substitution routine <a class="reference internal" href="#algo-backward-substituion">Algorithm 7</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Backward substituion)</p>
 <section class="algorithm-content" id="proof-content">

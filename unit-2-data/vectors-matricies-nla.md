@@ -249,12 +249,12 @@ where $y_{ij}$ and $x_{ij}$ denote the ijth component of the product matrix $\ma
 ### Vector-vector, matrix-vector and matrix-matrix multiplication
 
 #### Vector-vector multiplication
-_Inner products_: Two compatible vectors $\mathbf{a}$ and $\mathbf{b}$ can be multiplied together to produce a _scalar_ in an operation called an _inner product_: 
+Inner products: Two compatible vectors $\mathbf{a}$ and $\mathbf{b}$ can be multiplied together to produce a _scalar_ in an operation called an [inner product](https://en.wikipedia.org/wiki/Inner_product_space): 
 
 ````{prf:definition} Inner product
 :label: defn-vector-vector-multiplication
 
-Suppose $\mathbf{a}$ and $\mathbf{b}$ are $m\times{1}$ vectors. Then _vector-vector inner product_ given by:
+Let $\mathbf{a}\in\mathbb{R}^{m\times{1}}$ and $\mathbf{b}\in\mathbb{R}^{m\times{1}}$. Then, the _vector-vector inner product_ is given by:
 
 ```{math}
 :label: eqn-vector-vector-inner-product
@@ -271,20 +271,20 @@ y = \sum_{i=1}^{m}a_{i}b_{i}
 This operation is possible if the vectors $\mathbf{a}$ and $\mathbf{b}$ have the same number of elements.
 ````
 
-_Outer product_: Suppose you have an $m\times{1}$ vector $\mathbf{a}$, and an $n\times{1}$ vector $\mathbf{b}$. The vectors $\mathbf{a}$ and $\mathbf{b}$ can be multipled together to form a $m\times{n}$ matrix through an [outer product](https://en.wikipedia.org/wiki/Outer_product):
+Outer product: Suppose you have an $m\times{1}$ vector $\mathbf{a}$, and an $n\times{1}$ vector $\mathbf{b}$. The vectors $\mathbf{a}$ and $\mathbf{b}$ can be multipled together to form a $m\times{n}$ matrix through an [outer product](https://en.wikipedia.org/wiki/Outer_product):
 
 
 ````{prf:definition} Outer product
 :label: defn-vector-vector-multiplication-op
 
-Suppose $\mathbf{a}$ is an $m\times{1}$ vector, and $\mathbf{b}$ are $n\times{1}$ vector. Then _vector-vector outer product_ given by:
+Let $\mathbf{a}\in\mathbb{R}^{m\times{1}}$ and $\mathbf{b}\in\mathbb{R}^{n\times{1}}$. Then, the _vector-vector outer product_ given by:
 
 ```{math}
 :label: eqn-vector-vector-outer-product
 \mathbf{Y} = \mathbf{a}\otimes\mathbf{b}
 ```
 
-produces the $m\times{n}$ matrix $\mathbf{Y}$ with elements:
+produces the $m\times{n}$ matrix $\mathbf{Y}\in\mathbb{R}^{m\times{n}}$ with elements:
 
 ```{math}
 :label: eqn-vector-outer-product-index-form
@@ -301,19 +301,16 @@ A common operation is _right matrix-vector multiplication_ of a matrix $\mathbf{
 ````{prf:definition} Right matrix-vector multiplication
 :label: defn-right-matrix-vector-multiplication
 
-Suppose $\mathbf{A}$ is a $m\times{n}$ matrix, and $\mathbf{x}$ is a $n\times{1}$ column vector. The _right matrix-vector product_ given by:
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{x}\in\mathbb{R}^{n\times{1}}$. Then, the _right matrix-vector product_ given by:
 
-$$\mathbf{y} = 
-\mathbf{A}\mathbf{x}$$
+$$\mathbf{y} = \mathbf{A}\mathbf{x}$$
 
-generates a $m\times{1}$ column vector $\mathbf{y}$, where the $i$th element is given by:
+generates $\mathbf{y}\in\mathbb{R}^{m\times{1}}$ where the $i$th element is given by:
 
 $$y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}$$
 
-This operation is possible if the number of columns of the matrix $\mathbf{A}$ is equal to the number of rows of the vector $\mathbf{x}$.
+This operation is possible if the number of columns of the matrix $\mathbf{A}$ equals the number of rows of the vector $\mathbf{x}$.
 ````
-
-
 
 The _right multiplication operation_ can be represented graphically ({numref}`fig-right-multiplication-matrix-vector`):
 
@@ -351,8 +348,14 @@ Caption goes here
 ```
 
 #### Left multiplication of a matrix by a vector
-We could also consider the _left multiplication_ of a matrix by a vector. 
-Suppose $\mathbf{A}$ is a $m\times{n}$ matrix, and $\mathbf{x}$ is a $m\times{1}$ col vector, then the _left product_ is given by:
+We could also consider the _left multiplication_ of a matrix by a vector. Suppose $\mathbf{A}$ is an $m\times{n}$ matrix, and $\mathbf{x}$ is a $m\times{1}$ vector, then the _left matrix-vector product_ is given by:
+
+````{prf:definition}
+:label: defn-left-multiply-matrix-vector
+
+Fill me in
+
+````
 
 $$\mathbf{y} = 
 \mathbf{x}^{T}\mathbf{A}$$

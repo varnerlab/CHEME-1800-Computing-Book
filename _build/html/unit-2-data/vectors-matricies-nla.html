@@ -923,11 +923,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h3>Vector-vector, matrix-vector and matrix-matrix multiplication<a class="headerlink" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication" title="Permalink to this headline">#</a></h3>
 <section id="vector-vector-multiplication">
 <h4>Vector-vector multiplication<a class="headerlink" href="#vector-vector-multiplication" title="Permalink to this headline">#</a></h4>
-<p><em>Inner products</em>: Two compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multiplied together to produce a <em>scalar</em> in an operation called an <em>inner product</em>:</p>
+<p>Inner products: Two compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multiplied together to produce a <em>scalar</em> in an operation called an <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a>:</p>
 <div class="proof definition admonition" id="defn-vector-vector-multiplication">
 <p class="admonition-title"><span class="caption-number">Definition 9 </span> (Inner product)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are <span class="math notranslate nohighlight">\(m\times{1}\)</span> vectors. Then <em>vector-vector inner product</em> given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{m\times{1}}\)</span>. Then, the <em>vector-vector inner product</em> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-vector-inner-product">
 <span class="eqno">(16)<a class="headerlink" href="#equation-eqn-vector-vector-inner-product" title="Permalink to this equation">#</a></span>\[y = \mathbf{a}^{T}\mathbf{b}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{a}^{T}\)</span> denotes the transpose of the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and the scalar <span class="math notranslate nohighlight">\(y\)</span> equals:</p>
@@ -935,16 +935,17 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(17)<a class="headerlink" href="#equation-eqn-vector-inner-product-index-form" title="Permalink to this equation">#</a></span>\[y = \sum_{i=1}^{m}a_{i}b_{i}\]</div>
 <p>This operation is possible if the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> have the same number of elements.</p>
 </section>
-</div><p><em>Outer product</em>: Suppose you have an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, and an <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multipled together to form a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix through an <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer product</a>:</p>
+</div><p>Outer product: Suppose you have an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, and an <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multipled together to form a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix through an <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer product</a>:</p>
 <div class="proof definition admonition" id="defn-vector-vector-multiplication-op">
 <p class="admonition-title"><span class="caption-number">Definition 10 </span> (Outer product)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector. Then <em>vector-vector outer product</em> given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the <em>vector-vector outer product</em> given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-vector-outer-product">
 <span class="eqno">(18)<a class="headerlink" href="#equation-eqn-vector-vector-outer-product" title="Permalink to this equation">#</a></span>\[\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}\]</div>
-<p>produces the <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> with elements:</p>
+<p>produces the <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\in\mathbb{R}^{m\times{n}}\)</span> with elements:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-outer-product-index-form">
 <span class="eqno">(19)<a class="headerlink" href="#equation-eqn-vector-outer-product-index-form" title="Permalink to this equation">#</a></span>\[y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}\]</div>
+<p>The outer product operation is equivalent to <span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{a}\mathbf{b}^{T}\)</span>.</p>
 </section>
 </div></section>
 <section id="right-multiplication-of-a-matrix-by-a-vector">
@@ -953,14 +954,13 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <div class="proof definition admonition" id="defn-right-matrix-vector-multiplication">
 <p class="admonition-title"><span class="caption-number">Definition 11 </span> (Right matrix-vector multiplication)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector. The <em>right matrix-vector product</em> given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the <em>right matrix-vector product</em> given by:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{y} = 
-\mathbf{A}\mathbf{x}\]</div>
-<p>generates a <span class="math notranslate nohighlight">\(m\times{1}\)</span> column vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, where the <span class="math notranslate nohighlight">\(i\)</span>th element is given by:</p>
+\[\mathbf{y} = \mathbf{A}\mathbf{x}\]</div>
+<p>generates <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{m\times{1}}\)</span> where the <span class="math notranslate nohighlight">\(i\)</span>th element is given by:</p>
 <div class="math notranslate nohighlight">
 \[y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
-<p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is equal to the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
 </div><p>The <em>right multiplication operation</em> can be represented graphically (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 4</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
@@ -1005,9 +1005,13 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </div></section>
 <section id="left-multiplication-of-a-matrix-by-a-vector">
 <h4>Left multiplication of a matrix by a vector<a class="headerlink" href="#left-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
-<p>We could also consider the <em>left multiplication</em> of a matrix by a vector.
-Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> col vector, then the <em>left product</em> is given by:</p>
-<div class="math notranslate nohighlight">
+<p>We could also consider the <em>left multiplication</em> of a matrix by a vector. Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, then the <em>left matrix-vector product</em> is given by:</p>
+<div class="proof definition admonition" id="defn-left-multiply-matrix-vector">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Fill me in</p>
+</section>
+</div><div class="math notranslate nohighlight">
 \[\mathbf{y} = 
 \mathbf{x}^{T}\mathbf{A}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.
@@ -1131,7 +1135,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 12 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
@@ -1148,7 +1152,7 @@ product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> 
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
-<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Properties of Matrix Norms)</p>
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Properties of Matrix Norms)</p>
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
