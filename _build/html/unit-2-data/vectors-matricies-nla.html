@@ -513,25 +513,18 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#measurements-and-distances">
-   Measurements and Distances
+   Measurements and distances
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#vector-and-matrix-norms">
      Vector and matrix norms
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#properties-of-vector-norms">
-       Properties of vector norms
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#matrix-norms">
-       Matrix norms
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-distance-metrics">
+     Other distance metrics
+    </a>
    </li>
   </ul>
  </li>
@@ -543,6 +536,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
      Eigenvalue-eigenvector problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition">
+     Singular value decomposition
     </a>
    </li>
   </ul>
@@ -673,25 +671,18 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#measurements-and-distances">
-   Measurements and Distances
+   Measurements and distances
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#vector-and-matrix-norms">
      Vector and matrix norms
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#properties-of-vector-norms">
-       Properties of vector norms
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#matrix-norms">
-       Matrix norms
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-distance-metrics">
+     Other distance metrics
+    </a>
    </li>
   </ul>
  </li>
@@ -703,6 +694,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
      Eigenvalue-eigenvector problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition">
+     Singular value decomposition
     </a>
    </li>
   </ul>
@@ -1063,11 +1059,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(22)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
 <p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
 </section>
-</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
+</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
 <figure class="align-default" id="fig-multiplication-matrix-matrix">
-<a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 360px;" /></a>
+<a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 380px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Caption goes here</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products.</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 13</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 5</a>:</p>
@@ -1108,7 +1104,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </ol>
 <p><strong>Return</strong> matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span></p>
 </section>
-</div><p>Matrix-matrix products have different properties compared with the product of two scalar numbers:</p>
+</div><p>Finally, matrix-matrix products have different properties compared with the product of two scalar numbers:</p>
 <ul class="simple">
 <li><p>Non-commutativity: Matrix multiplication is typically not commutative, e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>.</p></li>
 <li><p>Distributivity: Matrix products are distributive, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)</span>.</p></li>
@@ -1120,12 +1116,10 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </section>
 <hr class="docutils" />
 <section id="measurements-and-distances">
-<h2>Measurements and Distances<a class="headerlink" href="#measurements-and-distances" title="Permalink to this headline">#</a></h2>
+<h2>Measurements and distances<a class="headerlink" href="#measurements-and-distances" title="Permalink to this headline">#</a></h2>
 <section id="vector-and-matrix-norms">
 <h3>Vector and matrix norms<a class="headerlink" href="#vector-and-matrix-norms" title="Permalink to this headline">#</a></h3>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Norm_(mathematics)">norm</a> is a function that measures the length of vectors or matrices. The notion of length is handy because it enables us to define distance, i.e., similarity between vectors (or matrices) in applications such as machine learning.</p>
-<section id="properties-of-vector-norms">
-<h4>Properties of vector norms<a class="headerlink" href="#properties-of-vector-norms" title="Permalink to this headline">#</a></h4>
 <p>A vector norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{n}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
 <ul class="simple">
 <li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{x}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span></p></li>
@@ -1140,10 +1134,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(23)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
-</div></section>
-<section id="matrix-norms">
-<h4>Matrix norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">#</a></h4>
-<p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
+</div><p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
 <ul class="simple">
 <li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{A}||\geq{0}\)</span> for any matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{A}||=0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{A}=0\)</span>.</p></li>
 <li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{A}|| = \alpha{||\mathbf{A}||}\)</span> for any <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
@@ -1161,19 +1152,44 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(25)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
+<section id="other-distance-metrics">
+<h3>Other distance metrics<a class="headerlink" href="#other-distance-metrics" title="Permalink to this headline">#</a></h3>
+<p>Other functions can be used to measure the similarity (or distance between) vectors and matrices:</p>
+<div class="proof definition admonition" id="defn-rbf-measure">
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Radial basis function)</p>
+<section class="definition-content" id="proof-content">
+<p>A radial basis function (RBF) measures the similarity between two input vectors <span class="math notranslate nohighlight">\(\mathbf{x}_{p}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x_{q}}\in\mathbb{R}^{m\times{1}}\)</span>. The most common is the Gaussian radial basis function, defined by a bell-shaped curve:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-rbf-similarity-function">
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
+\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)\right) +\sigma_{n}^{2}\delta_{pq}\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\in\mathbb{R}^{m\times{m}}\)</span> can be any symmetric matrix, <span class="math notranslate nohighlight">\(\sigma_{f}^{2}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{n}^{2}\)</span> are constants and <span class="math notranslate nohighlight">\(\delta_{pq}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a>.</p>
+</section>
+</div><p>We shall see that radial basis functions are used in various machine learning applications, such as classification.</p>
 </section>
 </section>
 <section id="dimensionality-reduction">
 <h2>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h2>
-<p>Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. It simplifies data, removes noise, and makes patterns in the data more visible. Dimensionality reduction can help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p>
-<p>There are many techniques for dimensionality reduction, including <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>, which are both based on computing eigenvalues and eigenvectors, and other approaches, such as clustering and <a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding (t-SNE)</a>, which are based upon minimizing some distance measure.</p>
+<p>Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p>
+<p>There are many techniques for dimensionality reduction, including <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>, which are both based on solving <a class="reference internal" href="#content-eigenvalue-eigenvector-problems"><span class="std std-ref">Eigenvalue-eigenvector problems</span></a>. Other approaches, such as clustering and <a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding (t-SNE)</a>, are based upon minimizing some other distance measure.</p>
 <section id="eigenvalue-eigenvector-problems">
-<h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
-<p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:</p>
+<span id="content-eigenvalue-eigenvector-problems"></span><h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
+<p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is a <span class="math notranslate nohighlight">\(n\times{1}\)</span> column vector (also called an eigenvector), and <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection.</p>
-<p>Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
+<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
+</section>
+<section id="singular-value-decomposition">
+<h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:</p>
+<div class="proof definition admonition" id="defn-svd-real-matrix">
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Singular value decomposition)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-math-svd">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
+</section>
+</div><p>SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
 </section>
 </section>
 <hr class="docutils" />

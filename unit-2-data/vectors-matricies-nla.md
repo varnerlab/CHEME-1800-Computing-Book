@@ -416,14 +416,14 @@ c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots
 The matrices $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{B}\in\mathbb{R}^{n\times{p}}$ are compatible if the number of columns of $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ equals the number of rows of $\mathbf{B}\in\mathbb{R}^{n\times{p}}$. Otherwise, the matrices are incompatible and cannot be multiplied. 
 ````
 
-The _matrix-matrix multiplication_ operation can be represented graphically ({numref}`fig-multiplication-matrix-matrix`):
+The _matrix-matrix multiplication_ operation can be represented graphically as a series of right matrix-vector products ({numref}`fig-multiplication-matrix-matrix`):
 
 ```{figure} ./figs/Fig-AB-Matrix-Matrix-Multiplication.pdf
 ---
-height: 360px
+height: 380px
 name: fig-multiplication-matrix-matrix
 ---
-Caption goes here
+Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products. 
 ```
 
 A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in {prf:ref}`algo-matrix-matrix-code`:
@@ -455,7 +455,7 @@ A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in
 **Return** matrix $\mathbf{C}$
 ````
 
-Matrix-matrix products have different properties compared with the product of two scalar numbers:
+Finally, matrix-matrix products have different properties compared with the product of two scalar numbers:
 * Non-commutativity: Matrix multiplication is typically not commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$.
 * Distributivity: Matrix products are distributive, i.e., $\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$.
 * Associative: Matrix products are associative, i.e., $\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}$.
@@ -463,12 +463,11 @@ Matrix-matrix products have different properties compared with the product of tw
 
 ---
 
-## Measurements and Distances
+## Measurements and distances
 
 ### Vector and matrix norms
 A [norm](https://en.wikipedia.org/wiki/Norm_(mathematics)) is a function that measures the length of vectors or matrices. The notion of length is handy because it enables us to define distance, i.e., similarity between vectors (or matrices) in applications such as machine learning. 
 
-#### Properties of vector norms
 A vector norm is any function $||\star||:\mathbb{R}^{n}\rightarrow\mathbb{R}$ such that following properties are true:
 
 * Non-negativity: $||\mathbf{x}||\geq{0}$ for any vector $\mathbf{x}\in\mathbb{R}^{n}$
@@ -488,7 +487,6 @@ for any $p>0$.
 
 ````
 
-#### Matrix norms
 A matrix norm is any function $||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}$ such that following properties are true:
 
 * Non-negativity: $||\mathbf{A}||\geq{0}$ for any matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $||\mathbf{A}||=0$ if and only if $\mathbf{A}=0$.
@@ -512,26 +510,65 @@ $\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}$ the inequality holds:
 :label: eqn-submul-norm
 ||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||
 ```
-
 ````
 
+### Other distance metrics
+Other functions can be used to measure the similarity (or distance between) vectors and matrices:
+
+````{prf:definition} Radial basis function
+:label: defn-rbf-measure
+
+A radial basis function (RBF) measures the similarity between two input vectors $\mathbf{x}_{p}\in\mathbb{R}^{m\times{1}}$ and $\mathbf{x_{q}}\in\mathbb{R}^{m\times{1}}$. The most common is the Gaussian radial basis function, defined by a bell-shaped curve:
+
+```{math}
+:label: eqn-rbf-similarity-function
+
+k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
+\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)\right) +\sigma_{n}^{2}\delta_{pq}
+
+```
+where the matrix $\mathbf{M}\in\mathbb{R}^{m\times{m}}$ can be any symmetric matrix, $\sigma_{f}^{2}$ and $\sigma_{n}^{2}$ are constants and $\delta_{pq}$ denotes the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta). 
+````
+
+We shall see that radial basis functions are used in various machine learning applications, such as classification. 
+
 ## Dimensionality reduction
-Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. It simplifies data, removes noise, and makes patterns in the data more visible. Dimensionality reduction can help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
+Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
-There are many techniques for dimensionality reduction, including [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), which are both based on computing eigenvalues and eigenvectors, and other approaches, such as clustering and [t-distributed stochastic neighbor embedding (t-SNE)](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding), which are based upon minimizing some distance measure.  
+There are many techniques for dimensionality reduction, including [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), which are both based on solving {ref}`content:eigenvalue-eigenvector-problems`. Other approaches, such as clustering and [t-distributed stochastic neighbor embedding (t-SNE)](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding), are based upon minimizing some other distance measure.  
 
-
+(content:eigenvalue-eigenvector-problems)=
 ### Eigenvalue-eigenvector problems
-Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of eigenvalues and eigenvectors for a matrix. An eigenvalue is a scalar value that satisfies the equation:
+Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values $\left\{\lambda_{1},\dots,\lambda_{m}\right\}$ called [eigenvalues](https://mathworld.wolfram.com/Eigenvalue.html) and a set of vectors $\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}$ called [eigenvectors](https://mathworld.wolfram.com/Eigenvector.html) such that:
 
 ```{math}
 :label: eqn-eigenvalue-eigenvector-problem
-\mathbf{A}\mathbf{v} = \lambda\mathbf{v}
+\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}
 ```
 
-where $\mathbf{A}$ is a $n\times{n}$ square matrix, $\mathbf{v}$ is a $n\times{1}$ column vector (also called an eigenvector), and $\lambda$ is a scalar (also called an eigenvalue). Eigenvectors of a matrix are the vectors that, when multiplied by the matrix, are scaled by a factor of the eigenvalue. Eigenvalues and eigenvectors are used to represent the behavior of linear transformations, such as rotation, scaling, and reflection. 
+where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$ is a column vector, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
 
-Eigenvalues and eigenvectors are used in many areas of mathematics and physics, including image compression, and data reduction approaches such as [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis), and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
+
+### Singular value decomposition
+[Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:
+
+````{prf:definition} Singular value decomposition
+:label: defn-svd-real-matrix
+
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$. The singular value decomposition of the matrix $\mathbf{A}$ is given by:
+
+```{math}
+:label: eqn-math-SVD
+\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}
+```
+
+where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and $\mathbf{\Sigma}$ is a diagonal matrix containing the singular values $\sigma_{i}=\Sigma_{ii}$ along the main diagonal. 
+
+````
+
+SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
+
+
 
 
 ---
