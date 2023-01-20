@@ -1,13 +1,18 @@
 # Vectors, Matrices, Measurements and Distances
 
 ## Introduction
-This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important.
+This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  
 
 * __Vectors__: Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations.
 * __Matrix__: A matrix is a two-dimensional array of numbers. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to represent linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent and describe data sets, with each row representing a different data point and each column representing a distinct feature.
 
+Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important. In this lecture, we'll:
+
+
+
 ---
 
+(content:references:matrix-vector)=
 ## Matricies and vectors
 Matrices are two-dimensional rectangular arrays of numbers, widgets, etc with $m$ rows and $n$ columns:
 
@@ -111,7 +116,7 @@ where $\mathbf{A}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Tra
 ````
 Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.
 
-
+(content:determinant-trace)=
 ## Determinant and Trace
 The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix. [Determinants](https://en.wikipedia.org/wiki/Determinant) can be used to determine whether a [matrix is invertible](./laes.md), and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The [determinant of square matrix](https://en.wikipedia.org/wiki/Determinant) $\mathbf{A}$ is defined as ({prf:ref}`defn-det-A`):
 
@@ -177,6 +182,7 @@ Rank can also be considered a measure of the unique information in a matrix; thu
 
 The kernel of a matrix is the set of all solutions to the homogeneous equation $\mathbf{A}\mathbf{x} = \mathbf{0}$, where $\mathbf{A}$ is the matrix, and $\mathbf{x}$ is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.
 
+(content:matrix-vector-operations)=
 ## Matrix and vector operations
 Matrix and vector operations are mathematical procedures that include addition, subtraction, scalar multiplication, and matrix multiplication, which can be used to represent and manipulate linear transformations. Understanding these operations is crucial for many areas of science, engineering, and computer science.
 
@@ -463,6 +469,7 @@ Finally, matrix-matrix products have different properties compared with the prod
 
 ---
 
+(content:measurements-distances)=
 ## Measurements and distances
 
 ### Vector and matrix norms
@@ -532,6 +539,8 @@ where the matrix $\mathbf{M}\in\mathbb{R}^{m\times{m}}$ can be any symmetric mat
 
 We shall see that radial basis functions are used in various machine learning applications, such as classification. 
 
+
+(content:dimensionality-reduction)=
 ## Dimensionality reduction
 Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
@@ -567,6 +576,8 @@ where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and $\mathbf{\Sigma}
 ````
 
 SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
+
+
 
 
 ---

@@ -438,19 +438,15 @@ A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in
 :class: dropdown
 :label: algo-matrix-matrix-code
 
-**Inputs** Matrix $\mathbf{A}$, and matrix $\mathbf{B}$
+**Inputs** Matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$, and matrix $\mathbf{B}\in\mathbb{R}^{n\times{p}}$
 
-**Outputs** Matrix $\mathbf{C} = \mathbf{A}\times\mathbf{B}$.
+**Outputs** Product matrix $\mathbf{C}\in\mathbb{R}^{m\times{p}}$.
 
 **Initialize**
 
-1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
-2. initialize (rowsB, colsB) $\leftarrow$ size($\mathbf{B}$)
-3. initialize matrix $\mathbf{C}~\leftarrow$ zeros(rowsA, colsB)
-
-**Check**
-1. if colsA $\neq$ rowsB
-    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and Matrix $\mathbf{B}$ cannot be multiplied
+1. initialize $(m, n)\leftarrow\text{size}(\mathbf{A})$
+2. initialize $(n, p)\leftarrow\text{size}(\mathbf{B})$
+3. initialize matrix $\mathbf{C}\leftarrow\text{zeros}(m, p)$
 
 **Main**
 1. for i $\in$ 1 to rowsA:
