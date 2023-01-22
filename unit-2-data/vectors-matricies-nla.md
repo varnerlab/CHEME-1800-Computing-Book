@@ -420,6 +420,8 @@ c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots
 ```
 
 The matrices $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{B}\in\mathbb{R}^{n\times{p}}$ are compatible if the number of columns of $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ equals the number of rows of $\mathbf{B}\in\mathbb{R}^{n\times{p}}$. Otherwise, the matrices are incompatible and cannot be multiplied. 
+
+The runtime of matrix multiplication is $\mathcal{O}(n^3)$, where $n$ is the dimension of the matrices being multiplied. 
 ````
 
 The _matrix-matrix multiplication_ operation can be represented graphically as a series of right matrix-vector products ({numref}`fig-multiplication-matrix-matrix`):
@@ -449,13 +451,15 @@ A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in
 3. initialize matrix $\mathbf{C}\leftarrow\text{zeros}(m, p)$
 
 **Main**
-1. for i $\in$ 1 to rowsA:
-    1. for j $\in$ 1 to colsB:
-        1. for k $\in$ 1 to colsA:
-            1. $C[i,j]~\leftarrow~C[i,j] + A[i,k]\times{B[k,j]}$
+1. for $i\in{1,\dots, m}$
+    1. for $j\in{1,\dots,p}$
+        1. for $k\in{1,\dots,n}$
+            1. $c_{ij}~\leftarrow~c_{ij} + a_{ik}\times{b_{kj}}$
 
 **Return** matrix $\mathbf{C}$
 ````
+
+
 
 Finally, matrix-matrix products have different properties compared with the product of two scalar numbers:
 * Non-commutativity: Matrix multiplication is typically not commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$.

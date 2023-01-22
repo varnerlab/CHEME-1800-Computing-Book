@@ -1059,6 +1059,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-matrix-product-elements">
 <span class="eqno">(22)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
 <p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
+<p>The runtime of matrix multiplication is <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of the matrices being multiplied.</p>
 </section>
 </div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
 <figure class="align-default" id="fig-multiplication-matrix-matrix">
@@ -1071,31 +1072,23 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
-<p><strong>Outputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span>.</p>
+<p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span></p>
+<p><strong>Outputs</strong> Product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\in\mathbb{R}^{m\times{p}}\)</span>.</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
-<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
-<li><p>initialize (rowsB, colsB) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>)</p></li>
-<li><p>initialize matrix <span class="math notranslate nohighlight">\(\mathbf{C}~\leftarrow\)</span> zeros(rowsA, colsB)</p></li>
-</ol>
-<p><strong>Check</strong></p>
-<ol class="simple">
-<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsB</p>
-<ol class="simple">
-<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and Matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> cannot be multiplied</p></li>
-</ol>
-</li>
+<li><p>initialize <span class="math notranslate nohighlight">\((m, n)\leftarrow\text{size}(\mathbf{A})\)</span></p></li>
+<li><p>initialize <span class="math notranslate nohighlight">\((n, p)\leftarrow\text{size}(\mathbf{B})\)</span></p></li>
+<li><p>initialize matrix <span class="math notranslate nohighlight">\(\mathbf{C}\leftarrow\text{zeros}(m, p)\)</span></p></li>
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
-<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots, m}\)</span></p>
 <ol class="simple">
-<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsB:</p>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1,\dots,p}\)</span></p>
 <ol class="simple">
-<li><p>for k <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(k\in{1,\dots,n}\)</span></p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(C[i,j]~\leftarrow~C[i,j] + A[i,k]\times{B[k,j]}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{ij}~\leftarrow~c_{ij} + a_{ik}\times{b_{kj}}\)</span></p></li>
 </ol>
 </li>
 </ol>
