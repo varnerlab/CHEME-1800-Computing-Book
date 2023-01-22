@@ -1,14 +1,11 @@
 # Vectors, Matrices, Measurements and Distances
 
 ## Introduction
-This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  
-
-* __Vectors__: Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations.
-* __Matrix__: A matrix is a two-dimensional array of numbers. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to represent linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent and describe data sets, with each row representing a different data point and each column representing a distinct feature.
-
-Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important. In this lecture, we'll:
-
-
+Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. 
+This lecture will introduce Vectors, Matrices, and some operations defined on these objects:
+* {ref}`content:references:matrix-vector` are one- and two-dimensional arrays of numbers. Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.
+* {ref}`content:measurements-distances` are tools to measure distances between matrix and vector objects.
+* {ref}`content:dimensionality-reduction` systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
 ---
 
@@ -619,7 +616,10 @@ Fill me in.
 ---
 
 ## Summary
-Fill me in. 
+This lecture introduced vectors, matrices, and operations defined on these objects:
+* {ref}`content:references:matrix-vector` are one- and two-dimensional arrays of numbers. Vectors represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.
+* {ref}`content:measurements-distances` are tools to measure distances between matrix and vector objects.
+* {ref}`content:dimensionality-reduction` systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
 ## Additonal resources
 * The matrix vector and matrix $\times$ matrix product figures were inspired [Visualizing Matrix Multiplication as a Linear Combination, Eli Bendersky, Apr. 12, 15 · Big Data Zone](https://dzone.com/articles/visualizing-matrix)
