@@ -90,7 +90,7 @@ Signed integers, represented by the set $\mathbb{Z}$, are the positive and negat
 \mathbb{Z} = \left\{\dots, -3,-2, -1, 0, 1, 2, 3, \dots\right\}
 ```
 
-The in-memory representation of signed integers, i.e., their `numeric primitive` representation, is typically a 4 $\times$ byte (32-bit) or 8 $\times$ byte (64-bit) binary number; on newer hardware and operating systems, the default value for a signed integer is an 8 $\times$ byte (64-bit) binary number.
+The in-memory representation of signed integers, i.e., their `numeric primitive` representation, is typically a 4 $\times$ byte (32-bit) or 8 $\times$ byte (64-bit) binary number; on newer hardware and operating systems, the default value for a signed integer is an 8 $\times$ byte (64-bit) binary number ({prf:ref}`example-binary-1800`).
 
 ````{prf:example} 64-bit integer in binary format
 :class: dropdown
