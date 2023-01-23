@@ -18,18 +18,16 @@ In this lecture, we introduce expressions, variables, and types. Expressions are
 ---
 
 ## Expressions
-In programming, an expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
+Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
 
 Here are some common examples of expressions in the [Julia programming language](https://docs.julialang.org):
 
-* `2 + 3`: This expression evaluates to the value 5.
+* `2 + 3`: This expression evaluates to the value 5, an `integer`. 
 * `x * y`: This expression evaluates to the product of the variables x and y.
-* `x == y`: This expression evaluates to `true` if x and y are equal, and `false` if they are not.
-* `x > y`: This expression evaluates to `true` if x is greater than y, and `false` if it is not.
+* `x == y`: This expression evaluates to `true` if x and y are equal and `false` if they are not; `true` and `false` are Boolean types.
+* `x > y`: This expression evaluates to `true` if x is greater than y, and `false` if it is not; `true` and `false` are Boolean types.
 
-Expressions can be used independently or as part of a larger statement. For example, you can use an expression as an argument to a function or assign the result of an expression to a variable using the assignment operator `=`.
-
-Expressions are powerful tools for manipulating data in your programs and are an essential part of most programming languages.
+Expressions evaluate to a value that has a type. Expressions can be used independently or as part of a larger statement. For example, expressions can be arguments to a function or assigned to a variable using the assignment operator `=`. 
 
 ## Variables and Types
 A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
@@ -45,7 +43,7 @@ Types are an essential concept in programming, and they are used to ensure the c
 ### Numerical and logical types
 Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.
 
-The in-memory `numeric primitives` representation of integers, floating-point, and logical values is referred to as ; numeric primitives, which the computer understands, are binary numbers (numbers written to the `base 2`). However, there are also other interesting number systems that you may also see, e.g., numbers written in the `base 8` (octal) or `base 16` (hexadecimal) system:
+Numeric primitives, which the computer understands, are binary numbers (numbers written to the `base 2`). However, there are other number systems that you may encounter, e.g., numbers written in the `base 8` (octal) or `base 16` (hexadecimal) system ({prf:ref}`defn-number-system`):
 
 ````{prf:definition} Base $b$ numbers
 :label: defn-number-system

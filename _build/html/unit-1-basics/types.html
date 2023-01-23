@@ -688,16 +688,15 @@ title="Print to PDF"
 <hr class="docutils" />
 <section id="expressions">
 <h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
-<p>In programming, an expression is a combination of values, variables, and operators that evaluates to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.</p>
+<p>Expressions are a combination of values, variables, and operators that <em>evaluate</em> to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.</p>
 <p>Here are some common examples of expressions in the <a class="reference external" href="https://docs.julialang.org">Julia programming language</a>:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span></code>: This expression evaluates to the value 5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span></code>: This expression evaluates to the value 5, an <code class="docutils literal notranslate"><span class="pre">integer</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>: This expression evaluates to the product of the variables x and y.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x and y are equal, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if they are not.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x is greater than y, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if it is not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x and y are equal and <code class="docutils literal notranslate"><span class="pre">false</span></code> if they are not; <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> are Boolean types.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x is greater than y, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if it is not; <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> are Boolean types.</p></li>
 </ul>
-<p>Expressions can be used independently or as part of a larger statement. For example, you can use an expression as an argument to a function or assign the result of an expression to a variable using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
-<p>Expressions are powerful tools for manipulating data in your programs and are an essential part of most programming languages.</p>
+<p>Expressions evaluate to a value that has a type. Expressions can be used independently or as part of a larger statement. For example, expressions can be arguments to a function or assigned to a variable using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
 </section>
 <section id="variables-and-types">
 <h2>Variables and Types<a class="headerlink" href="#variables-and-types" title="Permalink to this headline">#</a></h2>
@@ -711,7 +710,7 @@ title="Print to PDF"
 <section id="numerical-and-logical-types">
 <h3>Numerical and logical types<a class="headerlink" href="#numerical-and-logical-types" title="Permalink to this headline">#</a></h3>
 <p>Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives.</span></code> On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., <code class="docutils literal notranslate"><span class="pre">1</span></code> is an integer literal, and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a floating-point literal. Modern programming languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.</p>
-<p>The in-memory <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives</span></code> representation of integers, floating-point, and logical values is referred to as ; numeric primitives, which the computer understands, are binary numbers (numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>). However, there are also other interesting number systems that you may also see, e.g., numbers written in the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) or <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) system:</p>
+<p>Numeric primitives, which the computer understands, are binary numbers (numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>). However, there are other number systems that you may encounter, e.g., numbers written in the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) or <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) system (<a class="reference internal" href="#defn-number-system">Definition 1</a>):</p>
 <div class="proof definition admonition" id="defn-number-system">
 <p class="admonition-title"><span class="caption-number">Definition 1 </span> (Base <span class="math notranslate nohighlight">\(b\)</span> numbers)</p>
 <section class="definition-content" id="proof-content">
@@ -922,16 +921,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters, i.e., strings are of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. Modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="97328f54-3a0c-4ef2-941f-990229e65b56" name="12878134-b4bf-4588-bf83-343a8d629dd4" type="radio">
-</input><label class="sd-tab-label" for="97328f54-3a0c-4ef2-941f-990229e65b56">
+<input checked="checked" id="1ce30931-79c2-417c-8717-75b2862f4684" name="896855c5-0efe-4cef-a0b1-4e95915a645a" type="radio">
+</input><label class="sd-tab-label" for="1ce30931-79c2-417c-8717-75b2862f4684">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="44f28847-3c79-4138-8c70-65ab0c45785b" name="12878134-b4bf-4588-bf83-343a8d629dd4" type="radio">
-</input><label class="sd-tab-label" for="44f28847-3c79-4138-8c70-65ab0c45785b">
+<input id="2dcd793c-ded1-447d-b234-5ad20c73223e" name="896855c5-0efe-4cef-a0b1-4e95915a645a" type="radio">
+</input><label class="sd-tab-label" for="2dcd793c-ded1-447d-b234-5ad20c73223e">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
