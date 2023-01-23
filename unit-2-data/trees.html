@@ -682,10 +682,9 @@ title="Print to PDF"
 <p>Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts non-linear data structures, which do not have a strict sequential order.</p>
 <section id="arrays">
 <span id="content-references-lda-arrays"></span><h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h3>
-<p>An array is a data structure that stores a collection of items of the same type in a contiguous block of memory. The items in an array are accessed using an index, an integer representing the item’s position in the collection.</p>
-<p>In most programming languages, arrays are zero-indexed, which means that the first element in the array has an index of 0, the second element has an index of 1, and so on.</p>
+<p>An array is a data structure that stores a collection of items of the same type in a contiguous block of memory. The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of 0, the second element has an index of 1, and so on.</p>
 <p>Arrays can store large amounts of data because they allow fast access to any element using the index. However, inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.</p>
-<p>There are also different types of arrays, such as one-dimensional arrays, which store a linear sequence of elements, and multi-dimensional arrays, which are arrays of arrays and can be used to store data in a more complex structure.</p>
+<p>There are different types of arrays, such as one-dimensional arrays, which store a linear sequence of elements, and multi-dimensional arrays, i.e., arrays of arrays that store data in more complex structures.</p>
 </section>
 <section id="linked-lists">
 <span id="content-references-lda-linked-lists"></span><h3>Linked lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">#</a></h3>
@@ -757,8 +756,8 @@ title="Print to PDF"
 <p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1ff93f79-2220-479c-99c3-095380bedbd3" name="a3b03a6e-1861-4b1d-bc5c-1282d726946c" type="radio">
-</input><label class="sd-tab-label" for="1ff93f79-2220-479c-99c3-095380bedbd3">
+<input checked="checked" id="602e592c-bf8f-4c7d-a338-38e4ab0e56f9" name="b95b74ce-7c83-4991-be7a-b22a85cb321f" type="radio">
+</input><label class="sd-tab-label" for="602e592c-bf8f-4c7d-a338-38e4ab0e56f9">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -770,8 +769,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="02d91914-f6b5-4d0c-a444-40cfa0810da0" name="a3b03a6e-1861-4b1d-bc5c-1282d726946c" type="radio">
-</input><label class="sd-tab-label" for="02d91914-f6b5-4d0c-a444-40cfa0810da0">
+<input id="7a280b6d-5e92-40d0-837b-1db2ee195c02" name="b95b74ce-7c83-4991-be7a-b22a85cb321f" type="radio">
+</input><label class="sd-tab-label" for="7a280b6d-5e92-40d0-837b-1db2ee195c02">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -790,8 +789,8 @@ python</label><div class="sd-tab-content docutils">
 <h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="cafd7e9a-b247-4d49-96cb-ed863a2e9796" name="e45601a7-d7fd-44e7-bb78-94d48fe5f175" type="radio">
-</input><label class="sd-tab-label" for="cafd7e9a-b247-4d49-96cb-ed863a2e9796">
+<input checked="checked" id="a1e86a88-f312-4fb8-8e34-d9a57635ea64" name="e62323fd-f2d4-4c72-a8a5-db247e2ce289" type="radio">
+</input><label class="sd-tab-label" for="a1e86a88-f312-4fb8-8e34-d9a57635ea64">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -803,8 +802,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="28898729-0502-493b-9fcb-09a3dc698356" name="e45601a7-d7fd-44e7-bb78-94d48fe5f175" type="radio">
-</input><label class="sd-tab-label" for="28898729-0502-493b-9fcb-09a3dc698356">
+<input id="1b252d9d-06a1-4af1-9d72-4fa6e53d7cbe" name="e62323fd-f2d4-4c72-a8a5-db247e2ce289" type="radio">
+</input><label class="sd-tab-label" for="1b252d9d-06a1-4af1-9d72-4fa6e53d7cbe">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>

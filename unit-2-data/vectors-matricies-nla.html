@@ -542,6 +542,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#singular-value-decomposition">
      Singular value decomposition
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connection-of-svd-and-eigendecomposition">
+       Connection of SVD and eigendecomposition
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -700,6 +707,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#singular-value-decomposition">
      Singular value decomposition
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connection-of-svd-and-eigendecomposition">
+       Connection of SVD and eigendecomposition
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -727,12 +741,13 @@ title="Print to PDF"
 <h1>Vectors, Matrices, Measurements and Distances<a class="headerlink" href="#vectors-matrices-measurements-and-distances" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_algebra">linear algebra</a>, a branch of mathematics that deals with linear systems of equations and transformations.</p>
+<p>Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential.
+This lecture will introduce Vectors, Matrices, and some operations defined on these objects:</p>
 <ul class="simple">
-<li><p><strong>Vectors</strong>: Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations.</p></li>
-<li><p><strong>Matrix</strong>: A matrix is a two-dimensional array of numbers. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to represent linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent and describe data sets, with each row representing a different data point and each column representing a distinct feature.</p></li>
+<li><p><a class="reference internal" href="#content-references-matrix-vector"><span class="std std-ref">Matricies and vectors</span></a> are one- and two-dimensional arrays of numbers. Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.</p></li>
+<li><p><a class="reference internal" href="#content-measurements-distances"><span class="std std-ref">Measurements and distances</span></a> are tools to measure distances between matrix and vector objects.</p></li>
+<li><p><a class="reference internal" href="#content-dimensionality-reduction"><span class="std std-ref">Dimensionality reduction</span></a> systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p></li>
 </ul>
-<p>Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important. In this lecture, we’ll:</p>
 <hr class="docutils" />
 </section>
 <section id="matricies-and-vectors">
@@ -1059,6 +1074,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-matrix-product-elements">
 <span class="eqno">(22)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
 <p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
+<p>The runtime of matrix multiplication is <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of the matrices being multiplied.</p>
 </section>
 </div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
 <figure class="align-default" id="fig-multiplication-matrix-matrix">
@@ -1071,31 +1087,23 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
-<p><strong>Outputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span>.</p>
+<p><strong>Inputs</strong> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>, and matrix <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span></p>
+<p><strong>Outputs</strong> Product matrix <span class="math notranslate nohighlight">\(\mathbf{C}\in\mathbb{R}^{m\times{p}}\)</span>.</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
-<li><p>initialize (rowsA, colsA) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>)</p></li>
-<li><p>initialize (rowsB, colsB) <span class="math notranslate nohighlight">\(\leftarrow\)</span> size(<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>)</p></li>
-<li><p>initialize matrix <span class="math notranslate nohighlight">\(\mathbf{C}~\leftarrow\)</span> zeros(rowsA, colsB)</p></li>
-</ol>
-<p><strong>Check</strong></p>
-<ol class="simple">
-<li><p>if colsA <span class="math notranslate nohighlight">\(\neq\)</span> rowsB</p>
-<ol class="simple">
-<li><p>throw error <span class="math notranslate nohighlight">\(\leftarrow\)</span> Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and Matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> cannot be multiplied</p></li>
-</ol>
-</li>
+<li><p>initialize <span class="math notranslate nohighlight">\((m, n)\leftarrow\text{size}(\mathbf{A})\)</span></p></li>
+<li><p>initialize <span class="math notranslate nohighlight">\((n, p)\leftarrow\text{size}(\mathbf{B})\)</span></p></li>
+<li><p>initialize matrix <span class="math notranslate nohighlight">\(\mathbf{C}\leftarrow\text{zeros}(m, p)\)</span></p></li>
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
-<li><p>for i <span class="math notranslate nohighlight">\(\in\)</span> 1 to rowsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots, m}\)</span></p>
 <ol class="simple">
-<li><p>for j <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsB:</p>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1,\dots,p}\)</span></p>
 <ol class="simple">
-<li><p>for k <span class="math notranslate nohighlight">\(\in\)</span> 1 to colsA:</p>
+<li><p>for <span class="math notranslate nohighlight">\(k\in{1,\dots,n}\)</span></p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(C[i,j]~\leftarrow~C[i,j] + A[i,k]\times{B[k,j]}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{ij}~\leftarrow~c_{ij} + a_{ik}\times{b_{kj}}\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -1177,8 +1185,18 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
 <span class="eqno">(27)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
+<p>In addition to thier other uses, eigenvalues have a another interesting feature (<a class="reference internal" href="#obs-eigenvalues-determinants">Observation 3</a>):</p>
+<div class="proof observation admonition" id="obs-eigenvalues-determinants">
+<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Determinants and eigenvalues)</p>
+<section class="observation-content" id="proof-content">
+<p>Eigenvalues can be used directly to calculate the determinant of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>. Denote the set of
+eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> as <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span>. Then, the <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-det-a-eigenvalues">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
+<p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\lambda_{i}&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
 </section>
+</div></section>
 <section id="singular-value-decomposition">
 <h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:</p>
@@ -1187,16 +1205,36 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-math-svd">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
+<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
 </section>
 </div><p>SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
+<div class="proof observation admonition" id="obs-svd-matrix-decomposition">
+<p class="admonition-title"><span class="caption-number">Observation 4 </span> (SVD matrix decomposition)</p>
+<section class="observation-content" id="proof-content">
+<p>The singular value decomposition (SVD) can be thought of as decomposing a matrix into a weighted, ordered sum of separable matrices.
+Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> have the singular value decomposition <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\)</span>.</p>
+<p>Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> can be written as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-matrix-decomp">
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> denotes the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith columns of the corresponding SVD matrices, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
+<p>The outer-product <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+</section>
+</div><section id="connection-of-svd-and-eigendecomposition">
+<h4>Connection of SVD and eigendecomposition<a class="headerlink" href="#connection-of-svd-and-eigendecomposition" title="Permalink to this headline">#</a></h4>
+<p>Fill me in.</p>
+</section>
 </section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p>This lecture introduced vectors, matrices, and operations defined on these objects:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-matrix-vector"><span class="std std-ref">Matricies and vectors</span></a> are one- and two-dimensional arrays of numbers. Vectors represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.</p></li>
+<li><p><a class="reference internal" href="#content-measurements-distances"><span class="std std-ref">Measurements and distances</span></a> are tools to measure distances between matrix and vector objects.</p></li>
+<li><p><a class="reference internal" href="#content-dimensionality-reduction"><span class="std std-ref">Dimensionality reduction</span></a> systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p></li>
+</ul>
 </section>
 <section id="additonal-resources">
 <h2>Additonal resources<a class="headerlink" href="#additonal-resources" title="Permalink to this headline">#</a></h2>

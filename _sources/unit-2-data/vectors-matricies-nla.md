@@ -1,14 +1,11 @@
 # Vectors, Matrices, Measurements and Distances
 
 ## Introduction
-This lecture will introduce Vectors, Matrices, and some operations defined on these objects. Vectors and matrices are an essential part of [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra), a branch of mathematics that deals with linear systems of equations and transformations.  
-
-* __Vectors__: Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations.
-* __Matrix__: A matrix is a two-dimensional array of numbers. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to represent linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent and describe data sets, with each row representing a different data point and each column representing a distinct feature.
-
-Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is important. In this lecture, we'll:
-
-
+Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. 
+This lecture will introduce Vectors, Matrices, and some operations defined on these objects:
+* {ref}`content:references:matrix-vector` are one- and two-dimensional arrays of numbers. Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.
+* {ref}`content:measurements-distances` are tools to measure distances between matrix and vector objects.
+* {ref}`content:dimensionality-reduction` systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
 ---
 
@@ -420,6 +417,8 @@ c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots
 ```
 
 The matrices $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{B}\in\mathbb{R}^{n\times{p}}$ are compatible if the number of columns of $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ equals the number of rows of $\mathbf{B}\in\mathbb{R}^{n\times{p}}$. Otherwise, the matrices are incompatible and cannot be multiplied. 
+
+The runtime of matrix multiplication is $\mathcal{O}(n^3)$, where $n$ is the dimension of the matrices being multiplied. 
 ````
 
 The _matrix-matrix multiplication_ operation can be represented graphically as a series of right matrix-vector products ({numref}`fig-multiplication-matrix-matrix`):
@@ -438,28 +437,26 @@ A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in
 :class: dropdown
 :label: algo-matrix-matrix-code
 
-**Inputs** Matrix $\mathbf{A}$, and matrix $\mathbf{B}$
+**Inputs** Matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$, and matrix $\mathbf{B}\in\mathbb{R}^{n\times{p}}$
 
-**Outputs** Matrix $\mathbf{C} = \mathbf{A}\times\mathbf{B}$.
+**Outputs** Product matrix $\mathbf{C}\in\mathbb{R}^{m\times{p}}$.
 
 **Initialize**
 
-1. initialize (rowsA, colsA) $\leftarrow$ size($\mathbf{A}$)
-2. initialize (rowsB, colsB) $\leftarrow$ size($\mathbf{B}$)
-3. initialize matrix $\mathbf{C}~\leftarrow$ zeros(rowsA, colsB)
-
-**Check**
-1. if colsA $\neq$ rowsB
-    1. throw error $\leftarrow$ Matrix $\mathbf{A}$ and Matrix $\mathbf{B}$ cannot be multiplied
+1. initialize $(m, n)\leftarrow\text{size}(\mathbf{A})$
+2. initialize $(n, p)\leftarrow\text{size}(\mathbf{B})$
+3. initialize matrix $\mathbf{C}\leftarrow\text{zeros}(m, p)$
 
 **Main**
-1. for i $\in$ 1 to rowsA:
-    1. for j $\in$ 1 to colsB:
-        1. for k $\in$ 1 to colsA:
-            1. $C[i,j]~\leftarrow~C[i,j] + A[i,k]\times{B[k,j]}$
+1. for $i\in{1,\dots, m}$
+    1. for $j\in{1,\dots,p}$
+        1. for $k\in{1,\dots,n}$
+            1. $c_{ij}~\leftarrow~c_{ij} + a_{ik}\times{b_{kj}}$
 
 **Return** matrix $\mathbf{C}$
 ````
+
+
 
 Finally, matrix-matrix products have different properties compared with the product of two scalar numbers:
 * Non-commutativity: Matrix multiplication is typically not commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$.
@@ -555,8 +552,24 @@ Eigenvalue-eigenvector problems are a type of mathematical problem that involves
 \mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}
 ```
 
-where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$ is a column vector, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
+where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$ is a column vector, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
 
+In addition to thier other uses, eigenvalues have a another interesting feature ({prf:ref}`obs-eigenvalues-determinants`):
+
+````{prf:observation} Determinants and eigenvalues
+:label: obs-eigenvalues-determinants
+
+Eigenvalues can be used directly to calculate the determinant of a matrix $\mathbf{A}\in\mathbb{R}^{m\times{m}}$. Denote the set of 
+eignenvalues for the matrix $\mathbf{A}\in\mathbb{R}^{m\times{m}}$ as $\left\{\lambda_{1},\dots,\lambda_{m}\right\}$. Then, the $\det\left(\mathbf{A}\right)$ is given by:
+
+```{math}
+:label: eqn-det-A-eigenvalues
+\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}
+```
+
+A matrix $\mathbf{A}\in\mathbb{R}^{m\times{m}}$ is non-singular if $\lambda_{i}>0~\forall{i}$, otherwise it is singular.
+
+````
 
 ### Singular value decomposition
 [Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:
@@ -577,13 +590,36 @@ where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and $\mathbf{\Sigma}
 
 SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
 
+````{prf:observation} SVD matrix decomposition
+:label: obs-svd-matrix-decomposition
 
+The singular value decomposition (SVD) can be thought of as decomposing a matrix into a weighted, ordered sum of separable matrices. 
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ have the singular value decomposition $\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$.
+
+Then, the matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ can be written as:
+
+```{math}
+:label: eqn-matrix-decomp
+\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)
+```
+
+where $R_{\mathbf{A}}$ denotes the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith columns of the corresponding SVD matrices, and $\sigma_{i}$ are the ordered singular values. 
+
+The outer-product $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. 
+
+````
+
+#### Connection of SVD and eigendecomposition
+Fill me in.
 
 
 ---
 
 ## Summary
-Fill me in. 
+This lecture introduced vectors, matrices, and operations defined on these objects:
+* {ref}`content:references:matrix-vector` are one- and two-dimensional arrays of numbers. Vectors represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.
+* {ref}`content:measurements-distances` are tools to measure distances between matrix and vector objects.
+* {ref}`content:dimensionality-reduction` systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
 ## Additonal resources
 * The matrix vector and matrix $\times$ matrix product figures were inspired [Visualizing Matrix Multiplication as a Linear Combination, Eli Bendersky, Apr. 12, 15 · Big Data Zone](https://dzone.com/articles/visualizing-matrix)
