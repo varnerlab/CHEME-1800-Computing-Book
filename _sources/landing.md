@@ -32,7 +32,7 @@ Each student’s final grade is individually determined at the end of the semest
 | Percentage | Component |
 | ----------: | --------- |
 | 10%	| __Participation__. Course participation (code reviews, questions and TA/course evaluations) will be an important component of the course. Participation opportunities will be identified throughout the semester. |
-| 50%	| __Problem sets__. Approximately 10 problem sets will be administered over the semester. Problem sets will be distributed via Canvas (typically delivered on Friday afternoons and due one-week later). Problem sets can be completed in teams. |
+| 40%	| __Problem sets__. Approximately 10 problem sets will be administered over the semester. Problem sets will be distributed via Canvas (typically delivered on Friday afternoons and due one-week later). Problem sets can be completed in teams. |
 | 20%	| __Mid-term exam__. One take-home, mid-term examination will be distributed. The distribution date will be announced ahead of time, and once distributed, students will have a specified number of hours (at least 36 hours) to complete the exam. |
 | 30%	| __Final project__. Development of a research project by each student (semester long with additional emphasis during the final 5 weeks of the course). The projects will conclude with a written report and an oral presentation to the class near the end of the semester. The final written reports will be due on the University assigned date for final projects. |
 
