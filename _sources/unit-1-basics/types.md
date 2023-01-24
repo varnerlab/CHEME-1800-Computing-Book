@@ -73,7 +73,7 @@ Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
 
 Write the octal number $\left(112\right)_{8}$ in `base 10`. 
 
-__Solution__: For a `base 8` (octal) number, $b=8$; the octal number $\left(112\right)_{8}$ can be expanded using Eqn. {eq}`eqn-base-b-number` as:
+__Solution__: For a `base 8` (octal) number, $b=8$. The octal number $\left(112\right)_{8}$ can be expanded using Eqn. {eq}`eqn-base-b-number` as:
 
 ```{math}
 :label: example-eqn-base-8-expansion
@@ -121,31 +121,33 @@ __Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bit
 
 ````
 
-##### What about negative integers?
-{prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set $\mathbb{Z}$ also contains negative numbers; how can we represent negative numbers in a `base 2` system? 
+##### Aside: What about negative integers?
+{prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set $\mathbb{Z}$ also contains negative numbers; how can we represent negative integers in a `base 2` system? 
 
-Negative integers are created using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value. [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then addding (using binary addition) a `1` to the least signaficant digit (far right bit) of the result. 
+Negative integers are created using [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers.
+
+[Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then adding (using binary addition) a `1` to the least significant digit (far right bit) of the result.
 
 ````{prf:example} Two's complement
 :class: dropdown
 :label: example-twos-complement
 
-Develop the 64-bit pattern for $\bar{x}=-8$ using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement). 
+Develop the 64-bit pattern for $x=-8$ using [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement). 
 
-__Solution__: The 64-bit patterm for $x=8$ is given by:
+__Solution__: To perform [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), we flip all the bits and add `1` to the least significant bit (the bit at index 0). This procedure requires binary addition: $1+0 = 1$, $0+1 = 1$, $0+0 = 0$ and $1+1 = 0\text{carry}{1}$. The 64-bit pattern for $x=8$ is given by:
 
 ```{math}
 :label: eqn-64-bit-value-positive-8
 8 = \left(0\dots00001000\right)_{2}
 ```
 
-Step 1: Flip all the bits from `0` $\rightarrow$ `1` and vice-versa:
+__Step 1__: Flip all the bits from `0` $\rightarrow$ `1` and vice-versa:
 
 ```{math}
 \left(1\dots11110111\right)_{2}
 ```
 
-Step 2: Add a `1` to the least-significant bit which gives:
+__Step 2__: Add a `1` to the least-significant bit (index 0), which gives:
 
 ```{math}
 -8 = \left(1\dots11111000\right)_{2}
@@ -204,13 +206,13 @@ Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored
 In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits ({numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
 
 ```{math}
-:label: eqn-floating-point-bumbecalled _single_ precision, while 8$\times$bytes (64-bits) floating point numbers are called _double_ precision.r
+:label: eqn-floating-point-number
 x = -1^{S}\times{M}\times{2}^{(E-127)}
 ```
 
 where $S$ denotes the sign bit, $M$ denotes the mantissa (fraction) and $E$ denotes the exponent. 
 * For a 32-bit floating point number, $S$ is bit 31 denoted by $b_{31}$, $M$ is encoded in bits $b_0\rightarrow{b_{22}}$ and $E$ is encoded by bits $b_{23}\rightarrow{b_{30}}$.
-* On the other hand, in a 64-bit floating point number the sign bit $S$ is $b_{63}$, the mantissa $M$ is the number encoded by bits $b_0\rightarrow{b_{51}}$, and the exponent $E$ is encoded by bits $b_{52}\rightarrow{b_{62}}$.
+* On the other hand, in a 64-bit floating point number, the sign bit $S$ is $b_{63}$, the mantissa $M$ is the number encoded by bits $b_0\rightarrow{b_{51}}$, and the exponent $E$ is encoded by bits $b_{52}\rightarrow{b_{62}}$.
 
 Thus, for a 32-bit floating point number, the sign bit is $b_{31}$, while the fraction $M$ is expressed as:
 

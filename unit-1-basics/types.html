@@ -493,8 +493,8 @@ title="Print to PDF"
         </a>
         <ul class="nav section-nav flex-column">
          <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#what-about-negative-integers">
-           What about negative integers?
+          <a class="reference internal nav-link" href="#aside-what-about-negative-integers">
+           Aside: What about negative integers?
           </a>
          </li>
          <li class="toc-h5 nav-item toc-entry">
@@ -606,8 +606,8 @@ title="Print to PDF"
         </a>
         <ul class="nav section-nav flex-column">
          <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#what-about-negative-integers">
-           What about negative integers?
+          <a class="reference internal nav-link" href="#aside-what-about-negative-integers">
+           Aside: What about negative integers?
           </a>
          </li>
          <li class="toc-h5 nav-item toc-entry">
@@ -727,7 +727,7 @@ title="Print to PDF"
 <p class="admonition-title"><span class="caption-number">Example 1 </span> (Base 8 representation)</p>
 <section class="example-content" id="proof-content">
 <p>Write the octal number <span class="math notranslate nohighlight">\(\left(112\right)_{8}\)</span> in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">10</span></code>.</p>
-<p><strong>Solution</strong>: For a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) number, <span class="math notranslate nohighlight">\(b=8\)</span>; the octal number <span class="math notranslate nohighlight">\(\left(112\right)_{8}\)</span> can be expanded using Eqn. <a class="reference internal" href="#equation-eqn-base-b-number">(2)</a> as:</p>
+<p><strong>Solution</strong>: For a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) number, <span class="math notranslate nohighlight">\(b=8\)</span>. The octal number <span class="math notranslate nohighlight">\(\left(112\right)_{8}\)</span> can be expanded using Eqn. <a class="reference internal" href="#equation-eqn-base-b-number">(2)</a> as:</p>
 <div class="math notranslate nohighlight" id="equation-example-eqn-base-8-expansion">
 <span class="eqno">(3)<a class="headerlink" href="#equation-example-eqn-base-8-expansion" title="Permalink to this equation">#</a></span>\[n = 2\times{8}^{0}+1\times{8}^{1}+1\times{8}^2\]</div>
 <p>or <span class="math notranslate nohighlight">\(n = 74\)</span>.</p>
@@ -753,21 +753,22 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 \[1800 \stackrel{?}{=} 2^{3}+2^{8}+2^{9}+2^{10}\]</div>
 <p><strong>Tip</strong>: The <a class="reference external" href="https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring">bitstring</a> function in <a class="reference external" href="https://docs.julialang.org/en/v1/">Julia</a> displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.</p>
 </section>
-</div><section id="what-about-negative-integers">
-<h5>What about negative integers?<a class="headerlink" href="#what-about-negative-integers" title="Permalink to this headline">#</a></h5>
-<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent negative numbers in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system?</p>
-<p>Negative integers are created using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent (but negative) value. <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and then addding (using binary addition) a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least signaficant digit (far right bit) of the result.</p>
+</div><section id="aside-what-about-negative-integers">
+<h5>Aside: What about negative integers?<a class="headerlink" href="#aside-what-about-negative-integers" title="Permalink to this headline">#</a></h5>
+<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent negative integers in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system?</p>
+<p>Negative integers are created using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a>, a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and then adding (using binary addition) a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least significant digit (far right bit) of the result.</p>
 <div class="proof example dropdown admonition" id="example-twos-complement">
 <p class="admonition-title"><span class="caption-number">Example 3 </span> (Two’s complement)</p>
 <section class="example-content" id="proof-content">
-<p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(\bar{x}=-8\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>.</p>
-<p><strong>Solution</strong>: The 64-bit patterm for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
+<p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(x=-8\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>.</p>
+<p><strong>Solution</strong>: To perform <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, we flip all the bits and add <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least significant bit (the bit at index 0). This procedure requires binary addition: <span class="math notranslate nohighlight">\(1+0 = 1\)</span>, <span class="math notranslate nohighlight">\(0+1 = 1\)</span>, <span class="math notranslate nohighlight">\(0+0 = 0\)</span> and <span class="math notranslate nohighlight">\(1+1 = 0\text{carry}{1}\)</span>. The 64-bit pattern for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-64-bit-value-positive-8">
 <span class="eqno">(6)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0\dots00001000\right)_{2}\]</div>
-<p>Step 1: Flip all the bits from <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa:</p>
+<p><strong>Step 1</strong>: Flip all the bits from <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa:</p>
 <div class="math notranslate nohighlight">
 \[\left(1\dots11110111\right)_{2}\]</div>
-<p>Step 2: Add a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least-significant bit which gives:</p>
+<p><strong>Step 2</strong>: Add a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least-significant bit (index 0), which gives:</p>
 <div class="math notranslate nohighlight">
 \[-8 = \left(1\dots11111000\right)_{2}\]</div>
 </section>
@@ -841,12 +842,12 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <h5>Scalar 32- and 64-bit floating point numbers<a class="headerlink" href="#scalar-32-and-64-bit-floating-point-numbers" title="Permalink to this headline">#</a></h5>
 <p>Scalar floating point numbers, i.e., decimal numbers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, are stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits; single-precision) or 8<span class="math notranslate nohighlight">\(\times\)</span>bytes (64-bits; double-precision) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>. Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be <em>approximated</em> by a computer system.</p>
 <p>In the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a> specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits (<a class="reference internal" href="#fig-32bit-floating-point-schematic"><span class="std std-numref">Fig. 1</span></a>). In the computer, a floating point number <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> is represented as:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-floating-point-bumbecalled-single-precision-while-8-times-bytes-64-bits-floating-point-numbers-are-called-double-precision-r">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-floating-point-bumbecalled-single-precision-while-8-times-bytes-64-bits-floating-point-numbers-are-called-double-precision-r" title="Permalink to this equation">#</a></span>\[x = -1^{S}\times{M}\times{2}^{(E-127)}\]</div>
+<div class="math notranslate nohighlight" id="equation-eqn-floating-point-number">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-floating-point-number" title="Permalink to this equation">#</a></span>\[x = -1^{S}\times{M}\times{2}^{(E-127)}\]</div>
 <p>where <span class="math notranslate nohighlight">\(S\)</span> denotes the sign bit, <span class="math notranslate nohighlight">\(M\)</span> denotes the mantissa (fraction) and <span class="math notranslate nohighlight">\(E\)</span> denotes the exponent.</p>
 <ul class="simple">
 <li><p>For a 32-bit floating point number, <span class="math notranslate nohighlight">\(S\)</span> is bit 31 denoted by <span class="math notranslate nohighlight">\(b_{31}\)</span>, <span class="math notranslate nohighlight">\(M\)</span> is encoded in bits <span class="math notranslate nohighlight">\(b_0\rightarrow{b_{22}}\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(b_{23}\rightarrow{b_{30}}\)</span>.</p></li>
-<li><p>On the other hand, in a 64-bit floating point number the sign bit <span class="math notranslate nohighlight">\(S\)</span> is <span class="math notranslate nohighlight">\(b_{63}\)</span>, the mantissa <span class="math notranslate nohighlight">\(M\)</span> is the number encoded by bits <span class="math notranslate nohighlight">\(b_0\rightarrow{b_{51}}\)</span>, and the exponent <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(b_{52}\rightarrow{b_{62}}\)</span>.</p></li>
+<li><p>On the other hand, in a 64-bit floating point number, the sign bit <span class="math notranslate nohighlight">\(S\)</span> is <span class="math notranslate nohighlight">\(b_{63}\)</span>, the mantissa <span class="math notranslate nohighlight">\(M\)</span> is the number encoded by bits <span class="math notranslate nohighlight">\(b_0\rightarrow{b_{51}}\)</span>, and the exponent <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(b_{52}\rightarrow{b_{62}}\)</span>.</p></li>
 </ul>
 <p>Thus, for a 32-bit floating point number, the sign bit is <span class="math notranslate nohighlight">\(b_{31}\)</span>, while the fraction <span class="math notranslate nohighlight">\(M\)</span> is expressed as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-m-expression">
@@ -921,16 +922,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <p>Older languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters, i.e., strings are of type <code class="docutils literal notranslate"><span class="pre">Char[]</span></code>. Modern languages, such as
 <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="5cda4900-f9db-4e87-bec8-80e83fc2f872" name="2cc35922-2d9a-43b8-a32c-5f7406c18e9d" type="radio">
-</input><label class="sd-tab-label" for="5cda4900-f9db-4e87-bec8-80e83fc2f872">
+<input checked="checked" id="ded1524e-dd00-4554-b831-a5ecc38e1e7a" name="89d0d720-9d38-4223-baa3-dddc781efb57" type="radio">
+</input><label class="sd-tab-label" for="ded1524e-dd00-4554-b831-a5ecc38e1e7a">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="af399519-f2f3-4787-b5ac-d314c2a54741" name="2cc35922-2d9a-43b8-a32c-5f7406c18e9d" type="radio">
-</input><label class="sd-tab-label" for="af399519-f2f3-4787-b5ac-d314c2a54741">
+<input id="6bb641fc-bce1-4b4a-847c-bab32b194aae" name="89d0d720-9d38-4223-baa3-dddc781efb57" type="radio">
+</input><label class="sd-tab-label" for="6bb641fc-bce1-4b4a-847c-bab32b194aae">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
