@@ -727,7 +727,7 @@ title="Print to PDF"
 <p>For any <span class="math notranslate nohighlight">\(n\geq{0}\)</span> and <span class="math notranslate nohighlight">\(b\geq{2}\)</span>, there is a string of digits <span class="math notranslate nohighlight">\(\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}\)</span> where <span class="math notranslate nohighlight">\(a_{k}\in\mathcal{D}_{b}\)</span> for all <span class="math notranslate nohighlight">\(k\)</span> such that the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">10</span></code> value <span class="math notranslate nohighlight">\(n\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-base-b-number">
 <span class="eqno">(2)<a class="headerlink" href="#equation-eqn-base-b-number" title="Permalink to this equation">#</a></span>\[n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}\]</div>
-<p>The quantity <span class="math notranslate nohighlight">\(a_{j}\)</span> denotes the digit in position <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(b\)</span> denotes the base and <span class="math notranslate nohighlight">\(k\)</span> denotes the number of bits; <span class="math notranslate nohighlight">\(k\)</span> depends upon the computing hardware and the type of data being represented.</p>
+<p>The quantity <span class="math notranslate nohighlight">\(a_{j}\)</span> denotes the digit in position <span class="math notranslate nohighlight">\(j\)</span>, the quantity <span class="math notranslate nohighlight">\(b\)</span> denotes the base, and <span class="math notranslate nohighlight">\(k\)</span> denotes the number of bits.</p>
 </section>
 </div><p>Let’s look at example of a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> number (<a class="reference internal" href="#example-base-8-number">Example 1</a>):</p>
 <div class="proof example dropdown admonition" id="example-base-8-number">
@@ -928,16 +928,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <h4>String values<a class="headerlink" href="#string-values" title="Permalink to this headline">#</a></h4>
 <p>Languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters. Modern languages, such as <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a>, have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="003e8b52-e07d-42bf-9981-8872427d072a" name="16dd2745-d107-455e-8172-4196f175f773" type="radio">
-</input><label class="sd-tab-label" for="003e8b52-e07d-42bf-9981-8872427d072a">
+<input checked="checked" id="f7e60a33-150b-4f51-9f92-7c9a888bda6e" name="2e7a2e15-0dd2-4b74-bde2-895e57336cc5" type="radio">
+</input><label class="sd-tab-label" for="f7e60a33-150b-4f51-9f92-7c9a888bda6e">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="3a75fbc3-00d1-4e6f-a95b-f470b4f6c5e6" name="16dd2745-d107-455e-8172-4196f175f773" type="radio">
-</input><label class="sd-tab-label" for="3a75fbc3-00d1-4e6f-a95b-f470b4f6c5e6">
+<input id="a5dd1515-c62b-47f1-9860-ed9c05b03a7e" name="2e7a2e15-0dd2-4b74-bde2-895e57336cc5" type="radio">
+</input><label class="sd-tab-label" for="a5dd1515-c62b-47f1-9860-ed9c05b03a7e">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
