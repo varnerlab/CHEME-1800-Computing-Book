@@ -320,7 +320,7 @@ string = 'Python strings use single quotes. Why python, why?'
 ````
 `````
 
-However, while the number and types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, strings in modern languages share features with the older representation of text. For example, a `String` can be indexed like an array in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
+However, while the types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, modern strings share features with the older array representation of text. For example, a [Julia](https://docs.julialang.org) (or [Python](https://www.python.org)) `String` can be indexed like an array:
 
 ```{code-cell} julia
 # This is a Julia expression to create a string
