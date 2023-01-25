@@ -343,7 +343,7 @@ fragment = string[1:5]
 println("The fragment is type -> $(typeof(fragment))")
 ```
 
-However, if you want (or need) to work with the invidual characters in text, you can convert a `String` type into a `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
+If you want (or need) to work with the invidual characters in text, you can convert a `String` type into a `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
 
 ```{code-cell} julia
 # This is an expression to create a string in Julia
@@ -353,7 +353,7 @@ string = "Julia rocks the house"
 array = collect(string)
 ```
 
-By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage; thus, a value of type `String` with $c$ characters requires at most $4c\times$bytes (32$\cdot{c}$-bits). 
+By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage. 
 
 ### Composite types
 Composite types are custom data types that are made up of one or more other data types. In [Julia](https://docs.julialang.org), there are two main composite types: [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays).
