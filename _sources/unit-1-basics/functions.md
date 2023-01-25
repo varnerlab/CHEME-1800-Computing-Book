@@ -2,10 +2,16 @@
 
 ## Introduction 
 
-We introduce functions, control statements, and the concept of recursion in this lecture. A function is a block of code that performs a specific task and may return a value. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
+We introduce functions, control statements, the concept of recursion, and error-handling patterns in this lecture: 
+
+* {ref}`content:references:functions` are blocks of code that perform specifics task and may return a value. 
+* {ref}`content:references:control-statements` are programming constructs that allow you to control the flow of execution of your code; further, they will enable you to create loops that repeat a block of code until a particular condition is met. 
+* {ref}`content:references:recursion-functions` is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
+* {ref}`content:references:error-handling` allows functions to respond to the unexpected. When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller. However, error-handling patterns allow functions to respond gracefully. 
 
 ---
 
+(content:references:functions)=
 ## Functions
 In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units.
 
@@ -131,7 +137,7 @@ y = linear(2.0,3.0) # this should return 6
 
 Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. 
 
-For example, let's consider a function that builds an instance of the custom type `CRRLatticeModel` (which is a model used to [compute the price of American options contracts](https://en.wikipedia.org/wiki/Binomial_options_pricing_model)):
+For example, consider a function that builds an instance of the custom type `CRRLatticeModel` (which is a model used to [in several financial engineering applications](https://en.wikipedia.org/wiki/Binomial_options_pricing_model)):
 
 ```julia
 function build(type::Type{CRRLatticeModel}; number_of_levels::Int64 = 2, 
@@ -144,7 +150,7 @@ function build(type::Type{CRRLatticeModel}; number_of_levels::Int64 = 2,
 end
 ```
 
-
+(content:references:control-statements)=
 ## Control statements
 Control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code should be executed and enable you to create loops that repeat a block of code until a specific condition is met.
 
@@ -506,8 +512,6 @@ end
 ````
 
 
-
-
 ### Memoization
 Memoization is a technique for improving the performance of a computer program, especially for functions involving recursion, by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other programs to optimize the performance of expensive function calls.
 
@@ -546,6 +550,49 @@ function fibonacci!(n::Int64, series::Dict{Int64,Int64})
 end
 ```
 ````
+
+(content:references:error-handling)=
+## Error handling
+When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller.
+Functions are so central to computational analysis that patterns have developed to address common problems, e.g., checking the validity of the arguments provided by the caller. [Julia](https://docs.julialang.org) (and other strongly typed languages) check if the arguments passed to a function are the correct type. However, while they may be the right type, function arguments can still be incorrect. 
+
+### Early return pattern
+Consider the `mysqrt` function. If we call `mysqrt` with an integer argument, i.e., `mysqrt(4)`, [Julia](https://docs.julialang.org) will complain since it doesn't understand this request; `mysqrt` was defined to take `Float64` arguments.
+
+```julia
+function mysqrt(x::Float64)::Float64
+
+    # check: is x negative?
+    if (x<0)
+        throw(DomainError(x, "argument must be nonnegative"));
+    end
+
+    # if we get here: then we have a positive number, ok to compute the sqrt
+    # call the built-in sqrt function
+    return sqrt(x)
+end
+```
+
+However, if we call the `mysqrt` function with a negative floating-point argument, i.e., `mysqrt(-4.0)`, then we should get an error. Errors (exceptions) can be created explicitly with the `throw` function. For example, the `mysqrt` function above is only defined for nonnegative numbers; if the caller passes in a negative number, we should get a `DomainError` returned from the function. 
+
+In this approach, we check for argument errors _before_ any computation gets done. If there are errors of some sort, then the function returns early (throws an appropriate error type). This is called an early return pattern. One advantage of an early return pattern is that we check for issues before we do any potentially expensive calculations. However, the early return pattern requires we explicitly code the error conditions (which can be cumbersome for complicated functions).
+
+### Try-catch pattern
+The try/catch statement allows for Exceptions to be tested for, and for the graceful handling of things that may ordinarily break your function.
+Let's revisit the `mysqrt` function:
+
+```julia
+function mysqrt(x::Float64)::Float64
+
+    try
+        # compute the sqrt use the built-in function
+        return sqrt(x);
+    catch error
+        # error handling logic goes
+        # ...
+    end
+end
+```
 
 ---
 
