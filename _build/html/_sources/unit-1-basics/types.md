@@ -301,8 +301,7 @@ Thus, the hexadecimal equivalent of 74 is 4A, and the [Unicode](https://en.wikip
 ````
 
 #### String values
-Older languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) don't have a formal `String` type; instead, strings are encoded as arrays of characters, i.e., strings are of type `Char[]`. Modern languages, such as 
-[Julia](https://docs.julialang.org) or [Python](https://www.python.org) have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
+Languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) don't have a formal `String` type; instead, strings are encoded as arrays of characters. Modern languages, such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org), have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
 
 
 `````{tab-set}
@@ -321,7 +320,7 @@ string = 'Python strings use single quotes. Why python, why?'
 ````
 `````
 
-However, while the number and types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, strings in modern languages share features with the older representation of text. For example, a `String` can be indexed like an array in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
+However, while the types of characters that can be incorporated into a [Julia](https://docs.julialang.org) `String` is more diverse, in many ways, modern strings share features with the older array representation of text. For example, a [Julia](https://docs.julialang.org) (or [Python](https://www.python.org)) `String` can be indexed like an array:
 
 ```{code-cell} julia
 # This is a Julia expression to create a string
