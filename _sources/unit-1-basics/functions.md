@@ -4,7 +4,6 @@
 
 We introduce functions, control statements, and the concept of recursion in this lecture. A function is a block of code that performs a specific task and may return a value. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; further, they allow you to create loops that repeat a block of code until a particular condition is met. Finally, we introduce recursion. Recursion is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
 
-
 ---
 
 ## Functions
@@ -94,13 +93,57 @@ double linear(double x, double m, double b) {
 `````
 
 The different implementations of the `linear` function share common features:
-* First, each implementation has a `return y` statement at the end of the function body. A `return` statement tells the program (which is calling your function) that the work being done in the function is finished, and here is the finished value.
-* Next, the implementation of $y = mx+b$ looks the same in each language; there is a conserved set of operations, e.g., the addition `+` and multiplication `*` operators defined in each language which are similar across many languages. 
+* Each implementation has a `return y` statement at the end of the function body. A `return` statement tells the program (which is calling your function) that the work being done in the function is finished, and here is the finished value.
+* The implementation of $y = mx+b$ looks the same in each language; there is a conserved set of operations, e.g., the addition `+` and multiplication `*` operators defined in each language which are similar across many languages. 
 
 However, many structural and syntactic features are different between the languages:
-* Functions in [Julia](https://docs.julialang.org) start with the `function` keyword and stop with an enclosing `end` keyword. Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) begin with the return type, and the function body is enclosed in braces `{...}`. Functions in [Python](https://www.python.org) start with the `def` keyword followed by the name, args, and a colon, while the return statement marks the end of a [Python](https://www.python.org) function; there is no other closing keyword or character.
+* [Julia](https://docs.julialang.org) functions start with the `function` keyword and stop with an enclosing `end` keyword. Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) begin with the return type, and the function body is enclosed in braces `{...}`. Functions in [Python](https://www.python.org) start with the `def` keyword followed by the name, args, and a colon, while the return statement marks the end of a [Python](https://www.python.org) function; there is no other closing keyword or character.
 * Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) _strictly require_ type information about the arguments, but neither [Julia](https://docs.julialang.org) or [Python](https://www.python.org) requires this information; it is recommended in [Julia](https://docs.julialang.org) but not required, and while newer [Python](https://www.python.org) versions have support for typing, the [Python](https://www.python.org) runtime does not enforce function and variable type annotations.
-* Finally, the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) requires that variables be defined before they are used, while both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) do not require this step.
+* [The C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) requires that variables be defined before they are used, while both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) do not require this step.
+
+#### Pass by sharing
+[Julia](https://docs.julialang.org) function arguments follow a convention called `pass-by-sharing`, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values ({prf:ref}`rem-modifications-args`): 
+
+````{prf:remark} Pass-by-sharing
+:label: rem-modifications-args
+
+The `pass-by-sharing` paradigm leads to interesting (and sometimes confusing) side effects: Modifications made to mutable values within the function body are visible to the caller (outside the function).
+````
+
+This behavior is found in many other languages such as [Scheme](https://www.scheme.org), [Lisp](https://lisp-lang.org), [Python](https://www.python.org), [Ruby](https://www.ruby-lang.org/en/), and [Perl](https://www.perl.org).
+
+#### Default and keyword arguments
+It is often possible (and desirable) to provide sensible default values for function arguments. Providing default values saves users from passing every argument on every call. Let's re-write the `linear` function with default values for the function arguments:
+
+```julia
+function linear(x::Number, m::Number = 0.0, b::Number = 0.0)::Number
+    
+    # linear transform the x-value
+    y = m*x+b
+
+    # return y 
+    return y
+end
+
+# call: we can call with only *two* args
+y = linear(2.0,3.0) # this should return 6
+```
+
+Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. 
+
+For example, let's consider a function that builds an instance of the custom type `CRRLatticeModel` (which is a model used to [compute the price of American options contracts](https://en.wikipedia.org/wiki/Binomial_options_pricing_model)):
+
+```julia
+function build(type::Type{CRRLatticeModel}; number_of_levels::Int64 = 2, 
+    T::Float64 = (1 / 365), σ::Float64 = 0.15, Sₒ::Float64 = 1.0, 
+    μ::Float64 = 0.0015)::CRRLatticeModel
+
+    # implementation
+    # ...
+
+end
+```
+
 
 ## Control statements
 Control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code should be executed and enable you to create loops that repeat a block of code until a specific condition is met.
