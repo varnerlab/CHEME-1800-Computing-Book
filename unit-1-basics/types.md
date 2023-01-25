@@ -62,17 +62,17 @@ The base $b$ representation of a number is a way of writing numbers using the di
 
 ```{math}
 :label: eqn-base-b-numbers-digits
-\mathcal{D} = \left\{0, 1, \dots, (b − 1)\right\}
+\mathcal{D}_{b} = \left\{0, 1, \dots, (b − 1)\right\}
 ```
 
-For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}$ for all $k$ such that the `base 10` value $n$ is given by:
+For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}_{b}$ for all $k$ such that the `base 10` value $n$ is given by:
 
 ```{math}
 :label: eqn-base-b-number
 n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}
 ```
 
-The quantity $a_{j}$ denotes the digit in position $j$, $b$ denotes the base and $k$ denotes the number of bits; $k$ depends upon the computing hardware and the type of data being represented.
+The quantity $a_{j}$ denotes the digit in position $j$, the quantity $b$ denotes the base, and $k$ denotes the number of bits.
 ````
 
 Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
