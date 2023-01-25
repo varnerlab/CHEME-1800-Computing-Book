@@ -756,8 +756,8 @@ title="Print to PDF"
 <p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="602e592c-bf8f-4c7d-a338-38e4ab0e56f9" name="b95b74ce-7c83-4991-be7a-b22a85cb321f" type="radio">
-</input><label class="sd-tab-label" for="602e592c-bf8f-4c7d-a338-38e4ab0e56f9">
+<input checked="checked" id="6adf425b-b8ce-4559-a08e-f2019ed26573" name="67ee3626-d791-419b-ab54-c595ada8dd08" type="radio">
+</input><label class="sd-tab-label" for="6adf425b-b8ce-4559-a08e-f2019ed26573">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -769,8 +769,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="7a280b6d-5e92-40d0-837b-1db2ee195c02" name="b95b74ce-7c83-4991-be7a-b22a85cb321f" type="radio">
-</input><label class="sd-tab-label" for="7a280b6d-5e92-40d0-837b-1db2ee195c02">
+<input id="000fd963-f9af-43fe-b67d-7d5f551ebc31" name="67ee3626-d791-419b-ab54-c595ada8dd08" type="radio">
+</input><label class="sd-tab-label" for="000fd963-f9af-43fe-b67d-7d5f551ebc31">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -789,8 +789,8 @@ python</label><div class="sd-tab-content docutils">
 <h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a1e86a88-f312-4fb8-8e34-d9a57635ea64" name="e62323fd-f2d4-4c72-a8a5-db247e2ce289" type="radio">
-</input><label class="sd-tab-label" for="a1e86a88-f312-4fb8-8e34-d9a57635ea64">
+<input checked="checked" id="5380a096-36d7-4dff-9e89-08ea43b43685" name="1de2fbac-d628-46da-9edd-93ad4ef98b19" type="radio">
+</input><label class="sd-tab-label" for="5380a096-36d7-4dff-9e89-08ea43b43685">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -802,8 +802,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1b252d9d-06a1-4af1-9d72-4fa6e53d7cbe" name="e62323fd-f2d4-4c72-a8a5-db247e2ce289" type="radio">
-</input><label class="sd-tab-label" for="1b252d9d-06a1-4af1-9d72-4fa6e53d7cbe">
+<input id="a16d5b74-e7ea-47e2-b29a-a86346d69a2c" name="1de2fbac-d628-46da-9edd-93ad4ef98b19" type="radio">
+</input><label class="sd-tab-label" for="a16d5b74-e7ea-47e2-b29a-a86346d69a2c">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -880,11 +880,11 @@ python</label><div class="sd-tab-content docutils">
 <p>There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.</p>
 <section id="revisit-recursive-fibonacci-and-memoization">
 <h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
-<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 3</span></a>)</p>
+<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 4</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

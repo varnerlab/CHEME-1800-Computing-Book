@@ -34,9 +34,19 @@ A _variable_ is like a box that holds a value, and that value has a _type_. For 
 
 >"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
 
-However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`. From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. 
+However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`. 
 
-At the smallest scale, information is stored as bits and bytes in the computer. A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`. Different types of things, e.g., integers or text are then represented as different numbers of `bytes`.
+From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. At the smallest scale, information is stored as bits and bytes in the computer ({numref}`fig-64-bit-byte-label-example`)
+
+```{figure} ./figs/Fig-64-bit-byte-label-pattern.pdf
+---
+height: 240px
+name: fig-64-bit-byte-label-example
+---
+Schematic of bytes and bits used in computer storage. Each box contains a digit in the numbering system. In a binary system each box contains a `0` or `1`. 
+```
+
+A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`. Different types of things, e.g., integers or text are then represented as different numbers of `bytes`.
 
 Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code.
 

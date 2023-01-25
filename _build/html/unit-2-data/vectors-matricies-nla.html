@@ -984,11 +984,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 \[y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
 <p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><p>The <em>right multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 4</span></a>):</p>
+</div><p>The <em>right multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 5</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A psuedo code implemetation of <a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 11</a> is given in <a class="reference internal" href="#algo-right-multiplication-matrix-vector">Algorithm 3</a>:</p>
@@ -1031,11 +1031,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span class="eqno">(21)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><p>The <em>left multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 5</span></a>):</p>
+</div><p>The <em>left multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 6</span></a>):</p>
 <figure class="align-default" id="fig-left-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-bA-Left-Multiplication.pdf"><img alt="../_images/Fig-bA-Left-Multiplication.pdf" src="../_images/Fig-bA-Left-Multiplication.pdf" style="height: 160px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A psuedo code implemetation of <a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 12</a> is given in <a class="reference internal" href="#algo-left-multiplication-matrix-vector">Algorithm 4</a>:</p>
@@ -1076,11 +1076,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
 <p>The runtime of matrix multiplication is <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of the matrices being multiplied.</p>
 </section>
-</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 6</span></a>):</p>
+</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 7</span></a>):</p>
 <figure class="align-default" id="fig-multiplication-matrix-matrix">
 <a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 380px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products.</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products.</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 13</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 5</a>:</p>
