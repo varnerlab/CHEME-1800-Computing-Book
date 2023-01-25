@@ -356,9 +356,9 @@ array = collect(string)
 By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage. 
 
 ### Composite types
-Composite types are custom data types that are made up of one or more other data types. In [Julia](https://docs.julialang.org), there are two main composite types: [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays).
+Composite types are custom data types made up of one or more other types. In [Julia](https://docs.julialang.org), there are two main composite types: [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays).
 
-A struct is a composite data type that allows you to store data in named fields. You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
+A struct is a composite data type that allows data to be stored in named fields. You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
 
 ```julia
 struct Student

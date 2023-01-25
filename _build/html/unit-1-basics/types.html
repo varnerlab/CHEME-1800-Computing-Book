@@ -928,16 +928,16 @@ Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit"
 <h4>String values<a class="headerlink" href="#string-values" title="Permalink to this headline">#</a></h4>
 <p>Languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters. Modern languages, such as <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a>, have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="2b23c4f5-ce11-49b2-a453-a5259cfa7d9a" name="15ba5263-9a25-4173-a6e4-15c89919f97e" type="radio">
-</input><label class="sd-tab-label" for="2b23c4f5-ce11-49b2-a453-a5259cfa7d9a">
+<input checked="checked" id="6bac8c8f-b1f5-406d-8b85-985221c3808a" name="a8b2c42d-4408-41c1-a054-3379f18ac81a" type="radio">
+</input><label class="sd-tab-label" for="6bac8c8f-b1f5-406d-8b85-985221c3808a">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
 </pre></div>
 </div>
 </div>
-<input id="59c3bd61-7ec4-42e5-a7a4-0688a88508ff" name="15ba5263-9a25-4173-a6e4-15c89919f97e" type="radio">
-</input><label class="sd-tab-label" for="59c3bd61-7ec4-42e5-a7a4-0688a88508ff">
+<input id="5f7c7960-da62-4ee8-ae33-2bee8373feda" name="a8b2c42d-4408-41c1-a054-3379f18ac81a" type="radio">
+</input><label class="sd-tab-label" for="5f7c7960-da62-4ee8-ae33-2bee8373feda">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
@@ -1025,8 +1025,8 @@ python</label><div class="sd-tab-content docutils">
 </section>
 <section id="composite-types">
 <h3>Composite types<a class="headerlink" href="#composite-types" title="Permalink to this headline">#</a></h3>
-<p>Composite types are custom data types that are made up of one or more other data types. In <a class="reference external" href="https://docs.julialang.org">Julia</a>, there are two main composite types: <a class="reference external" href="https://docs.julialang.org/en/v1/manual/types/#Composite-Types">structs</a> and <a class="reference external" href="https://docs.julialang.org/en/v1/base/arrays/#lib-arrays">arrays</a>.</p>
-<p>A struct is a composite data type that allows you to store data in named fields. You define a struct by using the <code class="docutils literal notranslate"><span class="pre">struct</span></code> keyword followed by a name for the struct and a list of field names and types. For example, let’s define an immutable <code class="docutils literal notranslate"><span class="pre">Student</span></code> struct that has a <code class="docutils literal notranslate"><span class="pre">sid</span></code> and a <code class="docutils literal notranslate"><span class="pre">netid</span></code> field:</p>
+<p>Composite types are custom data types made up of one or more other types. In <a class="reference external" href="https://docs.julialang.org">Julia</a>, there are two main composite types: <a class="reference external" href="https://docs.julialang.org/en/v1/manual/types/#Composite-Types">structs</a> and <a class="reference external" href="https://docs.julialang.org/en/v1/base/arrays/#lib-arrays">arrays</a>.</p>
+<p>A struct is a composite data type that allows data to be stored in named fields. You define a struct by using the <code class="docutils literal notranslate"><span class="pre">struct</span></code> keyword followed by a name for the struct and a list of field names and types. For example, let’s define an immutable <code class="docutils literal notranslate"><span class="pre">Student</span></code> struct that has a <code class="docutils literal notranslate"><span class="pre">sid</span></code> and a <code class="docutils literal notranslate"><span class="pre">netid</span></code> field:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">Student</span>
     
     <span class="c"># data fields </span>
