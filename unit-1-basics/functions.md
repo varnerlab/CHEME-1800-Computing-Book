@@ -588,7 +588,7 @@ function mysqrt(x::Float64)::Float64
         # compute the sqrt use the built-in function
         return sqrt(x);
     catch error
-        # handling logic goes
+        # error handling logic goes
         # ...
     end
 end
