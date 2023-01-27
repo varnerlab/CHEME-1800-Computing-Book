@@ -553,8 +553,11 @@ end
 
 (content:references:error-handling)=
 ## Error handling
-When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller.
-Functions are so central to computational analysis that patterns have developed to address common problems, e.g., checking the validity of the arguments provided by the caller. [Julia](https://docs.julialang.org) (and other strongly typed languages) check if the arguments passed to a function are the correct type. However, while they may be the right type, function arguments can still be incorrect. 
+When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller. Functions are so central to computational analysis that patterns have developed to address common problems, e.g., checking the validity of the arguments provided by the caller. 
+
+One common problem is passing the wrong arguments to functions. [Julia](https://docs.julialang.org) (and other strongly typed languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) check if the arguments passed to a function are the correct type. If the arguments are not the right type, an error will be thrown that interrupts the execution of your function; in [Julia](https://docs.julialang.org), this error is of type `MethodError`, which is one of the [built-in types of errors in Julia](https://docs.julialang.org/en/v1/manual/control-flow/#Built-in-Exceptions). 
+
+However, just because function arguments are the correct type does not mean they are right.   
 
 ### Early return pattern
 Consider the `mysqrt` function. If we call `mysqrt` with an integer argument, i.e., `mysqrt(4)`, [Julia](https://docs.julialang.org) will complain since it doesn't understand this request; `mysqrt` was defined to take `Float64` arguments.
