@@ -47,20 +47,26 @@ where the value of a function $f$ at an element $x\in{X}$, denoted by $f(x)$, is
 The function $f$ is the rule that describes how the inputs are transformed into results, while $y = f(x)$ denotes the output value in the range of the function $f$.
 
 
-### Computer science functions
+### Functions on the computer
 Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as [Julia](https://docs.julialang.org), [Python](https://www.python.org), or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) can alter (and be affected by) the global state of your program.
 
-The basic syntax for defining functions in [Julia](https://docs.julialang.org), [Python](https://www.python.org) or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values. 
-
-Let's compare and contrast the structure and syntax of a simple function named `linear` which computes the value $y = mx+b$ written in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)):
-
+The basic syntax for defining functions in [Julia](https://docs.julialang.org), [Python](https://www.python.org) or the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) involves defining a function name, the set of input (positional or keyword) arguments, the return value types, and finally, the logic (called the function body) required to transform the input arguments to the return values:
 
 `````{tab-set}
 ````{tab-item} julia
 ```julia
+"""
+    linear(x::Number, m::Number, b::Number) -> Number
+
+Compute the linear transform of the scalar number `x` given values for the slope `m` and intercept `b` parameters. 
+All arguments are of type `Number`
+"""
 function linear(x::Number, m::Number, b::Number)::Number
     
-    # linear transform the x-value
+    # check: are x, m and b Real numbers?
+    # ...
+
+    # compute the linear transform of the x-value
     y = m*x+b
 
     # return y 
@@ -98,16 +104,18 @@ double linear(double x, double m, double b) {
 ````
 `````
 
+Let's compare and contrast the structure of a simple function named `linear` which computes a linear transformation written in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)). 
+
 The different implementations of the `linear` function share common features:
 * Each implementation has a `return y` statement at the end of the function body. A `return` statement tells the program (which is calling your function) that the work being done in the function is finished, and here is the finished value.
-* The implementation of $y = mx+b$ looks the same in each language; there is a conserved set of operations, e.g., the addition `+` and multiplication `*` operators defined in each language which are similar across many languages. 
+* The implementation of the math $y = mx+b$ looks strikingly the same in each language; there is a conserved set of operations, e.g., the addition `+` and multiplication `*` operators defined in each language which are similar across many languages. 
 
-However, many structural and syntactic features are different between the languages:
-* [Julia](https://docs.julialang.org) functions start with the `function` keyword and stop with an enclosing `end` keyword. Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) begin with the return type, and the function body is enclosed in braces `{...}`. Functions in [Python](https://www.python.org) start with the `def` keyword followed by the name, args, and a colon, while the return statement marks the end of a [Python](https://www.python.org) function; there is no other closing keyword or character.
+However, many features are different in the `linear` function implementation between the languages:
+* [Julia](https://docs.julialang.org) functions start with the `function` keyword and stop with an enclosing `end` keyword. Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) begin with the return type, and the function body is enclosed in braces `{...}`. Functions in [Python](https://www.python.org) start with the `def` keyword followed by the name, arguments, and a colon, while the return statement marks the end of a [Python](https://www.python.org) function; there is no other closing keyword or character.
 * Functions in the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) _strictly require_ type information about the arguments, but neither [Julia](https://docs.julialang.org) or [Python](https://www.python.org) requires this information; it is recommended in [Julia](https://docs.julialang.org) but not required, and while newer [Python](https://www.python.org) versions have support for typing, the [Python](https://www.python.org) runtime does not enforce function and variable type annotations.
 * [The C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) requires that variables be defined before they are used, while both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) do not require this step.
 
-#### Pass by sharing
+#### Arguments: Pass by sharing
 [Julia](https://docs.julialang.org) function arguments follow a convention called `pass-by-sharing`, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values ({prf:ref}`rem-modifications-args`): 
 
 ````{prf:remark} Pass-by-sharing
@@ -118,10 +126,15 @@ The `pass-by-sharing` paradigm leads to interesting (and sometimes confusing) si
 
 This behavior is found in many other languages such as [Scheme](https://www.scheme.org), [Lisp](https://lisp-lang.org), [Python](https://www.python.org), [Ruby](https://www.ruby-lang.org/en/), and [Perl](https://www.perl.org).
 
-#### Default and keyword arguments
+#### Arguments: Default and keyword arguments
 It is often possible (and desirable) to provide sensible default values for function arguments. Providing default values saves users from passing every argument on every call. Let's re-write the `linear` function with default values for the function arguments:
 
 ```julia
+"""
+    linear(x::Number, m::Number = 0.0, b::Number = 0.0) -> Number
+
+Compute the linear transform of the scalar number `x`
+"""
 function linear(x::Number, m::Number = 0.0, b::Number = 0.0)::Number
     
     # linear transform the x-value
@@ -137,18 +150,40 @@ y = linear(2.0,3.0) # this should return 6
 
 Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. 
 
-For example, consider a function that builds an instance of the custom type `CRRLatticeModel` (which is a model used to [in several financial engineering applications](https://en.wikipedia.org/wiki/Binomial_options_pricing_model)):
+For example, consider the `linear` function written with keyword arguments:
 
 ```julia
-function build(type::Type{CRRLatticeModel}; number_of_levels::Int64 = 2, 
-    T::Float64 = (1 / 365), σ::Float64 = 0.15, Sₒ::Float64 = 1.0, 
-    μ::Float64 = 0.0015)::CRRLatticeModel
+"""
+    linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0) -> Number
 
-    # implementation
-    # ...
+Compute the linear transform of the scalar number `x` given values for the `slope` and `intercept` keyword arguments. 
+All arguments are of type `Number`
+"""
+function linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0)::Number
+    
+    # map keyword values to previous parameters
+    m = slope
+    b = intercept
 
+    # linear transform the x-value
+    y = m*x+b
+
+    # return y 
+    return y
 end
+
+# call: we can call with only *two* args
+y = linear(2.0; slope = 2.0, intercept=0.1) # this should return 4.1
 ```
+
+### Functions as contracts
+A function can also be considered a contract between a developer and a user. The developer defines the function and specifies how it should behave, while the user relies on it to perform as described. The developer ensures that the function is written correctly and behaves as intended, while the user is responsible for providing the correct input and understanding the output. To facilitate this contract, consider a few items:
+
+* A well-defined function must have clear input and output specification documentation, making it easy for the user to understand. Clear and informative documentation is critical to promote efficient and effective communication between the developer and the user. It can make it easier for the user to trust the developer's work. 
+* Function naming is also critical because it helps to clearly and accurately communicate the purpose and behavior of the function.
+* Finally, good variable and constant names make your code more readable and understandable, making it easier for other developers (and even yourself) to understand what the variable or constant represents just by reading its name.
+
+
 
 (content:references:control-statements)=
 ## Control statements
@@ -440,8 +475,8 @@ function factorial(n::Int64)::Int64
         return n*factorial(n-1); 
     end
 end
-
 ```
+
 When the `factorial` function is called, it checks if the input $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$, the process enters the recursive case; the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
 
 Let's reimagine the computation of the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) using a recursive strategy ({prf:ref}`example-iteration-fibonacci-numbers-recursive`):
@@ -596,6 +631,8 @@ function mysqrt(x::Float64)::Float64
     end
 end
 ```
+
+
 
 ---
 
