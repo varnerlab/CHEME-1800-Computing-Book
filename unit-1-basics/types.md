@@ -13,10 +13,13 @@ kernelspec:
 # Expressions, Variables and Types
 
 ## Introduction
-In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In some traditional programming languages, it is important to declare the variable type before using it so that the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) can check the correctness of the program and allocate the appropriate amount of memory to store the variable. However, while most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code. 
+In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. 
+
+In many traditional programming languages, it is required to declare the variable type before using it so that the computer, i.e., the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) that is processing your code, can check the correctness of the program and allocate the appropriate amount of memory to store the variable. While most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code.  
 
 ---
 
+(content:references:expressions)=
 ## Expressions
 Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
 
@@ -40,7 +43,7 @@ From this perspective, integers are binary numbers, text is a set of binary numb
 
 ```{figure} ./figs/Fig-64-bit-byte-label-pattern.pdf
 ---
-height: 240px
+height: 260px
 name: fig-64-bit-byte-label-example
 ---
 Schematic of bytes and bits used in computer storage. Each box contains a digit in the numbering system. In a binary system each box contains a `0` or `1`. 
@@ -210,7 +213,6 @@ name: fig-32bit-floating-point-schematic
 Schematic of the bit-pattern for a 4$\times$byte (32-bit) floating point number
 ```
 
-##### Scalar 32- and 64-bit floating point numbers
 Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored using 4$\times$bytes (32-bits; single-precision) or 8$\times$bytes (64-bits; double-precision) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ by a computer system.
 
 In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits ({numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
