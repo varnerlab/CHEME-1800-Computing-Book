@@ -432,21 +432,26 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computer-science-functions">
-     Computer science functions
+    <a class="reference internal nav-link" href="#functions-on-the-computer">
+     Functions on the computer
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pass-by-sharing">
-       Pass by sharing
+      <a class="reference internal nav-link" href="#arguments-pass-by-sharing">
+       Arguments: Pass by sharing
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#default-and-keyword-arguments">
-       Default and keyword arguments
+      <a class="reference internal nav-link" href="#arguments-default-and-keyword-arguments">
+       Arguments: Default and keyword arguments
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-as-contracts">
+     Functions as contracts
+    </a>
    </li>
   </ul>
  </li>
@@ -558,21 +563,26 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computer-science-functions">
-     Computer science functions
+    <a class="reference internal nav-link" href="#functions-on-the-computer">
+     Functions on the computer
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pass-by-sharing">
-       Pass by sharing
+      <a class="reference internal nav-link" href="#arguments-pass-by-sharing">
+       Arguments: Pass by sharing
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#default-and-keyword-arguments">
-       Default and keyword arguments
+      <a class="reference internal nav-link" href="#arguments-default-and-keyword-arguments">
+       Arguments: Default and keyword arguments
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-as-contracts">
+     Functions as contracts
+    </a>
    </li>
   </ul>
  </li>
@@ -697,18 +707,26 @@ title="Print to PDF"
 </section>
 </div><p>The function <span class="math notranslate nohighlight">\(f\)</span> is the rule that describes how the inputs are transformed into results, while <span class="math notranslate nohighlight">\(y = f(x)\)</span> denotes the output value in the range of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </section>
-<section id="computer-science-functions">
-<h3>Computer science functions<a class="headerlink" href="#computer-science-functions" title="Permalink to this headline">#</a></h3>
+<section id="functions-on-the-computer">
+<h3>Functions on the computer<a class="headerlink" href="#functions-on-the-computer" title="Permalink to this headline">#</a></h3>
 <p>Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> can alter (and be affected by) the global state of your program.</p>
-<p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> involves defining a function name, the set of input arguments, the return value types, and finally, the logic required to transform the input arguments to the return values.</p>
-<p>Let’s compare and contrast the structure and syntax of a simple function named <code class="docutils literal notranslate"><span class="pre">linear</span></code> which computes the value <span class="math notranslate nohighlight">\(y = mx+b\)</span> written in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
+<p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> involves defining a function name, the set of input (positional or keyword) arguments, the return value types, and finally, the logic (called the function body) required to transform the input arguments to the return values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f161a2ab-6a90-4fd3-9391-dcc460c21110" name="9729dcb0-bad0-441f-83ee-92981c0c21b1" type="radio">
-</input><label class="sd-tab-label" for="f161a2ab-6a90-4fd3-9391-dcc460c21110">
+<input checked="checked" id="346faf54-49b6-4464-928b-186dc1f7cd96" name="f797805b-aacd-493f-8fe4-fbe9ecaa1908" type="radio">
+</input><label class="sd-tab-label" for="346faf54-49b6-4464-928b-186dc1f7cd96">
 julia</label><div class="sd-tab-content docutils">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    linear(x::Number, m::Number, b::Number) -&gt; Number</span>
+
+<span class="s">Compute the linear transform of the scalar number `x` given values for the slope `m` and intercept `b` parameters. </span>
+<span class="s">All arguments are of type `Number`</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
     
-    <span class="c"># linear transform the x-value</span>
+    <span class="c"># check: are x, m and b Real numbers?</span>
+    <span class="c"># ...</span>
+
+    <span class="c"># compute the linear transform of the x-value</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span>
 
     <span class="c"># return y </span>
@@ -717,8 +735,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="cc35de09-50e3-4d51-9713-576bdca695ff" name="9729dcb0-bad0-441f-83ee-92981c0c21b1" type="radio">
-</input><label class="sd-tab-label" for="cc35de09-50e3-4d51-9713-576bdca695ff">
+<input id="4b2f5ea6-83ab-404a-adeb-35404b02ee80" name="f797805b-aacd-493f-8fe4-fbe9ecaa1908" type="radio">
+</input><label class="sd-tab-label" for="4b2f5ea6-83ab-404a-adeb-35404b02ee80">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
 
@@ -730,8 +748,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2461c3ac-e399-4154-848d-147e24f767eb" name="9729dcb0-bad0-441f-83ee-92981c0c21b1" type="radio">
-</input><label class="sd-tab-label" for="2461c3ac-e399-4154-848d-147e24f767eb">
+<input id="a07914fb-ddb5-49ee-9fce-6c07f6246b11" name="f797805b-aacd-493f-8fe4-fbe9ecaa1908" type="radio">
+</input><label class="sd-tab-label" for="a07914fb-ddb5-49ee-9fce-6c07f6246b11">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
@@ -748,19 +766,20 @@ C</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
+<p>Let’s compare and contrast the structure of a simple function named <code class="docutils literal notranslate"><span class="pre">linear</span></code> which computes a linear transformation written in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>.</p>
 <p>The different implementations of the <code class="docutils literal notranslate"><span class="pre">linear</span></code> function share common features:</p>
 <ul class="simple">
 <li><p>Each implementation has a <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">y</span></code> statement at the end of the function body. A <code class="docutils literal notranslate"><span class="pre">return</span></code> statement tells the program (which is calling your function) that the work being done in the function is finished, and here is the finished value.</p></li>
-<li><p>The implementation of <span class="math notranslate nohighlight">\(y = mx+b\)</span> looks the same in each language; there is a conserved set of operations, e.g., the addition <code class="docutils literal notranslate"><span class="pre">+</span></code> and multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code> operators defined in each language which are similar across many languages.</p></li>
+<li><p>The implementation of the math <span class="math notranslate nohighlight">\(y = mx+b\)</span> looks strikingly the same in each language; there is a conserved set of operations, e.g., the addition <code class="docutils literal notranslate"><span class="pre">+</span></code> and multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code> operators defined in each language which are similar across many languages.</p></li>
 </ul>
-<p>However, many structural and syntactic features are different between the languages:</p>
+<p>However, many features are different in the <code class="docutils literal notranslate"><span class="pre">linear</span></code> function implementation between the languages:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.julialang.org">Julia</a> functions start with the <code class="docutils literal notranslate"><span class="pre">function</span></code> keyword and stop with an enclosing <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword. Functions in the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> begin with the return type, and the function body is enclosed in braces <code class="docutils literal notranslate"><span class="pre">{...}</span></code>. Functions in <a class="reference external" href="https://www.python.org">Python</a> start with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword followed by the name, args, and a colon, while the return statement marks the end of a <a class="reference external" href="https://www.python.org">Python</a> function; there is no other closing keyword or character.</p></li>
+<li><p><a class="reference external" href="https://docs.julialang.org">Julia</a> functions start with the <code class="docutils literal notranslate"><span class="pre">function</span></code> keyword and stop with an enclosing <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword. Functions in the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> begin with the return type, and the function body is enclosed in braces <code class="docutils literal notranslate"><span class="pre">{...}</span></code>. Functions in <a class="reference external" href="https://www.python.org">Python</a> start with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword followed by the name, arguments, and a colon, while the return statement marks the end of a <a class="reference external" href="https://www.python.org">Python</a> function; there is no other closing keyword or character.</p></li>
 <li><p>Functions in the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> <em>strictly require</em> type information about the arguments, but neither <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a> requires this information; it is recommended in <a class="reference external" href="https://docs.julialang.org">Julia</a> but not required, and while newer <a class="reference external" href="https://www.python.org">Python</a> versions have support for typing, the <a class="reference external" href="https://www.python.org">Python</a> runtime does not enforce function and variable type annotations.</p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">The C-programming language</a> requires that variables be defined before they are used, while both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> do not require this step.</p></li>
 </ul>
-<section id="pass-by-sharing">
-<h4>Pass by sharing<a class="headerlink" href="#pass-by-sharing" title="Permalink to this headline">#</a></h4>
+<section id="arguments-pass-by-sharing">
+<h4>Arguments: Pass by sharing<a class="headerlink" href="#arguments-pass-by-sharing" title="Permalink to this headline">#</a></h4>
 <p><a class="reference external" href="https://docs.julialang.org">Julia</a> function arguments follow a convention called <code class="docutils literal notranslate"><span class="pre">pass-by-sharing</span></code>, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values (<a class="reference internal" href="#rem-modifications-args">Remark 1</a>):</p>
 <div class="proof remark admonition" id="rem-modifications-args">
 <p class="admonition-title"><span class="caption-number">Remark 1 </span> (Pass-by-sharing)</p>
@@ -769,10 +788,15 @@ C</label><div class="sd-tab-content docutils">
 </section>
 </div><p>This behavior is found in many other languages such as <a class="reference external" href="https://www.scheme.org">Scheme</a>, <a class="reference external" href="https://lisp-lang.org">Lisp</a>, <a class="reference external" href="https://www.python.org">Python</a>, <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a>, and <a class="reference external" href="https://www.perl.org">Perl</a>.</p>
 </section>
-<section id="default-and-keyword-arguments">
-<h4>Default and keyword arguments<a class="headerlink" href="#default-and-keyword-arguments" title="Permalink to this headline">#</a></h4>
+<section id="arguments-default-and-keyword-arguments">
+<h4>Arguments: Default and keyword arguments<a class="headerlink" href="#arguments-default-and-keyword-arguments" title="Permalink to this headline">#</a></h4>
 <p>It is often possible (and desirable) to provide sensible default values for function arguments. Providing default values saves users from passing every argument on every call. Let’s re-write the <code class="docutils literal notranslate"><span class="pre">linear</span></code> function with default values for the function arguments:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    linear(x::Number, m::Number = 0.0, b::Number = 0.0) -&gt; Number</span>
+
+<span class="s">Compute the linear transform of the scalar number `x`</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">,</span> <span class="n">m</span><span class="o">::</span><span class="kt">Number</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">::</span><span class="kt">Number</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
     
     <span class="c"># linear transform the x-value</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span>
@@ -786,18 +810,40 @@ C</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 <p>Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position.</p>
-<p>For example, consider a function that builds an instance of the custom type <code class="docutils literal notranslate"><span class="pre">CRRLatticeModel</span></code> (which is a model used to <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">in several financial engineering applications</a>):</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">build</span><span class="p">(</span><span class="n">type</span><span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="kt">CRRLatticeModel</span><span class="p">};</span> <span class="n">number_of_levels</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
-    <span class="n">T</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">365</span><span class="p">),</span> <span class="n">σ</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">Sₒ</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> 
-    <span class="n">μ</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.0015</span><span class="p">)</span><span class="o">::</span><span class="kt">CRRLatticeModel</span>
+<p>For example, consider the <code class="docutils literal notranslate"><span class="pre">linear</span></code> function written with keyword arguments:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0) -&gt; Number</span>
 
-    <span class="c"># implementation</span>
-    <span class="c"># ...</span>
+<span class="s">Compute the linear transform of the scalar number `x` given values for the `slope` and `intercept` keyword arguments. </span>
+<span class="s">All arguments are of type `Number`</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">;</span> <span class="n">slope</span><span class="o">::</span><span class="kt">Number</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">intercept</span><span class="o">::</span><span class="kt">Number</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">::</span><span class="kt">Number</span>
+    
+    <span class="c"># map keyword values to previous parameters</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">slope</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span>
 
+    <span class="c"># linear transform the x-value</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span>
+
+    <span class="c"># return y </span>
+    <span class="k">return</span> <span class="n">y</span>
 <span class="k">end</span>
+
+<span class="c"># call: we can call with only *two* args</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">linear</span><span class="p">(</span><span class="mf">2.0</span><span class="p">;</span> <span class="n">slope</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="c"># this should return 4.1</span>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="functions-as-contracts">
+<h3>Functions as contracts<a class="headerlink" href="#functions-as-contracts" title="Permalink to this headline">#</a></h3>
+<p>A function can also be considered a contract between a developer and a user. The developer defines the function and specifies how it should behave, while the user relies on it to perform as described. The developer ensures that the function is written correctly and behaves as intended, while the user is responsible for providing the correct input and understanding the output. To facilitate this contract, consider a few items:</p>
+<ul class="simple">
+<li><p>A well-defined function must have clear input and output specification documentation, making it easy for the user to understand. Clear and informative documentation is critical to promote efficient and effective communication between the developer and the user. It can make it easier for the user to trust the developer’s work.</p></li>
+<li><p>Function naming is also critical because it helps to clearly and accurately communicate the purpose and behavior of the function.</p></li>
+<li><p>Finally, good variable and constant names make your code more readable and understandable, making it easier for other developers (and even yourself) to understand what the variable or constant represents just by reading its name.</p></li>
+</ul>
 </section>
 </section>
 <section id="control-statements">
@@ -809,8 +855,8 @@ C</label><div class="sd-tab-content docutils">
 <p>A common programming task is to check whether a condition is <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> and then execute tasks depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements.</p>
 <p>Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Let’s consider the anatomy of the <code class="docutils literal notranslate"><span class="pre">if-elseif-else</span></code> conditional syntax in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ffc71316-590b-4a00-9761-fcb5b39d08ed" name="d5551058-d4b6-4d20-bfe9-b2526126d0d5" type="radio">
-</input><label class="sd-tab-label" for="ffc71316-590b-4a00-9761-fcb5b39d08ed">
+<input checked="checked" id="0d49836b-e2c4-48a8-9be8-01bb033e9868" name="5601c91f-7ba4-4277-99f1-fd44901e0d0b" type="radio">
+</input><label class="sd-tab-label" for="0d49836b-e2c4-48a8-9be8-01bb033e9868">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
     <span class="c"># code statememts executed if condition_1 == true</span>
@@ -822,8 +868,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="7430c6d4-0035-4e18-a21e-20a09a4a7022" name="d5551058-d4b6-4d20-bfe9-b2526126d0d5" type="radio">
-</input><label class="sd-tab-label" for="7430c6d4-0035-4e18-a21e-20a09a4a7022">
+<input id="02144e8d-7af1-4f60-86c8-545c29a49803" name="5601c91f-7ba4-4277-99f1-fd44901e0d0b" type="radio">
+</input><label class="sd-tab-label" for="02144e8d-7af1-4f60-86c8-545c29a49803">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
     <span class="c1"># code statememts executed if condition_1 == true</span>
@@ -834,8 +880,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a87dbdaf-0fa5-42d7-aedd-f6a668958a4a" name="d5551058-d4b6-4d20-bfe9-b2526126d0d5" type="radio">
-</input><label class="sd-tab-label" for="a87dbdaf-0fa5-42d7-aedd-f6a668958a4a">
+<input id="47698528-73c2-4c62-af05-b45af993316c" name="5601c91f-7ba4-4277-99f1-fd44901e0d0b" type="radio">
+</input><label class="sd-tab-label" for="47698528-73c2-4c62-af05-b45af993316c">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition_1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="cm">/* block of code to be executed if condition_1 is true */</span><span class="w"></span>
@@ -859,8 +905,8 @@ C</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> defines the iteration count while body holds the code that is executed once per iteration. The header of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> are used when the number of iterations is known before entering the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="8cc4c8b3-356a-489a-955e-5e70fc264f04" name="b82f1875-1358-48cf-a53d-3bbf6ae568eb" type="radio">
-</input><label class="sd-tab-label" for="8cc4c8b3-356a-489a-955e-5e70fc264f04">
+<input checked="checked" id="9021a11d-d575-4b71-8732-19ae9ad37e7a" name="102dd4d8-c8ab-4e82-8e7b-09347774ac54" type="radio">
+</input><label class="sd-tab-label" for="9021a11d-d575-4b71-8732-19ae9ad37e7a">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span> <span class="c"># gives i values from 1 to 10 inclusive</span>
     <span class="c"># loop body: holds statements to be executed at each iteration</span>
@@ -868,16 +914,16 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="db4bed85-5107-4d1a-bcdb-d34f9040048f" name="b82f1875-1358-48cf-a53d-3bbf6ae568eb" type="radio">
-</input><label class="sd-tab-label" for="db4bed85-5107-4d1a-bcdb-d34f9040048f">
+<input id="7b5e70ef-1857-4e2d-8568-ff7b52c1bbaa" name="102dd4d8-c8ab-4e82-8e7b-09347774ac54" type="radio">
+</input><label class="sd-tab-label" for="7b5e70ef-1857-4e2d-8568-ff7b52c1bbaa">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>  <span class="c1"># gives i values from 1 to 9 inclusive (but not 10)</span>
     <span class="c1"># loop body: holds statements to be executed at each iteration</span>
 </pre></div>
 </div>
 </div>
-<input id="04ba0195-c2a8-4cc8-9496-976ff6e9583d" name="b82f1875-1358-48cf-a53d-3bbf6ae568eb" type="radio">
-</input><label class="sd-tab-label" for="04ba0195-c2a8-4cc8-9496-976ff6e9583d">
+<input id="7231e476-4e2e-4d8a-bc4f-19b0ec10dbb9" name="102dd4d8-c8ab-4e82-8e7b-09347774ac54" type="radio">
+</input><label class="sd-tab-label" for="7231e476-4e2e-4d8a-bc4f-19b0ec10dbb9">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Using for-loop iteration range 0 -&gt; 9 */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -926,8 +972,8 @@ C</label><div class="sd-tab-content docutils">
 <p>In the discussion and examples above, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> used a loop counter to iterate through a list of items. However, other iteration patterns could have been used. Modern languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement collections in which the elements can accessed directly without the need to keep a loop counter.</p>
 <p>Imagine that we have a list of chemical names stored in a collection, and we want to iterate through the list directly (without a loop counter):</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="892c7698-6e45-4253-b152-0923e5f036ad" name="d1245c10-26db-464d-ac20-6bccc2ae76ae" type="radio">
-</input><label class="sd-tab-label" for="892c7698-6e45-4253-b152-0923e5f036ad">
+<input checked="checked" id="dff3df0f-9041-4bbf-93e7-162a00dd9536" name="9c160e77-71a5-4545-9e3d-53e2e7d3324c" type="radio">
+</input><label class="sd-tab-label" for="dff3df0f-9041-4bbf-93e7-162a00dd9536">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Assume: list_of_chemicals defined above somewhere </span>
 
@@ -937,8 +983,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="780de246-375b-4dbd-bc4e-240918d8881d" name="d1245c10-26db-464d-ac20-6bccc2ae76ae" type="radio">
-</input><label class="sd-tab-label" for="780de246-375b-4dbd-bc4e-240918d8881d">
+<input id="3c568ca1-fc53-4e1c-a2bc-6a24000191b9" name="9c160e77-71a5-4545-9e3d-53e2e7d3324c" type="radio">
+</input><label class="sd-tab-label" for="3c568ca1-fc53-4e1c-a2bc-6a24000191b9">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1"># Assume: list_of_chemicals defined above somewhere </span>
@@ -957,8 +1003,8 @@ python</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> that iterates over a fixed (specfied) range of values, a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c46edfb7-998b-4195-be67-84cbf03a43a4" name="d05c7d67-545b-495b-a946-e1265998c3a4" type="radio">
-</input><label class="sd-tab-label" for="c46edfb7-998b-4195-be67-84cbf03a43a4">
+<input checked="checked" id="a55dfad9-cee6-4c0f-bc33-92e9446035c8" name="a4282743-0e70-48fd-803e-0389062f2a83" type="radio">
+</input><label class="sd-tab-label" for="a55dfad9-cee6-4c0f-bc33-92e9446035c8">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize </span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>   <span class="c"># counter variable</span>
@@ -976,8 +1022,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1dd6e411-14ea-4324-9372-d1f32539a290" name="d05c7d67-545b-495b-a946-e1265998c3a4" type="radio">
-</input><label class="sd-tab-label" for="1dd6e411-14ea-4324-9372-d1f32539a290">
+<input id="e1aab6f3-e3f3-4944-837c-2abc55f1dfb8" name="a4282743-0e70-48fd-803e-0389062f2a83" type="radio">
+</input><label class="sd-tab-label" for="e1aab6f3-e3f3-4944-837c-2abc55f1dfb8">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span>                           <span class="c1"># Set the value to 5 </span>
@@ -991,8 +1037,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="44e92b5d-906b-4d92-ad45-107c207da4c0" name="d05c7d67-545b-495b-a946-e1265998c3a4" type="radio">
-</input><label class="sd-tab-label" for="44e92b5d-906b-4d92-ad45-107c207da4c0">
+<input id="51965259-b877-48bc-8363-6f52465b4201" name="a4282743-0e70-48fd-803e-0389062f2a83" type="radio">
+</input><label class="sd-tab-label" for="51965259-b877-48bc-8363-6f52465b4201">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* declare and initialize */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
