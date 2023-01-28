@@ -184,15 +184,17 @@ A function can also be considered a contract between a developer and a user. The
 * Finally, good variable and constant names make your code more readable and understandable, making it easier for other developers (and even yourself) to understand what the variable or constant represents just by reading its name.
 
 
-
 (content:references:control-statements)=
 ## Control statements
-Control statements are programming constructs that allow you to control the flow of execution of your code. They allow you to specify conditions under which a particular block of code should be executed and enable you to create loops that repeat a block of code until a specific condition is met.
+Control statements are an essential part of programming. Control statements allow you to create programs that make decisions and perform tasks based on certain conditions. Control statements are programming constructs that will enable you to control the flow of execution of your function. They allow you to specify conditions under which a particular block of code should be executed and will allow you to create loops that repeat a block of code until a specific condition is met.
 
-Control statements are an essential part of programming, and they allow you to create programs that can make decisions and perform tasks based on certain conditions. They are used to create complex logic and to write code that can be executed repeatedly with different inputs.
+Let's explore some common control statements that you will routinely use in your functions and programs:
+* {ref}`content:references:if-else-statements` allows you to execute different logic branches based on a `Bool` condition. 
+* {ref}`content:references:iteration-patterns` allows you to execute a code block many times.
 
+(content:references:if-else-statements)=
 ### If-else conditional statements
-A common programming task is to check whether a condition is `true` or `false` and then execute tasks depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with `if-else` statements.
+A common programming task is to check whether a condition is `true` or `false` and then execute code depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with `if-else` statements.
 
 Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Let's consider the anatomy of the `if-elseif-else` conditional syntax in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)):
 
@@ -232,14 +234,18 @@ if (condition_1) {
 ````
 `````
 
+(content:references:iteration-patterns)=
 ### Iteration
-Another common programming tasks you'll encounter is iterating over a list of items, and perhaps performning a task using each item. For example, finding the sum of a list experimental values so that you can estimate a mean value, or translating words in an article from language to another, etc. Consider two ways to iterate over a collection of items, a `for-loop` and a `while-loop`. 
+A typical programming operation is repetitively performing a task using a list of items. For example, finding the sum of a list of experimental values to estimate a mean value, translating words in an article from one language to another, etc. This type of operation is called `iteration`. 
 
-#### For-loops using a loop counter
+There are two common approaches to performing `iteration` that are resident in almost all programming languages, {ref}`content:references:iteration-for-loops` and {ref}`content:references:iteration-while-loops`.
+
+(content:references:iteration-for-loops)=
+#### For-loops
 [For-loops](https://en.wikipedia.org/wiki/For_loop) execute a block of code a fixed number of times. 
-[For-loops](https://en.wikipedia.org/wiki/For_loop) have a long history in computing dating back to the late 1950s. For-loops are key language constructs in all modern programming languages. For-loops have two parts: a header and a body. 
-
-The header of a `for-loop` defines the iteration count while body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable which tells the body which iteration is being executed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
+[For-loops](https://en.wikipedia.org/wiki/For_loop), which date back to the late 1950s, are key language constructs in all programming languages. For-loops have two parts: a header and a body:
+* The header of a `for-loop` defines the iteration count, i.e., the number of times the loop will be executed. In modern `for-loop` header implementations, {ref}`content:references:iteration-for-loops-iterators` provide direct access to the items in a list instead of the item’s index. 
+* The body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable, which tells the body which iteration is being performed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
 
 Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
 
@@ -247,7 +253,9 @@ Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.j
 ````{tab-item} julia
 ```julia
 for i in 1:10 # gives i values from 1 to 10 inclusive
+    
     # loop body: holds statements to be executed at each iteration
+    println("i = $(i)")
 end
 ```
 ````
@@ -255,15 +263,18 @@ end
 ````{tab-item} python
 ```python
 for i in range(1, 10):  # gives i values from 1 to 9 inclusive (but not 10)
+    
     # loop body: holds statements to be executed at each iteration
+    print("i = "+str(i)) # why str()?
 ````
 
 ````{tab-item} C
 ```c
 /* Using for-loop iteration range 0 -> 9 */
-int sum = 0;
 for (int i = 0; i < 10; i++) {
+    
     /* body: holds statements to be executed at each iteration */
+    printf("i = %d\n",i);
 }
 ```
 ````
@@ -286,7 +297,13 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
 
 ```julia
+"""
+    fibonacci(n::Int64) -> Array{Int64,1}
+
+Computes the `fibonacci` sequence for 0 to n where n >= 1
+"""
 function fibonacci(n::Int64)::Array{Int64,1}
+
 
     # check: is n legit? n>=1
     # ...
@@ -309,35 +326,39 @@ end
 ```
 ````
 
-#### Another for-loop pattern?
-In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, other iteration patterns could have been used. Modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) implement collections in which the elements can accessed directly without the need to keep a loop counter. 
+(content:references:iteration-for-loops-iterators)=
+#### Iterators
+In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop construct. `For-in` loops iterate directly through the elements of a list of items without a loop counter. 
 
-Imagine that we have a list of chemical names stored in a collection, and we want to iterate through the list directly (without a loop counter):
+Imagine that we have a list of chemical names stored in a collection named `list_of_chenicals`. A `for-in` statement allows us to iterate through the list directly without using a loop counter:
 
 `````{tab-set}
 ````{tab-item} julia
 ```julia
 
-# Assume: list_of_chemicals defined above somewhere 
+# define list of chemicals -
+list_of_chemicals = ["alpha-D-glucose", "alpha-D-glucose-6P", "beta-D-Fructose-6P"]
 
 for chemical in list_of_chemicals # gives each chemical in the list
     # loop body: holds statements to be executed at each iteration
+    println("Name of chemical: $(chemical)")
 end
 ```
 ````
 
 ````{tab-item} python
 ```python
-
-# Assume: list_of_chemicals defined above somewhere 
+# define list of chemicals -
+list_of_chemicals = ['alpha-D-glucose', 'alpha-D-glucose-6P', 'beta-D-Fructose-6P']
 
 for chemical in list_of_chemicals:  # gives each chemical in the list
     # loop body: holds statements to be executed at each iteration
+    print("Name of chemical:"+chemical)
 
 ````
 `````
 
-
+(content:references:iteration-while-loops)=
 #### While-loops
 A [while-loop](https://en.wikipedia.org/wiki/While_loop) is a control structure that allows a program to repeat a block of code in the loop’s body as long as a particular condition, which is encoded in the loop's header, is true.
 
