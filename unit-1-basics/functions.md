@@ -253,7 +253,9 @@ Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.j
 ````{tab-item} julia
 ```julia
 for i in 1:10 # gives i values from 1 to 10 inclusive
+    
     # loop body: holds statements to be executed at each iteration
+    println("i = $(i)")
 end
 ```
 ````
@@ -261,14 +263,18 @@ end
 ````{tab-item} python
 ```python
 for i in range(1, 10):  # gives i values from 1 to 9 inclusive (but not 10)
+    
     # loop body: holds statements to be executed at each iteration
+    print("i = "+str(i)) # why str()?
 ````
 
 ````{tab-item} C
 ```c
 /* Using for-loop iteration range 0 -> 9 */
 for (int i = 0; i < 10; i++) {
+    
     /* body: holds statements to be executed at each iteration */
+    printf("i = %d\n",i);
 }
 ```
 ````
@@ -291,7 +297,13 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
 
 ```julia
+"""
+    fibonacci(n::Int64) -> Array{Int64,1}
+
+Computes the `fibonacci` sequence for 0 to n where n >= 1
+"""
 function fibonacci(n::Int64)::Array{Int64,1}
+
 
     # check: is n legit? n>=1
     # ...
@@ -328,6 +340,7 @@ Imagine that we have a list of chemical names stored in a collection named `list
 list_of_chemicals = ["alpha-D-glucose", "alpha-D-glucose-6P", "beta-D-Fructose-6P"]
 
 for chemical in list_of_chemicals # gives each chemical in the list
+    # loop body: holds statements to be executed at each iteration
     println("Name of chemical: $(chemical)")
 end
 ```
@@ -339,6 +352,7 @@ end
 list_of_chemicals = ['alpha-D-glucose', 'alpha-D-glucose-6P', 'beta-D-Fructose-6P']
 
 for chemical in list_of_chemicals:  # gives each chemical in the list
+    # loop body: holds statements to be executed at each iteration
     print("Name of chemical:"+chemical)
 
 ````
