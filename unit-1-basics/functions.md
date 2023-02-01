@@ -246,7 +246,7 @@ if (condition_1) {
 ````
 `````
 
-The conditions in the if-else pseudo code above are statements that evaluate to `Bool` values. These statements can be single expressions like $x\geq{y}$, and function calls that return a `Bool` type, or compound expressions containing several cases, e.g., $x\geq{y}$ and $x\leq{Z}$. 
+The conditions in the if-else pseudo code above are statements that evaluate to `Bool` values. These statements can be single expressions like $x\geq{y}$, and function calls that return a `Bool` type, or compound expressions containing several cases, e.g., $x\geq{y}$ and $x\leq{z}$. 
 
 To facilitate the compound chaining of logical statements, most programming languages, including [Julia](https://julialang.org), define [short-cut logical operators](https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation):
 
@@ -354,6 +354,8 @@ where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) impleme
     fibonacci(n::Int64) -> Array{Int64,1}
 
 Computes the `fibonacci` sequence for 0 to n where n >= 1
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
 """
 function fibonacci(n::Int64)::Array{Int64,1}
 
@@ -488,6 +490,13 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function using a `while-loop` is given by:
 
 ```julia
+"""
+    fibonacci(n::Int64) -> Dict{Int64, Int64}
+
+Computes the `fibonacci` sequence for 0 to n where n >= 1.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci(n::Int64)::Dict{Int64, Int64}
 
     # check: is n legit?
@@ -570,6 +579,13 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
 
 ```julia
+"""
+    fibonacci(n::Int64) -> Int64
+
+Computes the `fibonacci` number for n where n >= 1.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci(n::Int64)::Int64
 
     if (n == 0)  # base case
@@ -607,6 +623,14 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of a mutating Fibonacci sequence function is given by:
 
 ```julia
+"""
+    fibonacci!(n::Int64, series::Dict{Int64,Int64}) -> Nothing
+
+Recursively computes the `fibonacci` sequence for 0 to n where n >= 1.
+Stores series in `series::Dict`.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci!(n::Int64, series::Dict{Int64,Int64})
 
     if (n == 0)  # base case
@@ -645,6 +669,14 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of a mutating Fibonacci sequence function is given by:
 
 ```julia
+"""
+    fibonacci!(n::Int64, series::Dict{Int64,Int64}) -> Nothing
+
+Recursively computes the `fibonacci` sequence for 0 to n where n >= 1.
+Stores series in `series::Dict`.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci!(n::Int64, series::Dict{Int64,Int64})
 
     if (n == 0)  # base case
