@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Julia
+  language: julia
+  name: julia-1.8
+---
+
 # Functions, Control Statements, and Recursion
 
 ## Introduction 
@@ -233,6 +245,47 @@ if (condition_1) {
 ```
 ````
 `````
+
+The conditions in the if-else pseudo code above are statements that evaluate to `Bool` values. These statements can be single expressions like $x\geq{y}$, and function calls that return a `Bool` type, or compound expressions containing several cases, e.g., $x\geq{y}$ and $x\leq{Z}$. 
+
+To facilitate the chaining of logical checks, most programming languages, including [Julia](https://julialang.org), define [short-cut logical operators](https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation):
+
+* The `&&` operator corresponds to the logical `AND` operator. The `&&` operator in [Julia](https://julialang.org) performs a logical `AND` operation between two operands. In a logical AND operation, if both operands are `true`, the result is `true`. If either operand is `false`, the result is `false`.
+* The `||` operator corresponds to the logical `OR` operator. The `||` operator in [Julia](https://julialang.org) performs a logical `OR` operation between two operands. In a logical `OR` operation, if either operand is `true`, the result is `true`. If both operands are `false`, the result is `false`.
+
+Let's see a few examples of `&&` and `||` operators:
+
+```{code-cell} julia
+# Test: && operator
+
+# set some constants
+x = 5.0;
+y = 10.0;
+
+# if statement
+if (x > 0 && y > 0)
+    println("Both x and y are greater than zero")
+else
+    println("Either x or y is less than zero")
+end
+```
+
+The if-else statements which use the logical `OR` short-cut operator `||` are similar:
+
+```{code-cell} julia
+# Test: && operator
+
+# set some constants
+x = -5.0;
+y = 1.0;
+
+# if statement
+if (x > 0 || y > 0)
+    println("Either x OR y is greater than zero")
+else
+    println("Both x and y are less than zero")
+end
+```
 
 (content:references:iteration-patterns)=
 ### Iteration
