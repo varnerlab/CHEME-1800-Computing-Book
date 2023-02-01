@@ -246,7 +246,7 @@ if (condition_1) {
 ````
 `````
 
-The conditions in the if-else pseudo code above are statements that evaluate to `Bool` values. These statements can be single expressions like $x\geq{y}$, and function calls that return a `Bool` type, or compound expressions containing several cases, e.g., $x\geq{y}$ and $x\leq{Z}$. 
+The conditions in the if-else pseudo code above are statements that evaluate to `Bool` values. These statements can be single expressions like $x\geq{y}$, and function calls that return a `Bool` type, or compound expressions containing several cases, e.g., $x\geq{y}$ and $x\leq{z}$. 
 
 To facilitate the compound chaining of logical statements, most programming languages, including [Julia](https://julialang.org), define [short-cut logical operators](https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation):
 
