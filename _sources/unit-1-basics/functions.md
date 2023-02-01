@@ -177,7 +177,7 @@ function linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0)::Number
     m = slope
     b = intercept
 
-    # linear transform the x-value
+    # linear transform the x-value (set to y)
     y = m*x+b
 
     # return y 
@@ -354,6 +354,8 @@ where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) impleme
     fibonacci(n::Int64) -> Array{Int64,1}
 
 Computes the `fibonacci` sequence for 0 to n where n >= 1
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
 """
 function fibonacci(n::Int64)::Array{Int64,1}
 
@@ -488,6 +490,13 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function using a `while-loop` is given by:
 
 ```julia
+"""
+    fibonacci(n::Int64) -> Dict{Int64, Int64}
+
+Computes the `fibonacci` sequence for 0 to n where n >= 1.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci(n::Int64)::Dict{Int64, Int64}
 
     # check: is n legit?
@@ -570,6 +579,13 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
 
 ```julia
+"""
+    fibonacci(n::Int64) -> Int64
+
+Computes the `fibonacci` number for n where n >= 1.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci(n::Int64)::Int64
 
     if (n == 0)  # base case
@@ -607,6 +623,14 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of a mutating Fibonacci sequence function is given by:
 
 ```julia
+"""
+    fibonacci!(n::Int64, series::Dict{Int64,Int64}) -> Nothing
+
+Recursively computes the `fibonacci` sequence for 0 to n where n >= 1.
+Stores series in `series::Dict`.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci!(n::Int64, series::Dict{Int64,Int64})
 
     if (n == 0)  # base case
@@ -645,6 +669,14 @@ F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 where $F_{0} = 0$ and $F_{1} = 1$. A recursive [Julia](https://docs.julialang.org) implementation of a mutating Fibonacci sequence function is given by:
 
 ```julia
+"""
+    fibonacci!(n::Int64, series::Dict{Int64,Int64}) -> Nothing
+
+Recursively computes the `fibonacci` sequence for 0 to n where n >= 1.
+Stores series in `series::Dict`.
+
+See: https://en.wikipedia.org/wiki/Fibonacci_number
+"""
 function fibonacci!(n::Int64, series::Dict{Int64,Int64})
 
     if (n == 0)  # base case

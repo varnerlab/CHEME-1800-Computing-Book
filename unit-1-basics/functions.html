@@ -758,8 +758,8 @@ title="Print to PDF"
 <p>Functions on the computer share many of the features of mathematical functions, but there are a few crucial differences. For example, on the computer, a function is an object that maps a tuple of arguments to a tuple of return values. However, unlike mathematical functions, computer functions in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> can alter (and be affected by) the global state of your program.</p>
 <p>The basic syntax for defining functions in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> or the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> involves defining a function name, the set of input (positional or keyword) arguments, the return value types, and finally, the logic (called the function body) required to transform the input arguments to the return values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b586038d-0c5e-43dd-942c-5b940a5c5525" name="5cdd1164-c656-46df-9c1a-75c702479970" type="radio">
-</input><label class="sd-tab-label" for="b586038d-0c5e-43dd-942c-5b940a5c5525">
+<input checked="checked" id="1df46fa8-b5e8-463d-9d8d-5b8c599f798a" name="06a269c0-4b99-41f2-a0f2-88a34647a2cb" type="radio">
+</input><label class="sd-tab-label" for="1df46fa8-b5e8-463d-9d8d-5b8c599f798a">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">    linear(x::Number, m::Number, b::Number) -&gt; Number</span>
@@ -781,8 +781,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="4571d02b-83fe-4755-bde9-430860b08726" name="5cdd1164-c656-46df-9c1a-75c702479970" type="radio">
-</input><label class="sd-tab-label" for="4571d02b-83fe-4755-bde9-430860b08726">
+<input id="d0b34d2d-40c9-4086-b5bd-a848eb6b0a4b" name="06a269c0-4b99-41f2-a0f2-88a34647a2cb" type="radio">
+</input><label class="sd-tab-label" for="d0b34d2d-40c9-4086-b5bd-a848eb6b0a4b">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
 
@@ -794,8 +794,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="98d769df-8e22-4f6f-92ab-01845c73a39c" name="5cdd1164-c656-46df-9c1a-75c702479970" type="radio">
-</input><label class="sd-tab-label" for="98d769df-8e22-4f6f-92ab-01845c73a39c">
+<input id="9829823d-625c-4db1-937d-264ae6f08461" name="06a269c0-4b99-41f2-a0f2-88a34647a2cb" type="radio">
+</input><label class="sd-tab-label" for="9829823d-625c-4db1-937d-264ae6f08461">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
@@ -869,7 +869,7 @@ C</label><div class="sd-tab-content docutils">
     <span class="n">m</span> <span class="o">=</span> <span class="n">slope</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">intercept</span>
 
-    <span class="c"># linear transform the x-value</span>
+    <span class="c"># linear transform the x-value (set to y)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span>
 
     <span class="c"># return y </span>
@@ -905,8 +905,8 @@ C</label><div class="sd-tab-content docutils">
 <p>A common programming task is to check whether a condition is <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> and then execute code depending on this condition; this is a called conditional evaluation. Conditional evaluation, which is a important structure in almost all programming languages, is encoded with <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements.</p>
 <p>Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Let’s consider the anatomy of the <code class="docutils literal notranslate"><span class="pre">if-elseif-else</span></code> conditional syntax in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="9de99b53-e963-43aa-ac9c-809c2a415282" name="bf7b096a-a962-430b-bc0e-c3c302b2ba10" type="radio">
-</input><label class="sd-tab-label" for="9de99b53-e963-43aa-ac9c-809c2a415282">
+<input checked="checked" id="0921f51e-6688-48c0-a268-b3cb3eba46eb" name="3a0d26d6-9408-42f9-ba43-f5b7046159b0" type="radio">
+</input><label class="sd-tab-label" for="0921f51e-6688-48c0-a268-b3cb3eba46eb">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
     <span class="c"># code statememts executed if condition_1 == true</span>
@@ -918,8 +918,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="73a8b90c-e7b0-4898-b0f8-8ff5bb1f2a38" name="bf7b096a-a962-430b-bc0e-c3c302b2ba10" type="radio">
-</input><label class="sd-tab-label" for="73a8b90c-e7b0-4898-b0f8-8ff5bb1f2a38">
+<input id="8103e828-b7d4-427c-9e45-2733802971ce" name="3a0d26d6-9408-42f9-ba43-f5b7046159b0" type="radio">
+</input><label class="sd-tab-label" for="8103e828-b7d4-427c-9e45-2733802971ce">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
     <span class="c1"># code statememts executed if condition_1 == true</span>
@@ -930,8 +930,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c2493351-0968-447d-94a8-bc91cd2336a8" name="bf7b096a-a962-430b-bc0e-c3c302b2ba10" type="radio">
-</input><label class="sd-tab-label" for="c2493351-0968-447d-94a8-bc91cd2336a8">
+<input id="a443b5f9-cf74-4114-94c1-2f819cc0aa53" name="3a0d26d6-9408-42f9-ba43-f5b7046159b0" type="radio">
+</input><label class="sd-tab-label" for="a443b5f9-cf74-4114-94c1-2f819cc0aa53">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition_1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="cm">/* block of code to be executed if condition_1 is true */</span><span class="w"></span>
@@ -1013,8 +1013,8 @@ C</label><div class="sd-tab-content docutils">
 </ul>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="093b23d2-0e9b-45d2-ab38-69b20d4a14f7" name="acd6cc20-a598-4e43-891b-57e0a8a245a5" type="radio">
-</input><label class="sd-tab-label" for="093b23d2-0e9b-45d2-ab38-69b20d4a14f7">
+<input checked="checked" id="81ee44e0-0933-4f23-9e13-d942aba4d2b1" name="14ee98bd-2122-4a27-ad4f-029d6404547c" type="radio">
+</input><label class="sd-tab-label" for="81ee44e0-0933-4f23-9e13-d942aba4d2b1">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span> <span class="c"># gives i values from 1 to 10 inclusive</span>
     
@@ -1024,8 +1024,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="80854805-9676-4d76-8b2a-35f224ee037d" name="acd6cc20-a598-4e43-891b-57e0a8a245a5" type="radio">
-</input><label class="sd-tab-label" for="80854805-9676-4d76-8b2a-35f224ee037d">
+<input id="71434c7c-407b-4502-964a-8d04c2beaee3" name="14ee98bd-2122-4a27-ad4f-029d6404547c" type="radio">
+</input><label class="sd-tab-label" for="71434c7c-407b-4502-964a-8d04c2beaee3">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>  <span class="c1"># gives i values from 1 to 9 inclusive (but not 10)</span>
     
@@ -1034,8 +1034,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="0c03f10b-d604-484b-9251-62b77ec02623" name="acd6cc20-a598-4e43-891b-57e0a8a245a5" type="radio">
-</input><label class="sd-tab-label" for="0c03f10b-d604-484b-9251-62b77ec02623">
+<input id="f245cbe0-16fc-4bf1-8d8e-aaceabd5ee25" name="14ee98bd-2122-4a27-ad4f-029d6404547c" type="radio">
+</input><label class="sd-tab-label" for="f245cbe0-16fc-4bf1-8d8e-aaceabd5ee25">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Using for-loop iteration range 0 -&gt; 9 */</span><span class="w"></span>
 <span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1060,6 +1060,8 @@ C</label><div class="sd-tab-content docutils">
 <span class="s">    fibonacci(n::Int64) -&gt; Array{Int64,1}</span>
 
 <span class="s">Computes the `fibonacci` sequence for 0 to n where n &gt;= 1</span>
+
+<span class="s">See: https://en.wikipedia.org/wiki/Fibonacci_number</span>
 <span class="s">&quot;&quot;&quot;</span>
 <span class="k">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
 
@@ -1091,8 +1093,8 @@ C</label><div class="sd-tab-content docutils">
 <p>In the discussion and examples above, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> used a loop counter to iterate through a list of items. However, many modern languages, e.g., <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, <a class="reference external" href="https://www.swift.org">Swift</a> or <a class="reference external" href="https://www.rust-lang.org">Rust</a> implement the <code class="docutils literal notranslate"><span class="pre">for-in</span></code> loop construct. <code class="docutils literal notranslate"><span class="pre">For-in</span></code> loops iterate directly through the elements of a list of items without a loop counter.</p>
 <p>Imagine that we have a list of chemical names stored in a collection named <code class="docutils literal notranslate"><span class="pre">list_of_chenicals</span></code>. A <code class="docutils literal notranslate"><span class="pre">for-in</span></code> statement allows us to iterate through the list directly without using a loop counter:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="999ef0e5-facb-414d-89e5-a7abb84149cb" name="10a130b8-d379-41e0-9bc0-6f54f4a3ee43" type="radio">
-</input><label class="sd-tab-label" for="999ef0e5-facb-414d-89e5-a7abb84149cb">
+<input checked="checked" id="a1520e37-ddb2-45f1-87f5-481c57c39026" name="9730c473-d0f3-4cea-bd32-4feab40fbdb8" type="radio">
+</input><label class="sd-tab-label" for="a1520e37-ddb2-45f1-87f5-481c57c39026">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># define list of chemicals -</span>
 <span class="n">list_of_chemicals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;alpha-D-glucose&quot;</span><span class="p">,</span> <span class="s">&quot;alpha-D-glucose-6P&quot;</span><span class="p">,</span> <span class="s">&quot;beta-D-Fructose-6P&quot;</span><span class="p">]</span>
@@ -1104,8 +1106,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="461ed4fd-4665-4be7-a0ec-8b531d15239a" name="10a130b8-d379-41e0-9bc0-6f54f4a3ee43" type="radio">
-</input><label class="sd-tab-label" for="461ed4fd-4665-4be7-a0ec-8b531d15239a">
+<input id="49206653-33be-44a2-b802-c73f35a66d01" name="9730c473-d0f3-4cea-bd32-4feab40fbdb8" type="radio">
+</input><label class="sd-tab-label" for="49206653-33be-44a2-b802-c73f35a66d01">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define list of chemicals -</span>
 <span class="n">list_of_chemicals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alpha-D-glucose&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha-D-glucose-6P&#39;</span><span class="p">,</span> <span class="s1">&#39;beta-D-Fructose-6P&#39;</span><span class="p">]</span>
@@ -1125,8 +1127,8 @@ python</label><div class="sd-tab-content docutils">
 <p>The header of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a <code class="docutils literal notranslate"><span class="pre">for-loop</span></code> that iterates over a fixed (specfied) range of values, a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop.</p>
 <p>Let’s look at the structure and syntax of a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> where we are iterating over a fixed range of values:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="8236883c-5d93-4d91-ae41-a2f0898ffaa7" name="df406e2e-cf62-4114-8b98-ed512833ee1e" type="radio">
-</input><label class="sd-tab-label" for="8236883c-5d93-4d91-ae41-a2f0898ffaa7">
+<input checked="checked" id="f0a06205-86ba-4ebd-8ae9-4ed42f8f8c2f" name="d0ff3515-0be7-447d-a378-73161fcd5dbb" type="radio">
+</input><label class="sd-tab-label" for="f0a06205-86ba-4ebd-8ae9-4ed42f8f8c2f">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize </span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>   <span class="c"># counter variable</span>
@@ -1144,8 +1146,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a53a56b1-ad79-4b33-9399-9a2b1fa11ba5" name="df406e2e-cf62-4114-8b98-ed512833ee1e" type="radio">
-</input><label class="sd-tab-label" for="a53a56b1-ad79-4b33-9399-9a2b1fa11ba5">
+<input id="ec0a613a-2d8c-43d4-8008-05460c74b632" name="d0ff3515-0be7-447d-a378-73161fcd5dbb" type="radio">
+</input><label class="sd-tab-label" for="ec0a613a-2d8c-43d4-8008-05460c74b632">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">5</span>                           <span class="c1"># Set the value to 5 </span>
@@ -1159,8 +1161,8 @@ python</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="b0787d9b-9dec-45e4-9a6c-f244bb1b4929" name="df406e2e-cf62-4114-8b98-ed512833ee1e" type="radio">
-</input><label class="sd-tab-label" for="b0787d9b-9dec-45e4-9a6c-f244bb1b4929">
+<input id="f11c0062-7f25-4341-b9de-56ef2314c161" name="d0ff3515-0be7-447d-a378-73161fcd5dbb" type="radio">
+</input><label class="sd-tab-label" for="f11c0062-7f25-4341-b9de-56ef2314c161">
 C</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* declare and initialize */</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
@@ -1187,7 +1189,14 @@ C</label><div class="sd-tab-content docutils">
 <div class="math notranslate nohighlight">
 \[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function using a <code class="docutils literal notranslate"><span class="pre">while-loop</span></code> is given by:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span> <span class="kt">Int64</span><span class="p">}</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    fibonacci(n::Int64) -&gt; Dict{Int64, Int64}</span>
+
+<span class="s">Computes the `fibonacci` sequence for 0 to n where n &gt;= 1.</span>
+
+<span class="s">See: https://en.wikipedia.org/wiki/Fibonacci_number</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span> <span class="kt">Int64</span><span class="p">}</span>
 
     <span class="c"># check: is n legit?</span>
     <span class="c"># n &gt;= 0</span>
@@ -1259,7 +1268,14 @@ C</label><div class="sd-tab-content docutils">
 <div class="math notranslate nohighlight">
 \[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A recursive <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function is given by:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    fibonacci(n::Int64) -&gt; Int64</span>
+
+<span class="s">Computes the `fibonacci` number for n where n &gt;= 1.</span>
+
+<span class="s">See: https://en.wikipedia.org/wiki/Fibonacci_number</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># base case</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1286,7 +1302,15 @@ C</label><div class="sd-tab-content docutils">
 <div class="math notranslate nohighlight">
 \[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A recursive <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of a mutating Fibonacci sequence function is given by:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">series</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">})</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    fibonacci!(n::Int64, series::Dict{Int64,Int64}) -&gt; Nothing</span>
+
+<span class="s">Recursively computes the `fibonacci` sequence for 0 to n where n &gt;= 1.</span>
+<span class="s">Stores series in `series::Dict`.</span>
+
+<span class="s">See: https://en.wikipedia.org/wiki/Fibonacci_number</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">series</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">})</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># base case</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1314,7 +1338,15 @@ Implement a memoization scheme to recycle the work done by previous function cal
 <div class="math notranslate nohighlight">
 \[F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(F_{0} = 0\)</span> and <span class="math notranslate nohighlight">\(F_{1} = 1\)</span>. A recursive <a class="reference external" href="https://docs.julialang.org">Julia</a> implementation of a mutating Fibonacci sequence function is given by:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">series</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">})</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    fibonacci!(n::Int64, series::Dict{Int64,Int64}) -&gt; Nothing</span>
+
+<span class="s">Recursively computes the `fibonacci` sequence for 0 to n where n &gt;= 1.</span>
+<span class="s">Stores series in `series::Dict`.</span>
+
+<span class="s">See: https://en.wikipedia.org/wiki/Fibonacci_number</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">fibonacci!</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">series</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Int64</span><span class="p">})</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c"># base case</span>
         <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
