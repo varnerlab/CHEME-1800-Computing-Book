@@ -168,8 +168,8 @@ For example, consider the `linear` function written with keyword arguments:
 """
     linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0) -> Number
 
-Compute the linear transform of the scalar number `x` given values for the `slope` and `intercept` keyword arguments. 
-All arguments are of type `Number`
+Compute the linear transform of the scalar number `x` given values for 
+the `slope` and `intercept` keyword arguments. All arguments are of type `Number`
 """
 function linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0)::Number
     
@@ -184,7 +184,7 @@ function linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0)::Number
     return y
 end
 
-# call: we can call with only *two* args
+# call: we can call with 1, 2 or 3 args
 y = linear(2.0; slope = 2.0, intercept=0.1) # this should return 4.1
 ```
 
