@@ -295,8 +295,7 @@ There are two common approaches to performing `iteration` that are resident in a
 
 (content:references:iteration-for-loops)=
 #### For-loops
-[For-loops](https://en.wikipedia.org/wiki/For_loop) execute a block of code a fixed number of times. 
-[For-loops](https://en.wikipedia.org/wiki/For_loop), which date back to the late 1950s, are key language constructs in all programming languages. For-loops have two parts: a header and a body:
+[For-loops](https://en.wikipedia.org/wiki/For_loop), which date back to the late 1950s and are key language constructs in all programming languages, execute a block of code a fixed number of times. [For-loops](https://en.wikipedia.org/wiki/For_loop) have two parts: a header and a body:
 * The header of a `for-loop` defines the iteration count, i.e., the number of times the loop will be executed. In modern `for-loop` header implementations, {ref}`content:references:iteration-for-loops-iterators` provide direct access to the items in a list instead of the item’s index. 
 * The body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable, which tells the body which iteration is being performed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
 
@@ -415,9 +414,9 @@ for chemical in list_of_chemicals:  # gives each chemical in the list
 
 (content:references:iteration-while-loops)=
 #### While-loops
-A [while-loop](https://en.wikipedia.org/wiki/While_loop) is a control structure that allows a program to repeat a block of code in the loop’s body as long as a particular condition, which is encoded in the loop's header, is true.
+A [while-loop](https://en.wikipedia.org/wiki/While_loop) is a control structure that repeats a block of code in the loop’s body as long as a particular condition, which is encoded in the loop's header, is true.
 
-The header of a `while-loop` evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to `true`, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a `for-loop` that iterates over a fixed (specfied) range of values, a `while-loop` can repeat both for a set number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop. 
+The header of a `while-loop` evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to `true`, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a `for-loop` that iterates over a specified range of values, a `while-loop` can repeat both for a fixed number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop. 
 
 Let's look at the structure and syntax of a `while-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
 
@@ -474,6 +473,8 @@ while (count > 1) {
 ```
 ````
 `````
+
+The [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) function `fibonacci` can be rewritten using a `while-loop` ({prf:ref}`example-iteration-fibonacci-seq-while`):
 
 ````{prf:example} Fibonacci while-loop
 :class: dropdown
