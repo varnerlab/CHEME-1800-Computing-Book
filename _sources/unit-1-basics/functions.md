@@ -382,9 +382,9 @@ end
 
 (content:references:iteration-for-loops-iterators)=
 #### Iterators
-In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop construct. `For-in` loops iterate directly through the elements of a list of items without a loop counter. 
+In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop pattern. A `for-in` loop pattern directly iterates through the elements of a list _without_ a loop counter.
 
-Imagine that we have a list of chemical names stored in a collection named `list_of_chenicals`. A `for-in` statement allows us to iterate through the list directly without using a loop counter:
+Let's do an example. Imagine that we have a list of chemical names stored in a collection named `list_of_chemicals`. A `for-in` construct allows us to iterate through the list directly without using a loop counter:
 
 `````{tab-set}
 ````{tab-item} julia
