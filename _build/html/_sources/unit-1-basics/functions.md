@@ -338,7 +338,7 @@ Let's illustrate the `for-loop` and functions by developing a function that iter
 :class: dropdown
 :label: example-iteration-fibonacci-numbers
 
-Develop a `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence.
+Develop a `fibonacci_for_loop` function which takes an integer $n$ as an argument and returns the Fibonacci sequence.
 
 __Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
 
@@ -346,7 +346,7 @@ __Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fi
 F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 ```
 
-where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function is given by:
+where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci_for_loop` function is given by:
 
 ```julia
 """
@@ -356,7 +356,7 @@ Computes the `fibonacci` sequence for 0 to n where n >= 1
 
 See: https://en.wikipedia.org/wiki/Fibonacci_number
 """
-function fibonacci(n::Int64)::Array{Int64,1}
+function fibonacci_for_loop(n::Int64)::Array{Int64,1}
 
 
     # check: is n legit? n>=1
@@ -480,7 +480,7 @@ The [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) functio
 :class: dropdown
 :label: example-iteration-fibonacci-seq-while
 
-Develop a `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence using a `while-loop`. 
+Develop a `fibonacci_while_loop` function which takes an integer $n$ as an argument and returns the Fibonacci sequence using a `while-loop`. 
 
 __Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
 
@@ -488,7 +488,7 @@ __Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fi
 F_{n} = F_{n-1}+F_{n-2}\qquad{n\geq{2}}
 ```
 
-where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci` function using a `while-loop` is given by:
+where $F_{0} = 0$ and $F_{1} = 1$. A [Julia](https://docs.julialang.org) implementation of the `fibonacci_while_loop` function using a `while-loop` is given by:
 
 ```julia
 """
@@ -498,7 +498,7 @@ Computes the `fibonacci` sequence for 0 to n where n >= 1.
 
 See: https://en.wikipedia.org/wiki/Fibonacci_number
 """
-function fibonacci(n::Int64)::Dict{Int64, Int64}
+function fibonacci_while_loop(n::Int64)::Dict{Int64, Int64}
 
     # check: is n legit?
     # n >= 0
