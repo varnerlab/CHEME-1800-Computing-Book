@@ -607,7 +607,7 @@ Of course, not all computer science functions are mutating. Some functions, call
 
 Distinguishing between pure and mutating functions can help prevent bugs caused by unexpected changes to the program’s state. In some programming languages, it is possible to mark functions as mutating to indicate to other programmers that the function may change the state of an object or variable. For example, in [Julia](https://docs.julialang.org), we mark (by convention) mutating functions with a `!` at the end of the function name, e.g., the function `foo()` is a pure function while `foo!()` is marked as a mutating function.
 
-Let's create a recursive mutating `fibonacci!()` function to compute the Fibonacci sequence:
+Let's create a recursive mutating `fibonacci!()` function to compute the Fibonacci sequence ({prf:ref}`example-iteration-fibonacci-series-recursive`):
 
 ````{prf:example} Recursive mutating Fibonacci sequence
 :class: dropdown
