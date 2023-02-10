@@ -607,7 +607,7 @@ Of course, not all computer science functions are mutating. Some functions, call
 
 Distinguishing between pure and mutating functions can help prevent bugs caused by unexpected changes to the program’s state. In some programming languages, it is possible to mark functions as mutating to indicate to other programmers that the function may change the state of an object or variable. For example, in [Julia](https://docs.julialang.org), we mark (by convention) mutating functions with a `!` at the end of the function name, e.g., the function `foo()` is a pure function while `foo!()` is marked as a mutating function.
 
-Let's create a recursive mutating `fibonacci!()` function to compute the Fibonacci sequence:
+Let's create a recursive mutating `fibonacci!()` function to compute the Fibonacci sequence ({prf:ref}`example-iteration-fibonacci-series-recursive`):
 
 ````{prf:example} Recursive mutating Fibonacci sequence
 :class: dropdown
@@ -651,7 +651,7 @@ Memoization is a technique for improving the performance of a computer program, 
 
 The critical idea of Memoization: don't do extra work! Instead, try to recycle your answers if possible. If we've already done the work to compute a value, or run a program, store these values in case you need them again.
 
-Let's develop one last version of the `fibonacci!()` function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make:
+Let's develop one last version of the `fibonacci!()` function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make ({prf:ref}`example-iteration-fibonacci-series-recursive-memoization`):
 
 
 ````{prf:example} Recursive mutating memoization Fibonacci sequence
