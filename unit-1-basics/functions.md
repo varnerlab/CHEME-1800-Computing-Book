@@ -651,7 +651,7 @@ Memoization is a technique for improving the performance of a computer program, 
 
 The critical idea of Memoization: don't do extra work! Instead, try to recycle your answers if possible. If we've already done the work to compute a value, or run a program, store these values in case you need them again.
 
-Let's develop one last version of the `fibonacci!()` function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make:
+Let's develop one last version of the `fibonacci!()` function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make ({prf:ref}`example-iteration-fibonacci-series-recursive-memoization`):
 
 
 ````{prf:example} Recursive mutating memoization Fibonacci sequence
