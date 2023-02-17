@@ -15,10 +15,13 @@ kernelspec:
 ## Introduction
 Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:
 
-* {ref}`content:references:lda-arrays`: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it.
+### Linear
+* {ref}`content:references:lda-arrays`: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it. 
+* {ref}`content:references:lda-stacks` and {ref}`content:references:lda-queues` are array like data structues that control how elements are added and accessed. {ref}`content:references:lda-stacks` follows the 
+[last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing. {ref}`content:references:lda-queues` follow the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.
 * {ref}`content:references:lda-linked-lists`: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.
-* {ref}`content:references:lda-stacks`: A stack is a linear data structure that follows the "last-in, first-out" (LIFO) principle. This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing.
-* {ref}`content:references:lda-queues`: A queue is a linear data structure that follows the "first-in, first-out" (FIFO) principle. This means that the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.
+
+### Non-linear
 * {ref}`content:references:data-structure-hashmap-and-sets`: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.
 * {ref}`content:references:data-structure-tree`: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
@@ -26,7 +29,7 @@ Data structures are ways of organizing and storing data in a computer so that it
 ---
 
 ## Linear data structures
-Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts non-linear data structures, which do not have a strict sequential order.
+Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts with non-linear data structures, which do not have a strict sequential order.
 
 (content:references:lda-arrays)=
 ### Arrays
@@ -112,17 +115,21 @@ end
 A
 ```
 
-#### Other Array like data structures
+#### Array like data structures
 
 (content:references:lda-stacks)=
 ##### Stacks
-A `stack` is a linear data structure that follows the "last-in, first-out" (LIFO) principle. Thus, the last element added to the `stack` will be the first one to be removed.
+A `stack` data structure follows the [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), the last element added to a `stack` will be the first element removed ({numref}`fig-stack-schematic`). Unlike an array, you cannot access the elements of a stack by thier index. Instead, elements are added to the top of the stack (also known as `pushing`) and removed from the top of the stack (also known as `popping`). 
 
-Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on a `stack` (referred to as the `call stack`) until the function returns.
 
-In a `stack`, elements can be added to the top (also known as `pushing`) and removed from the top (also known as `popping`). This means that new elements are continually added to the top of the stack, and elements are always drawn from the top.
-
-Here is an example of an integer `stack` in [Julia](https://docs.julialang.org) implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
+```{figure} ./figs/Fig-Stack-Schematic.pdf
+---
+height: 200px
+name: fig-stack-schematic
+---
+Schematic of the `push!` and `pop!` operations for a `stack s`. Stacks follow the last-in, first-out paradigm. Thus, new elements are continually added to the top of the stack, while elements are drawn from the top (depicted with the dashed arrow).
+```
+Stacks in [Julia](https://docs.julialang.org) are implemented in the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
 
 ```julia
 using DataStructures # import the DataStructures package
@@ -140,20 +147,25 @@ x = pop!(s);
 
 # print x
 println("What value did we get from the Stack = $(x)")
-
 ```
 
-In this example, the elements 1, 2, and 3 are added to the `stack` in that order using the `push!` function. The call to the `pop!` function removes the top element in the `stack`, i.e., the value 3 (the last item added); `pop!` removes elements from the `stack` in the _opposite order_ they were added. 
+In this example, the elements `1`, `2`, and `3` are added to the `stack s` using the `push!` operation. The `pop!` operation removes the top element of the `stack`, i.e., the value 3 (the last item added); thus, `pop!` removes elements from the `stack` in the _opposite order_ they were added. 
+
+Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on [the call stack](https://en.wikipedia.org/wiki/Call_stack) until the function returns.
 
 (content:references:lda-queues)=
 ##### Queues
-A `queue` is a linear data structure that follows the "first-in, first-out" (FIFO) principle. This means that the first element added to the `queue` will be the first one to be removed.
+The `queue` data structure follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the `queue` will be the first element to be removed (Fig. {numref}`fig-queue-schematic`). In a `queue`, elements are added to the bottom (also known as _enqueuing_) and removed from the top (also known as _dequeuing_). 
 
-Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers.
+```{figure} ./figs/Fig-Queue-Schematic.pdf
+---
+height: 200px
+name: fig-queue-schematic
+---
+Schematic of the `enqueue!` and `dequeue!` operations for a `queue q`. Quues follow the first-in, first-out paradigm. Thus, new elements are continually added to the bottom of the queue, while elements are drawn from the top (depicted with the dashed arrow).
+```
 
-In a `queue`, elements are added to the end (also known as _enqueuing_) and removed from the front of the queue (also known as _dequeuing_). This means that new elements are continually added to the back of the queue, and removed elements are always taken from the front.
-
-Here is an example of an integer `queue` in [Julia](https://docs.julialang.org) implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
+Queues in [Julia](https://docs.julialang.org) are implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
 
 ```julia
 using DataStructures # import the DataStructures package
@@ -174,7 +186,9 @@ println("What value did we get from the Queue = $(x)")
 
 ```
 
-In this example, the elements 1, 2, and 3 are added to the `queue` in that order using the `enqueue!` function. The call to the `dequeue!` function removes the top element in the `queue`, i.e., the value 1 (the first item added); `dequeue!` removes elements from the `queue` in the order they were added. 
+In this example, the elements `1`, `2`, and `3` are added to the `queue q` in that order using the `enqueue!` operation. The `dequeue!` operation removes the top element from the `queue`, i.e., the value `1` (the first item added); `dequeue!` removes elements from the `queue` in the order they were added. 
+
+Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers.
 
 (content:references:lda-linked-lists)=
 ### Linked lists
@@ -185,11 +199,9 @@ There are two main types of linked lists: singly linked lists and doubly linked 
 Linked lists can be used to implement various data structures, such as stacks, queues, and associative arrays. They are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is O(1) for a linked list.
 
 ## Non-linear data structures
-Non-linear data structures do not store data in a linear sequence. In other words, the data is not linearly organized in a list where each element is connected to the next one. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of the data.
+Non-linear data structures do not store data in a linear sequence. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships. However, while non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations, they are typically more complex to construct and require more memory.
 
-Non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations. However, they are also (typically) more complex and require more memory to store the data.
-
-Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`. 
+<!-- Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`.  -->
 
 (content:references:data-structure-hashmap-and-sets)=
 ### Hashmaps and sets
