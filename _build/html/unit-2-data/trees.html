@@ -466,6 +466,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear">
+     Linear
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear">
+     Non-linear
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linear-data-structures">
@@ -483,8 +495,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#other-array-like-data-structures">
-       Other Array like data structures
+      <a class="reference internal nav-link" href="#array-like-data-structures">
+       Array like data structures
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h5 nav-item toc-entry">
@@ -584,6 +596,18 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear">
+     Linear
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear">
+     Non-linear
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linear-data-structures">
@@ -601,8 +625,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#other-array-like-data-structures">
-       Other Array like data structures
+      <a class="reference internal nav-link" href="#array-like-data-structures">
+       Array like data structures
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h5 nav-item toc-entry">
@@ -694,20 +718,28 @@ title="Print to PDF"
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:</p>
+<section id="linear">
+<h3>Linear<a class="headerlink" href="#linear" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-lda-arrays"><span class="std std-ref">Arrays</span></a>: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it.</p></li>
+<li><p><a class="reference internal" href="#content-references-lda-stacks"><span class="std std-ref">Stacks</span></a> and <a class="reference internal" href="#content-references-lda-queues"><span class="std std-ref">Queues</span></a> are array like data structues that control how elements are added and accessed. <a class="reference internal" href="#content-references-lda-stacks"><span class="std std-ref">Stacks</span></a> follows the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">last-in, first-out (LIFO) principle</a>. This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing. <a class="reference internal" href="#content-references-lda-queues"><span class="std std-ref">Queues</span></a> follow the <a class="reference external" href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">first-in, first-out (FIFO) principle</a>, the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.</p></li>
 <li><p><a class="reference internal" href="#content-references-lda-linked-lists"><span class="std std-ref">Linked lists</span></a>: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.</p></li>
-<li><p><a class="reference internal" href="#content-references-lda-stacks"><span class="std std-ref">Stacks</span></a>: A stack is a linear data structure that follows the “last-in, first-out” (LIFO) principle. This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing.</p></li>
-<li><p><a class="reference internal" href="#content-references-lda-queues"><span class="std std-ref">Queues</span></a>: A queue is a linear data structure that follows the “first-in, first-out” (FIFO) principle. This means that the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.</p></li>
+</ul>
+</section>
+<section id="non-linear">
+<h3>Non-linear<a class="headerlink" href="#non-linear" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
 <li><p><a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Hashmaps and sets</span></a>: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.</p></li>
 </ul>
 </section>
+</section>
 <hr class="docutils" />
 <section id="linear-data-structures">
 <h2>Linear data structures<a class="headerlink" href="#linear-data-structures" title="Permalink to this headline">#</a></h2>
-<p>Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts non-linear data structures, which do not have a strict sequential order.</p>
+<p>Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts with non-linear data structures, which do not have a strict sequential order.</p>
 <section id="arrays">
 <span id="content-references-lda-arrays"></span><h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h3>
 <p>An array is a data structure that stores a collection of items of the same type in a <em>contiguous</em> block of memory (<a class="reference internal" href="#fig-array-schematic"><span class="std std-numref">Fig. 4</span></a>). The name of an array, e.g., <span class="math notranslate nohighlight">\(a\)</span> points to the first element, then each subsequent element in the array adds <code class="docutils literal notranslate"><span class="pre">+1</span></code> units to the memory address of the previous element.</p>
@@ -819,13 +851,12 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section id="other-array-like-data-structures">
-<h4>Other Array like data structures<a class="headerlink" href="#other-array-like-data-structures" title="Permalink to this headline">#</a></h4>
+<section id="array-like-data-structures">
+<h4>Array like data structures<a class="headerlink" href="#array-like-data-structures" title="Permalink to this headline">#</a></h4>
 <section id="stacks">
 <span id="content-references-lda-stacks"></span><h5>Stacks<a class="headerlink" href="#stacks" title="Permalink to this headline">#</a></h5>
-<p>A <code class="docutils literal notranslate"><span class="pre">stack</span></code> is a linear data structure that follows the “last-in, first-out” (LIFO) principle. Thus, the last element added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> will be the first one to be removed.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">stack</span></code> is a linear data structure that follows the <a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">last-in, first-out (LIFO) principle</a>. Thus, the last element added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> will be the first one to be removed; elements are added to the top (also known as <code class="docutils literal notranslate"><span class="pre">pushing</span></code>) and removed from the top (also known as <code class="docutils literal notranslate"><span class="pre">popping</span></code>). This means that new elements are continually added to the top of the stack, and elements are always drawn from the top.</p>
 <p>Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on a <code class="docutils literal notranslate"><span class="pre">stack</span></code> (referred to as the <code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">stack</span></code>) until the function returns.</p>
-<p>In a <code class="docutils literal notranslate"><span class="pre">stack</span></code>, elements can be added to the top (also known as <code class="docutils literal notranslate"><span class="pre">pushing</span></code>) and removed from the top (also known as <code class="docutils literal notranslate"><span class="pre">popping</span></code>). This means that new elements are continually added to the top of the stack, and elements are always drawn from the top.</p>
 <p>Here is an example of an integer <code class="docutils literal notranslate"><span class="pre">stack</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a> implemented by the <a class="reference external" href="https://github.com/JuliaCollections/DataStructures.jl">DataStructures.jl</a> package:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">DataStructures</span> <span class="c"># import the DataStructures package</span>
 
@@ -844,11 +875,11 @@ title="Print to PDF"
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;What value did we get from the Stack = </span><span class="si">$</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In this example, the elements 1, 2, and 3 are added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in that order using the <code class="docutils literal notranslate"><span class="pre">push!</span></code> function. The call to the <code class="docutils literal notranslate"><span class="pre">pop!</span></code> function removes the top element in the <code class="docutils literal notranslate"><span class="pre">stack</span></code>, i.e., the value 3 (the last item added); <code class="docutils literal notranslate"><span class="pre">pop!</span></code> removes elements from the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in the <em>opposite order</em> they were added.</p>
+<p>In this example, the elements 1, 2, and 3 are added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> using the <code class="docutils literal notranslate"><span class="pre">push!</span></code> function. The call to the <code class="docutils literal notranslate"><span class="pre">pop!</span></code> function removes the top element in the <code class="docutils literal notranslate"><span class="pre">stack</span></code>, i.e., the value 3 (the last item added); <code class="docutils literal notranslate"><span class="pre">pop!</span></code> removes elements from the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in the <em>opposite order</em> they were added.</p>
 </section>
 <section id="queues">
 <span id="content-references-lda-queues"></span><h5>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">#</a></h5>
-<p>A <code class="docutils literal notranslate"><span class="pre">queue</span></code> is a linear data structure that follows the “first-in, first-out” (FIFO) principle. This means that the first element added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> will be the first one to be removed.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">queue</span></code> is a linear data structure that follows the <a class="reference external" href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">first-in, first-out (FIFO) principle</a>. This means that the first element added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> will be the first one to be removed.</p>
 <p>Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer <code class="docutils literal notranslate"><span class="pre">queue</span></code> might store print jobs that need to be printed in the order they were received, or a task <code class="docutils literal notranslate"><span class="pre">queue</span></code> might store tasks that need to be completed by a group of workers.</p>
 <p>In a <code class="docutils literal notranslate"><span class="pre">queue</span></code>, elements are added to the end (also known as <em>enqueuing</em>) and removed from the front of the queue (also known as <em>dequeuing</em>). This means that new elements are continually added to the back of the queue, and removed elements are always taken from the front.</p>
 <p>Here is an example of an integer <code class="docutils literal notranslate"><span class="pre">queue</span></code> in <a class="reference external" href="https://docs.julialang.org">Julia</a> implemented by the <a class="reference external" href="https://github.com/JuliaCollections/DataStructures.jl">DataStructures.jl</a> package:</p>
@@ -882,9 +913,8 @@ title="Print to PDF"
 </section>
 <section id="non-linear-data-structures">
 <h2>Non-linear data structures<a class="headerlink" href="#non-linear-data-structures" title="Permalink to this headline">#</a></h2>
-<p>Non-linear data structures do not store data in a linear sequence. In other words, the data is not linearly organized in a list where each element is connected to the next one. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of the data.</p>
-<p>Non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations. However, they are also (typically) more complex and require more memory to store the data.</p>
-<p>Let’s consider a few handy non-linear data structures, <a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Hashmaps and sets</span></a>, <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>, and <a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>.</p>
+<p>Non-linear data structures do not store data in a linear sequence. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships. However, while non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations, they are typically more complex to construct and require more memory.</p>
+<!-- Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`.  -->
 <section id="hashmaps-and-sets">
 <span id="content-references-data-structure-hashmap-and-sets"></span><h3>Hashmaps and sets<a class="headerlink" href="#hashmaps-and-sets" title="Permalink to this headline">#</a></h3>
 <p>A hashmap is a data structure that stores key-value pairs, where each key value is unique. Hashmaps uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> to map keys to array indexes, thus, allowing for efficient lookups and insertions. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p>
@@ -893,8 +923,8 @@ title="Print to PDF"
 <p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="149004c6-c636-44ec-a212-65846785e8de" name="bdc191f3-7c0e-443e-8a07-a33fe6c9aa65" type="radio">
-</input><label class="sd-tab-label" for="149004c6-c636-44ec-a212-65846785e8de">
+<input checked="checked" id="0f2aa1a2-bf7b-41a0-97c1-24213752c8ac" name="1abdd5af-804e-4075-9b28-555ba2d0b7bc" type="radio">
+</input><label class="sd-tab-label" for="0f2aa1a2-bf7b-41a0-97c1-24213752c8ac">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -906,8 +936,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6723a7b3-cb61-4f6f-a735-2e11039e7883" name="bdc191f3-7c0e-443e-8a07-a33fe6c9aa65" type="radio">
-</input><label class="sd-tab-label" for="6723a7b3-cb61-4f6f-a735-2e11039e7883">
+<input id="55534df2-ed3a-4cb7-9c04-35a7acc6ffa3" name="1abdd5af-804e-4075-9b28-555ba2d0b7bc" type="radio">
+</input><label class="sd-tab-label" for="55534df2-ed3a-4cb7-9c04-35a7acc6ffa3">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -926,8 +956,8 @@ python</label><div class="sd-tab-content docutils">
 <h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="60a73e80-5383-4cba-aff1-452f969d8260" name="61bb1c0e-a9e8-4066-8eb7-b15727476467" type="radio">
-</input><label class="sd-tab-label" for="60a73e80-5383-4cba-aff1-452f969d8260">
+<input checked="checked" id="091241f3-f149-45be-ae5a-73bba2341716" name="567d3407-53f9-4573-a85a-bbdfe9e3804f" type="radio">
+</input><label class="sd-tab-label" for="091241f3-f149-45be-ae5a-73bba2341716">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -939,8 +969,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="b2f30224-82c5-45b2-b502-01a410479695" name="61bb1c0e-a9e8-4066-8eb7-b15727476467" type="radio">
-</input><label class="sd-tab-label" for="b2f30224-82c5-45b2-b502-01a410479695">
+<input id="e69dfbe8-d353-4f08-9581-d1adc41a27ce" name="567d3407-53f9-4573-a85a-bbdfe9e3804f" type="radio">
+</input><label class="sd-tab-label" for="e69dfbe8-d353-4f08-9581-d1adc41a27ce">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
