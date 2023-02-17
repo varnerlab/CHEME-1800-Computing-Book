@@ -30,11 +30,87 @@ Linear data structures store elements linearly, meaning that they are arranged i
 
 (content:references:lda-arrays)=
 ### Arrays
-An array is a data structure that stores a collection of items of the same type in a contiguous block of memory. The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of 0, the second element has an index of 1, and so on. 
+An array is a data structure that stores a collection of items of the same type in a _contiguous_ block of memory ({numref}`fig-array-schematic`). The name of an array, e.g., $a$ points to the first element, then each subsequent element in the array adds `+1` units to the memory address of the previous element.   
 
-Arrays can store large amounts of data because they allow fast access to any element using the index. However, inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.
+```{figure} ./figs/Fig-Array-Schematic.pdf
+---
+height: 150px
+name: fig-array-schematic
+---
+Schematic of a 1-based array six element array with name a.
+```
 
-There are different types of arrays, such as one-dimensional arrays, which store a linear sequence of elements, and multi-dimensional arrays, i.e., arrays of arrays that store data in more complex structures.
+The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of `0`, the second element has an index of `1`, and so on. However, arrays in [Julia](https://julialang.org) are one-based, i.e., the first element has an index `1`, the second element has an index `2`, etc. 
+
+Arrays can store large amounts of data because they allow fast access to any element using the index. Elements of an array are typically indexed using `bracket notation` in most languages such as [Julia](https://julialang.org) or [Python](https://www.python.org):
+
+```{code-cell} julia
+# Define an array -
+a = [2,4,8,16,32,64]
+
+# What is the 3rd element of the array a?
+i = 3
+println("The third element of a = $(a[i])")
+```
+
+However, array access uses parenthesis in niche systems, such as [Matlab/Octave](https://www.mathworks.com/products/matlab.html). 
+
+Accessing individual elements or contiguous ranges of elements of an array is fast, but inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.
+
+#### Types of arrays
+There are different types of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.
+
+In [Julia](https://julialang.org), the size of an array and the type of data that will be stored in the array are declared when you initialize the array. For example, a 1-dimensional array of indefinite length that holds integers is declared as: 
+
+```{code-cell} julia
+# Define an array arr
+arr = Array{Int64,1}() # the array is empty
+
+# When an array has undefined length, we use the push! operation to add values
+push!(arr,1); # adds a 1 to index 1
+push!(arr,2); # adds a 2 to index 2
+push!(arr,4); # adds a 4 to index 3
+
+# print elements of the array -
+println("Elements of arr = $(arr)")
+```
+
+Of course, if you know how many elements you need the array to store beforehand, you can declare that when the array is constructed:
+
+```{code-cell} julia
+# Define an array arr
+arr = Array{Int64,1}(undef, 10) # the array has 10 elements, each initialized to undefined
+
+# When an array has defined length, we use the = operation to add values
+for i in 1:10
+  arr[i] = 2^i # fills the array with powers of 2
+end
+
+# print elements of the array -
+println("Elements of arr = $(arr)")
+```
+
+Two-dimensional arrays follow a similar pattern when we declare the array; however, there is no direct equivalent to the `push!` operation for two- (or higher) dimensional arrays. Thus, when dealing with multi-dimensional arrays, we typically need to know the size of each dimension when we declare the array:
+
+```{code-cell} julia
+# Define an 2-dimensional array A
+A = Array{Int64, 2}(undef, 4, 4) # array of Int's has 4 rows, 4 cols, initialized to undefined
+
+# When an array has defined length, we use the = operation to add values
+# This creates an upper-triangular matrix with powers 2
+for i in 1:4
+  for j in 1:4
+    if (i<=j)
+      A[i,j] = 2^j # fills the array with powers of 2 along the col index
+    else
+      A[i,j] = 0 # adds a zero
+    end
+  end
+end
+
+# print elements of the array
+A
+```
 
 (content:references:lda-linked-lists)=
 ### Linked lists
