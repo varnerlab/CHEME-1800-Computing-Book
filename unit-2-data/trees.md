@@ -119,11 +119,17 @@ A
 
 (content:references:lda-stacks)=
 ##### Stacks
-A `stack` is a linear data structure that follows the [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), the last element added to a `stack` will be the first one to be removed. 
+A `stack` data structure follows the [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), the last element added to a `stack` will be the first element removed ({numref}`fig-stack-schematic`). Unlike an array, you cannot access the elements of a stack by thier index. Instead, elements are added to the top of the stack (also known as `pushing`) and removed from the top of the stack (also known as `popping`). 
 
-Elements are added to the top (also known as `pushing`) and removed from the top (also known as `popping`). This means that new elements are continually added to the top of the stack, and elements are always drawn from the top. Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on a `stack` (referred to as the `call stack`) until the function returns.
 
-Here is an example of an integer `stack` in [Julia](https://docs.julialang.org) implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
+```{figure} ./figs/Fig-Stack-Schematic.pdf
+---
+height: 200px
+name: fig-stack-schematic
+---
+Schematic of the `push!` and `pop!` operations for a `stack s`. Stacks follow the last-in, first-out paradigm. Thus, new elements are continually added to the top of the stack, while elements are drawn from the top (depicted with the dashed arrow).
+```
+Stacks in [Julia](https://docs.julialang.org) are implemented in the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
 
 ```julia
 using DataStructures # import the DataStructures package
@@ -143,17 +149,23 @@ x = pop!(s);
 println("What value did we get from the Stack = $(x)")
 ```
 
-In this example, the elements 1, 2, and 3 are added to the `stack` using the `push!` function. The call to the `pop!` function removes the top element in the `stack`, i.e., the value 3 (the last item added); `pop!` removes elements from the `stack` in the _opposite order_ they were added. 
+In this example, the elements `1`, `2`, and `3` are added to the `stack s` using the `push!` operation. The `pop!` operation removes the top element of the `stack`, i.e., the value 3 (the last item added); thus, `pop!` removes elements from the `stack` in the _opposite order_ they were added. 
+
+Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on [the call stack](https://en.wikipedia.org/wiki/Call_stack) until the function returns.
 
 (content:references:lda-queues)=
 ##### Queues
-A `queue` is a linear data structure that follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)). This means that the first element added to the `queue` will be the first one to be removed.
+The `queue` data structure follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the `queue` will be the first element to be removed (Fig. {numref}`fig-queue-schematic`). In a `queue`, elements are added to the bottom (also known as _enqueuing_) and removed from the top (also known as _dequeuing_). 
 
-Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers.
+```{figure} ./figs/Fig-Queue-Schematic.pdf
+---
+height: 200px
+name: fig-queue-schematic
+---
+Schematic of the `enqueue!` and `dequeue!` operations for a `queue q`. Quues follow the first-in, first-out paradigm. Thus, new elements are continually added to the bottom of the queue, while elements are drawn from the top (depicted with the dashed arrow).
+```
 
-In a `queue`, elements are added to the end (also known as _enqueuing_) and removed from the front of the queue (also known as _dequeuing_). This means that new elements are continually added to the back of the queue, and removed elements are always taken from the front.
-
-Here is an example of an integer `queue` in [Julia](https://docs.julialang.org) implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
+Queues in [Julia](https://docs.julialang.org) are implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
 
 ```julia
 using DataStructures # import the DataStructures package
@@ -174,7 +186,9 @@ println("What value did we get from the Queue = $(x)")
 
 ```
 
-In this example, the elements 1, 2, and 3 are added to the `queue` in that order using the `enqueue!` function. The call to the `dequeue!` function removes the top element in the `queue`, i.e., the value 1 (the first item added); `dequeue!` removes elements from the `queue` in the order they were added. 
+In this example, the elements `1`, `2`, and `3` are added to the `queue q` in that order using the `enqueue!` operation. The `dequeue!` operation removes the top element from the `queue`, i.e., the value `1` (the first item added); `dequeue!` removes elements from the `queue` in the order they were added. 
+
+Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers.
 
 (content:references:lda-linked-lists)=
 ### Linked lists
