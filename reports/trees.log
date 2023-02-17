@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/jeffreyvarner/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Define an 2-dimensional array A
+A = Array{Int64, 2}(undef, 4, 4) # the array if Int's has 4 rows, 4 cols, each initialized to undefined
+
+# When an array has defined length, we use the = operation to add values
+for i in 1:10
+  for j in 1:2
+    if (i<=j)
+      A[i,j] = 2^i # fills the array with powers of 2
+    else
+      A[i,j] = 0
+    end
+  end
+end
+
+# print elements of the array
+A
+------------------
+
+BoundsError: attempt to access 4×4 Matrix{Int64} at index [5, 1]
+
+Stacktrace:
+ [1] setindex!(::Matrix{Int64}, ::Int64, ::Int64, ::Int64)
+   @ Base ./array.jl:968
+ [2] top-level scope
+   @ ./In[4]:0
+ [3] eval
+   @ ./boot.jl:368 [inlined]
+ [4] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
+   @ Base ./loading.jl:1428
+LoadError: BoundsError: attempt to access 4×4 Matrix{Int64} at index [5, 1]
+

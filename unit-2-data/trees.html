@@ -476,20 +476,34 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#arrays">
      Arrays
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#types-of-arrays">
+       Types of arrays
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#other-array-like-data-structures">
+       Other Array like data structures
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#stacks">
+         Stacks
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#queues">
+         Queues
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linked-lists">
      Linked lists
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stacks">
-     Stacks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#queues">
-     Queues
     </a>
    </li>
   </ul>
@@ -580,20 +594,34 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#arrays">
      Arrays
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#types-of-arrays">
+       Types of arrays
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#other-array-like-data-structures">
+       Other Array like data structures
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#stacks">
+         Stacks
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#queues">
+         Queues
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linked-lists">
      Linked lists
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stacks">
-     Stacks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#queues">
-     Queues
     </a>
    </li>
   </ul>
@@ -682,18 +710,119 @@ title="Print to PDF"
 <p>Linear data structures store elements linearly, meaning that they are arranged in a sequence one after the other. This contrasts non-linear data structures, which do not have a strict sequential order.</p>
 <section id="arrays">
 <span id="content-references-lda-arrays"></span><h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h3>
-<p>An array is a data structure that stores a collection of items of the same type in a contiguous block of memory. The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of 0, the second element has an index of 1, and so on.</p>
-<p>Arrays can store large amounts of data because they allow fast access to any element using the index. However, inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.</p>
-<p>There are different types of arrays, such as one-dimensional arrays, which store a linear sequence of elements, and multi-dimensional arrays, i.e., arrays of arrays that store data in more complex structures.</p>
+<p>An array is a data structure that stores a collection of items of the same type in a <em>contiguous</em> block of memory (<a class="reference internal" href="#fig-array-schematic"><span class="std std-numref">Fig. 4</span></a>). The name of an array, e.g., <span class="math notranslate nohighlight">\(a\)</span> points to the first element, then each subsequent element in the array adds <code class="docutils literal notranslate"><span class="pre">+1</span></code> units to the memory address of the previous element.</p>
+<figure class="align-default" id="fig-array-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-Array-Schematic.pdf"><img alt="../_images/Fig-Array-Schematic.pdf" src="../_images/Fig-Array-Schematic.pdf" style="height: 150px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of a 1-based array six element array with name a.</span><a class="headerlink" href="#fig-array-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of <code class="docutils literal notranslate"><span class="pre">0</span></code>, the second element has an index of <code class="docutils literal notranslate"><span class="pre">1</span></code>, and so on. However, arrays in <a class="reference external" href="https://julialang.org">Julia</a> are one-based, i.e., the first element has an index <code class="docutils literal notranslate"><span class="pre">1</span></code>, the second element has an index <code class="docutils literal notranslate"><span class="pre">2</span></code>, etc.</p>
+<p>Arrays can store large amounts of data because they allow fast access to any element using the index. Elements of an array are typically indexed using <code class="docutils literal notranslate"><span class="pre">bracket</span> <span class="pre">notation</span></code> in most languages such as <a class="reference external" href="https://julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an array -</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">]</span>
+
+<span class="c"># What is the 3rd element of the array a?</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The third element of a = </span><span class="si">$</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The third element of a = 8
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, array access uses parenthesis in niche systems, such as <a class="reference external" href="https://www.mathworks.com/products/matlab.html">Matlab/Octave</a>.</p>
+<p>Accessing individual elements or contiguous ranges of elements of an array is fast, but inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.</p>
+<section id="types-of-arrays">
+<h4>Types of arrays<a class="headerlink" href="#types-of-arrays" title="Permalink to this headline">#</a></h4>
+<p>There are different types of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.</p>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a>, the size of an array and the type of data that will be stored in the array are declared when you initialize the array. For example, a 1-dimensional array of indefinite length that holds integers is declared as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an array arr</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span> <span class="c"># the array is empty</span>
+
+<span class="c"># When an array has undefined length, we use the push! operation to add values</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c"># adds a 1 to index 1</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="c"># adds a 2 to index 2</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="c"># adds a 4 to index 3</span>
+
+<span class="c"># print elements of the array -</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Elements of arr = </span><span class="si">$</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Elements of arr = [1, 2, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, if you know how many elements you need the array to store beforehand, you can declare that when the array is constructed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an array arr</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c"># the array has 10 elements, each initialized to undefined</span>
+
+<span class="c"># When an array has defined length, we use the = operation to add values</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span>
+  <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="n">i</span> <span class="c"># fills the array with powers of 2</span>
+<span class="k">end</span>
+
+<span class="c"># print elements of the array -</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Elements of arr = </span><span class="si">$</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Elements of arr = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Two-dimensional arrays follow a similar pattern when we declare the array; however, there is no direct equivalent to the <code class="docutils literal notranslate"><span class="pre">push!</span></code> operation for two- (or higher) dimensional arrays. Thus, when dealing with multi-dimensional arrays, we typically need to know the size of each dimension when we declare the array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an 2-dimensional array A</span>
+<span class="n">A</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span> <span class="mi">2</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c"># array of Int&#39;s has 4 rows, 4 cols, initialized to undefined</span>
+
+<span class="c"># When an array has defined length, we use the = operation to add values</span>
+<span class="c"># This creates an upper-triangular matrix with powers 2</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span><span class="p">)</span>
+      <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="n">j</span> <span class="c"># fills the array with powers of 2 along the col index</span>
+    <span class="k">else</span>
+      <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># adds a zero</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># print elements of the array</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×4 Matrix{Int64}:
+ 2  4  8  16
+ 0  4  8  16
+ 0  0  8  16
+ 0  0  0  16
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="linked-lists">
-<span id="content-references-lda-linked-lists"></span><h3>Linked lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">#</a></h3>
-<p>A linked list is a linear data structure where each element, called a node, is a separate object that stores a data value and a reference (link) to the next node in the list. Linked lists are used to store data sequences, and they are a common alternative to arrays because they can be resized easily; llements can be inserted or removed without moving the other elements.</p>
-<p>There are two main types of linked lists: singly linked lists and doubly linked lists. In a singly linked list, each node has a reference to the next node in the list but not the previous one. On the other hand, each node connects to the next and previous nodes in a doubly linked list.</p>
-<p>Linked lists can be used to implement various data structures, such as stacks, queues, and associative arrays. They are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is O(1) for a linked list.</p>
-</section>
+<section id="other-array-like-data-structures">
+<h4>Other Array like data structures<a class="headerlink" href="#other-array-like-data-structures" title="Permalink to this headline">#</a></h4>
 <section id="stacks">
-<span id="content-references-lda-stacks"></span><h3>Stacks<a class="headerlink" href="#stacks" title="Permalink to this headline">#</a></h3>
+<span id="content-references-lda-stacks"></span><h5>Stacks<a class="headerlink" href="#stacks" title="Permalink to this headline">#</a></h5>
 <p>A <code class="docutils literal notranslate"><span class="pre">stack</span></code> is a linear data structure that follows the “last-in, first-out” (LIFO) principle. Thus, the last element added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> will be the first one to be removed.</p>
 <p>Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on a <code class="docutils literal notranslate"><span class="pre">stack</span></code> (referred to as the <code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">stack</span></code>) until the function returns.</p>
 <p>In a <code class="docutils literal notranslate"><span class="pre">stack</span></code>, elements can be added to the top (also known as <code class="docutils literal notranslate"><span class="pre">pushing</span></code>) and removed from the top (also known as <code class="docutils literal notranslate"><span class="pre">popping</span></code>). This means that new elements are continually added to the top of the stack, and elements are always drawn from the top.</p>
@@ -718,7 +847,7 @@ title="Print to PDF"
 <p>In this example, the elements 1, 2, and 3 are added to the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in that order using the <code class="docutils literal notranslate"><span class="pre">push!</span></code> function. The call to the <code class="docutils literal notranslate"><span class="pre">pop!</span></code> function removes the top element in the <code class="docutils literal notranslate"><span class="pre">stack</span></code>, i.e., the value 3 (the last item added); <code class="docutils literal notranslate"><span class="pre">pop!</span></code> removes elements from the <code class="docutils literal notranslate"><span class="pre">stack</span></code> in the <em>opposite order</em> they were added.</p>
 </section>
 <section id="queues">
-<span id="content-references-lda-queues"></span><h3>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">#</a></h3>
+<span id="content-references-lda-queues"></span><h5>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">#</a></h5>
 <p>A <code class="docutils literal notranslate"><span class="pre">queue</span></code> is a linear data structure that follows the “first-in, first-out” (FIFO) principle. This means that the first element added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> will be the first one to be removed.</p>
 <p>Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer <code class="docutils literal notranslate"><span class="pre">queue</span></code> might store print jobs that need to be printed in the order they were received, or a task <code class="docutils literal notranslate"><span class="pre">queue</span></code> might store tasks that need to be completed by a group of workers.</p>
 <p>In a <code class="docutils literal notranslate"><span class="pre">queue</span></code>, elements are added to the end (also known as <em>enqueuing</em>) and removed from the front of the queue (also known as <em>dequeuing</em>). This means that new elements are continually added to the back of the queue, and removed elements are always taken from the front.</p>
@@ -743,6 +872,14 @@ title="Print to PDF"
 <p>In this example, the elements 1, 2, and 3 are added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> in that order using the <code class="docutils literal notranslate"><span class="pre">enqueue!</span></code> function. The call to the <code class="docutils literal notranslate"><span class="pre">dequeue!</span></code> function removes the top element in the <code class="docutils literal notranslate"><span class="pre">queue</span></code>, i.e., the value 1 (the first item added); <code class="docutils literal notranslate"><span class="pre">dequeue!</span></code> removes elements from the <code class="docutils literal notranslate"><span class="pre">queue</span></code> in the order they were added.</p>
 </section>
 </section>
+</section>
+<section id="linked-lists">
+<span id="content-references-lda-linked-lists"></span><h3>Linked lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">#</a></h3>
+<p>A linked list is a linear data structure where each element, called a node, is a separate object that stores a data value and a reference (link) to the next node in the list. Linked lists are used to store data sequences, and they are a common alternative to arrays because they can be resized easily; llements can be inserted or removed without moving the other elements.</p>
+<p>There are two main types of linked lists: singly linked lists and doubly linked lists. In a singly linked list, each node has a reference to the next node in the list but not the previous one. On the other hand, each node connects to the next and previous nodes in a doubly linked list.</p>
+<p>Linked lists can be used to implement various data structures, such as stacks, queues, and associative arrays. They are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is O(1) for a linked list.</p>
+</section>
+</section>
 <section id="non-linear-data-structures">
 <h2>Non-linear data structures<a class="headerlink" href="#non-linear-data-structures" title="Permalink to this headline">#</a></h2>
 <p>Non-linear data structures do not store data in a linear sequence. In other words, the data is not linearly organized in a list where each element is connected to the next one. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of the data.</p>
@@ -756,8 +893,8 @@ title="Print to PDF"
 <p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="099fd4c4-c811-42ed-bc1d-e631a670849b" name="6b0999c8-6e16-419c-aa04-7322871e131d" type="radio">
-</input><label class="sd-tab-label" for="099fd4c4-c811-42ed-bc1d-e631a670849b">
+<input checked="checked" id="149004c6-c636-44ec-a212-65846785e8de" name="bdc191f3-7c0e-443e-8a07-a33fe6c9aa65" type="radio">
+</input><label class="sd-tab-label" for="149004c6-c636-44ec-a212-65846785e8de">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -769,8 +906,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="09b6c543-0124-43d7-a87d-129682fa778f" name="6b0999c8-6e16-419c-aa04-7322871e131d" type="radio">
-</input><label class="sd-tab-label" for="09b6c543-0124-43d7-a87d-129682fa778f">
+<input id="6723a7b3-cb61-4f6f-a735-2e11039e7883" name="bdc191f3-7c0e-443e-8a07-a33fe6c9aa65" type="radio">
+</input><label class="sd-tab-label" for="6723a7b3-cb61-4f6f-a735-2e11039e7883">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -789,8 +926,8 @@ python</label><div class="sd-tab-content docutils">
 <h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="2cf17e8d-d630-4123-ab33-a197c4f1c05e" name="2fd39dea-04f2-4b9b-9d1d-0b03801689d8" type="radio">
-</input><label class="sd-tab-label" for="2cf17e8d-d630-4123-ab33-a197c4f1c05e">
+<input checked="checked" id="60a73e80-5383-4cba-aff1-452f969d8260" name="61bb1c0e-a9e8-4066-8eb7-b15727476467" type="radio">
+</input><label class="sd-tab-label" for="60a73e80-5383-4cba-aff1-452f969d8260">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -802,8 +939,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="547b63d3-2404-4cc4-8e8e-b1ebd3d2c8e2" name="2fd39dea-04f2-4b9b-9d1d-0b03801689d8" type="radio">
-</input><label class="sd-tab-label" for="547b63d3-2404-4cc4-8e8e-b1ebd3d2c8e2">
+<input id="b2f30224-82c5-45b2-b502-01a410479695" name="61bb1c0e-a9e8-4066-8eb7-b15727476467" type="radio">
+</input><label class="sd-tab-label" for="b2f30224-82c5-45b2-b502-01a410479695">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -880,11 +1017,11 @@ python</label><div class="sd-tab-content docutils">
 <p>There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.</p>
 <section id="revisit-recursive-fibonacci-and-memoization">
 <h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
-<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 4</span></a>)</p>
+<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 5</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
