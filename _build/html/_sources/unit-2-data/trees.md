@@ -15,13 +15,13 @@ kernelspec:
 ## Introduction
 Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:
 
-### Linear
+### Linear data structures
 * {ref}`content:references:lda-arrays`: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it. 
 * {ref}`content:references:lda-stacks` and {ref}`content:references:lda-queues` are array like data structues that control how elements are added and accessed. {ref}`content:references:lda-stacks` follows the 
 [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing. {ref}`content:references:lda-queues` follow the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.
 * {ref}`content:references:lda-linked-lists`: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.
 
-### Non-linear
+### Non-linear data structures
 * {ref}`content:references:data-structure-hashmap-and-sets`: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.
 * {ref}`content:references:data-structure-tree`: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
@@ -37,7 +37,7 @@ An array is a data structure that stores a collection of items of the same type 
 
 ```{figure} ./figs/Fig-Array-Schematic.pdf
 ---
-height: 150px
+height: 90px
 name: fig-array-schematic
 ---
 Schematic of a 1-based array six element array with name a.
@@ -60,8 +60,8 @@ However, array access uses parenthesis in niche systems, such as [Matlab/Octave]
 
 Accessing individual elements or contiguous ranges of elements of an array is fast, but inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.
 
-#### Types of arrays
-There are different types of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.
+#### Types of arrays: Vectors, Matrices and d-dimensional arrays
+There are different sizes (types) of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.
 
 In [Julia](https://julialang.org), the size of an array and the type of data that will be stored in the array are declared when you initialize the array. For example, a 1-dimensional array of indefinite length that holds integers is declared as: 
 
@@ -115,7 +115,7 @@ end
 A
 ```
 
-#### Array like data structures
+#### Other array like data structures: Stacks and Queues
 
 (content:references:lda-stacks)=
 ##### Stacks
@@ -151,8 +151,11 @@ println("What value did we get from the Stack = $(x)")
 
 In this example, the elements `1`, `2`, and `3` are added to the `stack s` using the `push!` operation. The `pop!` operation removes the top element of the `stack`, i.e., the value 3 (the last item added); thus, `pop!` removes elements from the `stack` in the _opposite order_ they were added. 
 
-Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on [the call stack](https://en.wikipedia.org/wiki/Call_stack) until the function returns.
-
+###### Common uses of Stacks:
+* __Function call stack__: In programming languages, the function [call stack](https://en.wikipedia.org/wiki/Call_stack) is typically implemented as a stack data structure. Each time a function is called, its information (such as local variables, parameters, and return address) is pushed onto the stack. When the function returns, its information is popped off the stack, allowing the program to resume execution from where it left off.
+* __Undo/redo functionality__: Many applications that allow users to undo and redo actions use a stack data structure to keep track of the actions. Each time a user acts, such as typing a letter or moving an object, the action is added to the stack. The most recent activity is popped off the stack and undone when the user chooses to undo an action. Similarly, the redo functionality pushes undone actions back onto the stack.
+* __Expression evaluation__: Stack data structures can also be used to evaluate mathematical expressions, such as those in postfix notation. Operands are pushed onto the stack in this case, and operators are applied to the most recently pushed operands. The result is then pushed back onto the stack until the entire expression has been evaluated.
+ 
 (content:references:lda-queues)=
 ##### Queues
 The `queue` data structure follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the `queue` will be the first element to be removed (Fig. {numref}`fig-queue-schematic`). In a `queue`, elements are added to the bottom (also known as _enqueuing_) and removed from the top (also known as _dequeuing_). 
@@ -188,7 +191,14 @@ println("What value did we get from the Queue = $(x)")
 
 In this example, the elements `1`, `2`, and `3` are added to the `queue q` in that order using the `enqueue!` operation. The `dequeue!` operation removes the top element from the `queue`, i.e., the value `1` (the first item added); `dequeue!` removes elements from the `queue` in the order they were added. 
 
-Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers.
+###### Common uses of Queues
+* __Job scheduling__: Queues are often used in operating systems to manage tasks, such as running programs or printing documents. Each task is placed in a queue, and the operating system schedules tasks in the order they were added to the queue, allowing tasks to be processed in the order they were received.
+* __Breadth-first search__: In graph theory, the breadth-first search algorithm explores a graph by visiting all the vertices at a given level before moving on to the next level. This can be implemented using a queue data structure, where the vertices at each level are added to the queue in order and processed in that exact order.
+* __Message passing__: Queues are often used to pass messages between different parts of a system, such as between a producer and a consumer in a messaging system. Messages are added to the back of the queue by the producer and consumed from the front of the queue by the consumer. This allows the producer and consumer to operate at different speeds without the risk of messages being lost or overwritten.
+
+
+<!-- 
+Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers. -->
 
 (content:references:lda-linked-lists)=
 ### Linked lists
