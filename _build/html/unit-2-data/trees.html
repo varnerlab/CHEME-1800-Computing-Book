@@ -531,6 +531,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#linked-lists">
      Linked lists
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#common-uses-of-linked-lists">
+       Common uses of linked lists
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -675,6 +682,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#linked-lists">
      Linked lists
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#common-uses-of-linked-lists">
+       Common uses of linked lists
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -961,9 +975,24 @@ Queues are often used to store data that needs to be processed in a specific ord
 </section>
 <section id="linked-lists">
 <span id="content-references-lda-linked-lists"></span><h3>Linked lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">#</a></h3>
-<p>A linked list is a linear data structure where each element, called a node, is a separate object that stores a data value and a reference (link) to the next node in the list. Linked lists are used to store data sequences, and they are a common alternative to arrays because they can be resized easily; llements can be inserted or removed without moving the other elements.</p>
+<p>Linked lists are a common alternative to arrays because they can be resized easily; ndoes can be inserted or removed without moving the other nodes.
+A linked list is a linear data structure where each element, called a node, is a separate object that stores a data value and a reference (link) to the next node in the list (<a class="reference internal" href="#fig-linkedlist-schematic"><span class="std std-numref">Fig. 7</span></a>).</p>
+<figure class="align-default" id="fig-linkedlist-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-LinkedList-Schematic.pdf"><img alt="../_images/Fig-LinkedList-Schematic.pdf" src="../_images/Fig-LinkedList-Schematic.pdf" style="height: 180px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Schematic of a singly linked list. Each node in the list has data, in this case a queue data structure, and a reference (link) to the next node in the list.</span><a class="headerlink" href="#fig-linkedlist-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>There are two main types of linked lists: singly linked lists and doubly linked lists. In a singly linked list, each node has a reference to the next node in the list but not the previous one. On the other hand, each node connects to the next and previous nodes in a doubly linked list.</p>
-<p>Linked lists can be used to implement various data structures, such as stacks, queues, and associative arrays. They are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is O(1) for a linked list.</p>
+<section id="common-uses-of-linked-lists">
+<h4>Common uses of linked lists<a class="headerlink" href="#common-uses-of-linked-lists" title="Permalink to this headline">#</a></h4>
+<p>Linked lists are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is constant for a linked list.</p>
+<ul class="simple">
+<li><p><strong>Dynamic data structures</strong>: Linked lists are helpful when working with data structures that can change in size during runtime. Unlike arrays, linked lists can grow or shrink as needed without complex memory management or copying operations. This makes them helpful in implementing stacks, queues, and other dynamic data structures.</p></li>
+<li><p><strong>Memory allocation</strong>: In computer memory management, linked lists are used to keep track of free and allocated memory blocks. Each memory block is represented as a node in the list, with a pointer to the next block. This allows the system to find a suitable block for a new allocation quickly and to free up blocks when they are no longer needed efficiently.</p></li>
+<li><p><strong>Modeling hierarchical data</strong>: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.</p></li>
+</ul>
+</section>
 </section>
 </section>
 <section id="id2">
@@ -978,8 +1007,8 @@ Queues are often used to store data that needs to be processed in a specific ord
 <p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="89f46a89-1700-44f1-affc-926cec14f5f0" name="a97127d9-920f-48a9-b441-bd2928c21f9f" type="radio">
-</input><label class="sd-tab-label" for="89f46a89-1700-44f1-affc-926cec14f5f0">
+<input checked="checked" id="0c6510dc-0a05-4760-9dca-8e158995064b" name="b8802dbf-734f-4cd6-8eba-4d42be3d8761" type="radio">
+</input><label class="sd-tab-label" for="0c6510dc-0a05-4760-9dca-8e158995064b">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -991,8 +1020,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e4638dd1-1a11-486c-b344-ccf1f1564f01" name="a97127d9-920f-48a9-b441-bd2928c21f9f" type="radio">
-</input><label class="sd-tab-label" for="e4638dd1-1a11-486c-b344-ccf1f1564f01">
+<input id="cbdd5bf7-4b06-47b2-bfb6-a64c13ec2c39" name="b8802dbf-734f-4cd6-8eba-4d42be3d8761" type="radio">
+</input><label class="sd-tab-label" for="cbdd5bf7-4b06-47b2-bfb6-a64c13ec2c39">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1011,8 +1040,8 @@ python</label><div class="sd-tab-content docutils">
 <h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7173b8ea-bc6e-446b-a1a6-3f3c6b02cf61" name="249f474a-1f97-43d9-b497-b17246de07b8" type="radio">
-</input><label class="sd-tab-label" for="7173b8ea-bc6e-446b-a1a6-3f3c6b02cf61">
+<input checked="checked" id="329dc92c-53a0-4488-a98e-4a579de497d8" name="b56d218e-4cca-4398-872b-126a1e365c99" type="radio">
+</input><label class="sd-tab-label" for="329dc92c-53a0-4488-a98e-4a579de497d8">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1024,8 +1053,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2287751d-49f0-4478-9375-4784d5261e39" name="249f474a-1f97-43d9-b497-b17246de07b8" type="radio">
-</input><label class="sd-tab-label" for="2287751d-49f0-4478-9375-4784d5261e39">
+<input id="d8e83009-a4a0-4b57-8a30-c93442712a0f" name="b56d218e-4cca-4398-872b-126a1e365c99" type="radio">
+</input><label class="sd-tab-label" for="d8e83009-a4a0-4b57-8a30-c93442712a0f">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1102,11 +1131,11 @@ python</label><div class="sd-tab-content docutils">
 <p>There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.</p>
 <section id="revisit-recursive-fibonacci-and-memoization">
 <h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
-<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 7</span></a>)</p>
+<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 8</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
