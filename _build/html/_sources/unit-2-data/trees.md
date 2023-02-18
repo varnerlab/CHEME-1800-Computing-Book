@@ -196,6 +196,103 @@ In this example, the elements `1`, `2`, and `3` are added to the `queue q` in th
 * __Breadth-first search__: In graph theory, the breadth-first search algorithm explores a graph by visiting all the vertices at a given level before moving on to the next level. This can be implemented using a queue data structure, where the vertices at each level are added to the queue in order and processed in that exact order.
 * __Message passing__: Queues are often used to pass messages between different parts of a system, such as between a producer and a consumer in a messaging system. Messages are added to the back of the queue by the producer and consumed from the front of the queue by the consumer. This allows the producer and consumer to operate at different speeds without the risk of messages being lost or overwritten.
 
+In addition to the applications listed above, Queues are an ideal data structure for recursive parsing applications. Let's build a recursive string parser using a Queue ({prf:ref}`example-queue-recursive-string-parser`):
+
+````{prf:example} Recursive descent string parser
+:class: dropdown
+:label: example-queue-recursive-string-parser
+
+Develop a recursive parser that returns the words in a sentence as a `Dict{Int64, String}`, where the keys are the index of the word in the sentence, and the value are the words.
+
+Test input: "you've got mail works alot better than it deserves to . "
+
+__Solution__: We'll encode the string we need to parse in a queue data structure. We'll process each character until the queue is empty (base case): i) if the character is not the delimiter, then we'll store it; ii) if the character is the delimiter, we'll assemble all the characters that we stored into a string add to the external array.
+
+__Assumptions__: This code assumes that the `DataStructures.jl` package has been installed; the `DataStructures.jl` implements the `Queue` data structure.
+
+```julia
+# load external packages -
+using DataStructure
+
+"""
+    _recursive_parser(q::Queue, s::Array{Char,1}, a::Array{String,1}; delim = ' ')
+"""
+function _recursive_parser(q::Queue, s::Array{Char,1}, a::Array{String,1}; 
+    delim = ' ')
+
+    # base case: we have no more characters in the character_arr - we are done
+    if (isempty(q) == true)
+        return nothing 
+    else
+
+        # grab the next_char -
+        next_char = dequeue!(q)
+        if (next_char == delim)
+            
+            # if we get here, then we have hit a delim character, this means we should
+            # turn the characters in the s array into a word
+            # join chars in the character array -
+            word = join(s)
+            if (isempty(word) == false)
+                push!(a,word) # add that word to our word list -
+            end
+
+            # empty out the array of characters, because we may need it again
+            empty!(s);
+        else
+
+            # if we get here, next_char is *not* the delim, so push next_char into the array
+            # Why? we are collecting next_char until we hit a delim or hit the base case
+            # When we hit a delim the characters in s can be joined to make a word
+            push!(s, next_char)
+        end
+
+        # process the next character in the queue -
+        _recursive_parser(q,s,a; delim = delim);
+    end
+end
+
+"""
+    recursive_parser(string::String; delim::Char=' ') -> Dict{Int64,String}
+"""
+function recursive_parser(string::String; 
+    delim::Char=' ')::Dict{Int64,String}
+
+    # initialize -
+    d = Dict{Int,String}()
+    a = Array{String,1}()
+    s = Array{Char,1}()
+    q = Queue{Char}()
+    counter = 0
+
+    # build the Queue q that we are going to parse -
+    character_arr = collect(string)
+    for c ∈ character_arr
+        enqueue!(q, c);
+    end
+
+    # recursive descent -
+    _recursive_parser(q, s, a; delim = delim);
+
+    # convert to dictionary for the output
+    for item ∈ a
+        d[counter] = item;
+        counter += 1
+    end
+
+    # return -
+    return d
+end
+
+# setup:
+test_input = "you've got mail works alot better than it deserves to . "
+
+# call -
+d = recursive_string_parser(test_string);
+```
+
+
+````
 
 <!-- 
 Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers. -->
@@ -224,18 +321,17 @@ Linked lists are often used when the data structure size is not known in advance
 * __Modeling hierarchical data__: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.
 
 ## Non-linear data structures
-Non-linear data structures do not store data in a linear sequence. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships. However, while non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations, they are typically more complex to construct and require more memory.
+Non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships.  However, while non-linear data structures can be more efficient than arrays and linked lists, they are typically more complex to construct and require more memory.
 
 <!-- Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`.  -->
 
 (content:references:data-structure-hashmap-and-sets)=
-### Hashmaps and sets
-A hashmap is a data structure that stores key-value pairs, where each key value is unique. Hashmaps uses a [hash function](https://en.wikipedia.org/wiki/Hash_function) to map keys to array indexes, thus, allowing for efficient lookups and insertions. Sets are similar to hashmaps but only store keys and do not have values associated with them.
+### Dictionary and sets
+A dictionary stores key-value pairs, where each key value is unique. Dictionaries use a [hash function](https://en.wikipedia.org/wiki/Hash_function) to map keys (which can be a variety of types) to an array index. Thus, dictionaries have efficient lookup and insertion operations. Sets are similar to dictionaries but only store keys and do not have values associated with them.
 
-#### Hashmaps
-Hashmaps are implemented in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) as a `dictionary` type; we've already seen several examples of [Julia](https://docs.julialang.org) dictionaries, which are type `Dict`, when working with [JSON, TOML and YAML files](../unit-1-basics/data-file-io.md). [Python](https://www.python.org) dictionaries behave in a similar way as thier [Julia](https://docs.julialang.org) counterparts, with one important exception: in [Python > 3.7](https://www.python.org) dictionaries are _ordered_, while [Julia](https://docs.julialang.org) dictionaries are always _unordered_. 
+Dictionaries are implemented in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) as a `Dict` type; we've already seen several examples of [Julia](https://docs.julialang.org) dictionaries when working with [JSON, TOML and YAML files](../unit-1-basics/data-file-io.md) or other examples. [Python](https://www.python.org) dictionaries behave in a similar way as thier [Julia](https://docs.julialang.org) counterparts, with one important exception: in [Python > 3.7](https://www.python.org) dictionaries are _ordered_, while [Julia](https://docs.julialang.org) dictionaries are always _unordered_.
 
-Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let's look at an example of how to use a dictionary in [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
+Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let's look at an examples of dictionaries in [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
 
 `````{tab-set}
 ````{tab-item} julia
@@ -264,9 +360,8 @@ car["year"] = 1964
 ````
 `````
 
-Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`.
+<!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 
-#### Sets
 Like dictionaries, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) implement a `Set` type in their respective standard libraries. The `Set` type holds a unique collection of keys but does not associate these keys with any data:
 
 `````{tab-set}
@@ -298,7 +393,7 @@ fruit.add("Mango")
 
 In both [Julia](https://docs.julialang.org) and [Python](https://www.python.org), the `Set` type is _unordered_; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained. 
 
-##### Hash functions
+#### Hash functions
 The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
 
 A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
@@ -359,11 +454,29 @@ end
 
 (content:references:data-structure-tree)=
 ### Trees
-Trees are widely-used non-linear data structures that simulate a hierarchical tree structure, with nodes representing the hierarchy. In a tree, each node has one or more child nodes, each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node. The nodes that do not have any children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.
+Trees are widely-used non-linear data structures that encode hierarchical structure in data that are composed of nodes and edges ({numref}`fig-tree-schematic`). 
 
-Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision.
+```{figure} ./figs/Fig-Tree-Schematic.pdf
+---
+height: 320px
+name: fig-tree-schematic
+---
+Schematic of a tree data structure. Each node in the tree holds some data and references (links) to its children. If a node does not have children, it is a leaf node. The topmost node in the tree is the root node.  
+```
 
-There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.
+Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.
+
+#### Common uses for trees
+
+Trees are ubiquitous in computing; trees are used in a huge variety of applications:
+
+* __Organizing and searching data__: Trees are commonly used to store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.
+* __Implementing algorithms__: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.
+* __Modeling real-world phenomena__: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.
+
+<!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
+
+<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
 
 #### Revisit: Recursive Fibonacci and Memoization
 One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) numbers. The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`)

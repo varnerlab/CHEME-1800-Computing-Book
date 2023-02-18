@@ -547,26 +547,14 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashmaps-and-sets">
-     Hashmaps and sets
+    <a class="reference internal nav-link" href="#dictionary-and-sets">
+     Dictionary and sets
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#hashmaps">
-       Hashmaps
+      <a class="reference internal nav-link" href="#hash-functions">
+       Hash functions
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sets">
-       Sets
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#hash-functions">
-         Hash functions
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
@@ -575,6 +563,11 @@ title="Print to PDF"
      Trees
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#common-uses-for-trees">
+       Common uses for trees
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#revisit-recursive-fibonacci-and-memoization">
        Revisit: Recursive Fibonacci and Memoization
@@ -698,26 +691,14 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashmaps-and-sets">
-     Hashmaps and sets
+    <a class="reference internal nav-link" href="#dictionary-and-sets">
+     Dictionary and sets
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#hashmaps">
-       Hashmaps
+      <a class="reference internal nav-link" href="#hash-functions">
+       Hash functions
       </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sets">
-       Sets
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#hash-functions">
-         Hash functions
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
@@ -726,6 +707,11 @@ title="Print to PDF"
      Trees
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#common-uses-for-trees">
+       Common uses for trees
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#revisit-recursive-fibonacci-and-memoization">
        Revisit: Recursive Fibonacci and Memoization
@@ -772,7 +758,7 @@ title="Print to PDF"
 <section id="non-linear-data-structures">
 <h3>Non-linear data structures<a class="headerlink" href="#non-linear-data-structures" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Hashmaps and sets</span></a>: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p></li>
+<li><p><a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Dictionary and sets</span></a>: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.</p></li>
 </ul>
@@ -967,7 +953,96 @@ title="Print to PDF"
 <li><p><strong>Breadth-first search</strong>: In graph theory, the breadth-first search algorithm explores a graph by visiting all the vertices at a given level before moving on to the next level. This can be implemented using a queue data structure, where the vertices at each level are added to the queue in order and processed in that exact order.</p></li>
 <li><p><strong>Message passing</strong>: Queues are often used to pass messages between different parts of a system, such as between a producer and a consumer in a messaging system. Messages are added to the back of the queue by the producer and consumed from the front of the queue by the consumer. This allows the producer and consumer to operate at different speeds without the risk of messages being lost or overwritten.</p></li>
 </ul>
-<!-- 
+<p>In addition to the applications listed above, Queues are an ideal data structure for recursive parsing applications. Let’s build a recursive string parser using a Queue (<a class="reference internal" href="#example-queue-recursive-string-parser">Example 13</a>):</p>
+<div class="proof example dropdown admonition" id="example-queue-recursive-string-parser">
+<p class="admonition-title"><span class="caption-number">Example 13 </span> (Recursive descent string parser)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a recursive parser that returns the words in a sentence as a <code class="docutils literal notranslate"><span class="pre">Dict{Int64,</span> <span class="pre">String}</span></code>, where the keys are the index of the word in the sentence, and the value are the words.</p>
+<p>Test input: “you’ve got mail works alot better than it deserves to . “</p>
+<p><strong>Solution</strong>: We’ll encode the string we need to parse in a queue data structure. We’ll process each character until the queue is empty (base case): i) if the character is not the delimiter, then we’ll store it; ii) if the character is the delimiter, we’ll assemble all the characters that we stored into a string add to the external array.</p>
+<p><strong>Assumptions</strong>: This code assumes that the <code class="docutils literal notranslate"><span class="pre">DataStructures.jl</span></code> package has been installed; the <code class="docutils literal notranslate"><span class="pre">DataStructures.jl</span></code> implements the <code class="docutils literal notranslate"><span class="pre">Queue</span></code> data structure.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load external packages -</span>
+<span class="k">using</span> <span class="n">DataStructure</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    _recursive_parser(q::Queue, s::Array{Char,1}, a::Array{String,1}; delim = &#39; &#39;)</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">_recursive_parser</span><span class="p">(</span><span class="n">q</span><span class="o">::</span><span class="kt">Queue</span><span class="p">,</span> <span class="n">s</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Char</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="n">a</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span> 
+    <span class="n">delim</span> <span class="o">=</span> <span class="sc">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="c"># base case: we have no more characters in the character_arr - we are done</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isempty</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">nothing</span> 
+    <span class="k">else</span>
+
+        <span class="c"># grab the next_char -</span>
+        <span class="n">next_char</span> <span class="o">=</span> <span class="n">dequeue!</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">next_char</span> <span class="o">==</span> <span class="n">delim</span><span class="p">)</span>
+            
+            <span class="c"># if we get here, then we have hit a delim character, this means we should</span>
+            <span class="c"># turn the characters in the s array into a word</span>
+            <span class="c"># join chars in the character array -</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">isempty</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="c"># add that word to our word list -</span>
+            <span class="k">end</span>
+
+            <span class="c"># empty out the array of characters, because we may need it again</span>
+            <span class="n">empty!</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="k">else</span>
+
+            <span class="c"># if we get here, next_char is *not* the delim, so push next_char into the array</span>
+            <span class="c"># Why? we are collecting next_char until we hit a delim or hit the base case</span>
+            <span class="c"># When we hit a delim the characters in s can be joined to make a word</span>
+            <span class="n">push!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">next_char</span><span class="p">)</span>
+        <span class="k">end</span>
+
+        <span class="c"># process the next character in the queue -</span>
+        <span class="n">_recursive_parser</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">;</span> <span class="n">delim</span> <span class="o">=</span> <span class="n">delim</span><span class="p">);</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    recursive_parser(string::String; delim::Char=&#39; &#39;) -&gt; Dict{Int64,String}</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">recursive_parser</span><span class="p">(</span><span class="n">string</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span> 
+    <span class="n">delim</span><span class="o">::</span><span class="kt">Char</span><span class="o">=</span><span class="sc">&#39; &#39;</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">String</span><span class="p">}</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="kt">String</span><span class="p">}()</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Char</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="kt">Queue</span><span class="p">{</span><span class="kt">Char</span><span class="p">}()</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c"># build the Queue q that we are going to parse -</span>
+    <span class="n">character_arr</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="o">∈</span> <span class="n">character_arr</span>
+        <span class="n">enqueue!</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+    <span class="k">end</span>
+
+    <span class="c"># recursive descent -</span>
+    <span class="n">_recursive_parser</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">;</span> <span class="n">delim</span> <span class="o">=</span> <span class="n">delim</span><span class="p">);</span>
+
+    <span class="c"># convert to dictionary for the output</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="o">∈</span> <span class="n">a</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">;</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">d</span>
+<span class="k">end</span>
+
+<span class="c"># setup:</span>
+<span class="n">test_input</span> <span class="o">=</span> <span class="s">&quot;you&#39;ve got mail works alot better than it deserves to . &quot;</span>
+
+<span class="c"># call -</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">recursive_string_parser</span><span class="p">(</span><span class="n">test_string</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</div><!-- 
 Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers. -->
 </section>
 </section>
@@ -997,18 +1072,16 @@ A linked list is a linear data structure where each element, called a node, is a
 </section>
 <section id="id2">
 <h2>Non-linear data structures<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<p>Non-linear data structures do not store data in a linear sequence. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships. However, while non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations, they are typically more complex to construct and require more memory.</p>
+<p>Non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships.  However, while non-linear data structures can be more efficient than arrays and linked lists, they are typically more complex to construct and require more memory.</p>
 <!-- Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`.  -->
-<section id="hashmaps-and-sets">
-<span id="content-references-data-structure-hashmap-and-sets"></span><h3>Hashmaps and sets<a class="headerlink" href="#hashmaps-and-sets" title="Permalink to this headline">#</a></h3>
-<p>A hashmap is a data structure that stores key-value pairs, where each key value is unique. Hashmaps uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> to map keys to array indexes, thus, allowing for efficient lookups and insertions. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p>
-<section id="hashmaps">
-<h4>Hashmaps<a class="headerlink" href="#hashmaps" title="Permalink to this headline">#</a></h4>
-<p>Hashmaps are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">dictionary</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries, which are type <code class="docutils literal notranslate"><span class="pre">Dict</span></code>, when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a>. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
-<p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an example of how to use a dictionary in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
+<section id="dictionary-and-sets">
+<span id="content-references-data-structure-hashmap-and-sets"></span><h3>Dictionary and sets<a class="headerlink" href="#dictionary-and-sets" title="Permalink to this headline">#</a></h3>
+<p>A dictionary stores key-value pairs, where each key value is unique. Dictionaries use a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> to map keys (which can be a variety of types) to an array index. Thus, dictionaries have efficient lookup and insertion operations. Sets are similar to dictionaries but only store keys and do not have values associated with them.</p>
+<p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
+<p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a443f275-9488-4b6d-a7c2-4388cc3a9938" name="b9e1803b-72f4-454e-ab82-4cfd39426a16" type="radio">
-</input><label class="sd-tab-label" for="a443f275-9488-4b6d-a7c2-4388cc3a9938">
+<input checked="checked" id="b32df6af-540f-4891-b478-dcc238d7c2ca" name="251d8fdd-1586-465a-aa25-41c744c919ee" type="radio">
+</input><label class="sd-tab-label" for="b32df6af-540f-4891-b478-dcc238d7c2ca">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1020,8 +1093,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="cdcf403b-400a-4e96-bc34-96eac58238bd" name="b9e1803b-72f4-454e-ab82-4cfd39426a16" type="radio">
-</input><label class="sd-tab-label" for="cdcf403b-400a-4e96-bc34-96eac58238bd">
+<input id="755ddd95-75e6-4eb1-bb65-68e28d7b57a2" name="251d8fdd-1586-465a-aa25-41c744c919ee" type="radio">
+</input><label class="sd-tab-label" for="755ddd95-75e6-4eb1-bb65-68e28d7b57a2">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1034,14 +1107,11 @@ python</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>Data can be accessed by passing the key value into the dictionary, e.g., <code class="docutils literal notranslate"><span class="pre">car[&quot;brand&quot;]</span></code> would return <code class="docutils literal notranslate"><span class="pre">Ford</span></code>.</p>
-</section>
-<section id="sets">
-<h4>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h4>
+<!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="251b9e46-4310-4fda-9393-9b1c28d12069" name="dc1f62ec-f519-412f-ac4a-e658a961c0c7" type="radio">
-</input><label class="sd-tab-label" for="251b9e46-4310-4fda-9393-9b1c28d12069">
+<input checked="checked" id="4087c537-8d4c-4fae-bbd9-26fa5ff3ba3c" name="9877d197-8aac-4879-a0d7-945aefedd6b5" type="radio">
+</input><label class="sd-tab-label" for="4087c537-8d4c-4fae-bbd9-26fa5ff3ba3c">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1053,8 +1123,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="cd0c7678-a662-4482-aa28-699754794fd2" name="dc1f62ec-f519-412f-ac4a-e658a961c0c7" type="radio">
-</input><label class="sd-tab-label" for="cd0c7678-a662-4482-aa28-699754794fd2">
+<input id="ce548db8-5049-4c80-9531-01d802dd69b3" name="9877d197-8aac-4879-a0d7-945aefedd6b5" type="radio">
+</input><label class="sd-tab-label" for="ce548db8-5049-4c80-9531-01d802dd69b3">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1069,7 +1139,7 @@ python</label><div class="sd-tab-content docutils">
 </div>
 <p>In both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, the <code class="docutils literal notranslate"><span class="pre">Set</span></code> type is <em>unordered</em>; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained.</p>
 <section id="hash-functions">
-<h5>Hash functions<a class="headerlink" href="#hash-functions" title="Permalink to this headline">#</a></h5>
+<h4>Hash functions<a class="headerlink" href="#hash-functions" title="Permalink to this headline">#</a></h4>
 <p>The exciting thing about a hashmap implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
 <p>Let’s look at some psuedo code for a simple hash function (<a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a>):</p>
@@ -1095,7 +1165,7 @@ python</label><div class="sd-tab-content docutils">
 </section>
 </div><p><a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> is a variant of Horner’s hashing method when <span class="math notranslate nohighlight">\(\beta\)</span> = 31. The <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator</a> <code class="docutils literal notranslate"><span class="pre">%</span></code> computes the remainder, e.g., the expression <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%</span> <span class="pre">3</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">1</span></code>. The modulo <code class="docutils literal notranslate"><span class="pre">%</span></code> operation with <code class="docutils literal notranslate"><span class="pre">size</span></code> ensures that the output <code class="docutils literal notranslate"><span class="pre">hash</span></code> value is a valid index within the array.</p>
 <div class="proof example dropdown admonition" id="example-hashing-example-impl">
-<p class="admonition-title"><span class="caption-number">Example 13 </span> (Hashing example)</p>
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (Hashing example)</p>
 <section class="example-content" id="proof-content">
 <p>Compute the hash value for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code> for an array of <code class="docutils literal notranslate"><span class="pre">size</span></code> of <code class="docutils literal notranslate"><span class="pre">1000</span></code> and expansion factor <span class="math notranslate nohighlight">\(\beta\)</span> = 31.</p>
 <p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> in <a class="reference external" href="https://docs.julialang.org">Julia</a></p>
@@ -1123,19 +1193,34 @@ python</label><div class="sd-tab-content docutils">
 </section>
 </div></section>
 </section>
-</section>
 <section id="trees">
 <span id="content-references-data-structure-tree"></span><h3>Trees<a class="headerlink" href="#trees" title="Permalink to this headline">#</a></h3>
-<p>Trees are widely-used non-linear data structures that simulate a hierarchical tree structure, with nodes representing the hierarchy. In a tree, each node has one or more child nodes, each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node. The nodes that do not have any children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.</p>
-<p>Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision.</p>
-<p>There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.</p>
+<p>Trees are widely-used non-linear data structures that encode hierarchical structure in data that are composed of nodes and edges (<a class="reference internal" href="#fig-tree-schematic"><span class="std std-numref">Fig. 8</span></a>).</p>
+<figure class="align-default" id="fig-tree-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-Tree-Schematic.pdf"><img alt="../_images/Fig-Tree-Schematic.pdf" src="../_images/Fig-Tree-Schematic.pdf" style="height: 320px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Schematic of a tree data structure. Each node in the tree holds some data and references (links) to its children. If a node does not have children, it is a leaf node. The topmost node in the tree is the root node.</span><a class="headerlink" href="#fig-tree-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.</p>
+<section id="common-uses-for-trees">
+<h4>Common uses for trees<a class="headerlink" href="#common-uses-for-trees" title="Permalink to this headline">#</a></h4>
+<p>Trees are ubiquitous in computing; trees are used in a huge variety of applications:</p>
+<ul class="simple">
+<li><p><strong>Organizing and searching data</strong>: Trees are commonly used to store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.</p></li>
+<li><p><strong>Implementing algorithms</strong>: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.</p></li>
+<li><p><strong>Modeling real-world phenomena</strong>: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.</p></li>
+</ul>
+<!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
+<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
+</section>
 <section id="revisit-recursive-fibonacci-and-memoization">
 <h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
-<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 8</span></a>)</p>
+<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
