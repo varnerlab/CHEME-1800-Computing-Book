@@ -474,6 +474,9 @@ Trees are ubiquitous in computing; trees are used in a huge variety of applicati
 * __Implementing algorithms__: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.
 * __Modeling real-world phenomena__: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.
 
+
+
+
 <!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
 
 <!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
@@ -501,4 +504,5 @@ Graphs represent real-world situations like networks, maps, and social relations
 ---
 
 ## Summary 
-Fill me in. 
+Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. In this lecture, we introduced several common data structures that will be important as we transition to applications.
+
