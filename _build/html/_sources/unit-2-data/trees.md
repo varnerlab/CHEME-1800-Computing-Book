@@ -474,7 +474,18 @@ Trees are ubiquitous in computing; trees are used in a huge variety of applicati
 * __Implementing algorithms__: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.
 * __Modeling real-world phenomena__: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.
 
+#### Representation of tress
+Trees can be implemeted ina variety of ways, two of the most common are Array-based representations and Adjacency list representations. 
 
+##### Array-based tree representations
+Suppose we're interested in a tree $\mathcal{T}$ where each node has $n$-children, and the tree’s root has an index $0$. Then, the children of a node at index $i$, denoted by the set $\mathcal{C}_{i}$, are stored at the index set:
+
+```{math}
+:label: eqn-children-node-i
+\mathcal{C}_{i}=\left\{n\cdot{i}+1,n\cdot{i}+2,\dots,n\cdot{i}+n\right\}
+```
+
+in an array. This method is easy to implement, but it can be inefficient if the tree is sparse or the number of children per node is large.
 
 
 <!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
