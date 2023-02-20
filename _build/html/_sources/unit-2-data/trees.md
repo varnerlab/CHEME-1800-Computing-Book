@@ -464,7 +464,27 @@ name: fig-tree-schematic
 Schematic of a tree data structure. Each node in the tree holds some data and references (links) to its children. If a node does not have children, it is a leaf node. The topmost node in the tree is the root node.  
 ```
 
-Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.
+Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes. Finally, the number of levels of a tree is called the height of the tree.
+
+Let's define some properties of a complete k-ary tree ({prf:ref}`defn-children-and-node-k-ary`):
+
+````{prf:definition} Children and nodes of a k-ary tree
+:label: defn-children-and-node-k-ary
+
+Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. Further, let the root node of $\mathcal{T}$ have an index $0$. Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
+
+```{math}
+:label: eqn-children-node-i
+\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}
+```
+
+The total number of nodes of tree $\mathcal{T}$ with height $h$, denoted by $N_{h}$, is given by:
+
+```{math}
+:label: eqn-number-of-nodes-kary
+N_{h} = \sum_{j=0}^{h}k^j
+```
+````
 
 #### Common uses for trees
 
@@ -474,25 +494,12 @@ Trees are ubiquitous in computing; trees are used in a huge variety of applicati
 * __Implementing algorithms__: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.
 * __Modeling real-world phenomena__: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.
 
-#### Representation of tress
-Trees can be implemeted ina variety of ways, two of the most common are Array-based representations and Adjacency list representations. 
+One interesting application of trees beyond what was listed above is to diagram function calls in a recursive function. Let's reimagine the recursive computation of the Fibonacci series that uses memoization ({prf:ref}`example-recursive-fibonacci-memo`):
 
-##### Array-based tree representations
-Suppose we're interested in a tree $\mathcal{T}$ where each node has $n$-children, and the tree’s root has an index $0$. Then, the children of a node at index $i$, denoted by the set $\mathcal{C}_{i}$, are stored at the index set:
+````{prf:example} Recursive Fibonacci and Memoization
+:label: example-recursive-fibonacci-memo
+:class: dropdown
 
-```{math}
-:label: eqn-children-node-i
-\mathcal{C}_{i}=\left\{n\cdot{i}+1,n\cdot{i}+2,\dots,n\cdot{i}+n\right\}
-```
-
-in an array. This method is easy to implement, but it can be inefficient if the tree is sparse or the number of children per node is large.
-
-
-<!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
-
-<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
-
-#### Revisit: Recursive Fibonacci and Memoization
 One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) numbers. The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`)
 
 ```{figure} ./figs/Fig-Fib-4-Recursive-Tree.pdf
@@ -502,6 +509,177 @@ name: fig-recursive-fib-4-call-tree
 ---
 Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
 ```
+````
+
+#### Representation of tress
+Trees can be implemeted in a variety of ways, two of the most common are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
+
+(content:references:array-rep-tree)=
+##### Array-based tree representations
+Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
+
+````{prf:example} Ternary commodity price tree array-representation
+:label: example-ternary-price-model-array
+:class: dropdown
+
+Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an array-based tree representation. 
+
+Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by $P_{o}$. Assume that at each subsequent time-step in the future, the price can increase by $r_{+}$ = 2\%, stay the same $r_{0}$ = 0\%, or decrease by $r_{-}$ = 1\%.
+
+__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices is given be:
+
+```{math}
+:label: eqn-price-set-node-i
+\left\{P_{i}\left(1+r_{+}\right),P_{i},P_{i}\left(1-r_{-}\right)\right\}
+```
+
+We can now develop a `build` method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree. 
+
+__Preconditions__: The `ArrayBasedTernaryCommodityPriceTree` mutable type has been defined outside of the `build` function.
+
+```julia
+"""
+    build(type::Type{ArrayBasedTernaryCommodityPriceTree}; 
+        h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01) -> ArrayBasedTernaryCommodityPriceTree
+"""
+function build(type::Type{ArrayBasedTernaryCommodityPriceTree}; 
+    h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01)::ArrayBasedTernaryCommodityPriceTree
+
+    # initialize -
+    model = ArrayBasedTernaryCommodityPriceTree(); # build an emprt tree model -
+    Nₕ = sum([3^i for i ∈ 0:h]) # compute how many nodes we have in the tree
+    P = Dict{Int64,Float64}() 
+
+    # setup Δ - the amount the price moves up, or down -
+    Δ = [u,0,-d];
+    
+    # set the root price -
+    P[0] = price
+
+    # fill up the array -
+    for i ∈ 0:(Nₕ - 3^h - 1)
+        
+        # what is the *parent* price -
+        Pᵢ = P[i]
+
+        # Compute the children for this node -
+        Cᵢ = [j for j ∈ (3*i+1):(3*i+3)]; 
+        for c ∈ 1:3 # for each node (no matter what i) we have three children
+        
+            # what is the child index?
+            child_index = Cᵢ[c]
+
+            # compute the new *child* prive 
+            P[child_index] = Pᵢ*(1+Δ[c])
+        end
+    end
+
+    # set the price data on the model -
+    model.data = P;
+
+    # return -
+    return model
+end
+```
+To call this `build` function, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
+
+```julia
+julia> include("Include.jl") # assumes standard CHEME-1800/4800 code format
+julia> Pₒ = 75.00; # set the initial price
+julia> m = build(ArrayBasedTernaryCommodityPriceTree; h = 2, price = Pₒ); # build the tree
+```
+
+__source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees)
+````
+
+(content:references:adj-rep-tree)=
+##### Adjacency list representation
+Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure. 
+
+Let's reimagine the terneray commodity price model in the Adjacency list format ({prf:ref}`example-ternary-price-model-adj-list`):
+
+````{prf:example} Ternary commodity price tree adjacency list
+:label: example-ternary-price-model-adj-list
+:class: dropdown
+
+Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an adjacency list representation.
+
+Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by $P_{o}$. Assume that at each subsequent time-step in the future, the price can increase by 2\%, stay the same, or decrease by 1\%.
+
+__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices will be the same as the array based representation.
+
+We can now develop a `build` method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree, along with a data structure holding information about the tree connectivity.
+
+__Preconditions__: 
+* The `AdjacencyBasedTernaryCommodityPriceTree` mutable tree type has been defined outside of this `build` function.
+
+```julia
+"""
+    build(type::Type{AdjacencyBasedTernaryCommodityPriceTree};
+        h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01) -> AdjacencyBasedTernaryCommodityPriceTree
+"""
+function build(type::Type{AdjacencyBasedTernaryCommodityPriceTree};
+    h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01)::AdjacencyBasedTernaryCommodityPriceTree
+
+    # initialize -
+    model = AdjacencyBasedTernaryCommodityPriceTree(); # build an emprt tree model
+    Nₕ = sum([3^i for i ∈ 0:h]) # compute how many nodes we have in the tree
+    P = Dict{Int64,Float64}() # use Dict for zero-based array hack. Hold price information
+    connectivity = Dict{Int64, Array{Int64,1}}() # holds tree connectivity information
+
+    # setup Δ - the amount the price moves up, or down -
+    Δ = [u,0,-d];
+
+    # set the root price -
+    P[0] = price
+
+    # build connectivity -
+    for i ∈ 0:(Nₕ - 3^h - 1)
+        
+        # what is the *parent* price
+        Pᵢ = P[i]
+
+        # Compute the children for this node -
+        Cᵢ = [j for j ∈ (3*i+1):(3*i+3)]; 
+        connectivity[i] = Cᵢ # stores the children indices of node i
+
+        # cmpute the prices at the child nodes
+        for c ∈ 1:3 # for each node (no matter what i) we have three children
+
+            # what is the child index?
+            child_index = Cᵢ[c]
+
+            # compute the new price for the child node
+            P[child_index] = Pᵢ*(1+Δ[c])
+        end
+    end
+
+    # set the data, and connectivity for the model -
+    model.data = P;
+    model.connectivity = connectivity;
+
+    # return -
+    return model;
+end
+```
+
+To call this `build` function, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
+
+```julia
+julia> include("Include.jl") # assumes standard CHEME-1800/4800 code format
+julia> Pₒ = 75.00; # set the initial price
+julia> m = build(AdjacencyBasedTernaryCommodityPriceTree; h = 2, price = Pₒ); # build the tree. 
+```
+
+__source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees)
+
+````
+
+<!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
+
+<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
+
+
 
 
 (content:references:data-structure-graphs)=

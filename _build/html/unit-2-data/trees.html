@@ -578,12 +578,12 @@ title="Print to PDF"
          Array-based tree representations
         </a>
        </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#adjacency-list-representation">
+         Adjacency list representation
+        </a>
+       </li>
       </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#revisit-recursive-fibonacci-and-memoization">
-       Revisit: Recursive Fibonacci and Memoization
-      </a>
      </li>
     </ul>
    </li>
@@ -734,12 +734,12 @@ title="Print to PDF"
          Array-based tree representations
         </a>
        </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#adjacency-list-representation">
+         Adjacency list representation
+        </a>
+       </li>
       </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#revisit-recursive-fibonacci-and-memoization">
-       Revisit: Recursive Fibonacci and Memoization
-      </a>
      </li>
     </ul>
    </li>
@@ -1104,8 +1104,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="bc95fda8-a038-4f42-b1c8-e715a81cb354" name="4832c047-de3b-4262-82eb-4405a352dfe2" type="radio">
-</input><label class="sd-tab-label" for="bc95fda8-a038-4f42-b1c8-e715a81cb354">
+<input checked="checked" id="654cd1cf-ba8e-4905-9621-fa04865c5c51" name="09aa9c68-0ca8-4d35-98af-6ec41d52c605" type="radio">
+</input><label class="sd-tab-label" for="654cd1cf-ba8e-4905-9621-fa04865c5c51">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1117,8 +1117,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c02a23ed-37ff-4e4f-8f29-7b606c6d889c" name="4832c047-de3b-4262-82eb-4405a352dfe2" type="radio">
-</input><label class="sd-tab-label" for="c02a23ed-37ff-4e4f-8f29-7b606c6d889c">
+<input id="138d7154-4261-413a-8513-4b1413d16f50" name="09aa9c68-0ca8-4d35-98af-6ec41d52c605" type="radio">
+</input><label class="sd-tab-label" for="138d7154-4261-413a-8513-4b1413d16f50">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1134,8 +1134,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="6dcfbb19-4ee5-4460-96b5-6cb4b91febbf" name="b462b0ad-391d-481e-af63-9b977f287821" type="radio">
-</input><label class="sd-tab-label" for="6dcfbb19-4ee5-4460-96b5-6cb4b91febbf">
+<input checked="checked" id="17ebaf5b-2f7c-44a6-a86d-9f79a28c2780" name="51560313-2da3-47fb-ae18-0e6f5f96147a" type="radio">
+</input><label class="sd-tab-label" for="17ebaf5b-2f7c-44a6-a86d-9f79a28c2780">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1147,8 +1147,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="92877abd-c321-4e05-b8c6-a4ffd4b9cd93" name="b462b0ad-391d-481e-af63-9b977f287821" type="radio">
-</input><label class="sd-tab-label" for="92877abd-c321-4e05-b8c6-a4ffd4b9cd93">
+<input id="e9afe9d9-9c6d-463d-8187-8649b0d24ca9" name="51560313-2da3-47fb-ae18-0e6f5f96147a" type="radio">
+</input><label class="sd-tab-label" for="e9afe9d9-9c6d-463d-8187-8649b0d24ca9">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1226,8 +1226,19 @@ python</label><div class="sd-tab-content docutils">
 <p><span class="caption-number">Fig. 8 </span><span class="caption-text">Schematic of a tree data structure. Each node in the tree holds some data and references (links) to its children. If a node does not have children, it is a leaf node. The topmost node in the tree is the root node.</span><a class="headerlink" href="#fig-tree-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.</p>
-<section id="common-uses-for-trees">
+<p>Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes. Finally, the number of levels of a tree is called the height of the tree.</p>
+<p>Let’s define some properties of a complete k-ary tree (<a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a>):</p>
+<div class="proof definition admonition" id="defn-children-and-node-k-ary">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Children and nodes of a k-ary tree)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>. Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
+<p>The total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-number-of-nodes-kary">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h}k^j\]</div>
+</section>
+</div><section id="common-uses-for-trees">
 <h4>Common uses for trees<a class="headerlink" href="#common-uses-for-trees" title="Permalink to this headline">#</a></h4>
 <p>Trees are ubiquitous in computing; trees are used in a huge variety of applications:</p>
 <ul class="simple">
@@ -1235,22 +1246,10 @@ python</label><div class="sd-tab-content docutils">
 <li><p><strong>Implementing algorithms</strong>: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.</p></li>
 <li><p><strong>Modeling real-world phenomena</strong>: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.</p></li>
 </ul>
-</section>
-<section id="representation-of-tress">
-<h4>Representation of tress<a class="headerlink" href="#representation-of-tress" title="Permalink to this headline">#</a></h4>
-<p>Trees can be implemeted ina variety of ways, two of the most common are Array-based representations and Adjacency list representations.</p>
-<section id="array-based-tree-representations">
-<h5>Array-based tree representations<a class="headerlink" href="#array-based-tree-representations" title="Permalink to this headline">#</a></h5>
-<p>Suppose we’re interested in a tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(n\)</span>-children, and the tree’s root has an index <span class="math notranslate nohighlight">\(0\)</span>. Then, the children of a node at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are stored at the index set:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{n\cdot{i}+1,n\cdot{i}+2,\dots,n\cdot{i}+n\right\}\]</div>
-<p>in an array. This method is easy to implement, but it can be inefficient if the tree is sparse or the number of children per node is large.</p>
-<!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
-<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
-</section>
-</section>
-<section id="revisit-recursive-fibonacci-and-memoization">
-<h4>Revisit: Recursive Fibonacci and Memoization<a class="headerlink" href="#revisit-recursive-fibonacci-and-memoization" title="Permalink to this headline">#</a></h4>
+<p>One interesting application of trees beyond what was listed above is to diagram function calls in a recursive function. Let’s reimagine the recursive computation of the Fibonacci series that uses memoization (<a class="reference internal" href="#example-recursive-fibonacci-memo">Example 15</a>):</p>
+<div class="proof example dropdown admonition" id="example-recursive-fibonacci-memo">
+<p class="admonition-title"><span class="caption-number">Example 15 </span> (Recursive Fibonacci and Memoization)</p>
+<section class="example-content" id="proof-content">
 <p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
@@ -1258,6 +1257,152 @@ python</label><div class="sd-tab-content docutils">
 <p><span class="caption-number">Fig. 9 </span><span class="caption-text">Schematic of the function call tree for the recursive implementation of the <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code> function with <span class="math notranslate nohighlight">\(n=4\)</span>.</span><a class="headerlink" href="#fig-recursive-fib-4-call-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+</div></section>
+<section id="representation-of-tress">
+<h4>Representation of tress<a class="headerlink" href="#representation-of-tress" title="Permalink to this headline">#</a></h4>
+<p>Trees can be implemeted in a variety of ways, two of the most common are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
+<section id="array-based-tree-representations">
+<span id="content-references-array-rep-tree"></span><h5>Array-based tree representations<a class="headerlink" href="#array-based-tree-representations" title="Permalink to this headline">#</a></h5>
+<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 16</a>):</p>
+<div class="proof example dropdown admonition" id="example-ternary-price-model-array">
+<p class="admonition-title"><span class="caption-number">Example 16 </span> (Ternary commodity price tree array-representation)</p>
+<section class="example-content" id="proof-content">
+<p>Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an array-based tree representation.</p>
+<p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by <span class="math notranslate nohighlight">\(r_{+}\)</span> = 2%, stay the same <span class="math notranslate nohighlight">\(r_{0}\)</span> = 0%, or decrease by <span class="math notranslate nohighlight">\(r_{-}\)</span> = 1%.</p>
+<p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a> we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children prices is given be:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-price-set-node-i">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-price-set-node-i" title="Permalink to this equation">#</a></span>\[\left\{P_{i}\left(1+r_{+}\right),P_{i},P_{i}\left(1-r_{-}\right)\right\}\]</div>
+<p>We can now develop a <code class="docutils literal notranslate"><span class="pre">build</span></code> method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree.</p>
+<p><strong>Preconditions</strong>: The <code class="docutils literal notranslate"><span class="pre">ArrayBasedTernaryCommodityPriceTree</span></code> mutable type has been defined outside of the <code class="docutils literal notranslate"><span class="pre">build</span></code> function.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    build(type::Type{ArrayBasedTernaryCommodityPriceTree}; </span>
+<span class="s">        h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01) -&gt; ArrayBasedTernaryCommodityPriceTree</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">build</span><span class="p">(</span><span class="n">type</span><span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="kt">ArrayBasedTernaryCommodityPriceTree</span><span class="p">};</span> 
+    <span class="n">h</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">u</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">d</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span><span class="o">::</span><span class="kt">ArrayBasedTernaryCommodityPriceTree</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ArrayBasedTernaryCommodityPriceTree</span><span class="p">();</span> <span class="c"># build an emprt tree model -</span>
+    <span class="n">Nₕ</span> <span class="o">=</span> <span class="n">sum</span><span class="p">([</span><span class="mi">3</span><span class="o">^</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">0</span><span class="o">:</span><span class="n">h</span><span class="p">])</span> <span class="c"># compute how many nodes we have in the tree</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Float64</span><span class="p">}()</span> 
+
+    <span class="c"># setup Δ - the amount the price moves up, or down -</span>
+    <span class="n">Δ</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">];</span>
+    
+    <span class="c"># set the root price -</span>
+    <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">price</span>
+
+    <span class="c"># fill up the array -</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">0</span><span class="o">:</span><span class="p">(</span><span class="n">Nₕ</span> <span class="o">-</span> <span class="mi">3</span><span class="o">^</span><span class="n">h</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c"># what is the *parent* price -</span>
+        <span class="n">Pᵢ</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c"># Compute the children for this node -</span>
+        <span class="n">Cᵢ</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">)];</span> 
+        <span class="k">for</span> <span class="n">c</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="mi">3</span> <span class="c"># for each node (no matter what i) we have three children</span>
+        
+            <span class="c"># what is the child index?</span>
+            <span class="n">child_index</span> <span class="o">=</span> <span class="n">Cᵢ</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+
+            <span class="c"># compute the new *child* prive </span>
+            <span class="n">P</span><span class="p">[</span><span class="n">child_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pᵢ</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Δ</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c"># set the price data on the model -</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">P</span><span class="p">;</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">model</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>To call this <code class="docutils literal notranslate"><span class="pre">build</span></code> function, we issue the commands in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">REPL</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">include</span><span class="p">(</span><span class="s">&quot;Include.jl&quot;</span><span class="p">)</span> <span class="c"># assumes standard CHEME-1800/4800 code format</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pₒ</span> <span class="o">=</span> <span class="mf">75.00</span><span class="p">;</span> <span class="c"># set the initial price</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="n">ArrayBasedTernaryCommodityPriceTree</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">price</span> <span class="o">=</span> <span class="n">Pₒ</span><span class="p">);</span> <span class="c"># build the tree</span>
+</pre></div>
+</div>
+<p><strong>source</strong>: Source code can be found in the <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees">CHEME-1800/4800 tree examples repository</a></p>
+</section>
+</div></section>
+<section id="adjacency-list-representation">
+<span id="content-references-adj-rep-tree"></span><h5>Adjacency list representation<a class="headerlink" href="#adjacency-list-representation" title="Permalink to this headline">#</a></h5>
+<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
+<p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 17</a>):</p>
+<div class="proof example dropdown admonition" id="example-ternary-price-model-adj-list">
+<p class="admonition-title"><span class="caption-number">Example 17 </span> (Ternary commodity price tree adjacency list)</p>
+<section class="example-content" id="proof-content">
+<p>Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an adjacency list representation.</p>
+<p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by 2%, stay the same, or decrease by 1%.</p>
+<p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a> we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children prices will be the same as the array based representation.</p>
+<p>We can now develop a <code class="docutils literal notranslate"><span class="pre">build</span></code> method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree, along with a data structure holding information about the tree connectivity.</p>
+<p><strong>Preconditions</strong>:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">AdjacencyBasedTernaryCommodityPriceTree</span></code> mutable tree type has been defined outside of this <code class="docutils literal notranslate"><span class="pre">build</span></code> function.</p></li>
+</ul>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    build(type::Type{AdjacencyBasedTernaryCommodityPriceTree};</span>
+<span class="s">        h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01) -&gt; AdjacencyBasedTernaryCommodityPriceTree</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">build</span><span class="p">(</span><span class="n">type</span><span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="kt">AdjacencyBasedTernaryCommodityPriceTree</span><span class="p">};</span>
+    <span class="n">h</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">u</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">d</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span><span class="o">::</span><span class="kt">AdjacencyBasedTernaryCommodityPriceTree</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AdjacencyBasedTernaryCommodityPriceTree</span><span class="p">();</span> <span class="c"># build an emprt tree model</span>
+    <span class="n">Nₕ</span> <span class="o">=</span> <span class="n">sum</span><span class="p">([</span><span class="mi">3</span><span class="o">^</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">0</span><span class="o">:</span><span class="n">h</span><span class="p">])</span> <span class="c"># compute how many nodes we have in the tree</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Float64</span><span class="p">}()</span> <span class="c"># use Dict for zero-based array hack. Hold price information</span>
+    <span class="n">connectivity</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}}()</span> <span class="c"># holds tree connectivity information</span>
+
+    <span class="c"># setup Δ - the amount the price moves up, or down -</span>
+    <span class="n">Δ</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span class="p">];</span>
+
+    <span class="c"># set the root price -</span>
+    <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">price</span>
+
+    <span class="c"># build connectivity -</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">0</span><span class="o">:</span><span class="p">(</span><span class="n">Nₕ</span> <span class="o">-</span> <span class="mi">3</span><span class="o">^</span><span class="n">h</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c"># what is the *parent* price</span>
+        <span class="n">Pᵢ</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c"># Compute the children for this node -</span>
+        <span class="n">Cᵢ</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">)];</span> 
+        <span class="n">connectivity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cᵢ</span> <span class="c"># stores the children indices of node i</span>
+
+        <span class="c"># cmpute the prices at the child nodes</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="mi">3</span> <span class="c"># for each node (no matter what i) we have three children</span>
+
+            <span class="c"># what is the child index?</span>
+            <span class="n">child_index</span> <span class="o">=</span> <span class="n">Cᵢ</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+
+            <span class="c"># compute the new price for the child node</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">child_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pᵢ</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Δ</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c"># set the data, and connectivity for the model -</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">P</span><span class="p">;</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">connectivity</span> <span class="o">=</span> <span class="n">connectivity</span><span class="p">;</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>To call this <code class="docutils literal notranslate"><span class="pre">build</span></code> function, we issue the commands in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">REPL</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">include</span><span class="p">(</span><span class="s">&quot;Include.jl&quot;</span><span class="p">)</span> <span class="c"># assumes standard CHEME-1800/4800 code format</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pₒ</span> <span class="o">=</span> <span class="mf">75.00</span><span class="p">;</span> <span class="c"># set the initial price</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="n">AdjacencyBasedTernaryCommodityPriceTree</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">price</span> <span class="o">=</span> <span class="n">Pₒ</span><span class="p">);</span> <span class="c"># build the tree. </span>
+</pre></div>
+</div>
+<p><strong>source</strong>: Source code can be found in the <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees">CHEME-1800/4800 tree examples repository</a></p>
+</section>
+</div><!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
+<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
+</section>
 </section>
 </section>
 <section id="graphs">
