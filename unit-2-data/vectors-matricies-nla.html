@@ -798,9 +798,9 @@ a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 </section>
 <section id="triangular-matrices">
 <span id="content-references-triag-matrix"></span><h4>Triangular matrices<a class="headerlink" href="#triangular-matrices" title="Permalink to this headline">#</a></h4>
-<p>A triangular matrix is a square matrix that is either upper or lower triangular (<a class="reference internal" href="#defn-triangular-matrices">Definition 3</a>):</p>
+<p>A triangular matrix is a square matrix that is either upper or lower triangular (<a class="reference internal" href="#defn-triangular-matrices">Definition 4</a>):</p>
 <div class="proof definition admonition" id="defn-triangular-matrices">
-<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Triangular matrices)</p>
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Triangular matrices)</p>
 <section class="definition-content" id="proof-content">
 <p>Triangular matrices are square arrays with zero entries below or above the main diagonal. An <span class="math notranslate nohighlight">\(n\times{n}\)</span> lower triangular matrix <span class="math notranslate nohighlight">\(\mathbf{L}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -826,13 +826,13 @@ u_{11} &amp; u_{12} &amp; \dots &amp; u_{nn} \\
 </section>
 <section id="orthogonal-matrices">
 <span id="content-references-orth-matrix"></span><h4>Orthogonal matrices<a class="headerlink" href="#orthogonal-matrices" title="Permalink to this headline">#</a></h4>
-<p>Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths (<a class="reference internal" href="#defn-orthogonal-matrix">Definition 4</a>):</p>
+<p>Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths (<a class="reference internal" href="#defn-orthogonal-matrix">Definition 5</a>):</p>
 <div class="proof definition admonition" id="defn-orthogonal-matrix">
-<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Orthogonal matrices)</p>
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Orthogonal matrices)</p>
 <section class="definition-content" id="proof-content">
 <p>An <span class="math notranslate nohighlight">\(n\times{n}\)</span> real matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an orthogonal matrix if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-orthogonal-matrices">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-orthogonal-matrices" title="Permalink to this equation">#</a></span>\[\mathbf{A}^{T}\mathbf{A} = \mathbf{A}\mathbf{A}^{T} = \mathbf{I}\]</div>
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-orthogonal-matrices" title="Permalink to this equation">#</a></span>\[\mathbf{A}^{T}\mathbf{A} = \mathbf{A}\mathbf{A}^{T} = \mathbf{I}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{n}\)</span> identity matrix.</p>
 </section>
 </div><p>Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.</p>
@@ -841,19 +841,19 @@ u_{11} &amp; u_{12} &amp; \dots &amp; u_{nn} \\
 </section>
 <section id="determinant-and-trace">
 <span id="content-determinant-trace"></span><h2>Determinant and Trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of a matrix</a> is a scalar value that can be computed from a square matrix. <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">Determinants</a> can be used to determine whether a <a class="reference internal" href="laes.html"><span class="doc std std-doc">matrix is invertible</span></a>, and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of square matrix</a> <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is defined as (<a class="reference internal" href="#defn-det-A">Definition 5</a>):</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of a matrix</a> is a scalar value that can be computed from a square matrix. <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">Determinants</a> can be used to determine whether a <a class="reference internal" href="laes.html"><span class="doc std std-doc">matrix is invertible</span></a>, and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of square matrix</a> <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is defined as (<a class="reference internal" href="#defn-det-A">Definition 6</a>):</p>
 <div class="proof definition admonition" id="defn-det-A">
-<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Determinant)</p>
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Determinant)</p>
 <section class="definition-content" id="proof-content">
 <p>Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>.
 Then, the determinant of the square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted as <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-a">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-det-a" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \sum_{\sigma\in{S_{n}}}\text{sign}\left(\sigma\right)\prod_{i=1}^{n}a_{i\sigma_{i}}\]</div>
+<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-det-a" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \sum_{\sigma\in{S_{n}}}\text{sign}\left(\sigma\right)\prod_{i=1}^{n}a_{i\sigma_{i}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(S_{n}\)</span> denotes the Symmtery group of dimension <span class="math notranslate nohighlight">\(n\)</span>, i.e., the set of all possible permutations of the set <span class="math notranslate nohighlight">\({1,2,\dots,n}\)</span>,
 <span class="math notranslate nohighlight">\(\text{sign}\left(\sigma\right)\)</span> equals <code class="docutils literal notranslate"><span class="pre">+1</span></code> if the permutation can be obtained with an even number of exchanges; otherwise <code class="docutils literal notranslate"><span class="pre">-1</span></code>.
 Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> denotes the entry of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span>, and column <span class="math notranslate nohighlight">\(\sigma_{i}\)</span>.</p>
 </section>
-</div><p>Although the determinant in the general case, as described in <a class="reference internal" href="#defn-det-A">Definition 5</a>, is difficult to calculate, the determinat of triangular matrices is easy to compute:</p>
+</div><p>Although the determinant in the general case, as described in <a class="reference internal" href="#defn-det-A">Definition 6</a>, is difficult to calculate, the determinat of triangular matrices is easy to compute:</p>
 <div class="proof observation admonition" id="obs-determinant-triangular-matrix">
 <p class="admonition-title"><span class="caption-number">Observation 2 </span> (Determinant triangular matrix)</p>
 <section class="observation-content" id="proof-content">
@@ -867,13 +867,13 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </section>
 </div><section id="trace">
 <h3>Trace<a class="headerlink" href="#trace" title="Permalink to this headline">#</a></h3>
-<p>On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix (<a class="reference internal" href="#defn-trace-A">Definition 6</a>):</p>
+<p>On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix (<a class="reference internal" href="#defn-trace-A">Definition 7</a>):</p>
 <div class="proof definition admonition" id="defn-trace-A">
-<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Trace)</p>
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Trace)</p>
 <section class="definition-content" id="proof-content">
 <p>Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where we denote the <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>. Then, the trace of the square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted as <span class="math notranslate nohighlight">\(\text{tr}\left(\mathbf{A}\right)\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-trace-a">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
 </section>
 </div></section>
 </section>
@@ -881,7 +881,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h2>Rank and kernel<a class="headerlink" href="#rank-and-kernel" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank of a matrix</a> is a measure of the number of linearly independent rows or columns. The rank of a matrix <em>r</em> of a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is always less than or equal to the minimum of its number of rows and columns:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rank-inequality">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
+<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
 <p>Rank can also be considered a measure of the unique information in a matrix; thus, if there is redundant information (rows or columns that are not linearly independent), a matrix will be less than full rank.</p>
 <p>The kernel of a matrix is the set of all solutions to the homogeneous equation <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.</p>
 </section>
@@ -893,11 +893,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
 <p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
 <div class="proof definition admonition" id="obs-same-dimension">
-<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Vector addition)</p>
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Vector addition)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have two <span class="math notranslate nohighlight">\(m\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The sum of these vectors <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{a} + \mathbf{b}\)</span> is the <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-addition">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-vector-addition" title="Permalink to this equation">#</a></span>\[y_{i} = a_{i} + b_{i}\qquad{i=1,\dots,m}\]</div>
+<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-vector-addition" title="Permalink to this equation">#</a></span>\[y_{i} = a_{i} + b_{i}\qquad{i=1,\dots,m}\]</div>
 <p>The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are compatible if they have the same number of elements.</p>
 </section>
 </div><p>Vector addition is strarighforward to implement, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 2</a>:</p>
@@ -929,7 +929,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h3>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Permalink to this headline">#</a></h3>
 <p>Multiplying a vector (or a matrix) by a constant is also done element wise.</p>
 <div class="proof definition admonition" id="defn-scalar-multiplication">
-<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Scalar multiplication)</p>
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Scalar multiplication)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and a constant <span class="math notranslate nohighlight">\(c\)</span>. Then the scalar product between a constant <span class="math notranslate nohighlight">\(c\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathbf{y} = c\mathbf{v}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight">
@@ -947,26 +947,26 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h4>Vector-vector multiplication<a class="headerlink" href="#vector-vector-multiplication" title="Permalink to this headline">#</a></h4>
 <p>Inner products: Two compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multiplied together to produce a <em>scalar</em> in an operation called an <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a>:</p>
 <div class="proof definition admonition" id="defn-vector-vector-multiplication">
-<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Inner product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Inner product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{m\times{1}}\)</span>. Then, the <em>vector-vector inner product</em> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-vector-inner-product">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-vector-vector-inner-product" title="Permalink to this equation">#</a></span>\[y = \mathbf{a}^{T}\mathbf{b}\]</div>
+<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-vector-vector-inner-product" title="Permalink to this equation">#</a></span>\[y = \mathbf{a}^{T}\mathbf{b}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{a}^{T}\)</span> denotes the transpose of the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and the scalar <span class="math notranslate nohighlight">\(y\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-inner-product-index-form">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-vector-inner-product-index-form" title="Permalink to this equation">#</a></span>\[y = \sum_{i=1}^{m}a_{i}b_{i}\]</div>
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-vector-inner-product-index-form" title="Permalink to this equation">#</a></span>\[y = \sum_{i=1}^{m}a_{i}b_{i}\]</div>
 <p>This operation is possible if the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> have the same number of elements.</p>
 </section>
 </div><p>Outer product: Suppose you have an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, and an <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multipled together to form a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix through an <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer product</a>:</p>
 <div class="proof definition admonition" id="defn-vector-vector-multiplication-op">
-<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Outer product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Outer product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the <em>vector-vector outer product</em> given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-vector-outer-product">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-vector-vector-outer-product" title="Permalink to this equation">#</a></span>\[\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}\]</div>
+<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-vector-vector-outer-product" title="Permalink to this equation">#</a></span>\[\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}\]</div>
 <p>produces the <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\in\mathbb{R}^{m\times{n}}\)</span> with elements:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-outer-product-index-form">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-vector-outer-product-index-form" title="Permalink to this equation">#</a></span>\[y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}\]</div>
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-vector-outer-product-index-form" title="Permalink to this equation">#</a></span>\[y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}\]</div>
 <p>The outer product operation is equivalent to <span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{a}\mathbf{b}^{T}\)</span>.</p>
 </section>
 </div></section>
@@ -974,7 +974,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h4>Right multiplication of a matrix by a vector<a class="headerlink" href="#right-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
 <p>A common operation is <em>right matrix-vector multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. If the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are compatible,  <em>right matrix-vector multiplication</em> will produce a vector with the same number of rows as the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>:</p>
 <div class="proof definition admonition" id="defn-right-matrix-vector-multiplication">
-<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Right matrix-vector multiplication)</p>
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Right matrix-vector multiplication)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the <em>right matrix-vector product</em> given by:</p>
 <div class="math notranslate nohighlight">
@@ -984,14 +984,14 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 \[y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
 <p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><p>The <em>right multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 8</span></a>):</p>
+</div><p>The <em>right multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 10</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>A psuedo code implemetation of <a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 11</a> is given in <a class="reference internal" href="#algo-right-multiplication-matrix-vector">Algorithm 3</a>:</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 12</a> is given in <a class="reference internal" href="#algo-right-multiplication-matrix-vector">Algorithm 3</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-right-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Naive right multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1021,24 +1021,24 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h4>Left multiplication of a matrix by a vector<a class="headerlink" href="#left-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
 <p>We could also consider the <em>left multiplication</em> of a matrix by a vector. Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, then the <em>left matrix-vector product</em> is a row vector:</p>
 <div class="proof definition admonition" id="defn-left-multiply-matrix-vector">
-<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Left matrix-vector product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Left matrix-vector product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m\times{1}}\)</span>. Then, the <em>left matrix-vector product</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-left-matrix-vector-product-matrix">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{x}^{T}\mathbf{A}\]</div>
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{x}^{T}\mathbf{A}\]</div>
 <p>produces the vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{1\times{n}}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-left-matrix-vector-product-index">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
+<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><p>The <em>left multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 9</span></a>):</p>
+</div><p>The <em>left multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 11</span></a>):</p>
 <figure class="align-default" id="fig-left-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-bA-Left-Multiplication.pdf"><img alt="../_images/Fig-bA-Left-Multiplication.pdf" src="../_images/Fig-bA-Left-Multiplication.pdf" style="height: 160px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>A psuedo code implemetation of <a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 12</a> is given in <a class="reference internal" href="#algo-left-multiplication-matrix-vector">Algorithm 4</a>:</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 13</a> is given in <a class="reference internal" href="#algo-left-multiplication-matrix-vector">Algorithm 4</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive left multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1068,22 +1068,22 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <h4>Matrix-Matrix products<a class="headerlink" href="#matrix-matrix-products" title="Permalink to this headline">#</a></h4>
 <p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.</p>
 <div class="proof definition admonition" id="defn-matrix-matrix-product">
-<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Matrix-matrix product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Matrix-matrix product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. The matrix-matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span> produces the matrix <span class="math notranslate nohighlight">\(\mathbf{C}\in\mathbb{R}^{m\times{p}}\)</span> with elements:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-matrix-product-elements">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
 <p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
 <p>The runtime of matrix multiplication is <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of the matrices being multiplied.</p>
 </section>
-</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 10</span></a>):</p>
+</div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 12</span></a>):</p>
 <figure class="align-default" id="fig-multiplication-matrix-matrix">
 <a class="reference internal image-reference" href="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf"><img alt="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" src="../_images/Fig-AB-Matrix-Matrix-Multiplication.pdf" style="height: 380px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products.</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products.</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 13</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 5</a>:</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 14</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 5</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1136,11 +1136,11 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 14 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div><p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
@@ -1150,26 +1150,26 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
-<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Properties of Matrix Norms)</p>
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Properties of Matrix Norms)</p>
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
 <p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
 <span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
 <section id="other-distance-metrics">
 <h3>Other distance metrics<a class="headerlink" href="#other-distance-metrics" title="Permalink to this headline">#</a></h3>
 <p>Other functions can be used to measure the similarity (or distance between) vectors and matrices:</p>
 <div class="proof definition admonition" id="defn-rbf-measure">
-<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Radial basis function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Radial basis function)</p>
 <section class="definition-content" id="proof-content">
 <p>A radial basis function (RBF) measures the similarity between two input vectors <span class="math notranslate nohighlight">\(\mathbf{x}_{p}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x_{q}}\in\mathbb{R}^{m\times{1}}\)</span>. The most common is the Gaussian radial basis function, defined by a bell-shaped curve:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rbf-similarity-function">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
+<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
 \left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)\right) +\sigma_{n}^{2}\delta_{pq}\]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\in\mathbb{R}^{m\times{m}}\)</span> can be any symmetric matrix, <span class="math notranslate nohighlight">\(\sigma_{f}^{2}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{n}^{2}\)</span> are constants and <span class="math notranslate nohighlight">\(\delta_{pq}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a>.</p>
 </section>
@@ -1184,7 +1184,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <span id="content-eigenvalue-eigenvector-problems"></span><h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 <p>In addition to thier other uses, eigenvalues have a another interesting feature (<a class="reference internal" href="#obs-eigenvalues-determinants">Observation 3</a>):</p>
 <div class="proof observation admonition" id="obs-eigenvalues-determinants">
@@ -1193,7 +1193,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p>Eigenvalues can be used directly to calculate the determinant of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>. Denote the set of
 eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> as <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span>. Then, the <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-a-eigenvalues">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
+<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
 <p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\lambda_{i}&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
 </section>
 </div></section>
@@ -1201,11 +1201,11 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:</p>
 <div class="proof definition admonition" id="defn-svd-real-matrix">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Singular value decomposition)</p>
+<p class="admonition-title"><span class="caption-number">Definition 18 </span> (Singular value decomposition)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-math-svd">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
+<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
 </section>
 </div><p>SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
@@ -1216,7 +1216,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> have the singular value decomposition <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\)</span>.</p>
 <p>Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> can be written as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-decomp">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
+<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> denotes the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith columns of the corresponding SVD matrices, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
 <p>The outer-product <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 </section>

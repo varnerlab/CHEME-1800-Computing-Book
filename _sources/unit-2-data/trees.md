@@ -15,13 +15,13 @@ kernelspec:
 ## Introduction
 Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:
 
-### Linear
+### Linear data structures
 * {ref}`content:references:lda-arrays`: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it. 
 * {ref}`content:references:lda-stacks` and {ref}`content:references:lda-queues` are array like data structues that control how elements are added and accessed. {ref}`content:references:lda-stacks` follows the 
 [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). This means that the last element added to the stack will be the first one to be removed. Stacks are often used to store data temporarily while a program is executing. {ref}`content:references:lda-queues` follow the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the queue will be the first one to be removed. Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another.
 * {ref}`content:references:lda-linked-lists`: A linked list is a linear data structure in which each element is a separate object, connected to the next element by a pointer; linked lists store sequences of items, which can be expanded or contracted as needed.
 
-### Non-linear
+### Non-linear data structures
 * {ref}`content:references:data-structure-hashmap-and-sets`: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.
 * {ref}`content:references:data-structure-tree`: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
@@ -37,7 +37,7 @@ An array is a data structure that stores a collection of items of the same type 
 
 ```{figure} ./figs/Fig-Array-Schematic.pdf
 ---
-height: 150px
+height: 90px
 name: fig-array-schematic
 ---
 Schematic of a 1-based array six element array with name a.
@@ -60,8 +60,8 @@ However, array access uses parenthesis in niche systems, such as [Matlab/Octave]
 
 Accessing individual elements or contiguous ranges of elements of an array is fast, but inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.
 
-#### Types of arrays
-There are different types of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.
+#### Types of arrays: Vectors, Matrices and d-dimensional arrays
+There are different sizes (types) of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.
 
 In [Julia](https://julialang.org), the size of an array and the type of data that will be stored in the array are declared when you initialize the array. For example, a 1-dimensional array of indefinite length that holds integers is declared as: 
 
@@ -115,7 +115,7 @@ end
 A
 ```
 
-#### Array like data structures
+#### Other array like data structures: Stacks and Queues
 
 (content:references:lda-stacks)=
 ##### Stacks
@@ -151,8 +151,11 @@ println("What value did we get from the Stack = $(x)")
 
 In this example, the elements `1`, `2`, and `3` are added to the `stack s` using the `push!` operation. The `pop!` operation removes the top element of the `stack`, i.e., the value 3 (the last item added); thus, `pop!` removes elements from the `stack` in the _opposite order_ they were added. 
 
-Stacks are often used to store data temporarily while a program is executing, and they are a common way to implement function calls in many programming languages. When a function is called, the arguments and local variables are stored on [the call stack](https://en.wikipedia.org/wiki/Call_stack) until the function returns.
-
+###### Common uses of Stacks:
+* __Function call stack__: In programming languages, the function [call stack](https://en.wikipedia.org/wiki/Call_stack) is typically implemented as a stack data structure. Each time a function is called, its information (such as local variables, parameters, and return address) is pushed onto the stack. When the function returns, its information is popped off the stack, allowing the program to resume execution from where it left off.
+* __Undo/redo functionality__: Many applications that allow users to undo and redo actions use a stack data structure to keep track of the actions. Each time a user acts, such as typing a letter or moving an object, the action is added to the stack. The most recent activity is popped off the stack and undone when the user chooses to undo an action. Similarly, the redo functionality pushes undone actions back onto the stack.
+* __Expression evaluation__: Stack data structures can also be used to evaluate mathematical expressions, such as those in postfix notation. Operands are pushed onto the stack in this case, and operators are applied to the most recently pushed operands. The result is then pushed back onto the stack until the entire expression has been evaluated.
+ 
 (content:references:lda-queues)=
 ##### Queues
 The `queue` data structure follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the `queue` will be the first element to be removed (Fig. {numref}`fig-queue-schematic`). In a `queue`, elements are added to the bottom (also known as _enqueuing_) and removed from the top (also known as _dequeuing_). 
@@ -188,29 +191,147 @@ println("What value did we get from the Queue = $(x)")
 
 In this example, the elements `1`, `2`, and `3` are added to the `queue q` in that order using the `enqueue!` operation. The `dequeue!` operation removes the top element from the `queue`, i.e., the value `1` (the first item added); `dequeue!` removes elements from the `queue` in the order they were added. 
 
-Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers.
+###### Common uses of Queues
+* __Job scheduling__: Queues are often used in operating systems to manage tasks, such as running programs or printing documents. Each task is placed in a queue, and the operating system schedules tasks in the order they were added to the queue, allowing tasks to be processed in the order they were received.
+* __Breadth-first search__: In graph theory, the breadth-first search algorithm explores a graph by visiting all the vertices at a given level before moving on to the next level. This can be implemented using a queue data structure, where the vertices at each level are added to the queue in order and processed in that exact order.
+* __Message passing__: Queues are often used to pass messages between different parts of a system, such as between a producer and a consumer in a messaging system. Messages are added to the back of the queue by the producer and consumed from the front of the queue by the consumer. This allows the producer and consumer to operate at different speeds without the risk of messages being lost or overwritten.
+
+In addition to the applications listed above, Queues are an ideal data structure for recursive parsing applications. Let's build a recursive string parser using a Queue ({prf:ref}`example-queue-recursive-string-parser`):
+
+````{prf:example} Recursive descent string parser
+:class: dropdown
+:label: example-queue-recursive-string-parser
+
+Develop a recursive parser that returns the words in a sentence as a `Dict{Int64, String}`, where the keys are the index of the word in the sentence, and the value are the words.
+
+Test input: "you've got mail works alot better than it deserves to . "
+
+__Solution__: We'll encode the string we need to parse in a queue data structure. We'll process each character until the queue is empty (base case): i) if the character is not the delimiter, then we'll store it; ii) if the character is the delimiter, we'll assemble all the characters that we stored into a string add to the external array.
+
+__Assumptions__: This code assumes that the `DataStructures.jl` package has been installed; the `DataStructures.jl` implements the `Queue` data structure.
+
+```julia
+# load external packages -
+using DataStructure
+
+"""
+    _recursive_parser(q::Queue, s::Array{Char,1}, a::Array{String,1}; delim = ' ')
+"""
+function _recursive_parser(q::Queue, s::Array{Char,1}, a::Array{String,1}; 
+    delim = ' ')
+
+    # base case: we have no more characters in the character_arr - we are done
+    if (isempty(q) == true)
+        return nothing 
+    else
+
+        # grab the next_char -
+        next_char = dequeue!(q)
+        if (next_char == delim)
+            
+            # if we get here, then we have hit a delim character, this means we should
+            # turn the characters in the s array into a word
+            # join chars in the character array -
+            word = join(s)
+            if (isempty(word) == false)
+                push!(a,word) # add that word to our word list -
+            end
+
+            # empty out the array of characters, because we may need it again
+            empty!(s);
+        else
+
+            # if we get here, next_char is *not* the delim, so push next_char into the array
+            # Why? we are collecting next_char until we hit a delim or hit the base case
+            # When we hit a delim the characters in s can be joined to make a word
+            push!(s, next_char)
+        end
+
+        # process the next character in the queue -
+        _recursive_parser(q,s,a; delim = delim);
+    end
+end
+
+"""
+    recursive_parser(string::String; delim::Char=' ') -> Dict{Int64,String}
+"""
+function recursive_parser(string::String; 
+    delim::Char=' ')::Dict{Int64,String}
+
+    # initialize -
+    d = Dict{Int,String}()
+    a = Array{String,1}()
+    s = Array{Char,1}()
+    q = Queue{Char}()
+    counter = 0
+
+    # build the Queue q that we are going to parse -
+    character_arr = collect(string)
+    for c ∈ character_arr
+        enqueue!(q, c);
+    end
+
+    # recursive descent -
+    _recursive_parser(q, s, a; delim = delim);
+
+    # convert to dictionary for the output
+    for item ∈ a
+        d[counter] = item;
+        counter += 1
+    end
+
+    # return -
+    return d
+end
+
+# setup:
+test_input = "you've got mail works alot better than it deserves to . "
+
+# call -
+d = recursive_string_parser(test_string);
+```
+
+
+````
+
+<!-- 
+Queues are often used to store data that needs to be processed in a specific order or to store data that is being transferred from one place to another. For example, a printer `queue` might store print jobs that need to be printed in the order they were received, or a task `queue` might store tasks that need to be completed by a group of workers. -->
 
 (content:references:lda-linked-lists)=
 ### Linked lists
-A linked list is a linear data structure where each element, called a node, is a separate object that stores a data value and a reference (link) to the next node in the list. Linked lists are used to store data sequences, and they are a common alternative to arrays because they can be resized easily; llements can be inserted or removed without moving the other elements.
+Linked lists are a common alternative to arrays because they can be resized easily; ndoes can be inserted or removed without moving the other nodes.
+A linked list is a linear data structure where each element, called a node, is a separate object that stores a data value and a reference (link) to the next node in the list ({numref}`fig-LinkedList-schematic`). 
+
+
+```{figure} ./figs/Fig-LinkedList-Schematic.pdf
+---
+height: 180px
+name: fig-LinkedList-schematic
+---
+Schematic of a singly linked list. Each node in the list has data, in this case a queue data structure, and a reference (link) to the next node in the list. 
+```
 
 There are two main types of linked lists: singly linked lists and doubly linked lists. In a singly linked list, each node has a reference to the next node in the list but not the previous one. On the other hand, each node connects to the next and previous nodes in a doubly linked list.
 
-Linked lists can be used to implement various data structures, such as stacks, queues, and associative arrays. They are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is O(1) for a linked list.
+#### Common uses of linked lists
+Linked lists are often used when the data structure size is not known in advance or when the data needs to be inserted or removed frequently, as the time complexity for these operations is constant for a linked list.
+
+* __Dynamic data structures__: Linked lists are helpful when working with data structures that can change in size during runtime. Unlike arrays, linked lists can grow or shrink as needed without complex memory management or copying operations. This makes them helpful in implementing stacks, queues, and other dynamic data structures.
+* __Memory allocation__: In computer memory management, linked lists are used to keep track of free and allocated memory blocks. Each memory block is represented as a node in the list, with a pointer to the next block. This allows the system to find a suitable block for a new allocation quickly and to free up blocks when they are no longer needed efficiently.
+* __Modeling hierarchical data__: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.
 
 ## Non-linear data structures
-Non-linear data structures do not store data in a linear sequence. Instead, non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships. However, while non-linear data structures can be more efficient than linear data structures, such as arrays and linked lists, for certain types of operations, they are typically more complex to construct and require more memory.
+Non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships.  However, while non-linear data structures can be more efficient than arrays and linked lists, they are typically more complex to construct and require more memory.
 
 <!-- Let's consider a few handy non-linear data structures, {ref}`content:references:data-structure-hashmap-and-sets`, {ref}`content:references:data-structure-tree`, and {ref}`content:references:data-structure-graphs`.  -->
 
 (content:references:data-structure-hashmap-and-sets)=
-### Hashmaps and sets
-A hashmap is a data structure that stores key-value pairs, where each key value is unique. Hashmaps uses a [hash function](https://en.wikipedia.org/wiki/Hash_function) to map keys to array indexes, thus, allowing for efficient lookups and insertions. Sets are similar to hashmaps but only store keys and do not have values associated with them.
+### Dictionary and sets
+A dictionary stores key-value pairs, where each key value is unique. Dictionaries use a [hash function](https://en.wikipedia.org/wiki/Hash_function) to map keys (which can be a variety of types) to an array index. Thus, dictionaries have efficient lookup and insertion operations. Sets are similar to dictionaries but only store keys and do not have values associated with them.
 
-#### Hashmaps
-Hashmaps are implemented in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) as a `dictionary` type; we've already seen several examples of [Julia](https://docs.julialang.org) dictionaries, which are type `Dict`, when working with [JSON, TOML and YAML files](../unit-1-basics/data-file-io.md). [Python](https://www.python.org) dictionaries behave in a similar way as thier [Julia](https://docs.julialang.org) counterparts, with one important exception: in [Python > 3.7](https://www.python.org) dictionaries are _ordered_, while [Julia](https://docs.julialang.org) dictionaries are always _unordered_. 
+Dictionaries are implemented in both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) as a `Dict` type; we've already seen several examples of [Julia](https://docs.julialang.org) dictionaries when working with [JSON, TOML and YAML files](../unit-1-basics/data-file-io.md) or other examples. [Python](https://www.python.org) dictionaries behave in a similar way as thier [Julia](https://docs.julialang.org) counterparts, with one important exception: in [Python > 3.7](https://www.python.org) dictionaries are _ordered_, while [Julia](https://docs.julialang.org) dictionaries are always _unordered_.
 
-Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let's look at an example of how to use a dictionary in [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
+Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let's look at an examples of dictionaries in [Julia](https://docs.julialang.org) and [Python](https://www.python.org):
 
 `````{tab-set}
 ````{tab-item} julia
@@ -239,9 +360,8 @@ car["year"] = 1964
 ````
 `````
 
-Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`.
+<!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 
-#### Sets
 Like dictionaries, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) implement a `Set` type in their respective standard libraries. The `Set` type holds a unique collection of keys but does not associate these keys with any data:
 
 `````{tab-set}
@@ -273,7 +393,7 @@ fruit.add("Mango")
 
 In both [Julia](https://docs.julialang.org) and [Python](https://www.python.org), the `Set` type is _unordered_; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained. 
 
-##### Hash functions
+#### Hash functions
 The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
 
 A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
@@ -334,13 +454,52 @@ end
 
 (content:references:data-structure-tree)=
 ### Trees
-Trees are widely-used non-linear data structures that simulate a hierarchical tree structure, with nodes representing the hierarchy. In a tree, each node has one or more child nodes, each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node. The nodes that do not have any children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes.
+Trees are widely-used non-linear data structures that encode hierarchical structure in data that are composed of nodes and edges ({numref}`fig-tree-schematic`). 
 
-Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision.
+```{figure} ./figs/Fig-Tree-Schematic.pdf
+---
+height: 320px
+name: fig-tree-schematic
+---
+Schematic of a tree data structure. Each node in the tree holds some data and references (links) to its children. If a node does not have children, it is a leaf node. The topmost node in the tree is the root node.  
+```
 
-There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations.
+Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes. Finally, the number of levels of a tree is called the height of the tree.
 
-#### Revisit: Recursive Fibonacci and Memoization
+Let's define some properties of a complete k-ary tree ({prf:ref}`defn-children-and-node-k-ary`):
+
+````{prf:definition} Children and nodes of a k-ary tree
+:label: defn-children-and-node-k-ary
+
+Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. Further, let the root node of $\mathcal{T}$ have an index $0$. Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
+
+```{math}
+:label: eqn-children-node-i
+\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}
+```
+
+The total number of nodes of tree $\mathcal{T}$ with height $h$, denoted by $N_{h}$, is given by:
+
+```{math}
+:label: eqn-number-of-nodes-kary
+N_{h} = \sum_{j=0}^{h}k^j
+```
+````
+
+#### Common uses for trees
+
+Trees are ubiquitous in computing; trees are used in a huge variety of applications:
+
+* __Organizing and searching data__: Trees are commonly used to store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.
+* __Implementing algorithms__: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.
+* __Modeling real-world phenomena__: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.
+
+One interesting application of trees beyond what was listed above is to diagram function calls in a recursive function. Let's reimagine the recursive computation of the Fibonacci series that uses memoization ({prf:ref}`example-recursive-fibonacci-memo`):
+
+````{prf:example} Recursive Fibonacci and Memoization
+:label: example-recursive-fibonacci-memo
+:class: dropdown
+
 One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) numbers. The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`)
 
 ```{figure} ./figs/Fig-Fib-4-Recursive-Tree.pdf
@@ -350,6 +509,177 @@ name: fig-recursive-fib-4-call-tree
 ---
 Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
 ```
+````
+
+#### Representation of tress
+Trees can be implemeted in a variety of ways, two of the most common are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
+
+(content:references:array-rep-tree)=
+##### Array-based tree representations
+Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
+
+````{prf:example} Ternary commodity price tree array-representation
+:label: example-ternary-price-model-array
+:class: dropdown
+
+Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an array-based tree representation. 
+
+Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by $P_{o}$. Assume that at each subsequent time-step in the future, the price can increase by $r_{+}$ = 2\%, stay the same $r_{0}$ = 0\%, or decrease by $r_{-}$ = 1\%.
+
+__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices is given be:
+
+```{math}
+:label: eqn-price-set-node-i
+\left\{P_{i}\left(1+r_{+}\right),P_{i},P_{i}\left(1-r_{-}\right)\right\}
+```
+
+We can now develop a `build` method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree. 
+
+__Preconditions__: The `ArrayBasedTernaryCommodityPriceTree` mutable type has been defined outside of the `build` function.
+
+```julia
+"""
+    build(type::Type{ArrayBasedTernaryCommodityPriceTree}; 
+        h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01) -> ArrayBasedTernaryCommodityPriceTree
+"""
+function build(type::Type{ArrayBasedTernaryCommodityPriceTree}; 
+    h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01)::ArrayBasedTernaryCommodityPriceTree
+
+    # initialize -
+    model = ArrayBasedTernaryCommodityPriceTree(); # build an emprt tree model -
+    Nₕ = sum([3^i for i ∈ 0:h]) # compute how many nodes we have in the tree
+    P = Dict{Int64,Float64}() 
+
+    # setup Δ - the amount the price moves up, or down -
+    Δ = [u,0,-d];
+    
+    # set the root price -
+    P[0] = price
+
+    # fill up the array -
+    for i ∈ 0:(Nₕ - 3^h - 1)
+        
+        # what is the *parent* price -
+        Pᵢ = P[i]
+
+        # Compute the children for this node -
+        Cᵢ = [j for j ∈ (3*i+1):(3*i+3)]; 
+        for c ∈ 1:3 # for each node (no matter what i) we have three children
+        
+            # what is the child index?
+            child_index = Cᵢ[c]
+
+            # compute the new *child* prive 
+            P[child_index] = Pᵢ*(1+Δ[c])
+        end
+    end
+
+    # set the price data on the model -
+    model.data = P;
+
+    # return -
+    return model
+end
+```
+To call this `build` function, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
+
+```julia
+julia> include("Include.jl") # assumes standard CHEME-1800/4800 code format
+julia> Pₒ = 75.00; # set the initial price
+julia> m = build(ArrayBasedTernaryCommodityPriceTree; h = 2, price = Pₒ); # build the tree
+```
+
+__source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees)
+````
+
+(content:references:adj-rep-tree)=
+##### Adjacency list representation
+Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure. 
+
+Let's reimagine the terneray commodity price model in the Adjacency list format ({prf:ref}`example-ternary-price-model-adj-list`):
+
+````{prf:example} Ternary commodity price tree adjacency list
+:label: example-ternary-price-model-adj-list
+:class: dropdown
+
+Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an adjacency list representation.
+
+Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by $P_{o}$. Assume that at each subsequent time-step in the future, the price can increase by 2\%, stay the same, or decrease by 1\%.
+
+__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices will be the same as the array based representation.
+
+We can now develop a `build` method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree, along with a data structure holding information about the tree connectivity.
+
+__Preconditions__: 
+* The `AdjacencyBasedTernaryCommodityPriceTree` mutable tree type has been defined outside of this `build` function.
+
+```julia
+"""
+    build(type::Type{AdjacencyBasedTernaryCommodityPriceTree};
+        h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01) -> AdjacencyBasedTernaryCommodityPriceTree
+"""
+function build(type::Type{AdjacencyBasedTernaryCommodityPriceTree};
+    h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01)::AdjacencyBasedTernaryCommodityPriceTree
+
+    # initialize -
+    model = AdjacencyBasedTernaryCommodityPriceTree(); # build an emprt tree model
+    Nₕ = sum([3^i for i ∈ 0:h]) # compute how many nodes we have in the tree
+    P = Dict{Int64,Float64}() # use Dict for zero-based array hack. Hold price information
+    connectivity = Dict{Int64, Array{Int64,1}}() # holds tree connectivity information
+
+    # setup Δ - the amount the price moves up, or down -
+    Δ = [u,0,-d];
+
+    # set the root price -
+    P[0] = price
+
+    # build connectivity -
+    for i ∈ 0:(Nₕ - 3^h - 1)
+        
+        # what is the *parent* price
+        Pᵢ = P[i]
+
+        # Compute the children for this node -
+        Cᵢ = [j for j ∈ (3*i+1):(3*i+3)]; 
+        connectivity[i] = Cᵢ # stores the children indices of node i
+
+        # cmpute the prices at the child nodes
+        for c ∈ 1:3 # for each node (no matter what i) we have three children
+
+            # what is the child index?
+            child_index = Cᵢ[c]
+
+            # compute the new price for the child node
+            P[child_index] = Pᵢ*(1+Δ[c])
+        end
+    end
+
+    # set the data, and connectivity for the model -
+    model.data = P;
+    model.connectivity = connectivity;
+
+    # return -
+    return model;
+end
+```
+
+To call this `build` function, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
+
+```julia
+julia> include("Include.jl") # assumes standard CHEME-1800/4800 code format
+julia> Pₒ = 75.00; # set the initial price
+julia> m = build(AdjacencyBasedTernaryCommodityPriceTree; h = 2, price = Pₒ); # build the tree. 
+```
+
+__source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees)
+
+````
+
+<!-- Trees are often used to represent hierarchical relationships, such as in file systems, where each folder (node) can contain multiple files and subfolders (child nodes). Trees can also be used to model a decision, where the root node represents a decision, and the child nodes represent the possible outcomes of that decision. -->
+
+<!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
+
+
 
 
 (content:references:data-structure-graphs)=
@@ -363,4 +693,5 @@ Graphs represent real-world situations like networks, maps, and social relations
 ---
 
 ## Summary 
-Fill me in. 
+Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. In this lecture, we introduced several common data structures that will be important as we transition to applications.
+
