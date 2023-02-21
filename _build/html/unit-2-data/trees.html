@@ -944,7 +944,7 @@ title="Print to PDF"
 </section>
 <section id="queues">
 <span id="content-references-lda-queues"></span><h5>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">#</a></h5>
-<p>The <code class="docutils literal notranslate"><span class="pre">queue</span></code> data structure follows the <a class="reference external" href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">first-in, first-out (FIFO) principle</a>, the first element added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> will be the first element to be removed (Fig. <a class="reference internal" href="#fig-queue-schematic"><span class="std std-numref">Fig. 6</span></a>). In a <code class="docutils literal notranslate"><span class="pre">queue</span></code>, elements are added to the bottom (also known as <em>enqueuing</em>) and removed from the top (also known as <em>dequeuing</em>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">queue</span></code> data structure follows the <a class="reference external" href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">first-in, first-out (FIFO) principle</a>, the first element added to the <code class="docutils literal notranslate"><span class="pre">queue</span></code> will be the first element to be removed (<a class="reference internal" href="#fig-queue-schematic"><span class="std std-numref">Fig. 6</span></a>). In a <code class="docutils literal notranslate"><span class="pre">queue</span></code>, elements are added to the bottom (also known as <em>enqueuing</em>) and removed from the top (also known as <em>dequeuing</em>).</p>
 <figure class="align-default" id="fig-queue-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Queue-Schematic.pdf"><img alt="../_images/Fig-Queue-Schematic.pdf" src="../_images/Fig-Queue-Schematic.pdf" style="height: 200px;" /></a>
 <figcaption>
@@ -1096,7 +1096,7 @@ A linked list is a linear data structure where each element, called a node, is a
 <p class="admonition-title"><span class="caption-number">Example 14 </span> (Linked-list implementation of a Stack)</p>
 <section class="example-content" id="proof-content">
 <p>Develop a stack data structure that holds characters using a linked list.</p>
-<p><strong>Solution</strong>: Let’s implement our character stack by defining the <code class="docutils literal notranslate"><span class="pre">Node</span></code> and <code class="docutils literal notranslate"><span class="pre">Stack</span></code> types and the <code class="docutils literal notranslate"><span class="pre">push!</span></code> and <code class="docutils literal notranslate"><span class="pre">pop!</span></code> operations in a file called <code class="docutils literal notranslate"><span class="pre">Stack,jl</span></code> (in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory):</p>
+<p><strong>Solution</strong>: Let’s implement our character stack by defining the <code class="docutils literal notranslate"><span class="pre">Node</span></code> and <code class="docutils literal notranslate"><span class="pre">Stack</span></code> types and the <code class="docutils literal notranslate"><span class="pre">push!</span></code> and <code class="docutils literal notranslate"><span class="pre">pop!</span></code> operations in a file called <code class="docutils literal notranslate"><span class="pre">Stack.jl</span></code> (in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory):</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">Mutable node type for the linked list stack implementation</span>
 <span class="s">&quot;&quot;&quot;</span>
@@ -1186,8 +1186,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="40b50d0c-a919-4636-9375-6223b61c5bb8" name="baba70d8-e366-4b26-aa7c-9d7e222464b7" type="radio">
-</input><label class="sd-tab-label" for="40b50d0c-a919-4636-9375-6223b61c5bb8">
+<input checked="checked" id="25db6d50-e46e-47ed-99f0-6a9fa1127d80" name="c6b84d98-7197-46b1-ba34-031e5421b9f9" type="radio">
+</input><label class="sd-tab-label" for="25db6d50-e46e-47ed-99f0-6a9fa1127d80">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1199,8 +1199,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="32d146b5-a7f9-40a2-8160-083e0f03a83f" name="baba70d8-e366-4b26-aa7c-9d7e222464b7" type="radio">
-</input><label class="sd-tab-label" for="32d146b5-a7f9-40a2-8160-083e0f03a83f">
+<input id="50b2ad58-5d42-40f4-9173-a75b16d59319" name="c6b84d98-7197-46b1-ba34-031e5421b9f9" type="radio">
+</input><label class="sd-tab-label" for="50b2ad58-5d42-40f4-9173-a75b16d59319">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1216,8 +1216,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e639381c-6e9c-43e8-8bfa-c1db0b822646" name="ced874a3-b55e-4f35-8b66-987686ba5ce1" type="radio">
-</input><label class="sd-tab-label" for="e639381c-6e9c-43e8-8bfa-c1db0b822646">
+<input checked="checked" id="4298c230-8c7d-49fd-bac7-86dc42206bcc" name="6fe189d2-0e43-4b5e-b6c4-73b9b5492152" type="radio">
+</input><label class="sd-tab-label" for="4298c230-8c7d-49fd-bac7-86dc42206bcc">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1229,8 +1229,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="954d7007-10e0-4cb3-ace2-0a54dd61398f" name="ced874a3-b55e-4f35-8b66-987686ba5ce1" type="radio">
-</input><label class="sd-tab-label" for="954d7007-10e0-4cb3-ace2-0a54dd61398f">
+<input id="f4f89514-5fb1-45c2-99e0-7e5c8afdcb98" name="6fe189d2-0e43-4b5e-b6c4-73b9b5492152" type="radio">
+</input><label class="sd-tab-label" for="f4f89514-5fb1-45c2-99e0-7e5c8afdcb98">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
