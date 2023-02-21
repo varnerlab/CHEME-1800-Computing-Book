@@ -1091,7 +1091,89 @@ A linked list is a linear data structure where each element, called a node, is a
 <li><p><strong>Memory allocation</strong>: In computer memory management, linked lists are used to keep track of free and allocated memory blocks. Each memory block is represented as a node in the list, with a pointer to the next block. This allows the system to find a suitable block for a new allocation quickly and to free up blocks when they are no longer needed efficiently.</p></li>
 <li><p><strong>Modeling hierarchical data</strong>: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.</p></li>
 </ul>
+<p>Linked lists can also implement <a class="reference internal" href="#content-references-lda-stacks"><span class="std std-ref">Stacks</span></a> and <a class="reference internal" href="#content-references-lda-queues"><span class="std std-ref">Queues</span></a>. Let’s consider an example <a class="reference external" href="https://julialang.org">Julia</a> implementation of a stack-based upon a linked list (<a class="reference internal" href="#example-linked-list-stack">Example 14</a>):</p>
+<div class="proof example dropdown admonition" id="example-linked-list-stack">
+<p class="admonition-title"><span class="caption-number">Example 14 </span> (Linked-list implementation of a Stack)</p>
+<section class="example-content" id="proof-content">
+<p>Develop a stack data structure that holds characters using a linked list.</p>
+<p><strong>Solution</strong>: Let’s implement our character stack by defining the <code class="docutils literal notranslate"><span class="pre">Node</span></code> and <code class="docutils literal notranslate"><span class="pre">Stack</span></code> types and the <code class="docutils literal notranslate"><span class="pre">push!</span></code> and <code class="docutils literal notranslate"><span class="pre">pop!</span></code> operations in a file called <code class="docutils literal notranslate"><span class="pre">Stack,jl</span></code> (in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory):</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">Mutable node type for the linked list stack implementation</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">mutable struct</span> <span class="kt">Node</span>
+    
+    <span class="c"># data</span>
+    <span class="n">value</span><span class="o">::</span><span class="kt">Char</span>
+    <span class="n">next</span><span class="o">::</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Nothing</span><span class="p">,</span> <span class="kt">Node</span><span class="p">}</span>
+
+    <span class="c"># constructor -</span>
+    <span class="n">Node</span><span class="p">()</span> <span class="o">=</span> <span class="n">new</span><span class="p">();</span>
+<span class="k">end</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">Mutable stack type</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">mutable struct</span> <span class="kt">Stack</span>
+    <span class="n">head</span><span class="o">::</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Nothing</span><span class="p">,</span> <span class="kt">Node</span><span class="p">}</span>
+<span class="k">end</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    push!(stack::Stack, value::Char)</span>
+
+<span class="s">Implements the push! operation for our linked list stack </span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">push!</span><span class="p">(</span><span class="n">stack</span><span class="o">::</span><span class="kt">Stack</span><span class="p">,</span> <span class="n">value</span><span class="o">::</span><span class="kt">Char</span><span class="p">)</span>
+    
+    <span class="c"># create a new node -</span>
+    <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">()</span>
+    <span class="n">new_node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>       <span class="c"># set the data value on the node</span>
+    <span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">head</span><span class="p">;</span>   <span class="c"># set the reference to the next item in the ll </span>
+
+    <span class="c"># set the head ot the stack to the new node </span>
+    <span class="n">stack</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span>
+<span class="k">end</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    pop!(stack::Stack)</span>
+
+<span class="s">Implements the pop! operation for our linked list stack</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">pop!</span><span class="p">(</span><span class="n">stack</span><span class="o">::</span><span class="kt">Stack</span><span class="p">)</span>
+    
+    <span class="c"># if we don&#39;t have any more chars, then throw an error</span>
+    <span class="k">if</span> <span class="n">stack</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nb">nothing</span> <span class="c"># whay the === and not ==?</span>
+        <span class="n">throw</span><span class="p">(</span><span class="s">&quot;Stack is empty&quot;</span><span class="p">)</span> <span class="c"># &quot;throw&quot; an error</span>
+    <span class="k">end</span>
+    
+    <span class="c"># grabs the value held by the current head</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="c"># updates the head reference to the next item in the stack</span>
+    <span class="n">stack</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">next</span>
+    
+    <span class="c"># return the char value</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>To build our stack, we can add the following code to a <code class="docutils literal notranslate"><span class="pre">runme.jl</span></code> file (in the root directory) where we have assumed our standard example/project structure (paths, packages, and our codes included in an <code class="docutils literal notranslate"><span class="pre">Include.jl</span></code> file in the root):</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># include the Include -</span>
+<span class="n">include</span><span class="p">(</span><span class="s">&quot;Include.jl&quot;</span><span class="p">)</span>
+
+<span class="c"># create a new an empty stack -</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">(</span><span class="nb">nothing</span><span class="p">);</span>
+
+<span class="c"># add characters to the stack -</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Roomba!&quot;</span>
+<span class="n">char_array</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">c</span> <span class="o">∈</span> <span class="n">char_array</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p><strong>source</strong>: Source code can be found in the <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/linked_list_stack">CHEME-1800/4800 tree examples repository</a></p>
 </section>
+</div></section>
 </section>
 </section>
 <section id="id2">
@@ -1104,8 +1186,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="654cd1cf-ba8e-4905-9621-fa04865c5c51" name="09aa9c68-0ca8-4d35-98af-6ec41d52c605" type="radio">
-</input><label class="sd-tab-label" for="654cd1cf-ba8e-4905-9621-fa04865c5c51">
+<input checked="checked" id="b96e7699-dc15-429d-856f-4f58182ab081" name="1eb6ce3f-f3cf-474c-b7a0-9a710eba9a45" type="radio">
+</input><label class="sd-tab-label" for="b96e7699-dc15-429d-856f-4f58182ab081">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1117,8 +1199,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="138d7154-4261-413a-8513-4b1413d16f50" name="09aa9c68-0ca8-4d35-98af-6ec41d52c605" type="radio">
-</input><label class="sd-tab-label" for="138d7154-4261-413a-8513-4b1413d16f50">
+<input id="34edfe91-cddb-4b90-adea-f0b295957afa" name="1eb6ce3f-f3cf-474c-b7a0-9a710eba9a45" type="radio">
+</input><label class="sd-tab-label" for="34edfe91-cddb-4b90-adea-f0b295957afa">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1134,8 +1216,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="17ebaf5b-2f7c-44a6-a86d-9f79a28c2780" name="51560313-2da3-47fb-ae18-0e6f5f96147a" type="radio">
-</input><label class="sd-tab-label" for="17ebaf5b-2f7c-44a6-a86d-9f79a28c2780">
+<input checked="checked" id="e1c8c50d-139f-427f-8146-8862b7540f0b" name="7f1619b9-2b3e-4374-837f-1dca58c93c88" type="radio">
+</input><label class="sd-tab-label" for="e1c8c50d-139f-427f-8146-8862b7540f0b">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1147,8 +1229,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e9afe9d9-9c6d-463d-8187-8649b0d24ca9" name="51560313-2da3-47fb-ae18-0e6f5f96147a" type="radio">
-</input><label class="sd-tab-label" for="e9afe9d9-9c6d-463d-8187-8649b0d24ca9">
+<input id="c59e45bb-ed2d-473c-ac39-c592dd8d6346" name="7f1619b9-2b3e-4374-837f-1dca58c93c88" type="radio">
+</input><label class="sd-tab-label" for="c59e45bb-ed2d-473c-ac39-c592dd8d6346">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1189,7 +1271,7 @@ python</label><div class="sd-tab-content docutils">
 </section>
 </div><p><a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> is a variant of Horner’s hashing method when <span class="math notranslate nohighlight">\(\beta\)</span> = 31. The <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator</a> <code class="docutils literal notranslate"><span class="pre">%</span></code> computes the remainder, e.g., the expression <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%</span> <span class="pre">3</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">1</span></code>. The modulo <code class="docutils literal notranslate"><span class="pre">%</span></code> operation with <code class="docutils literal notranslate"><span class="pre">size</span></code> ensures that the output <code class="docutils literal notranslate"><span class="pre">hash</span></code> value is a valid index within the array.</p>
 <div class="proof example dropdown admonition" id="example-hashing-example-impl">
-<p class="admonition-title"><span class="caption-number">Example 14 </span> (Hashing example)</p>
+<p class="admonition-title"><span class="caption-number">Example 15 </span> (Hashing example)</p>
 <section class="example-content" id="proof-content">
 <p>Compute the hash value for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code> for an array of <code class="docutils literal notranslate"><span class="pre">size</span></code> of <code class="docutils literal notranslate"><span class="pre">1000</span></code> and expansion factor <span class="math notranslate nohighlight">\(\beta\)</span> = 31.</p>
 <p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> in <a class="reference external" href="https://docs.julialang.org">Julia</a></p>
@@ -1246,9 +1328,9 @@ python</label><div class="sd-tab-content docutils">
 <li><p><strong>Implementing algorithms</strong>: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.</p></li>
 <li><p><strong>Modeling real-world phenomena</strong>: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.</p></li>
 </ul>
-<p>One interesting application of trees beyond what was listed above is to diagram function calls in a recursive function. Let’s reimagine the recursive computation of the Fibonacci series that uses memoization (<a class="reference internal" href="#example-recursive-fibonacci-memo">Example 15</a>):</p>
+<p>One interesting application of trees beyond what was listed above is to diagram function calls in a recursive function. Let’s reimagine the recursive computation of the Fibonacci series that uses memoization (<a class="reference internal" href="#example-recursive-fibonacci-memo">Example 16</a>):</p>
 <div class="proof example dropdown admonition" id="example-recursive-fibonacci-memo">
-<p class="admonition-title"><span class="caption-number">Example 15 </span> (Recursive Fibonacci and Memoization)</p>
+<p class="admonition-title"><span class="caption-number">Example 16 </span> (Recursive Fibonacci and Memoization)</p>
 <section class="example-content" id="proof-content">
 <p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>)</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
@@ -1264,9 +1346,9 @@ python</label><div class="sd-tab-content docutils">
 <p>Trees can be implemeted in a variety of ways, two of the most common are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
 <section id="array-based-tree-representations">
 <span id="content-references-array-rep-tree"></span><h5>Array-based tree representations<a class="headerlink" href="#array-based-tree-representations" title="Permalink to this headline">#</a></h5>
-<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 16</a>):</p>
+<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 17</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-array">
-<p class="admonition-title"><span class="caption-number">Example 16 </span> (Ternary commodity price tree array-representation)</p>
+<p class="admonition-title"><span class="caption-number">Example 17 </span> (Ternary commodity price tree array-representation)</p>
 <section class="example-content" id="proof-content">
 <p>Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an array-based tree representation.</p>
 <p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by <span class="math notranslate nohighlight">\(r_{+}\)</span> = 2%, stay the same <span class="math notranslate nohighlight">\(r_{0}\)</span> = 0%, or decrease by <span class="math notranslate nohighlight">\(r_{-}\)</span> = 1%.</p>
@@ -1331,9 +1413,9 @@ python</label><div class="sd-tab-content docutils">
 <section id="adjacency-list-representation">
 <span id="content-references-adj-rep-tree"></span><h5>Adjacency list representation<a class="headerlink" href="#adjacency-list-representation" title="Permalink to this headline">#</a></h5>
 <p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
-<p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 17</a>):</p>
+<p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 18</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-adj-list">
-<p class="admonition-title"><span class="caption-number">Example 17 </span> (Ternary commodity price tree adjacency list)</p>
+<p class="admonition-title"><span class="caption-number">Example 18 </span> (Ternary commodity price tree adjacency list)</p>
 <section class="example-content" id="proof-content">
 <p>Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an adjacency list representation.</p>
 <p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by 2%, stay the same, or decrease by 1%.</p>
