@@ -320,6 +320,101 @@ Linked lists are often used when the data structure size is not known in advance
 * __Memory allocation__: In computer memory management, linked lists are used to keep track of free and allocated memory blocks. Each memory block is represented as a node in the list, with a pointer to the next block. This allows the system to find a suitable block for a new allocation quickly and to free up blocks when they are no longer needed efficiently.
 * __Modeling hierarchical data__: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.
 
+Linked lists can also implement {ref}`content:references:lda-stacks` and {ref}`content:references:lda-queues`. Let's consider an example [Julia](https://julialang.org) implementation of a stack-based upon a linked list ({prf:ref}`example-linked-list-stack`):
+
+
+````{prf:example} Linked-list implementation of a Stack
+:label: example-linked-list-stack
+:class: dropdown
+
+Develop a stack data structure that holds characters using a linked list. 
+
+__Solution__: Let's implement our character stack by defining the `Node` and `Stack` types and the `push!` and `pop!` operations in a file called `Stack,jl` (in the `src` directory):
+
+```julia
+"""
+Mutable node type for the linked list stack implementation
+"""
+mutable struct Node
+    
+    # data
+    value::Char
+    next::Union{Nothing, Node}
+
+    # constructor -
+    Node() = new();
+end
+
+"""
+Mutable stack type
+"""
+mutable struct Stack
+    head::Union{Nothing, Node}
+end
+
+"""
+    push!(stack::Stack, value::Char)
+
+Implements the push! operation for our linked list stack 
+"""
+function push!(stack::Stack, value::Char)
+    
+    # create a new node -
+    new_node = Node()
+    new_node.value = value;       # set the data value on the node
+    new_node.next = stack.head;   # set the reference to the next item in the ll 
+
+    # set the head ot the stack to the new node 
+    stack.head = new_node
+end
+
+"""
+    pop!(stack::Stack)
+
+Implements the pop! operation for our linked list stack
+"""
+function pop!(stack::Stack)
+    
+    # if we don't have any more chars, then throw an error
+    if stack.head === nothing # whay the === and not ==?
+        throw("Stack is empty") # "throw" an error
+    end
+    
+    # grabs the value held by the current head
+    value = stack.head.value
+
+    # updates the head reference to the next item in the stack
+    stack.head = stack.head.next
+    
+    # return the char value
+    return value
+end
+```
+
+
+
+To build our stack, we can add the following code to a `runme.jl` file (in the root directory) where we have assumed our standard example/project structure (paths, packages, and our codes included in an `Include.jl` file in the root):
+
+
+```julia
+# include the Include -
+include("Include.jl")
+
+# create a new an empty stack -
+s = Stack(nothing);
+
+# add characters to the stack -
+text = "Roomba!"
+char_array = collect(text);
+for c ∈ char_array
+    push!(s,c)
+end
+```
+
+__source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/linked_list_stack)
+
+````
+
 ## Non-linear data structures
 Non-linear data structures store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships.  However, while non-linear data structures can be more efficient than arrays and linked lists, they are typically more complex to construct and require more memory.
 
