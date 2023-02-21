@@ -158,7 +158,7 @@ In this example, the elements `1`, `2`, and `3` are added to the `stack s` using
  
 (content:references:lda-queues)=
 ##### Queues
-The `queue` data structure follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the `queue` will be the first element to be removed (Fig. {numref}`fig-queue-schematic`). In a `queue`, elements are added to the bottom (also known as _enqueuing_) and removed from the top (also known as _dequeuing_). 
+The `queue` data structure follows the [first-in, first-out (FIFO) principle](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)), the first element added to the `queue` will be the first element to be removed ({numref}`fig-queue-schematic`). In a `queue`, elements are added to the bottom (also known as _enqueuing_) and removed from the top (also known as _dequeuing_). 
 
 ```{figure} ./figs/Fig-Queue-Schematic.pdf
 ---
@@ -329,7 +329,7 @@ Linked lists can also implement {ref}`content:references:lda-stacks` and {ref}`c
 
 Develop a stack data structure that holds characters using a linked list. 
 
-__Solution__: Let's implement our character stack by defining the `Node` and `Stack` types and the `push!` and `pop!` operations in a file called `Stack,jl` (in the `src` directory):
+__Solution__: Let's implement our character stack by defining the `Node` and `Stack` types and the `push!` and `pop!` operations in a file called `Stack.jl` (in the `src` directory):
 
 ```julia
 """
