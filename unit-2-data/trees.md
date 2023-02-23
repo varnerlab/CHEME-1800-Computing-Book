@@ -576,19 +576,22 @@ Let's define some properties of a complete k-ary tree ({prf:ref}`defn-children-a
 ````{prf:definition} Children and nodes of a full k-ary tree
 :label: defn-children-and-node-k-ary
 
-Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. Further, let the root node of $\mathcal{T}$ have an index $0$. Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
+Let $\mathcal{T}$ be a full k-ary tree with branched height $h$ where each node of $\mathcal{T}$ has $k$ children. Further, let the root node of $\mathcal{T}$ have an index $0$. Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
 
 ```{math}
 :label: eqn-children-node-i
 \mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}
 ```
 
-and the total number of nodes of tree $\mathcal{T}$ with height $h$, denoted by $N_{h}$, is given by:
+and the total number of nodes of tree $\mathcal{T}$ with branched height $h$, denoted by $N_{h}$, is given by:
 
 ```{math}
 :label: eqn-number-of-nodes-kary
-N_{h} = \sum_{j=0}^{h}k^j
+N_{h} = \sum_{j=0}^{h+1}k^j
 ```
+
+where $N_{h}$ includes the final layer of leaves. 
+
 ````
 
 #### Common uses for trees
@@ -605,7 +608,7 @@ One interesting application of trees beyond what was listed above is to diagram 
 :label: example-recursive-fibonacci-memo
 :class: dropdown
 
-One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) numbers. The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`)
+One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number). The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`):
 
 ```{figure} ./figs/Fig-Fib-4-Recursive-Tree.pdf
 ---
@@ -788,11 +791,20 @@ __source__: Source code can be found in the [CHEME-1800/4800 tree examples repos
 
 (content:references:data-structure-graphs)=
 ### Graphs
-A graph is a data structure in computer science that consists of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected.
+A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data. 
 
-In a directed graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend. In an undirected graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.
+Graphs can be __directed__ and __undirected__:
+* In a __directed__ graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend. 
+* In an __undirected__ graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.
 
-Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected
+Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. 
+
+#### Connection between trees and graphs
+Graphs are used to model hierarchical relationships, but we have already seen that {ref}`content:references:data-structure-tree` can also be used to model hierarchical relationships. What is the difference between {ref}`content:references:data-structure-tree` and {ref}`content:references:data-structure-graphs`?
+* __Structure__: A tree is a type of graph with a specific structure. Trees are connected acyclic graphs, where only one path exists between any two nodes. In contrast, a graph can have cycles and may not be connected.
+Root node: A tree has a root node, the topmost node in the tree. Every other node in the tree is connected to it in some way. In a graph, there is no concept of a root node.
+* __Direction__: A tree is a directed graph, which means that every edge has a direction pointing from parent to child nodes. In a graph, edges may be directed or undirected and can point to any node.
+* __Complexity__: Trees are simpler than graphs because of their restricted structure. They have a unique path between any two nodes, which makes them easy to traverse and search. Conversely, graphs can be more complex and challenging to analyze because of their potentially cyclic and non-linear structure.
 
 ---
 
