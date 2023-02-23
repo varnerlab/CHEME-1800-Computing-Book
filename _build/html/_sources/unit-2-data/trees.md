@@ -619,11 +619,11 @@ Schematic of the function call tree for the recursive implementation of the `fib
 ```
 ````
 #### Representation of Trees
-Trees can be implemented in a variety of ways. Two of the most common are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
+Trees can be implemented in a variety of ways. Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. Two of the most common representations are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
 
 (content:references:array-rep-tree)=
 ##### Array-based tree representations
-Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
+ In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
 
 ````{prf:example} Ternary commodity price tree array-representation
 :label: example-ternary-price-model-array
@@ -701,7 +701,7 @@ __source__: Source code can be found in the [CHEME-1800/4800 tree examples repos
 
 (content:references:adj-rep-tree)=
 ##### Adjacency list representation
-Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure. 
+In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure. 
 
 Let's reimagine the terneray commodity price model in the Adjacency list format ({prf:ref}`example-ternary-price-model-adj-list`):
 
