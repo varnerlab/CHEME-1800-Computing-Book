@@ -489,9 +489,9 @@ fruit.add("Mango")
 In both [Julia](https://docs.julialang.org) and [Python](https://www.python.org), the `Set` type is _unordered_; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained. 
 
 #### Hash functions
-The exciting thing about a hashmap implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
+The exciting thing about a dictionary implementation, e.g., the `Dict` type in [Julia](https://docs.julialang.org), is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a [hash function](https://en.wikipedia.org/wiki/Hash_function). 
 
-A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
+A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes an input value, e.g., a string key, and returns a fixed-size string or number (hash value). The same key information will always produce the same index output, but even a small change to the input will have a very different result. In the case of a dictionary, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
 
 Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-function-code`):
 
@@ -499,7 +499,7 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 :label: algo-hash-function-code
 :class: dropdown
 
-**Inputs** String `key`, a `size` parameter, a $\beta$ factor
+**Inputs** String key, a size parameter, a $\beta$ factor
 
 **Outputs** hash
 
@@ -509,7 +509,7 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 
 **Main**
 1. for $i\in{1,\dots,L}$
-      1. hash $\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)$ % `size`
+      1. hash $\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)$ % size
 
 **Return** hash
 ````
@@ -522,7 +522,7 @@ Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-f
 
 Compute the hash value for the key = `CHEME-1800` for an array of `size` of `1000` and expansion factor $\beta$ = 31. 
 
-__Solution__: We implemented {prf:ref}`algo-hash-function-code` in [Julia](https://docs.julialang.org)
+__Solution__: We implemented {prf:ref}`algo-hash-function-code` in [Julia](https://docs.julialang.org). The `myhash` function takes a string key as input and has optional default values for the $\beta$ and `size` parameters. 
 
 ```julia
 """
@@ -530,7 +530,7 @@ __Solution__: We implemented {prf:ref}`algo-hash-function-code` in [Julia](https
 
 Convert a String `key` to `Int` for an array of type `size`:
 """
-function myhash(key::String, β::Int64, size::Int64)::Int64
+function myhash(key::String; β::Int64 = 31, size::Int64 = 1000)::Int64
 
     # initialize -
     hash = 0
@@ -545,6 +545,16 @@ function myhash(key::String, β::Int64, size::Int64)::Int64
     return hash
 end
 ```
+
+To call this `myhash` function with the key = `CHEME-1800`, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
+
+```julia
+julia> key = "CHEME-1800"
+julia> hashvalue = myhash(key);
+```
+
+The `myhash` implementation above should return a value of `780` for the key = `CHEME-1800`.
+
 ````
 
 (content:references:data-structure-tree)=
@@ -563,7 +573,7 @@ Each node may have one or more child nodes, and each child node has one or more 
 
 Let's define some properties of a complete k-ary tree ({prf:ref}`defn-children-and-node-k-ary`):
 
-````{prf:definition} Children and nodes of a k-ary tree
+````{prf:definition} Children and nodes of a full k-ary tree
 :label: defn-children-and-node-k-ary
 
 Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. Further, let the root node of $\mathcal{T}$ have an index $0$. Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
@@ -573,7 +583,7 @@ Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\math
 \mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}
 ```
 
-The total number of nodes of tree $\mathcal{T}$ with height $h$, denoted by $N_{h}$, is given by:
+and the total number of nodes of tree $\mathcal{T}$ with height $h$, denoted by $N_{h}$, is given by:
 
 ```{math}
 :label: eqn-number-of-nodes-kary
@@ -605,13 +615,12 @@ name: fig-recursive-fib-4-call-tree
 Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
 ```
 ````
-
-#### Representation of tress
-Trees can be implemeted in a variety of ways, two of the most common are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
+#### Representation of Trees
+Trees can be implemented in a variety of ways. Two of the most common are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
 
 (content:references:array-rep-tree)=
 ##### Array-based tree representations
-Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
+Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
 
 ````{prf:example} Ternary commodity price tree array-representation
 :label: example-ternary-price-model-array

@@ -569,8 +569,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#representation-of-tress">
-       Representation of tress
+      <a class="reference internal nav-link" href="#representation-of-trees">
+       Representation of Trees
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h5 nav-item toc-entry">
@@ -725,8 +725,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#representation-of-tress">
-       Representation of tress
+      <a class="reference internal nav-link" href="#representation-of-trees">
+       Representation of Trees
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h5 nav-item toc-entry">
@@ -1186,8 +1186,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="25db6d50-e46e-47ed-99f0-6a9fa1127d80" name="c6b84d98-7197-46b1-ba34-031e5421b9f9" type="radio">
-</input><label class="sd-tab-label" for="25db6d50-e46e-47ed-99f0-6a9fa1127d80">
+<input checked="checked" id="bf613783-9ed4-4943-9aec-79aad913aa98" name="f828746a-37cc-4280-b7b9-e7b243dad2a0" type="radio">
+</input><label class="sd-tab-label" for="bf613783-9ed4-4943-9aec-79aad913aa98">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1199,8 +1199,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="50b2ad58-5d42-40f4-9173-a75b16d59319" name="c6b84d98-7197-46b1-ba34-031e5421b9f9" type="radio">
-</input><label class="sd-tab-label" for="50b2ad58-5d42-40f4-9173-a75b16d59319">
+<input id="8bc48104-362b-48ab-aacb-166fa78b022b" name="f828746a-37cc-4280-b7b9-e7b243dad2a0" type="radio">
+</input><label class="sd-tab-label" for="8bc48104-362b-48ab-aacb-166fa78b022b">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1216,8 +1216,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4298c230-8c7d-49fd-bac7-86dc42206bcc" name="6fe189d2-0e43-4b5e-b6c4-73b9b5492152" type="radio">
-</input><label class="sd-tab-label" for="4298c230-8c7d-49fd-bac7-86dc42206bcc">
+<input checked="checked" id="a1df2ba6-d4cd-4793-b0a7-6d43ff388e3b" name="409a4d58-068c-4ed4-9c3e-001d2aef29ff" type="radio">
+</input><label class="sd-tab-label" for="a1df2ba6-d4cd-4793-b0a7-6d43ff388e3b">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1229,8 +1229,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f4f89514-5fb1-45c2-99e0-7e5c8afdcb98" name="6fe189d2-0e43-4b5e-b6c4-73b9b5492152" type="radio">
-</input><label class="sd-tab-label" for="f4f89514-5fb1-45c2-99e0-7e5c8afdcb98">
+<input id="b57f266b-71fa-4055-8590-9ff895d39546" name="409a4d58-068c-4ed4-9c3e-001d2aef29ff" type="radio">
+</input><label class="sd-tab-label" for="b57f266b-71fa-4055-8590-9ff895d39546">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1246,13 +1246,13 @@ python</label><div class="sd-tab-content docutils">
 <p>In both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>, the <code class="docutils literal notranslate"><span class="pre">Set</span></code> type is <em>unordered</em>; thus, unlike Arrays, Stacks or Queues, the order in which items are added to the set is not maintained.</p>
 <section id="hash-functions">
 <h4>Hash functions<a class="headerlink" href="#hash-functions" title="Permalink to this headline">#</a></h4>
-<p>The exciting thing about a hashmap implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> takes an input value, e.g., a key, and returns a fixed-size string or number. The same information will always produce the same output, but even a small change to the input will have a very different result. In the case of a hashmap, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
+<p>The exciting thing about a dictionary implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> takes an input value, e.g., a string key, and returns a fixed-size string or number (hash value). The same key information will always produce the same index output, but even a small change to the input will have a very different result. In the case of a dictionary, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
 <p>Let’s look at some psuedo code for a simple hash function (<a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-hash-function-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Simple Hash Function)</p>
 <section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong> String <code class="docutils literal notranslate"><span class="pre">key</span></code>, a <code class="docutils literal notranslate"><span class="pre">size</span></code> parameter, a <span class="math notranslate nohighlight">\(\beta\)</span> factor</p>
+<p><strong>Inputs</strong> String key, a size parameter, a <span class="math notranslate nohighlight">\(\beta\)</span> factor</p>
 <p><strong>Outputs</strong> hash</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
@@ -1263,7 +1263,7 @@ python</label><div class="sd-tab-content docutils">
 <ol class="simple">
 <li><p>for <span class="math notranslate nohighlight">\(i\in{1,\dots,L}\)</span></p>
 <ol class="simple">
-<li><p>hash <span class="math notranslate nohighlight">\(\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)\)</span> % <code class="docutils literal notranslate"><span class="pre">size</span></code></p></li>
+<li><p>hash <span class="math notranslate nohighlight">\(\leftarrow\left(\text{hash}\times\beta+\text{key}[i]\right)\)</span> % size</p></li>
 </ol>
 </li>
 </ol>
@@ -1274,13 +1274,13 @@ python</label><div class="sd-tab-content docutils">
 <p class="admonition-title"><span class="caption-number">Example 15 </span> (Hashing example)</p>
 <section class="example-content" id="proof-content">
 <p>Compute the hash value for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code> for an array of <code class="docutils literal notranslate"><span class="pre">size</span></code> of <code class="docutils literal notranslate"><span class="pre">1000</span></code> and expansion factor <span class="math notranslate nohighlight">\(\beta\)</span> = 31.</p>
-<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> in <a class="reference external" href="https://docs.julialang.org">Julia</a></p>
+<p><strong>Solution</strong>: We implemented <a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a> in <a class="reference external" href="https://docs.julialang.org">Julia</a>. The <code class="docutils literal notranslate"><span class="pre">myhash</span></code> function takes a string key as input and has optional default values for the <span class="math notranslate nohighlight">\(\beta\)</span> and <code class="docutils literal notranslate"><span class="pre">size</span></code> parameters.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">    myhash(key::String, β::Int64, size::Int64)::Int64</span>
 
 <span class="s">Convert a String `key` to `Int` for an array of type `size`:</span>
 <span class="s">&quot;&quot;&quot;</span>
-<span class="k">function</span> <span class="n">myhash</span><span class="p">(</span><span class="n">key</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span> <span class="n">β</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">size</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
+<span class="k">function</span> <span class="n">myhash</span><span class="p">(</span><span class="n">key</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span> <span class="n">β</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">31</span><span class="p">,</span> <span class="n">size</span><span class="o">::</span><span class="kt">Int64</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span><span class="o">::</span><span class="kt">Int64</span>
 
     <span class="c"># initialize -</span>
     <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1296,6 +1296,12 @@ python</label><div class="sd-tab-content docutils">
 <span class="k">end</span>
 </pre></div>
 </div>
+<p>To call this <code class="docutils literal notranslate"><span class="pre">myhash</span></code> function with the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code>, we issue the commands in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">REPL</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&quot;CHEME-1800&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">hashvalue</span> <span class="o">=</span> <span class="n">myhash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">myhash</span></code> implementation above should return a value of <code class="docutils literal notranslate"><span class="pre">780</span></code> for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code>.</p>
 </section>
 </div></section>
 </section>
@@ -1311,12 +1317,12 @@ python</label><div class="sd-tab-content docutils">
 <p>Each node may have one or more child nodes, and each child node has one or more sub-children, and so on. The topmost node, which has no parent, is called the root node, while nodes with no children are called leaf nodes. The edges connecting the nodes represent the relationships between the nodes. Finally, the number of levels of a tree is called the height of the tree.</p>
 <p>Let’s define some properties of a complete k-ary tree (<a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a>):</p>
 <div class="proof definition admonition" id="defn-children-and-node-k-ary">
-<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Children and nodes of a k-ary tree)</p>
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Children and nodes of a full k-ary tree)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>. Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
 <span class="eqno">(11)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
-<p>The total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
+<p>and the total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-number-of-nodes-kary">
 <span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h}k^j\]</div>
 </section>
@@ -1341,12 +1347,12 @@ python</label><div class="sd-tab-content docutils">
 </figure>
 </section>
 </div></section>
-<section id="representation-of-tress">
-<h4>Representation of tress<a class="headerlink" href="#representation-of-tress" title="Permalink to this headline">#</a></h4>
-<p>Trees can be implemeted in a variety of ways, two of the most common are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
+<section id="representation-of-trees">
+<h4>Representation of Trees<a class="headerlink" href="#representation-of-trees" title="Permalink to this headline">#</a></h4>
+<p>Trees can be implemented in a variety of ways. Two of the most common are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
 <section id="array-based-tree-representations">
 <span id="content-references-array-rep-tree"></span><h5>Array-based tree representations<a class="headerlink" href="#array-based-tree-representations" title="Permalink to this headline">#</a></h5>
-<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an array-based representation of a tree, each node in the tree is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 17</a>):</p>
+<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 17</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-array">
 <p class="admonition-title"><span class="caption-number">Example 17 </span> (Ternary commodity price tree array-representation)</p>
 <section class="example-content" id="proof-content">
