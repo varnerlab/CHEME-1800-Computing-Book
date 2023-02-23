@@ -615,7 +615,7 @@ name: fig-recursive-fib-4-call-tree
 Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
 ```
 ````
-#### Representation of tress
+#### Representation of Trees
 Trees can be implemented in a variety of ways. Two of the most common are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
 
 (content:references:array-rep-tree)=
