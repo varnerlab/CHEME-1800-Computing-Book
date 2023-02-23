@@ -591,6 +591,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#graphs">
      Graphs
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connection-between-trees-and-graphs">
+       Connection between trees and graphs
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -747,6 +754,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#graphs">
      Graphs
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connection-between-trees-and-graphs">
+       Connection between trees and graphs
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1186,8 +1200,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="bf613783-9ed4-4943-9aec-79aad913aa98" name="f828746a-37cc-4280-b7b9-e7b243dad2a0" type="radio">
-</input><label class="sd-tab-label" for="bf613783-9ed4-4943-9aec-79aad913aa98">
+<input checked="checked" id="e3108145-28ce-4cab-8c99-b3d7b5b6fb47" name="1dc49cb2-4085-4497-a6af-dd0db547a9f5" type="radio">
+</input><label class="sd-tab-label" for="e3108145-28ce-4cab-8c99-b3d7b5b6fb47">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1199,8 +1213,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8bc48104-362b-48ab-aacb-166fa78b022b" name="f828746a-37cc-4280-b7b9-e7b243dad2a0" type="radio">
-</input><label class="sd-tab-label" for="8bc48104-362b-48ab-aacb-166fa78b022b">
+<input id="a6e95c3a-a1c3-479a-ac2b-5e712121bda5" name="1dc49cb2-4085-4497-a6af-dd0db547a9f5" type="radio">
+</input><label class="sd-tab-label" for="a6e95c3a-a1c3-479a-ac2b-5e712121bda5">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1216,8 +1230,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a1df2ba6-d4cd-4793-b0a7-6d43ff388e3b" name="409a4d58-068c-4ed4-9c3e-001d2aef29ff" type="radio">
-</input><label class="sd-tab-label" for="a1df2ba6-d4cd-4793-b0a7-6d43ff388e3b">
+<input checked="checked" id="7976714a-7b8e-4f30-8f6b-7419bec1d2f8" name="c99e30ee-5ec7-4494-b6a3-04f6d89bc32c" type="radio">
+</input><label class="sd-tab-label" for="7976714a-7b8e-4f30-8f6b-7419bec1d2f8">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1229,8 +1243,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="b57f266b-71fa-4055-8590-9ff895d39546" name="409a4d58-068c-4ed4-9c3e-001d2aef29ff" type="radio">
-</input><label class="sd-tab-label" for="b57f266b-71fa-4055-8590-9ff895d39546">
+<input id="a190d37f-1719-4ab1-a67e-ea9f133120ec" name="c99e30ee-5ec7-4494-b6a3-04f6d89bc32c" type="radio">
+</input><label class="sd-tab-label" for="a190d37f-1719-4ab1-a67e-ea9f133120ec">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1319,12 +1333,13 @@ python</label><div class="sd-tab-content docutils">
 <div class="proof definition admonition" id="defn-children-and-node-k-ary">
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Children and nodes of a full k-ary tree)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>. Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with branched height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>. Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
 <span class="eqno">(11)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
-<p>and the total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
+<p>and the total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with branched height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-number-of-nodes-kary">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h}k^j\]</div>
+<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h+1}k^j\]</div>
+<p>where <span class="math notranslate nohighlight">\(N_{h}\)</span> includes the final layer of leaves.</p>
 </section>
 </div><section id="common-uses-for-trees">
 <h4>Common uses for trees<a class="headerlink" href="#common-uses-for-trees" title="Permalink to this headline">#</a></h4>
@@ -1338,7 +1353,7 @@ python</label><div class="sd-tab-content docutils">
 <div class="proof example dropdown admonition" id="example-recursive-fibonacci-memo">
 <p class="admonition-title"><span class="caption-number">Example 16 </span> (Recursive Fibonacci and Memoization)</p>
 <section class="example-content" id="proof-content">
-<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> numbers. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>)</p>
+<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="doc std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>):</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.pdf"><img alt="../_images/Fig-Fib-4-Recursive-Tree.pdf" src="../_images/Fig-Fib-4-Recursive-Tree.pdf" style="height: 260px;" /></a>
 <figcaption>
@@ -1495,9 +1510,23 @@ python</label><div class="sd-tab-content docutils">
 </section>
 <section id="graphs">
 <span id="content-references-data-structure-graphs"></span><h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">#</a></h3>
-<p>A graph is a data structure in computer science that consists of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected.</p>
-<p>In a directed graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend. In an undirected graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.</p>
-<p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected</p>
+<p>A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data.</p>
+<p>Graphs can be <strong>directed</strong> and <strong>undirected</strong>:</p>
+<ul class="simple">
+<li><p>In a <strong>directed</strong> graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend.</p></li>
+<li><p>In an <strong>undirected</strong> graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.</p></li>
+</ul>
+<p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected.</p>
+<section id="connection-between-trees-and-graphs">
+<h4>Connection between trees and graphs<a class="headerlink" href="#connection-between-trees-and-graphs" title="Permalink to this headline">#</a></h4>
+<p>Graphs are used to model hierarchical relationships, but we have already seen that <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a> can also be used to model hierarchical relationships. What is the difference between <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a> and <a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>?</p>
+<ul class="simple">
+<li><p><strong>Structure</strong>: A tree is a type of graph with a specific structure. Trees are connected acyclic graphs, where only one path exists between any two nodes. In contrast, a graph can have cycles and may not be connected.
+Root node: A tree has a root node, the topmost node in the tree. Every other node in the tree is connected to it in some way. In a graph, there is no concept of a root node.</p></li>
+<li><p><strong>Direction</strong>: A tree is a directed graph, which means that every edge has a direction pointing from parent to child nodes. In a graph, edges may be directed or undirected and can point to any node.</p></li>
+<li><p><strong>Complexity</strong>: Trees are simpler than graphs because of their restricted structure. They have a unique path between any two nodes, which makes them easy to traverse and search. Conversely, graphs can be more complex and challenging to analyze because of their potentially cyclic and non-linear structure.</p></li>
+</ul>
+</section>
 </section>
 </section>
 <hr class="docutils" />
