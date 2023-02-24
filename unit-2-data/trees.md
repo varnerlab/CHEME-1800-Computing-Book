@@ -13,7 +13,7 @@ kernelspec:
 # Data Structures
 
 ## Introduction
-Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:
+In this set of lectures, we'll introduce Data Structures and methods to access the data stored in data structures. Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include the following:
 
 ### Linear data structures
 * {ref}`content:references:lda-arrays`: An array is a collection of items stored at contiguous memory locations. The items can be of any data type, and each item has a unique index that can be used to access it. 
@@ -25,6 +25,13 @@ Data structures are ways of organizing and storing data in a computer so that it
 * {ref}`content:references:data-structure-hashmap-and-sets`: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.
 * {ref}`content:references:data-structure-tree`: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
+
+### Graph Traversal
+Finally, we'll also introduce approaches to access the data in trees and graphs. In particular, we'll discuss:
+
+* {ref}`content:references:data-structure-graphs-depth-first` is a graph traversal algorithm that visits vertices by exploring as far as possible along each branch before backtracking. Depth-first starts at a source vertex and explores the graph in a depth-first manner, visiting every vertex reachable from the source. This algorithm is often implemented using recursion but can also be implemented iteratively using a stack.
+
+* {ref}`content:references:data-structure-graphs-breadth-first` is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.
 
 ---
 
@@ -597,7 +604,6 @@ where $N_{h}$ includes the final layer of leaves.
 ````
 
 #### Common uses for trees
-
 Trees are ubiquitous in computing; trees are used in a huge variety of applications:
 
 * __Organizing and searching data__: Trees are commonly used to store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.
@@ -620,12 +626,12 @@ name: fig-recursive-fib-4-call-tree
 Schematic of the function call tree for the recursive implementation of the `fibonacci` function with $n=4$. 
 ```
 ````
-#### Representation of Trees
-Trees can be implemented in a variety of ways. Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. Two of the most common representations are {ref}`content:references:array-rep-tree` and {ref}`content:references:adj-rep-tree`. 
 
-(content:references:array-rep-tree)=
-##### Array-based tree representations
- In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
+(content:references:data-structure-rep-tree)=
+#### Representation of Trees
+Trees can be implemented in a variety of ways. Suppose we're interested in a k-ary tree $\mathcal{T}$ where each node has $k$-children. Two of the most common representations are Array-based and Adjacency list representations. 
+
+In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time ({prf:ref}`example-ternary-price-model-array`):
 
 ````{prf:example} Ternary commodity price tree array-representation
 :label: example-ternary-price-model-array
@@ -701,8 +707,6 @@ julia> m = build(ArrayBasedTernaryCommodityPriceTree; h = 2, price = Pₒ); # bu
 __source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees)
 ````
 
-(content:references:adj-rep-tree)=
-##### Adjacency list representation
 In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure. 
 
 Let's reimagine the terneray commodity price model in the Adjacency list format ({prf:ref}`example-ternary-price-model-adj-list`):
@@ -803,18 +807,18 @@ name: fig-graph-schematic
 Schematic of a graph data structures. Nodes in a graph hold references (called links or edges) to other nodes in the graph. The edges between node $j$ and $j$, which can be undirected (left) or directed (right), can carry data (called edge weights, $w_{ij}$) representing many different quantities, e.g., degree of interaction, physical distances, travel times, financial values, etc.    
 ```
 
-Graphs can be __directed__ and __undirected__:
-* In a __directed__ graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend. 
-* In an __undirected__ graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.
-
-Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. 
-
-Formally, graphs are defined in {prf:ref}`defn-graphs`:
+Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. Formally, graphs are defined in {prf:ref}`defn-graphs`:
 
 ````{prf:definition} Definition and properties of Graphs
 :label: defn-graphs
 
-Fill me in.
+A simple graph $\mathcal{G}$ is composed of a set of vertices $\mathcal{V}$ and edges $\mathcal{E}$ such that there is at most one edge between vertices $v_{i}\in\mathcal{V}$ and $v_{j}\in\mathcal{V}$, and there are no edges that connect a vertex to itself (self-loop). 
+
+The edges in a graph can be __directed__ and __undirected__:
+* In a __directed__ graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend. 
+* In an __undirected__ graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.
+
+A graph $\mathcal{G}$ is said to be connected if there is at least one path between vertices $v_{i}\in\mathcal{V}$ and $v_{j}\in\mathcal{V}$, where a path is defined as a sequence of vertices in which each successive vertex (after the first) is connected to its predecessor.
 
 ````
 
@@ -824,6 +828,70 @@ Graphs are used to model hierarchical relationships, but we have already seen th
 Root node: A tree has a root node, the topmost node in the tree. Every other node in the tree is connected to it in some way. In a graph, there is no concept of a root node.
 * __Direction__: A tree is a directed graph, which means that every edge has a direction pointing from parent to child nodes. In a graph, edges may be directed or undirected and can point to any node.
 * __Complexity__: Trees are simpler than graphs because of their restricted structure. They have a unique path between any two nodes, which makes them easy to traverse and search. Conversely, graphs can be more complex and challenging to analyze because of their potentially cyclic and non-linear structure.
+
+#### Representation of Graphs
+Similar to the {ref}`content:references:data-structure-rep-tree`, graphs can be represented using Array and Adjacency list formats. The adjacency array for a graph is a two-dimensional array, i.e., a matrix instead of a vector ({prf:ref}`defn-adj-matrix-graphs`):
+
+````{prf:definition} Adjacency matrix for graph $\mathcal{G}$
+:label: defn-adj-matrix-graphs
+
+An adjacency matrix $\mathcal{A}$ representation of a graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$ is a $\dim\mathcal{V}\times\dim\mathcal{V}$ matrix holding integer or floating point values. The entry for row $i$ and column $j$ of the matrix $\mathcal{A}$, denoted $a_{ij}\in\mathcal{A}$, describes the connection between vertices $v_{i}\in\mathcal{V}$ and $v_{j}\in\mathcal{V}$. 
+
+* __Unweighted__: If there is an edge connecting $v_{i}\in\mathcal{V}$ and $v_{j}\in\mathcal{V}$ and graph $\mathcal{G}$ is unweighted, then $a_{ij}=$ `1` (true) , otherwise $a_{ij}=$ `0` (false).
+* __Weighted__: In cases where the edges of graph $\mathcal{G}$ have weights, if there is an edge connecting $v_{i}\in\mathcal{V}$ and $v_{j}\in\mathcal{V}$ and graph $\mathcal{G}$ is weighted, then $a_{ij}=w_{ij}$, otherwise $a_{ij}=$ `0` (false), where $w_{ij}\in\mathbb{R}$ denotes the weight of the edge connecting $v_{i}\in\mathcal{V}$ and $v_{j}\in\mathcal{V}$.
+````
+
+On the other hand, the adjacency list format for a graph $\mathcal{G}$ is structured in a similar way as a tree ({prf:ref}`defn-adj-list-graphs`):
+
+````{prf:definition} Adjacency list for graph $\mathcal{G}$
+:label: defn-adj-list-graphs
+
+An adjacency list for a graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$ is a $\dim\mathcal{V}$ dictionary $d$, where
+the ith entry points to the children indices of vertex $v_{i}\in\mathcal{V}$, denoted by set $\mathcal{C}_{i}$. In other words, $d_{i}\rightarrow\mathcal{C}_{i}$. There is a single entry in dictionary $d$ for each vertex in graph $\mathcal{G}$.
+
+````
+
+### Tree and Graph Traversal
+
+(content:references:data-structure-graphs-depth-first)=
+#### Depth-first graph traversal
+Depth-first is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively using a stack. 
+
+A recursive depth-first traversal approach is outlined in {prf:ref}`algo-depth-first-traversal`.
+````{prf:algorithm} Reversive depth-first traversal 
+:label: algo-depth-first-traversal
+:class: dropdown
+
+**Inputs** A graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$
+
+**Initialize** 
+1. set $\text{vertices}\leftarrow\text{Queue{Vertex}}()$
+1. set $\text{visted}\leftarrow\text{Set{Vertex}}()$
+
+1. for $v\in\mathcal{V}$
+    1. $\text{vertices}\leftarrow\text{enqueue}(\text{vertices},v)$
+
+**Main**
+1. DFS($v$):
+    1. if $v\in\text{visited}~\text{is}~\text{false}$:
+        1. $\text{visted}\leftarrow\text{add}(\text{visted},v)$
+        1. set $\mathcal{C}\leftarrow\text{children}(v)$
+        1. for $c\in\mathcal{C}$:
+            1. if $c\in\text{visited}~\text{is}~\text{false}$:
+                1. DFS($c$)
+````
+
+(content:references:data-structure-graphs-breadth-first)=
+#### Breadth-first graph traversal
+Breadth-first is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.
+
+A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-traversal`.
+````{prf:algorithm} Breadth-first traversal 
+:label: algo-breadth-first-traversal
+:class: dropdown
+
+Fill me in.
+````
 
 ---
 
