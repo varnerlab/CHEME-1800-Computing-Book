@@ -865,20 +865,21 @@ A recursive depth-first traversal approach is outlined in {prf:ref}`algo-depth-f
 **Inputs** A graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$
 
 **Initialize** 
-1. set $\text{vertices}\leftarrow\text{Queue{Vertex}}()$
-1. set $\text{visted}\leftarrow\text{Set{Vertex}}()$
+1. set $\text{visited}\leftarrow\text{Set{Vertex}}()$
 
-1. for $v\in\mathcal{V}$
-    1. $\text{vertices}\leftarrow\text{enqueue}(\text{vertices},v)$
-
-**Main**
-1. DFS($v$):
-    1. if $v\in\text{visited}~\text{is}~\text{false}$:
-        1. $\text{visted}\leftarrow\text{add}(\text{visted},v)$
+**Depth-first traversal function**
+1. DFS($v$,$\text{visited}$)
+    1. if $v\in\text{visited}~\text{is}~\text{false}$
+        1. $\text{visited}\leftarrow\text{add}(\text{visited},v)$
         1. set $\mathcal{C}\leftarrow\text{children}(v)$
-        1. for $c\in\mathcal{C}$:
-            1. if $c\in\text{visited}~\text{is}~\text{false}$:
-                1. DFS($c$)
+        1. for $c\in\mathcal{C}$
+            1. DFS($c$, $\text{visited}$)
+        
+**Main**
+1. for $v\in\mathcal{V}$
+    1. if $v\in\text{visited}~\text{is}~\text{false}$
+        1. DFS($v$, $\text{visited}$)
+
 ````
 
 (content:references:data-structure-graphs-breadth-first)=
@@ -890,7 +891,23 @@ A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-t
 :label: algo-breadth-first-traversal
 :class: dropdown
 
-Fill me in.
+function bfs(start_node):
+    queue = [start_node]
+    visited = set([start_node])
+    while queue is not empty:
+        node = queue.pop(0)
+        visit node
+        for each adjacent node of node:
+            if adjacent node is not visited:
+                add adjacent node to visited set
+                add adjacent node to queue
+
+// main function
+function main(graph):
+    visited = set()
+    for each node in graph:
+        if node is not visited:
+            bfs(node, visited)
 ````
 
 ---
