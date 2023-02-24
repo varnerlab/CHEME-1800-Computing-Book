@@ -1200,8 +1200,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e3108145-28ce-4cab-8c99-b3d7b5b6fb47" name="1dc49cb2-4085-4497-a6af-dd0db547a9f5" type="radio">
-</input><label class="sd-tab-label" for="e3108145-28ce-4cab-8c99-b3d7b5b6fb47">
+<input checked="checked" id="7c85bdaf-628e-4d80-aca8-c6c9e9968f2d" name="fa025b7b-6d76-4131-a9f3-cf96f5af1c2d" type="radio">
+</input><label class="sd-tab-label" for="7c85bdaf-628e-4d80-aca8-c6c9e9968f2d">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1213,8 +1213,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a6e95c3a-a1c3-479a-ac2b-5e712121bda5" name="1dc49cb2-4085-4497-a6af-dd0db547a9f5" type="radio">
-</input><label class="sd-tab-label" for="a6e95c3a-a1c3-479a-ac2b-5e712121bda5">
+<input id="c652b06a-26c4-49ff-a4dd-0e17dd772bd5" name="fa025b7b-6d76-4131-a9f3-cf96f5af1c2d" type="radio">
+</input><label class="sd-tab-label" for="c652b06a-26c4-49ff-a4dd-0e17dd772bd5">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1230,8 +1230,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7976714a-7b8e-4f30-8f6b-7419bec1d2f8" name="c99e30ee-5ec7-4494-b6a3-04f6d89bc32c" type="radio">
-</input><label class="sd-tab-label" for="7976714a-7b8e-4f30-8f6b-7419bec1d2f8">
+<input checked="checked" id="da020c90-2430-493a-8b66-4464cf7ca803" name="5d698da7-9f61-4732-b510-f1c0428b2529" type="radio">
+</input><label class="sd-tab-label" for="da020c90-2430-493a-8b66-4464cf7ca803">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1243,8 +1243,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a190d37f-1719-4ab1-a67e-ea9f133120ec" name="c99e30ee-5ec7-4494-b6a3-04f6d89bc32c" type="radio">
-</input><label class="sd-tab-label" for="a190d37f-1719-4ab1-a67e-ea9f133120ec">
+<input id="2ac9a1f8-54e6-46b7-a14e-a87b2acd22f2" name="5d698da7-9f61-4732-b510-f1c0428b2529" type="radio">
+</input><label class="sd-tab-label" for="2ac9a1f8-54e6-46b7-a14e-a87b2acd22f2">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1333,12 +1333,13 @@ python</label><div class="sd-tab-content docutils">
 <div class="proof definition admonition" id="defn-children-and-node-k-ary">
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Children and nodes of a full k-ary tree)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with branched height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>. Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. The height of the tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
 <span class="eqno">(11)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
 <p>and the total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with branched height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-number-of-nodes-kary">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h+1}k^j\]</div>
+<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h}k^j\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_{h}\)</span> includes the final layer of leaves.</p>
 </section>
 </div><section id="common-uses-for-trees">
@@ -1364,10 +1365,10 @@ python</label><div class="sd-tab-content docutils">
 </div></section>
 <section id="representation-of-trees">
 <h4>Representation of Trees<a class="headerlink" href="#representation-of-trees" title="Permalink to this headline">#</a></h4>
-<p>Trees can be implemented in a variety of ways. Two of the most common are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
+<p>Trees can be implemented in a variety of ways. Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. Two of the most common representations are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
 <section id="array-based-tree-representations">
 <span id="content-references-array-rep-tree"></span><h5>Array-based tree representations<a class="headerlink" href="#array-based-tree-representations" title="Permalink to this headline">#</a></h5>
-<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 17</a>):</p>
+<p>In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 17</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-array">
 <p class="admonition-title"><span class="caption-number">Example 17 </span> (Ternary commodity price tree array-representation)</p>
 <section class="example-content" id="proof-content">
@@ -1433,7 +1434,7 @@ python</label><div class="sd-tab-content docutils">
 </div></section>
 <section id="adjacency-list-representation">
 <span id="content-references-adj-rep-tree"></span><h5>Adjacency list representation<a class="headerlink" href="#adjacency-list-representation" title="Permalink to this headline">#</a></h5>
-<p>Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
+<p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
 <p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 18</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-adj-list">
 <p class="admonition-title"><span class="caption-number">Example 18 </span> (Ternary commodity price tree adjacency list)</p>
@@ -1510,7 +1511,13 @@ python</label><div class="sd-tab-content docutils">
 </section>
 <section id="graphs">
 <span id="content-references-data-structure-graphs"></span><h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">#</a></h3>
-<p>A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data.</p>
+<p>A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
+<figure class="align-default" id="fig-graph-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-Graph-Schematic.pdf"><img alt="../_images/Fig-Graph-Schematic.pdf" src="../_images/Fig-Graph-Schematic.pdf" style="height: 220px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Schematic of a graph data structures. Nodes in a graph hold references (called links or edges) to other nodes in the graph. The edges between node <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, which can be undirected (left) or directed (right), can carry data (called edge weights, <span class="math notranslate nohighlight">\(w_{ij}\)</span>) representing many different quantities, e.g., degree of interaction, physical distances, travel times, financial values, etc.</span><a class="headerlink" href="#fig-graph-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Graphs can be <strong>directed</strong> and <strong>undirected</strong>:</p>
 <ul class="simple">
 <li><p>In a <strong>directed</strong> graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend.</p></li>
