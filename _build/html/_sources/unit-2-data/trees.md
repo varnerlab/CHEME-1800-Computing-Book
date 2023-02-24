@@ -891,23 +891,28 @@ A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-t
 :label: algo-breadth-first-traversal
 :class: dropdown
 
-function bfs(start_node):
-    queue = [start_node]
-    visited = set([start_node])
-    while queue is not empty:
-        node = queue.pop(0)
-        visit node
-        for each adjacent node of node:
-            if adjacent node is not visited:
-                add adjacent node to visited set
-                add adjacent node to queue
+**Inputs** A graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$
 
-// main function
-function main(graph):
-    visited = set()
-    for each node in graph:
-        if node is not visited:
-            bfs(node, visited)
+**Initialize** 
+1. set $\text{visited}\leftarrow\text{Set{Vertex}}()$
+
+**Breadth-first traversal function**
+1. BFS($v$,$\text{visited}$)
+    1. queue = [start_node]
+    1. visited = set([start_node])
+
+    1. while queue is not empty:
+    1. node = queue.pop(0)
+    1. visit node
+        1. for each adjacent node of node:
+            1. if adjacent node is not visited:
+                1. add adjacent node to visited set
+                1. add adjacent node to queue
+
+**Main**
+1. for each node in graph:
+    1. if node is not visited:
+        1. BFS(node, visited)
 ````
 
 ---

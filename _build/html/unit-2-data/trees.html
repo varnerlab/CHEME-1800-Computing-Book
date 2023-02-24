@@ -1238,8 +1238,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="472cc7b2-db76-4060-bbce-293aaa9e10c2" name="19e45920-546c-43e5-a49d-f03250367d59" type="radio">
-</input><label class="sd-tab-label" for="472cc7b2-db76-4060-bbce-293aaa9e10c2">
+<input checked="checked" id="92661476-0662-48a2-bd25-47b25e58b396" name="858b1296-a061-41fe-aafd-82133ea2efe3" type="radio">
+</input><label class="sd-tab-label" for="92661476-0662-48a2-bd25-47b25e58b396">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1251,8 +1251,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3a7a587f-8941-4e77-b2f5-29c3b64a8420" name="19e45920-546c-43e5-a49d-f03250367d59" type="radio">
-</input><label class="sd-tab-label" for="3a7a587f-8941-4e77-b2f5-29c3b64a8420">
+<input id="baceb207-b0df-4745-94aa-2c2f4c3a5f2e" name="858b1296-a061-41fe-aafd-82133ea2efe3" type="radio">
+</input><label class="sd-tab-label" for="baceb207-b0df-4745-94aa-2c2f4c3a5f2e">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1268,8 +1268,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c0be0ced-a08e-4d21-97e9-4c93f4512525" name="6a42908c-f137-4ec1-8660-d1e73d692843" type="radio">
-</input><label class="sd-tab-label" for="c0be0ced-a08e-4d21-97e9-4c93f4512525">
+<input checked="checked" id="67c53bea-4fc5-4d6f-abe3-5330c3cc2b63" name="5b8040ce-e38f-4c2c-9560-2484ed5e46a1" type="radio">
+</input><label class="sd-tab-label" for="67c53bea-4fc5-4d6f-abe3-5330c3cc2b63">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1281,8 +1281,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="5220d6f0-eab4-490a-ae1c-a7cdead7e814" name="6a42908c-f137-4ec1-8660-d1e73d692843" type="radio">
-</input><label class="sd-tab-label" for="5220d6f0-eab4-490a-ae1c-a7cdead7e814">
+<input id="22f6ac0e-5695-4eef-8574-c62768d99569" name="5b8040ce-e38f-4c2c-9560-2484ed5e46a1" type="radio">
+</input><label class="sd-tab-label" for="22f6ac0e-5695-4eef-8574-c62768d99569">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1646,22 +1646,48 @@ the ith entry points to the children indices of vertex <span class="math notrans
 <div class="proof algorithm dropdown admonition" id="algo-breadth-first-traversal">
 <p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Breadth-first traversal )</p>
 <section class="algorithm-content" id="proof-content">
-<p>function bfs(start_node):
-queue = [start_node]
-visited = set([start_node])
-while queue is not empty:
-node = queue.pop(0)
-visit node
-for each adjacent node of node:
-if adjacent node is not visited:
-add adjacent node to visited set
-add adjacent node to queue</p>
-<p>// main function
-function main(graph):
-visited = set()
-for each node in graph:
-if node is not visited:
-bfs(node, visited)</p>
+<p><strong>Inputs</strong> A graph <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{V},\mathcal{E})\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{Set{Vertex}}()\)</span></p></li>
+</ol>
+<p><strong>Breadth-first traversal function</strong></p>
+<ol class="simple">
+<li><p>BFS(<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p>
+<ol class="simple">
+<li><p>queue = [start_node]</p></li>
+<li><p>visited = set([start_node])</p></li>
+<li><p>while queue is not empty:</p></li>
+<li><p>node = queue.pop(0)</p></li>
+<li><p>visit node</p>
+<ol class="simple">
+<li><p>for each adjacent node of node:</p>
+<ol class="simple">
+<li><p>if adjacent node is not visited:</p>
+<ol class="simple">
+<li><p>add adjacent node to visited set</p></li>
+<li><p>add adjacent node to queue</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for each node in graph:</p>
+<ol class="simple">
+<li><p>if node is not visited:</p>
+<ol class="simple">
+<li><p>BFS(node, visited)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 </section>
 </div></section>
 </section>
