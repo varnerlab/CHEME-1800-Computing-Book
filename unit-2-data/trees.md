@@ -576,7 +576,9 @@ Let's define some properties of a complete k-ary tree ({prf:ref}`defn-children-a
 ````{prf:definition} Children and nodes of a full k-ary tree
 :label: defn-children-and-node-k-ary
 
-Let $\mathcal{T}$ be a full k-ary tree with branched height $h$ where each node of $\mathcal{T}$ has $k$ children. Further, let the root node of $\mathcal{T}$ have an index $0$. Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
+Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. The height of the tree $\mathcal{T}$ will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of $\mathcal{T}$ have an index $0$. 
+
+Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
 
 ```{math}
 :label: eqn-children-node-i
@@ -587,7 +589,7 @@ and the total number of nodes of tree $\mathcal{T}$ with branched height $h$, de
 
 ```{math}
 :label: eqn-number-of-nodes-kary
-N_{h} = \sum_{j=0}^{h+1}k^j
+N_{h} = \sum_{j=0}^{h}k^j
 ```
 
 where $N_{h}$ includes the final layer of leaves. 
@@ -791,7 +793,15 @@ __source__: Source code can be found in the [CHEME-1800/4800 tree examples repos
 
 (content:references:data-structure-graphs)=
 ### Graphs
-A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data. 
+A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data ({numref}`fig-graph-schematic`). 
+
+```{figure} ./figs/Fig-Graph-Schematic.pdf
+---
+height: 220px
+name: fig-graph-schematic
+---
+Schematic of a graph data structures. Nodes in a graph hold references (called links or edges) to other nodes in the graph. The edges between node $j$ and $j$, which can be undirected (left) or directed (right), can carry data (called edge weights, $w_{ij}$) representing many different quantities, e.g., degree of interaction, physical distances, travel times, financial values, etc.    
+```
 
 Graphs can be __directed__ and __undirected__:
 * In a __directed__ graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend. 
