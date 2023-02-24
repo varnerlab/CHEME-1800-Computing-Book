@@ -1200,8 +1200,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7c85bdaf-628e-4d80-aca8-c6c9e9968f2d" name="fa025b7b-6d76-4131-a9f3-cf96f5af1c2d" type="radio">
-</input><label class="sd-tab-label" for="7c85bdaf-628e-4d80-aca8-c6c9e9968f2d">
+<input checked="checked" id="c9ae9388-0ccc-4a11-b8a1-c21b30034070" name="a19aa726-22b6-475b-952c-8f547577f3e9" type="radio">
+</input><label class="sd-tab-label" for="c9ae9388-0ccc-4a11-b8a1-c21b30034070">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1213,8 +1213,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c652b06a-26c4-49ff-a4dd-0e17dd772bd5" name="fa025b7b-6d76-4131-a9f3-cf96f5af1c2d" type="radio">
-</input><label class="sd-tab-label" for="c652b06a-26c4-49ff-a4dd-0e17dd772bd5">
+<input id="19c12e85-1de6-49b4-b529-8cf883d57d59" name="a19aa726-22b6-475b-952c-8f547577f3e9" type="radio">
+</input><label class="sd-tab-label" for="19c12e85-1de6-49b4-b529-8cf883d57d59">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1230,8 +1230,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="da020c90-2430-493a-8b66-4464cf7ca803" name="5d698da7-9f61-4732-b510-f1c0428b2529" type="radio">
-</input><label class="sd-tab-label" for="da020c90-2430-493a-8b66-4464cf7ca803">
+<input checked="checked" id="547d0377-c87d-44e9-ba3a-8c33fa087677" name="4f311572-2df8-4651-9594-22114e6c8576" type="radio">
+</input><label class="sd-tab-label" for="547d0377-c87d-44e9-ba3a-8c33fa087677">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1243,8 +1243,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2ac9a1f8-54e6-46b7-a14e-a87b2acd22f2" name="5d698da7-9f61-4732-b510-f1c0428b2529" type="radio">
-</input><label class="sd-tab-label" for="2ac9a1f8-54e6-46b7-a14e-a87b2acd22f2">
+<input id="1126e736-521f-4ab9-80ee-abd193f4bd76" name="4f311572-2df8-4651-9594-22114e6c8576" type="radio">
+</input><label class="sd-tab-label" for="1126e736-521f-4ab9-80ee-abd193f4bd76">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1524,7 +1524,13 @@ python</label><div class="sd-tab-content docutils">
 <li><p>In an <strong>undirected</strong> graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.</p></li>
 </ul>
 <p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected.</p>
-<section id="connection-between-trees-and-graphs">
+<p>Formally, graphs are defined in <a class="reference internal" href="#defn-graphs">Definition 4</a>:</p>
+<div class="proof definition admonition" id="defn-graphs">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Definition and properties of Graphs)</p>
+<section class="definition-content" id="proof-content">
+<p>Fill me in.</p>
+</section>
+</div><section id="connection-between-trees-and-graphs">
 <h4>Connection between trees and graphs<a class="headerlink" href="#connection-between-trees-and-graphs" title="Permalink to this headline">#</a></h4>
 <p>Graphs are used to model hierarchical relationships, but we have already seen that <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a> can also be used to model hierarchical relationships. What is the difference between <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a> and <a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>?</p>
 <ul class="simple">

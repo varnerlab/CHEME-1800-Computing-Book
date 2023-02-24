@@ -809,6 +809,15 @@ Graphs can be __directed__ and __undirected__:
 
 Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. 
 
+Formally, graphs are defined in {prf:ref}`defn-graphs`:
+
+````{prf:definition} Definition and properties of Graphs
+:label: defn-graphs
+
+Fill me in.
+
+````
+
 #### Connection between trees and graphs
 Graphs are used to model hierarchical relationships, but we have already seen that {ref}`content:references:data-structure-tree` can also be used to model hierarchical relationships. What is the difference between {ref}`content:references:data-structure-tree` and {ref}`content:references:data-structure-graphs`?
 * __Structure__: A tree is a type of graph with a specific structure. Trees are connected acyclic graphs, where only one path exists between any two nodes. In contrast, a graph can have cycles and may not be connected.
