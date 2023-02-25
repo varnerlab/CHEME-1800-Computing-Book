@@ -27,9 +27,9 @@ In this set of lectures, we'll introduce Data Structures and methods to access t
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
 
 ### Graph Traversal
-Finally, we'll also introduce approaches to access the data in trees and graphs. In particular, we'll discuss:
+Finally, we'll also introduce approaches to data access in trees and graphs. In particular, we'll discuss the following:
 
-* {ref}`content:references:data-structure-graphs-depth-first` is a graph traversal algorithm that visits vertices by exploring as far as possible along each branch before backtracking. Depth-first starts at a source vertex and explores the graph in a depth-first manner, visiting every vertex reachable from the source. This algorithm is often implemented using recursion but can also be implemented iteratively using a stack.
+* {ref}`content:references:data-structure-graphs-depth-first` is a graph traversal algorithm that visits vertices by exploring as far as possible along each branch before backtracking. Depth-first starts at a source vertex and explores the graph depth-first, visiting every vertex reachable from the source. This algorithm is often implemented using recursion but can also be implemented iteratively using a stack.
 
 * {ref}`content:references:data-structure-graphs-breadth-first` is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.
 
