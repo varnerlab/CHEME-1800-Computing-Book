@@ -1238,8 +1238,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="92661476-0662-48a2-bd25-47b25e58b396" name="858b1296-a061-41fe-aafd-82133ea2efe3" type="radio">
-</input><label class="sd-tab-label" for="92661476-0662-48a2-bd25-47b25e58b396">
+<input checked="checked" id="96ed0ae2-0d53-4fbf-b6a4-f779178fd3d0" name="b49fe18c-f43f-46a1-84d2-12fdb87bbdd2" type="radio">
+</input><label class="sd-tab-label" for="96ed0ae2-0d53-4fbf-b6a4-f779178fd3d0">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1251,8 +1251,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="baceb207-b0df-4745-94aa-2c2f4c3a5f2e" name="858b1296-a061-41fe-aafd-82133ea2efe3" type="radio">
-</input><label class="sd-tab-label" for="baceb207-b0df-4745-94aa-2c2f4c3a5f2e">
+<input id="da5146b2-5e98-46aa-b8dc-7e4c687aa6ca" name="b49fe18c-f43f-46a1-84d2-12fdb87bbdd2" type="radio">
+</input><label class="sd-tab-label" for="da5146b2-5e98-46aa-b8dc-7e4c687aa6ca">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1268,8 +1268,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="67c53bea-4fc5-4d6f-abe3-5330c3cc2b63" name="5b8040ce-e38f-4c2c-9560-2484ed5e46a1" type="radio">
-</input><label class="sd-tab-label" for="67c53bea-4fc5-4d6f-abe3-5330c3cc2b63">
+<input checked="checked" id="07a044cb-fc7f-4a93-aef7-0b6fc54fedc5" name="9d832f82-2c41-488f-ba85-ed4e93681e1f" type="radio">
+</input><label class="sd-tab-label" for="07a044cb-fc7f-4a93-aef7-0b6fc54fedc5">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1281,8 +1281,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="22f6ac0e-5695-4eef-8574-c62768d99569" name="5b8040ce-e38f-4c2c-9560-2484ed5e46a1" type="radio">
-</input><label class="sd-tab-label" for="22f6ac0e-5695-4eef-8574-c62768d99569">
+<input id="f1a368fb-4233-462f-b054-4dd5864f5e5a" name="9d832f82-2c41-488f-ba85-ed4e93681e1f" type="radio">
+</input><label class="sd-tab-label" for="f1a368fb-4233-462f-b054-4dd5864f5e5a">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1543,7 +1543,7 @@ python</label><div class="sd-tab-content docutils">
 </section>
 <section id="graphs">
 <span id="content-references-data-structure-graphs"></span><h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">#</a></h3>
-<p>A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a> is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
 <figure class="align-default" id="fig-graph-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Graph-Schematic.pdf"><img alt="../_images/Fig-Graph-Schematic.pdf" src="../_images/Fig-Graph-Schematic.pdf" style="height: 220px;" /></a>
 <figcaption>
@@ -1597,8 +1597,7 @@ the ith entry points to the children indices of vertex <span class="math notrans
 <h3>Tree and Graph Traversal<a class="headerlink" href="#tree-and-graph-traversal" title="Permalink to this headline">#</a></h3>
 <section id="depth-first-graph-traversal">
 <span id="content-references-data-structure-graphs-depth-first"></span><h4>Depth-first graph traversal<a class="headerlink" href="#depth-first-graph-traversal" title="Permalink to this headline">#</a></h4>
-<p>Depth-first is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively using a stack.</p>
-<p>A recursive depth-first traversal approach is outlined in <a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a>.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-first traversal</a> is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively. A recursive depth-first traversal approach is outlined in <a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-depth-first-traversal">
 <p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Reversive depth-first traversal )</p>
 <section class="algorithm-content" id="proof-content">
@@ -1638,11 +1637,16 @@ the ith entry points to the children indices of vertex <span class="math notrans
 </li>
 </ol>
 </section>
-</div></section>
+</div><p>Some of the most common uses of depth-first traversal are:</p>
+<ul class="simple">
+<li><p><strong>Pathfinding</strong>: Depth-first traversal can be used to find a path between two nodes in a graph. It is beneficial when the graph is a maze or a grid, as it can explore all possible paths from a starting point until it reaches the goal.</p></li>
+<li><p><strong>Cycle detection</strong>: Depth-first traversal can detect cycles in a graph. The graph contains a cycle if a back edge is encountered during the traversal.</p></li>
+<li><p><strong>Tree traversal</strong>: Depth-first traversal traverse a tree. In a tree, there is only one path from the root to any node, so the traversal can be done recursively by visiting the left subtree, the right subtree, and the root.</p></li>
+</ul>
+</section>
 <section id="breadth-first-graph-traversal">
 <span id="content-references-data-structure-graphs-breadth-first"></span><h4>Breadth-first graph traversal<a class="headerlink" href="#breadth-first-graph-traversal" title="Permalink to this headline">#</a></h4>
-<p>Breadth-first is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.</p>
-<p>A breadth-first traversal approach is outlined in <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a>.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first traversal</a> is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to the next level. A breadth-first traversal approach is outlined in <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a>.</p>
 <div class="proof algorithm dropdown admonition" id="algo-breadth-first-traversal">
 <p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Breadth-first traversal )</p>
 <section class="algorithm-content" id="proof-content">
@@ -1657,10 +1661,10 @@ the ith entry points to the children indices of vertex <span class="math notrans
 <ol class="simple">
 <li><p>queue = [start_node]</p></li>
 <li><p>visited = set([start_node])</p></li>
-<li><p>while queue is not empty:</p></li>
-<li><p>node = queue.pop(0)</p></li>
-<li><p>visit node</p>
+<li><p>while queue is not empty:</p>
 <ol class="simple">
+<li><p>node = queue.pop(0)</p></li>
+<li><p>visit node</p></li>
 <li><p>for each adjacent node of node:</p>
 <ol class="simple">
 <li><p>if adjacent node is not visited:</p>
@@ -1689,7 +1693,14 @@ the ith entry points to the children indices of vertex <span class="math notrans
 </li>
 </ol>
 </section>
-</div></section>
+</div><p>Some of the most common uses of breadth-first traversal are:</p>
+<ul class="simple">
+<li><p><strong>Shortest path</strong>: Breadth-first traversal can be used to find the <a class="reference external" href="https://en.wikipedia.org/wiki/Shortest_path_problem">shortest path between two nodes in an unweighted graph</a>. Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.</p></li>
+<li><p><strong>Web crawling</strong>: Breadth-first traversal can be used to <a class="reference external" href="https://en.wikipedia.org/wiki/Web_crawler">crawl the web</a> or any other network of interconnected data. By starting at a particular node and visiting all its neighbors before moving on to the neighbors of its neighbors, the traversal can be used to search for data systematically.</p></li>
+<li><p><strong>Social networking analysis</strong>: Breadth-first traversal can be used to <a class="reference external" href="https://en.wikipedia.org/wiki/Social_network_analysis">analyze social networks</a>, such as Facebook or Twitter, by starting at a particular user and visiting all their friends before moving on to the friends of their friends.</p></li>
+<li><p><strong>Decision making</strong>: Breadth-first traversal can be used to perform <a class="reference external" href="https://en.wikipedia.org/wiki/Decision_tree_learning">decision-making tasks</a>, such as <a class="reference external" href="https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games">chess or game AI</a>. By exploring all the possible moves that can be made in a game, the traversal can be used to identify the best move to make next.</p></li>
+</ul>
+</section>
 </section>
 </section>
 <hr class="docutils" />

@@ -797,7 +797,7 @@ __source__: Source code can be found in the [CHEME-1800/4800 tree examples repos
 
 (content:references:data-structure-graphs)=
 ### Graphs
-A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data ({numref}`fig-graph-schematic`). 
+A [graph](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)) is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data ({numref}`fig-graph-schematic`). 
 
 ```{figure} ./figs/Fig-Graph-Schematic.pdf
 ---
@@ -855,9 +855,8 @@ the ith entry points to the children indices of vertex $v_{i}\in\mathcal{V}$, de
 
 (content:references:data-structure-graphs-depth-first)=
 #### Depth-first graph traversal
-Depth-first is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively using a stack. 
+[Depth-first traversal](https://en.wikipedia.org/wiki/Depth-first_search) is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively. A recursive depth-first traversal approach is outlined in {prf:ref}`algo-depth-first-traversal`:
 
-A recursive depth-first traversal approach is outlined in {prf:ref}`algo-depth-first-traversal`.
 ````{prf:algorithm} Reversive depth-first traversal 
 :label: algo-depth-first-traversal
 :class: dropdown
@@ -882,11 +881,16 @@ A recursive depth-first traversal approach is outlined in {prf:ref}`algo-depth-f
 
 ````
 
+Some of the most common uses of depth-first traversal are:
+
+* __Pathfinding__: Depth-first traversal can be used to find a path between two nodes in a graph. It is beneficial when the graph is a maze or a grid, as it can explore all possible paths from a starting point until it reaches the goal.
+* __Cycle detection__: Depth-first traversal can detect cycles in a graph. The graph contains a cycle if a back edge is encountered during the traversal.
+* __Tree traversal__: Depth-first traversal traverse a tree. In a tree, there is only one path from the root to any node, so the traversal can be done recursively by visiting the left subtree, the right subtree, and the root.
+
 (content:references:data-structure-graphs-breadth-first)=
 #### Breadth-first graph traversal
-Breadth-first is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.
+[Breadth-first traversal](https://en.wikipedia.org/wiki/Breadth-first_search) is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to the next level. A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-traversal`.
 
-A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-traversal`.
 ````{prf:algorithm} Breadth-first traversal 
 :label: algo-breadth-first-traversal
 :class: dropdown
@@ -902,8 +906,8 @@ A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-t
     1. visited = set([start_node])
 
     1. while queue is not empty:
-    1. node = queue.pop(0)
-    1. visit node
+        1. node = queue.pop(0)
+        1. visit node
         1. for each adjacent node of node:
             1. if adjacent node is not visited:
                 1. add adjacent node to visited set
@@ -914,6 +918,12 @@ A breadth-first traversal approach is outlined in {prf:ref}`algo-breadth-first-t
     1. if node is not visited:
         1. BFS(node, visited)
 ````
+
+Some of the most common uses of breadth-first traversal are:
+* __Shortest path__: Breadth-first traversal can be used to find the [shortest path between two nodes in an unweighted graph](https://en.wikipedia.org/wiki/Shortest_path_problem). Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.
+* __Web crawling__: Breadth-first traversal can be used to [crawl the web](https://en.wikipedia.org/wiki/Web_crawler) or any other network of interconnected data. By starting at a particular node and visiting all its neighbors before moving on to the neighbors of its neighbors, the traversal can be used to search for data systematically.
+* __Social networking analysis__: Breadth-first traversal can be used to [analyze social networks](https://en.wikipedia.org/wiki/Social_network_analysis), such as Facebook or Twitter, by starting at a particular user and visiting all their friends before moving on to the friends of their friends. 
+* __Decision making__: Breadth-first traversal can be used to perform [decision-making tasks](https://en.wikipedia.org/wiki/Decision_tree_learning), such as [chess or game AI](https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games). By exploring all the possible moves that can be made in a game, the traversal can be used to identify the best move to make next.
 
 ---
 
