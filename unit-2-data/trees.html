@@ -477,6 +477,11 @@ title="Print to PDF"
      Non-linear data structures
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-traversal">
+     Graph Traversal
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -572,18 +577,6 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#representation-of-trees">
        Representation of Trees
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#array-based-tree-representations">
-         Array-based tree representations
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#adjacency-list-representation">
-         Adjacency list representation
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
@@ -595,6 +588,28 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#connection-between-trees-and-graphs">
        Connection between trees and graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#representation-of-graphs">
+       Representation of Graphs
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree-and-graph-traversal">
+     Tree and Graph Traversal
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#depth-first-graph-traversal">
+       Depth-first graph traversal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#breadth-first-graph-traversal">
+       Breadth-first graph traversal
       </a>
      </li>
     </ul>
@@ -640,6 +655,11 @@ title="Print to PDF"
      Non-linear data structures
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-traversal">
+     Graph Traversal
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -735,18 +755,6 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#representation-of-trees">
        Representation of Trees
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#array-based-tree-representations">
-         Array-based tree representations
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#adjacency-list-representation">
-         Adjacency list representation
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
@@ -758,6 +766,28 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#connection-between-trees-and-graphs">
        Connection between trees and graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#representation-of-graphs">
+       Representation of Graphs
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree-and-graph-traversal">
+     Tree and Graph Traversal
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#depth-first-graph-traversal">
+       Depth-first graph traversal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#breadth-first-graph-traversal">
+       Breadth-first graph traversal
       </a>
      </li>
     </ul>
@@ -783,7 +813,7 @@ title="Print to PDF"
 <h1>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include:</p>
+<p>In this set of lectures, we’ll introduce Data Structures and methods to access the data stored in data structures. Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to various applications; some are highly specialized for specific tasks. Some common examples of data structures that we will discuss include the following:</p>
 <section id="linear-data-structures">
 <h3>Linear data structures<a class="headerlink" href="#linear-data-structures" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
@@ -799,6 +829,14 @@ title="Print to PDF"
 <li><p><a class="reference internal" href="#content-references-data-structure-hashmap-and-sets"><span class="std std-ref">Dictionary and sets</span></a>: A hashmap is a data structure that stores key-value pairs, where each key value is unique. Sets are similar to hashmaps but only store keys and do not have values associated with them.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a>: A tree is a hierarchical data structure in which each node has one or more child nodes. Trees are used to store data that has a natural hierarchical structure, such as the structure of a file system or the organization of a company.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.</p></li>
+</ul>
+</section>
+<section id="graph-traversal">
+<h3>Graph Traversal<a class="headerlink" href="#graph-traversal" title="Permalink to this headline">#</a></h3>
+<p>Finally, we’ll also introduce approaches to access the data in trees and graphs. In particular, we’ll discuss:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-data-structure-graphs-depth-first"><span class="std std-ref">Depth-first graph traversal</span></a> is a graph traversal algorithm that visits vertices by exploring as far as possible along each branch before backtracking. Depth-first starts at a source vertex and explores the graph in a depth-first manner, visiting every vertex reachable from the source. This algorithm is often implemented using recursion but can also be implemented iteratively using a stack.</p></li>
+<li><p><a class="reference internal" href="#content-references-data-structure-graphs-breadth-first"><span class="std std-ref">Breadth-first graph traversal</span></a> is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.</p></li>
 </ul>
 </section>
 </section>
@@ -1200,8 +1238,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="7c85bdaf-628e-4d80-aca8-c6c9e9968f2d" name="fa025b7b-6d76-4131-a9f3-cf96f5af1c2d" type="radio">
-</input><label class="sd-tab-label" for="7c85bdaf-628e-4d80-aca8-c6c9e9968f2d">
+<input checked="checked" id="96ed0ae2-0d53-4fbf-b6a4-f779178fd3d0" name="b49fe18c-f43f-46a1-84d2-12fdb87bbdd2" type="radio">
+</input><label class="sd-tab-label" for="96ed0ae2-0d53-4fbf-b6a4-f779178fd3d0">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1213,8 +1251,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c652b06a-26c4-49ff-a4dd-0e17dd772bd5" name="fa025b7b-6d76-4131-a9f3-cf96f5af1c2d" type="radio">
-</input><label class="sd-tab-label" for="c652b06a-26c4-49ff-a4dd-0e17dd772bd5">
+<input id="da5146b2-5e98-46aa-b8dc-7e4c687aa6ca" name="b49fe18c-f43f-46a1-84d2-12fdb87bbdd2" type="radio">
+</input><label class="sd-tab-label" for="da5146b2-5e98-46aa-b8dc-7e4c687aa6ca">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1230,8 +1268,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="da020c90-2430-493a-8b66-4464cf7ca803" name="5d698da7-9f61-4732-b510-f1c0428b2529" type="radio">
-</input><label class="sd-tab-label" for="da020c90-2430-493a-8b66-4464cf7ca803">
+<input checked="checked" id="07a044cb-fc7f-4a93-aef7-0b6fc54fedc5" name="9d832f82-2c41-488f-ba85-ed4e93681e1f" type="radio">
+</input><label class="sd-tab-label" for="07a044cb-fc7f-4a93-aef7-0b6fc54fedc5">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1243,8 +1281,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2ac9a1f8-54e6-46b7-a14e-a87b2acd22f2" name="5d698da7-9f61-4732-b510-f1c0428b2529" type="radio">
-</input><label class="sd-tab-label" for="2ac9a1f8-54e6-46b7-a14e-a87b2acd22f2">
+<input id="f1a368fb-4233-462f-b054-4dd5864f5e5a" name="9d832f82-2c41-488f-ba85-ed4e93681e1f" type="radio">
+</input><label class="sd-tab-label" for="f1a368fb-4233-462f-b054-4dd5864f5e5a">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1364,10 +1402,8 @@ python</label><div class="sd-tab-content docutils">
 </section>
 </div></section>
 <section id="representation-of-trees">
-<h4>Representation of Trees<a class="headerlink" href="#representation-of-trees" title="Permalink to this headline">#</a></h4>
-<p>Trees can be implemented in a variety of ways. Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. Two of the most common representations are <a class="reference internal" href="#content-references-array-rep-tree"><span class="std std-ref">Array-based tree representations</span></a> and <a class="reference internal" href="#content-references-adj-rep-tree"><span class="std std-ref">Adjacency list representation</span></a>.</p>
-<section id="array-based-tree-representations">
-<span id="content-references-array-rep-tree"></span><h5>Array-based tree representations<a class="headerlink" href="#array-based-tree-representations" title="Permalink to this headline">#</a></h5>
+<span id="content-references-data-structure-rep-tree"></span><h4>Representation of Trees<a class="headerlink" href="#representation-of-trees" title="Permalink to this headline">#</a></h4>
+<p>Trees can be implemented in a variety of ways. Suppose we’re interested in a k-ary tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> where each node has <span class="math notranslate nohighlight">\(k\)</span>-children. Two of the most common representations are Array-based and Adjacency list representations.</p>
 <p>In an array-based representation of a tree, each node is assigned an index in an array that stores the tree data. Consider a 3-ary (ternary) tree describing possible prices for a commodity as a function of time (<a class="reference internal" href="#example-ternary-price-model-array">Example 17</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-array">
 <p class="admonition-title"><span class="caption-number">Example 17 </span> (Ternary commodity price tree array-representation)</p>
@@ -1431,10 +1467,7 @@ python</label><div class="sd-tab-content docutils">
 </div>
 <p><strong>source</strong>: Source code can be found in the <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees">CHEME-1800/4800 tree examples repository</a></p>
 </section>
-</div></section>
-<section id="adjacency-list-representation">
-<span id="content-references-adj-rep-tree"></span><h5>Adjacency list representation<a class="headerlink" href="#adjacency-list-representation" title="Permalink to this headline">#</a></h5>
-<p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
+</div><p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
 <p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 18</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-adj-list">
 <p class="admonition-title"><span class="caption-number">Example 18 </span> (Ternary commodity price tree adjacency list)</p>
@@ -1508,23 +1541,28 @@ python</label><div class="sd-tab-content docutils">
 <!-- There are several types of trees, including binary trees, which have at most two children per node, and n-ary trees, which have any number of children per node. Trees are commonly used to implement data structures such as binary search trees and heap data structures, which allow for efficient insertion, deletion, and search operations. -->
 </section>
 </section>
-</section>
 <section id="graphs">
 <span id="content-references-data-structure-graphs"></span><h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">#</a></h3>
-<p>A graph is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a> is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
 <figure class="align-default" id="fig-graph-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Graph-Schematic.pdf"><img alt="../_images/Fig-Graph-Schematic.pdf" src="../_images/Fig-Graph-Schematic.pdf" style="height: 220px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 10 </span><span class="caption-text">Schematic of a graph data structures. Nodes in a graph hold references (called links or edges) to other nodes in the graph. The edges between node <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, which can be undirected (left) or directed (right), can carry data (called edge weights, <span class="math notranslate nohighlight">\(w_{ij}\)</span>) representing many different quantities, e.g., degree of interaction, physical distances, travel times, financial values, etc.</span><a class="headerlink" href="#fig-graph-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Graphs can be <strong>directed</strong> and <strong>undirected</strong>:</p>
+<p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. Formally, graphs are defined in <a class="reference internal" href="#defn-graphs">Definition 4</a>:</p>
+<div class="proof definition admonition" id="defn-graphs">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Definition and properties of Graphs)</p>
+<section class="definition-content" id="proof-content">
+<p>A simple graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is composed of a set of vertices <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> and edges <span class="math notranslate nohighlight">\(\mathcal{E}\)</span> such that there is at most one edge between vertices <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span> and <span class="math notranslate nohighlight">\(v_{j}\in\mathcal{V}\)</span>, and there are no edges that connect a vertex to itself (self-loop).</p>
+<p>The edges in a graph can be <strong>directed</strong> and <strong>undirected</strong>:</p>
 <ul class="simple">
 <li><p>In a <strong>directed</strong> graph, the edges have a direction and connect one vertex to another. The edges are often used to represent relationships or dependencies between the vertices. For example, in a social network, the vertices might represent people, and the directed edges might represent friendships, with the edge pointing from the person to their friend.</p></li>
 <li><p>In an <strong>undirected</strong> graph, the edges have no direction and connect pairs of vertices. These edges represent connections or relationships between symmetrical vertices, such as friendships.</p></li>
 </ul>
-<p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected.</p>
-<section id="connection-between-trees-and-graphs">
+<p>A graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is said to be connected if there is at least one path between vertices <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span> and <span class="math notranslate nohighlight">\(v_{j}\in\mathcal{V}\)</span>, where a path is defined as a sequence of vertices in which each successive vertex (after the first) is connected to its predecessor.</p>
+</section>
+</div><section id="connection-between-trees-and-graphs">
 <h4>Connection between trees and graphs<a class="headerlink" href="#connection-between-trees-and-graphs" title="Permalink to this headline">#</a></h4>
 <p>Graphs are used to model hierarchical relationships, but we have already seen that <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a> can also be used to model hierarchical relationships. What is the difference between <a class="reference internal" href="#content-references-data-structure-tree"><span class="std std-ref">Trees</span></a> and <a class="reference internal" href="#content-references-data-structure-graphs"><span class="std std-ref">Graphs</span></a>?</p>
 <ul class="simple">
@@ -1532,6 +1570,135 @@ python</label><div class="sd-tab-content docutils">
 Root node: A tree has a root node, the topmost node in the tree. Every other node in the tree is connected to it in some way. In a graph, there is no concept of a root node.</p></li>
 <li><p><strong>Direction</strong>: A tree is a directed graph, which means that every edge has a direction pointing from parent to child nodes. In a graph, edges may be directed or undirected and can point to any node.</p></li>
 <li><p><strong>Complexity</strong>: Trees are simpler than graphs because of their restricted structure. They have a unique path between any two nodes, which makes them easy to traverse and search. Conversely, graphs can be more complex and challenging to analyze because of their potentially cyclic and non-linear structure.</p></li>
+</ul>
+</section>
+<section id="representation-of-graphs">
+<h4>Representation of Graphs<a class="headerlink" href="#representation-of-graphs" title="Permalink to this headline">#</a></h4>
+<p>Similar to the <a class="reference internal" href="#content-references-data-structure-rep-tree"><span class="std std-ref">Representation of Trees</span></a>, graphs can be represented using Array and Adjacency list formats. The adjacency array for a graph is a two-dimensional array, i.e., a matrix instead of a vector (<a class="reference internal" href="#defn-adj-matrix-graphs">Definition 5</a>):</p>
+<div class="proof definition admonition" id="defn-adj-matrix-graphs">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Adjacency matrix for graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>)</p>
+<section class="definition-content" id="proof-content">
+<p>An adjacency matrix <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> representation of a graph <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{V},\mathcal{E})\)</span> is a <span class="math notranslate nohighlight">\(\dim\mathcal{V}\times\dim\mathcal{V}\)</span> matrix holding integer or floating point values. The entry for row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> of the matrix <span class="math notranslate nohighlight">\(\mathcal{A}\)</span>, denoted <span class="math notranslate nohighlight">\(a_{ij}\in\mathcal{A}\)</span>, describes the connection between vertices <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span> and <span class="math notranslate nohighlight">\(v_{j}\in\mathcal{V}\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Unweighted</strong>: If there is an edge connecting <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span> and <span class="math notranslate nohighlight">\(v_{j}\in\mathcal{V}\)</span> and graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is unweighted, then <span class="math notranslate nohighlight">\(a_{ij}=\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> (true) , otherwise <span class="math notranslate nohighlight">\(a_{ij}=\)</span> <code class="docutils literal notranslate"><span class="pre">0</span></code> (false).</p></li>
+<li><p><strong>Weighted</strong>: In cases where the edges of graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> have weights, if there is an edge connecting <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span> and <span class="math notranslate nohighlight">\(v_{j}\in\mathcal{V}\)</span> and graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is weighted, then <span class="math notranslate nohighlight">\(a_{ij}=w_{ij}\)</span>, otherwise <span class="math notranslate nohighlight">\(a_{ij}=\)</span> <code class="docutils literal notranslate"><span class="pre">0</span></code> (false), where <span class="math notranslate nohighlight">\(w_{ij}\in\mathbb{R}\)</span> denotes the weight of the edge connecting <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span> and <span class="math notranslate nohighlight">\(v_{j}\in\mathcal{V}\)</span>.</p></li>
+</ul>
+</section>
+</div><p>On the other hand, the adjacency list format for a graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is structured in a similar way as a tree (<a class="reference internal" href="#defn-adj-list-graphs">Definition 6</a>):</p>
+<div class="proof definition admonition" id="defn-adj-list-graphs">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Adjacency list for graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>)</p>
+<section class="definition-content" id="proof-content">
+<p>An adjacency list for a graph <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{V},\mathcal{E})\)</span> is a <span class="math notranslate nohighlight">\(\dim\mathcal{V}\)</span> dictionary <span class="math notranslate nohighlight">\(d\)</span>, where
+the ith entry points to the children indices of vertex <span class="math notranslate nohighlight">\(v_{i}\in\mathcal{V}\)</span>, denoted by set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>. In other words, <span class="math notranslate nohighlight">\(d_{i}\rightarrow\mathcal{C}_{i}\)</span>. There is a single entry in dictionary <span class="math notranslate nohighlight">\(d\)</span> for each vertex in graph <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>.</p>
+</section>
+</div></section>
+</section>
+<section id="tree-and-graph-traversal">
+<h3>Tree and Graph Traversal<a class="headerlink" href="#tree-and-graph-traversal" title="Permalink to this headline">#</a></h3>
+<section id="depth-first-graph-traversal">
+<span id="content-references-data-structure-graphs-depth-first"></span><h4>Depth-first graph traversal<a class="headerlink" href="#depth-first-graph-traversal" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-first traversal</a> is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively. A recursive depth-first traversal approach is outlined in <a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-depth-first-traversal">
+<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Reversive depth-first traversal )</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> A graph <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{V},\mathcal{E})\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{Set{Vertex}}()\)</span></p></li>
+</ol>
+<p><strong>Depth-first traversal function</strong></p>
+<ol class="simple">
+<li><p>DFS(<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p>
+<ol class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(v\in\text{visited}~\text{is}~\text{false}\)</span></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{add}(\text{visited},v)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathcal{C}\leftarrow\text{children}(v)\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(c\in\mathcal{C}\)</span></p>
+<ol class="simple">
+<li><p>DFS(<span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(v\in\mathcal{V}\)</span></p>
+<ol class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(v\in\text{visited}~\text{is}~\text{false}\)</span></p>
+<ol class="simple">
+<li><p>DFS(<span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+</div><p>Some of the most common uses of depth-first traversal are:</p>
+<ul class="simple">
+<li><p><strong>Pathfinding</strong>: Depth-first traversal can be used to find a path between two nodes in a graph. It is beneficial when the graph is a maze or a grid, as it can explore all possible paths from a starting point until it reaches the goal.</p></li>
+<li><p><strong>Cycle detection</strong>: Depth-first traversal can detect cycles in a graph. The graph contains a cycle if a back edge is encountered during the traversal.</p></li>
+<li><p><strong>Tree traversal</strong>: Depth-first traversal traverse a tree. In a tree, there is only one path from the root to any node, so the traversal can be done recursively by visiting the left subtree, the right subtree, and the root.</p></li>
+</ul>
+</section>
+<section id="breadth-first-graph-traversal">
+<span id="content-references-data-structure-graphs-breadth-first"></span><h4>Breadth-first graph traversal<a class="headerlink" href="#breadth-first-graph-traversal" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first traversal</a> is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to the next level. A breadth-first traversal approach is outlined in <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a>.</p>
+<div class="proof algorithm dropdown admonition" id="algo-breadth-first-traversal">
+<p class="admonition-title"><span class="caption-number">Algorithm 3 </span> (Breadth-first traversal )</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> A graph <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{V},\mathcal{E})\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{Set{Vertex}}()\)</span></p></li>
+</ol>
+<p><strong>Breadth-first traversal function</strong></p>
+<ol class="simple">
+<li><p>BFS(<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p>
+<ol class="simple">
+<li><p>queue = [start_node]</p></li>
+<li><p>visited = set([start_node])</p></li>
+<li><p>while queue is not empty:</p>
+<ol class="simple">
+<li><p>node = queue.pop(0)</p></li>
+<li><p>visit node</p></li>
+<li><p>for each adjacent node of node:</p>
+<ol class="simple">
+<li><p>if adjacent node is not visited:</p>
+<ol class="simple">
+<li><p>add adjacent node to visited set</p></li>
+<li><p>add adjacent node to queue</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for each node in graph:</p>
+<ol class="simple">
+<li><p>if node is not visited:</p>
+<ol class="simple">
+<li><p>BFS(node, visited)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+</div><p>Some of the most common uses of breadth-first traversal are:</p>
+<ul class="simple">
+<li><p><strong>Shortest path</strong>: Breadth-first traversal can be used to find the <a class="reference external" href="https://en.wikipedia.org/wiki/Shortest_path_problem">shortest path between two nodes in an unweighted graph</a>. Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.</p></li>
+<li><p><strong>Web crawling</strong>: Breadth-first traversal can be used to <a class="reference external" href="https://en.wikipedia.org/wiki/Web_crawler">crawl the web</a> or any other network of interconnected data. By starting at a particular node and visiting all its neighbors before moving on to the neighbors of its neighbors, the traversal can be used to search for data systematically.</p></li>
+<li><p><strong>Social networking analysis</strong>: Breadth-first traversal can be used to <a class="reference external" href="https://en.wikipedia.org/wiki/Social_network_analysis">analyze social networks</a>, such as Facebook or Twitter, by starting at a particular user and visiting all their friends before moving on to the friends of their friends.</p></li>
+<li><p><strong>Decision making</strong>: Breadth-first traversal can be used to perform <a class="reference external" href="https://en.wikipedia.org/wiki/Decision_tree_learning">decision-making tasks</a>, such as <a class="reference external" href="https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games">chess or game AI</a>. By exploring all the possible moves that can be made in a game, the traversal can be used to identify the best move to make next.</p></li>
 </ul>
 </section>
 </section>
