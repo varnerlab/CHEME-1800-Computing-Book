@@ -27,7 +27,7 @@ In this set of lectures, we'll introduce Data Structures and methods to access t
 * {ref}`content:references:data-structure-graphs`: A graph is a data structure that consists of a set of vertices (also called nodes) and a set of edges connecting the vertices. Graphs are used to represent relationships between objects, and they are often used to model networks.
 
 ### Graph Traversal
-Finally, we'll also introduce approaches to data access in trees and graphs. In particular, we'll discuss the following:
+Finally, we'll also introduce approaches for data access in trees and graphs. In particular, we'll discuss the following:
 
 * {ref}`content:references:data-structure-graphs-depth-first` is a graph traversal algorithm that visits vertices by exploring as far as possible along each branch before backtracking. Depth-first starts at a source vertex and explores the graph depth-first, visiting every vertex reachable from the source. This algorithm is often implemented using recursion but can also be implemented iteratively using a stack.
 
@@ -325,7 +325,7 @@ Linked lists are often used when the data structure size is not known in advance
 
 * __Dynamic data structures__: Linked lists are helpful when working with data structures that can change in size during runtime. Unlike arrays, linked lists can grow or shrink as needed without complex memory management or copying operations. This makes them helpful in implementing stacks, queues, and other dynamic data structures.
 * __Memory allocation__: In computer memory management, linked lists are used to keep track of free and allocated memory blocks. Each memory block is represented as a node in the list, with a pointer to the next block. This allows the system to find a suitable block for a new allocation quickly and to free up blocks when they are no longer needed efficiently.
-* __Modeling hierarchical data__: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.
+* __Modeling hierarchical data__: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated efficiently while maintaining the hierarchical structure.
 
 Linked lists can also implement {ref}`content:references:lda-stacks` and {ref}`content:references:lda-queues`. Let's consider an example [Julia](https://julialang.org) implementation of a stack-based upon a linked list ({prf:ref}`example-linked-list-stack`):
 
@@ -797,7 +797,7 @@ __source__: Source code can be found in the [CHEME-1800/4800 tree examples repos
 
 (content:references:data-structure-graphs)=
 ### Graphs
-A [graph](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)) is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data ({numref}`fig-graph-schematic`). 
+A [graph](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)) is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. Edges can be directed (also called arcs) or undirected and can carry data ({numref}`fig-graph-schematic`). 
 
 ```{figure} ./figs/Fig-Graph-Schematic.pdf
 ---
@@ -807,7 +807,7 @@ name: fig-graph-schematic
 Schematic of a graph data structures. Nodes in a graph hold references (called links or edges) to other nodes in the graph. The edges between node $j$ and $j$, which can be undirected (left) or directed (right), can carry data (called edge weights, $w_{ij}$) representing many different quantities, e.g., degree of interaction, physical distances, travel times, financial values, etc.    
 ```
 
-Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. Formally, graphs are defined in {prf:ref}`defn-graphs`:
+Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes. Formally, graphs are defined in {prf:ref}`defn-graphs`:
 
 ````{prf:definition} Definition and properties of Graphs
 :label: defn-graphs
@@ -851,7 +851,7 @@ the ith entry points to the children indices of vertex $v_{i}\in\mathcal{V}$, de
 
 ````
 
-### Tree and Graph Traversal
+### Graph Traversal
 
 (content:references:data-structure-graphs-depth-first)=
 #### Depth-first graph traversal

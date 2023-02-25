@@ -598,8 +598,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tree-and-graph-traversal">
-     Tree and Graph Traversal
+    <a class="reference internal nav-link" href="#id3">
+     Graph Traversal
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -776,8 +776,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tree-and-graph-traversal">
-     Tree and Graph Traversal
+    <a class="reference internal nav-link" href="#id3">
+     Graph Traversal
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -833,7 +833,7 @@ title="Print to PDF"
 </section>
 <section id="graph-traversal">
 <h3>Graph Traversal<a class="headerlink" href="#graph-traversal" title="Permalink to this headline">#</a></h3>
-<p>Finally, we’ll also introduce approaches to data access in trees and graphs. In particular, we’ll discuss the following:</p>
+<p>Finally, we’ll also introduce approaches for data access in trees and graphs. In particular, we’ll discuss the following:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-data-structure-graphs-depth-first"><span class="std std-ref">Depth-first graph traversal</span></a> is a graph traversal algorithm that visits vertices by exploring as far as possible along each branch before backtracking. Depth-first starts at a source vertex and explores the graph depth-first, visiting every vertex reachable from the source. This algorithm is often implemented using recursion but can also be implemented iteratively using a stack.</p></li>
 <li><p><a class="reference internal" href="#content-references-data-structure-graphs-breadth-first"><span class="std std-ref">Breadth-first graph traversal</span></a> is a graph traversal algorithm that visits vertices in order of their distance from a source vertex. Breadth-first starts at a source vertex and explores all the vertices at the same level before moving on to vertices at the next level. This algorithm is often implemented using a queue to keep track of the vertices to be visited.</p></li>
@@ -1141,7 +1141,7 @@ A linked list is a linear data structure where each element, called a node, is a
 <ul class="simple">
 <li><p><strong>Dynamic data structures</strong>: Linked lists are helpful when working with data structures that can change in size during runtime. Unlike arrays, linked lists can grow or shrink as needed without complex memory management or copying operations. This makes them helpful in implementing stacks, queues, and other dynamic data structures.</p></li>
 <li><p><strong>Memory allocation</strong>: In computer memory management, linked lists are used to keep track of free and allocated memory blocks. Each memory block is represented as a node in the list, with a pointer to the next block. This allows the system to find a suitable block for a new allocation quickly and to free up blocks when they are no longer needed efficiently.</p></li>
-<li><p><strong>Modeling hierarchical data</strong>: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated flexibly and efficiently while maintaining the hierarchical structure.</p></li>
+<li><p><strong>Modeling hierarchical data</strong>: Linked lists can represent hierarchical data structures, such as trees and graphs. Each node in the list represents a tree node or graph vertex and contains a pointer to its children or neighbors. This allows the data to be stored and manipulated efficiently while maintaining the hierarchical structure.</p></li>
 </ul>
 <p>Linked lists can also implement <a class="reference internal" href="#content-references-lda-stacks"><span class="std std-ref">Stacks</span></a> and <a class="reference internal" href="#content-references-lda-queues"><span class="std std-ref">Queues</span></a>. Let’s consider an example <a class="reference external" href="https://julialang.org">Julia</a> implementation of a stack-based upon a linked list (<a class="reference internal" href="#example-linked-list-stack">Example 14</a>):</p>
 <div class="proof example dropdown admonition" id="example-linked-list-stack">
@@ -1238,8 +1238,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1ac5c17b-6e9f-4b8d-a11c-df867a07ac12" name="3ee572ca-0208-4c8c-beb6-448a99c0e059" type="radio">
-</input><label class="sd-tab-label" for="1ac5c17b-6e9f-4b8d-a11c-df867a07ac12">
+<input checked="checked" id="ad8cb1e9-efcd-4781-9655-74d41685da1a" name="e3734432-656d-4606-bec6-ce05a5f2e6fa" type="radio">
+</input><label class="sd-tab-label" for="ad8cb1e9-efcd-4781-9655-74d41685da1a">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1251,8 +1251,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="40dcff5d-a67f-4552-9f69-661b3111883a" name="3ee572ca-0208-4c8c-beb6-448a99c0e059" type="radio">
-</input><label class="sd-tab-label" for="40dcff5d-a67f-4552-9f69-661b3111883a">
+<input id="a665b437-70ff-415a-a6f8-0a73f7d4e9fe" name="e3734432-656d-4606-bec6-ce05a5f2e6fa" type="radio">
+</input><label class="sd-tab-label" for="a665b437-70ff-415a-a6f8-0a73f7d4e9fe">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1268,8 +1268,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b90f84e6-42ee-4f0b-8b78-d099d8b662f0" name="723dfdf9-4e4c-4229-8efb-a35220c89871" type="radio">
-</input><label class="sd-tab-label" for="b90f84e6-42ee-4f0b-8b78-d099d8b662f0">
+<input checked="checked" id="a6c4c8eb-5bb6-40cd-a7e8-88331651a9aa" name="ff28c9c2-1d31-47e8-8948-90b8c195eecf" type="radio">
+</input><label class="sd-tab-label" for="a6c4c8eb-5bb6-40cd-a7e8-88331651a9aa">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1281,8 +1281,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="235c9501-3205-4fd3-aad2-345419d8b327" name="723dfdf9-4e4c-4229-8efb-a35220c89871" type="radio">
-</input><label class="sd-tab-label" for="235c9501-3205-4fd3-aad2-345419d8b327">
+<input id="f91b91c5-4c15-4f7d-b422-2b3c3e97c37d" name="ff28c9c2-1d31-47e8-8948-90b8c195eecf" type="radio">
+</input><label class="sd-tab-label" for="f91b91c5-4c15-4f7d-b422-2b3c3e97c37d">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1543,14 +1543,14 @@ python</label><div class="sd-tab-content docutils">
 </section>
 <section id="graphs">
 <span id="content-references-data-structure-graphs"></span><h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">#</a></h3>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a> is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. The edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a> is a data structure consisting of a finite set of vertices (also called nodes) and a set of edges connecting these vertices. Edges can be directed (also called arcs) or undirected and can carry data (<a class="reference internal" href="#fig-graph-schematic"><span class="std std-numref">Fig. 10</span></a>).</p>
 <figure class="align-default" id="fig-graph-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Graph-Schematic.pdf"><img alt="../_images/Fig-Graph-Schematic.pdf" src="../_images/Fig-Graph-Schematic.pdf" style="height: 220px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 10 </span><span class="caption-text">Schematic of a graph data structures. Nodes in a graph hold references (called links or edges) to other nodes in the graph. The edges between node <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, which can be undirected (left) or directed (right), can carry data (called edge weights, <span class="math notranslate nohighlight">\(w_{ij}\)</span>) representing many different quantities, e.g., degree of interaction, physical distances, travel times, financial values, etc.</span><a class="headerlink" href="#fig-graph-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes or determining whether a graph is connected. Formally, graphs are defined in <a class="reference internal" href="#defn-graphs">Definition 4</a>:</p>
+<p>Graphs represent real-world situations like networks, maps, and social relationships. They are commonly used to describe relationships between data and to solve problems such as finding the shortest path between two nodes. Formally, graphs are defined in <a class="reference internal" href="#defn-graphs">Definition 4</a>:</p>
 <div class="proof definition admonition" id="defn-graphs">
 <p class="admonition-title"><span class="caption-number">Definition 4 </span> (Definition and properties of Graphs)</p>
 <section class="definition-content" id="proof-content">
@@ -1593,8 +1593,8 @@ the ith entry points to the children indices of vertex <span class="math notrans
 </section>
 </div></section>
 </section>
-<section id="tree-and-graph-traversal">
-<h3>Tree and Graph Traversal<a class="headerlink" href="#tree-and-graph-traversal" title="Permalink to this headline">#</a></h3>
+<section id="id3">
+<h3>Graph Traversal<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <section id="depth-first-graph-traversal">
 <span id="content-references-data-structure-graphs-depth-first"></span><h4>Depth-first graph traversal<a class="headerlink" href="#depth-first-graph-traversal" title="Permalink to this headline">#</a></h4>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Depth-first_search">Depth-first traversal</a> is a graph traversal algorithm that starts at a source vertex and visits vertices by exploring as far as possible along each branch before backtracking. Depth-first is often implemented using recursion but can also be implemented iteratively. A recursive depth-first traversal approach is outlined in <a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a>:</p>
