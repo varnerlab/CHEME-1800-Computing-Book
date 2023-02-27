@@ -606,11 +606,25 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#depth-first-graph-traversal">
        Depth-first graph traversal
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#how-does-depth-first-traversal-work">
+         How does depth-first traversal work?
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#breadth-first-graph-traversal">
        Breadth-first graph traversal
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#how-does-breadth-first-traversal-work">
+         How does breadth-first traversal work?
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -784,11 +798,25 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#depth-first-graph-traversal">
        Depth-first graph traversal
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#how-does-depth-first-traversal-work">
+         How does depth-first traversal work?
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#breadth-first-graph-traversal">
        Breadth-first graph traversal
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#how-does-breadth-first-traversal-work">
+         How does breadth-first traversal work?
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -1238,8 +1266,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ad8cb1e9-efcd-4781-9655-74d41685da1a" name="e3734432-656d-4606-bec6-ce05a5f2e6fa" type="radio">
-</input><label class="sd-tab-label" for="ad8cb1e9-efcd-4781-9655-74d41685da1a">
+<input checked="checked" id="71ac5d8c-8a3d-41f4-89c3-ea10ac877d83" name="3a419dd8-bb5e-4f49-80ce-b2373fdf3593" type="radio">
+</input><label class="sd-tab-label" for="71ac5d8c-8a3d-41f4-89c3-ea10ac877d83">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1251,8 +1279,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a665b437-70ff-415a-a6f8-0a73f7d4e9fe" name="e3734432-656d-4606-bec6-ce05a5f2e6fa" type="radio">
-</input><label class="sd-tab-label" for="a665b437-70ff-415a-a6f8-0a73f7d4e9fe">
+<input id="0b40a24f-3789-47c6-b6db-bd28ba2af42f" name="3a419dd8-bb5e-4f49-80ce-b2373fdf3593" type="radio">
+</input><label class="sd-tab-label" for="0b40a24f-3789-47c6-b6db-bd28ba2af42f">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1268,8 +1296,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a6c4c8eb-5bb6-40cd-a7e8-88331651a9aa" name="ff28c9c2-1d31-47e8-8948-90b8c195eecf" type="radio">
-</input><label class="sd-tab-label" for="a6c4c8eb-5bb6-40cd-a7e8-88331651a9aa">
+<input checked="checked" id="ac95f21f-1479-44d9-a619-4f075e6762a9" name="8edfc864-c149-495e-975f-0d024b0f8b91" type="radio">
+</input><label class="sd-tab-label" for="ac95f21f-1479-44d9-a619-4f075e6762a9">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1281,8 +1309,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f91b91c5-4c15-4f7d-b422-2b3c3e97c37d" name="ff28c9c2-1d31-47e8-8948-90b8c195eecf" type="radio">
-</input><label class="sd-tab-label" for="f91b91c5-4c15-4f7d-b422-2b3c3e97c37d">
+<input id="7dc77368-32c3-4616-8bfe-34d2dbade1f1" name="8edfc864-c149-495e-975f-0d024b0f8b91" type="radio">
+</input><label class="sd-tab-label" for="7dc77368-32c3-4616-8bfe-34d2dbade1f1">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1606,17 +1634,17 @@ the ith entry points to the children indices of vertex <span class="math notrans
 <ol class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{Set{Vertex}}()\)</span></p></li>
 </ol>
-<p><strong>Depth-first traversal function</strong></p>
+<p><strong>Depth-first traversal</strong></p>
 <ol class="simple">
-<li><p>DFS(<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p>
+<li><p>DFS(<span class="math notranslate nohighlight">\(\mathcal{G},v,\text{visited}\)</span>)</p>
 <ol class="simple">
 <li><p>if <span class="math notranslate nohighlight">\(v\in\text{visited}~\text{is}~\text{false}\)</span></p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{add}(\text{visited},v)\)</span></p></li>
-<li><p>set <span class="math notranslate nohighlight">\(\mathcal{C}\leftarrow\text{children}(v)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathcal{C}\leftarrow\text{children}(\mathcal{G},v)\)</span></p></li>
 <li><p>for <span class="math notranslate nohighlight">\(c\in\mathcal{C}\)</span></p>
 <ol class="simple">
-<li><p>DFS(<span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p></li>
+<li><p>DFS(<span class="math notranslate nohighlight">\(\mathcal{G},c,\text{visited}\)</span>)</p></li>
 </ol>
 </li>
 </ol>
@@ -1628,21 +1656,23 @@ the ith entry points to the children indices of vertex <span class="math notrans
 <ol class="simple">
 <li><p>for <span class="math notranslate nohighlight">\(v\in\mathcal{V}\)</span></p>
 <ol class="simple">
-<li><p>if <span class="math notranslate nohighlight">\(v\in\text{visited}~\text{is}~\text{false}\)</span></p>
-<ol class="simple">
-<li><p>DFS(<span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p></li>
-</ol>
-</li>
+<li><p>DFS(<span class="math notranslate nohighlight">\(\mathcal{G},v,\text{visited}\)</span>)</p></li>
 </ol>
 </li>
 </ol>
 </section>
-</div><p>Some of the most common uses of depth-first traversal are:</p>
+</div><section id="how-does-depth-first-traversal-work">
+<h5>How does depth-first traversal work?<a class="headerlink" href="#how-does-depth-first-traversal-work" title="Permalink to this headline">#</a></h5>
+<p>In <a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a>, <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is the graph (or tree) to be traversed, and <code class="docutils literal notranslate"><span class="pre">start</span></code> is the starting node for the traversal. <a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a> uses a set <code class="docutils literal notranslate"><span class="pre">visited</span></code> to keep track of the nodes that have already been visited (to avoid visiting the same node twice).</p>
+<p><a class="reference internal" href="#algo-depth-first-traversal">Algorithm 2</a> calls the DFS procedure with the graph <code class="docutils literal notranslate"><span class="pre">G</span></code>, the <code class="docutils literal notranslate"><span class="pre">start</span></code> node,  and the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set as arguments. The DFS procedure then adds the current node to the visited set, processes it, and recursively calls itself for each unvisited child <code class="docutils literal notranslate"><span class="pre">c</span></code> of the current node. The recursion continues until all nodes have been visited.</p>
+<!-- This depth-first traversal algorithm explores each branch of the graph or tree as deeply as possible before backtracking, which means that it can get stuck in infinite loops or long paths if the graph or tree is very deep. To prevent this, we can modify the algorithm to include a depth limit or use iterative approaches instead of recursive ones. -->
+<p>Some of the most common uses of depth-first traversal are:</p>
 <ul class="simple">
 <li><p><strong>Pathfinding</strong>: Depth-first traversal can be used to find a path between two nodes in a graph. It is beneficial when the graph is a maze or a grid, as it can explore all possible paths from a starting point until it reaches the goal.</p></li>
 <li><p><strong>Cycle detection</strong>: Depth-first traversal can detect cycles in a graph. The graph contains a cycle if a back edge is encountered during the traversal.</p></li>
 <li><p><strong>Tree traversal</strong>: Depth-first traversal traverse a tree. In a tree, there is only one path from the root to any node, so the traversal can be done recursively by visiting the left subtree, the right subtree, and the root.</p></li>
 </ul>
+</section>
 </section>
 <section id="breadth-first-graph-traversal">
 <span id="content-references-data-structure-graphs-breadth-first"></span><h4>Breadth-first graph traversal<a class="headerlink" href="#breadth-first-graph-traversal" title="Permalink to this headline">#</a></h4>
@@ -1654,23 +1684,24 @@ the ith entry points to the children indices of vertex <span class="math notrans
 <p><strong>Initialize</strong></p>
 <ol class="simple">
 <li><p>set <span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{Set{Vertex}}()\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\text{queue}\leftarrow\text{Queue{Vertex}}()\)</span></p></li>
 </ol>
-<p><strong>Breadth-first traversal function</strong></p>
+<p><strong>Breadth-first traversal</strong></p>
 <ol class="simple">
-<li><p>BFS(<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(\text{visited}\)</span>)</p>
+<li><p>BFS(<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>, <span class="math notranslate nohighlight">\(v\)</span>)</p>
 <ol class="simple">
-<li><p>queue = [start_node]</p></li>
-<li><p>visited = set([start_node])</p></li>
-<li><p>while queue is not empty:</p>
+<li><p><span class="math notranslate nohighlight">\(\text{queue}\leftarrow\text{enqueue}(\text{queue},v)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{add}(\text{visited},v)\)</span></p></li>
+<li><p>while <span class="math notranslate nohighlight">\(\text{queue}\)</span> is not empty</p>
 <ol class="simple">
-<li><p>node = queue.pop(0)</p></li>
-<li><p>visit node</p></li>
-<li><p>for each adjacent node of node:</p>
+<li><p>set <span class="math notranslate nohighlight">\(\text{current}\leftarrow\text{dequeue}(\text{queue})\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathcal{C}\leftarrow\text{children}(\text{current})\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(c\in\mathcal{C}\)</span></p>
 <ol class="simple">
-<li><p>if adjacent node is not visited:</p>
+<li><p>if <span class="math notranslate nohighlight">\(c\in\text{visited}~\text{is}~\text{false}\)</span></p>
 <ol class="simple">
-<li><p>add adjacent node to visited set</p></li>
-<li><p>add adjacent node to queue</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{queue}\leftarrow\text{enqueue}(\text{queue},c)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{visited}\leftarrow\text{add}(\text{visited},c)\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -1682,24 +1713,22 @@ the ith entry points to the children indices of vertex <span class="math notrans
 </ol>
 <p><strong>Main</strong></p>
 <ol class="simple">
-<li><p>for each node in graph:</p>
-<ol class="simple">
-<li><p>if node is not visited:</p>
-<ol class="simple">
-<li><p>BFS(node, visited)</p></li>
-</ol>
-</li>
-</ol>
-</li>
+<li><p>set <span class="math notranslate nohighlight">\(\text{start}\leftarrow\text{start}(\mathcal{G})\)</span></p></li>
+<li><p>BFS(<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>, <span class="math notranslate nohighlight">\(\text{start}\)</span>)</p></li>
 </ol>
 </section>
-</div><p>Some of the most common uses of breadth-first traversal are:</p>
+</div><section id="how-does-breadth-first-traversal-work">
+<h5>How does breadth-first traversal work?<a class="headerlink" href="#how-does-breadth-first-traversal-work" title="Permalink to this headline">#</a></h5>
+<p>In <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a>, <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is the graph (or tree) to be traversed, and <code class="docutils literal notranslate"><span class="pre">start</span></code> is the starting node for the traversal. The algorithm uses a queue <code class="docutils literal notranslate"><span class="pre">queue</span></code> to keep track of the nodes to be visited next. The set <code class="docutils literal notranslate"><span class="pre">visited</span></code> is used to keep track of the nodes that have already been visited (which avoids visiting the same node twice).</p>
+<p><a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a> starts by adding the <code class="docutils literal notranslate"><span class="pre">start</span></code> node to the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set and enqueuing it onto the <code class="docutils literal notranslate"><span class="pre">queue</span></code>. Then, while <code class="docutils literal notranslate"><span class="pre">queue</span></code> is not empty, it <code class="docutils literal notranslate"><span class="pre">dequeues</span></code> the next node, which we call <code class="docutils literal notranslate"><span class="pre">current</span></code>, processes it and adds its unvisited children to the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set and enqueues them onto <code class="docutils literal notranslate"><span class="pre">queue</span></code>. <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a> continues until the <code class="docutils literal notranslate"><span class="pre">queue</span></code> is empty and all nodes have been visited.</p>
+<p>Some of the most common uses of breadth-first traversal are:</p>
 <ul class="simple">
 <li><p><strong>Shortest path</strong>: Breadth-first traversal can be used to find the <a class="reference external" href="https://en.wikipedia.org/wiki/Shortest_path_problem">shortest path between two nodes in an unweighted graph</a>. Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.</p></li>
 <li><p><strong>Web crawling</strong>: Breadth-first traversal can be used to <a class="reference external" href="https://en.wikipedia.org/wiki/Web_crawler">crawl the web</a> or any other network of interconnected data. By starting at a particular node and visiting all its neighbors before moving on to the neighbors of its neighbors, the traversal can be used to search for data systematically.</p></li>
 <li><p><strong>Social networking analysis</strong>: Breadth-first traversal can be used to <a class="reference external" href="https://en.wikipedia.org/wiki/Social_network_analysis">analyze social networks</a>, such as Facebook or Twitter, by starting at a particular user and visiting all their friends before moving on to the friends of their friends.</p></li>
 <li><p><strong>Decision making</strong>: Breadth-first traversal can be used to perform <a class="reference external" href="https://en.wikipedia.org/wiki/Decision_tree_learning">decision-making tasks</a>, such as <a class="reference external" href="https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games">chess or game AI</a>. By exploring all the possible moves that can be made in a game, the traversal can be used to identify the best move to make next.</p></li>
 </ul>
+</section>
 </section>
 </section>
 </section>

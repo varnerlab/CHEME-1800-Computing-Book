@@ -866,20 +866,26 @@ the ith entry points to the children indices of vertex $v_{i}\in\mathcal{V}$, de
 **Initialize** 
 1. set $\text{visited}\leftarrow\text{Set{Vertex}}()$
 
-**Depth-first traversal function**
-1. DFS($v$,$\text{visited}$)
+**Depth-first traversal**
+1. DFS($\mathcal{G},v,\text{visited}$)
     1. if $v\in\text{visited}~\text{is}~\text{false}$
         1. $\text{visited}\leftarrow\text{add}(\text{visited},v)$
-        1. set $\mathcal{C}\leftarrow\text{children}(v)$
+        1. set $\mathcal{C}\leftarrow\text{children}(\mathcal{G},v)$
         1. for $c\in\mathcal{C}$
-            1. DFS($c$, $\text{visited}$)
+            1. DFS($\mathcal{G},c,\text{visited}$)
         
 **Main**
 1. for $v\in\mathcal{V}$
-    1. if $v\in\text{visited}~\text{is}~\text{false}$
-        1. DFS($v$, $\text{visited}$)
+    1. DFS($\mathcal{G},v,\text{visited}$)
 
 ````
+
+##### How does depth-first traversal work?
+In {prf:ref}`algo-depth-first-traversal`, $\mathcal{G}$ is the graph (or tree) to be traversed, and `start` is the starting node for the traversal. {prf:ref}`algo-depth-first-traversal` uses a set `visited` to keep track of the nodes that have already been visited (to avoid visiting the same node twice).
+
+{prf:ref}`algo-depth-first-traversal` calls the DFS procedure with the graph `G`, the `start` node,  and the `visited` set as arguments. The DFS procedure then adds the current node to the visited set, processes it, and recursively calls itself for each unvisited child `c` of the current node. The recursion continues until all nodes have been visited.
+
+<!-- This depth-first traversal algorithm explores each branch of the graph or tree as deeply as possible before backtracking, which means that it can get stuck in infinite loops or long paths if the graph or tree is very deep. To prevent this, we can modify the algorithm to include a depth limit or use iterative approaches instead of recursive ones. -->
 
 Some of the most common uses of depth-first traversal are:
 
@@ -899,25 +905,30 @@ Some of the most common uses of depth-first traversal are:
 
 **Initialize** 
 1. set $\text{visited}\leftarrow\text{Set{Vertex}}()$
+1. set $\text{queue}\leftarrow\text{Queue{Vertex}}()$ 
 
-**Breadth-first traversal function**
-1. BFS($v$,$\text{visited}$)
-    1. queue = [start_node]
-    1. visited = set([start_node])
+**Breadth-first traversal**
+1. BFS($\mathcal{G}$, $v$)
+    1. $\text{queue}\leftarrow\text{enqueue}(\text{queue},v)$
+    1. $\text{visited}\leftarrow\text{add}(\text{visited},v)$
 
-    1. while queue is not empty:
-        1. node = queue.pop(0)
-        1. visit node
-        1. for each adjacent node of node:
-            1. if adjacent node is not visited:
-                1. add adjacent node to visited set
-                1. add adjacent node to queue
+    1. while $\text{queue}$ is not empty
+        1. set $\text{current}\leftarrow\text{dequeue}(\text{queue})$
+        1. set $\mathcal{C}\leftarrow\text{children}(\text{current})$
+        1. for $c\in\mathcal{C}$
+            1. if $c\in\text{visited}~\text{is}~\text{false}$
+                1. $\text{queue}\leftarrow\text{enqueue}(\text{queue},c)$
+                1. $\text{visited}\leftarrow\text{add}(\text{visited},c)$
 
 **Main**
-1. for each node in graph:
-    1. if node is not visited:
-        1. BFS(node, visited)
+1. set $\text{start}\leftarrow\text{start}(\mathcal{G})$
+1. BFS($\mathcal{G}$, $\text{start}$)
 ````
+
+##### How does breadth-first traversal work?
+In {prf:ref}`algo-breadth-first-traversal`, $\mathcal{G}$ is the graph (or tree) to be traversed, and `start` is the starting node for the traversal. The algorithm uses a queue `queue` to keep track of the nodes to be visited next. The set `visited` is used to keep track of the nodes that have already been visited (which avoids visiting the same node twice).
+
+{prf:ref}`algo-breadth-first-traversal` starts by adding the `start` node to the `visited` set and enqueuing it onto the `queue`. Then, while `queue` is not empty, it `dequeues` the next node, which we call `current`, processes it and adds its unvisited children to the `visited` set and enqueues them onto `queue`. {prf:ref}`algo-breadth-first-traversal` continues until the `queue` is empty and all nodes have been visited.
 
 Some of the most common uses of breadth-first traversal are:
 * __Shortest path__: Breadth-first traversal can be used to find the [shortest path between two nodes in an unweighted graph](https://en.wikipedia.org/wiki/Shortest_path_problem). Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.
