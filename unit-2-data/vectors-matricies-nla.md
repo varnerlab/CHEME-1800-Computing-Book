@@ -1,16 +1,124 @@
 # Vectors, Matrices and Linear Algebraic Equations
 
 ## Introduction
-Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. 
-This lecture will introduce Vectors, Matrices, and operations defined on these objects:
 
-* {ref}`content:references:matrix-vector` are arrays of objects, typically numbers, in engineering applications. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
+This lecture will introduce Vectors, Matrices, and operations defined on these objects. Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. In chemical engineering, vectors and matrcies are used to represent physical laws such as the conservation of mass, moles or energy. 
 
-We then transition to an application, namely, the formulation and solution of systems of linear algebraic equations:
+Thus, we begin our discussion of vectors, matrcies and their associated operations by quickly reviewing mass and mole balance equations:
+
+* {ref}`content:references:matrix-vector-mass-mol-balances`. Chemical Engineers use balance equations to describe, design, and troubleshoot products and processes. Balance equations describe the amount of _stuff_ (e.g., mass, moles, energy, etc.) in a _system_ that interacts with its _surroundings_. Balance equations can be represented as a system of matrices and vectors.
+
+Next, we transition to defining the structure of matrices and vectors, and thier associated operations:
+
+* {ref}`content:references:matrix-vector` are abstract mathematical objects, typically arrays of numbers, in engineering applications. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
+
+Finally, we consider a crucial application area, namely, the formulation and solution of systems of linear algebraic equations:
 
 * {ref}`content:references:soln-laes-start` arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state balance equations. We'll introduce two approaches to solving these systems of equations. 
 
 ---
+
+(content:references:matrix-vector-mass-mol-balances)=
+## Review of balances
+Streams of _stuff_ (e.g., material, energy, money, information, etc.) enter (exit) a system from the surroundings; streams cross the system boundary, transporting _stuff_ into or from the system. A system is said to be _open_  if _material stuff_ can enter or exit the system; otherwise, a system is _closed_. For physical systems, streams can be pipes in which material flows into or from the system at some rate. In other cases, streams into (from) a system can carry other types of _stuff_ such as information (e.g., bits) or money (e.g., $\$$, $\def\euro{\unicode{x20AC}} \euro$, bitcoin, etc).
+
+Regardless if a system is open or closed and whatever _stuff_ is, within the system, 
+_stuff_ can accumulate and be generated, e.g., via a chemical reaction or by an interest process such as a savings account or treasury bond in the case of money. Whatever the system is, and whatever _stuff_ is, the time behavior of the system can always be described by these _four_ types of terms: inputs, outputs, generation, and accumulation. 
+
+### Open species mass balances
+If we are interested in the mass of each chemical species, we can let _stuff_ equal the mass of each of the chemical components; this choice gives the _open species mass balance_ ({prf:ref}`defn-open-species-mass-balance`):
+
+````{prf:definition} Open Species Mass Balance
+:label: defn-open-species-mass-balance
+
+Let $m_{i}$ denote the mass of chemical component $i$ in a system consisting of the species set $\mathcal{M}$ (units: mass, e.g., grams g). Further, represent the set of streams flowing into (or from) the system as $\mathcal{S}$. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, if stream $s$ _exits_ the system then $\nu_{s} = -1$.
+
+Then, the mass of chemical component $i$ in the system as a function of time (units: g) is described by an _open species mass balance equation_:
+
+```{math}
+:label: eqn-species-mass-i-dynamic
+\sum_{s\in\mathcal{S}}\nu_{s}\dot{m}_{i,s} + \dot{m}_{G,i} = \frac{dm_{i}}{dt}
+\qquad\forall{i}\in\mathcal{M}
+```
+
+The quantity $\dot{m}_{i,s}$ denotes the mass flow rate of component $i$ in stream $s$ (units: g $i$/time),
+$\dot{m}_{G,i}$ denote the rate of generation of component $i$ in the system 
+(units: g $i$/time), and $dm_{i}/dt$ denotes the rate of accumlation of mass of component $i$ in the system (units: mass of $i$ per time).
+
+__Law of mass conservation__:  The [Law of Conservation of Mass](https://en.wikipedia.org/wiki/Conservation_of_mass) says that mass can neither be created nor destroyed, just rearranged or transformed. Thus, if we consume species $j$, the amount of mass-consumed must show up in the other species, i.e., the sum of the individual species mass generation terms must be zero:
+
+```{math}
+\sum_{i\in\mathcal{M}}\dot{m}_{G,i} = 0
+```
+
+__Steady state__: At steady state, the accumulation term vanishes; thus, the steady state species mass balances are given by:
+
+```{math}
+:label: eqn-species-mass-i-steady-state
+\sum_{s\in\mathcal{S}}\nu_{s}\dot{m}_{i,s} + \dot{m}_{G,i} = 0
+\qquad\forall{i}\in\mathcal{M}
+```
+````
+
+### Open species mole balances
+The principles of mole-based balance equations are similar to their mass-based equivalents, i.e., we can write species mole balances or total mole balances, and the terms play an equivalent role as their mass-based equivalents. However, mass-based units are generally convenient for systems that do not involve chemical reactions, and it is often easier to use mole-based units when chemical reactions occur. 
+
+Before we define the open species mole balance, let's discuss the generation terms that appear in mole balances. Generation terms describe the impact of chemical reactions. For mole based systems we'll use the [open extent of reaction](https://en.wikipedia.org/wiki/Extent_of_reaction) to describe how far a chemical reaction has proceeded toward completion in an open system ({prf:ref}`defn-open-extent-of-rxn`):
+
+````{prf:definition} Open Extent of Reaction
+:label: defn-open-extent-of-rxn
+
+Suppose we have chemical species set $\mathcal{M}$ in the system of interest. Further, suppose the species in set $\mathcal{M}$ participate in the chemical reaction set $\mathcal{R}$. Then, the species generation rate $\dot{n}_{G, i}$ can be written in terms of the open extent of reaction:
+
+```{math}
+:label: eqn-open-extent-species
+\dot{n}_{G,i} = \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r}
+```
+
+where $\dot{\epsilon}_{r}$ denotes the open extent of reaction $r$ (units: mol per time). The quantity $\sigma_{ir}$ denotes the stoichiometric coefficient for species $i$ in reaction $r$:
+* If $\sigma_{ir}>0$ then species $i$ is _produced_ by reaction $r$, i.e., species $i$ is a product of reaction $r$ 
+* If $\sigma_{ir}=0$ then species $i$ is _not connected to_ reaction $r$
+* If $\sigma_{ir}<0$ then species $i$ is _consumed_ by reaction $r$, i.e., species $i$ is a reactant of reaction $r$.
+
+__Connection with kinetic rate__: In concentration based system we often use concentration balanecs, and the kinetic rate laws, to describe the system. The open extent of reaction $r$ is related to kinetic rate law per unit volume $\hat{r}_{r}$ for reaction $r$ by:
+
+```{math}
+:label: eqn-open-extent-kinetics
+\dot{\epsilon}_{r} = \hat{r}_{r}V
+```
+
+where $V$ denotes the system volume. 
+
+````
+
+Now that we understand how to describe the reaction terms, we can write the _open species mole balance_ ({prf:ref}`defn-open-species-mole-balance`):
+
+````{prf:definition} Open Species Mole Balance
+:label: defn-open-species-mole-balance
+
+Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical component $i$ in a system with species set $\mathcal{M}$
+(units: $\star$moles). Further, the set of streams flowing into (or from) the system is given by $\mathcal{S}$. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, is stream $s$ _exits_ the system then $\nu_{s} = -1$.
+
+Then, the number of moles of chemical component $i$ in the system as a function of time is described by an 
+_open species mass balance equation_:
+
+```{math}
+:label: eqn-species-mol-balance
+\sum_{s\in\mathcal{S}}\nu_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = \frac{dn_{i}}{dt}
+\qquad\forall{i}\in\mathcal{M}
+```
+
+The quantity $\dot{n}_{i,s}$ denotes the mole flow rate of component $i$ in stream $s$ (units: $\star$mol $i$/time), the generation terms in the system are described using the open extent (units: $\star$mol $i$/time), and $dn_{i}/dt$ denotes the rate of accumulation of the number of moles of component $i$ in the system (units: $\star$mol $i$/time). 
+
+__Steady-state__: At steady state, all the accumulation terms vanish and the system of balances becomes:
+
+```{math}
+:label: eqn-species-mol-balance-ss
+\sum_{s\in\mathcal{S}}\nu_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0
+\qquad\forall{i}\in\mathcal{M}
+```
+````
+
 
 (content:references:matrix-vector)=
 ## Matricies and Vectors
@@ -52,6 +160,7 @@ a_{1} & a_{2} & \cdots & a_{n}
 \end{pmatrix}$$
 
 Just like numbers, vectors and matrices can participate in mathematical operations, such as addition, subtraction and multiplication, with some small differences. However, before we explore the mathematical operations of matrices and vectors, we'll discuss a few special matricies. 
+
 
 ### Special matrices and matrix properties
 Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. 
