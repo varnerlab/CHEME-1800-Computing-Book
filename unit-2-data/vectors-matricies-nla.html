@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Vectors, Matrices, Measurements and Distances &#8212; CHEME 1800/4800</title>
+    <title>Vectors, Matrices and Linear Algebraic Equations &#8212; CHEME 1800/4800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-2-data/vectors-matricies-nla.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linear Algebraic Equations" href="laes.html" />
+    <link rel="next" title="Dimensionality Reduction" href="reduction.html" />
     <link rel="prev" title="Data Structures" href="trees.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -175,12 +175,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Vectors, Matrices, Measurements and Distances
+     Vectors, Matrices and Linear Algebraic Equations
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="laes.html">
-     Linear Algebraic Equations
+    <a class="reference internal" href="reduction.html">
+     Dimensionality Reduction
     </a>
    </li>
   </ul>
@@ -423,49 +423,22 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matricies-and-vectors">
-   Matricies and vectors
+   Matricies and Vectors
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#special-matrices">
-     Special matrices
+    <a class="reference internal nav-link" href="#special-matrices-and-matrix-properties">
+     Special matrices and matrix properties
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#diagonal-and-identity-matrices">
-       Diagonal and identity matrices
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#triangular-matrices">
-       Triangular matrices
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#orthogonal-matrices">
-       Orthogonal matrices
+      <a class="reference internal nav-link" href="#trace-determinant-and-rank">
+       Trace, Determinant and Rank
       </a>
      </li>
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#determinant-and-trace">
-   Determinant and Trace
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trace">
-     Trace
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rank-and-kernel">
-   Rank and kernel
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matrix-and-vector-operations">
@@ -476,17 +449,24 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#addition-and-subtraction">
      Addition and subtraction
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#is-the-naive-approach-really-the-best">
+       Is the naive approach really the best?
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scalar-multiplication">
-     Scalar multiplication
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication">
-     Vector-vector, matrix-vector and matrix-matrix multiplication
+    <a class="reference internal nav-link" href="#multiplication-operations">
+     Multiplication operations
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scalar-multiplication">
+       Scalar multiplication
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#vector-vector-multiplication">
        Vector-vector multiplication
@@ -512,40 +492,72 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#measurements-and-distances">
-   Measurements and distances
+  <a class="reference internal nav-link" href="#linear-algebraic-equations">
+   Linear algebraic equations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vector-and-matrix-norms">
-     Vector and matrix norms
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-distance-metrics">
-     Other distance metrics
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dimensionality-reduction">
-   Dimensionality reduction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
-     Eigenvalue-eigenvector problems
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#singular-value-decomposition">
-     Singular value decomposition
+    <a class="reference internal nav-link" href="#existence">
+     Existence
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#connection-of-svd-and-eigendecomposition">
-       Connection of SVD and eigendecomposition
+      <a class="reference internal nav-link" href="#homogeneous-square-systems">
+       Homogeneous square systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-homogeneous-square-systems">
+       Non-homogeneous square systems
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solutions-approaches">
+     Solutions approaches
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-elimination">
+     Gaussian elimination
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#triangular-systems">
+       Triangular systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#row-reduction-approaches">
+       Row reduction approaches
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterative-methods">
+     Iterative methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jacobi-s-method">
+       Jacobi’s method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-seidel-method">
+       Gauss-Seidel method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#successive-overrelaxation">
+       Successive Overrelaxation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence-of-iterative-methods">
+       Convergence of iterative methods
       </a>
      </li>
     </ul>
@@ -571,7 +583,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Vectors, Matrices, Measurements and Distances</h1>
+                <h1>Vectors, Matrices and Linear Algebraic Equations</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -588,49 +600,22 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matricies-and-vectors">
-   Matricies and vectors
+   Matricies and Vectors
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#special-matrices">
-     Special matrices
+    <a class="reference internal nav-link" href="#special-matrices-and-matrix-properties">
+     Special matrices and matrix properties
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#diagonal-and-identity-matrices">
-       Diagonal and identity matrices
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#triangular-matrices">
-       Triangular matrices
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#orthogonal-matrices">
-       Orthogonal matrices
+      <a class="reference internal nav-link" href="#trace-determinant-and-rank">
+       Trace, Determinant and Rank
       </a>
      </li>
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#determinant-and-trace">
-   Determinant and Trace
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trace">
-     Trace
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rank-and-kernel">
-   Rank and kernel
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matrix-and-vector-operations">
@@ -641,17 +626,24 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#addition-and-subtraction">
      Addition and subtraction
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#is-the-naive-approach-really-the-best">
+       Is the naive approach really the best?
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scalar-multiplication">
-     Scalar multiplication
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication">
-     Vector-vector, matrix-vector and matrix-matrix multiplication
+    <a class="reference internal nav-link" href="#multiplication-operations">
+     Multiplication operations
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scalar-multiplication">
+       Scalar multiplication
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#vector-vector-multiplication">
        Vector-vector multiplication
@@ -677,40 +669,72 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#measurements-and-distances">
-   Measurements and distances
+  <a class="reference internal nav-link" href="#linear-algebraic-equations">
+   Linear algebraic equations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vector-and-matrix-norms">
-     Vector and matrix norms
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-distance-metrics">
-     Other distance metrics
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dimensionality-reduction">
-   Dimensionality reduction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
-     Eigenvalue-eigenvector problems
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#singular-value-decomposition">
-     Singular value decomposition
+    <a class="reference internal nav-link" href="#existence">
+     Existence
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#connection-of-svd-and-eigendecomposition">
-       Connection of SVD and eigendecomposition
+      <a class="reference internal nav-link" href="#homogeneous-square-systems">
+       Homogeneous square systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-homogeneous-square-systems">
+       Non-homogeneous square systems
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solutions-approaches">
+     Solutions approaches
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-elimination">
+     Gaussian elimination
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#triangular-systems">
+       Triangular systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#row-reduction-approaches">
+       Row reduction approaches
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterative-methods">
+     Iterative methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jacobi-s-method">
+       Jacobi’s method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-seidel-method">
+       Gauss-Seidel method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#successive-overrelaxation">
+       Successive Overrelaxation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence-of-iterative-methods">
+       Convergence of iterative methods
       </a>
      </li>
     </ul>
@@ -737,22 +761,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="vectors-matrices-measurements-and-distances">
-<h1>Vectors, Matrices, Measurements and Distances<a class="headerlink" href="#vectors-matrices-measurements-and-distances" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="vectors-matrices-and-linear-algebraic-equations">
+<h1>Vectors, Matrices and Linear Algebraic Equations<a class="headerlink" href="#vectors-matrices-and-linear-algebraic-equations" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential.
-This lecture will introduce Vectors, Matrices, and some operations defined on these objects:</p>
+This lecture will introduce Vectors, Matrices, and operations defined on these objects:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#content-references-matrix-vector"><span class="std std-ref">Matricies and vectors</span></a> are one- and two-dimensional arrays of numbers. Vectors often represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are typically represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.</p></li>
-<li><p><a class="reference internal" href="#content-measurements-distances"><span class="std std-ref">Measurements and distances</span></a> are tools to measure distances between matrix and vector objects.</p></li>
-<li><p><a class="reference internal" href="#content-dimensionality-reduction"><span class="std std-ref">Dimensionality reduction</span></a> systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p></li>
+<li><p><a class="reference internal" href="#content-references-matrix-vector"><span class="std std-ref">Matricies and Vectors</span></a> are arrays of objects, typically numbers, in engineering applications. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations.</p></li>
+</ul>
+<p>We then transition to an application, namely, the formulation and solution of systems of linear algebraic equations:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-soln-laes-start"><span class="std std-ref">Linear algebraic equations</span></a> arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state balance equations. We’ll introduce two approaches to solving these systems of equations.</p></li>
 </ul>
 <hr class="docutils" />
 </section>
 <section id="matricies-and-vectors">
-<span id="content-references-matrix-vector"></span><h2>Matricies and vectors<a class="headerlink" href="#matricies-and-vectors" title="Permalink to this headline">#</a></h2>
-<p>Matrices are two-dimensional rectangular arrays of numbers, widgets, etc with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns:</p>
+<span id="content-references-matrix-vector"></span><h2>Matricies and Vectors<a class="headerlink" href="#matricies-and-vectors" title="Permalink to this headline">#</a></h2>
+<p>Matrices and vectors are encoded in computer programs as <a class="reference internal" href="trees.html#content-references-lda-arrays"><span class="std std-ref">Arrays</span></a>. Matrices are two- or more dimensional rectangular arrays of numbers, widgets, etc with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{A} = 
 \begin{pmatrix}
@@ -787,73 +813,39 @@ a_{m}
 \begin{pmatrix}
 a_{1} &amp; a_{2} &amp; \cdots &amp; a_{n}
 \end{pmatrix}\]</div>
-<p>Just like numbers, vectors and matrices can participate in typical mathematical operations, such as addition, subtraction and multiplication, with some small differences. For example, the division operation has a much different meaning for Matrices when compared to numbers.</p>
-<section id="special-matrices">
-<h3>Special matrices<a class="headerlink" href="#special-matrices" title="Permalink to this headline">#</a></h3>
-<p>Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. Some examples of special matrices include identity matrices, diagonal matrices, triangular matrices, and orthogonal matrices. These matrices have specific properties that make them useful in linear algebra, optimization, and other fields.</p>
-<p>Let’s discuss a few of these special matrices: <a class="reference internal" href="#content-references-diag-id-matrix"><span class="std std-ref">Diagonal and identity matrices</span></a>, <a class="reference internal" href="#content-references-triag-matrix"><span class="std std-ref">Triangular matrices</span></a> and <a class="reference internal" href="#content-references-orth-matrix"><span class="std std-ref">Orthogonal matrices</span></a></p>
-<section id="diagonal-and-identity-matrices">
-<span id="content-references-diag-id-matrix"></span><h4>Diagonal and identity matrices<a class="headerlink" href="#diagonal-and-identity-matrices" title="Permalink to this headline">#</a></h4>
-<p>A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. Diagonal matrices are used in matrix algebra to simplify calculations, and they can be created by multiplying an identity matrix by a scalar. The identity matrix is a square matrix with <code class="docutils literal notranslate"><span class="pre">1</span></code> on the diagonal and <code class="docutils literal notranslate"><span class="pre">0</span></code> everywhere else. It represents the identity transformation in linear algebra and is often denoted by the symbol <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>.</p>
-</section>
-<section id="triangular-matrices">
-<span id="content-references-triag-matrix"></span><h4>Triangular matrices<a class="headerlink" href="#triangular-matrices" title="Permalink to this headline">#</a></h4>
-<p>A triangular matrix is a square matrix that is either upper or lower triangular (<a class="reference internal" href="#defn-triangular-matrices">Definition 7</a>):</p>
-<div class="proof definition admonition" id="defn-triangular-matrices">
-<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Triangular matrices)</p>
+<p>Just like numbers, vectors and matrices can participate in mathematical operations, such as addition, subtraction and multiplication, with some small differences. However, before we explore the mathematical operations of matrices and vectors, we’ll discuss a few special matricies.</p>
+<section id="special-matrices-and-matrix-properties">
+<h3>Special matrices and matrix properties<a class="headerlink" href="#special-matrices-and-matrix-properties" title="Permalink to this headline">#</a></h3>
+<p>Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications.
+Some examples of special matrices include:</p>
+<ul class="simple">
+<li><p><strong>Diagonal and identity matrices</strong>: A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. The special diagonal matrix with <code class="docutils literal notranslate"><span class="pre">1</span></code> on the diagonal and <code class="docutils literal notranslate"><span class="pre">0</span></code> everywhere else is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix">Identity matrix</a>, and is often denoted by the symbol <span class="math notranslate nohighlight">\(\mathbf{I}\)</span>.</p></li>
+<li><p><strong>Triangular matrices</strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Triangular_matrix">Triangular matrices</a> are square arrays with zero entries below or above the main diagonal. A square matrix is called <em>lower triangular</em> if all the entries above the main diagonal are zero. Similarly, a square matrix is called <em>upper triangular</em> if all the entries below the main diagonal are zero.</p></li>
+<li><p><strong>Orthogonal matrices</strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Orthogonal_matrix">Orthogonal matrices</a>  are square matrices whose rows and columns are mutually orthogonal and have unit lengths.</p></li>
+</ul>
+<section id="trace-determinant-and-rank">
+<span id="content-determinant-trace"></span><h4>Trace, Determinant and Rank<a class="headerlink" href="#trace-determinant-and-rank" title="Permalink to this headline">#</a></h4>
+<p>The trace of a square matrix is the sum of the diagonal elements (<a class="reference internal" href="#defn-trace-A">Definition 7</a>):</p>
+<div class="proof definition admonition" id="defn-trace-A">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Trace)</p>
 <section class="definition-content" id="proof-content">
-<p>Triangular matrices are square arrays with zero entries below or above the main diagonal. An <span class="math notranslate nohighlight">\(n\times{n}\)</span> lower triangular matrix <span class="math notranslate nohighlight">\(\mathbf{L}\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\mathbf{L} = 
-\begin{pmatrix}
-l_{11} &amp; 0 &amp; \dots &amp; 0 \\
-l_{21} &amp; l_{22} &amp; \dots &amp; 0 \\
-\vdots &amp; \vdots &amp; &amp; \vdots \\
-l_{n1} &amp; l_{n2} &amp; \dots &amp; l_{nn}
-\end{pmatrix}\end{split}\]</div>
-<p>has entries <span class="math notranslate nohighlight">\(l_{ij} = 0\)</span> for <span class="math notranslate nohighlight">\(i&lt;j\)</span> (above the diagonal). On the other hand, an <span class="math notranslate nohighlight">\(n\times{n}\)</span> upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\mathbf{U} = 
-\begin{pmatrix}
-u_{11} &amp; u_{12} &amp; \dots &amp; u_{nn} \\
-0 &amp; u_{22} &amp; \dots &amp; u_{2n} \\
-\vdots &amp; \vdots &amp; &amp; \vdots \\
-0 &amp; 0 &amp; \dots &amp; u_{nn}
-\end{pmatrix}\end{split}\]</div>
-<p>has entries <span class="math notranslate nohighlight">\(u_{ij} = 0\)</span> for <span class="math notranslate nohighlight">\(i&gt;j\)</span> (below the diagonal).</p>
+<p>The trace of a square matrix is defined as the sum of its diagonal elements. Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where <span class="math notranslate nohighlight">\(a_{ij}\)</span> denotes the element on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. Then, the trace, denoted as <span class="math notranslate nohighlight">\(\text{tr}\left(\mathbf{A}\right)\)</span>, is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-trace-a">
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
 </section>
-</div><p>Triangular matrices are useful in various mathematical and computational contexts. For example, they are easy to invert, can be used to represent linear transformations conveniently, and can be used to solve systems of linear algebraic equations efficiently.</p>
-</section>
-<section id="orthogonal-matrices">
-<span id="content-references-orth-matrix"></span><h4>Orthogonal matrices<a class="headerlink" href="#orthogonal-matrices" title="Permalink to this headline">#</a></h4>
-<p>Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths (<a class="reference internal" href="#defn-orthogonal-matrix">Definition 8</a>):</p>
-<div class="proof definition admonition" id="defn-orthogonal-matrix">
-<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Orthogonal matrices)</p>
-<section class="definition-content" id="proof-content">
-<p>An <span class="math notranslate nohighlight">\(n\times{n}\)</span> real matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an orthogonal matrix if:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-orthogonal-matrices">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-orthogonal-matrices" title="Permalink to this equation">#</a></span>\[\mathbf{A}^{T}\mathbf{A} = \mathbf{A}\mathbf{A}^{T} = \mathbf{I}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{n}\)</span> identity matrix.</p>
-</section>
-</div><p>Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.</p>
-</section>
-</section>
-</section>
-<section id="determinant-and-trace">
-<span id="content-determinant-trace"></span><h2>Determinant and Trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of a matrix</a> is a scalar value that can be computed from a square matrix. <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">Determinants</a> can be used to determine whether a <a class="reference internal" href="laes.html"><span class="doc std std-doc">matrix is invertible</span></a>, and they also have applications in solving systems of linear equations and calculating volume changes in linear transformations. The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of square matrix</a> <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is defined as (<a class="reference internal" href="#defn-det-A">Definition 9</a>):</p>
+</div><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of a matrix</a> is a scalar value that can be computed from a square matrix. <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">Determinants</a> are used to determine whether a system of linear equations has a solution, and they also have applications in calculating volume changes in linear transformations.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant of square matrix</a> <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is defined as (<a class="reference internal" href="#defn-det-A">Definition 8</a>):</p>
 <div class="proof definition admonition" id="defn-det-A">
-<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Determinant)</p>
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Determinant)</p>
 <section class="definition-content" id="proof-content">
 <p>Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>.
-Then, the determinant of the square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted as <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span>, is given by:</p>
+Then, the determinant, denoted as <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-a">
 <span class="eqno">(15)<a class="headerlink" href="#equation-eqn-det-a" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \sum_{\sigma\in{S_{n}}}\text{sign}\left(\sigma\right)\prod_{i=1}^{n}a_{i\sigma_{i}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(S_{n}\)</span> denotes the Symmtery group of dimension <span class="math notranslate nohighlight">\(n\)</span>, i.e., the set of all possible permutations of the set <span class="math notranslate nohighlight">\({1,2,\dots,n}\)</span>,
-<span class="math notranslate nohighlight">\(\text{sign}\left(\sigma\right)\)</span> equals <code class="docutils literal notranslate"><span class="pre">+1</span></code> if the permutation can be obtained with an even number of exchanges; otherwise <code class="docutils literal notranslate"><span class="pre">-1</span></code>.
-Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> denotes the entry of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span>, and column <span class="math notranslate nohighlight">\(\sigma_{i}\)</span>.</p>
+the quantity <span class="math notranslate nohighlight">\(\text{sign}\left(\sigma\right)\)</span> equals <code class="docutils literal notranslate"><span class="pre">+1</span></code> if the permutation can be obtained with an even number of exchanges; otherwise <code class="docutils literal notranslate"><span class="pre">-1</span></code>. Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> denotes the entry of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span>, and column <span class="math notranslate nohighlight">\(\sigma_{i}\)</span>.</p>
 </section>
-</div><p>Although the determinant in the general case, as described in <a class="reference internal" href="#defn-det-A">Definition 9</a>, is difficult to calculate, the determinat of triangular matrices is easy to compute:</p>
+</div><p>Although the determinant of a dense square matrix is generally difficult to calculate, determinants of triangular matrices are easy to compute:</p>
 <div class="proof observation admonition" id="obs-determinant-triangular-matrix">
 <p class="admonition-title"><span class="caption-number">Observation 2 </span> (Determinant triangular matrix)</p>
 <section class="observation-content" id="proof-content">
@@ -863,44 +855,38 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p>while the determinant of the <span class="math notranslate nohighlight">\(n\times{n}\)</span> lower triangular matrix <span class="math notranslate nohighlight">\(\mathbf{L}\)</span>  is given by:</p>
 <div class="math notranslate nohighlight">
 \[\det\left(\mathbf{L}\right) = \prod_{i=1}^{n}l_{ii}\]</div>
-<p><strong>Idea</strong>: One potential strategy to efficiently compute a determinant is perhaps to convert the general <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to a triangular form (by some theoretical approach). However, will the determinant of the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and its triangular be the same? We’ll need to wait and see.</p>
+<p><strong>Idea</strong>: One potential strategy to efficiently compute a determinant is perhaps to convert the general <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to a triangular form (by some theoretical approach). However, will the determinant of the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and its triangular be the same?</p>
 </section>
-</div><section id="trace">
-<h3>Trace<a class="headerlink" href="#trace" title="Permalink to this headline">#</a></h3>
-<p>On the other hand, the trace of a matrix is the sum of the diagonal elements of a square matrix (<a class="reference internal" href="#defn-trace-A">Definition 10</a>):</p>
-<div class="proof definition admonition" id="defn-trace-A">
-<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Trace)</p>
+</div><p>Finally, the <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank of a matrix</a> is a measure of the number of linearly independent rows or columns <a class="reference internal" href="#defn-rank-A">Definition 9</a>:</p>
+<div class="proof definition admonition" id="defn-rank-A">
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Rank)</p>
 <section class="definition-content" id="proof-content">
-<p>Consider an <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, where we denote the <span class="math notranslate nohighlight">\(a_{ij}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> on row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>. Then, the trace of the square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, denoted as <span class="math notranslate nohighlight">\(\text{tr}\left(\mathbf{A}\right)\)</span>, is given by:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-trace-a">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-trace-a" title="Permalink to this equation">#</a></span>\[\text{tr}\left(\mathbf{A}\right) = \sum_{i=1}^{n}a_{ii}\]</div>
-</section>
-</div></section>
-</section>
-<section id="rank-and-kernel">
-<h2>Rank and kernel<a class="headerlink" href="#rank-and-kernel" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank of a matrix</a> is a measure of the number of linearly independent rows or columns. The rank of a matrix <em>r</em> of a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is always less than or equal to the minimum of its number of rows and columns:</p>
+<p>The rank of a matrix <em>r</em> of a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is always less than or equal to the minimum of its number of rows and columns:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rank-inequality">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
-<p>Rank can also be considered a measure of the unique information in a matrix; thus, if there is redundant information (rows or columns that are not linearly independent), a matrix will be less than full rank.</p>
-<p>The kernel of a matrix is the set of all solutions to the homogeneous equation <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix.</p>
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-rank-inequality" title="Permalink to this equation">#</a></span>\[r\leq\min\left(m,n\right)\]</div>
+<p>Rank can also be considered a measure of the unique information in a matrix; if there is redundant information (rows or columns that are not linearly independent), a matrix will have less than full rank.</p>
+</section>
+</div><!-- The kernel of a matrix is the set of all solutions to the homogeneous equation $\mathbf{A}\mathbf{x} = \mathbf{0}$, where $\mathbf{A}$ is the matrix, and $\mathbf{x}$ is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix. -->
+</section>
+</section>
 </section>
 <section id="matrix-and-vector-operations">
 <span id="content-matrix-vector-operations"></span><h2>Matrix and vector operations<a class="headerlink" href="#matrix-and-vector-operations" title="Permalink to this headline">#</a></h2>
-<p>Matrix and vector operations are mathematical procedures that include addition, subtraction, scalar multiplication, and matrix multiplication, which can be used to represent and manipulate linear transformations. Understanding these operations is crucial for many areas of science, engineering, and computer science.</p>
+<p>Matrix and vector operations are mathematical procedures to add, subtract and multiple matrices and vectors.  Matrix and vector operations are similar in some wats to scalar numbers, with some crucial differences and one important caveat: <em>they must be compatible</em>.</p>
+<p>Many (if not all) modern programming languages implement a version of the <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">Basic Linear Algebra Subprograms (BLAS)</a> library. <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">BLAS</a> is a low-level library that efficiently implements basic linear algebra operations, such as vector and matrix multiplication, matrix-vector multiplication, and solving linear systems of equations. The library is designed to provide high-performance implementations of these routines that can be used as building blocks for more complex algorithms.</p>
+<p>However, while you will not have to implement most matrix and vector operations on your own, it is still helpful to understand these operations and how broadly they work.</p>
 <section id="addition-and-subtraction">
 <h3>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Permalink to this headline">#</a></h3>
-<p>Matrices and vectors can be added and subtracted just like scalars quantities with one important caveat, namely, they need to be compatible. Vectors and matrices must be the <em>same dimension</em> to be compatible with addition or subtraction operations.</p>
-<p>The addition (or subtraction) operations for matrices or vectors, as well as multiplying these objects by a scalar constant (as we shall see), is done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
+<p>Compatible matrices and vectors can be added and subtracted just like scalar quantities. The addition (or subtraction) operations for matrices or vectors are done element-wise. Thus, if these objects don’t have the same number of elements, then addition and subtraction operations don’t make sense.</p>
 <div class="proof definition admonition" id="obs-same-dimension">
-<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Vector addition)</p>
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Vector addition)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose we have two <span class="math notranslate nohighlight">\(m\times{1}\)</span> vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The sum of these vectors <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{a} + \mathbf{b}\)</span> is the <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> given by:</p>
+<p>Suppose we have two vectors <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{m}\)</span>. The sum of these vectors <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{a} + \mathbf{b}\)</span> is the vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{m}\)</span> given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-addition">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-vector-addition" title="Permalink to this equation">#</a></span>\[y_{i} = a_{i} + b_{i}\qquad{i=1,\dots,m}\]</div>
-<p>The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are compatible if they have the same number of elements.</p>
+<span class="eqno">(17)<a class="headerlink" href="#equation-eqn-vector-addition" title="Permalink to this equation">#</a></span>\[y_{i} = a_{i} + b_{i}\qquad{i=1,\dots,m}\]</div>
+<p><strong>Compatibility</strong>: The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are compatible if they have the same number of elements.</p>
 </section>
-</div><p>Vector addition is strarighforward to implement, consider <a class="reference internal" href="#algo-vector-addition">Algorithm 4</a>:</p>
+</div><p>Vector addition is straightforward to implement (<a class="reference internal" href="#algo-vector-addition">Algorithm 4</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-vector-addition">
 <p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Naive vector addition)</p>
 <section class="algorithm-content" id="proof-content">
@@ -921,77 +907,80 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </ol>
 <p><strong>Return</strong> sum vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span></p>
 </section>
-</div><p><a class="reference internal" href="#algo-vector-addition">Algorithm 4</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtract operations.v Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p>
-<p>Vectorized code typically executes faster than naive implementations such as <a class="reference internal" href="#algo-vector-addition">Algorithm 4</a> because the <em>vectorization</em> takes advantage of advanced techniques to improve performance.</p>
-<p>You can use the <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator.</p>
+</div><section id="is-the-naive-approach-really-the-best">
+<h4>Is the naive approach really the best?<a class="headerlink" href="#is-the-naive-approach-really-the-best" title="Permalink to this headline">#</a></h4>
+<p><a class="reference internal" href="#algo-vector-addition">Algorithm 4</a> may not be the <em>best</em> way to implement vector (or matrix) addition or subtraction operations. Many modern programming languages and libraries, e.g., <a class="reference external" href="https://numpy.org">the Numpy library in Python</a> or <a class="reference external" href="https://julialang.org">Julia</a>, support <em>vectorization</em>, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</p>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a>, you can use the vectorized <code class="docutils literal notranslate"><span class="pre">.+</span></code> operator for element-wise addition, while element-wise subtraction can be encoded with the <code class="docutils literal notranslate"><span class="pre">.-</span></code> operator. Vectorized code typically executes faster than naive implementations such as <a class="reference internal" href="#algo-vector-addition">Algorithm 4</a> because the <em>vectorization</em> takes advantage of advanced techniques to improve performance.</p>
 </section>
+</section>
+<section id="multiplication-operations">
+<h3>Multiplication operations<a class="headerlink" href="#multiplication-operations" title="Permalink to this headline">#</a></h3>
 <section id="scalar-multiplication">
-<h3>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Permalink to this headline">#</a></h3>
-<p>Multiplying a vector (or a matrix) by a constant is also done element wise.</p>
+<h4>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Permalink to this headline">#</a></h4>
+<p>The most straightforward multiplication operation is between a scalar and a vector (or matrix). Multiplying a vector (or a matrix) by a scalar constant is done element-wise (<a class="reference internal" href="#defn-scalar-multiplication">Definition 11</a>):</p>
 <div class="proof definition admonition" id="defn-scalar-multiplication">
-<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Scalar multiplication)</p>
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Scalar multiplication of a matrix or vector)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose we have a <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and a constant <span class="math notranslate nohighlight">\(c\)</span>. Then the scalar product between a constant <span class="math notranslate nohighlight">\(c\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathbf{y} = c\mathbf{v}\)</span>, is given by:</p>
+<p><strong>Vector</strong>: Suppose we have a vector <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{n}\)</span> and a real scalar constant <span class="math notranslate nohighlight">\(c\in\mathbb{R}\)</span>. Then the scalar product, denoted by <span class="math notranslate nohighlight">\(\mathbf{y} = c\mathbf{v}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight">
 \[y_{i} = cv_{i}\qquad{i=1,2,\dots,n}\]</div>
-<p>where <span class="math notranslate nohighlight">\(y_{i}\)</span> and <span class="math notranslate nohighlight">\(v_{i}\)</span> denote the ith component of the product vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, and the input vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
-<p>Likewise, suppose we have an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and constant <span class="math notranslate nohighlight">\(c\)</span>. Then, the scalar product between a constant <span class="math notranslate nohighlight">\(c\)</span> and the matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathbf{Y} = c\mathbf{X}\)</span>, is given by:</p>
+<p>where <span class="math notranslate nohighlight">\(y_{i}\)</span> and <span class="math notranslate nohighlight">\(v_{i}\)</span> denote the ith component of the product vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{n}\)</span>, and the input vector <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{n}\)</span>.</p>
+<p><strong>Matrix</strong>: Likewise, suppose we have the matrix <span class="math notranslate nohighlight">\(\mathbf{X}\in\mathbb{R}^{m\times{n}}\)</span> and a real scalar constant <span class="math notranslate nohighlight">\(c\in\mathbb{R}\)</span>. Then, the scalar product, denoted by <span class="math notranslate nohighlight">\(\mathbf{Y} = c\mathbf{X}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight">
 \[y_{ij} = cx_{ij}\qquad{i=1,2,\dots,m,~j=1,2,\dots,n}\]</div>
-<p>where <span class="math notranslate nohighlight">\(y_{ij}\)</span> and <span class="math notranslate nohighlight">\(x_{ij}\)</span> denote the ijth component of the product matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>, and the input matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(y_{ij}\)</span> and <span class="math notranslate nohighlight">\(x_{ij}\)</span> denote components of the product matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\in\mathbb{R}^{m\times{n}}\)</span>, and the input matrix <span class="math notranslate nohighlight">\(\mathbf{X}\in\mathbb{R}^{m\times{n}}\)</span>, respectively.</p>
 </section>
 </div></section>
-<section id="vector-vector-matrix-vector-and-matrix-matrix-multiplication">
-<h3>Vector-vector, matrix-vector and matrix-matrix multiplication<a class="headerlink" href="#vector-vector-matrix-vector-and-matrix-matrix-multiplication" title="Permalink to this headline">#</a></h3>
 <section id="vector-vector-multiplication">
 <h4>Vector-vector multiplication<a class="headerlink" href="#vector-vector-multiplication" title="Permalink to this headline">#</a></h4>
-<p>Inner products: Two compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multiplied together to produce a <em>scalar</em> in an operation called an <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a>:</p>
+<p><strong>Inner product</strong>: Two compatible vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multiplied together to produce a <em>scalar</em> in an operation called an <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product operation</a> (<a class="reference internal" href="#defn-vector-vector-multiplication">Definition 12</a>):</p>
 <div class="proof definition admonition" id="defn-vector-vector-multiplication">
-<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Inner product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Inner product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{m\times{1}}\)</span>. Then, the <em>vector-vector inner product</em> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-vector-inner-product">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-vector-vector-inner-product" title="Permalink to this equation">#</a></span>\[y = \mathbf{a}^{T}\mathbf{b}\]</div>
+<span class="eqno">(18)<a class="headerlink" href="#equation-eqn-vector-vector-inner-product" title="Permalink to this equation">#</a></span>\[y = \mathbf{a}^{T}\mathbf{b}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{a}^{T}\)</span> denotes the transpose of the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and the scalar <span class="math notranslate nohighlight">\(y\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-inner-product-index-form">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-vector-inner-product-index-form" title="Permalink to this equation">#</a></span>\[y = \sum_{i=1}^{m}a_{i}b_{i}\]</div>
-<p>This operation is possible if the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> have the same number of elements.</p>
+<span class="eqno">(19)<a class="headerlink" href="#equation-eqn-vector-inner-product-index-form" title="Permalink to this equation">#</a></span>\[y = \sum_{i=1}^{m}a_{i}b_{i}\]</div>
+<p><strong>Compatibility</strong>: This operation is possible if the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> have the same number of elements.</p>
 </section>
-</div><p>Outer product: Suppose you have an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, and an <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multipled together to form a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix through an <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer product</a>:</p>
+</div><p><strong>Outer product</strong>: Suppose you have an <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, and an <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> can be multipled together to form a <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix through an <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer product operation</a> (<a class="reference internal" href="#defn-vector-vector-multiplication-op">Definition 13</a>):</p>
 <div class="proof definition admonition" id="defn-vector-vector-multiplication-op">
-<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Outer product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Outer product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{a}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the <em>vector-vector outer product</em> given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-vector-outer-product">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-vector-vector-outer-product" title="Permalink to this equation">#</a></span>\[\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}\]</div>
-<p>produces the <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\in\mathbb{R}^{m\times{n}}\)</span> with elements:</p>
+<span class="eqno">(20)<a class="headerlink" href="#equation-eqn-vector-vector-outer-product" title="Permalink to this equation">#</a></span>\[\mathbf{Y} = \mathbf{a}\otimes\mathbf{b}\]</div>
+<p>produces the matrix <span class="math notranslate nohighlight">\(\mathbf{Y}\in\mathbb{R}^{m\times{n}}\)</span> with elements:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-vector-outer-product-index-form">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-vector-outer-product-index-form" title="Permalink to this equation">#</a></span>\[y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}\]</div>
+<span class="eqno">(21)<a class="headerlink" href="#equation-eqn-vector-outer-product-index-form" title="Permalink to this equation">#</a></span>\[y_{ij} = a_{i}b_{j}\qquad{i=1,2,\dots,m~\text{and}~j=1,2,\dots,n}\]</div>
 <p>The outer product operation is equivalent to <span class="math notranslate nohighlight">\(\mathbf{Y} = \mathbf{a}\mathbf{b}^{T}\)</span>.</p>
+<p><strong>Compatibility</strong>: This operation is possible if the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> have the same number of elements.</p>
 </section>
 </div></section>
 <section id="right-multiplication-of-a-matrix-by-a-vector">
 <h4>Right multiplication of a matrix by a vector<a class="headerlink" href="#right-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
-<p>A common operation is <em>right matrix-vector multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. If the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are compatible,  <em>right matrix-vector multiplication</em> will produce a vector with the same number of rows as the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>:</p>
+<p>A common operation is <em>right matrix-vector multiplication</em> of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> by a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. If the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are compatible,  <em>right matrix-vector multiplication</em> will produce a vector with the same number of rows as the original matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> (<a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 14</a>):</p>
 <div class="proof definition admonition" id="defn-right-matrix-vector-multiplication">
-<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Right matrix-vector multiplication)</p>
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Right matrix-vector multiplication)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the <em>right matrix-vector product</em> given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span>. Then, the right matrix-vector product given by:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{y} = \mathbf{A}\mathbf{x}\]</div>
-<p>generates <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{m\times{1}}\)</span> where the <span class="math notranslate nohighlight">\(i\)</span>th element is given by:</p>
+<p>generates the <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{m\times{1}}\)</span> vector where the <span class="math notranslate nohighlight">\(i\)</span>th element is given by:</p>
 <div class="math notranslate nohighlight">
 \[y_{i} = \sum_{j=1}^{n}a_{ij}x_{j}\qquad{i=1,2,\cdots,m}\]</div>
-<p>This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p><strong>Compatibility</strong>: This operation is possible if the number of columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
-</div><p>The <em>right multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 11</span></a>):</p>
+</div><p>The right multiplication operation can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-right-multiplication-matrix-vector"><span class="std std-numref">Fig. 11</span></a>):</p>
 <figure class="align-default" id="fig-right-multiplication-matrix-vector">
 <a class="reference internal image-reference" href="../_images/Fig-Ab-Multiplication.pdf"><img alt="../_images/Fig-Ab-Multiplication.pdf" src="../_images/Fig-Ab-Multiplication.pdf" style="height: 140px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-right-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>A psuedo code implemetation of <a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 15</a> is given in <a class="reference internal" href="#algo-right-multiplication-matrix-vector">Algorithm 5</a>:</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-right-matrix-vector-multiplication">Definition 14</a> is given in <a class="reference internal" href="#algo-right-multiplication-matrix-vector">Algorithm 5</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-right-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Naive right multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1019,17 +1008,18 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </div></section>
 <section id="left-multiplication-of-a-matrix-by-a-vector">
 <h4>Left multiplication of a matrix by a vector<a class="headerlink" href="#left-multiplication-of-a-matrix-by-a-vector" title="Permalink to this headline">#</a></h4>
-<p>We could also consider the <em>left multiplication</em> of a matrix by a vector. Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, then the <em>left matrix-vector product</em> is a row vector:</p>
+<p>We could also consider the <em>left multiplication</em> of a matrix by a vector. Suppose <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(m\times{1}\)</span> vector, then the <em>left matrix-vector product</em> is a row vector (<a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 15</a>):</p>
 <div class="proof definition admonition" id="defn-left-multiply-matrix-vector">
-<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Left matrix-vector product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Left matrix-vector product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m\times{1}}\)</span>. Then, the <em>left matrix-vector product</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-left-matrix-vector-product-matrix">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{x}^{T}\mathbf{A}\]</div>
+<span class="eqno">(22)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{x}^{T}\mathbf{A}\]</div>
 <p>produces the vector <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{1\times{n}}\)</span> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-left-matrix-vector-product-index">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
+<span class="eqno">(23)<a class="headerlink" href="#equation-eqn-left-matrix-vector-product-index" title="Permalink to this equation">#</a></span>\[y_{i} = \sum_{j=1}^{m}a_{ji}x_{j}\qquad{i=1,2,\dots,n}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}^{T}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p><strong>Compatibility</strong>: This operation is possible if the number of rows of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of columns of the transpose of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 </section>
 </div><p>The <em>left multiplication operation</em> can be represented graphically as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations (<a class="reference internal" href="#fig-left-multiplication-matrix-vector"><span class="std std-numref">Fig. 12</span></a>):</p>
 <figure class="align-default" id="fig-left-multiplication-matrix-vector">
@@ -1038,7 +1028,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p><span class="caption-number">Fig. 12 </span><span class="caption-text">Schematic of the left matrix-vector product. The left product, which produces a row vector with the same number of columns as the matrix, can be modeled as a series of scalar<span class="math notranslate nohighlight">\(\times\)</span>vector multiplication and vector-vector summation operations.</span><a class="headerlink" href="#fig-left-multiplication-matrix-vector" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>A psuedo code implemetation of <a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 16</a> is given in <a class="reference internal" href="#algo-left-multiplication-matrix-vector">Algorithm 6</a>:</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-left-multiply-matrix-vector">Definition 15</a> is given in <a class="reference internal" href="#algo-left-multiplication-matrix-vector">Algorithm 6</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-left-multiplication-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Naive left multiplication of a matrix by a vector)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1066,15 +1056,14 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </div></section>
 <section id="matrix-matrix-products">
 <h4>Matrix-Matrix products<a class="headerlink" href="#matrix-matrix-products" title="Permalink to this headline">#</a></h4>
-<p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication.</p>
+<p>Many of the important uses of matrices in engineering practice depend upon the definition of matrix multiplication (<a class="reference internal" href="#defn-matrix-matrix-product">Definition 16</a>):</p>
 <div class="proof definition admonition" id="defn-matrix-matrix-product">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Matrix-matrix product)</p>
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Matrix-matrix product)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. The matrix-matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{A}\times\mathbf{B}\)</span> produces the matrix <span class="math notranslate nohighlight">\(\mathbf{C}\in\mathbb{R}^{m\times{p}}\)</span> with elements:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-matrix-product-elements">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
-<p>The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
-<p>The runtime of matrix multiplication is <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of the matrices being multiplied.</p>
+<span class="eqno">(24)<a class="headerlink" href="#equation-eqn-matrix-matrix-product-elements" title="Permalink to this equation">#</a></span>\[c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}\qquad{i=1,2,\cdots,m~\text{and}~j=1,2,\cdots,p}\]</div>
+<p><strong>Compatibility</strong>: The matrices <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span> are compatible if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\in\mathbb{R}^{n\times{p}}\)</span>. Otherwise, the matrices are incompatible and cannot be multiplied.</p>
 </section>
 </div><p>The <em>matrix-matrix multiplication</em> operation can be represented graphically as a series of right matrix-vector products (<a class="reference internal" href="#fig-multiplication-matrix-matrix"><span class="std std-numref">Fig. 13</span></a>):</p>
 <figure class="align-default" id="fig-multiplication-matrix-matrix">
@@ -1083,7 +1072,7 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 <p><span class="caption-number">Fig. 13 </span><span class="caption-text">Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products.</span><a class="headerlink" href="#fig-multiplication-matrix-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 17</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 7</a>:</p>
+<p>A psuedo code implemetation of <a class="reference internal" href="#defn-matrix-matrix-product">Definition 16</a> is given in <a class="reference internal" href="#algo-matrix-matrix-code">Algorithm 7</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-matrix-matrix-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 7 </span> (Naive Matrix <span class="math notranslate nohighlight">\(\times\)</span> Matrix multiplication)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1115,114 +1104,468 @@ Finally, <span class="math notranslate nohighlight">\(a_{i\sigma_{i}}\)</span> d
 </section>
 </div><p>Finally, matrix-matrix products have different properties compared with the product of two scalar numbers:</p>
 <ul class="simple">
-<li><p>Non-commutativity: Matrix multiplication is typically not commutative, e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>.</p></li>
-<li><p>Distributivity: Matrix products are distributive, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)</span>.</p></li>
-<li><p>Associative: Matrix products are associative, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}\)</span>.</p></li>
-<li><p>Transpose: The transpose of a matrix product is the product of transposes, i.e., <span class="math notranslate nohighlight">\(\left(\mathbf{A}\mathbf{B}\right)^{T} = \mathbf{B}^{T}\mathbf{A}^{T}\)</span>.</p></li>
+<li><p><strong>Non-commutativity</strong>: Matrix multiplication is typically <em>not</em> commutative, e.g., <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)</span>.</p></li>
+<li><p><strong>Distributivity</strong>: Matrix products are distributive, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)</span>.</p></li>
+<li><p><strong>Associative</strong>: Matrix products are associative, i.e., <span class="math notranslate nohighlight">\(\mathbf{A}\left(\mathbf{B}\mathbf{C}\right) = \left(\mathbf{A}\mathbf{B}\right)\mathbf{C}\)</span>.</p></li>
+<li><p><strong>Transpose</strong>: The transpose of a matrix product is the product of transposes, i.e., <span class="math notranslate nohighlight">\(\left(\mathbf{A}\mathbf{B}\right)^{T} = \mathbf{B}^{T}\mathbf{A}^{T}\)</span>.</p></li>
 </ul>
 <hr class="docutils" />
 </section>
 </section>
 </section>
-<section id="measurements-and-distances">
-<span id="content-measurements-distances"></span><h2>Measurements and distances<a class="headerlink" href="#measurements-and-distances" title="Permalink to this headline">#</a></h2>
-<section id="vector-and-matrix-norms">
-<h3>Vector and matrix norms<a class="headerlink" href="#vector-and-matrix-norms" title="Permalink to this headline">#</a></h3>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Norm_(mathematics)">norm</a> is a function that measures the length of vectors or matrices. The notion of length is handy because it enables us to define distance, i.e., similarity between vectors (or matrices) in applications such as machine learning.</p>
-<p>A vector norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{n}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
+<section id="linear-algebraic-equations">
+<span id="content-references-soln-laes-start"></span><h2>Linear algebraic equations<a class="headerlink" href="#linear-algebraic-equations" title="Permalink to this headline">#</a></h2>
+<p>Linear Algebraic Equations (LAEs) arise in many different engineering fields. In Chemical Engineering, these types of equations naturally arise from steady-state (or time-discretized) balances. Let’s start by asking a simple question, when does a solution exist to the generic system of LAEs of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-general-system-laes">
+<span class="eqno">(25)<a class="headerlink" href="#equation-eqn-general-system-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> is the system matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span> denotes a column vector of unknowns (what we want to solve for), and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{m\times{1}}\)</span> is the right-hand side vector:</p>
 <ul class="simple">
-<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{x}||\geq{0}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span></p></li>
-<li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{x}|| = \alpha{||\mathbf{x}||}\)</span> for any vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
-<li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
+<li><p><strong>Homogenous system</strong>: A homogeneous system of linear algebraic equations is a system in which the right-hand side vector <span class="math notranslate nohighlight">\(\mathbf{b}= \mathbf{0}\)</span>; every entry in the <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>-vector is equal to zero. The solution set for a homogeneous system is a subspace in linear algebra called the <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_(linear_algebra)">kernel or nullpsace</a>.</p></li>
+<li><p><strong>Non-homogeneous system</strong>: A non-homogeneous system of linear algebraic equations is a system in which at least one entry of the right-hand side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is non-zero.</p></li>
 </ul>
-<div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 18 </span> (p-norm)</p>
+<section id="existence">
+<h3>Existence<a class="headerlink" href="#existence" title="Permalink to this headline">#</a></h3>
+<p>The existence of a solution to a system of linear equations depends on the righ-hand side vector, the number of equations and the number of variables in the system.</p>
+<section id="homogeneous-square-systems">
+<h4>Homogeneous square systems<a class="headerlink" href="#homogeneous-square-systems" title="Permalink to this headline">#</a></h4>
+<p>For a homogeneous square system of linear equations, the trivial solution <span class="math notranslate nohighlight">\(\mathbf{x}=\mathbf{0}\)</span> will always exist, but non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-homogenous-laes">
+<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{0}\]</div>
+<p>may or may not have a unique solution. However, there is an easy check to determine the existence of a solution for a square homogenous system (<a class="reference internal" href="#defn-homogenous-soln-existence">Definition 17</a>):</p>
+<div class="proof definition admonition" id="defn-homogenous-soln-existence">
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Homogenous solution existence)</p>
 <section class="definition-content" id="proof-content">
-<p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
-<p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
+<p>A square homogeneous system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>
+has a unique solution if and only if the system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has a zero determinant:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-det-homogenous-cond">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-det-homogenous-cond" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = 0\]</div>
+<p>The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations.</p>
+<p>However, in practice, the determinant directly can be computationally expensive to compute. Alternatively, existence can also be checked by computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.  If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\left(\mathbf{A}\right)}=0\)</span>.</p>
 </section>
-</div><p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
-<ul class="simple">
-<li><p>Non-negativity: <span class="math notranslate nohighlight">\(||\mathbf{A}||\geq{0}\)</span> for any matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{A}||=0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{A}=0\)</span>.</p></li>
-<li><p>Multiplication by a scalar: <span class="math notranslate nohighlight">\(||\alpha\mathbf{A}|| = \alpha{||\mathbf{A}||}\)</span> for any <span class="math notranslate nohighlight">\(m\times{n}\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span>.</p></li>
-<li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
-</ul>
-<div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
-<p class="admonition-title"><span class="caption-number">Definition 19 </span> (Properties of Matrix Norms)</p>
+</div><!-- There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org). -->
+</section>
+<section id="non-homogeneous-square-systems">
+<h4>Non-homogeneous square systems<a class="headerlink" href="#non-homogeneous-square-systems" title="Permalink to this headline">#</a></h4>
+<p>A non-homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> coefficient matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, <span class="math notranslate nohighlight">\(n\times{1}\)</span> unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and the <span class="math notranslate nohighlight">\(n\times{1}\)</span> right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-non-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<p>will have a unique solution if there exists a matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-non-homogenous-laes-inverse">
+<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-non-homogenous-laes-inverse" title="Permalink to this equation">#</a></span>\[\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is called the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> (<a class="reference internal" href="#defn-matrix-inverse">Definition 18</a>):</p>
+<div class="proof definition admonition" id="defn-matrix-inverse">
+<p class="admonition-title"><span class="caption-number">Definition 18 </span> (Matrix inverse existence)</p>
 <section class="definition-content" id="proof-content">
-<p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
-<p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
-<span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<p>An <span class="math notranslate nohighlight">\(n\times{n}\)</span> square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> has an unique inverse <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-matrix-a">
+<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-matrix-a" title="Permalink to this equation">#</a></span>\[\mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}\]</div>
+<p>if <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\neq{0}\)</span>. If an inverse exists, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is called non-singular, otherwise <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is singular.</p>
 </section>
 </div></section>
-<section id="other-distance-metrics">
-<h3>Other distance metrics<a class="headerlink" href="#other-distance-metrics" title="Permalink to this headline">#</a></h3>
-<p>Other functions can be used to measure the similarity (or distance between) vectors and matrices:</p>
-<div class="proof definition admonition" id="defn-rbf-measure">
-<p class="admonition-title"><span class="caption-number">Definition 20 </span> (Radial basis function)</p>
+</section>
+<section id="solutions-approaches">
+<span id="content-references-solution-approaches"></span><h3>Solutions approaches<a class="headerlink" href="#solutions-approaches" title="Permalink to this headline">#</a></h3>
+<p>Several methods exist to find the solution of a square systems of linear equations:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-gaussian-elimination"><span class="std std-ref">Gaussian elimination</span></a> solves linear equations by using a sequence of operations to reduce the system to an upper triangular form and then back substitution to find the solution.</p></li>
+<li><p><a class="reference internal" href="#content-references-iterative-methods"><span class="std std-ref">Iterative methods</span></a> are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual solution.</p></li>
+</ul>
+</section>
+<section id="gaussian-elimination">
+<span id="content-references-gaussian-elimination"></span><h3>Gaussian elimination<a class="headerlink" href="#gaussian-elimination" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
+<p>Let’s start exploring this approach by looking at solving a triangular system of equations.</p>
+<section id="triangular-systems">
+<h4>Triangular systems<a class="headerlink" href="#triangular-systems" title="Permalink to this headline">#</a></h4>
+<p>Let’s consider a non-singular <span class="math notranslate nohighlight">\(3\times{3}\)</span> lower triangular system of equations:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-triangular-system">
+<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-triangular-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{pmatrix}
+l_{11} &amp; 0 &amp; 0 \\
+l_{21} &amp; l_{22} &amp; 0 \\
+l_{31} &amp; l_{32} &amp; l_{33}
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} = 
+\begin{pmatrix}
+b_{1} \\
+b_{2} \\
+b_{3}
+\end{pmatrix}\end{split}\]</div>
+<p>Since the matrix is non-singular, the diagonal elements <span class="math notranslate nohighlight">\(l_{ii},~i=1,2,3\)</span> are non-zero. This allows us to take advantage of the triangular structure to solve for the unknown <span class="math notranslate nohighlight">\(x_{i}\)</span> values:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+x_{1} &amp; = &amp; b_{1}/l_{11} \\
+x_{2} &amp; = &amp; \left(b_{2} - l_{21}x_{1}\right) / l_{22} \\
+x_{3} &amp; = &amp; \left(b_{3} - l_{31}x_{1} - l_{32}x_{2}\right) / l_{33}
+\end{eqnarray}
+\end{split}\]</div>
+<p>This idea, called <em>forward substitution</em>, can be extended to any <span class="math notranslate nohighlight">\(n\times{n}\)</span> non-singular lower triangular system (<a class="reference internal" href="#defn-general-forward-sub">Definition 19</a>):</p>
+<div class="proof definition admonition" id="defn-general-forward-sub">
+<p class="admonition-title"><span class="caption-number">Definition 19 </span> (Forward substitution)</p>
 <section class="definition-content" id="proof-content">
-<p>A radial basis function (RBF) measures the similarity between two input vectors <span class="math notranslate nohighlight">\(\mathbf{x}_{p}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x_{q}}\in\mathbb{R}^{m\times{1}}\)</span>. The most common is the Gaussian radial basis function, defined by a bell-shaped curve:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-rbf-similarity-function">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
-\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)\right) +\sigma_{n}^{2}\delta_{pq}\]</div>
-<p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\in\mathbb{R}^{m\times{m}}\)</span> can be any symmetric matrix, <span class="math notranslate nohighlight">\(\sigma_{f}^{2}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{n}^{2}\)</span> are constants and <span class="math notranslate nohighlight">\(\delta_{pq}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a>.</p>
+<p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system (<span class="math notranslate nohighlight">\(n\geq{2}\)</span>) of equations which is lower triangular, and non-singular of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-lower-triag-system">
+<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-lower-triag-system" title="Permalink to this equation">#</a></span>\[\mathbf{L}\mathbf{x} = \mathbf{b}\]</div>
+<p>Then, the solution of Eqn. <a class="reference internal" href="#equation-eqn-lower-triag-system">(32)</a> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+x_{1} &amp; = &amp; \frac{b_{1}}{l_{11}} \\
+x_{i} &amp; = &amp; \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\right)\qquad{i=2,\dots,n}
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(l_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
-</div><p>We shall see that radial basis functions are used in various machine learning applications, such as classification.</p>
+</div><p>Alternatively, we can take a similar apprach with an upper triangular system,  called <em>backward substituion</em>, to solve for
+unknow solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> (<a class="reference internal" href="#defn-general-backward-sub">Definition 20</a>):</p>
+<div class="proof definition admonition" id="defn-general-backward-sub">
+<p class="admonition-title"><span class="caption-number">Definition 20 </span> (Backward substitution)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system (<span class="math notranslate nohighlight">\(n\geq{2}\)</span>) of equations which is upper triangular, and non-singular of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-upper-triag-system">
+<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-upper-triag-system" title="Permalink to this equation">#</a></span>\[\mathbf{U}\mathbf{x} = \mathbf{b}\]</div>
+<p>Then, the solution of Eqn. <a class="reference internal" href="#equation-eqn-upper-triag-system">(33)</a> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+x_{n} &amp; = &amp; \frac{b_{n}}{u_{nn}} \\
+x_{i} &amp; = &amp; \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\right)\qquad{i=n-1,\dots,1}
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(u_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
+</div><!-- Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`: -->
+<p>Solving a lower or upper triangular system can easily be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems?</p>
 </section>
-<section id="dimensionality-reduction">
-<span id="content-dimensionality-reduction"></span><h2>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h2>
-<p>Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p>
-<p>There are many techniques for dimensionality reduction, including <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>, which are both based on solving <a class="reference internal" href="#content-eigenvalue-eigenvector-problems"><span class="std std-ref">Eigenvalue-eigenvector problems</span></a>. Other approaches, such as clustering and <a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding (t-SNE)</a>, are based upon minimizing some other distance measure.</p>
-<section id="eigenvalue-eigenvector-problems">
-<span id="content-eigenvalue-eigenvector-problems"></span><h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
-<p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
-<p>In addition to thier other uses, eigenvalues have a another interesting feature (<a class="reference internal" href="#obs-eigenvalues-determinants">Observation 3</a>):</p>
-<div class="proof observation admonition" id="obs-eigenvalues-determinants">
-<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Determinants and eigenvalues)</p>
-<section class="observation-content" id="proof-content">
-<p>Eigenvalues can be used directly to calculate the determinant of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>. Denote the set of
-eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> as <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span>. Then, the <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span> is given by:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-det-a-eigenvalues">
-<span class="eqno">(31)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
-<p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\lambda_{i}&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
+<section id="row-reduction-approaches">
+<h4>Row reduction approaches<a class="headerlink" href="#row-reduction-approaches" title="Permalink to this headline">#</a></h4>
+<p>Converting a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is <code class="docutils literal notranslate"><span class="pre">1</span></code>, and all the other entries in that column are <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.</p>
+<p>Let’s walkthrough a simple example to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row reduction</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+2 &amp; -1 &amp; 0 \\
+-1 &amp; 2 &amp; -1 \\
+0 &amp; -1 &amp; 2
+\end{bmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+1 \\
+0
+\end{pmatrix}\end{split}\]</div>
+<p><strong>Step 1</strong>: Form the augemented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> which is defined as the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the righ-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> appended as the last column:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a">
+<span class="eqno">(35)<a class="headerlink" href="#equation-eqn-augmented-array-a" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p><strong>Step 2</strong>: Perform row operations to reduce the augmented matrix <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\)</span> to <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">the upper triangular row echelon form</a>. We can perform row operations:</p>
+<ul class="simple">
+<li><p><em>Swapping</em>: We can interchange the order of the rows to get zeros below the main diagonal.</p></li>
+<li><p><em>Scaling</em>:  If the first nonzero entry of row <span class="math notranslate nohighlight">\(R_{i}\)</span> is <span class="math notranslate nohighlight">\(\lambda\)</span>, we can convert to <span class="math notranslate nohighlight">\(1\)</span> through the operation: <span class="math notranslate nohighlight">\(R_{i}\leftarrow{1/\lambda}R_{i}\)</span></p></li>
+<li><p><em>Addition and subtraction</em>: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows <span class="math notranslate nohighlight">\(R_{i}\)</span> and <span class="math notranslate nohighlight">\(R_{j}\)</span> have nonzero entries in column <span class="math notranslate nohighlight">\(k\)</span>, we can transform the (j,k) entry into a zero using <span class="math notranslate nohighlight">\(R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}\)</span>.</p></li>
+</ul>
+<p>In Eqn <a class="reference internal" href="#equation-eqn-augmented-array-a">(35)</a>, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not <code class="docutils literal notranslate"><span class="pre">1</span></code>; thus, let’s use a scaling row operation:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step3">
+<span class="eqno">(36)<a class="headerlink" href="#equation-eqn-augmented-array-a-step3" title="Permalink to this equation">#</a></span>\[\begin{split}\bar{\mathbf{A}} = \begin{bmatrix}
+2 &amp; -1 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix} \stackrel{R_{1}\leftarrow(1/2)R_{1}}{\longrightarrow}
+\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>We now eliminate the coefficient below the top row; in this case <span class="math notranslate nohighlight">\(i=1\)</span>, <span class="math notranslate nohighlight">\(j=1\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span> which gives the operation: <span class="math notranslate nohighlight">\(R_{2}\leftarrow{R}_{2} + R_{1}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-augmented-array-a-step4">
+<span class="eqno">(37)<a class="headerlink" href="#equation-eqn-augmented-array-a-step4" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+-1 &amp; 2 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}
+\stackrel{R_{2}\leftarrow{R_{2}+R_{1}}}{\longrightarrow}
+\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1.5 &amp; -1 &amp;\bigm| &amp; 1 \\
+0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc.</p>
+<p>While the logic underlying the row reduction of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to the upper triangular row-echelon form <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> seems simple, the implementation of a general, efficient row reduction function can be complicated; let’s develop a naive implementation of a row reduction
+procedure (<a class="reference internal" href="#algo-ge-basic">Algorithm 8</a>):</p>
+<div class="proof algorithm dropdown admonition" id="algo-ge-basic">
+<p class="admonition-title"><span class="caption-number">Algorithm 8 </span> (Naive Row Reduction)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Input</strong>:
+Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
+<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
+<p><strong>Initialize</strong>:</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\((n,m)\leftarrow\text{size}(\mathbf{A})\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\leftarrow\text{augment}(\mathbf{A},\mathbf{b})\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1}\dots{n-1}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{pivot}\leftarrow{a_{ii}}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\text{pivotRow}\leftarrow{i}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1}\dots{n}\)</span></p>
+<ol class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(\text{abs}(\bar{a}_{ji}) &gt; \text{abs}(\text{pivot})\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{pivot}\leftarrow\bar{a}_{ji}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\text{pivotRow}\leftarrow{j}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>set <span class="math notranslate nohighlight">\(\bar{\mathbf{A}}\leftarrow\text{swap}(\bar{\mathbf{A}},i,\text{pivotRow})\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1}\dots{n}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{factor}\leftarrow{a_{ji}}/\text{pivot}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(k\in{1,\dots,m}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(a_{jk}\leftarrow{a_{jk}} - \text{factor}\times{a_{ik}}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> <span class="math notranslate nohighlight">\(\text{row reduced}~\bar{\mathbf{A}}\)</span></p>
+</section>
+</div><p><strong>Step 3</strong>: Solve for the unknown values <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span> using <em>back substitution</em>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-back-sub-matrix-a">
+<span class="eqno">(38)<a class="headerlink" href="#equation-eqn-back-sub-matrix-a" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+1 &amp; -0.5 &amp; 0 &amp;\bigm| &amp; 0 \\
+0 &amp; 1 &amp; -0.66 &amp;\bigm| &amp; 0.66 \\
+0 &amp; 0 &amp; 1 &amp;\bigm| &amp; 0.49
+\end{bmatrix}\end{split}\]</div>
+<p>This system in Eqn. <a class="reference internal" href="#equation-eqn-back-sub-matrix-a">(38)</a> is in row reduced form; thus, it can now be solved using <em>back substitution</em>. Based on the <a class="reference internal" href="#defn-general-backward-sub">Definition 20</a>, we implemented a back substitution routine <a class="reference internal" href="#algo-backward-substituion">Algorithm 9</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-backward-substituion">
+<p class="admonition-title"><span class="caption-number">Algorithm 9 </span> (Backward substituion)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>, column vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p>
+<p><strong>Outputs</strong> solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\text{nrows}\left(\mathbf{U}\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}\leftarrow\text{zeros}\left(n\right)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x_n\leftarrow{b_n/u_{nn}}\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{n-1\dots,1}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\text{sum}\leftarrow{0}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{i+1,\dots,n}\)</span></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{sum}\leftarrow\text{sum} + u_{ij}\times{x_{j}}\)</span></p></li>
+</ol>
+</li>
+<li><p><span class="math notranslate nohighlight">\(x_{i}\leftarrow\left(1/u_{ii}\right)\times\left(b_{i} - \text{sum}\right)\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong> solution vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p>
+</section>
+</div><p>Now that we have both row reduction and back substitytion algorithms, let’s look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction (<a class="reference internal" href="#example-time-discretized-decay">Example 19</a>):</p>
+<div class="proof example dropdown admonition" id="example-time-discretized-decay">
+<p class="admonition-title"><span class="caption-number">Example 19 </span> (First-order decay)</p>
+<section class="example-content" id="proof-content">
+<p>Setup a system of linear algebraic equations whose solution describes the concentration as a function of time for a compound <span class="math notranslate nohighlight">\(A\)</span> that undergoes first-order decay in a well-mixed batch reactor. The concentration balance for compound <span class="math notranslate nohighlight">\(A\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-balance-concentration">
+<span class="eqno">(39)<a class="headerlink" href="#equation-eqn-balance-concentration" title="Permalink to this equation">#</a></span>\[\frac{dC_{A}}{dt} = -\kappa{C_{A}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\kappa\)</span> denotes the first-order rate constant governing the rate of decay (units: 1/time), and the initial condition is given by <span class="math notranslate nohighlight">\(C_{A,0}\)</span>.
+Let <span class="math notranslate nohighlight">\(C_{A,0} = 10~\text{mmol/L}\)</span>, <span class="math notranslate nohighlight">\(\kappa = 0.5~\text{hr}^{-1}\)</span> and <span class="math notranslate nohighlight">\(h = 0.1\)</span>.</p>
+<p><strong>Solution</strong>: Let’s discretize the concentration balance using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">forward finte difference</a> approximation of the time derivatrive:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ca-recursion">
+<span class="eqno">(40)<a class="headerlink" href="#equation-eqn-ca-recursion" title="Permalink to this equation">#</a></span>\[C_{A,j+1} = C_{A,j} - h\kappa{C_{A,j}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(h\)</span> denotes the time step-size, and <span class="math notranslate nohighlight">\(C_{A,\star}\)</span> denotes the concentration of <span class="math notranslate nohighlight">\(A\)</span> at time-step <span class="math notranslate nohighlight">\(\star\)</span>. Starting with <span class="math notranslate nohighlight">\(j=0\)</span>,
+Eqn <a class="reference internal" href="#equation-eqn-ca-recursion">(40)</a> can be used to construct a <span class="math notranslate nohighlight">\(T{\times}T\)</span> matrix where each rows is a seperate time-step:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-ca-system-txt">
+<span class="eqno">(41)<a class="headerlink" href="#equation-eqn-ca-system-txt" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{pmatrix}
+1 &amp; 0 &amp; \dots &amp; 0 \\
+(\kappa{h} - 1) &amp; 1 &amp; \dots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+0 &amp; \dots &amp; (\kappa{h} - 1) &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+C_{A,1} \\
+C_{A,2} \\
+\vdots \\
+C_{A,T}
+\end{pmatrix} = 
+\begin{pmatrix}
+C_{A,0}\left(1-h\kappa\right) \\
+0 \\
+\vdots \\
+0 
+\end{pmatrix}\end{split}\]</div>
 </section>
 </div></section>
-<section id="singular-value-decomposition">
-<h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:</p>
-<div class="proof definition admonition" id="defn-svd-real-matrix">
-<p class="admonition-title"><span class="caption-number">Definition 21 </span> (Singular value decomposition)</p>
-<section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-math-svd">
-<span class="eqno">(32)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
 </section>
-</div><p>SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
-<div class="proof observation admonition" id="obs-svd-matrix-decomposition">
-<p class="admonition-title"><span class="caption-number">Observation 4 </span> (SVD matrix decomposition)</p>
+<section id="iterative-methods">
+<span id="content-references-iterative-methods"></span><h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
+<p>Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.</p>
+<p>One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let’s outline the basic idea of an interative solution method in <a class="reference internal" href="#obs-basic-iterative-method-outline">Observation 3</a>:</p>
+<!-- 
+An iterative method takes an initial solution guess, and refines it by substituting
+this guess back into into the linear algebraic equations. The guess is then updated over and over again until either we exhaust the number of iterations we can take, or we converge to a solution. Two key iterative methods are: [Jacobi Iteration](https://en.wikipedia.org/wiki/Jacobi_method) and
+[Gauss-Seidel](https://en.wikipedia.org/wiki/Gauss–Seidel_method). The central difference between these two methods is how they update the best estimate of a solution at any given iteration.  -->
+<div class="proof observation admonition" id="obs-basic-iterative-method-outline">
+<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Basic iterative method)</p>
 <section class="observation-content" id="proof-content">
-<p>The singular value decomposition (SVD) can be thought of as decomposing a matrix into a weighted, ordered sum of separable matrices.
-Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> have the singular value decomposition <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\)</span>.</p>
-<p>Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> can be written as:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-matrix-decomp">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> denotes the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith columns of the corresponding SVD matrices, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
-<p>The outer-product <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system of linear algebraic equations of the form:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix of coefficients, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector of unknowns that we are trying to estimate, and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector of right-hand-side values.</p>
+<p>We start with the ith equation in a system of <span class="math notranslate nohighlight">\(n\)</span> equations, written in index form as:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{n}}\]</div>
+<p>and solve it for <em>an estimate</em> of the ith unknown:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{n}}\]</div>
+<p>denoted by <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>, where <span class="math notranslate nohighlight">\(\sum_{j=1,i}^{n}\)</span> does not include index <span class="math notranslate nohighlight">\(i\)</span>. What we do next, with the estimated value of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>, is the key difference between Jacobi’s method and the Gauss-Seidel method.</p>
 </section>
-</div><section id="connection-of-svd-and-eigendecomposition">
-<h4>Connection of SVD and eigendecomposition<a class="headerlink" href="#connection-of-svd-and-eigendecomposition" title="Permalink to this headline">#</a></h4>
-<p>Fill me in.</p>
+</div><section id="jacobi-s-method">
+<h4>Jacobi’s method<a class="headerlink" href="#jacobi-s-method" title="Permalink to this headline">#</a></h4>
+<p>Jacobi’s method <strong>batch updates</strong> the estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> at the <em>end</em> of each iteration. Suppose we define the estimate of the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then, the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
+<p>In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
+we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,n\)</span> equations. We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
+<p>Let’s look at psuedo code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 10</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-jacobi-iteration">
+<p class="admonition-title"><span class="caption-number">Algorithm 10 </span> (Jacobi iteration)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Input</strong>:
+Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
+<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p>
+<p><strong>Initialize</strong>:</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\)</span>length(<span class="math notranslate nohighlight">\(\mathbf{b}\)</span>)</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1}\dots\mathcal{M}_{\infty}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1}\dots{n}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{0}\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(k\in{1}\dots{n}\)</span></p>
+<ol class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(k\neq{j}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{s} + a_{ik}\times\hat{x}_{k}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>set <span class="math notranslate nohighlight">\(x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)\)</span></p></li>
+</ol>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| &lt; \epsilon\)</span></p>
+<ol class="simple">
+<li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p></li>
+</ol>
+</li>
+<li><p>else</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p></li>
+</ol>
+</section>
+</div></section>
+<section id="gauss-seidel-method">
+<h4>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h4>
+<p>The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables.</p>
+<p>Gauss-Seidel <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,\cdots,n\)</span>. The update procedure of Gauss-Seidel generally leads to better convergence properties than the Jacobi method. Suppose we define the best estimate for variable <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(k\)</span> as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
+<p>We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k{\rightarrow}k+1\)</span> is below some specified tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p>Let’s look at a psuedo code for the Gauss Seidel method in <a class="reference internal" href="#algo-gauss-seidel-method">Algorithm 11</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-gauss-seidel-method">
+<p class="admonition-title"><span class="caption-number">Algorithm 11 </span> (Gauss-Seidel method)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Input</strong>:
+Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, guess <span class="math notranslate nohighlight">\(\mathbf{x}_{o}\)</span>, tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>, maximum iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span>.</p>
+<p><strong>Output</strong>: solution <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span>, converged flag</p>
+<p><strong>Initialize</strong>:</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(n\leftarrow\)</span>length(<span class="math notranslate nohighlight">\(\mathbf{b}\)</span>)</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}_{o}\)</span></p></li>
+<li><p>set converged <span class="math notranslate nohighlight">\(\leftarrow\)</span> false</p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1}\dots\mathcal{M}_{\infty}\)</span></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\mathbf{x}^{\prime}\leftarrow\text{zeros}(n,1)\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(j\in{1}\dots{n}\)</span></p>
+<ol class="simple">
+<li><p>compute new value <span class="math notranslate nohighlight">\(x_{j}^{\prime}\)</span></p></li>
+</ol>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| &lt; \epsilon\)</span></p>
+<ol class="simple">
+<li><p>set converged <span class="math notranslate nohighlight">\(\leftarrow\)</span> true</p></li>
+<li><p>break</p></li>
+</ol>
+</li>
+<li><p>set <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\leftarrow\mathbf{x}^{\prime}\)</span></p></li>
+</ol>
+</li>
+<li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span>, converged</p></li>
+</ol>
+</section>
+</div></section>
+<section id="successive-overrelaxation">
+<h4>Successive Overrelaxation<a class="headerlink" href="#successive-overrelaxation" title="Permalink to this headline">#</a></h4>
+<p>Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> is further modified
+before proceeding to the evaluation of the next equations. Suppose we define the best estimate
+for the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then <em>before</em> processing the next Gauss-Seidel type step we update the best guess for <span class="math notranslate nohighlight">\(x_{i}\)</span> using the rule:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{i,k}=\lambda\hat{x}_{i,k}+\left(1-\lambda\right)\hat{x}_{i,k-1}\qquad{i=1,2,\cdots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is an adjustable parameter governed by <span class="math notranslate nohighlight">\(0&lt;\lambda\leq{2}\)</span>. The value of <span class="math notranslate nohighlight">\(\lambda\)</span> can dramatically speed-up <em>or</em>
+slow-down the convergence to the correct solution, so care should be taken when choosing it.
+The value of <span class="math notranslate nohighlight">\(\lambda\)</span> can be in one of three regimes:</p>
+<ul class="simple">
+<li><p>Underrelaxation <span class="math notranslate nohighlight">\(0&lt;\lambda&lt;1\)</span>: Can help solve systems that have problematic convergence</p></li>
+<li><p>Nominal <span class="math notranslate nohighlight">\(\lambda=1\)</span>: Regular Gauss-Seidel algorithm</p></li>
+<li><p>Overrelaxation <span class="math notranslate nohighlight">\(1&lt;\lambda\leq{2}\)</span>: This regime will increase the rate of convergence provided the algorithm can converge</p></li>
+</ul>
+</section>
+<section id="convergence-of-iterative-methods">
+<h4>Convergence of iterative methods<a class="headerlink" href="#convergence-of-iterative-methods" title="Permalink to this headline">#</a></h4>
+<p>A sufficient condition for the convergence of Jacobi or Gauss-Seidel Iteration is the well known diagonal dominance condition:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=1,i}^{n}\lvert{a_{ij}}\rvert&lt;\lvert{a_{ii}}\rvert\qquad\forall{i}\]</div>
+<p>Diagonal dominance is a sufficient (but not necessary) condition for convergence of an iterative method. Of course, this condition says
+nothing regarding the rate of convergence. Convergence, which is a measure of the distance between the current
+best solution and the true solution, can be calculated using any one of several metrics. Two common techniques are the calculation of the
+percentage change in the solution as well as the measurement in a least-squares sense of the distance between the solutions.
+While the true solution is not explicitly known, you can calculate the squared difference between the known right-hand side vector, <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, and your current best estimate, <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}_{k}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[e_{k}=\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)^{T}\]</div>
+<p>where <span class="math notranslate nohighlight">\(e_{k}\)</span> denotes the squared error for solution at iteration k of the algorithm.</p>
 </section>
 </section>
 </section>
@@ -1231,9 +1574,7 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>This lecture introduced vectors, matrices, and operations defined on these objects:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#content-references-matrix-vector"><span class="std std-ref">Matricies and vectors</span></a> are one- and two-dimensional arrays of numbers. Vectors represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.</p></li>
-<li><p><a class="reference internal" href="#content-measurements-distances"><span class="std std-ref">Measurements and distances</span></a> are tools to measure distances between matrix and vector objects.</p></li>
-<li><p><a class="reference internal" href="#content-dimensionality-reduction"><span class="std std-ref">Dimensionality reduction</span></a> systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p></li>
+<li><p><a class="reference internal" href="#content-references-matrix-vector"><span class="std std-ref">Matricies and Vectors</span></a> are one- and two-dimensional arrays of numbers. Vectors represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.</p></li>
 </ul>
 </section>
 <section id="additonal-resources">
@@ -1278,10 +1619,10 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
             <p class="prev-next-title">Data Structures</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="laes.html" title="next page">
+    <a class='right-next' id="next-link" href="reduction.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Algebraic Equations</p>
+        <p class="prev-next-title">Dimensionality Reduction</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

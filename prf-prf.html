@@ -177,12 +177,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="unit-2-data/vectors-matricies-nla.html">
-     Vectors, Matrices, Measurements and Distances
+     Vectors, Matrices and Linear Algebraic Equations
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="unit-2-data/laes.html">
-     Linear Algebraic Equations
+    <a class="reference internal" href="unit-2-data/reduction.html">
+     Dimensionality Reduction
     </a>
    </li>
   </ul>
@@ -417,7 +417,6 @@ title="Open an issue"
    <a href="#cap-defn-moments"><strong>defn-moments</strong></a> | 
    <a href="#cap-defn-multi-arm-bernoulli-bandit-problem"><strong>defn-multi-arm-bernoulli-bandit-problem</strong></a> | 
    <a href="#cap-defn-number-system"><strong>defn-number-system</strong></a> | 
-   <a href="#cap-defn-orthogonal-matrix"><strong>defn-orthogonal-matrix</strong></a> | 
    <a href="#cap-defn-partition"><strong>defn-partition</strong></a> | 
    <a href="#cap-defn-pdf"><strong>defn-pdf</strong></a> | 
    <a href="#cap-defn-pmf"><strong>defn-pmf</strong></a> | 
@@ -427,6 +426,7 @@ title="Open an issue"
    <a href="#cap-defn-pmf-poisson"><strong>defn-pmf-poisson</strong></a> | 
    <a href="#cap-defn-policy-evalution"><strong>defn-policy-evalution</strong></a> | 
    <a href="#cap-defn-primael-linear program"><strong>defn-primael-linear program</strong></a> | 
+   <a href="#cap-defn-rank-A"><strong>defn-rank-A</strong></a> | 
    <a href="#cap-defn-rbf-measure"><strong>defn-rbf-measure</strong></a> | 
    <a href="#cap-defn-right-matrix-vector-multiplication"><strong>defn-right-matrix-vector-multiplication</strong></a> | 
    <a href="#cap-defn-scalar-multiplication"><strong>defn-scalar-multiplication</strong></a> | 
@@ -434,7 +434,6 @@ title="Open an issue"
    <a href="#cap-defn-subsets"><strong>defn-subsets</strong></a> | 
    <a href="#cap-defn-svd-real-matrix"><strong>defn-svd-real-matrix</strong></a> | 
    <a href="#cap-defn-trace-A"><strong>defn-trace-A</strong></a> | 
-   <a href="#cap-defn-triangular-matrices"><strong>defn-triangular-matrices</strong></a> | 
    <a href="#cap-defn-union"><strong>defn-union</strong></a> | 
    <a href="#cap-defn-vector-p-norm"><strong>defn-vector-p-norm</strong></a> | 
    <a href="#cap-defn-vector-vector-multiplication"><strong>defn-vector-vector-multiplication</strong></a> | 
@@ -484,7 +483,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#algo-backward-substituion"><code class="xref">algo-backward-substituion</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#algo-backward-substituion"><code class="xref">algo-backward-substituion</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-branch-bound-generic"><td></td><td>
@@ -524,7 +523,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#algo-gauss-seidel-method"><code class="xref">algo-gauss-seidel-method</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#algo-gauss-seidel-method"><code class="xref">algo-gauss-seidel-method</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-ge-basic"><td></td><td>
@@ -532,7 +531,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#algo-ge-basic"><code class="xref">algo-ge-basic</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#algo-ge-basic"><code class="xref">algo-ge-basic</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-hash-function-code"><td></td><td>
@@ -548,7 +547,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#algo-jacobi-iteration"><code class="xref">algo-jacobi-iteration</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#algo-jacobi-iteration"><code class="xref">algo-jacobi-iteration</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-left-multiplication-matrix-vector"><td></td><td>
@@ -636,7 +635,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#defn-compatible-matrix-vector-norm"><code class="xref">defn-compatible-matrix-vector-norm</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <a href="unit-2-data/reduction.html#defn-compatible-matrix-vector-norm"><code class="xref">defn-compatible-matrix-vector-norm</code></a> <em>(unit-2-data/reduction)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-complement"><td></td><td>
@@ -676,7 +675,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#defn-general-backward-sub"><code class="xref">defn-general-backward-sub</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-general-backward-sub"><code class="xref">defn-general-backward-sub</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-general-forward-sub"><td></td><td>
@@ -684,7 +683,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#defn-general-forward-sub"><code class="xref">defn-general-forward-sub</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-general-forward-sub"><code class="xref">defn-general-forward-sub</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-graphs"><td></td><td>
@@ -700,7 +699,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#defn-homogenous-soln-existence"><code class="xref">defn-homogenous-soln-existence</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-homogenous-soln-existence"><code class="xref">defn-homogenous-soln-existence</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-independence"><td></td><td>
@@ -756,7 +755,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#defn-matrix-inverse"><code class="xref">defn-matrix-inverse</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-matrix-inverse"><code class="xref">defn-matrix-inverse</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-matrix-matrix-product"><td></td><td>
@@ -789,14 +788,6 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="unit-1-basics/types.html#defn-number-system"><code class="xref">defn-number-system</code></a> <em>(unit-1-basics/types)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-defn-orthogonal-matrix"><td></td><td>
-       <strong>defn-orthogonal-matrix</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#defn-orthogonal-matrix"><code class="xref">defn-orthogonal-matrix</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-partition"><td></td><td>
@@ -871,12 +862,20 @@ title="Open an issue"
        <a href="unit-3-learning/lp.html#defn-primael-linear program"><code class="xref">defn-primael-linear program</code></a> <em>(unit-3-learning/lp)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-rank-A"><td></td><td>
+       <strong>defn-rank-A</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-2-data/vectors-matricies-nla.html#defn-rank-A"><code class="xref">defn-rank-A</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-rbf-measure"><td></td><td>
        <strong>defn-rbf-measure</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#defn-rbf-measure"><code class="xref">defn-rbf-measure</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <a href="unit-2-data/reduction.html#defn-rbf-measure"><code class="xref">defn-rbf-measure</code></a> <em>(unit-2-data/reduction)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-right-matrix-vector-multiplication"><td></td><td>
@@ -916,7 +915,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#defn-svd-real-matrix"><code class="xref">defn-svd-real-matrix</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <a href="unit-2-data/reduction.html#defn-svd-real-matrix"><code class="xref">defn-svd-real-matrix</code></a> <em>(unit-2-data/reduction)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-trace-A"><td></td><td>
@@ -925,14 +924,6 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#defn-trace-A"><code class="xref">defn-trace-A</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-defn-triangular-matrices"><td></td><td>
-       <strong>defn-triangular-matrices</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#defn-triangular-matrices"><code class="xref">defn-triangular-matrices</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-union"><td></td><td>
@@ -948,7 +939,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#defn-vector-p-norm"><code class="xref">defn-vector-p-norm</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <a href="unit-2-data/reduction.html#defn-vector-p-norm"><code class="xref">defn-vector-p-norm</code></a> <em>(unit-2-data/reduction)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-vector-vector-multiplication"><td></td><td>
@@ -1148,7 +1139,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#example-time-discretized-decay"><code class="xref">example-time-discretized-decay</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#example-time-discretized-decay"><code class="xref">example-time-discretized-decay</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-twos-complement"><td></td><td>
@@ -1172,7 +1163,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/laes.html#obs-basic-iterative-method-outline"><code class="xref">obs-basic-iterative-method-outline</code></a> <em>(unit-2-data/laes)</em></td><td>
+       <a href="unit-2-data/vectors-matricies-nla.html#obs-basic-iterative-method-outline"><code class="xref">obs-basic-iterative-method-outline</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-determinant-triangular-matrix"><td></td><td>
@@ -1188,7 +1179,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#obs-eigenvalues-determinants"><code class="xref">obs-eigenvalues-determinants</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <a href="unit-2-data/reduction.html#obs-eigenvalues-determinants"><code class="xref">obs-eigenvalues-determinants</code></a> <em>(unit-2-data/reduction)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-expectation-props"><td></td><td>
@@ -1228,7 +1219,7 @@ title="Open an issue"
      <tr>
        <td></td>
        <td>
-       <a href="unit-2-data/vectors-matricies-nla.html#obs-svd-matrix-decomposition"><code class="xref">obs-svd-matrix-decomposition</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <a href="unit-2-data/reduction.html#obs-svd-matrix-decomposition"><code class="xref">obs-svd-matrix-decomposition</code></a> <em>(unit-2-data/reduction)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-variances-var"><td></td><td>

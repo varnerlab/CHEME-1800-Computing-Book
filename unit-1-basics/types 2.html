@@ -1,0 +1,1129 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Expressions, Variables and Types &#8212; CHEME 1800/4800</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/types.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Functions, Control Statements, and Recursion" href="functions.html" />
+    <link rel="prev" title="Technical computing basics" href="basics-landing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VQRVBL1C02"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-VQRVBL1C02');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/cornell_seal_simple_black.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CHEME 1800/4800</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Principles of Computational Thinking for Engineers
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="basics-landing.html">
+   Unit 1. Basics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Expressions, Variables and Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     Functions, Control Statements, and Recursion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="programs.html">
+     Programs and Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data-file-io.html">
+     Data Input and Output
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-2-data/data-landing.html">
+   Unit 2. Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
+     Vectors, Matrices, Measurements and Distances
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-3-learning/learning-landing.html">
+   Unit 3. Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/penalty.html">
+     Ordinary Least Squares
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/combitorial.html">
+     Combinatorial Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/lp.html">
+     Linear Programming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-4-decisions/decisions-landing.html">
+   Unit 4. Decisions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/probability-random-variables.html">
+     Probability, Random Variables and Stochastic Processes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/mdp.html">
+     Markov Decision Processes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-4-decisions/multi-arm-bandits.html">
+     Multiple Arm Bandit Problems and Reinforcement Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/varnerlab/CHEME-1800-Computing-Book/main?urlpath=tree/unit-1-basics/types.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-1800-Computing-Book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-1800-Computing-Book/issues/new?title=Issue%20on%20page%20%2Funit-1-basics/types.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/unit-1-basics/types.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/unit-1-basics/types.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Expressions, Variables and Types
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expressions">
+     Expressions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-and-types">
+     Variables and Types
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-and-logical-types">
+       Numerical and logical types
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#integers">
+         Integers
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#aside-what-about-negative-integers">
+           Aside: What about negative integers?
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#boolean-values">
+           Boolean values
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#floating-point-numbers">
+         Floating point numbers
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#character-and-string-values">
+       Character and string values
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#character-values">
+         Character values
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#string-values">
+         String values
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#composite-types">
+       Composite types
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aside-what-is-an-object-oriented-language">
+         Aside: What is an object-oriented language?
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Expressions, Variables and Types</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Expressions, Variables and Types
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expressions">
+     Expressions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-and-types">
+     Variables and Types
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-and-logical-types">
+       Numerical and logical types
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#integers">
+         Integers
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#aside-what-about-negative-integers">
+           Aside: What about negative integers?
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#boolean-values">
+           Boolean values
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#floating-point-numbers">
+         Floating point numbers
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#character-and-string-values">
+       Character and string values
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#character-values">
+         Character values
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#string-values">
+         String values
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#composite-types">
+       Composite types
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#aside-what-is-an-object-oriented-language">
+         Aside: What is an object-oriented language?
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="expressions-variables-and-types">
+<h1>Expressions, Variables and Types<a class="headerlink" href="#expressions-variables-and-types" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings.</p>
+<p>In many traditional programming languages, it is required to declare the variable type before using it so that the computer, i.e., the <a class="reference external" href="https://en.wikipedia.org/wiki/Compiler">compiler</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Interpreter_(computing)">interpreter</a> that is processing your code, can check the correctness of the program and allocate the appropriate amount of memory to store the variable. While most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code.</p>
+<hr class="docutils" />
+</section>
+<section id="expressions">
+<span id="content-references-expressions"></span><h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
+<p>Expressions are a combination of values, variables, and operators that <em>evaluate</em> to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.</p>
+<p>Here are some common examples of expressions in the <a class="reference external" href="https://docs.julialang.org">Julia programming language</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span></code>: This expression evaluates to the value 5, an <code class="docutils literal notranslate"><span class="pre">integer</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>: This expression evaluates to the product of the variables x and y.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x and y are equal and <code class="docutils literal notranslate"><span class="pre">false</span></code> if they are not; <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> are Boolean types.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code>: This expression evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> if x is greater than y, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if it is not; <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> are Boolean types.</p></li>
+</ul>
+<p>Expressions evaluate to a value that has a type. Expressions can be used independently or as part of a larger statement. For example, expressions can be arguments to a function or assigned to a variable using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+</section>
+<section id="variables-and-types">
+<h2>Variables and Types<a class="headerlink" href="#variables-and-types" title="Permalink to this headline">#</a></h2>
+<p>A <em>variable</em> is like a box that holds a value, and that value has a <em>type</em>. For example, types can be numbers such as <code class="docutils literal notranslate"><span class="pre">3</span></code>, Boolean values like <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> or text like:</p>
+<blockquote>
+<div><p>“Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!”</p>
+</div></blockquote>
+<p>However, computers and Humans don’t speak the same language. Humans understand that <code class="docutils literal notranslate"><span class="pre">3</span></code> is an integer, and <code class="docutils literal notranslate"><span class="pre">Julia</span> <span class="pre">rocks</span></code> is text, but the computer doesn’t see these values the same way we do. For a computer, everything is a <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_number">binary number</a>, i.e., numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>.</p>
+<p>From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. At the smallest scale, information is stored as bits and bytes in the computer (<a class="reference internal" href="#fig-64-bit-byte-label-example"><span class="std std-numref">Fig. 1</span></a>)</p>
+<figure class="align-default" id="fig-64-bit-byte-label-example">
+<a class="reference internal image-reference" href="../_images/Fig-64-bit-byte-label-pattern.pdf"><img alt="../_images/Fig-64-bit-byte-label-pattern.pdf" src="../_images/Fig-64-bit-byte-label-pattern.pdf" style="height: 260px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematic of bytes and bits used in computer storage. Each box contains a digit in the numbering system. In a binary system each box contains a <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code>.</span><a class="headerlink" href="#fig-64-bit-byte-label-example" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A <code class="docutils literal notranslate"><span class="pre">bit</span></code> is the smallest unit of storage on a computer; a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is a <code class="docutils literal notranslate"><span class="pre">0</span></code> or a <code class="docutils literal notranslate"><span class="pre">1</span></code>. However, a <code class="docutils literal notranslate"><span class="pre">bit</span></code> is too tiny for practical computing tasks. Instead, <code class="docutils literal notranslate"><span class="pre">bits</span></code> are grouped into <code class="docutils literal notranslate"><span class="pre">bytes</span></code>; a group of 8 bits equals  1 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">byte</span></code>. Different types of things, e.g., integers or text are then represented as different numbers of <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
+<p>Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code.</p>
+<section id="numerical-and-logical-types">
+<h3>Numerical and logical types<a class="headerlink" href="#numerical-and-logical-types" title="Permalink to this headline">#</a></h3>
+<p>Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitives.</span></code> On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., <code class="docutils literal notranslate"><span class="pre">1</span></code> is an integer literal, and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a floating-point literal. Modern programming languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.</p>
+<p>Numeric primitives, which the computer understands, are binary numbers (numbers written to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>). However, there are other number systems that you may encounter, e.g., numbers written in the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) or <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) system (<a class="reference internal" href="#defn-number-system">Definition 1</a>):</p>
+<div class="proof definition admonition" id="defn-number-system">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Base <span class="math notranslate nohighlight">\(b\)</span> numbers)</p>
+<section class="definition-content" id="proof-content">
+<p>The base <span class="math notranslate nohighlight">\(b\)</span> representation of a number is a way of writing numbers using the digit set:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-base-b-numbers-digits">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-base-b-numbers-digits" title="Permalink to this equation">#</a></span>\[\mathcal{D}_{b} = \left\{0, 1, \dots, (b − 1)\right\}\]</div>
+<p>For any <span class="math notranslate nohighlight">\(n\geq{0}\)</span> and <span class="math notranslate nohighlight">\(b\geq{2}\)</span>, there is a string of digits <span class="math notranslate nohighlight">\(\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}\)</span> where <span class="math notranslate nohighlight">\(a_{k}\in\mathcal{D}_{b}\)</span> for all <span class="math notranslate nohighlight">\(k\)</span> such that the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">10</span></code> value <span class="math notranslate nohighlight">\(n\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-base-b-number">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqn-base-b-number" title="Permalink to this equation">#</a></span>\[n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}\]</div>
+<p>The quantity <span class="math notranslate nohighlight">\(a_{j}\)</span> denotes the digit in position <span class="math notranslate nohighlight">\(j\)</span>, the quantity <span class="math notranslate nohighlight">\(b\)</span> denotes the base, and <span class="math notranslate nohighlight">\(k\)</span> denotes the number of bits.</p>
+</section>
+</div><p>Let’s look at example of a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> number (<a class="reference internal" href="#example-base-8-number">Example 1</a>):</p>
+<div class="proof example dropdown admonition" id="example-base-8-number">
+<p class="admonition-title"><span class="caption-number">Example 1 </span> (Base 8 representation)</p>
+<section class="example-content" id="proof-content">
+<p>Write the octal number <span class="math notranslate nohighlight">\(\left(112\right)_{8}\)</span> in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">10</span></code>.</p>
+<p><strong>Solution</strong>: For a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">8</span></code> (octal) number, <span class="math notranslate nohighlight">\(b=8\)</span>. The octal number <span class="math notranslate nohighlight">\(\left(112\right)_{8}\)</span> can be expanded using Eqn. <a class="reference internal" href="#equation-eqn-base-b-number">(2)</a> as:</p>
+<div class="math notranslate nohighlight" id="equation-example-eqn-base-8-expansion">
+<span class="eqno">(3)<a class="headerlink" href="#equation-example-eqn-base-8-expansion" title="Permalink to this equation">#</a></span>\[n = 2\times{8}^{0}+1\times{8}^{1}+1\times{8}^2\]</div>
+<p>or <span class="math notranslate nohighlight">\(n = 74\)</span>.</p>
+</section>
+</div><section id="integers">
+<h4>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">#</a></h4>
+<p>Signed integers, represented by the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, are the positive and negative natural numbers along with zero:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{Z} = \left\{\dots, -3,-2, -1, 0, 1, 2, 3, \dots\right\}\]</div>
+<p>The in-memory representation of signed integers, i.e., their <code class="docutils literal notranslate"><span class="pre">numeric</span> <span class="pre">primitive</span></code> representation, is typically a 4 <span class="math notranslate nohighlight">\(\times\)</span> byte (32-bit) or 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number; on newer hardware and operating systems, the default value for a signed integer is an 8 <span class="math notranslate nohighlight">\(\times\)</span> byte (64-bit) binary number (<a class="reference internal" href="#example-binary-1800">Example 2</a>).</p>
+<div class="proof example dropdown admonition" id="example-binary-1800">
+<p class="admonition-title"><span class="caption-number">Example 2 </span> (64-bit integer in binary format)</p>
+<section class="example-content" id="proof-content">
+<p>Show that the 64-bit binary representation of the integer value <code class="docutils literal notranslate"><span class="pre">1800</span></code> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-bitstring-1800-64bit">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eqn-bitstring-1800-64bit" title="Permalink to this equation">#</a></span>\[1800 \stackrel{?}{=} (0000000000000000000000000000000000000000000000000000011100001000)_{2}\]</div>
+<p><strong>Solution</strong>:
+Equation <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit">(4)</a> is a binary number, i.e., a number written with respect to the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code>; thus, <span class="math notranslate nohighlight">\(b=2\)</span> and we have the digit set <span class="math notranslate nohighlight">\(\mathcal{D}=\left\{0,1\right\}\)</span>. Further, we know that k = 64-bits; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> runs from <span class="math notranslate nohighlight">\(0\rightarrow{63}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-binary-1800-sum">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eqn-binary-1800-sum" title="Permalink to this equation">#</a></span>\[1800 \stackrel{?}{=} \sum_{j=0}^{63}a_{j}\cdot{2^j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{j}\)</span> denotes the value in the jth position of the binary number, i.e., <span class="math notranslate nohighlight">\(a_{j}=0\)</span> or <span class="math notranslate nohighlight">\(a_{j}=1\)</span> in position <span class="math notranslate nohighlight">\(j\)</span>. Most of the the <span class="math notranslate nohighlight">\(a_{j}\)</span> values in Eq <a class="reference internal" href="#equation-eqn-bitstring-1800-64bit">(4)</a> are zero <em>except</em> for a few positions; thus, the summation in <a class="reference internal" href="#defn-number-system">Definition 1</a> reduces to:</p>
+<div class="math notranslate nohighlight">
+\[1800 \stackrel{?}{=} 2^{3}+2^{8}+2^{9}+2^{10}\]</div>
+<p><strong>Tip</strong>: The <a class="reference external" href="https://docs.julialang.org/en/v1/base/numbers/#Base.bitstring">bitstring</a> function in <a class="reference external" href="https://docs.julialang.org/en/v1/">Julia</a> displays the binary representation of different types of data, e.g., numerical data types as well as strings and characters.</p>
+</section>
+</div><section id="aside-what-about-negative-integers">
+<h5>Aside: What about negative integers?<a class="headerlink" href="#aside-what-about-negative-integers" title="Permalink to this headline">#</a></h5>
+<p><a class="reference internal" href="#defn-number-system">Definition 1</a> shows the representation of numbers in different bases, e.g., integers written in <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> (binary numbers). However, the set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> also contains negative numbers; how can we represent negative integers in a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">2</span></code> system?</p>
+<p>Negative integers are created using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a>, a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">Two’s complement</a> is executed by first inverting all bits, i.e., flipping <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa, and then adding (using binary addition) a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least significant digit (far right bit) of the result.</p>
+<div class="proof example dropdown admonition" id="example-twos-complement">
+<p class="admonition-title"><span class="caption-number">Example 3 </span> (Two’s complement)</p>
+<section class="example-content" id="proof-content">
+<p>Develop the 64-bit pattern for <span class="math notranslate nohighlight">\(x=-8\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>.</p>
+<p><strong>Solution</strong>: To perform <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a>, we flip all the bits and add <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least significant bit (the bit at index 0). This procedure requires binary addition: <span class="math notranslate nohighlight">\(1+0 = 1\)</span>, <span class="math notranslate nohighlight">\(0+1 = 1\)</span>, <span class="math notranslate nohighlight">\(0+0 = 0\)</span> and <span class="math notranslate nohighlight">\(1+1 = 0\text{carry}{1}\)</span>. The 64-bit pattern for <span class="math notranslate nohighlight">\(x=8\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-64-bit-value-positive-8">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-64-bit-value-positive-8" title="Permalink to this equation">#</a></span>\[8 = \left(0\dots00001000\right)_{2}\]</div>
+<p><strong>Step 1</strong>: Flip all the bits from <code class="docutils literal notranslate"><span class="pre">0</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">1</span></code> and vice-versa:</p>
+<div class="math notranslate nohighlight">
+\[\left(1\dots11110111\right)_{2}\]</div>
+<p><strong>Step 2</strong>: Add a <code class="docutils literal notranslate"><span class="pre">1</span></code> to the least-significant bit (index 0), which gives:</p>
+<div class="math notranslate nohighlight">
+\[-8 = \left(1\dots11111000\right)_{2}\]</div>
+</section>
+</div></section>
+<section id="boolean-values">
+<h5>Boolean values<a class="headerlink" href="#boolean-values" title="Permalink to this headline">#</a></h5>
+<p>Boolean values, e.g., values of <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> are represented in modern languages using a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> type. For example, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> have built-in Boolean types. However, foundational languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> do not have a dedicated Boolean type; instead, Boolean values in <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a> were represented by integers, i.e., <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">=</span> <span class="pre">0</span></code>. Thus, it should not be surprising that in languages such as <a class="reference external" href="https://docs.julialang.org">Julia</a>, which is a distant relative of <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>, that <code class="docutils literal notranslate"><span class="pre">Bool</span></code> is implemented as a subtype of integer.</p>
+<p>In <a class="reference external" href="https://docs.julialang.org">Julia</a> values of the <code class="docutils literal notranslate"><span class="pre">Bool</span></code> type are a kind of number: <code class="docutils literal notranslate"><span class="pre">false</span></code> is numerically equal to <code class="docutils literal notranslate"><span class="pre">0</span></code> while true is equivalent to <code class="docutils literal notranslate"><span class="pre">1</span></code>. However, unlike an <code class="docutils literal notranslate"><span class="pre">Int64</span></code>, only 1<span class="math notranslate nohighlight">\(\times\)</span>byte (8-bits) is required to store a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> value in <a class="reference external" href="https://docs.julialang.org">Julia</a>; because a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> can only assume one of two possible values the computer doesn’t need extra storage:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># These are examples a expressions, that set a Bool value</span>
+<span class="n">value_true</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="n">value_false</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c"># What is the bitstring that encodes this value?</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;False: </span><span class="si">$</span><span class="p">(</span><span class="n">bitstring</span><span class="p">(</span><span class="n">value_false</span><span class="p">))</span><span class="s"> and True: </span><span class="si">$</span><span class="p">(</span><span class="n">bitstring</span><span class="p">(</span><span class="n">value_true</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False: 00000000 and True: 00000001
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, while a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> value will evaluate to either <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This expression sets a Bool value</span>
+<span class="n">value_true</span> <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c"># Does true evaluate to 1 (the == is a test for equality)?</span>
+<span class="n">value_true</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<p>it requires less storage than an equivalent <code class="docutils literal notranslate"><span class="pre">Int</span></code> value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This expression sets a value of 1 (interesting: how does Julia know this is an Int?)</span>
+<span class="n">int_value</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># What is the bitstring that encodes this value?</span>
+<span class="n">bitstring</span><span class="p">(</span><span class="n">int_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;0000000000000000000000000000000000000000000000000000000000000001&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="floating-point-numbers">
+<h4>Floating point numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this headline">#</a></h4>
+<figure class="align-default" id="fig-32bit-floating-point-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-Float32-bit-pattern.pdf"><img alt="../_images/Fig-Float32-bit-pattern.pdf" src="../_images/Fig-Float32-bit-pattern.pdf" style="height: 140px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of the bit-pattern for a 4<span class="math notranslate nohighlight">\(\times\)</span>byte (32-bit) floating point number</span><a class="headerlink" href="#fig-32bit-floating-point-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Scalar floating point numbers, i.e., decimal numbers in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, are stored using 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits; single-precision) or 8<span class="math notranslate nohighlight">\(\times\)</span>bytes (64-bits; double-precision) following the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a>. Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be <em>approximated</em> by a computer system.</p>
+<p>In the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754 standard</a> specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits (<a class="reference internal" href="#fig-32bit-floating-point-schematic"><span class="std std-numref">Fig. 2</span></a>). In the computer, a floating point number <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> is represented as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-floating-point-number">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-floating-point-number" title="Permalink to this equation">#</a></span>\[x = -1^{S}\times{M}\times{2}^{(E-127)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(S\)</span> denotes the sign bit, <span class="math notranslate nohighlight">\(M\)</span> denotes the mantissa (fraction) and <span class="math notranslate nohighlight">\(E\)</span> denotes the exponent.</p>
+<ul class="simple">
+<li><p>For a 32-bit floating point number, <span class="math notranslate nohighlight">\(S\)</span> is bit 31 denoted by <span class="math notranslate nohighlight">\(b_{31}\)</span>, <span class="math notranslate nohighlight">\(M\)</span> is encoded in bits <span class="math notranslate nohighlight">\(b_0\rightarrow{b_{22}}\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(b_{23}\rightarrow{b_{30}}\)</span>.</p></li>
+<li><p>On the other hand, in a 64-bit floating point number, the sign bit <span class="math notranslate nohighlight">\(S\)</span> is <span class="math notranslate nohighlight">\(b_{63}\)</span>, the mantissa <span class="math notranslate nohighlight">\(M\)</span> is the number encoded by bits <span class="math notranslate nohighlight">\(b_0\rightarrow{b_{51}}\)</span>, and the exponent <span class="math notranslate nohighlight">\(E\)</span> is encoded by bits <span class="math notranslate nohighlight">\(b_{52}\rightarrow{b_{62}}\)</span>.</p></li>
+</ul>
+<p>Thus, for a 32-bit floating point number, the sign bit is <span class="math notranslate nohighlight">\(b_{31}\)</span>, while the fraction <span class="math notranslate nohighlight">\(M\)</span> is expressed as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-m-expression">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eqn-m-expression" title="Permalink to this equation">#</a></span>\[M = \left(1+\sum_{i=1}^{23}b_{23-i}2^{-i}\right)\]</div>
+<p>and the exponent <span class="math notranslate nohighlight">\(E\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-e-expression">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eqn-e-expression" title="Permalink to this equation">#</a></span>\[E = \sum_{i=0}^{7}b_{23+i}2^{i}\]</div>
+<p>Let’s consider the representation of a <code class="docutils literal notranslate"><span class="pre">Float32</span></code> value for <span class="math notranslate nohighlight">\(\pi\)</span> (<a class="reference internal" href="#example-float32-representation">Example 4</a>):</p>
+<div class="proof example dropdown admonition" id="example-float32-representation">
+<p class="admonition-title"><span class="caption-number">Example 4 </span> (Float32 representation in Julia)</p>
+<section class="example-content" id="proof-content">
+<p>Compute the <span class="math notranslate nohighlight">\(S, M\)</span> and <span class="math notranslate nohighlight">\(E\)</span> components of the 32-bit floating point number <span class="math notranslate nohighlight">\(x=3.14159\)</span> in <a class="reference external" href="https://docs.julialang.org">Julia</a>.</p>
+<p><strong>Solution</strong>: The bitstring representation of <span class="math notranslate nohighlight">\(x\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-32bit-bitstring">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eqn-32bit-bitstring" title="Permalink to this equation">#</a></span>\[3.14159 = \left(01000000010010010000111111010000\right)_{2}\]</div>
+<p>Note, in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the default floating-point number (depending upon your hardware) is <code class="docutils literal notranslate"><span class="pre">Float64</span></code>. However, we can convert a <code class="docutils literal notranslate"><span class="pre">Float64</span></code> to a <code class="docutils literal notranslate"><span class="pre">Float32</span></code> using the <code class="docutils literal notranslate"><span class="pre">convert(Float32,x)</span></code> command.</p>
+<p>The sign bit in Eqn. <a class="reference internal" href="#equation-eqn-32bit-bitstring">(10)</a> is <span class="math notranslate nohighlight">\(S=0\)</span>, while the fraction <span class="math notranslate nohighlight">\(M = 1.570795\)</span> and the exponent <span class="math notranslate nohighlight">\(E = 128\)</span> which gives:</p>
+<div class="math notranslate nohighlight">
+\[3.1459 = 1\times{1.570795}\times{2}\]</div>
+</section>
+</div></section>
+</section>
+<section id="character-and-string-values">
+<h3>Character and string values<a class="headerlink" href="#character-and-string-values" title="Permalink to this headline">#</a></h3>
+<p>Textual data on a computer is represented as the <code class="docutils literal notranslate"><span class="pre">String</span></code> type. Strings are modeled as a sequence of characters, where each character is of type <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
+<section id="character-values">
+<h4>Character values<a class="headerlink" href="#character-values" title="Permalink to this headline">#</a></h4>
+<p>Characters on the computer, e.g., the letter <code class="docutils literal notranslate"><span class="pre">A</span></code> are type <code class="docutils literal notranslate"><span class="pre">Char</span></code>. Traditionally, characters were represented via the <a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">American Standard Code for Information Interchange (ASCII) system</a>, which was a set of 7-bit teleprinter codes for the <a class="reference external" href="https://www.att.com">AT&amp;T</a> Teletypewriter exchange (TWX) network. For example, the character <code class="docutils literal notranslate"><span class="pre">A</span></code> in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Extended_ASCII">extended ASCII systems</a>, which had <span class="math notranslate nohighlight">\(0,\dots,255\)</span> possible character values.</p>
+<p>Modern computer systems use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number systems.</p>
+<div class="proof example dropdown admonition" id="example-unicode-J">
+<p class="admonition-title"><span class="caption-number">Example 5 </span> (Unicode and Hexadecimal )</p>
+<section class="example-content" id="proof-content">
+<p>Compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index for the character <code class="docutils literal notranslate"><span class="pre">J</span></code>.</p>
+<p><strong>Solution</strong>: The character <code class="docutils literal notranslate"><span class="pre">J</span></code> has index 74 in the ASCII table (which is included in the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> system). Thus, first, we must convert 74 to a <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">16</span></code> (hexadecimal) number and then convert that to the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index format; <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> indexes left-pad the hexadecimal character value with zeros until a 4-digit code is generated, and then <code class="docutils literal notranslate"><span class="pre">U+</span></code> is appended to the four-digit code.</p>
+<p>Hexadecimal numbers use decimal digits and six extra symbols; the decimal values <span class="math notranslate nohighlight">\((0,1,\dots,9)\)</span>, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, thru hexadecimal F = decimal 15 are used in the hexadecimal numbering system.</p>
+<p><strong>Approach</strong>:</p>
+<ul class="simple">
+<li><p>Step 1: Divide the given decimal number by 16 and write down the quotient and remainder</p></li>
+<li><p>Step 2: Divide the previous quotient by 16 and write the down the quotient and remainder</p></li>
+<li><p>Step 3: Repeat steps 1 and 2 until the quotient equals zero.</p></li>
+<li><p>Step 4: Map all the remainder values to their corresponding hexadecimal equivalents</p></li>
+<li><p>Step 5: Starting with the last value and moving to the first, write each of the hexadecimal values</p></li>
+</ul>
+<p>Let’s compute the hexadecimal equivalent of 74:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>value</p></th>
+<th class="head"><p>quotient</p></th>
+<th class="head"><p>remainder</p></th>
+<th class="head"><p>hex code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>74/16</p></td>
+<td><p>4</p></td>
+<td><p>10</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-odd"><td><p>4/16</p></td>
+<td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+<p>Thus, the hexadecimal equivalent of 74 is 4A, and the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> index for <code class="docutils literal notranslate"><span class="pre">J</span></code> is <code class="docutils literal notranslate"><span class="pre">U+004A</span></code>.</p>
+</section>
+</div></section>
+<section id="string-values">
+<h4>String values<a class="headerlink" href="#string-values" title="Permalink to this headline">#</a></h4>
+<p>Languages such as the <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C-programming language</a> don’t have a formal <code class="docutils literal notranslate"><span class="pre">String</span></code> type; instead, strings are encoded as arrays of characters. Modern languages, such as <a class="reference external" href="https://docs.julialang.org">Julia</a> or <a class="reference external" href="https://www.python.org">Python</a>, have sophisticated built-in <code class="docutils literal notranslate"><span class="pre">String</span></code> types constructed using the <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> character set.  <code class="docutils literal notranslate"><span class="pre">Strings</span></code> can be created using double quotes in <a class="reference external" href="https://docs.julialang.org">Julia</a> or single quotes in <a class="reference external" href="https://www.python.org">Python</a>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="3d8da4f0-4cd3-44ad-837c-19402bc7b406" name="c967c78c-54cf-40e7-b5cc-e6d7e54c9fe3" type="radio">
+</input><label class="sd-tab-label" for="3d8da4f0-4cd3-44ad-837c-19402bc7b406">
+julia</label><div class="sd-tab-content docutils">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="7225be55-f261-46b0-b6d8-5fdb381d68ee" name="c967c78c-54cf-40e7-b5cc-e6d7e54c9fe3" type="radio">
+</input><label class="sd-tab-label" for="7225be55-f261-46b0-b6d8-5fdb381d68ee">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an expression to create a string in Python</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python strings use single quotes. Why python, why?&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, while the types of characters that can be incorporated into a <a class="reference external" href="https://docs.julialang.org">Julia</a> <code class="docutils literal notranslate"><span class="pre">String</span></code> is more diverse, in many ways, modern strings share features with the older array representation of text. For example, a <a class="reference external" href="https://docs.julialang.org">Julia</a> (or <a class="reference external" href="https://www.python.org">Python</a>) <code class="docutils literal notranslate"><span class="pre">String</span></code> can be indexed like an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is a Julia expression to create a string</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
+
+<span class="c"># grab a range of characters (from 1 to 5)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Julia
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fragment generated by indexing, e.g., the sequence of characters in the range <span class="math notranslate nohighlight">\(1\rightarrow{5}\)</span> shown above, is also of type <code class="docutils literal notranslate"><span class="pre">String</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia strings use double quotes&quot;</span>
+
+<span class="c"># grab a range of characters</span>
+<span class="n">fragment</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c"># what type is the stuff that I just grabbed?</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The fragment is type -&gt; </span><span class="si">$</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">fragment</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The fragment is type -&gt; String
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want (or need) to work with the invidual characters in text, you can convert a <code class="docutils literal notranslate"><span class="pre">String</span></code> type into a <code class="docutils literal notranslate"><span class="pre">Array{Char,1}</span></code> type using the <code class="docutils literal notranslate"><span class="pre">collect</span></code> function in <a class="reference external" href="https://docs.julialang.org">Julia</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is an expression to create a string in Julia</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">&quot;Julia rocks the house&quot;</span>
+
+<span class="c"># Make an array of characters </span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21-element Vector{Char}:
+ &#39;J&#39;: ASCII/Unicode U+004A (category Lu: Letter, uppercase)
+ &#39;u&#39;: ASCII/Unicode U+0075 (category Ll: Letter, lowercase)
+ &#39;l&#39;: ASCII/Unicode U+006C (category Ll: Letter, lowercase)
+ &#39;i&#39;: ASCII/Unicode U+0069 (category Ll: Letter, lowercase)
+ &#39;a&#39;: ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
+ &#39; &#39;: ASCII/Unicode U+0020 (category Zs: Separator, space)
+ &#39;r&#39;: ASCII/Unicode U+0072 (category Ll: Letter, lowercase)
+ &#39;o&#39;: ASCII/Unicode U+006F (category Ll: Letter, lowercase)
+ &#39;c&#39;: ASCII/Unicode U+0063 (category Ll: Letter, lowercase)
+ &#39;k&#39;: ASCII/Unicode U+006B (category Ll: Letter, lowercase)
+ &#39;s&#39;: ASCII/Unicode U+0073 (category Ll: Letter, lowercase)
+ &#39; &#39;: ASCII/Unicode U+0020 (category Zs: Separator, space)
+ &#39;t&#39;: ASCII/Unicode U+0074 (category Ll: Letter, lowercase)
+ &#39;h&#39;: ASCII/Unicode U+0068 (category Ll: Letter, lowercase)
+ &#39;e&#39;: ASCII/Unicode U+0065 (category Ll: Letter, lowercase)
+ &#39; &#39;: ASCII/Unicode U+0020 (category Zs: Separator, space)
+ &#39;h&#39;: ASCII/Unicode U+0068 (category Ll: Letter, lowercase)
+ &#39;o&#39;: ASCII/Unicode U+006F (category Ll: Letter, lowercase)
+ &#39;u&#39;: ASCII/Unicode U+0075 (category Ll: Letter, lowercase)
+ &#39;s&#39;: ASCII/Unicode U+0073 (category Ll: Letter, lowercase)
+ &#39;e&#39;: ASCII/Unicode U+0065 (category Ll: Letter, lowercase)
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default each character in a <a class="reference external" href="https://docs.julialang.org">Julia</a> string requires 4<span class="math notranslate nohighlight">\(\times\)</span>bytes (32-bits) of storage.</p>
+</section>
+</section>
+<section id="composite-types">
+<h3>Composite types<a class="headerlink" href="#composite-types" title="Permalink to this headline">#</a></h3>
+<p>Composite types are custom data types made up of one or more other types. In <a class="reference external" href="https://docs.julialang.org">Julia</a>, there are two main composite types: <a class="reference external" href="https://docs.julialang.org/en/v1/manual/types/#Composite-Types">structs</a> and <a class="reference external" href="https://docs.julialang.org/en/v1/base/arrays/#lib-arrays">arrays</a>.</p>
+<p>A struct is a composite data type that allows data to be stored in named fields. You define a struct by using the <code class="docutils literal notranslate"><span class="pre">struct</span></code> keyword followed by a name for the struct and a list of field names and types. For example, let’s define an immutable <code class="docutils literal notranslate"><span class="pre">Student</span></code> struct that has a <code class="docutils literal notranslate"><span class="pre">sid</span></code> and a <code class="docutils literal notranslate"><span class="pre">netid</span></code> field:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">Student</span>
+    
+    <span class="c"># data fields </span>
+    <span class="n">sid</span><span class="o">::</span><span class="kt">Int64</span>
+    <span class="n">netid</span><span class="o">::</span><span class="kt">String</span>
+<span class="k">end</span>
+
+<span class="c"># build an instance -</span>
+<span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;xyz123&quot;</span><span class="p">);</span> <span class="c"># we pass the required data into the struct as args </span>
+</pre></div>
+</div>
+<p>A mutable struct is a struct whose fields can be modified after it is created. You can create a mutable struct by using the <code class="docutils literal notranslate"><span class="pre">mutable</span> <span class="pre">struct</span></code> keyword instead of struct and by adding a <em>constructor</em> method:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">mutable struct</span> <span class="kt">Student</span>
+    
+    <span class="c"># data fields </span>
+    <span class="n">sid</span><span class="o">::</span><span class="kt">Int64</span>
+    <span class="n">netid</span><span class="o">::</span><span class="kt">String</span>
+
+    <span class="c"># constructor: builds a new empty Student</span>
+    <span class="n">Student</span><span class="p">()</span> <span class="o">=</span> <span class="n">new</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="c"># build an empty instance -</span>
+<span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">();</span> <span class="c"># contains no data</span>
+<span class="n">student</span><span class="o">.</span><span class="n">sid</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">student</span><span class="o">.</span><span class="n">netid</span> <span class="o">=</span> <span class="s">&quot;xyz123&quot;</span> <span class="c"># we add data using the &quot;dot&quot; notation</span>
+</pre></div>
+</div>
+<p>The struct composite data type contains only data; in the examples above the <code class="docutils literal notranslate"><span class="pre">Student</span></code> datatype holds two values, <code class="docutils literal notranslate"><span class="pre">sid</span></code> is an integer type and <code class="docutils literal notranslate"><span class="pre">netid</span></code> is a string type. Except for the special case of the constructur on the mutable <code class="docutils literal notranslate"><span class="pre">Student</span></code> struct, composite types in <a class="reference external" href="https://docs.julialang.org">Julia</a> do not have functions attached to them.</p>
+<section id="aside-what-is-an-object-oriented-language">
+<h4>Aside: What is an object-oriented language?<a class="headerlink" href="#aside-what-is-an-object-oriented-language" title="Permalink to this headline">#</a></h4>
+<p>In other mainstream programming languages, e.g., <a class="reference external" href="https://www.python.org">Python</a>, <a class="reference external" href="https://www.oracle.com/java/">Java</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> or <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> composite types also have named functions associated with them, and the combination is called an <code class="docutils literal notranslate"><span class="pre">object</span></code>. In purer object-oriented languages, such as <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Smalltalk">Smalltalk</a>, all values are objects whether they are composites or not. In less refined object-oriented languages, including <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> and <a class="reference external" href="https://www.oracle.com/java/">Java</a>, some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In <a class="reference external" href="https://docs.julialang.org">Julia</a>, all values are objects, but functions are not bundled with the objects they operate on.</p>
+<!-- and a single optional function called a constructor, which is called to build an instance of the struct. -->
+</section>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
+<p>In this lecture, we introduced expressions, variables, and types. Understanding expressions, variables, and types are fundamental to writing programs in any programming language.</p>
+<ul class="simple">
+<li><p>Expressions are combinations of values, variables, and operators that produce a new value when evaluated.</p></li>
+<li><p>Variables are named storage locations that can hold values and are used to store values that may change during the execution of a program.</p></li>
+<li><p>Types are categories of values, and every value belongs to a specific type. Programming languages have many different types, including primitive types (such as numbers and booleans) and composite types (such as arrays and objects).</p></li>
+</ul>
+<p>Next, we build upon our introduction of expressions, variables, and types and consider some other technical computing build blocks and strategies, namely <a class="reference internal" href="functions.html"><span class="doc std std-doc">Functions, Control Statements, and Recursion</span></a>.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.8"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.8",
+            path: "./unit-1-basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.8'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="basics-landing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Technical computing basics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="functions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Functions, Control Statements, and Recursion</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varner<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
