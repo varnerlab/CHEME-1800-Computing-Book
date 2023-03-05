@@ -1,0 +1,51 @@
+(content:references:triag-matrix)=
+#### Triangular matrices
+ ({prf:ref}`defn-triangular-matrices`):
+
+````{prf:definition} Triangular matrices
+:label: defn-triangular-matrices
+Triangular matrices are square arrays with zero entries below or above the main diagonal. An $n\times{n}$ lower triangular matrix $\mathbf{L}$:
+
+```{math}
+\mathbf{L} = 
+\begin{pmatrix}
+l_{11} & 0 & \dots & 0 \\
+l_{21} & l_{22} & \dots & 0 \\
+\vdots & \vdots & & \vdots \\
+l_{n1} & l_{n2} & \dots & l_{nn}
+\end{pmatrix}
+```
+
+has entries $l_{ij} = 0$ for $i<j$ (above the diagonal). On the other hand, an $n\times{n}$ upper triangular matrix $\mathbf{U}$:
+
+```{math}
+\mathbf{U} = 
+\begin{pmatrix}
+u_{11} & u_{12} & \dots & u_{nn} \\
+0 & u_{22} & \dots & u_{2n} \\
+\vdots & \vdots & & \vdots \\
+0 & 0 & \dots & u_{nn}
+\end{pmatrix}
+```
+
+has entries $u_{ij} = 0$ for $i>j$ (below the diagonal).
+````
+
+Triangular matrices are useful in various mathematical and computational contexts. For example, they are easy to invert, can be used to represent linear transformations conveniently, and can be used to solve systems of linear algebraic equations efficiently.
+
+#### Orthogonal matrices
+Orthogonal matrices are square matrices whose rows and columns are mutually orthogonal and have unit lengths ({prf:ref}`defn-orthogonal-matrix`): 
+
+````{prf:definition} Orthogonal matrices
+:label: defn-orthogonal-matrix
+
+An $n\times{n}$ real matrix $\mathbf{A}$ is an orthogonal matrix if:
+
+```{math}
+:label: eqn-orthogonal-matrices
+\mathbf{A}^{T}\mathbf{A} = \mathbf{A}\mathbf{A}^{T} = \mathbf{I}
+```
+
+where $\mathbf{A}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the matrix $\mathbf{A}$, and $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. 
+````
+Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.

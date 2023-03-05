@@ -17,7 +17,7 @@ chapters:
   sections:
   - file: unit-2-data/trees
   - file: unit-2-data/vectors-matricies-nla
-  - file: unit-2-data/laes
+  - file: unit-2-data/reduction
 - file: unit-3-learning/learning-landing
   title: Unit 3. Learning
   sections: 
