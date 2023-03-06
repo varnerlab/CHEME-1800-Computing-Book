@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Julia
+  language: julia
+  name: julia-1.8
+---
+
 # Vectors, Matrices and Linear Algebraic Equations
 
 ## Introduction
@@ -88,10 +100,10 @@ __Connection with kinetic rate__: In concentration based system we often use con
 ```
 
 where $V$ denotes the system volume. 
-
 ````
 
-Now that we understand how to describe the reaction terms, we can write the _open species mole balance_ ({prf:ref}`defn-open-species-mole-balance`):
+Now that we understand how to describe the reaction terms, we can write the _open species mole balance_ 
+({prf:ref}`defn-open-species-mole-balance`):
 
 ````{prf:definition} Open Species Mole Balance
 :label: defn-open-species-mole-balance
@@ -119,10 +131,82 @@ __Steady-state__: At steady state, all the accumulation terms vanish and the sys
 ```
 ````
 
+### Motivation: Matrix-vector notation mole balances
+To motivate the study of matrices and vectors, let's rethink the open species mole balances given in 
+{prf:ref}`defn-open-species-mole-balance` in terms of a system of equations. Toward this, consider a simple reaction $A\longrightarrow{B}$ occurring in a well-mixed chemical reactor with single input and a single output ({numref}`fig-chemical-reactor-schematic`):
+
+
+```{figure} ./figs/Fig-Reactor-Schematic.pdf
+---
+height: 240px
+name: fig-chemical-reactor-schematic
+---
+Schematic of an open well-mixed chemical reactor with a single input and output stream. 
+```
+
+The species set in this case is $\mathcal{M}=\left\{A,B\right\}$ and the stream set $\mathcal{S}=\left\{s_{1},s_{2}\right\}$, and there is a single chemical reaction; let $A$ be species `1` and $B$ be species `2`. {prf:ref}`defn-open-species-mole-balance` tells us that we'll have a system of equations of the form (at steady-state):
+
+$$
+\begin{eqnarray}
+\dot{n}_{A,1} - \dot{n}_{A,2} - \dot{\epsilon}_{1} & = & 0 \\
+\dot{n}_{B,1} - \dot{n}_{B,2} + \dot{\epsilon}_{1} & = & 0 \\
+\end{eqnarray}
+$$
+
+However, this system can be re-written in a much more compact (and general) form:
+
+```{math}
+:label: eqn-matrix-vector-system-mol-bal
+\mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}
+```
+
+The `boldface` capital letters denote matrices, while small letters denote vectors. In this particular case, $\mathbf{T}$ denotes the transport matrix:
+
+```{math}
+:label: eqn-T-matrix-example
+\mathbf{T} = \begin{bmatrix}
+1 & -1 & 0 & 0\\
+0 & 0 & 1 & -1 \\
+\end{bmatrix}
+```
+
+and $\mathbf{S}$ denotes the stoichiometric matrix:
+
+
+```{math}
+:label: eqn-S-matrix-example
+\mathbf{S} = \begin{bmatrix}
+-1 & 0 \\
+0 & 1 \\
+\end{bmatrix}
+```
+
+while $\dot{\mathbf{n}} = \left(\dot{n}_{A,1}, \dot{n}_{A,2}, \dot{n}_{B,1}, \dot{n}_{B,2}\right)^{T}$ and 
+$\dot{\mathbf{\epsilon}} = \dot{\epsilon}_{1}$. The superscript $\star^{T}$ denotes the transpose operation (turns a row into a column, or vice-versa). As it turns out, Eqn. {eq}`eqn-matrix-vector-system-mol-bal` is a particular instance of a general system 
+({prf:ref}`defn-reaction-system-matrix-vector`):
+
+````{prf:definition} General open species mole balances
+:label: defn-reaction-system-matrix-vector
+
+The steady-state species mole balances for any well-mixed reacting system with a species set $\mathcal{M}$, a reaction set $\mathcal{R}$, and stream set $\mathcal{S}$ can be modeled by the matrix-vector system:
+
+```{math}
+\mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}
+```
+
+The matrix $\mathbf{T}$ is the $|\mathcal{M}| \times |\mathcal{M}||\mathcal{S}|$ transport matrix, $\mathbf{S}$ is the $|\mathcal{M}| \times |\mathcal{R}|$ stoichiometric matrix, $\dot{\mathbf{n}}$ denotes the $|\mathcal{M}||\mathcal{S}| \times {1}$ species flow vector and $\mathbf{\epsilon}$ denotes the $|\mathcal{R}| \times {1}$ reaction vector.
+
+The notation $|\star|$ denotes the dimension (number of elements) of set $\star$.
+
+````
+
+<!-- Matrices and vectors are encoded in computer programs as {ref}`content:references:lda-arrays` -->
+
+Now that we've seen that matrices and vectors naturally arise in even simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic`, let's dig deeper into their definition, structure, and operations.
 
 (content:references:matrix-vector)=
 ## Matricies and Vectors
-Matrices and vectors are encoded in computer programs as {ref}`content:references:lda-arrays`. Matrices are two- or more dimensional rectangular arrays of numbers, widgets, etc with $m$ rows and $n$ columns:
+Matrices are two- (or more) dimensional rectangular arrays of numbers, widgets, etc that consist of $m$ rows and $n$ columns:
 
 $$\mathbf{A} = 
 \begin{pmatrix}
@@ -132,9 +216,10 @@ a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
 a_{m,1} & a_{m,2} & \cdots & a_{m,n} 
 \end{pmatrix}$$
 
-where $a_{ij}$ denotes the _element_ of the matrix $\mathbf{A}$ that lives on the $i$th row and $j$th col. By convention, the row index is always the first subscript while the column index is always listed second. 
+The quantity $a_{ij}\in\mathbf{A}$ denotes an _element_ of the matrix $\mathbf{A}$, where $a_{ij}$ lives on the $i$th row and $j$th column of $\mathbf{A}$. By convention, the row index is always the first subscript, while the column index is always listed second. Matrices can have different shapes ({prf:ref}`obs-matrix-shape`):
 
 ```{prf:observation} Matrix shape
+:label: obs-matrix-shape
 Let the matrix $\mathbf{A}$ be an $m\times{n}$ array. Then, the matrix $\mathbf{A}$ is called:
 
 * __Square__: If $m=n$, the matrix is called a _square_ matrix; square matrices have some unique properties (as we shall see later). 
@@ -171,13 +256,15 @@ Some examples of special matrices include:
 * __Orthogonal matrices__: [Orthogonal matrices](https://en.wikipedia.org/wiki/Orthogonal_matrix)  are square matrices whose rows and columns are mutually orthogonal and have unit lengths.
 
 (content:determinant-trace)=
-#### Trace, Determinant and Rank 
+#### Trace, Determinant and Rank
+
+##### Trace
 The trace of a square matrix is the sum of the diagonal elements ({prf:ref}`defn-trace-A`):
 
 ````{prf:definition} Trace
 :label: defn-trace-A
 
-The trace of a square matrix is defined as the sum of its diagonal elements. Consider an $n\times{n}$ square matrix $\mathbf{A}$, where $a_{ij}$ denotes the element on row $i$ and column $j$ of the matrix $\mathbf{A}$. Then, the trace, denoted as $\text{tr}\left(\mathbf{A}\right)$, is given by:
+The trace of a square matrix is defined as the sum of its diagonal elements. Consider an $n\times{n}$ square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$, where $a_{ij}$ denotes the element on row $i$ and column $j$ of the matrix $\mathbf{A}$. Then, the trace, denoted as $\text{tr}\left(\mathbf{A}\right)$, is given by:
 
 ```{math}
 :label: eqn-trace-A
@@ -185,11 +272,28 @@ The trace of a square matrix is defined as the sum of its diagonal elements. Con
 ```
 ````
 
-The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix. [Determinants](https://en.wikipedia.org/wiki/Determinant) are used to determine whether a system of linear equations has a solution, and they also have applications in calculating volume changes in linear transformations. 
+In [Julia](https://julialang.org), the [trace function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.tr) is encoded in the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package included with the [Julia](https://julialang.org) distribution. However, the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package is not loaded by default (you'll need to issue the `using LinearAlgebra` command to access its functions):
 
-The [determinant of square matrix](https://en.wikipedia.org/wiki/Determinant) $\mathbf{A}$ is defined as ({prf:ref}`defn-det-A`):
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
 
-````{prf:definition} Determinant
+# Define array
+A = [1 2 ; 3 4]; # the semicolon forces a newline 
+
+# compute the trace, store in the variable value
+value = tr(A);
+
+# What is the tr(A)
+println("The trace of the matrix tr(A) = $(value)")
+```
+
+[NumPy also has a trace function](https://numpy.org/doc/stable/reference/generated/numpy.trace.html) if your are doing linear algebra calculations in [Python](https://www.python.org).
+
+##### Determinant
+The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix ({prf:ref}`defn-det-A`):
+
+````{prf:definition} Leibniz formula determinant
 :label: defn-det-A
 
 Consider an $n\times{n}$ matrix $\mathbf{A}$, where $a_{ij}$ is the entry of $\mathbf{A}$ on row $i$ and column $j$. 
@@ -204,27 +308,54 @@ where $S_{n}$ denotes the Symmtery group of dimension $n$, i.e., the set of all 
 the quantity $\text{sign}\left(\sigma\right)$ equals `+1` if the permutation can be obtained with an even number of exchanges; otherwise `-1`. Finally, $a_{i\sigma_{i}}$ denotes the entry of the matrix $\mathbf{A}$ on row $i$, and column $\sigma_{i}$.
 ````
 
-Although the determinant of a dense square matrix is generally difficult to calculate, determinants of triangular matrices are easy to compute:
+We'll use [determinants](https://en.wikipedia.org/wiki/Determinant) to determine whether a system of linear equations has a solution, but they also have other applications. 
+
+In [Julia](https://julialang.org), the [determinant function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.det) is encoded in the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package included with the [Julia](https://julialang.org) distribution. However, the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package is not loaded by default (you'll need to issue the `using LinearAlgebra` command to access its functions):
+
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
+
+# Define array
+A = [1 2 ; 3 4]; # the semicolon forces a newline 
+
+# compute the determinant, store in the variable value
+value = det(A);
+
+# What is the det(A)
+println("The determinant of the matrix det(A) = $(value)")
+```
+
+Although the determinant of a general square matrix is expensive to calculate, determinants of triangular matrices are easy to compute:
 
 ````{prf:observation} Determinant triangular matrix
 :label: obs-determinant-triangular-matrix
 
-The determinant of a triangular matrix is equal to the product of its diagonal elements. This is true for both upper triangular $\mathbf{U}$ and lower $\mathbf{L}$ triangular matrices. For the upper triangular $n\times{n}$ matrix $\mathbf{U}$, the determinant is equal to:
+The determinant of a triangular matrix is equal to the product of its diagonal elements. This is true for both upper triangular $\mathbf{U}$ and lower $\mathbf{L}$ triangular matrices. For example, the determinant of the upper triangular $n\times{n}$ matrix $\mathbf{U}$ is equal to:
 
 ```{math}
 \det\left(\mathbf{U}\right) = \prod_{i=1}^{n}u_{ii}
 ```
 
-while the determinant of the $n\times{n}$ lower triangular matrix $\mathbf{L}$  is given by:
-
-```{math}
-\det\left(\mathbf{L}\right) = \prod_{i=1}^{n}l_{ii}
-```
-
-__Idea__: One potential strategy to efficiently compute a determinant is perhaps to convert the general $n\times{n}$ matrix $\mathbf{A}$ to a triangular form (by some theoretical approach). However, will the determinant of the original matrix $\mathbf{A}$ and its triangular be the same? 
+A similar expression could be written for a lower triangular matrix $\mathbf{L}$.
 ````
+
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
+
+# Define array
+A = [1 0 ; 2 3]; # the semicolon forces a newline 
+
+# compute the determinant, store in the variable value
+value = det(A);
+
+# What is the det(A)
+println("The determinant of the matrix det(A) = $(value)")
+```
  
-Finally, the [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns {prf:ref}`defn-rank-A`: 
+##### Rank
+Finally, the [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns ({prf:ref}`defn-rank-A`): 
 
 ````{prf:definition} Rank
 :label: defn-rank-A
@@ -238,10 +369,25 @@ r\leq\min\left(m,n\right)
 Rank can also be considered a measure of the unique information in a matrix; if there is redundant information (rows or columns that are not linearly independent), a matrix will have less than full rank. 
 ````
 
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
+
+# Define array
+A = [1 2 ; 3 4]; # the semicolon forces a newline 
+
+# compute the rank, store in the variable value
+value = rank(A);
+
+# What is the rank(A)
+println("The rank of the matrix rank(A) = $(value)")
+```
+
+
 <!-- The kernel of a matrix is the set of all solutions to the homogeneous equation $\mathbf{A}\mathbf{x} = \mathbf{0}$, where $\mathbf{A}$ is the matrix, and $\mathbf{x}$ is a column vector. The dimension of the kernel is equal to the number of columns in the matrix minus its rank. The kernel is also known as the null space of the matrix. -->
 
 (content:matrix-vector-operations)=
-## Matrix and vector operations
+## Mathematical matrix and vector operations
 Matrix and vector operations are mathematical procedures to add, subtract and multiple matrices and vectors.  Matrix and vector operations are similar in some wats to scalar numbers, with some crucial differences and one important caveat: _they must be compatible_.
 
 Many (if not all) modern programming languages implement a version of the [Basic Linear Algebra Subprograms (BLAS)](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) library. [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) is a low-level library that efficiently implements basic linear algebra operations, such as vector and matrix multiplication, matrix-vector multiplication, and solving linear systems of equations. The library is designed to provide high-performance implementations of these routines that can be used as building blocks for more complex algorithms. 
@@ -288,6 +434,10 @@ Vector addition is straightforward to implement ({prf:ref}`algo-vector-addition`
 {prf:ref}`algo-vector-addition` may not be the _best_ way to implement vector (or matrix) addition or subtraction operations. Many modern programming languages and libraries, e.g., [the Numpy library in Python](https://numpy.org) or [Julia](https://julialang.org), support _vectorization_, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write `for` loops. 
 
 In [Julia](https://julialang.org), you can use the vectorized `.+` operator for element-wise addition, while element-wise subtraction can be encoded with the `.-` operator. Vectorized code typically executes faster than naive implementations such as {prf:ref}`algo-vector-addition` because the _vectorization_ takes advantage of advanced techniques to improve performance. 
+
+##### Additional information on vectorization
+* [Vectorized operations in NumPy](https://www.geeksforgeeks.org/vectorized-operations-in-numpy/). [NumPy](https://numpy.org) is a Python scientific computing package. It is a Python library that provides multidimensional array objects and routines for fast operations on arrays.
+* [Vectorized operations in Julia](https://docs.julialang.org/en/v1/manual/functions/#man-vectorized) are included in the standard library. The standard library already defines common operators such as addition `.+`, subtraction `.-`, multiplication `.*`, and power `.^`. However, the [broadcasting](https://docs.julialang.org/en/v1/manual/arrays/#Broadcasting) paradigm allows you to write your own vectorized operations.
 
 ### Multiplication operations
 

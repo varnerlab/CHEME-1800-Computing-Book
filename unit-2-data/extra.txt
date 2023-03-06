@@ -49,3 +49,11 @@ An $n\times{n}$ real matrix $\mathbf{A}$ is an orthogonal matrix if:
 where $\mathbf{A}^{T}$ denotes the [transpose](https://en.wikipedia.org/wiki/Transpose) of the matrix $\mathbf{A}$, and $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. 
 ````
 Orthogonal matrices are used in various fields, such as linear algebra, physics, computer graphics, and statistics.
+
+while the determinant of the $n\times{n}$ lower triangular matrix $\mathbf{L}$  is given by:
+
+```{math}
+\det\left(\mathbf{L}\right) = \prod_{i=1}^{n}l_{ii}
+```
+
+__Idea__: One potential strategy to efficiently compute a determinant is perhaps to convert the general $n\times{n}$ matrix $\mathbf{A}$ to a triangular form (by some theoretical approach). However, will the determinant of the original matrix $\mathbf{A}$ and its triangular be the same? 
