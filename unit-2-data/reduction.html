@@ -571,11 +571,11 @@ title="Print to PDF"
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{x}+\mathbf{x}||\leq||\mathbf{x}||+||\mathbf{x}||\)</span> for any vectors <span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-vector-p-norm">
-<p class="admonition-title"><span class="caption-number">Definition 24 </span> (p-norm)</p>
+<p class="admonition-title"><span class="caption-number">Definition 25 </span> (p-norm)</p>
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(48)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(51)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div><p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
@@ -585,26 +585,26 @@ title="Print to PDF"
 <li><p>Triangle inequality: <span class="math notranslate nohighlight">\(||\mathbf{A}+\mathbf{B}||\leq||\mathbf{A}||+||\mathbf{B}||\)</span> for any matrices <span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B}\in\mathbb{R}^{m\times{n}}\)</span></p></li>
 </ul>
 <div class="proof definition admonition" id="defn-compatible-matrix-vector-norm">
-<p class="admonition-title"><span class="caption-number">Definition 25 </span> (Properties of Matrix Norms)</p>
+<p class="admonition-title"><span class="caption-number">Definition 26 </span> (Properties of Matrix Norms)</p>
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(49)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<span class="eqno">(52)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
 <p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
 <span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(50)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<span class="eqno">(53)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
 <section id="similarity-functions">
 <span id="content-measurements-similarity-funtions"></span><h3>Similarity functions<a class="headerlink" href="#similarity-functions" title="Permalink to this headline">#</a></h3>
 <p>Other functions can be used to measure the similarity (or distance between) vectors and matrices:</p>
 <div class="proof definition admonition" id="defn-rbf-measure">
-<p class="admonition-title"><span class="caption-number">Definition 26 </span> (Radial basis function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 27 </span> (Radial basis function)</p>
 <section class="definition-content" id="proof-content">
 <p>A radial basis function (RBF) measures the similarity between two input vectors <span class="math notranslate nohighlight">\(\mathbf{x}_{p}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x_{q}}\in\mathbb{R}^{m\times{1}}\)</span>. The most common is the Gaussian radial basis function, defined by a bell-shaped curve:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rbf-similarity-function">
-<span class="eqno">(51)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
+<span class="eqno">(54)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
 \left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)\right) +\sigma_{n}^{2}\delta_{pq}\]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\in\mathbb{R}^{m\times{m}}\)</span> can be any symmetric matrix, <span class="math notranslate nohighlight">\(\sigma_{f}^{2}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{n}^{2}\)</span> are constants and <span class="math notranslate nohighlight">\(\delta_{pq}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a>.</p>
 </section>
@@ -619,7 +619,7 @@ title="Print to PDF"
 <span id="content-eigenvalue-eigenvector-problems"></span><h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
 <p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(52)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
+<span class="eqno">(55)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
 <p>In addition to thier other uses, eigenvalues have a another interesting feature (<a class="reference internal" href="#obs-eigenvalues-determinants">Observation 4</a>):</p>
 <div class="proof observation admonition" id="obs-eigenvalues-determinants">
@@ -628,7 +628,7 @@ title="Print to PDF"
 <p>Eigenvalues can be used directly to calculate the determinant of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>. Denote the set of
 eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> as <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span>. Then, the <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-a-eigenvalues">
-<span class="eqno">(53)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
+<span class="eqno">(56)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
 <p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\lambda_{i}&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
 </section>
 </div></section>
@@ -636,11 +636,11 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:</p>
 <div class="proof definition admonition" id="defn-svd-real-matrix">
-<p class="admonition-title"><span class="caption-number">Definition 27 </span> (Singular value decomposition)</p>
+<p class="admonition-title"><span class="caption-number">Definition 28 </span> (Singular value decomposition)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-math-svd">
-<span class="eqno">(54)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
+<span class="eqno">(57)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
 </section>
 </div><p>SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
@@ -651,7 +651,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> have the singular value decomposition <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\)</span>.</p>
 <p>Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> can be written as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-decomp">
-<span class="eqno">(55)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
+<span class="eqno">(58)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> denotes the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith columns of the corresponding SVD matrices, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
 <p>The outer-product <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 </section>
