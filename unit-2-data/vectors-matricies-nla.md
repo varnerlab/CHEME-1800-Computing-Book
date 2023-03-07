@@ -175,8 +175,8 @@ and $\mathbf{S}$ denotes the stoichiometric matrix:
 ```{math}
 :label: eqn-S-matrix-example
 \mathbf{S} = \begin{bmatrix}
--1 & 0 \\
-0 & 1 \\
+-1 \\
+1 \\
 \end{bmatrix}
 ```
 
@@ -236,7 +236,7 @@ a_{2} \\
 a_{m}
 \end{pmatrix}$$
 
-while a $n\times{1}$ dimensional _row_ vector $\mathbf{a}$ is given by:
+while a ${1}\times{n}$ dimensional _row_ vector $\mathbf{a}$ is given by:
 
 $$\mathbf{a} = 
 \begin{pmatrix}
@@ -259,7 +259,7 @@ Some examples of special matrices include:
 * __Orthogonal matrices__: [Orthogonal matrices](https://en.wikipedia.org/wiki/Orthogonal_matrix)  are square matrices whose rows and columns are mutually orthogonal and have unit lengths.
 
 (content:determinant-trace)=
-#### Trace, Determinant and Rank
+#### Trace, Determinant, LU decomposition and Rank
 
 ##### Trace
 The trace of a square matrix is the sum of the diagonal elements ({prf:ref}`defn-trace-A`):
@@ -296,11 +296,13 @@ println("The trace of the matrix tr(A) = $(value)")
 ##### Determinant
 The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix ({prf:ref}`defn-det-A`):
 
-````{prf:definition} Leibniz formula determinant
+````{prf:definition} Leibniz determinant formula
 :label: defn-det-A
 
-Consider an $n\times{n}$ matrix $\mathbf{A}$, where $a_{ij}$ is the entry of $\mathbf{A}$ on row $i$ and column $j$. 
-Then, the determinant, denoted as $\det\left(\mathbf{A}\right)$, is given by:
+The Leibniz determinant formula involves summing the products of elements in a square matrix, each taken from a different row and column, with a sign factor that alternates between positive and negative.
+
+Let $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and $a_{ij}\in\mathbf{A}$ be the entry of row $i$ and column $j$ of $\mathbf{A}$.
+Then, the determinant $\det\left(\mathbf{A}\right)$ is given by:
 
 ```{math}
 :label: eqn-det-A
@@ -311,7 +313,7 @@ where $S_{n}$ denotes the Symmtery group of dimension $n$, i.e., the set of all 
 the quantity $\text{sign}\left(\sigma\right)$ equals `+1` if the permutation can be obtained with an even number of exchanges; otherwise `-1`. Finally, $a_{i\sigma_{i}}$ denotes the entry of the matrix $\mathbf{A}$ on row $i$, and column $\sigma_{i}$.
 ````
 
-We'll use [determinants](https://en.wikipedia.org/wiki/Determinant) to determine whether a system of linear equations has a solution, but they also have other applications. 
+[Determinants](https://en.wikipedia.org/wiki/Determinant) can be used to determine whether a system of linear equations has a solution, but they also have other applications. However, the Leibniz determinant shown in {prf:ref}`defn-det-A` can be computationally expensive for large matrices since the number of permutations grows factorially with the matrix size. However, it provides a theoretical basis for understanding the determinant and can be helpful for small matrices or conceptual purposes.
 
 In [Julia](https://julialang.org), the [determinant function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.det) is encoded in the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package included with the [Julia](https://julialang.org) distribution. However, the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package is not loaded by default (you'll need to issue the `using LinearAlgebra` command to access its functions):
 
@@ -356,7 +358,44 @@ value = det(A);
 # What is the det(A)
 println("The determinant of the matrix det(A) = $(value)")
 ```
- 
+
+##### LU decomposition
+LU decomposition, also known as LU factorization, is a method of decomposing a square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ into the product of a permutation matrix $\mathbf{P}$, and lower and upper triangular matrices $\mathbf{L}$ and $\mathbf{U}$, respectively, such that $\mathbf{A} = \mathbf{P}\mathbf{L}\mathbf{U}$. 
+
+LU decomposition is a widely used numerical linear algebra technique with many applications. For example, the LU decomposition simplifies the computation of determinants ({prf:ref}`defn-LU-determinant`):
+
+````{prf:definition} LU decomposition
+:label: defn-LU-determinant
+
+Let the $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ be LU factoriable, such that $\mathbf{A} = \mathbf{P}\mathbf{L}\mathbf{U}$. Then, the determinant $\det\left(\mathbf{A}\right)$ is given by:
+
+```{math}
+:label: eqn-LU-det
+\det\left(\mathbf{A}\right) = \det\left(\mathbf{P}\right)\cdot\det\left(\mathbf{L}\right)\cdot\det\left(\mathbf{U}\right)
+```
+````
+
+In [Julia](https://julialang.org), the [LU factorization](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.lu) is encoded in the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package included with the [Julia](https://julialang.org) standard library:
+
+
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
+
+# Define array
+A = [1 2 ; 3 4]; # the semicolon forces a newline 
+
+# compute the determinant, store in the variable value
+F = lu(A);
+L = F.L
+U = F.U
+P = F.P
+
+# Test -
+AT = P*L*U
+```
+
+
 ##### Rank
 Finally, the [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns ({prf:ref}`defn-rank-A`): 
 
