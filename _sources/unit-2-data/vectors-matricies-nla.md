@@ -175,8 +175,8 @@ and $\mathbf{S}$ denotes the stoichiometric matrix:
 ```{math}
 :label: eqn-S-matrix-example
 \mathbf{S} = \begin{bmatrix}
--1 & 0 \\
-0 & 1 \\
+-1 \\
+1 \\
 \end{bmatrix}
 ```
 
@@ -236,7 +236,7 @@ a_{2} \\
 a_{m}
 \end{pmatrix}$$
 
-while a $n\times{1}$ dimensional _row_ vector $\mathbf{a}$ is given by:
+while a ${1}\times{n}$ dimensional _row_ vector $\mathbf{a}$ is given by:
 
 $$\mathbf{a} = 
 \begin{pmatrix}
