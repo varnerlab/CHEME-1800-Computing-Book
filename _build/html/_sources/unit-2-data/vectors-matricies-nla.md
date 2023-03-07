@@ -80,26 +80,26 @@ Before we define the open species mole balance, let's discuss the generation ter
 ````{prf:definition} Open Extent of Reaction
 :label: defn-open-extent-of-rxn
 
-Suppose we have chemical species set $\mathcal{M}$ in the system of interest. Further, suppose the species in set $\mathcal{M}$ participate in the chemical reaction set $\mathcal{R}$. Then, the species generation rate $\dot{n}_{G, i}$ can be written in terms of the open extent of reaction:
+Let chemical species set $\mathcal{M}$ participate in the chemical reaction set $\mathcal{R}$. Then, the species generation rate $\dot{n}_{G, i}$ (units: mol per time) can be written in terms of the open extent of reaction $\dot{\epsilon}_{r}$ (units: mol per time):
 
 ```{math}
 :label: eqn-open-extent-species
 \dot{n}_{G,i} = \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r}
 ```
 
-where $\dot{\epsilon}_{r}$ denotes the open extent of reaction $r$ (units: mol per time). The quantity $\sigma_{ir}$ denotes the stoichiometric coefficient for species $i$ in reaction $r$:
+where $\dot{\epsilon}_{r}$ denotes the open extent of reaction $r$. The quantity $\sigma_{ir}$ denotes the stoichiometric coefficient for species $i$ in reaction $r$:
 * If $\sigma_{ir}>0$ then species $i$ is _produced_ by reaction $r$, i.e., species $i$ is a product of reaction $r$ 
 * If $\sigma_{ir}=0$ then species $i$ is _not connected to_ reaction $r$
 * If $\sigma_{ir}<0$ then species $i$ is _consumed_ by reaction $r$, i.e., species $i$ is a reactant of reaction $r$.
 
-__Connection with kinetic rate__: In concentration based system we often use concentration balanecs, and the kinetic rate laws, to describe the system. The open extent of reaction $r$ is related to kinetic rate law per unit volume $\hat{r}_{r}$ for reaction $r$ by:
+__Connection with kinetic rate__: In a concentration-based system, we often use concentration balances, and the kinetic rate laws, to describe the system. The open extent of reaction $r$ is related to kinetic rate law per unit volume $\hat{r}_{r}$ (units: mol V$^{-1}$ t$^{-1}$):
 
 ```{math}
 :label: eqn-open-extent-kinetics
 \dot{\epsilon}_{r} = \hat{r}_{r}V
 ```
 
-where $V$ denotes the system volume. 
+where $V$ denotes the system volume (units: V). 
 ````
 
 Now that we understand how to describe the reaction terms, we can write the _open species mole balance_ 
@@ -108,11 +108,10 @@ Now that we understand how to describe the reaction terms, we can write the _ope
 ````{prf:definition} Open Species Mole Balance
 :label: defn-open-species-mole-balance
 
-Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical component $i$ in a system with species set $\mathcal{M}$
-(units: $\star$moles). Further, the set of streams flowing into (or from) the system is given by $\mathcal{S}$. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, is stream $s$ _exits_ the system then $\nu_{s} = -1$.
 
-Then, the number of moles of chemical component $i$ in the system as a function of time is described by an 
-_open species mass balance equation_:
+Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical species $i$ in a well-mixed system with species set $\mathcal{M}$ which participates in the chemical reaction set $\mathcal{R}$. Further, let $\mathcal{S}$ denote the streams flowing into (or from) the system. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, is stream $s$ _exits_ the system then $\nu_{s} = -1$.
+
+Then, the time evolution of $n_{i}\in\mathcal{M}$ is described by an _open species mole balance equation_ of the form:
 
 ```{math}
 :label: eqn-species-mol-balance
@@ -120,7 +119,7 @@ _open species mass balance equation_:
 \qquad\forall{i}\in\mathcal{M}
 ```
 
-The quantity $\dot{n}_{i,s}$ denotes the mole flow rate of component $i$ in stream $s$ (units: $\star$mol $i$/time), the generation terms in the system are described using the open extent (units: $\star$mol $i$/time), and $dn_{i}/dt$ denotes the rate of accumulation of the number of moles of component $i$ in the system (units: $\star$mol $i$/time). 
+The quantity $\dot{n}_{i,s}$ denotes the mole flow rate of component $i$ in stream $s$ (units: mol per time), the generation terms are written using the open extent (units: mol per time), and $dn_{i}/dt$ denotes the rate of accumulation of the number of moles of component $i$ in the system (units: mol per time). 
 
 __Steady-state__: At steady state, all the accumulation terms vanish and the system of balances becomes:
 
@@ -194,7 +193,7 @@ The steady-state species mole balances for any well-mixed reacting system with a
 \mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}
 ```
 
-The matrix $\mathbf{T}$ is the $|\mathcal{M}| \times |\mathcal{M}||\mathcal{S}|$ transport matrix, $\mathbf{S}$ is the $|\mathcal{M}| \times |\mathcal{R}|$ stoichiometric matrix, $\dot{\mathbf{n}}$ denotes the $|\mathcal{M}||\mathcal{S}| \times {1}$ species flow vector and $\mathbf{\epsilon}$ denotes the $|\mathcal{R}| \times {1}$ reaction vector.
+The matrix $\mathbf{T}$ is the $|\mathcal{M}| \times |\mathcal{M}||\mathcal{S}|$ _transport matrix_, the matrix $\mathbf{S}$ is the $|\mathcal{M}| \times |\mathcal{R}|$ _stoichiometric matrix_, $\dot{\mathbf{n}}$ denotes the $|\mathcal{M}||\mathcal{S}| \times {1}$ species flow vector and $\mathbf{\epsilon}$ denotes the $|\mathcal{R}| \times {1}$ reaction vector.
 
 The notation $|\star|$ denotes the dimension (number of elements) of set $\star$.
 
@@ -202,7 +201,7 @@ The notation $|\star|$ denotes the dimension (number of elements) of set $\star$
 
 <!-- Matrices and vectors are encoded in computer programs as {ref}`content:references:lda-arrays` -->
 
-Now that we've seen that matrices and vectors naturally arise in even simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic`, let's dig deeper into their definition, structure, and operations.
+Matrices and vectors naturally arise in even simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic`. Let's dig deeper into their definition, structure, and operations.
 
 (content:references:matrix-vector)=
 ## Matricies and Vectors
@@ -246,6 +245,10 @@ a_{1} & a_{2} & \cdots & a_{n}
 
 Just like numbers, vectors and matrices can participate in mathematical operations, such as addition, subtraction and multiplication, with some small differences. However, before we explore the mathematical operations of matrices and vectors, we'll discuss a few special matricies. 
 
+````{prf:remark} Restriction to real numbers
+:label: rem-real-values
+While the matrix $\mathbf{A}$ or vector $\mathbf{v}$ can theoretically hold any objects, e.g., strings, dictionaries, or trees, etc., in this section, we'll only consider numbers, and in particular real numbers. Thus, we'll assume all matrices are $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ and vectors $\mathbf{v}\in\mathbb{R}^{n}$; no complex numbers will be considered.  
+````
 
 ### Special matrices and matrix properties
 Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. 
