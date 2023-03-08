@@ -1869,7 +1869,7 @@ this guess back into into the linear algebraic equations. The guess is then upda
 <div class="math notranslate nohighlight" id="equation-eqn-jacobi-iteration">
 <span class="eqno">(52)<a class="headerlink" href="#equation-eqn-jacobi-iteration" title="Permalink to this equation">#</a></span>\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
 <p>In the Jacobi method, the estimate for all variables from the previous iteration is used, and we wait to update the solution until we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,n\)</span> equations. We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
-<p>Let’s look at the pseudo-code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 10</a>:</p>
+<p>Let’s look at the pseudo-code for Jacobi’s method (<a class="reference internal" href="#algo-jacobi-iteration">Algorithm 10</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-jacobi-iteration">
 <p class="admonition-title"><span class="caption-number">Algorithm 10 </span> (Jacobi iteration)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1924,7 +1924,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <div class="math notranslate nohighlight" id="equation-eqn-gauss-seidel-iteration">
 <span class="eqno">(53)<a class="headerlink" href="#equation-eqn-gauss-seidel-iteration" title="Permalink to this equation">#</a></span>\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
 <p>We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
-<p>Let’s look at a psuedo code for the Gauss Seidel method in <a class="reference internal" href="#algo-gauss-seidel-method">Algorithm 11</a>:</p>
+<p>Let’s look at a pseudo-code for the Gauss-Seidel method (<a class="reference internal" href="#algo-gauss-seidel-method">Algorithm 11</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-gauss-seidel-method">
 <p class="admonition-title"><span class="caption-number">Algorithm 11 </span> (Gauss-Seidel method)</p>
 <section class="algorithm-content" id="proof-content">

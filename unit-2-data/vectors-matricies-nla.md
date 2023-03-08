@@ -1155,7 +1155,7 @@ Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each i
 
 In the Jacobi method, the estimate for all variables from the previous iteration is used, and we wait to update the solution until we have processed all $i=1,2,\cdots,n$ equations. We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
 
-Let's look at the pseudo-code for Jacobi's method in {prf:ref}`algo-jacobi-iteration`:
+Let's look at the pseudo-code for Jacobi's method ({prf:ref}`algo-jacobi-iteration`):
 
 ````{prf:algorithm} Jacobi iteration
 :class: dropdown
@@ -1199,7 +1199,7 @@ The Gauss-Seidel method __live updates__ the best estimate of $\hat{x}_{i}$ _dur
 
 We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
 
-Let's look at a psuedo code for the Gauss Seidel method in {prf:ref}`algo-gauss-seidel-method`:
+Let's look at a pseudo-code for the Gauss-Seidel method ({prf:ref}`algo-gauss-seidel-method`):
 
 ````{prf:algorithm} Gauss-Seidel method
 :class: dropdown
