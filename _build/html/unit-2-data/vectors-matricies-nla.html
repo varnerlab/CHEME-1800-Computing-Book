@@ -633,8 +633,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iterative-methods">
-     Iterative methods
+    <a class="reference internal nav-link" href="#iterative-solution-methods">
+     Iterative solution methods
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -861,8 +861,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iterative-methods">
-     Iterative methods
+    <a class="reference internal nav-link" href="#iterative-solution-methods">
+     Iterative solution methods
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -1582,15 +1582,15 @@ has a unique solution if and only if the system matrix <span class="math notrans
 </section>
 <section id="solutions-approaches">
 <span id="content-references-solution-approaches"></span><h3>Solutions approaches<a class="headerlink" href="#solutions-approaches" title="Permalink to this headline">#</a></h3>
-<p>Several methods exist to find the solution of a square systems of linear equations:</p>
+<p>Several methods exist to find the solution of square systems of linear equations:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-gaussian-elimination"><span class="std std-ref">Gaussian elimination</span></a> solves linear equations by using a sequence of operations to reduce the system to an upper triangular form and then back substitution to find the solution.</p></li>
-<li><p><a class="reference internal" href="#content-references-iterative-methods"><span class="std std-ref">Iterative methods</span></a> are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual solution.</p></li>
+<li><p><a class="reference internal" href="#content-references-iterative-methods"><span class="std std-ref">Iterative solution methods</span></a> are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual answer.</p></li>
 </ul>
 </section>
 <section id="gaussian-elimination">
 <span id="content-references-gaussian-elimination"></span><h3>Gaussian elimination<a class="headerlink" href="#gaussian-elimination" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve for the remaining variables one at a time until you have a solution for the entire system.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is an efficient method for solving large square systems of linear algebraic equations. <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> is based on “eliminating” variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve the remaining variables one at a time until we have a solution for the entire system.</p>
 <p>Let’s start exploring this approach by looking at solving a triangular system of equations.</p>
 <section id="triangular-systems">
 <h4>Triangular systems<a class="headerlink" href="#triangular-systems" title="Permalink to this headline">#</a></h4>
@@ -1656,12 +1656,12 @@ x_{i} &amp; = &amp; \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\ri
 <p>where <span class="math notranslate nohighlight">\(u_{ii}\neq{0}\)</span>. The global operation count for this appraoch is <span class="math notranslate nohighlight">\(n^{2}\)</span> floating point operations (flops).</p>
 </section>
 </div><!-- Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`: -->
-<p>Solving a lower or upper triangular system can easily be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems?</p>
+<p>Solving a lower or upper triangular system can quickly be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems?</p>
 </section>
 <section id="row-reduction-approaches">
 <h4>Row reduction approaches<a class="headerlink" href="#row-reduction-approaches" title="Permalink to this headline">#</a></h4>
 <p>Converting a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is <code class="docutils literal notranslate"><span class="pre">1</span></code>, and all the other entries in that column are <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.</p>
-<p>Let’s walkthrough a simple example to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row reduction</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
+<p>Let’s walk through a simple example to illustrate the steps involved with <a class="reference external" href="https://en.wikipedia.org/wiki/Row_echelon_form">row reduction</a>; consider the solution of the 3<span class="math notranslate nohighlight">\(\times\)</span>3 system:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-ge-test-system">
 <span class="eqno">(44)<a class="headerlink" href="#equation-eqn-ge-test-system" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
 2 &amp; -1 &amp; 0 \\
@@ -1717,8 +1717,7 @@ x_{3}
 0 &amp; -1 &amp; 2 &amp;\bigm| &amp; 0
 \end{bmatrix}\end{split}\]</div>
 <p>The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc.</p>
-<p>While the logic underlying the row reduction of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to the upper triangular row-echelon form <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> seems simple, the implementation of a general, efficient row reduction function can be complicated; let’s develop a naive implementation of a row reduction
-procedure (<a class="reference internal" href="#algo-ge-basic">Algorithm 8</a>):</p>
+<p>While the logic underlying the row reduction of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to the upper triangular row-echelon form <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> seems simple, the implementation of a general, efficient row reduction function can be complicated; let’s develop a naive implementation of a row reduction procedure (<a class="reference internal" href="#algo-ge-basic">Algorithm 8</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-ge-basic">
 <p class="admonition-title"><span class="caption-number">Algorithm 8 </span> (Naive Row Reduction)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1833,31 +1832,39 @@ C_{A,0}\left(1-h\kappa\right) \\
 </section>
 </div></section>
 </section>
-<section id="iterative-methods">
-<span id="content-references-iterative-methods"></span><h3>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">#</a></h3>
-<p>Iterative methods are algorithms to estimate approximate solutions to linear algebraic equations. These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.</p>
-<p>One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. Let’s outline the basic idea of an interative solution method in <a class="reference internal" href="#obs-basic-iterative-method-outline">Observation 3</a>:</p>
+<section id="iterative-solution-methods">
+<span id="content-references-iterative-methods"></span><h3>Iterative solution methods<a class="headerlink" href="#iterative-solution-methods" title="Permalink to this headline">#</a></h3>
+<p>Iterative methods work by improving an initial guess of the solution until a desired level of accuracy is achieved. Commonly used iterative methods include <a class="reference internal" href="#content-references-jacobi-iterative-method"><span class="std std-ref">Jacobi’s method</span></a> and the
+<a class="reference internal" href="#content-references-gauss-seidel-method"><span class="std std-ref">Gauss-Seidel method</span></a>.</p>
+<ul class="simple">
+<li><p><strong>At each iteration</strong>: an iterative method uses the current estimate of the solution to generate a new estimate closer to the actual answer. This process continues until the solution converges to a desired accuracy level, typically measured by a tolerance parameter.</p></li>
+</ul>
+<p>The basic strategy of an iterative method is shown in <a class="reference internal" href="#obs-basic-iterative-method-outline">Observation 3</a>:</p>
+<!-- 
+These methods work by starting with an initial guess for the solution and then iteratively improving the guess until it converges on the actual answer. Several types of iterative methods can be used to solve linear algebraic equations, including Jacobi’s and the Gauss-Seidel methods. These methods all involve iteratively updating the estimates of the variables in the system of equations until the solution is found.
+
+One of the advantages of iterative methods is that they can be more efficient than direct methods for solving large, sparse systems of linear equations. However, they can also be more sensitive to the initial guess and may require more iterations to converge on the solution. -->
 <!-- 
 An iterative method takes an initial solution guess, and refines it by substituting
 this guess back into into the linear algebraic equations. The guess is then updated over and over again until either we exhaust the number of iterations we can take, or we converge to a solution. Two key iterative methods are: [Jacobi Iteration](https://en.wikipedia.org/wiki/Jacobi_method) and
 [Gauss-Seidel](https://en.wikipedia.org/wiki/Gauss–Seidel_method). The central difference between these two methods is how they update the best estimate of a solution at any given iteration.  -->
 <div class="proof observation admonition" id="obs-basic-iterative-method-outline">
-<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Basic iterative method)</p>
+<p class="admonition-title"><span class="caption-number">Observation 3 </span> (Basic iterative strategy)</p>
 <section class="observation-content" id="proof-content">
-<p>Suppose we have an <span class="math notranslate nohighlight">\(n\times{n}\)</span> system of linear algebraic equations of the form:</p>
+<p>Suppose we have a square system of linear algebraic equations:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{A}\mathbf{x} = \mathbf{b}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> denotes a <span class="math notranslate nohighlight">\(n\times{n}\)</span> matrix of coefficients, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector of unknowns that we are trying to estimate, and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{1}\)</span> vector of right-hand-side values.</p>
-<p>We start with the ith equation in a system of <span class="math notranslate nohighlight">\(n\)</span> equations, written in index form as:</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> is the system matrix, <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span> is a vector of unknowns, and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n\times{1}}\)</span> is the right-hand-side vector. Starting with equation <span class="math notranslate nohighlight">\(i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\sum_{j = 1}^{n}a_{ij}x_{j} = b_{i}\qquad{i=1,2,\cdots{n}}\]</div>
-<p>and solve it for <em>an estimate</em> of the ith unknown:</p>
+<p>we solve for an estimate of the ith unknown value <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{n}}\]</div>
-<p>denoted by <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>, where <span class="math notranslate nohighlight">\(\sum_{j=1,i}^{n}\)</span> does not include index <span class="math notranslate nohighlight">\(i\)</span>. What we do next, with the estimated value of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>, is the key difference between Jacobi’s method and the Gauss-Seidel method.</p>
+<p>where <span class="math notranslate nohighlight">\(\sum_{j=1,i}^{n}\)</span> excludes index <span class="math notranslate nohighlight">\(i\)</span>. What we do with the estimated value of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> is the difference between Jacobi’s method and the Gauss-Seidel method.</p>
 </section>
-</div><section id="jacobi-s-method">
-<h4>Jacobi’s method<a class="headerlink" href="#jacobi-s-method" title="Permalink to this headline">#</a></h4>
+</div><p>Iterative solution methods are used to solve large systems of linear equations where direct methods (such as Gaussian elimination) are impractical due to their computational cost.</p>
+<section id="jacobi-s-method">
+<span id="content-references-jacobi-iterative-method"></span><h4>Jacobi’s method<a class="headerlink" href="#jacobi-s-method" title="Permalink to this headline">#</a></h4>
 <p>Jacobi’s method <strong>batch updates</strong> the estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> at the <em>end</em> of each iteration. Suppose we define the estimate of the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then, the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
@@ -1912,7 +1919,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 </section>
 </div></section>
 <section id="gauss-seidel-method">
-<h4>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h4>
+<span id="content-references-gauss-seidel-method"></span><h4>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h4>
 <p>The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables.</p>
 <p>Gauss-Seidel <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,\cdots,n\)</span>. The update procedure of Gauss-Seidel generally leads to better convergence properties than the Jacobi method. Suppose we define the best estimate for variable <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(k\)</span> as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
