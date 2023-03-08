@@ -1860,17 +1860,16 @@ this guess back into into the linear algebraic equations. The guess is then upda
 <p>we solve for an estimate of the ith unknown value <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\hat{x}_{i}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}x_{j}\bigr)\qquad{i=1,2,\cdots{n}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\sum_{j=1,i}^{n}\)</span> excludes index <span class="math notranslate nohighlight">\(i\)</span>. What we do with the estimated value of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> is the difference between Jacobi’s method and the Gauss-Seidel method.</p>
+<p>where <span class="math notranslate nohighlight">\(\sum_{j=1,i}^{n}\)</span> does not include index <span class="math notranslate nohighlight">\(i\)</span>. What we do with the estimated value of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> is the difference between Jacobi’s and Gauss-Seidel’s methods.</p>
 </section>
 </div><p>Iterative solution methods are used to solve large systems of linear equations where direct methods (such as Gaussian elimination) are impractical due to their computational cost.</p>
 <section id="jacobi-s-method">
 <span id="content-references-jacobi-iterative-method"></span><h4>Jacobi’s method<a class="headerlink" href="#jacobi-s-method" title="Permalink to this headline">#</a></h4>
-<p>Jacobi’s method <strong>batch updates</strong> the estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> at the <em>end</em> of each iteration. Suppose we define the estimate of the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then, the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
-<p>In the Jacobi method, the estimate for all variables from the previous iteration is used, and we do not update the guess until
-we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,n\)</span> equations. We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
-<p>Let’s look at psuedo code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 10</a>:</p>
+<p>Jacobi’s method <strong>batch updates</strong> the estimate of <span class="math notranslate nohighlight">\(x_{i}\)</span> at the <em>end</em> of each iteration. Let the estimate of the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration k be <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then, the solution estimate at the next iteration <span class="math notranslate nohighlight">\(\hat{x}_{i,k+1}\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-jacobi-iteration">
+<span class="eqno">(52)<a class="headerlink" href="#equation-eqn-jacobi-iteration" title="Permalink to this equation">#</a></span>\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1,i}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
+<p>In the Jacobi method, the estimate for all variables from the previous iteration is used, and we wait to update the solution until we have processed all <span class="math notranslate nohighlight">\(i=1,2,\cdots,n\)</span> equations. We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
+<p>Let’s look at the pseudo-code for Jacobi’s method in <a class="reference internal" href="#algo-jacobi-iteration">Algorithm 10</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-jacobi-iteration">
 <p class="admonition-title"><span class="caption-number">Algorithm 10 </span> (Jacobi iteration)</p>
 <section class="algorithm-content" id="proof-content">
@@ -1917,14 +1916,14 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <li><p>return <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></p></li>
 </ol>
 </section>
-</div></section>
+</div><!-- the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables.  -->
+</section>
 <section id="gauss-seidel-method">
 <span id="content-references-gauss-seidel-method"></span><h4>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h4>
-<p>The Gauss-Seidel method is an iterative method for solving linear equations. It is a variant of the Gaussian elimination; the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables.</p>
-<p>Gauss-Seidel <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,\cdots,n\)</span>. The update procedure of Gauss-Seidel generally leads to better convergence properties than the Jacobi method. Suppose we define the best estimate for variable <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(k\)</span> as <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then the value of <span class="math notranslate nohighlight">\(x_{i}\)</span> at iteration <span class="math notranslate nohighlight">\(k+1\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
-<p>We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k{\rightarrow}k+1\)</span> is below some specified tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p>The Gauss-Seidel method <strong>live updates</strong> the best estimate of <span class="math notranslate nohighlight">\(\hat{x}_{i}\)</span> <em>during</em> the processing of equations <span class="math notranslate nohighlight">\(i=1,\cdots,n\)</span>. The Gauss-Seidel update procedure generally leads to better convergence properties than the Jacobi method. Let the estimate for variable <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(k\)</span> be <span class="math notranslate nohighlight">\(\hat{x}_{i,k}\)</span>. Then, the solution estimate at the next iteration <span class="math notranslate nohighlight">\(\hat{x}_{i,k+1}\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-gauss-seidel-iteration">
+<span class="eqno">(53)<a class="headerlink" href="#equation-eqn-gauss-seidel-iteration" title="Permalink to this equation">#</a></span>\[\hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}\]</div>
+<p>We continue to iterate until the change in the estimated solution does not change, i.e., the <em>distance</em> between the solution estimated at <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(k+1\)</span> is below some specified tolerance.</p>
 <p>Let’s look at a psuedo code for the Gauss Seidel method in <a class="reference internal" href="#algo-gauss-seidel-method">Algorithm 11</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-gauss-seidel-method">
 <p class="admonition-title"><span class="caption-number">Algorithm 11 </span> (Gauss-Seidel method)</p>
