@@ -741,19 +741,20 @@ where $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ is the system matrix, $\mathbf{x}\i
 The existence of a solution to a system of linear equations depends on the righ-hand side vector, the number of equations and the number of variables in the system. 
 
 #### Homogeneous square systems
-For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist, but non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$:
+For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist. However, non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$:
 
 ```{math}
 :label: eqn-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-may or may not have a unique solution. However, there is an easy check to determine the existence of a solution for a square homogenous system ({prf:ref}`defn-homogenous-soln-existence`):
+may or may not have a unique solution. There is an easy check to determine the existence of a solution for a square homogenous system ({prf:ref}`defn-homogenous-soln-existence`):
 
 ````{prf:definition} Homogenous solution existence
 :label: defn-homogenous-soln-existence
 
-A square homogeneous system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
+A homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix 
+$\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n}$
 has a unique solution if and only if the system matrix $\mathbf{A}$ has a zero determinant:
 
 ```{math}
@@ -761,9 +762,7 @@ has a unique solution if and only if the system matrix $\mathbf{A}$ has a zero d
 \det\left(\mathbf{A}\right) = 0
 ```
 
-The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations. 
-
-However, in practice, the determinant directly can be computationally expensive to compute. Alternatively, existence can also be checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$.  If a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$.
+The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations. Existence can also be checked by computing the rank: if a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$.
 ````
 
 <!-- There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org). -->
@@ -1177,7 +1176,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
         1. set $s\leftarrow{0}$
         1. for $k\in{1}\dots{n}$
             1. if $k\neq{j}$
-                1. set $s\leftarrow{s} + a_{ik}\times\hat{x}_{k}$
+                1. set $s\leftarrow{s} + a_{jk}\times\hat{x}_{k}$
         1. set $x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)$
     1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
         1. return $\hat{\mathbf{x}}$

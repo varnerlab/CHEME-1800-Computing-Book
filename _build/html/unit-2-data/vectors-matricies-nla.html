@@ -1545,19 +1545,19 @@ the quantity <span class="math notranslate nohighlight">\(\text{sign}\left(\sigm
 <p>The existence of a solution to a system of linear equations depends on the righ-hand side vector, the number of equations and the number of variables in the system.</p>
 <section id="homogeneous-square-systems">
 <h4>Homogeneous square systems<a class="headerlink" href="#homogeneous-square-systems" title="Permalink to this headline">#</a></h4>
-<p>For a homogeneous square system of linear equations, the trivial solution <span class="math notranslate nohighlight">\(\mathbf{x}=\mathbf{0}\)</span> will always exist, but non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
+<p>For a homogeneous square system of linear equations, the trivial solution <span class="math notranslate nohighlight">\(\mathbf{x}=\mathbf{0}\)</span> will always exist. However, non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n\times{1}}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-homogenous-laes">
 <span class="eqno">(36)<a class="headerlink" href="#equation-eqn-homogenous-laes" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{x} = \mathbf{0}\]</div>
-<p>may or may not have a unique solution. However, there is an easy check to determine the existence of a solution for a square homogenous system (<a class="reference internal" href="#defn-homogenous-soln-existence">Definition 22</a>):</p>
+<p>may or may not have a unique solution. There is an easy check to determine the existence of a solution for a square homogenous system (<a class="reference internal" href="#defn-homogenous-soln-existence">Definition 22</a>):</p>
 <div class="proof definition admonition" id="defn-homogenous-soln-existence">
 <p class="admonition-title"><span class="caption-number">Definition 22 </span> (Homogenous solution existence)</p>
 <section class="definition-content" id="proof-content">
-<p>A square homogeneous system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>
+<p>A homogeneous square system of linear algebraic equations with <span class="math notranslate nohighlight">\(n\times{n}\)</span> system matrix
+<span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> and unknown vector <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{n}\)</span>
 has a unique solution if and only if the system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has a zero determinant:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-homogenous-cond">
 <span class="eqno">(37)<a class="headerlink" href="#equation-eqn-det-homogenous-cond" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = 0\]</div>
-<p>The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations.</p>
-<p>However, in practice, the determinant directly can be computationally expensive to compute. Alternatively, existence can also be checked by computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.  If a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\left(\mathbf{A}\right)}=0\)</span>.</p>
+<p>The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations. Existence can also be checked by computing the rank: if a matrix is less than full rank, then <span class="math notranslate nohighlight">\(\det{\left(\mathbf{A}\right)}=0\)</span>.</p>
 </section>
 </div><!-- There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org). -->
 </section>
@@ -1893,7 +1893,7 @@ Matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vec
 <ol class="simple">
 <li><p>if <span class="math notranslate nohighlight">\(k\neq{j}\)</span></p>
 <ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{s} + a_{ik}\times\hat{x}_{k}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{s} + a_{jk}\times\hat{x}_{k}\)</span></p></li>
 </ol>
 </li>
 </ol>
