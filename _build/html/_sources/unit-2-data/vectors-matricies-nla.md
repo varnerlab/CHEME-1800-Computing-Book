@@ -1247,25 +1247,39 @@ The value of $\lambda$ can be in one of three regimes:
 * Overrelaxation $1<\lambda\leq{2}$: This regime will increase the rate of convergence provided the algorithm can converge
 
 #### Convergence of iterative methods
-A sufficient condition for the convergence of Jacobi or Gauss-Seidel Iteration is the well known diagonal dominance condition:
+A sufficient condition for the convergence of [Jacobi](https://en.wikipedia.org/wiki/Jacobi_method) or [Gauss-Seidel iteration](https://en.wikipedia.org/wiki/Gauss–Seidel_method) is the well known [diagonal dominance condition](https://en.wikipedia.org/wiki/Diagonally_dominant_matrix):
 
-$$\sum_{j=1,i}^{n}\lvert{a_{ij}}\rvert<\lvert{a_{ii}}\rvert\qquad\forall{i}$$
+```{math}
+:label: eqn-diagonal-dom
+\sum_{j=1,i}^{n}\lvert{a_{ij}}\rvert<\lvert{a_{ii}}\rvert\qquad\forall{i}
+```
 
-Diagonal dominance is a sufficient (but not necessary) condition for convergence of an iterative method. Of course, this condition says
-nothing regarding the rate of convergence. Convergence, which is a measure of the distance between the current
-best solution and the true solution, can be calculated using any one of several metrics. Two common techniques are the calculation of the
-percentage change in the solution as well as the measurement in a least-squares sense of the distance between the solutions. 
-While the true solution is not explicitly known, you can calculate the squared difference between the known right-hand side vector, $\mathbf{b}$, and your current best estimate, $\mathbf{\hat{b}}_{k}$:
+Diagonal dominance is a sufficient (but not necessary) condition for convergence (a measure of the distance between the current
+best solution and the actual solution) of an iterative method. Of course, this condition says nothing above the rate of convergence.
 
-$$e_{k}=\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)\left(\mathbf{b}-\mathbf{\hat{b}}_{k}\right)^{T}$$
+* Diagonal dominance, as shown on Eqn. {eq}`eqn-diagonal-dom`, is a matrix property where the absolute value of the diagonal element of each row is greater than or equal to the sum of the absolute values of the other elements in that row. A matrix that satisfies this property is said to be diagonally dominant.
 
-where $e_{k}$ denotes the squared error for solution at iteration k of the algorithm. 
+* When a matrix is diagonally dominant, iterative methods for solving linear systems of equations, such as the [Jacobi](https://en.wikipedia.org/wiki/Jacobi_method) or [Gauss-Seidel methods](https://en.wikipedia.org/wiki/Gauss–Seidel_method), converge faster than when the matrix is not diagonally dominant. The reason for this is that the diagonally dominant property ensures that the iteration scheme will consistently decrease the magnitude of the error in each iteration until the desired level of accuracy is reached.
+
+* When the matrix is not diagonally dominant, the iteration scheme may not consistently decrease the error in each iteration, and the convergence may be slow or even fail to converge.
 
 ---
 
 ## Summary
-This lecture introduced vectors, matrices, and operations defined on these objects:
-* {ref}`content:references:matrix-vector` are one- and two-dimensional arrays of numbers. Vectors represent quantities with both magnitude and direction, such as displacement, velocity, and acceleration. They can also describe points in space or as coefficients in linear equations. Matrices are represented as a grid of numbers, with each matrix element represented by a different cell in the grid. Matrices are often used to describe linear transformations, such as rotations and scaling operations, as well as to represent systems of linear equations. They can also represent data sets, with each row representing a different data point and each column representing a distinct feature.
+
+In this lecture, we introduced vectors, matrices, and operations defined on these objects. Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. 
+
+We began our discussion of vectors, matrices, and their associated operations by quickly reviewing mass and mole balance equations:
+
+* {ref}`content:references:matrix-vector-mass-mol-balances`. Chemical Engineers use balance equations to describe, design, and troubleshoot products and processes. Balance equations describe the amount of _stuff_ (e.g., mass, moles, energy, etc.) in a _system_ that interacts with its _surroundings_. Balance equations can be represented as a system of matrices and vectors.
+
+We then transitioned to defining the structure of matrices and vectors and their associated operations:
+
+* {ref}`content:references:matrix-vector` are abstract mathematical objects, typically arrays of numbers, in engineering applications. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
+
+Finally, we considered a crucial application area, namely, the solution of systems of linear algebraic equations:
+
+* {ref}`content:references:soln-laes-start` arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state balance equations. We'll introduce two approaches to solving these systems of equations. 
 
 ## Additonal resources
 * The matrix vector and matrix $\times$ matrix product figures were inspired [Visualizing Matrix Multiplication as a Linear Combination, Eli Bendersky, Apr. 12, 15 · Big Data Zone](https://dzone.com/articles/visualizing-matrix)
