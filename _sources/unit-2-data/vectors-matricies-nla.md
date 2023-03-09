@@ -741,19 +741,20 @@ where $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ is the system matrix, $\mathbf{x}\i
 The existence of a solution to a system of linear equations depends on the righ-hand side vector, the number of equations and the number of variables in the system. 
 
 #### Homogeneous square systems
-For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist, but non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$:
+For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist. However, non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$:
 
 ```{math}
 :label: eqn-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-may or may not have a unique solution. However, there is an easy check to determine the existence of a solution for a square homogenous system ({prf:ref}`defn-homogenous-soln-existence`):
+may or may not have a unique solution. There is an easy check to determine the existence of a solution for a square homogenous system ({prf:ref}`defn-homogenous-soln-existence`):
 
 ````{prf:definition} Homogenous solution existence
 :label: defn-homogenous-soln-existence
 
-A square homogeneous system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}$ and unknown vector $\mathbf{x}$
+A homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix 
+$\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n}$
 has a unique solution if and only if the system matrix $\mathbf{A}$ has a zero determinant:
 
 ```{math}
@@ -761,22 +762,20 @@ has a unique solution if and only if the system matrix $\mathbf{A}$ has a zero d
 \det\left(\mathbf{A}\right) = 0
 ```
 
-The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations. 
-
-However, in practice, the determinant directly can be computationally expensive to compute. Alternatively, existence can also be checked by computing the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of matrix $\mathbf{A}$.  If a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$.
+The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations. Existence can also be checked by computing the rank: if a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$.
 ````
 
 <!-- There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org). -->
 
 #### Non-homogeneous square systems
-A non-homogeneous square system of linear algebraic equations with $n\times{n}$ coefficient matrix $\mathbf{A}$, $n\times{1}$ unknown vector $\mathbf{x}$ and the $n\times{1}$ right-hand-side vector $\mathbf{b}$:
+A non-homogeneous square system of linear algebraic equations with matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$, unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$ and the right-hand-side vector $\mathbf{b}\in\mathbb{R}^{n\times{1}}$:
 
 ```{math}
 :label: eqn-non-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{b}
 ```
 
-will have a unique solution if there exists a matrix $\mathbf{A}^{-1}$ such that:
+will have a unique solution if there exists a matrix $\mathbf{A}^{-1}\in\mathbb{R}^{n\times{n}}$ such that:
 
 ```{math}
 :label: eqn-non-homogenous-laes-inverse
@@ -796,8 +795,10 @@ An $n\times{n}$ square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ has an uniq
 \mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}
 ```
 
-if $\det\left(\mathbf{A}\right)\neq{0}$. If an inverse exists, the matrix $\mathbf{A}$ is called non-singular, otherwise $\mathbf{A}$ is singular. 
+if $\det\left(\mathbf{A}\right)\neq{0}$. If an inverse exists, the matrix $\mathbf{A}$ is called non-singular; otherwise, $\mathbf{A}$ is singular. 
 ````
+
+In [Julia](https://julialang.org), the matrix inverse can be calculated using the [inv](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#Base.inv-Tuple{AbstractMatrix}) function. Similarly, the [NumPy](https://numpy.org) library for [Python](https://www.python.org) has a similar [inv](https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html) function.
 
 (content:references:solution-approaches)=
 ### Solutions approaches
@@ -807,13 +808,13 @@ Several methods exist to find the solution of square systems of linear equations
 * {ref}`content:references:iterative-methods` are another class of algorithms used to find approximate solutions for large and sparse linear systems of equations. These methods work by starting with an initial guess for the solution and then repeatedly updating the guess until it converges to the actual answer.
 
 (content:references:gaussian-elimination)=
-### Gaussian elimination 
+#### Gaussian elimination 
 [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve the remaining variables one at a time until we have a solution for the entire system.
 
 Let's start exploring this approach by looking at solving a triangular system of equations.
 
 
-#### Triangular systems
+##### Triangular systems
 Let's consider a non-singular $3\times{3}$ lower triangular system of equations:
 
 ```{math}
@@ -901,7 +902,7 @@ where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ f
 
 Solving a lower or upper triangular system can quickly be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems? 
 
-#### Row reduction approaches
+##### Row reduction approaches
 Converting a matrix $\mathbf{A}$ to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is `1`, and all the other entries in that column are `0`. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.
 
 Let's walk through a simple example to illustrate the steps involved with [row reduction](https://en.wikipedia.org/wiki/Row_echelon_form); consider the solution of the 3$\times$3 system:
@@ -1104,7 +1105,7 @@ C_{A,0}\left(1-h\kappa\right) \\
 
 
 (content:references:iterative-methods)=
-### Iterative solution methods
+#### Iterative solution methods
 Iterative methods work by improving an initial guess of the solution until a desired level of accuracy is achieved. Commonly used iterative methods include {ref}`content:references:jacobi-iterative-method` and the 
 {ref}`content:references:gauss-seidel-method`.
 
@@ -1145,7 +1146,7 @@ Iterative solution methods are used to solve large systems of linear equations w
 
 
 (content:references:jacobi-iterative-method)=
-#### Jacobi's method
+##### Jacobi's method
 Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each iteration. Let the estimate of the value of $x_{i}$ at iteration k be $\hat{x}_{i,k}$. Then, the solution estimate at the next iteration $\hat{x}_{i,k+1}$ is given by:
 
 ```{math}
@@ -1177,7 +1178,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
         1. set $s\leftarrow{0}$
         1. for $k\in{1}\dots{n}$
             1. if $k\neq{j}$
-                1. set $s\leftarrow{s} + a_{ik}\times\hat{x}_{k}$
+                1. set $s\leftarrow{s} + a_{jk}\times\hat{x}_{k}$
         1. set $x^{\prime}_{j}\leftarrow{a^{-1}_{jj}}\times\left(b_{j} - s\right)$
     1. if $||\mathbf{x}^{\prime} - \hat{\mathbf{x}}|| < \epsilon$
         1. return $\hat{\mathbf{x}}$
@@ -1189,7 +1190,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 <!-- the Gauss-Seidel method works by iteratively improving an initial guess for the solution to the system of equations. At each iteration, the method updates the values of the variables using the current estimates for the other variables.  -->
 
 (content:references:gauss-seidel-method)=
-#### Gauss-Seidel method
+##### Gauss-Seidel method
 The Gauss-Seidel method __live updates__ the best estimate of $\hat{x}_{i}$ _during_ the processing of equations $i=1,\cdots,n$. The Gauss-Seidel update procedure generally leads to better convergence properties than the Jacobi method. Let the estimate for variable $i$ at iteration $k$ be $\hat{x}_{i,k}$. Then, the solution estimate at the next iteration $\hat{x}_{i,k+1}$ is given by:
 
 ```{math}
@@ -1230,7 +1231,7 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 1. return $\hat{\mathbf{x}}$, converged
 ````
 
-#### Successive Overrelaxation
+##### Successive Overrelaxation
 Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of $x_{i}$ is further modified
 before proceeding to the evaluation of the next equations. Suppose we define the best estimate
 for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then _before_ processing the next Gauss-Seidel type step we update the best guess for $x_{i}$ using the rule:
