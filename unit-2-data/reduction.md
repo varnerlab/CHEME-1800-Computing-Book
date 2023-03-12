@@ -101,14 +101,12 @@ Eigenvalue-eigenvector problems involve finding a set of scalar values $\left\{\
 \mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}
 ```
 
-where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition).
+where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction:
 
-In [Julia](https://julialang.org), eigenvalues and eigenvectors of a dense matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ can be calculated using the [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function. In [Python](https://www.python.org), eigenvalues and eigenvectors can be computed using the [eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) function of the [NumPy](https://numpy.org) library.
+* __Solution of Differential Equations__: Eigenvalues and eigenvectors are used to solve systems of differential equations. Eigenvectors form a set of linearly independent solutions, while eigenvalues determine the stability of these solutions.
 
-#### Uses for Eigenvalues and Eigenvectors
-* __Solution of Differential Equations__: Eigenvalues and eigenvectors are used to solve systems of differential equations, which arise in many areas of science and engineering. Eigenvalues and eigenvectors represent the characteristic behavior of the system, and they help to simplify the solution of the differential equations; the eigenvectors can be used to find a set of linearly independent solutions to the system of equations, and the eigenvalues can be used to determine the stability of the solutions.
-* __Structural Analysis__: Eigenvalues and eigenvectors can be used to study the structural properties of a matrix or a graph. For example, the eigenvalues and eigenvectors of the adjacency matrix can be used to study the connectivity and clustering of the graph. In structural engineering, eigenvalues and eigenvectors can be used to analyze the natural frequencies and modes of vibration of a structure, which can help to design better buildings and bridges.
-* __Principal Component Analysis (PCA)__: PCA is a statistical technique used to reduce the dimensionality of a dataset. It is commonly used in data analysis, computer vision, and image processing. In PCA, the eigenvalues and eigenvectors of a covariance matrix are used to find the principal components of the dataset. The principal components represent the most important features of the dataset and can be used to reduce the dimensionality of the dataset while preserving most of the important information.
+* __Structural Analysis__: Eigenvalues and eigenvectors can be used to study the structural properties of a matrix or a graph. For example, in structural engineering, eigenvalues and eigenvectors can be used to analyze the natural frequencies and modes of vibration of a structure, e.g., buildings and bridges.
+* __Principal Component Analysis (PCA)__: PCA is a statistical technique that reduces the dimensionality of a dataset. It is commonly used in data analysis, computer vision, and image processing. In PCA, the eigenvalues and eigenvectors of the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) are used to find the most important features of the dataset.
 
 In addition, eigenvalues have a another interesting feature ({prf:ref}`obs-eigenvalues-determinants`):
 
@@ -123,18 +121,65 @@ eignenvalues for the matrix $\mathbf{A}\in\mathbb{R}^{m\times{m}}$ as $\left\{\l
 \det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}
 ```
 
-A matrix $\mathbf{A}\in\mathbb{R}^{m\times{m}}$ is non-singular if $\lambda_{i}>0~\forall{i}$, otherwise it is singular.
+A matrix $\mathbf{A}\in\mathbb{R}^{m\times{m}}$ is non-singular if $\text{abs}(\lambda_{i})>0~\forall{i}$, otherwise it is singular.
 
 ````
 
-#### Methods to compute eigenvalues and eigenvectors
+#### Characteristic polynomial
+The roots of the characteristic polynomial are the eigenvalues of a square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$. The characteristic polynomial plays a central theoretical role in many areas of mathematics, including linear algebra, differential equations, and dynamical systems theory ({prf:ref}`defn-characteristic-polynomial`):
+
+````{prf:definition} Characteristic polynomial
+:label: defn-characteristic-polynomial
+
+The characteristic polynomial of a square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ is a polynomial that is obtained by subtracting the scalar $\lambda$ from the diagonal of the matrix $\mathbf{A}$ and computing its determinant:
+
+```{math}
+:label: eqn-characteristic-polynomial
+\det\left(\mathbf{A}-\lambda\mathbf{I}\right) = 0
+```
+
+where $\mathbf{I}$ is the $n\times{n}$ identity matrix, and $\lambda$ is an eigenvalue of the matrix $\mathbf{A}$. The characteristic polynomial is a polynomial of degree $n$ with $\lambda$ as the variable, and its roots are precisely the eigenvalues of the matrix $\mathbf{A}$. 
+
+````
+
+However, despite its theoretical importance, in applications, we will rarely explicitly solve in the characteristic polynomial for the eigenvalues of the matrix $\mathbf{A}$. Instead, we'll use one of several more accessible techniques, see {ref}`content:compute-eigenvalues-eigenvectors`.
+
+
+#### Eigenvectors
+To compute the eigenvectors of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$, we first need the eigenvalues $\left\{\lambda_{1},\dots,\lambda_{n}\right\}$. Once we have the eigenvalues, we can rearrange Eqn {eq}`eqn-eigenvalue-eigenvector-problem` for each eigenvalue $\lambda_{j}$ to give a system of homogenous linear algebraic equations that can be solved for the associated eigenvector 
+({prf:ref}`defn-homogenous-eigenvector-system`):
+
+````{prf:definition} Eigenvector system
+:label: defn-homogenous-eigenvector-system
+
+Let the eigenvalues of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ be given by the set $\left\{\lambda_{1},\dots,\lambda_{n}\right\}$. Then for each eigenvalue $\lambda_{j}$, there exists an eigenvector $\mathbf{v}_{j}$ that is a solution of the homogenous system of equations:
+
+```{math}
+:label: eqn-homogenous-eigenvector-system
+\left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}
+```
+
+where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. Eigenvectors $\mathbf{a}$ and $\mathbf{b}$ are orthogonal, i.e.,  
+
+```{math}
+:label: eqn-orthogonal-vector
+\sum_{k=1}^{n}a_{k}b_{k} = 0
+```
+
+but they are not unique.
+````
+
+(content:compute-eigenvalues-eigenvectors)=
+### Methods to compute eigenvalues and eigenvectors
 * [Power iteration](https://en.wikipedia.org/wiki/Power_iteration) is an iterative method that starts with a random vector and repeatedly multiplies the matrix by this vector, normalizing the result each time. As the iteration proceeds, the vector converges to the eigenvector corresponding to the largest eigenvalue. This method efficiently computes the dominant eigenvalue and eigenvector of a large, sparse matrix. [Lanczos iteration](https://en.wikipedia.org/wiki/Lanczos_algorithm) is similar to power iteration but uses a truncated orthogonalization process to compute a small number of eigenvalues and eigenvectors of a large, sparse matrix.
 * [Divide-and-conquer algorithms](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) decompose the matrix into smaller matrices, recursively compute their eigenvalues and eigenvectors, and then combine them to obtain the eigenvalues and eigenvectors of the original matrix. This method is efficient for symmetric matrices.
 * [QR iteration](https://en.wikipedia.org/wiki/QR_algorithm) applies a sequence of orthogonal similarity transformations to the matrix, which gradually transforms it into a diagonal matrix with the eigenvalues on the diagonal. The eigenvectors can be computed by back-substitution. This method is more expensive than power iteration but can compute all eigenvalues and eigenvectors of a matrix.
 * [Singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) computes a matrix’s singular values and singular vectors, which are related to its eigenvalues and eigenvectors. It is handy for calculating the low-rank approximations of a matrix or for dimensionality reduction.
 
-### QR iteration
-The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm) iteratively calculates the eigenvalues and eigenvectors of a square matrix. The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm), independently developed in the late 1950s by [John G. F. Francis](https://en.wikipedia.org/wiki/John_G._F._Francis) and by [Vera N. Kublanovskaya](https://en.wikipedia.org/wiki/Vera_Kublanovskaya), is one of the ten most important algorithms of the twentieth century (REFHERE).
+In [Julia](https://julialang.org), eigenvalues and eigenvectors of a dense matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ can be calculated using the [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function. In [Python](https://www.python.org), eigenvalues and eigenvectors can be computed using the [eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) function of the [NumPy](https://numpy.org) library.
+
+#### QR iteration
+The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm) iteratively calculates the eigenvalues and eigenvectors of a square matrix. The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm), independently developed in the late 1950s by [John G. F. Francis](https://en.wikipedia.org/wiki/John_G._F._Francis) and by [Vera N. Kublanovskaya](https://en.wikipedia.org/wiki/Vera_Kublanovskaya), is one of the ten algorithms of the twentieth century (REFHERE).
 
 ````{prf:definition} Eigenvalues and Eigenvectors using QR iteration
 :label: defn-qr-iteration
@@ -157,9 +202,30 @@ __Phase 2: Eigenvectors__. Once we've calculated the eigenvalues $\left\{\lambda
 ```
 ````
 
+Let's do an example ({prf:ref}`example-QR-iteration`) where we compute the eigenvalues and eigenvectors of a square matrix $\mathbf{A}$ using the [QR iteration algorithm](https://en.wikipedia.org/wiki/QR_algorithm) outlined in {prf:ref}`defn-qr-iteration`.
+
+````{prf:example} QR iteration to compute Eigenvalues and Eigenvectors
+:label: example-QR-iteration
+:class: dropdown
+
+Compute the eigenvalues and eigenvectors of the matrix:
+
+$$
+\mathbf{A} = \begin{bmatrix}
+3.0 & -0.3 & -0.2 \\
+0.1 & 7.0 & -0.3 \\
+0.3 & -0.2 & 10.0 \\
+\end{bmatrix}
+$$
+
+using the [QR iteration algorithm](https://en.wikipedia.org/wiki/QR_algorithm) outlined in {prf:ref}`defn-qr-iteration`. How well does your answer compare to the values generated by [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function?
+
+__source__: the `examples/unit-2-examples/qr` folder on the [course GitHub site](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr).
+
+````
 
 
-### Singular value decomposition
+#### Singular value decomposition
 [Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:
 
 ````{prf:definition} Singular value decomposition
@@ -197,11 +263,12 @@ The outer-product $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the sepa
 
 ````
 
+### Principle component analysis (PCA)
+Fill me in.
 
 ---
 
 ## Summary
-
 
 In this lecture, we discussed distance measurements and dimensionality reduction. Measurement and distance tools measure the size of matrix or vector objects and the distances between these objects. We explored two types of measurement and distance approaches:
 
