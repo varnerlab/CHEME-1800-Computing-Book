@@ -94,21 +94,21 @@ There are many techniques for dimensionality reduction, including [principal com
 
 (content:eigenvalue-eigenvector-problems)=
 ### Eigenvalue-eigenvector problems
-Eigenvalue-eigenvector problems involve finding a set of scalar values $\left\{\lambda_{1},\dots,\lambda_{m}\right\}$ called [eigenvalues](https://mathworld.wolfram.com/Eigenvalue.html) and a set of vectors $\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}$ called [eigenvectors](https://mathworld.wolfram.com/Eigenvector.html) such that:
+Eigenvalue-eigenvector problems involve finding a set of scalar values $\left\{\lambda_{1},\dots,\lambda_{m}\right\}$ called [eigenvalues](https://mathworld.wolfram.com/Eigenvalue.html) and a set of linearly independent vectors $\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}$ called [eigenvectors](https://mathworld.wolfram.com/Eigenvector.html) such that:
 
 ```{math}
 :label: eqn-eigenvalue-eigenvector-problem
 \mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}
 ```
 
-where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction:
+where $\mathbf{A}\in\mathbb{R}^{m\times{m}}$, $\mathbf{v}\in\mathbb{R}^{m\times{1}}$, and $\lambda\in\mathbb{R}$ is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including dynamics, image compression and data reduction:
 
 * __Solution of Differential Equations__: Eigenvalues and eigenvectors are used to solve systems of differential equations. Eigenvectors form a set of linearly independent solutions, while eigenvalues determine the stability of these solutions.
 
-* __Structural Analysis__: Eigenvalues and eigenvectors can be used to study the structural properties of a matrix or a graph. For example, in structural engineering, eigenvalues and eigenvectors can be used to analyze the natural frequencies and modes of vibration of a structure, e.g., buildings and bridges.
+* __Structural Analysis__: Eigenvalues and eigenvectors can be used to study the structural properties of a matrix or a graph. For example, in structural engineering, eigenvalues and eigenvectors can be used to analyze a structure’s natural frequencies and modes of vibration, e.g., buildings and bridges.
 * __Principal Component Analysis (PCA)__: PCA is a statistical technique that reduces the dimensionality of a dataset. It is commonly used in data analysis, computer vision, and image processing. In PCA, the eigenvalues and eigenvectors of the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) are used to find the most important features of the dataset.
 
-In addition, eigenvalues have a another interesting feature ({prf:ref}`obs-eigenvalues-determinants`):
+In addition, eigenvalues have another interesting feature ({prf:ref}`obs-eigenvalues-determinants`):
 
 ````{prf:observation} Determinants and eigenvalues
 :label: obs-eigenvalues-determinants
@@ -144,9 +144,8 @@ where $\mathbf{I}$ is the $n\times{n}$ identity matrix, and $\lambda$ is an eige
 
 However, despite its theoretical importance, in applications, we will rarely explicitly solve in the characteristic polynomial for the eigenvalues of the matrix $\mathbf{A}$. Instead, we'll use one of several more accessible techniques, see {ref}`content:compute-eigenvalues-eigenvectors`.
 
-
 #### Eigenvectors
-To compute the eigenvectors of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$, we first need the eigenvalues $\left\{\lambda_{1},\dots,\lambda_{n}\right\}$. Once we have the eigenvalues, we can rearrange Eqn {eq}`eqn-eigenvalue-eigenvector-problem` for each eigenvalue $\lambda_{j}$ to give a system of homogenous linear algebraic equations that can be solved for the associated eigenvector 
+To compute the eigenvectors of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$, we first need the eigenvalues $\left\{\lambda_{1},\dots,\lambda_{n}\right\}$. Once we have the eigenvalues, we rearrange Eqn {eq}`eqn-eigenvalue-eigenvector-problem` for each eigenvalue $\lambda_{j}$ to give a system of homogenous linear algebraic equations that can be solved for the associated eigenvector 
 ({prf:ref}`defn-homogenous-eigenvector-system`):
 
 ````{prf:definition} Eigenvector system
@@ -159,15 +158,16 @@ Let the eigenvalues of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ be give
 \left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}
 ```
 
-where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. Eigenvectors $\mathbf{a}$ and $\mathbf{b}$ are orthogonal, i.e.,  
+where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. If the matrix $\mathbf{A}$ is symmetric, the eigenvectors $\mathbf{a}$ and $\mathbf{b}$ of $\mathbf{A}$ are orthogonal, i.e.,  
 
 ```{math}
 :label: eqn-orthogonal-vector
 \sum_{k=1}^{n}a_{k}b_{k} = 0
 ```
 
-but they are not unique.
+otherwise, they are not guaranteed to be orthogonal. While eigenvectors are always linearly independent, they are not unique (in any case).
 ````
+
 
 (content:compute-eigenvalues-eigenvectors)=
 ### Methods to compute eigenvalues and eigenvectors
@@ -220,8 +220,29 @@ $$
 
 using the [QR iteration algorithm](https://en.wikipedia.org/wiki/QR_algorithm) outlined in {prf:ref}`defn-qr-iteration`. How well does your answer compare to the values generated by [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function?
 
-__source__: the `examples/unit-2-examples/qr` folder on the [course GitHub site](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr).
+__Solution__: First, compute the eigenvalues and eigenvectors using the [Julia eigen function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen):
 
+```julia
+using LinearAlgebra
+
+# Setup matrix the n x n matrix A (n = 3)
+A = [3.0 -0.3 -0.2 ; 0.1 7.0 -0.3 ; 0.3 -0.2 10.0];
+
+# Decompose using the built-in function
+F = eigen(A);   # eigenvalues and vectors in F of type Eigen
+λ = F.values;   # vector of eigenvalues
+V = F.vectors;  # 3 x 3 matrix of eigenvectors, each col is an eigenvector
+
+# Call our qriteration function (assumed to be included in the workspace)
+(L,V) = qriteration(A; maxiter=10000, tolerance=1e-6);
+
+# compare the difference between eigenvalues
+δ = norm(L - λ); # see lecture notes on vector norms
+```
+
+The difference between our `qriteration` implementation and `eigen` was $\delta = 2.25e-6$. Thus, our function produces eigenvalues that are close to `eigen`,  with an error of the same magnitude as the `tolerance` parameter.
+
+__Source__: The implementation of our `qriteration` function can be found on [GitHub](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr).
 ````
 
 #### Singular value decomposition
@@ -230,17 +251,25 @@ __source__: the `examples/unit-2-examples/qr` folder on the [course GitHub site]
 ````{prf:definition} Singular value decomposition
 :label: defn-svd-real-matrix
 
-Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$. The singular value decomposition of the matrix $\mathbf{A}$ is given by:
+Let the matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$. The singular value decomposition of the matrix $\mathbf{A}$ is given by:
 
 ```{math}
 :label: eqn-math-SVD
 \mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}
 ```
 
-where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and $\mathbf{\Sigma}$ is a diagonal matrix containing the singular values $\sigma_{i}=\Sigma_{ii}$ along the main diagonal. 
+where $\mathbf{U}\in\mathbb{R}^{n\times{n}}$ and $\mathbf{V}\in\mathbb{R}^{m\times{m}}$ are orthogonal matrices and $\mathbf{\Sigma}\in\mathbb{R}^{n\times{m}}$ is a diagonal matrix containing the singular values $\sigma_{i}=\Sigma_{ii}$ along the main diagonal. 
 
+The columns of $\mathbf{U}$ are called left-singular vectors, while the columns of $\mathbf{V}$ are called right-singular vectors.
+Singular vectors have a unique property: unlike eigenvectors, left- and right-singular vectors are linearly independent and orthogonal.
 ````
 
+The singular value decomposition and eigendecomposition have important connections:
+* Singular values and eigenvalues are related: $\sigma_{i} = \sqrt\lambda_{i}$
+* The columns of $\mathbf{U}$ (left-singular vectors) are eigenvectors of the matrix product $\mathbf{A}\mathbf{A}^{T}$.
+* The columns of $\mathbf{V}$ (right-singular vectors) are eigenvectors of the matrix product $\mathbf{A}^{T}\mathbf{A}$.
+
+##### Structural decomposition using SVD
 SVD can be used to diagonalize a matrix, find the eigenvalues of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
 
 ````{prf:observation} SVD matrix decomposition
