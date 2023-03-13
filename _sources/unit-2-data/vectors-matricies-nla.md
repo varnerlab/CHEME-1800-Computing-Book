@@ -741,28 +741,27 @@ where $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ is the system matrix, $\mathbf{x}\i
 The existence of a solution to a system of linear equations depends on the righ-hand side vector, the number of equations and the number of variables in the system. 
 
 #### Homogeneous square systems
-For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ will always exist. However, non-trivial solutions may not be unique. Thus, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$:
+For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ always exists. However, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$:
 
 ```{math}
 :label: eqn-homogenous-laes
 \mathbf{A}\mathbf{x} = \mathbf{0}
 ```
 
-may or may not have a unique solution. There is an easy check to determine the existence of a solution for a square homogenous system ({prf:ref}`defn-homogenous-soln-existence`):
+may have other solutions. There is an easy check to determine the existence of other solutions for a homogenous square system 
+({prf:ref}`defn-homogenous-soln-existence`):
 
 ````{prf:definition} Homogenous solution existence
 :label: defn-homogenous-soln-existence
 
-A homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix 
-$\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n}$
-has a unique solution if and only if the system matrix $\mathbf{A}$ has a zero determinant:
+A $n\times{n}$ homogeneous system of linear algebraic equations will have non-trivial solutions if and only if the system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ has a zero determinant:
 
 ```{math}
 :label: eqn-det-homogenous-cond
 \det\left(\mathbf{A}\right) = 0
 ```
 
-The determinant condition is an easy theoretical test to check for a unique solution to a homogenous system of linear algebraic equations. Existence can also be checked by computing the rank: if a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$.
+The determinant condition is an easy theoretical test to check for the existence of solutions to a homogenous system of linear algebraic equations. Existence can also be checked by computing the rank: if a matrix is less than full rank, then $\det{\left(\mathbf{A}\right)}=0$.
 ````
 
 <!-- There are many different ways to compute rank, however, we'll use the [rank](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.rank) function in [Julia](https://julialang.org). -->
@@ -1052,7 +1051,7 @@ This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form; thus, it
 
 ````
 
-Now that we have both row reduction and back substitytion algorithms, let's look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction ({prf:ref}`example-time-discretized-decay`):
+Now that we have row reduction and back substitution algorithms, let's look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction ({prf:ref}`example-time-discretized-decay`):
 
 ````{prf:example} First-order decay
 :label: example-time-discretized-decay

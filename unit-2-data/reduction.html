@@ -447,18 +447,47 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
      Eigenvalue-eigenvector problems
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#singular-value-decomposition">
-     Singular value decomposition
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#connection-of-svd-and-eigendecomposition">
-       Connection of SVD and eigendecomposition
+      <a class="reference internal nav-link" href="#characteristic-polynomial">
+       Characteristic polynomial
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eigenvectors">
+       Eigenvectors
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#methods-to-compute-eigenvalues-and-eigenvectors">
+     Methods to compute eigenvalues and eigenvectors
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#qr-iteration">
+       QR iteration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#singular-value-decomposition">
+       Singular value decomposition
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#structural-decomposition-using-svd">
+         Structural decomposition using SVD
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#principle-component-analysis-pca">
+     Principle component analysis (PCA)
+    </a>
    </li>
   </ul>
  </li>
@@ -517,18 +546,47 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#eigenvalue-eigenvector-problems">
      Eigenvalue-eigenvector problems
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#singular-value-decomposition">
-     Singular value decomposition
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#connection-of-svd-and-eigendecomposition">
-       Connection of SVD and eigendecomposition
+      <a class="reference internal nav-link" href="#characteristic-polynomial">
+       Characteristic polynomial
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eigenvectors">
+       Eigenvectors
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#methods-to-compute-eigenvalues-and-eigenvectors">
+     Methods to compute eigenvalues and eigenvectors
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#qr-iteration">
+       QR iteration
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#singular-value-decomposition">
+       Singular value decomposition
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#structural-decomposition-using-svd">
+         Structural decomposition using SVD
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#principle-component-analysis-pca">
+     Principle component analysis (PCA)
+    </a>
    </li>
   </ul>
  </li>
@@ -551,10 +609,13 @@ title="Print to PDF"
 <h1>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Measurement and distance tools measure the size of matrix or vector objects and the distances between these objects. We’ll explore two types of measurement and distance approaches:</p>
+<p>In this lecture, we’ll discuss measurements and distances and dimensionality reduction. Measurement and distance tools measure the size of matrix or vector objects and the distances between these objects. We’ll explore two types of measurement and distance approaches:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-measurements-matrix-vector-norms"><span class="std std-ref">Vector and matrix norms</span></a> are mathematical tools to measure the magnitude of matrices and vectors, respectively. They are essential in many areas of mathematics, including linear algebra, optimization, and analysis.</p></li>
 <li><p><a class="reference internal" href="#content-measurements-similarity-funtions"><span class="std std-ref">Similarity functions</span></a> are mathematical tools that quantify the similarity between objects, such as vectors or points. They are widely used in machine learning, pattern recognition, and data analysis. One example of a similarity function is the radial basis function, which measures the distance between two points using a Gaussian distribution and is commonly used in clustering and classification algorithms.</p></li>
+</ul>
+<p>On the other hand, dimensionality reduction techniques reduce the number of variables in a dataset while retaining as much information as possible:</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="#content-dimensionality-reduction"><span class="std std-ref">Dimensionality reduction</span></a> systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p></li>
 </ul>
 <hr class="docutils" />
@@ -613,15 +674,20 @@ title="Print to PDF"
 </section>
 <section id="content-dimensionality-reduction">
 <span id="id1"></span><h2>Dimensionality reduction<a class="headerlink" href="#content-dimensionality-reduction" title="Permalink to this headline">#</a></h2>
-<p>Dimensionality reduction systematically reduces the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p>
-<p>There are many techniques for dimensionality reduction, including <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>, which are both based on solving <a class="reference internal" href="#content-eigenvalue-eigenvector-problems"><span class="std std-ref">Eigenvalue-eigenvector problems</span></a>. Other approaches, such as clustering and <a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding (t-SNE)</a>, are based upon minimizing some other distance measure.</p>
+<p>Dimensionality reduction tools systematically reduce the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p>
+<p>There are many techniques for dimensionality reduction, including <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>, which are both related to <a class="reference internal" href="#content-eigenvalue-eigenvector-problems"><span class="std std-ref">Eigenvalue-eigenvector problems</span></a>. Other approaches, such as clustering and <a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding (t-SNE)</a>, are based upon minimizing a particular distance measure.</p>
 <section id="eigenvalue-eigenvector-problems">
 <span id="content-eigenvalue-eigenvector-problems"></span><h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this headline">#</a></h3>
-<p>Eigenvalue-eigenvector problems are a type of mathematical problem that involves finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
+<p>Eigenvalue-eigenvector problems involve finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of linearly independent vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
 <span class="eqno">(59)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span> is a column vector, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including image compression and data reduction approaches such as <a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a>.</p>
-<p>In addition to thier other uses, eigenvalues have a another interesting feature (<a class="reference internal" href="#obs-eigenvalues-determinants">Observation 4</a>):</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span>, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including dynamics, image compression and data reduction:</p>
+<ul class="simple">
+<li><p><strong>Solution of Differential Equations</strong>: Eigenvalues and eigenvectors are used to solve systems of differential equations. Eigenvectors form a set of linearly independent solutions, while eigenvalues determine the stability of these solutions.</p></li>
+<li><p><strong>Structural Analysis</strong>: Eigenvalues and eigenvectors can be used to study the structural properties of a matrix or a graph. For example, in structural engineering, eigenvalues and eigenvectors can be used to analyze a structure’s natural frequencies and modes of vibration, e.g., buildings and bridges.</p></li>
+<li><p><strong>Principal Component Analysis (PCA)</strong>: PCA is a statistical technique that reduces the dimensionality of a dataset. It is commonly used in data analysis, computer vision, and image processing. In PCA, the eigenvalues and eigenvectors of the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> are used to find the most important features of the dataset.</p></li>
+</ul>
+<p>In addition, eigenvalues have another interesting feature (<a class="reference internal" href="#obs-eigenvalues-determinants">Observation 4</a>):</p>
 <div class="proof observation admonition" id="obs-eigenvalues-determinants">
 <p class="admonition-title"><span class="caption-number">Observation 4 </span> (Determinants and eigenvalues)</p>
 <section class="observation-content" id="proof-content">
@@ -629,21 +695,120 @@ title="Print to PDF"
 eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> as <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span>. Then, the <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-a-eigenvalues">
 <span class="eqno">(60)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
-<p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\lambda_{i}&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
+<p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\text{abs}(\lambda_{i})&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
+</section>
+</div><section id="characteristic-polynomial">
+<h4>Characteristic polynomial<a class="headerlink" href="#characteristic-polynomial" title="Permalink to this headline">#</a></h4>
+<p>The roots of the characteristic polynomial are the eigenvalues of a square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span>. The characteristic polynomial plays a central theoretical role in many areas of mathematics, including linear algebra, differential equations, and dynamical systems theory (<a class="reference internal" href="#defn-characteristic-polynomial">Definition 29</a>):</p>
+<div class="proof definition admonition" id="defn-characteristic-polynomial">
+<p class="admonition-title"><span class="caption-number">Definition 29 </span> (Characteristic polynomial)</p>
+<section class="definition-content" id="proof-content">
+<p>The characteristic polynomial of a square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> is a polynomial that is obtained by subtracting the scalar <span class="math notranslate nohighlight">\(\lambda\)</span> from the diagonal of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and computing its determinant:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-characteristic-polynomial">
+<span class="eqno">(61)<a class="headerlink" href="#equation-eqn-characteristic-polynomial" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}-\lambda\mathbf{I}\right) = 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the <span class="math notranslate nohighlight">\(n\times{n}\)</span> identity matrix, and <span class="math notranslate nohighlight">\(\lambda\)</span> is an eigenvalue of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. The characteristic polynomial is a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span> as the variable, and its roots are precisely the eigenvalues of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+</section>
+</div><p>However, despite its theoretical importance, in applications, we will rarely explicitly solve in the characteristic polynomial for the eigenvalues of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. Instead, we’ll use one of several more accessible techniques, see <a class="reference internal" href="#content-compute-eigenvalues-eigenvectors"><span class="std std-ref">Methods to compute eigenvalues and eigenvectors</span></a>.</p>
+</section>
+<section id="eigenvectors">
+<h4>Eigenvectors<a class="headerlink" href="#eigenvectors" title="Permalink to this headline">#</a></h4>
+<p>To compute the eigenvectors of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span>, we first need the eigenvalues <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>. Once we have the eigenvalues, we rearrange Eqn <a class="reference internal" href="#equation-eqn-eigenvalue-eigenvector-problem">(59)</a> for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_{j}\)</span> to give a system of homogenous linear algebraic equations that can be solved for the associated eigenvector
+(<a class="reference internal" href="#defn-homogenous-eigenvector-system">Definition 30</a>):</p>
+<div class="proof definition admonition" id="defn-homogenous-eigenvector-system">
+<p class="admonition-title"><span class="caption-number">Definition 30 </span> (Eigenvector system)</p>
+<section class="definition-content" id="proof-content">
+<p>Let the eigenvalues of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> be given by the set <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>. Then for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_{j}\)</span>, there exists an eigenvector <span class="math notranslate nohighlight">\(\mathbf{v}_{j}\)</span> that is a solution of the homogenous system of equations:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-homogenous-eigenvector-system">
+<span class="eqno">(62)<a class="headerlink" href="#equation-eqn-homogenous-eigenvector-system" title="Permalink to this equation">#</a></span>\[\left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{n}\)</span> identity matrix. If the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is symmetric, the eigenvectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> are orthogonal, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-eqn-orthogonal-vector">
+<span class="eqno">(63)<a class="headerlink" href="#equation-eqn-orthogonal-vector" title="Permalink to this equation">#</a></span>\[\sum_{k=1}^{n}a_{k}b_{k} = 0\]</div>
+<p>otherwise, they are not guaranteed to be orthogonal. While eigenvectors are always linearly independent, they are not unique (in any case).</p>
+</section>
+</div></section>
+</section>
+<section id="methods-to-compute-eigenvalues-and-eigenvectors">
+<span id="content-compute-eigenvalues-eigenvectors"></span><h3>Methods to compute eigenvalues and eigenvectors<a class="headerlink" href="#methods-to-compute-eigenvalues-and-eigenvectors" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Power_iteration">Power iteration</a> is an iterative method that starts with a random vector and repeatedly multiplies the matrix by this vector, normalizing the result each time. As the iteration proceeds, the vector converges to the eigenvector corresponding to the largest eigenvalue. This method efficiently computes the dominant eigenvalue and eigenvector of a large, sparse matrix. <a class="reference external" href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos iteration</a> is similar to power iteration but uses a truncated orthogonalization process to compute a small number of eigenvalues and eigenvectors of a large, sparse matrix.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">Divide-and-conquer algorithms</a> decompose the matrix into smaller matrices, recursively compute their eigenvalues and eigenvectors, and then combine them to obtain the eigenvalues and eigenvectors of the original matrix. This method is efficient for symmetric matrices.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR iteration</a> applies a sequence of orthogonal similarity transformations to the matrix, which gradually transforms it into a diagonal matrix with the eigenvalues on the diagonal. The eigenvectors can be computed by back-substitution. This method is more expensive than power iteration but can compute all eigenvalues and eigenvectors of a matrix.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition</a> computes a matrix’s singular values and singular vectors, which are related to its eigenvalues and eigenvectors. It is handy for calculating the low-rank approximations of a matrix or for dimensionality reduction.</p></li>
+</ul>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a>, eigenvalues and eigenvectors of a dense matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> can be calculated using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen</a> function. In <a class="reference external" href="https://www.python.org">Python</a>, eigenvalues and eigenvectors can be computed using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html">eig</a> function of the <a class="reference external" href="https://numpy.org">NumPy</a> library.</p>
+<section id="qr-iteration">
+<h4>QR iteration<a class="headerlink" href="#qr-iteration" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR algorithm</a> iteratively calculates the eigenvalues and eigenvectors of a square matrix. The <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR algorithm</a>, independently developed in the late 1950s by <a class="reference external" href="https://en.wikipedia.org/wiki/John_G._F._Francis">John G. F. Francis</a> and by <a class="reference external" href="https://en.wikipedia.org/wiki/Vera_Kublanovskaya">Vera N. Kublanovskaya</a>, is one of the ten algorithms of the twentieth century (REFHERE).</p>
+<div class="proof definition admonition" id="defn-qr-iteration">
+<p class="admonition-title"><span class="caption-number">Definition 31 </span> (Eigenvalues and Eigenvectors using QR iteration)</p>
+<section class="definition-content" id="proof-content">
+<p>The basic idea is to perform <a class="reference external" href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> repeatedly, writing the matrix as a product of an orthogonal matrix <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> and an upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>, multiply the factors in the reverse order, and iterate.</p>
+<p><strong>Phase 1: Eigenvalues</strong>. Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span>. Then, at the kth step of the procedure (starting with <span class="math notranslate nohighlight">\(k = 0\)</span>), we compute the <a class="reference external" href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-qr-iteration">
+<span class="eqno">(64)<a class="headerlink" href="#equation-eqn-qr-iteration" title="Permalink to this equation">#</a></span>\[\mathbf{A}_{k+1}=\mathbf{Q}_{k}\mathbf{R}_{k} = \mathbf{Q}_{k}^{T}\mathbf{A}_{k}\mathbf{Q}_{k}\qquad{k=0,1,\dots} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{Q}_{k}\)</span> is an orthogonal matrix, i.e., <span class="math notranslate nohighlight">\(\mathbf{Q}^{T}_{k} = \mathbf{Q}^{−1}_{k}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{R}_{k}\)</span> is an upper triangular matrix. As <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span>, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}_{k}\)</span> converge to a triangular matrix where eigenvalues are listed along the diagonal.</p>
+<p><strong>Phase 2: Eigenvectors</strong>. Once we’ve calculated the eigenvalues <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>, we can compute the eigenvectors associated with each of the eigenvalues <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{n}\right\}\)</span>  by solving the homogenous system of equations:</p>
+<div class="math notranslate nohighlight">
+\[\left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}\]</div>
+</section>
+</div><p>Let’s do an example (<a class="reference internal" href="#example-QR-iteration">Example 20</a>) where we compute the eigenvalues and eigenvectors of a square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> using the <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR iteration algorithm</a> outlined in <a class="reference internal" href="#defn-qr-iteration">Definition 31</a>.</p>
+<div class="proof example dropdown admonition" id="example-QR-iteration">
+<p class="admonition-title"><span class="caption-number">Example 20 </span> (QR iteration to compute Eigenvalues and Eigenvectors)</p>
+<section class="example-content" id="proof-content">
+<p>Compute the eigenvalues and eigenvectors of the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = \begin{bmatrix}
+3.0 &amp; -0.3 &amp; -0.2 \\
+0.1 &amp; 7.0 &amp; -0.3 \\
+0.3 &amp; -0.2 &amp; 10.0 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>using the <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR iteration algorithm</a> outlined in <a class="reference internal" href="#defn-qr-iteration">Definition 31</a>. How well does your answer compare to the values generated by <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen</a> function?</p>
+<p><strong>Solution</strong>: First, compute the eigenvalues and eigenvectors using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">Julia eigen function</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
+
+<span class="c"># Setup matrix the n x n matrix A (n = 3)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span> <span class="o">-</span><span class="mf">0.3</span> <span class="o">-</span><span class="mf">0.2</span> <span class="p">;</span> <span class="mf">0.1</span> <span class="mf">7.0</span> <span class="o">-</span><span class="mf">0.3</span> <span class="p">;</span> <span class="mf">0.3</span> <span class="o">-</span><span class="mf">0.2</span> <span class="mf">10.0</span><span class="p">];</span>
+
+<span class="c"># Decompose using the built-in function</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>   <span class="c"># eigenvalues and vectors in F of type Eigen</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">values</span><span class="p">;</span>   <span class="c"># vector of eigenvalues</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">vectors</span><span class="p">;</span>  <span class="c"># 3 x 3 matrix of eigenvectors, each col is an eigenvector</span>
+
+<span class="c"># Call our qriteration function (assumed to be included in the workspace)</span>
+<span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">V</span><span class="p">)</span> <span class="o">=</span> <span class="n">qriteration</span><span class="p">(</span><span class="n">A</span><span class="p">;</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">);</span>
+
+<span class="c"># compare the difference between eigenvalues</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="n">λ</span><span class="p">);</span> <span class="c"># see lecture notes on vector norms</span>
+</pre></div>
+</div>
+<p>The difference between our <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> implementation and <code class="docutils literal notranslate"><span class="pre">eigen</span></code> was <span class="math notranslate nohighlight">\(\delta = 2.25e-6\)</span>. Thus, our function produces eigenvalues that are close to <code class="docutils literal notranslate"><span class="pre">eigen</span></code>,  with an error of the same magnitude as the <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> parameter.</p>
+<p><strong>Source</strong>: The implementation of our <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> function can be found on <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr">GitHub</a>.</p>
 </section>
 </div></section>
 <section id="singular-value-decomposition">
-<h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
+<h4>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h4>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:</p>
 <div class="proof definition admonition" id="defn-svd-real-matrix">
-<p class="admonition-title"><span class="caption-number">Definition 29 </span> (Singular value decomposition)</p>
+<p class="admonition-title"><span class="caption-number">Definition 32 </span> (Singular value decomposition)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
+<p>Let the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-math-svd">
-<span class="eqno">(61)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
+<span class="eqno">(65)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{U}\in\mathbb{R}^{n\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\in\mathbb{R}^{m\times{m}}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\in\mathbb{R}^{n\times{m}}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
+<p>The columns of <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> are called left-singular vectors, while the columns of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are called right-singular vectors.
+Singular vectors have a unique property: unlike eigenvectors, left- and right-singular vectors are linearly independent and orthogonal.</p>
 </section>
-</div><p>SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
+</div><p>The singular value decomposition and eigendecomposition have important connections:</p>
+<ul class="simple">
+<li><p>Singular values and eigenvalues are related: <span class="math notranslate nohighlight">\(\sigma_{i} = \sqrt\lambda_{i}\)</span></p></li>
+<li><p>The columns of <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> (left-singular vectors) are eigenvectors of the matrix product <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{A}^{T}\)</span>.</p></li>
+<li><p>The columns of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> (right-singular vectors) are eigenvectors of the matrix product <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\mathbf{A}\)</span>.</p></li>
+</ul>
+<section id="structural-decomposition-using-svd">
+<h5>Structural decomposition using SVD<a class="headerlink" href="#structural-decomposition-using-svd" title="Permalink to this headline">#</a></h5>
+<p>SVD can be used to diagonalize a matrix, find the eigenvalues of a matrix, and solve linear equations. It is also essential in <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">principal component analysis (PCA)</a> as a dimensionality reduction technique.</p>
 <div class="proof observation admonition" id="obs-svd-matrix-decomposition">
 <p class="admonition-title"><span class="caption-number">Observation 5 </span> (SVD matrix decomposition)</p>
 <section class="observation-content" id="proof-content">
@@ -651,19 +816,27 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> have the singular value decomposition <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\)</span>.</p>
 <p>Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> can be written as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-decomp">
-<span class="eqno">(62)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
+<span class="eqno">(66)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> denotes the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith columns of the corresponding SVD matrices, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
 <p>The outer-product <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 </section>
-</div><section id="connection-of-svd-and-eigendecomposition">
-<h4>Connection of SVD and eigendecomposition<a class="headerlink" href="#connection-of-svd-and-eigendecomposition" title="Permalink to this headline">#</a></h4>
-<p>Fill me in.</p>
+</div></section>
 </section>
+</section>
+<section id="principle-component-analysis-pca">
+<h3>Principle component analysis (PCA)<a class="headerlink" href="#principle-component-analysis-pca" title="Permalink to this headline">#</a></h3>
+<p>Fill me in.</p>
 </section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<p>In this lecture, we discussed distance measurements and dimensionality reduction. Measurement and distance tools measure the size of matrix or vector objects and the distances between these objects. We explored two types of measurement and distance approaches:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-measurements-matrix-vector-norms"><span class="std std-ref">Vector and matrix norms</span></a> are mathematical tools to measure the magnitude of matrices and vectors, respectively. They are essential in many areas of mathematics, including linear algebra, optimization, and analysis.</p></li>
+<li><p><a class="reference internal" href="#content-measurements-similarity-funtions"><span class="std std-ref">Similarity functions</span></a> are mathematical tools that quantify the similarity between objects, such as vectors or points. They are widely used in machine learning, pattern recognition, and data analysis. One example of a similarity function is the radial basis function, which measures the distance between two points using a Gaussian distribution and is commonly used in clustering and classification algorithms.</p></li>
+</ul>
+<p>Dimensionality reduction techniques reduce the number of variables in a dataset while retaining as much information as possible:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-dimensionality-reduction"><span class="std std-ref">Dimensionality reduction</span></a> systematically reduces the number of variables in a dataset while preserving as much information as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets.</p></li>
 </ul>
