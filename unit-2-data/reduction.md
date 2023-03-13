@@ -224,7 +224,6 @@ __source__: the `examples/unit-2-examples/qr` folder on the [course GitHub site]
 
 ````
 
-
 #### Singular value decomposition
 [Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:
 
@@ -242,7 +241,7 @@ where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and $\mathbf{\Sigma}
 
 ````
 
-SVD can be used to diagonalize a matrix, find the eigenvalues and eigenvectors of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
+SVD can be used to diagonalize a matrix, find the eigenvalues of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
 
 ````{prf:observation} SVD matrix decomposition
 :label: obs-svd-matrix-decomposition
