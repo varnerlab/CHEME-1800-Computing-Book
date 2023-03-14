@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Julia
+  language: julia
+  name: julia-1.8
+---
+
 # Dimensionality Reduction
 
 ## Introduction
@@ -158,14 +170,7 @@ Let the eigenvalues of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ be give
 \left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}
 ```
 
-where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. If the matrix $\mathbf{A}$ is symmetric, the eigenvectors $\mathbf{a}$ and $\mathbf{b}$ of $\mathbf{A}$ are orthogonal, i.e.,  
-
-```{math}
-:label: eqn-orthogonal-vector
-\sum_{k=1}^{n}a_{k}b_{k} = 0
-```
-
-otherwise, they are not guaranteed to be orthogonal. While eigenvectors are always linearly independent, they are not unique (in any case).
+where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. While eigenvectors are always linearly independent, they are not unique (in any case) and orthogonal only for a symmetric $\mathbf{A}$.
 ````
 
 
@@ -176,10 +181,47 @@ otherwise, they are not guaranteed to be orthogonal. While eigenvectors are alwa
 * [QR iteration](https://en.wikipedia.org/wiki/QR_algorithm) applies a sequence of orthogonal similarity transformations to the matrix, which gradually transforms it into a diagonal matrix with the eigenvalues on the diagonal. The eigenvectors can be computed by back-substitution. This method is more expensive than power iteration but can compute all eigenvalues and eigenvectors of a matrix.
 * [Singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) computes a matrix’s singular values and singular vectors, which are related to its eigenvalues and eigenvectors. It is handy for calculating the low-rank approximations of a matrix or for dimensionality reduction.
 
-In [Julia](https://julialang.org), eigenvalues and eigenvectors of a dense matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ can be calculated using the [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function. In [Python](https://www.python.org), eigenvalues and eigenvectors can be computed using the [eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) function of the [NumPy](https://numpy.org) library.
+#### Example: Using the eigen function
+In [Julia](https://julialang.org), eigenvalues and eigenvectors of a dense matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ can be calculated using the [eigen function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) include in the standard `LinearAlgebra` package:
 
-#### QR iteration
-The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm) iteratively calculates the eigenvalues and eigenvectors of a square matrix. The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm), independently developed in the late 1950s by [John G. F. Francis](https://en.wikipedia.org/wiki/John_G._F._Francis) and by [Vera N. Kublanovskaya](https://en.wikipedia.org/wiki/Vera_Kublanovskaya), is one of the ten algorithms of the twentieth century (REFHERE).
+```{code-cell} julia
+# LinearAlgebra package (included in the SLIB, so no download)
+using LinearAlgebra
+
+# Setup matrix the n x n matrix A (n = 3)
+A = [3.0 -0.3 -0.2 ; 0.1 7.0 -0.3 ; 0.3 -0.2 10.0];
+
+# Decompose using the built-in function
+F = eigen(A);   # eigenvalues and vectors in F of type Eigen
+λ = F.values;   # vector of eigenvalues
+V = F.vectors;  # 3 x 3 matrix of eigenvectors, each col is an eigenvector
+
+# print out the eigenvalues
+println("Eigenvalues λ = $(λ)")
+```
+
+Because eigenvectors are linearly independent, the determinant of the matrix of eigenvectors should be non-zero:
+
+```{code-cell} julia
+# LinearAlgebra package (included in the SLIB, so no download)
+using LinearAlgebra
+
+# Setup matrix the n x n matrix A (n = 3)
+A = [3.0 -0.3 -0.2 ; 0.1 7.0 -0.3 ; 0.3 -0.2 10.0];
+
+# Decompose using the built-in function
+F = eigen(A);   # eigenvalues and vectors in F of type Eigen
+λ = F.values;   # vector of eigenvalues
+V = F.vectors;  # 3 x 3 matrix of eigenvectors, each col is an eigenvector
+
+# print out the eigenvalues
+println("det(V) = $(det(V))")
+```
+
+In [Python](https://www.python.org), eigenvalues and eigenvectors can be computed using the [eig](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) function of the [NumPy](https://numpy.org) library.
+
+#### Example: QR iteration
+The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm) iteratively calculates the eigenvalues and eigenvectors of a square matrix. The [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm), independently developed in the late 1950s by [John G. F. Francis](https://en.wikipedia.org/wiki/John_G._F._Francis) and by [Vera N. Kublanovskaya](https://en.wikipedia.org/wiki/Vera_Kublanovskaya), is one of the ten algorithms of the twentieth century {cite}`TOP10ALGOS`.
 
 ````{prf:definition} Eigenvalues and Eigenvectors using QR iteration
 :label: defn-qr-iteration
@@ -220,7 +262,7 @@ $$
 
 using the [QR iteration algorithm](https://en.wikipedia.org/wiki/QR_algorithm) outlined in {prf:ref}`defn-qr-iteration`. How well does your answer compare to the values generated by [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function?
 
-__Solution__: First, compute the eigenvalues and eigenvectors using the [Julia eigen function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen):
+__Solution__: Compute the eigenvalues and eigenvectors using the [Julia eigen function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) and then using the `qriteration` function (assumed to be included in the workspace):
 
 ```julia
 using LinearAlgebra
@@ -245,8 +287,8 @@ The difference between our `qriteration` implementation and `eigen` was $\delta 
 __Source__: The implementation of our `qriteration` function can be found on [GitHub](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr).
 ````
 
-#### Singular value decomposition
-[Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:
+### Singular value decomposition
+[Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. Singular value decomposition factors a matrix into the product of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix ({prf:ref}`defn-svd-real-matrix`):
 
 ````{prf:definition} Singular value decomposition
 :label: defn-svd-real-matrix
@@ -269,26 +311,27 @@ The singular value decomposition and eigendecomposition have important connectio
 * The columns of $\mathbf{U}$ (left-singular vectors) are eigenvectors of the matrix product $\mathbf{A}\mathbf{A}^{T}$.
 * The columns of $\mathbf{V}$ (right-singular vectors) are eigenvectors of the matrix product $\mathbf{A}^{T}\mathbf{A}$.
 
-##### Structural decomposition using SVD
-SVD can be used to diagonalize a matrix, find the eigenvalues of a matrix, and solve linear equations. However, it is essential to dimensionality reduction techniques such as [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis). Before we discuss PCA, let's explore another interesting use of SVD, namely structural decomposition of a matrix ({prf:ref}`obs-svd-matrix-decomposition`): 
+#### Structural decomposition using SVD
+Let's explore another interesting use of singular value decomposition, namely structural decomposition of a matrix ({prf:ref}`obs-svd-matrix-decomposition`): 
 
-````{prf:observation} SVD matrix decomposition
+````{prf:observation} SVD structural decomposition
 :label: obs-svd-matrix-decomposition
 
-Singular value decomposition (SVD) can be thought of as decomposing a matrix into a weighted, ordered sum of separable matrices. 
-Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ have the singular value decomposition $\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$.
+Singular value decomposition (SVD) decomposes a rectangular matrix $\mathbf{A}$ into a weighted, ordered sum of separable matrices. 
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ have the singular value decomposition $\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$. 
 
-Then, the matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ can be written as:
+Then, the matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ can be re-written as:
 
 ```{math}
 :label: eqn-matrix-decomp
 \mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)
 ```
 
-where $R_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith left and right singular vectors, and $\sigma_{i}$ are the ordered singular values. 
+where $R_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith left and right singular vectors, respectively, and $\sigma_{i}$ are the ordered singular values. 
 
 The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. For more details on computing the [outer-product](https://en.wikipedia.org/wiki/Outer_product), see {ref}`content:vector-vector-operations`.
 ````
+
 
 ### Principle component analysis (PCA)
 Fill me in.

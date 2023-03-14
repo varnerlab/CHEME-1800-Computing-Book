@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-2-data/trees.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vectors, Matrices, Measurements and Distances" href="vectors-matricies-nla.html" />
+    <link rel="next" title="Vectors, Matrices and Linear Algebraic Equations" href="vectors-matricies-nla.html" />
     <link rel="prev" title="Data Structures, Matrices, and Linear Algebra" href="data-landing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -175,12 +175,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vectors-matricies-nla.html">
-     Vectors, Matrices, Measurements and Distances
+     Vectors, Matrices and Linear Algebraic Equations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="reduction.html">
-     Dimensionality reduction
+     Dimensionality Reduction
     </a>
    </li>
   </ul>
@@ -238,6 +238,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../References.html">
+   References
+  </a>
  </li>
 </ul>
 
@@ -1266,8 +1271,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1807e48c-a44b-4a66-9a35-2a20548ad9f0" name="a5843a9c-aa34-4903-9333-1dc9629c4c88" type="radio">
-</input><label class="sd-tab-label" for="1807e48c-a44b-4a66-9a35-2a20548ad9f0">
+<input checked="checked" id="738a5ea6-be38-47d4-8a61-13136b66da4b" name="2e413db1-1286-4f4e-bbfd-658eeff6376e" type="radio">
+</input><label class="sd-tab-label" for="738a5ea6-be38-47d4-8a61-13136b66da4b">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1279,8 +1284,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="4410b484-3db1-4ad5-afa3-79f9166cc565" name="a5843a9c-aa34-4903-9333-1dc9629c4c88" type="radio">
-</input><label class="sd-tab-label" for="4410b484-3db1-4ad5-afa3-79f9166cc565">
+<input id="e94e02fc-f912-4f11-9b1f-90df1436dfc5" name="2e413db1-1286-4f4e-bbfd-658eeff6376e" type="radio">
+</input><label class="sd-tab-label" for="e94e02fc-f912-4f11-9b1f-90df1436dfc5">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1296,8 +1301,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="62e71d31-c3c8-42ef-acb1-eb65aad5a036" name="8d3a89c8-2ee4-4ffd-a0af-d3454c683cc6" type="radio">
-</input><label class="sd-tab-label" for="62e71d31-c3c8-42ef-acb1-eb65aad5a036">
+<input checked="checked" id="c7be8b17-481f-472b-9aba-75c7a4f7caa3" name="4c1b93a3-f071-4929-9195-2e85a88ab1cb" type="radio">
+</input><label class="sd-tab-label" for="c7be8b17-481f-472b-9aba-75c7a4f7caa3">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1309,8 +1314,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8dd3fcd6-e459-4b51-8a0b-e6fd4177f36b" name="8d3a89c8-2ee4-4ffd-a0af-d3454c683cc6" type="radio">
-</input><label class="sd-tab-label" for="8dd3fcd6-e459-4b51-8a0b-e6fd4177f36b">
+<input id="74fac342-9740-4194-8a43-b91f38271cfb" name="4c1b93a3-f071-4929-9195-2e85a88ab1cb" type="radio">
+</input><label class="sd-tab-label" for="74fac342-9740-4194-8a43-b91f38271cfb">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1776,7 +1781,7 @@ the ith entry points to the children indices of vertex <span class="math notrans
     <a class='right-next' id="next-link" href="vectors-matricies-nla.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vectors, Matrices, Measurements and Distances</p>
+        <p class="prev-next-title">Vectors, Matrices and Linear Algebraic Equations</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
