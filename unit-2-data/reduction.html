@@ -544,6 +544,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#principle-component-analysis-pca">
      Principle component analysis (PCA)
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#covariance-matrix">
+       Covariance matrix
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -648,6 +655,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#principle-component-analysis-pca">
      Principle component analysis (PCA)
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#covariance-matrix">
+       Covariance matrix
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -795,7 +809,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 </ul>
 <section id="example-using-the-eigen-function">
 <h4>Example: Using the eigen function<a class="headerlink" href="#example-using-the-eigen-function" title="Permalink to this headline">#</a></h4>
-<p>In <a class="reference external" href="https://julialang.org">Julia</a>, eigenvalues and eigenvectors of a dense matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> can be calculated using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen function</a> include in the standard <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package:</p>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a>, eigenvalues and eigenvectors of a dense matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> can be calculated using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen</a> function included with the standard <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># LinearAlgebra package (included in the SLIB, so no download)</span>
@@ -894,7 +908,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <span class="n">δ</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="n">λ</span><span class="p">);</span> <span class="c"># see lecture notes on vector norms</span>
 </pre></div>
 </div>
-<p>The difference between our <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> implementation and <code class="docutils literal notranslate"><span class="pre">eigen</span></code> was <span class="math notranslate nohighlight">\(\delta = 2.25e-6\)</span>. Thus, our function produces eigenvalues that are close to <code class="docutils literal notranslate"><span class="pre">eigen</span></code>,  with an error of the same magnitude as the <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> parameter.</p>
+<p>The difference <span class="math notranslate nohighlight">\(\delta\)</span> between our <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> implementation and <code class="docutils literal notranslate"><span class="pre">eigen</span></code> was <span class="math notranslate nohighlight">\(\delta = 2.25e-6\)</span>. Thus, our function produces eigenvalues that are close to <code class="docutils literal notranslate"><span class="pre">eigen</span></code>,  with an error of the same magnitude as the <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> parameter.</p>
 <p><strong>Source</strong>: The implementation of our <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> function can be found on <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr">GitHub</a>.</p>
 </section>
 </div></section>
@@ -935,8 +949,33 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
 </div></section>
 </section>
 <section id="principle-component-analysis-pca">
-<h3>Principle component analysis (PCA)<a class="headerlink" href="#principle-component-analysis-pca" title="Permalink to this headline">#</a></h3>
-<p>Fill me in.</p>
+<span id="content-compute-pca"></span><h3>Principle component analysis (PCA)<a class="headerlink" href="#principle-component-analysis-pca" title="Permalink to this headline">#</a></h3>
+<p>Principal Component Analysis (PCA) is a statistical technique that reduces the dimensionality of a dataset while retaining as much of its variation as possible. PCA transforms the original dataset into a new set of uncorrelated variables called principal components, ranked by importance.</p>
+<ul class="simple">
+<li><p>Principal components are the directions in which the data varies the most and are the eigenvectors of the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> of the data.</p></li>
+<li><p>The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains.</p></li>
+<li><p>PCA is a specific application of SVD to the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> of a dataset where the principal components are obtained from the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and the amount of variance explained by each component is obtained from the singular values in <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span>.</p></li>
+</ul>
+<section id="covariance-matrix">
+<h4>Covariance matrix<a class="headerlink" href="#covariance-matrix" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> is a square matrix that summarizes the pairwise relationships between variables in a dataset. The diagonal elements represent each variable’s <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a>, i.e., the standard deviation squared. In contrast, the off-diagonal elements represent the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance">covariance</a> between pairs of variables (<a class="reference internal" href="#defn-covariance matrix">Definition 33</a>):</p>
+<div class="proof definition admonition" id="defn-covariance matrix">
+<p class="admonition-title"><span class="caption-number">Definition 33 </span> (Covariance matrix)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have a collection of <span class="math notranslate nohighlight">\(n\)</span>-dimensional random vectors <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. Then, <span class="math notranslate nohighlight">\(\mathbf{K}_{XX}\)</span> is the <span class="math notranslate nohighlight">\(n\times{n}\)</span> covariance matrix:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-cov-matrix-1">
+<span class="eqno">(66)<a class="headerlink" href="#equation-eqn-cov-matrix-1" title="Permalink to this equation">#</a></span>\[\mathbf{K}_{XX} = \text{cov}(\mathbf{X},\mathbf{X}) = 
+\mathbb{E}\left[\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)\cdot\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)^{T}\right]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbb{E}(\mathbf{X})\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expected value</a>, e.g., the mean of the random vector <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. The entries of the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> <span class="math notranslate nohighlight">\(\mathbf{K}_{XX}\)</span> are given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}k_{ij} = \begin{cases}
+i = j &amp; \sigma_{i}^{2} \\
+i\neq{j} &amp; \rho_{ij}\sigma_{i}\sigma_{j}
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_deviation">standard-deviation</a> of variable <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(\rho_{ij}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Correlation">correlation</a> between variables <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+</section>
+</div></section>
 </section>
 </section>
 <hr class="docutils" />
