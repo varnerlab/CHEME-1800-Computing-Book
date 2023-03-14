@@ -182,7 +182,7 @@ where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. While eigenvectors 
 * [Singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) computes a matrix’s singular values and singular vectors, which are related to its eigenvalues and eigenvectors. It is handy for calculating the low-rank approximations of a matrix or for dimensionality reduction.
 
 #### Example: Using the eigen function
-In [Julia](https://julialang.org), eigenvalues and eigenvectors of a dense matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ can be calculated using the [eigen function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) include in the standard `LinearAlgebra` package:
+In [Julia](https://julialang.org), eigenvalues and eigenvectors of a dense matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ can be calculated using the [eigen](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen) function included with the standard `LinearAlgebra` package:
 
 ```{code-cell} julia
 # LinearAlgebra package (included in the SLIB, so no download)
@@ -282,7 +282,7 @@ V = F.vectors;  # 3 x 3 matrix of eigenvectors, each col is an eigenvector
 δ = norm(L - λ); # see lecture notes on vector norms
 ```
 
-The difference between our `qriteration` implementation and `eigen` was $\delta = 2.25e-6$. Thus, our function produces eigenvalues that are close to `eigen`,  with an error of the same magnitude as the `tolerance` parameter.
+The difference $\delta$ between our `qriteration` implementation and `eigen` was $\delta = 2.25e-6$. Thus, our function produces eigenvalues that are close to `eigen`,  with an error of the same magnitude as the `tolerance` parameter.
 
 __Source__: The implementation of our `qriteration` function can be found on [GitHub](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr).
 ````
@@ -332,9 +332,46 @@ where $R_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{
 The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. For more details on computing the [outer-product](https://en.wikipedia.org/wiki/Outer_product), see {ref}`content:vector-vector-operations`.
 ````
 
-
+(content:compute-PCA)=
 ### Principle component analysis (PCA)
-Fill me in.
+Principal Component Analysis (PCA) is a statistical technique that reduces the dimensionality of a dataset while retaining as much of its variation as possible. PCA transforms the original dataset into a new set of uncorrelated variables called principal components, ranked by importance. 
+
+* Principal components are the directions in which the data varies the most and are the eigenvectors of the 
+[covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of the data. 
+* The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix $\mathbf{U}$ obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains. 
+* PCA is a specific application of SVD to the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of a dataset where the principal components are obtained from the matrix $\mathbf{U}$ and the amount of variance explained by each component is obtained from the singular values in $\mathbf{\Sigma}$.
+
+#### Covariance matrix
+The [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) is a square matrix that summarizes the pairwise relationships between variables in a dataset. The diagonal elements represent the [variance](https://en.wikipedia.org/wiki/Variance) of each variable, i.e., the standard deviation squared. In contrast, the off-diagonal elements represent the [covariance](https://en.wikipedia.org/wiki/Covariance) between pairs of variables ({prf:ref}`defn-covariance matrix`):
+
+````{prf:definition} Covariance matrix
+:label: defn-covariance matrix
+
+Suppose we have a collection of $n$-dimensional random vectors $\mathbf{X}$. Then, $\mathbf{K}_{XX}$ is the $n\times{n}$ covariance matrix:
+
+```{math}
+:label: eqn-cov-matrix-1
+\mathbf{K}_{XX} = \text{cov}(\mathbf{X},\mathbf{X}) = 
+\mathbb{E}\left[\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)\cdot\left(\mathbf{X}-\mathbb{E}(\mathbf{X})^{T}\right)\right]
+```
+
+where $\mathbb{E}(\mathbf{X})$ denotes the [expected value](https://en.wikipedia.org/wiki/Expected_value), e.g., the mean of the random vector $\mathbf{X}$. The entries of the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) $\mathbf{K}_{XX}$ are given by:
+
+```{math}
+k_{ij} = \begin{cases}
+i = j & \sigma_{i}^{2} \\
+i\neq{j} & \rho_{ij}\sigma_{i}\sigma_{j}
+\end{cases}
+```
+
+where $\sigma_{i}$ denotes the [standard-deviation](https://en.wikipedia.org/wiki/Standard_deviation) of variable $i$, and $\rho_{ij}$ denotes the [correlation](https://en.wikipedia.org/wiki/Correlation) between variables $i$ and $j$.
+````
+
+
+
+
+
+
 
 ---
 
