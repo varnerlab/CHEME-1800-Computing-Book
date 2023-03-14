@@ -239,6 +239,11 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../References.html">
+   References
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -290,6 +295,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/varnerlab/CHEME-1800-Computing-Book/main?urlpath=tree/unit-2-data/reduction.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -356,6 +390,23 @@ title="Open an issue"
   </button>
   <div class="menu-dropdown__content">
     <ul>
+      <li>
+        <a href="../_sources/unit-2-data/reduction.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
       <li>
         <a href="../_sources/unit-2-data/reduction.md"
    class="headerbtn"
@@ -466,21 +517,26 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#qr-iteration">
-       QR iteration
+      <a class="reference internal nav-link" href="#example-using-the-eigen-function">
+       Example: Using the eigen function
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#singular-value-decomposition">
-       Singular value decomposition
+      <a class="reference internal nav-link" href="#example-qr-iteration">
+       Example: QR iteration
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#structural-decomposition-using-svd">
-         Structural decomposition using SVD
-        </a>
-       </li>
-      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition">
+     Singular value decomposition
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#structural-decomposition-using-svd">
+       Structural decomposition using SVD
+      </a>
      </li>
     </ul>
    </li>
@@ -565,21 +621,26 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#qr-iteration">
-       QR iteration
+      <a class="reference internal nav-link" href="#example-using-the-eigen-function">
+       Example: Using the eigen function
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#singular-value-decomposition">
-       Singular value decomposition
+      <a class="reference internal nav-link" href="#example-qr-iteration">
+       Example: QR iteration
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#structural-decomposition-using-svd">
-         Structural decomposition using SVD
-        </a>
-       </li>
-      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition">
+     Singular value decomposition
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#structural-decomposition-using-svd">
+       Structural decomposition using SVD
+      </a>
      </li>
     </ul>
    </li>
@@ -732,10 +793,63 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR iteration</a> applies a sequence of orthogonal similarity transformations to the matrix, which gradually transforms it into a diagonal matrix with the eigenvalues on the diagonal. The eigenvectors can be computed by back-substitution. This method is more expensive than power iteration but can compute all eigenvalues and eigenvectors of a matrix.</p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition</a> computes a matrix’s singular values and singular vectors, which are related to its eigenvalues and eigenvectors. It is handy for calculating the low-rank approximations of a matrix or for dimensionality reduction.</p></li>
 </ul>
-<p>In <a class="reference external" href="https://julialang.org">Julia</a>, eigenvalues and eigenvectors of a dense matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> can be calculated using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen</a> function. In <a class="reference external" href="https://www.python.org">Python</a>, eigenvalues and eigenvectors can be computed using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html">eig</a> function of the <a class="reference external" href="https://numpy.org">NumPy</a> library.</p>
-<section id="qr-iteration">
-<h4>QR iteration<a class="headerlink" href="#qr-iteration" title="Permalink to this headline">#</a></h4>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR algorithm</a> iteratively calculates the eigenvalues and eigenvectors of a square matrix. The <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR algorithm</a>, independently developed in the late 1950s by <a class="reference external" href="https://en.wikipedia.org/wiki/John_G._F._Francis">John G. F. Francis</a> and by <a class="reference external" href="https://en.wikipedia.org/wiki/Vera_Kublanovskaya">Vera N. Kublanovskaya</a>, is one of the ten algorithms of the twentieth century (REFHERE).</p>
+<section id="example-using-the-eigen-function">
+<h4>Example: Using the eigen function<a class="headerlink" href="#example-using-the-eigen-function" title="Permalink to this headline">#</a></h4>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a>, eigenvalues and eigenvectors of a dense matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> can be calculated using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen function</a> include in the standard <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># LinearAlgebra package (included in the SLIB, so no download)</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+
+<span class="c"># Setup matrix the n x n matrix A (n = 3)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span> <span class="o">-</span><span class="mf">0.3</span> <span class="o">-</span><span class="mf">0.2</span> <span class="p">;</span> <span class="mf">0.1</span> <span class="mf">7.0</span> <span class="o">-</span><span class="mf">0.3</span> <span class="p">;</span> <span class="mf">0.3</span> <span class="o">-</span><span class="mf">0.2</span> <span class="mf">10.0</span><span class="p">];</span>
+
+<span class="c"># Decompose using the built-in function</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>   <span class="c"># eigenvalues and vectors in F of type Eigen</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">values</span><span class="p">;</span>   <span class="c"># vector of eigenvalues</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">vectors</span><span class="p">;</span>  <span class="c"># 3 x 3 matrix of eigenvectors, each col is an eigenvector</span>
+
+<span class="c"># print out the eigenvalues</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Eigenvalues λ = </span><span class="si">$</span><span class="p">(</span><span class="n">λ</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvalues λ = [3.017277143754452, 6.9699146114784165, 10.012808244767134]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because eigenvectors are linearly independent, the determinant of the matrix of eigenvectors should be non-zero:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># LinearAlgebra package (included in the SLIB, so no download)</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+
+<span class="c"># Setup matrix the n x n matrix A (n = 3)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span> <span class="o">-</span><span class="mf">0.3</span> <span class="o">-</span><span class="mf">0.2</span> <span class="p">;</span> <span class="mf">0.1</span> <span class="mf">7.0</span> <span class="o">-</span><span class="mf">0.3</span> <span class="p">;</span> <span class="mf">0.3</span> <span class="o">-</span><span class="mf">0.2</span> <span class="mf">10.0</span><span class="p">];</span>
+
+<span class="c"># Decompose using the built-in function</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>   <span class="c"># eigenvalues and vectors in F of type Eigen</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">values</span><span class="p">;</span>   <span class="c"># vector of eigenvalues</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">vectors</span><span class="p">;</span>  <span class="c"># 3 x 3 matrix of eigenvectors, each col is an eigenvector</span>
+
+<span class="c"># print out the eigenvalues</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;det(V) = </span><span class="si">$</span><span class="p">(</span><span class="n">det</span><span class="p">(</span><span class="n">V</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>det(V) = 0.9913342222326557
+</pre></div>
+</div>
+</div>
+</div>
+<p>In <a class="reference external" href="https://www.python.org">Python</a>, eigenvalues and eigenvectors can be computed using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html">eig</a> function of the <a class="reference external" href="https://numpy.org">NumPy</a> library.</p>
+</section>
+<section id="example-qr-iteration">
+<h4>Example: QR iteration<a class="headerlink" href="#example-qr-iteration" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR algorithm</a> iteratively calculates the eigenvalues and eigenvectors of a square matrix. The <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR algorithm</a>, independently developed in the late 1950s by <a class="reference external" href="https://en.wikipedia.org/wiki/John_G._F._Francis">John G. F. Francis</a> and by <a class="reference external" href="https://en.wikipedia.org/wiki/Vera_Kublanovskaya">Vera N. Kublanovskaya</a>, is one of the ten algorithms of the twentieth century <span id="id2">[<a class="reference internal" href="../References.html#id2" title="J. Dongarra and F. Sullivan. Guest editors introduction to the top 10 algorithms. Computing in Science &amp; Engineering, 2(01):22-23, jan 2000. doi:10.1109/MCISE.2000.814652.">Dongarra and Sullivan, 2000</a>]</span>.</p>
 <div class="proof definition admonition" id="defn-qr-iteration">
 <p class="admonition-title"><span class="caption-number">Definition 31 </span> (Eigenvalues and Eigenvectors using QR iteration)</p>
 <section class="definition-content" id="proof-content">
@@ -762,7 +876,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 \end{bmatrix}
 \end{split}\]</div>
 <p>using the <a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">QR iteration algorithm</a> outlined in <a class="reference internal" href="#defn-qr-iteration">Definition 31</a>. How well does your answer compare to the values generated by <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">eigen</a> function?</p>
-<p><strong>Solution</strong>: First, compute the eigenvalues and eigenvectors using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">Julia eigen function</a>:</p>
+<p><strong>Solution</strong>: Compute the eigenvalues and eigenvectors using the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.eigen">Julia eigen function</a> and then using the <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> function (assumed to be included in the workspace):</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
 
 <span class="c"># Setup matrix the n x n matrix A (n = 3)</span>
@@ -784,8 +898,9 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <p><strong>Source</strong>: The implementation of our <code class="docutils literal notranslate"><span class="pre">qriteration</span></code> function can be found on <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/qr">GitHub</a>.</p>
 </section>
 </div></section>
+</section>
 <section id="singular-value-decomposition">
-<h4>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h4>
+<h3>Singular value decomposition<a class="headerlink" href="#singular-value-decomposition" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Singular value decomposition (SVD)</a> is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. Singular value decomposition factors a matrix into the product of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix (<a class="reference internal" href="#defn-svd-real-matrix">Definition 32</a>):</p>
 <div class="proof definition admonition" id="defn-svd-real-matrix">
 <p class="admonition-title"><span class="caption-number">Definition 32 </span> (Singular value decomposition)</p>
@@ -804,7 +919,7 @@ Singular vectors have a unique property: unlike eigenvectors, left- and right-si
 <li><p>The columns of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> (right-singular vectors) are eigenvectors of the matrix product <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\mathbf{A}\)</span>.</p></li>
 </ul>
 <section id="structural-decomposition-using-svd">
-<h5>Structural decomposition using SVD<a class="headerlink" href="#structural-decomposition-using-svd" title="Permalink to this headline">#</a></h5>
+<h4>Structural decomposition using SVD<a class="headerlink" href="#structural-decomposition-using-svd" title="Permalink to this headline">#</a></h4>
 <p>Let’s explore another interesting use of singular value decomposition, namely structural decomposition of a matrix (<a class="reference internal" href="#obs-svd-matrix-decomposition">Observation 5</a>):</p>
 <div class="proof observation admonition" id="obs-svd-matrix-decomposition">
 <p class="admonition-title"><span class="caption-number">Observation 5 </span> (SVD structural decomposition)</p>
@@ -818,7 +933,6 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer-product</a> <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. For more details on computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer-product</a>, see <a class="reference internal" href="vectors-matricies-nla.html#content-vector-vector-operations"><span class="std std-ref">Vector-vector operations</span></a>.</p>
 </section>
 </div></section>
-</section>
 </section>
 <section id="principle-component-analysis-pca">
 <h3>Principle component analysis (PCA)<a class="headerlink" href="#principle-component-analysis-pca" title="Permalink to this headline">#</a></h3>
@@ -849,16 +963,16 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.8"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "julia-1.8",
             path: "./unit-2-data"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.8'</script>
 
               </div>
               
