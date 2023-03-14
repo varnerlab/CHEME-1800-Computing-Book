@@ -506,7 +506,8 @@ y_{ij} = cx_{ij}\qquad{i=1,2,\dots,m,~j=1,2,\dots,n}
 where $y_{ij}$ and $x_{ij}$ denote components of the product matrix $\mathbf{Y}\in\mathbb{R}^{m\times{n}}$, and the input matrix $\mathbf{X}\in\mathbb{R}^{m\times{n}}$, respectively. 
 ````
 
-#### Vector-vector multiplication
+(content:vector-vector-operations)=
+#### Vector-vector operations
 __Inner product__: Two compatible vectors $\mathbf{a}$ and $\mathbf{b}$ can be multiplied together to produce a _scalar_ in an operation called an [inner product operation](https://en.wikipedia.org/wiki/Inner_product_space) ({prf:ref}`defn-vector-vector-multiplication`):
 
 ````{prf:definition} Inner product

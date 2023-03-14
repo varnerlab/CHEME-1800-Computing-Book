@@ -158,14 +158,7 @@ Let the eigenvalues of the matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ be give
 \left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}
 ```
 
-where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. If the matrix $\mathbf{A}$ is symmetric, the eigenvectors $\mathbf{a}$ and $\mathbf{b}$ of $\mathbf{A}$ are orthogonal, i.e.,  
-
-```{math}
-:label: eqn-orthogonal-vector
-\sum_{k=1}^{n}a_{k}b_{k} = 0
-```
-
-otherwise, they are not guaranteed to be orthogonal. While eigenvectors are always linearly independent, they are not unique (in any case).
+where $\mathbf{I}$ denotes the $n\times{n}$ identity matrix. While eigenvectors are always linearly independent, they are not unique (in any case) and orthogonal only for a symmetric $\mathbf{A}$.
 ````
 
 
@@ -246,7 +239,7 @@ __Source__: The implementation of our `qriteration` function can be found on [Gi
 ````
 
 #### Singular value decomposition
-[Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. SVD factors a matrix into a canonical form composed of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix:
+[Singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a powerful tool used in many applications, such as image and data compression, signal processing, and machine learning. Singular value decomposition factors a matrix into the product of an orthogonal matrix, a diagonal matrix, and another orthogonal matrix ({prf:ref}`defn-svd-real-matrix`):
 
 ````{prf:definition} Singular value decomposition
 :label: defn-svd-real-matrix
@@ -270,26 +263,27 @@ The singular value decomposition and eigendecomposition have important connectio
 * The columns of $\mathbf{V}$ (right-singular vectors) are eigenvectors of the matrix product $\mathbf{A}^{T}\mathbf{A}$.
 
 ##### Structural decomposition using SVD
-SVD can be used to diagonalize a matrix, find the eigenvalues of a matrix, and solve linear equations. It is also essential in [principal component analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis) as a dimensionality reduction technique.
+Let's explore another interesting use of singular value decomposition, namely structural decomposition of a matrix ({prf:ref}`obs-svd-matrix-decomposition`): 
 
-````{prf:observation} SVD matrix decomposition
+````{prf:observation} SVD structural decomposition
 :label: obs-svd-matrix-decomposition
 
-The singular value decomposition (SVD) can be thought of as decomposing a matrix into a weighted, ordered sum of separable matrices. 
-Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ have the singular value decomposition $\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$.
+Singular value decomposition (SVD) decomposes a rectangular matrix $\mathbf{A}$ into a weighted, ordered sum of separable matrices. 
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ have the singular value decomposition $\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$. 
 
-Then, the matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ can be written as:
+Then, the matrix $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ can be re-written as:
 
 ```{math}
 :label: eqn-matrix-decomp
 \mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)
 ```
 
-where $R_{\mathbf{A}}$ denotes the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith columns of the corresponding SVD matrices, and $\sigma_{i}$ are the ordered singular values. 
+where $R_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith left and right singular vectors, respectively, and $\sigma_{i}$ are the ordered singular values. 
 
-The outer-product $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. 
-
+The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. For more details on computing the [outer-product](https://en.wikipedia.org/wiki/Outer_product), see {ref}`content:vector-vector-operations`.
 ````
+
+
 
 ### Principle component analysis (PCA)
 Fill me in.
