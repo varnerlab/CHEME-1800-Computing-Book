@@ -352,7 +352,7 @@ Suppose we have a collection of $n$-dimensional random vectors $\mathbf{X}$. The
 ```{math}
 :label: eqn-cov-matrix-1
 \mathbf{K}_{XX} = \text{cov}(\mathbf{X},\mathbf{X}) = 
-\mathbb{E}\left[\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)\cdot\left(\mathbf{X}-\mathbb{E}(\mathbf{X})^{T}\right)\right]
+\mathbb{E}\left[\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)\cdot\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)^{T}\right]
 ```
 
 where $\mathbb{E}(\mathbf{X})$ denotes the [expected value](https://en.wikipedia.org/wiki/Expected_value), e.g., the mean of the random vector $\mathbf{X}$. The entries of the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) $\mathbf{K}_{XX}$ are given by:
