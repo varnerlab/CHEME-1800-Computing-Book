@@ -342,7 +342,7 @@ Principal Component Analysis (PCA) is a statistical technique that reduces the d
 * PCA is a specific application of SVD to the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of a dataset where the principal components are obtained from the matrix $\mathbf{U}$ and the amount of variance explained by each component is obtained from the singular values in $\mathbf{\Sigma}$.
 
 #### Covariance matrix
-The [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) is a square matrix that summarizes the pairwise relationships between variables in a dataset. The diagonal elements represent the [variance](https://en.wikipedia.org/wiki/Variance) of each variable, i.e., the standard deviation squared. In contrast, the off-diagonal elements represent the [covariance](https://en.wikipedia.org/wiki/Covariance) between pairs of variables ({prf:ref}`defn-covariance matrix`):
+The [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) is a square matrix that summarizes the pairwise relationships between variables in a dataset. The diagonal elements represent each variable’s [variance](https://en.wikipedia.org/wiki/Variance), i.e., the standard deviation squared. In contrast, the off-diagonal elements represent the [covariance](https://en.wikipedia.org/wiki/Covariance) between pairs of variables ({prf:ref}`defn-covariance matrix`):
 
 ````{prf:definition} Covariance matrix
 :label: defn-covariance matrix
