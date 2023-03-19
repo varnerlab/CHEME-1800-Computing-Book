@@ -332,14 +332,15 @@ where $R_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{
 The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. For more details on computing the [outer-product](https://en.wikipedia.org/wiki/Outer_product), see {ref}`content:vector-vector-operations`.
 ````
 
+<!-- * The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix $\mathbf{U}$ obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains.  -->
+
 (content:compute-PCA)=
 ### Principle component analysis (PCA)
 Principal Component Analysis (PCA) is a statistical technique that reduces the dimensionality of a dataset while retaining as much of its variation as possible. PCA transforms the original dataset into a new set of uncorrelated variables called principal components, ranked by importance. 
 
 * Principal components are the directions in which the data varies the most and are the eigenvectors of the 
 [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of the data. 
-* The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix $\mathbf{U}$ obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains. 
-* PCA is a specific application of SVD to the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of a dataset where the principal components are obtained from the matrix $\mathbf{U}$ and the amount of variance explained by each component is obtained from the singular values in $\mathbf{\Sigma}$.
+* PCA is a specific application of SVD to the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of a dataset. The principal components are obtained from columns of the matrix $\mathbf{U}$. The amount of variance explained by each component is obtained from the singular values in $\mathbf{\Sigma}$.
 
 #### Covariance matrix
 The [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) is a square matrix that summarizes the pairwise relationships between variables in a dataset. The diagonal elements represent each variable’s [variance](https://en.wikipedia.org/wiki/Variance), i.e., the standard deviation squared. In contrast, the off-diagonal elements represent the [covariance](https://en.wikipedia.org/wiki/Covariance) between pairs of variables ({prf:ref}`defn-covariance matrix`):

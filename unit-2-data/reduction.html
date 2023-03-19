@@ -946,7 +946,8 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
 <p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> is the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith left and right singular vectors, respectively, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer-product</a> <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. For more details on computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer-product</a>, see <a class="reference internal" href="vectors-matricies-nla.html#content-vector-vector-operations"><span class="std std-ref">Vector-vector operations</span></a>.</p>
 </section>
-</div></section>
+</div><!-- * The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix $\mathbf{U}$ obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains.  -->
+</section>
 </section>
 <section id="principle-component-analysis-pca">
 <span id="content-compute-pca"></span><h3>Principle component analysis (PCA)<a class="headerlink" href="#principle-component-analysis-pca" title="Permalink to this headline">#</a></h3>
@@ -954,8 +955,7 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
 <ul class="simple">
 <li><p>Principal components are the directions in which the data varies the most and are the eigenvectors of the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> of the data.</p></li>
-<li><p>The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains.</p></li>
-<li><p>PCA is a specific application of SVD to the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> of a dataset where the principal components are obtained from the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> and the amount of variance explained by each component is obtained from the singular values in <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span>.</p></li>
+<li><p>PCA is a specific application of SVD to the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> of a dataset. The principal components are obtained from columns of the matrix <span class="math notranslate nohighlight">\(\mathbf{U}\)</span>. The amount of variance explained by each component is obtained from the singular values in <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span>.</p></li>
 </ul>
 <section id="covariance-matrix">
 <h4>Covariance matrix<a class="headerlink" href="#covariance-matrix" title="Permalink to this headline">#</a></h4>

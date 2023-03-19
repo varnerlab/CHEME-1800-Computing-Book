@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Ordinary Least Squares &#8212; CHEME 1800/4800</title>
+    <title>Ordinary Least Squares Problems &#8212; CHEME 1800/4800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -197,7 +197,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Ordinary Least Squares
+     Ordinary Least Squares Problems
     </a>
    </li>
    <li class="toctree-l2">
@@ -427,13 +427,42 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unconstrained-problems">
-   Unconstrained problems
+  <a class="reference internal nav-link" href="#linear-regression-models">
+   Linear regression models
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sum-of-squared-errors-loss-function">
+     Sum of squared errors loss function
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constraints">
-   Constraints
+  <a class="reference internal nav-link" href="#unconstrained-regression-problems">
+   Unconstrained regression problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#square-regression-problems">
+     Square regression problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overdetermined-regression-problems">
+     Overdetermined regression problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#underdetermined-regression-problems">
+     Underdetermined regression problems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constrained-repression-problems">
+   Constrained repression problems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -442,11 +471,6 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-and-classification">
-   Clustering and classification
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -462,7 +486,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Ordinary Least Squares</h1>
+                <h1>Ordinary Least Squares Problems</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -478,13 +502,42 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unconstrained-problems">
-   Unconstrained problems
+  <a class="reference internal nav-link" href="#linear-regression-models">
+   Linear regression models
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sum-of-squared-errors-loss-function">
+     Sum of squared errors loss function
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constraints">
-   Constraints
+  <a class="reference internal nav-link" href="#unconstrained-regression-problems">
+   Unconstrained regression problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#square-regression-problems">
+     Square regression problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overdetermined-regression-problems">
+     Overdetermined regression problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#underdetermined-regression-problems">
+     Underdetermined regression problems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constrained-repression-problems">
+   Constrained repression problems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -493,11 +546,6 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-and-classification">
-   Clustering and classification
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -514,58 +562,147 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="ordinary-least-squares">
-<h1>Ordinary Least Squares<a class="headerlink" href="#ordinary-least-squares" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ordinary-least-squares-problems">
+<h1>Ordinary Least Squares Problems<a class="headerlink" href="#ordinary-least-squares-problems" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>We discuss Ordinary least squares (OLS) in this lecture. Ordinary least squares is a statistical method to estimate the parameters of a linear regression model. In a linear regression model, the goal is to find the line of best fit that predicts the values of the response variable (dependent variable) based on the values of the predictor variables (independent variables). The OLS method finds the best fit line by minimizing the sum of the squared differences between the observed values of the response variable and the predicted values based on the regression line. This is done by choosing the values of the model parameters that minimize the sum of squared errors (SSE).</p>
-<p>OLS is a popular method for estimating the parameters of a regression models because it is relatively simple to implement and it has nice mathematical properties, such as being unbiased and having the smallest variance among all unbiased estimators. However, OLS has some limitations, such as assuming that the errors in the model are Normally distributed and having poor performance when the data is highly correlated or has outliers.</p>
-<p>In particular, we discuss:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Ordinary least squares</a> is a statistical method to estimate the parameters of a regression model, i.e., to find the best fit model that predicts the values of the response variable (dependent variable) based on the values of the observed variables (independent variables).</p>
+<p>We start the lecture by introducing the linear regression models, and the learning problem, and then explore two types of common ordinary least squares problems:</p>
 <ul class="simple">
-<li><p>Ordinary least squares (OLS) approaches for <a class="reference internal" href="#content-references-ols-unconstrained-problem"><span class="std std-ref">Unconstrained problems</span></a>. In this class or problem, the model parameters can take on any values</p></li>
-<li><p>We then switch to <a class="reference internal" href="#content-references-ols-constrained-problem"><span class="std std-ref">Constraints</span></a> in which the model parameters can be bound in some way, and the parameters can appear non-linearly in the model.</p></li>
+<li><p><a class="reference internal" href="#content-references-ols-general-introduction"><span class="std std-ref">Linear regression models</span></a> is a statistical model used to analyze the relationship between a dependent variable (also known as the response variable) and one or more independent variables (also known as explanatory variables or predictors) that are believed to influence the dependent variable.</p></li>
+<li><p><a class="reference internal" href="#content-references-ols-unconstrained-problem"><span class="std std-ref">Unconstrained regression problems</span></a>. In unconstrained problems, the regression model parameters can take on any values and are not limited in any way.</p></li>
+<li><p><a class="reference internal" href="#content-references-ols-constrained-problem"><span class="std std-ref">Constrained repression problems</span></a>. In constrained problems, the regression model parameters can be bound in some way, e.g., by physical reasoning or by some relationships between the parameters.</p></li>
 </ul>
 <hr class="docutils" />
+<!-- is a popular method for estimating the parameters of regression models because it is relatively simple to implement and has nice mathematical properties, such as being unbiased and having the smallest variance among all unbiased estimators. -->
 </section>
-<section id="unconstrained-problems">
-<span id="content-references-ols-unconstrained-problem"></span><h2>Unconstrained problems<a class="headerlink" href="#unconstrained-problems" title="Permalink to this headline">#</a></h2>
-<p>In an unconstrained least-squares problem, we are trying to find the values of a set of parameters that minimize the difference between the predictions of a model and the observed data. This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.</p>
-<p>Least-squares problems are called “unconstrained” because there are no constraints on the values of the parameters. This means that the optimization algorithm can choose any values for the parameters that minimize the cost function.</p>
-<p>Many optimization algorithms can solve least-squares problems, including gradient descent, Levenberg-Marquardt, and Gauss-Newton algorithms. The choice of algorithm will depend on the problem being solved and the characteristics of the data.</p>
+<section id="linear-regression-models">
+<span id="content-references-ols-general-introduction"></span><h2>Linear regression models<a class="headerlink" href="#linear-regression-models" title="Permalink to this headline">#</a></h2>
+<p>Linear regression models are a statistical model used to analyze the relationship between a dependent variable (also known as the response variable) and one or more independent variables (also known as explanatory variables or predictors) that are believed to influence the dependent variable (<a class="reference internal" href="#defn-ols-introduction">Definition 34</a>):</p>
+<div class="proof definition admonition" id="defn-ols-introduction">
+<p class="admonition-title"><span class="caption-number">Definition 34 </span> (Linear regression model)</p>
+<section class="definition-content" id="proof-content">
+<p>There exists a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x}_{i}\)</span> is a p-vector of inputs (independent variables) and <span class="math notranslate nohighlight">\(y_{i}\)</span> denotes a scalar response variable (dependent variable). Then, a linear regression model for <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> takes the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-linear-regression-model">
+<span class="eqno">(67)<a class="headerlink" href="#equation-eqn-linear-regression-model" title="Permalink to this equation">#</a></span>\[y_{i} = \mathbf{x}_{i}^{T}\mathbf{\beta} + \epsilon_{i}\qquad{i=1,2,\dots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}_{i}\)</span> is a p-dimensional column vector of inputs, <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> is a <span class="math notranslate nohighlight">\(p\times{1}\)</span> vector of unknown model parameters and <span class="math notranslate nohighlight">\(\epsilon_{i}\)</span> represents unobserved random errors. Eqn. <a class="reference internal" href="#equation-eqn-linear-regression-model">(67)</a> can be re-written in matrix form as:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-linear-regression-model-matrix">
+<span class="eqno">(68)<a class="headerlink" href="#equation-eqn-linear-regression-model-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}\]</div>
 </section>
-<section id="constraints">
-<span id="content-references-ols-constrained-problem"></span><h2>Constraints<a class="headerlink" href="#constraints" title="Permalink to this headline">#</a></h2>
-<p>Constrained least squares is a method of estimating the parameters of a linear regression model subject to one or more constraints on the values the parameters can take. This is often used when prior knowledge or physical constraints must be satisfied by the estimates. To solve a constrained least squares problem, we first define the linear regression model and the constraints on the parameters. We then define an objective function that measures the model’s fit to the data subject to the constraints. We minimize this objective function to find the estimates of the parameters that best fit the data while satisfying the constraints.</p>
+</div><p>Linear reagression models are widely used to model physical, chemical or economic phenomena, e.g., a model of the rate of a chemical reaction, the return of a stock, the relationship between the home price and square footage, etc.</p>
+<section id="sum-of-squared-errors-loss-function">
+<h3>Sum of squared errors loss function<a class="headerlink" href="#sum-of-squared-errors-loss-function" title="Permalink to this headline">#</a></h3>
+<p>Starting from observations, <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinary least squares</a> estimates the value of the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> that appear in a linear regression model by <em>minimizing</em> the sum of squared errors  between model estimates and observed values (<a class="reference internal" href="#defn-sum-squared-error">Definition 35</a>):</p>
+<div class="proof definition admonition" id="defn-sum-squared-error">
+<p class="admonition-title"><span class="caption-number">Definition 35 </span> (Sum of squared error loss function)</p>
+<section class="definition-content" id="proof-content">
+<p>There exists a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x}_{i}\)</span> is a p-vector of observed inputs and <span class="math notranslate nohighlight">\(y_{i}\)</span> denotes an observed response variable. Further, suppose we model the dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> using the linear regression model:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}\]</div>
+<p>Best-fit values for the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> can be estimated by solving the optimization problem:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-obj-f-ols">
+<span class="eqno">(69)<a class="headerlink" href="#equation-eqn-obj-f-ols" title="Permalink to this equation">#</a></span>\[\hat{\mathbf{\beta}} = \arg\min_{\mathbf{\beta}} ||~\mathbf{y} - \mathbf{X}\mathbf{\beta}~||^{2}_{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(||\star||^{2}_{2}\)</span> is the square of the p = 2 vector norm, see <a class="reference internal" href="../unit-2-data/reduction.html#content-measurements-matrix-vector-norms"><span class="std std-ref">Vector and matrix norms</span></a>.</p>
+</section>
+</div><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Ordinary least squares</a> is an example of a <a class="reference external" href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning approach</a>, i.e., we use measured inputs and outputs to estimate parameters appearing in the model.</p>
+<!-- the sum of the squared differences between the observed values of the response variable and the predicted values based on the regression line. This is done by choosing the values of the model parameters that minimize the sum of squared errors (SSE). However, OLS has some limitations, such as assuming that the errors in the model are Normally distributed and having poor performance when the data is highly correlated or has outliers. -->
+</section>
+</section>
+<section id="unconstrained-regression-problems">
+<span id="content-references-ols-unconstrained-problem"></span><h2>Unconstrained regression problems<a class="headerlink" href="#unconstrained-regression-problems" title="Permalink to this headline">#</a></h2>
+<p>In an unconstrained least-squares problem, we are trying to find the values of a set of parameters that minimize the difference between the predictions of a model and the observed data. Least-squares problems are <em>unconstrained</em> when there are no constraints on the permissible values of the parameters. This means that the optimization algorithm can choose any values for the parameters that minimize the loss function.</p>
+<section id="square-regression-problems">
+<h3>Square regression problems<a class="headerlink" href="#square-regression-problems" title="Permalink to this headline">#</a></h3>
+<p>Suppose we are estimating the values of the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> in a linear regression model</p>
+<div class="math notranslate nohighlight" id="equation-eqn-square-ols-model">
+<span class="eqno">(70)<a class="headerlink" href="#equation-eqn-square-ols-model" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}\]</div>
+<p>where the data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\in\mathbb{R}^{p\times{p}}\)</span> has the same number of rows and columns as the number of unknown parameters, i.e., Eqn <a class="reference internal" href="#equation-eqn-square-ols-model">(70)</a> is a square system of linear algebraic equations. Then, we can solve for the unkown parameter vector <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> by solving the system of equations:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\mathbf{\beta}} = \mathbf{X}^{-1}\mathbf{y}\]</div>
+<p>either directly, or by using an interative approach, see our previous discussion of <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html#content-references-soln-laes-start"><span class="std std-ref">Linear algebraic equations</span></a>.
+For this approach to be applicable, the inverse of the data matrix must exist, see <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html#defn-matrix-inverse">Definition 23</a>.</p>
+</section>
+<section id="overdetermined-regression-problems">
+<h3>Overdetermined regression problems<a class="headerlink" href="#overdetermined-regression-problems" title="Permalink to this headline">#</a></h3>
+<p>It is far more likely that the data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\in\mathbb{R}^{n\times{p}}\)</span> will be overdetermined <span class="math notranslate nohighlight">\(n\gg{p}\)</span>. In this case, the inverse of the data matrix can not be directly computed. Instead, we solve a special system of equations called the <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">normal equations</a> which transforms the original overdetermined problem into a square system:</p>
+<div class="proof definition admonition" id="defn-normal-eqn-ols">
+<p class="admonition-title"><span class="caption-number">Definition 36 </span> (Normal solution linear regression model)</p>
+<section class="definition-content" id="proof-content">
+<p>There exists a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x}_{i}\)</span> is a p-vector of inputs (independent variables) and <span class="math notranslate nohighlight">\(y_{i}\)</span> denotes a scalar response variable (dependent variable), and <span class="math notranslate nohighlight">\(n\gg{p}\)</span>.  Further, suppose we model the dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> using the linear regression model:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}\]</div>
+<p>Then, the value of the unknown parameter vector <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> that minimizes the sum of the squares loss function for an overdetermined system is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-loss-function-soln">
+<span class="eqno">(71)<a class="headerlink" href="#equation-eqn-loss-function-soln" title="Permalink to this equation">#</a></span>\[\hat{\mathbf{\beta}} = \left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\mathbf{X}^{T}\mathbf{y} - \left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\mathbf{X}^{T}\mathbf{\epsilon}\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(\mathbf{X}^{T}\mathbf{X}\)</span> is the normal matrix, and <span class="math notranslate nohighlight">\(\mathbf{X}^{T}\mathbf{y}\)</span> is the moment matrix.</p>
+</section>
+</div></section>
+<section id="underdetermined-regression-problems">
+<h3>Underdetermined regression problems<a class="headerlink" href="#underdetermined-regression-problems" title="Permalink to this headline">#</a></h3>
+<p>If the number of rows in the data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, i.e., the number of equations, is less than the number of columns, i.e., the number of unknowns, then the system is underdetermined. In general, there will be infinitely many solutions for an underdetermined system.</p>
+<p>One strategy to solve this problem is to estimate values for the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> such that they satisfy the original equations and are the smallest possible values. Thus, classically, the solution of an underdetermined least squares problem is <em>constrained</em>, i.e., the possible values are restricted somehow.</p>
+<p>Equivalently, we can solve for the unknown model parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> using singular value decomposition (SVD) of the data matrix (<a class="reference internal" href="#defn-svd-soln-ud-ols">Definition 37</a>):</p>
+<div class="proof definition admonition" id="defn-svd-soln-ud-ols">
+<p class="admonition-title"><span class="caption-number">Definition 37 </span> (Singular value decomposition underdetermined system)</p>
+<section class="definition-content" id="proof-content">
+<p>There exists a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x}_{i}\)</span> is a p-vector of inputs (independent variables) and <span class="math notranslate nohighlight">\(y_{i}\)</span> denotes a scalar response variable (dependent variable), and <span class="math notranslate nohighlight">\(n\ll{p}\)</span>.  Further, suppose we model the dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> using the linear regression model:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}\]</div>
+<p>Then, the smallest values of the unknown parameter vector <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> that satisfies the linear regression model are given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\mathbf{\beta}} = \mathbf{V}\mathbf{\Sigma}^{-1}\mathbf{U}^{T}\mathbf{y} - \mathbf{V}\mathbf{\Sigma}^{-1}\mathbf{U}^{T}\mathbf{\epsilon}\]</div>
+</section>
+</div><!-- This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.
+
+Many optimization algorithms can solve least-squares problems, including gradient descent, Levenberg-Marquardt, and Gauss-Newton algorithms. The choice of algorithm will depend on the problem being solved and the characteristics of the data. -->
+</section>
+</section>
+<section id="constrained-repression-problems">
+<span id="content-references-ols-constrained-problem"></span><h2>Constrained repression problems<a class="headerlink" href="#constrained-repression-problems" title="Permalink to this headline">#</a></h2>
+<p>Constrained least squares is a method of estimating the parameters of a linear regression model subject to one or more constraints on the values the parameters can take. This is often used when prior knowledge or physical constraints must be satisfied by the estimates.</p>
+<p>To solve a constrained least squares problem, we first define the linear regression model and the constraints on the parameters. We then define a loss function that measures the model’s fit to the data subject to the constraints. We minimize the loss function to find the estimates of the parameters that best fit the data while satisfying the constraints.</p>
 <section id="penalty-methods">
 <h3>Penalty methods<a class="headerlink" href="#penalty-methods" title="Permalink to this headline">#</a></h3>
 <p>A penalty method is used to modify an optimization problem to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.</p>
 <p>There are several different types of penalty methods that are commonly used in statistical modeling, including:</p>
 <ul class="simple">
-<li><p>Ridge regression: This method adds a penalty term to the objective function, which is the sum of the squares of the model parameters. This has the effect of shrinking the parameters towards zero and can help reduce the model’s variance.</p></li>
-<li><p>Lasso regression: This method adds a penalty term to the objective function, which is the sum of the absolute values of the model parameters. This has the effect of setting some of the parameters to zero, which can help to select a subset of essential features and reduce the complexity of the model.</p></li>
-<li><p>Group Lasso: This method is similar to lasso regression but allows the user to group variables together and applies the penalty to the group rather than to each individual variable.</p></li>
-<li><p>Elastic net: This method combines the ridge and lasso regression penalties and allows users to tune the balance between the two penalties.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ridge_regression">Ridge regression</a> adds a penalty term to the loss function, which is the sum of the squares of the model parameters. This has the effect of shrinking the parameters towards zero and can help reduce the model’s variance.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)">Lasso regression</a> adds a penalty term to the loss function, which is the sum of the absolute values of the model parameters. This has the effect of setting some of the parameters to zero, which can help to select a subset of essential features and reduce the complexity of the model.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)#Group_lasso">Group Lasso</a> is similar to <a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)">lasso regression</a> but allows the user to group variables together and applies the penalty to the group rather than to each individual variable.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)#Elastic_net">Elastic net</a> combines the ridge and lasso regression penalties and allows users to tune the balance between the two penalties.</p></li>
 </ul>
 <p>Penalty methods can be combined with optimization algorithms such as gradient descent or coordinate descent to find the optimal values of the model parameters that minimize the objective function subject to the penalty constraints. These methods are often used in situations with many predictors, and the goal is to select a parsimonious model with a small number of essential features.</p>
-</section>
-</section>
 <hr class="docutils" />
-<section id="clustering-and-classification">
-<h2>Clustering and classification<a class="headerlink" href="#clustering-and-classification" title="Permalink to this headline">#</a></h2>
-<p>Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.</p>
-<p>k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster.</p>
-<div class="proof definition admonition" id="defn-kmeans-problem">
-<p class="admonition-title"><span class="caption-number">Definition 34 </span> (k-means clustering)</p>
-<section class="definition-content" id="proof-content">
-<p>Given a set of observations <span class="math notranslate nohighlight">\(\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)\)</span>, where each observation is a <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, k-means clustering partitions the <span class="math notranslate nohighlight">\(d\)</span>-observations into <span class="math notranslate nohighlight">\(k\leq{d}\)</span> sets <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}\)</span> so as to minimize the within-cluster sum of squares (WCSS):</p>
-<div class="math notranslate nohighlight" id="equation-eqn-k-means-clustering">
-<span class="eqno">(67)<a class="headerlink" href="#equation-eqn-k-means-clustering" title="Permalink to this equation">#</a></span>\[\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mu_{i}\)</span> denotes the mean of the points in set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span>.</p>
+<!-- ## Clustering and classification
+Cluster analysis groups objects such that items in the same group (called a cluster) are more similar (in some sense) to each other than to those in different clusters. Cluster analysis is an essential task of exploratory data analysis and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics, and machine learning.
+
+k-means clustering is a method of vector quantization, originally taken from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster. 
+
+````{prf:definition} k-means clustering
+:label: defn-kmeans-problem
+
+Given a set of observations $\left(\mathbf{x}_{1},\mathbf{x}_{2},\dots,\mathbf{x}_{d}\right)$, where each observation is a $n$-dimensional vector, k-means clustering partitions the $d$-observations into $k\leq{d}$ sets $\mathcal{S} = \left\{\mathcal{S}_{1}, \mathcal{S}_{2},\dots,\mathcal{S}_{k}\right\}$ so as to minimize the within-cluster sum of squares (WCSS):
+
+```{math}
+:label: eqn-k-means-clustering
+\text{arg}\min_{\mathcal{S}} \sum_{i=1}^{k}\sum_{\mathbf{x}\in\mathcal{S}_{i}}||\mathbf{x}-\mu_{i}||^{2}
+```
+
+where $\mu_{i}$ denotes the mean of the points in set $\mathcal{S}_{i}$. 
+
+````
+
+--- -->
 </section>
-</div></section>
+</section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>In this lecture, we introduced the learning problem, and <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Ordinary least squares</a>. We started the lecture by introducing linear regression models, and the learning problem, we then explored two types of common ordinary least squares problems:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-ols-general-introduction"><span class="std std-ref">Linear regression models</span></a> is a statistical model used to analyze the relationship between a dependent variable (also known as the response variable) and one or more independent variables (also known as explanatory variables or predictors) that are believed to influence the dependent variable.</p></li>
+<li><p><a class="reference internal" href="#content-references-ols-unconstrained-problem"><span class="std std-ref">Unconstrained regression problems</span></a>. In unconstrained problems, the regression model parameters can take on any values and are not limited in any way.</p></li>
+<li><p><a class="reference internal" href="#content-references-ols-constrained-problem"><span class="std std-ref">Constrained repression problems</span></a>. In constrained problems, the regression model parameters can be bound in some way, e.g., by physical reasoning or by some relationships between the parameters.</p></li>
+</ul>
 </section>
 </section>
 
