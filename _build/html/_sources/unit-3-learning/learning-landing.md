@@ -1,5 +1,5 @@
 #  The Learning Problem: Models, Learning, and Optimization
-The learning problem refers to training a machine learning model on a dataset to make predictions or decisions without being explicitly programmed to perform a specific task. This involves finding patterns in the data and using them to create a model to make predictions or decisions about new, unseen data. However, the learning problem can also refer to using a model combined with optimization approaches to reason about the world around us or solve specific problems of interest.  
+The learning problem refers to training a physical or machine learning model to replicate features of a dataset. The model can then make predictions or decisions about new, unseen data. The learning problem can also refer to using a model combined with optimization approaches to reason about the world around us or solve specific problems of interest.  
 
 Thus, we build upon our previous content in this unit and focus on models and optimization approaches to represent and solve engineering problems. 
 
