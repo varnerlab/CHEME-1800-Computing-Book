@@ -68,33 +68,37 @@ where $||\star||^{2}_{2}$ is the square of the p = 2 vector norm, see {ref}`cont
 
 (content:references:ols-unconstrained-problem)=
 ## Unconstrained regression problems
-In an unconstrained least-squares problem, we are trying to find the values of a set of parameters that minimize the difference between the predictions of a model and the observed data. Least-squares problems are _unconstrained_ when there are no constraints on the permissible values of the parameters. This means that the optimization algorithm can choose any values for the parameters that minimize the loss function.
+In an unconstrained least-squares problem, we find parameter values that minimize the difference between the model predictions and the observed data. Least-squares problems are _unconstrained_ when there are no constraints on the permissible values of the parameters. 
+
+However, the data matrix $\mathbf{X}\in\mathbb{R}^{n\times{p}}$ can have different shapes: 
+* __Square__: the number of observations (rows) is the same as the number of parameters (columns), in which case the system is square ($n = p$).
+* __Overdetermined__: the data matrix $\mathbf{X}$ has more observations (rows) than parameters (columns), in which case the system is overdetermined ($n\gg{p}$).
+* __Underdetermined__: the data matrix $\mathbf{X}$ has fewer observations (rows) than parameters (columns), in which case the system is underdetermined ($n\ll{p}$).
 
 ### Square regression problems
-Suppose we are estimating the values of the unknown parameters $\mathbf{\beta}$ in a linear regression model
+Suppose we are estimating the values of the unknown parameters $\mathbf{\beta}$ in a linear regression model:
 
 ```{math}
 :label: eqn-square-ols-model
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}
 ```
 
-where the data matrix $\mathbf{X}\in\mathbb{R}^{p\times{p}}$ has the same number of rows and columns as the number of unknown parameters, i.e., Eqn {eq}`eqn-square-ols-model` is a square system of linear algebraic equations. Then, we can solve for the unkown parameter vector $\mathbf{\beta}$ by solving the system of equations:
+where the data matrix $\mathbf{X}\in\mathbb{R}^{p\times{p}}$ has the same number of rows and columns as the number of unknown parameters. In this case, Eqn {eq}`eqn-square-ols-model` is a square system of linear algebraic equations which we can solve for the unknown parameter vector $\mathbf{\beta}$ by solving the system of equations:
 
 ```{math}
-\hat{\mathbf{\beta}} = \mathbf{X}^{-1}\mathbf{y}
+\hat{\mathbf{\beta}} = \mathbf{X}^{-1}\mathbf{y} - \mathbf{X}^{-1}\mathbf{\epsilon}
 ```
 
-either directly, or by using an interative approach, see our previous discussion of {ref}`content:references:soln-laes-start`.
-For this approach to be applicable, the inverse of the data matrix must exist, see {prf:ref}`defn-matrix-inverse`. 
-
+either directly or iteratively, see our previous discussion of {ref}`content:references:soln-laes-start`.
+However, for this approach to be applicable, the inverse of the data matrix must exist, see {prf:ref}`defn-matrix-inverse`. 
 
 ### Overdetermined regression problems
-It is far more likely that the data matrix $\mathbf{X}\in\mathbb{R}^{n\times{p}}$ will be overdetermined $n\gg{p}$. In this case, the inverse of the data matrix can not be directly computed. Instead, we solve a special system of equations called the [normal equations](https://en.wikipedia.org/wiki/Ordinary_least_squares) which transforms the original overdetermined problem into a square system:
+In most applications, it is more likely that the data matrix $\mathbf{X}\in\mathbb{R}^{n\times{p}}$ will be overdetermined ($n\gg{p}$). The inverse of an overdetermined data matrix can not be computed directly. Instead, we solve a particular system of equations called the [normal equations](https://en.wikipedia.org/wiki/Ordinary_least_squares) which transforms the original overdetermined problem into a square system:
 
-````{prf:definition} Normal solution linear regression model
+````{prf:definition} Normal solution overdetermined linear regression model
 :label: defn-normal-eqn-ols
 
-There exists a dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, suppose we model the dataset $\mathcal{D}$ using the linear regression model:
+There exists dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-dimensional row vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, suppose we model the dataset $\mathcal{D}$ using the linear regression model:
 
 ```{math}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}
@@ -108,13 +112,44 @@ Then, the value of the unknown parameter vector $\mathbf{\beta}$ that minimizes 
 \hat{\mathbf{\beta}} = \left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\mathbf{X}^{T}\mathbf{y} - \left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\mathbf{X}^{T}\mathbf{\epsilon}
 ```
 
-The matrix $\mathbf{X}^{T}\mathbf{X}$ is the normal matrix, and $\mathbf{X}^{T}\mathbf{y}$ is the moment matrix. 
+The matrix $\mathbf{X}^{T}\mathbf{X}$ is called the normal matrix, while $\mathbf{X}^{T}\mathbf{y}$ is called the moment matrix. The existence of the normal solution $\hat{\mathbf{\beta}}$ requires that the normal matrix inverse $\left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}$ exists.
 ````
 
 ### Underdetermined regression problems
-If the number of rows in the data matrix $\mathbf{X}$, i.e., the number of equations, is less than the number of columns, i.e., the number of unknowns, then the system is underdetermined. In general, there will be infinitely many solutions for an underdetermined system.
+If the number of observations (rows) in the data matrix $\mathbf{X}$ is less than the number of columns, i.e., the number of unknown parameters, the system is underdetermined. In general, there will be infinitely many solutions for an underdetermined system. How do we choose which solution to use?
 
-One strategy to solve this problem is to estimate values for the unknown parameters $\mathbf{\beta}$ such that they satisfy the original equations and are the smallest possible values. Thus, classically, the solution of an underdetermined least squares problem is _constrained_, i.e., the possible values are restricted somehow. 
+#### Least-norm solutions
+The classic strategy to solve an underdetermined system is to estimate the _smallest_ values (measured by some norm $||\star||$) for the unknown parameters $\mathbf{\beta}$ such that they satisfy the original equations:
+
+````{math}
+\begin{eqnarray}
+\text{minimize}~& ||~\mathbf{\beta}~|| &  &\\
+\text{subject to} & & & \\
+\mathbf{X}\mathbf{\beta} & = & \mathbf{y}
+\end{eqnarray}
+````
+
+Thus, the solution of an underdetermined least squares problem is _constrained_, i.e., the possible values of $\mathbf{\beta}$ are restricted somehow. An analytical solution for the parmeter vector $\mathbf{\beta}$ can be computed for the underdetermined case ({prf:ref}`defn-normal-eqn-ols-ln`):
+
+````{prf:definition} Solution underdetermined linear regression model
+:label: defn-normal-eqn-ols-ln
+
+There exists dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-dimensional row vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, we model the dataset $\mathcal{D}$ using the linear regression model:
+
+```{math}
+\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}
+```
+
+Then, the least-norm solution of the unknown parameter vector $\mathbf{\beta}$ is given by:
+
+```{math}
+:label: eqn-loss-function-soln-least-norm
+
+\hat{\mathbf{\beta}} =\mathbf{X}^{T}\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\mathbf{y} - \mathbf{X}^{T}\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\mathbf{\epsilon}
+```
+
+The existence of the least-norm solution $\hat{\mathbf{\beta}}$ requires that the matrix inverse $\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}$ exists.
+````
 
 Equivalently, we can solve for the unknown model parameters $\mathbf{\beta}$ using singular value decomposition (SVD) of the data matrix ({prf:ref}`defn-svd-soln-ud-ols`):
 
@@ -141,20 +176,21 @@ Many optimization algorithms can solve least-squares problems, including gradien
 
 (content:references:ols-constrained-problem)=
 ## Constrained repression problems
-Constrained least squares is a method of estimating the parameters of a linear regression model subject to one or more constraints on the values the parameters can take. This is often used when prior knowledge or physical constraints must be satisfied by the estimates. 
+Constrained least squares estimates the parameters of a linear regression model subject to one or more constraints on the values the parameters can take, e.g., 
+there exists prior knowledge or physical relationships that must be satisfied by the parameter estimates. 
 
-To solve a constrained least squares problem, we first define the linear regression model and the constraints on the parameters. We then define a loss function that measures the model’s fit to the data subject to the constraints. We minimize the loss function to find the estimates of the parameters that best fit the data while satisfying the constraints.
+<!-- To solve constrained least squares problems, we first define the linear regression model and the constraints on the parameters. We then define a loss function that measures the model’s fit to the data subject to the constraints. We minimize the loss function to find the estimates of the parameters that best fit the data while satisfying the constraints. -->
 
 ### Penalty methods
-A penalty method is used to modify an optimization problem to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.
+A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.
 
-There are several different types of penalty methods that are commonly used in statistical modeling, including:
+Several different types of penalty methods are commonly used in statistical modeling, including:
 * [Ridge regression](https://en.wikipedia.org/wiki/Ridge_regression) adds a penalty term to the loss function, which is the sum of the squares of the model parameters. This has the effect of shrinking the parameters towards zero and can help reduce the model’s variance.
 * [Lasso regression](https://en.wikipedia.org/wiki/Lasso_(statistics)) adds a penalty term to the loss function, which is the sum of the absolute values of the model parameters. This has the effect of setting some of the parameters to zero, which can help to select a subset of essential features and reduce the complexity of the model.
-* [Group Lasso](https://en.wikipedia.org/wiki/Lasso_(statistics)#Group_lasso) is similar to [lasso regression](https://en.wikipedia.org/wiki/Lasso_(statistics)) but allows the user to group variables together and applies the penalty to the group rather than to each individual variable.
+* [Group Lasso](https://en.wikipedia.org/wiki/Lasso_(statistics)#Group_lasso) is similar to [lasso regression](https://en.wikipedia.org/wiki/Lasso_(statistics)) but allows the user to group variables together and applies the penalty to the group rather than to each variable.
 * [Elastic net](https://en.wikipedia.org/wiki/Lasso_(statistics)#Elastic_net) combines the ridge and lasso regression penalties and allows users to tune the balance between the two penalties.
 
-Penalty methods can be combined with optimization algorithms such as gradient descent or coordinate descent to find the optimal values of the model parameters that minimize the objective function subject to the penalty constraints. These methods are often used in situations with many predictors, and the goal is to select a parsimonious model with a small number of essential features.
+Penalty methods can be combined with [optimization algorithms](https://optimization.cbe.cornell.edu/index.php?title=Main_Page) to find the best (optimal) values of the model parameters that minimize the loss function subject to the penalty constraints. These methods are often used in situations with many predictors, and the goal is to select a parsimonious model with a small number of essential features.
 
 ---
 
