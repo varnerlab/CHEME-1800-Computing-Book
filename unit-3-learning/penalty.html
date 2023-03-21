@@ -473,6 +473,11 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-multipliers">
+     Lagrange multipliers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#penalty-methods">
      Penalty methods
     </a>
@@ -555,6 +560,11 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-multipliers">
+     Lagrange multipliers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#penalty-methods">
      Penalty methods
     </a>
@@ -604,9 +614,15 @@ title="Print to PDF"
 <span class="eqno">(68)<a class="headerlink" href="#equation-eqn-linear-regression-model-matrix" title="Permalink to this equation">#</a></span>\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}\]</div>
 </section>
 </div><p>Linear reagression models are widely used to model physical, chemical or economic phenomena, e.g., a model of the rate of a chemical reaction, the return of a stock, the relationship between the home price and square footage, etc.</p>
+<figure class="align-default" id="fig-linear-regression-schematic">
+<a class="reference internal image-reference" href="../_images/Fig-LinearRegression-Schematic.pdf"><img alt="../_images/Fig-LinearRegression-Schematic.pdf" src="../_images/Fig-LinearRegression-Schematic.pdf" style="height: 320px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Schematic of linear regression. Unknown model parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> are chosen so that the squared difference (residual) between model predicted <span class="math notranslate nohighlight">\(\hat{y}_{i}=\mathbf{x}_{i}^{T}\mathbf{\beta}\)</span> and observed <span class="math notranslate nohighlight">\(y_{i}\)</span> output variables is minimized.</span><a class="headerlink" href="#fig-linear-regression-schematic" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="sum-of-squared-errors-loss-function">
 <h3>Sum of squared errors loss function<a class="headerlink" href="#sum-of-squared-errors-loss-function" title="Permalink to this headline">#</a></h3>
-<p>Starting from observations, <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinary least squares</a> estimates the value of the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> that appear in a linear regression model by <em>minimizing</em> the sum of squared errors  between model estimates and observed values (<a class="reference internal" href="#defn-sum-squared-error">Definition 35</a>):</p>
+<p>Starting from observations, <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinary least squares</a> estimates the value of the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> that appear in a linear regression model by <em>minimizing</em> the sum of squared errors between model estimates and observed values as illustrated in <a class="reference internal" href="#fig-linear-regression-schematic"><span class="std std-numref">Fig. 15</span></a> and defined in (<a class="reference internal" href="#defn-sum-squared-error">Definition 35</a>):</p>
 <div class="proof definition admonition" id="defn-sum-squared-error">
 <p class="admonition-title"><span class="caption-number">Definition 35 </span> (Sum of squared error loss function)</p>
 <section class="definition-content" id="proof-content">
@@ -703,6 +719,26 @@ Many optimization algorithms can solve least-squares problems, including gradien
 <p>Constrained least squares estimates the parameters of a linear regression model subject to one or more constraints on the values the parameters can take, e.g.,
 there exists prior knowledge or physical relationships that must be satisfied by the parameter estimates.</p>
 <!-- To solve constrained least squares problems, we first define the linear regression model and the constraints on the parameters. We then define a loss function that measures the model’s fit to the data subject to the constraints. We minimize the loss function to find the estimates of the parameters that best fit the data while satisfying the constraints. -->
+<section id="lagrange-multipliers">
+<h3>Lagrange multipliers<a class="headerlink" href="#lagrange-multipliers" title="Permalink to this headline">#</a></h3>
+<p>Lagrange multipliers are a mathematical tool used in optimization to find a function’s maximum or minimum value subject to constraints. The <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> involves introducing additional variables, called Lagrange multipliers, which convert the constraints into equations that can be included in the loss function. The sum of the loss function and the constraints is called the Lagrangian function.</p>
+<p>The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero (<a class="reference internal" href="#defn-method-l-multipliers">Definition 39</a>):</p>
+<div class="proof definition admonition" id="defn-method-l-multipliers">
+<p class="admonition-title"><span class="caption-number">Definition 39 </span></p>
+<section class="definition-content" id="proof-content">
+<p>To find the maximum or minimum of a function <span class="math notranslate nohighlight">\(f(x)\)</span> subject to the equality constraint <span class="math notranslate nohighlight">\(g(x)\)</span>, we can form the Lagrangian function:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-lagrangian-1d">
+<span class="eqno">(73)<a class="headerlink" href="#equation-eqn-lagrangian-1d" title="Permalink to this equation">#</a></span>\[\mathcal{L}(x,\lambda) = f(x) + \lambda\cdot{g}(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the Lagrange multiplier for constraint <span class="math notranslate nohighlight">\(g(x)\)</span>. At a critical point (maximum or minimum), the partial derivatives of the
+Lagrangian function with respect to <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> vanish:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-first-order-condition-lagrange">
+<span class="eqno">(74)<a class="headerlink" href="#equation-eqn-first-order-condition-lagrange" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\frac{\partial\mathcal{L}}{\partial{x}} &amp; = &amp; 0\\
+\frac{\partial\mathcal{L}}{\partial{\lambda}} &amp; = &amp; 0\\
+\end{eqnarray}\end{split}\]</div>
+<p>The system of equations defined by Eqn. <a class="reference internal" href="#equation-eqn-first-order-condition-lagrange">(74)</a> is known as the Lagrange equations, which can be solved to find the critical points and, thus, the maximum or minimum value of the objective function.</p>
+</section>
+</div></section>
 <section id="penalty-methods">
 <h3>Penalty methods<a class="headerlink" href="#penalty-methods" title="Permalink to this headline">#</a></h3>
 <p>A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.</p>
