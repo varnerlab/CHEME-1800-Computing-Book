@@ -194,7 +194,7 @@ Lagrange multipliers are a mathematical tool used in optimization to find a func
 
 The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero ({prf:ref}`defn-method-l-multipliers`):
 
-````{prf:definition}
+````{prf:definition} Method of Lagrange multipliers
 :label: defn-method-l-multipliers
 
 To find the maximum or minimum of a function $f(x)$ subject to the equality constraint $g(x)$, we can form the Lagrangian function:
