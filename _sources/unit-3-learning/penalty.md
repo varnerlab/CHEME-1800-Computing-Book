@@ -175,7 +175,7 @@ Many optimization algorithms can solve least-squares problems, including gradien
 
 
 (content:references:ols-constrained-problem)=
-## Constrained repression problems
+## Constrained regression problems
 Constrained least squares estimates the parameters of a linear regression model subject to one or more constraints on the values the parameters can take, e.g., 
 there exists prior knowledge or physical relationships that must be satisfied by the parameter estimates. 
 
