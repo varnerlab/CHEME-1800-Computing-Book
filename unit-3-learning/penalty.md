@@ -27,7 +27,7 @@ There exists a dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^
 y_{i} = \mathbf{x}_{i}^{T}\mathbf{\beta} + \epsilon_{i}\qquad{i=1,2,\dots,n}
 ```
 
-where $\mathbf{x}_{i}$ is a p-dimensional column vector of inputs, $\mathbf{\beta}$ is a $p\times{1}$ vector of unknown model parameters and $\epsilon_{i}$ represents unobserved random errors. Eqn. {eq}`eqn-linear-regression-model` can be re-written in matrix form as:
+where $\mathbf{x}_{i}$ is a p-dimensional vector of inputs, $\mathbf{\beta}$ is a $p\times{1}$ vector of unknown model parameters and $\epsilon_{i}$ represents unobserved random errors. Eqn. {eq}`eqn-linear-regression-model` can be re-written in matrix form as:
 
 ```{math}
 :label: eqn-linear-regression-model-matrix
@@ -98,7 +98,7 @@ In most applications, it is more likely that the data matrix $\mathbf{X}\in\math
 ````{prf:definition} Normal solution overdetermined linear regression model
 :label: defn-normal-eqn-ols
 
-There exists dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-dimensional row vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, suppose we model the dataset $\mathcal{D}$ using the linear regression model:
+There exists dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-dimensional vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, suppose we model the dataset $\mathcal{D}$ using the linear regression model:
 
 ```{math}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}
@@ -134,7 +134,7 @@ Thus, the solution of an underdetermined least squares problem is _constrained_,
 ````{prf:definition} Solution underdetermined linear regression model
 :label: defn-normal-eqn-ols-ln
 
-There exists dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-dimensional row vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, we model the dataset $\mathcal{D}$ using the linear regression model:
+There exists dataset $\mathcal{D} = \left\{\mathbf{x}_{i},y_{i}\right\}_{i=1}^{n}$ where $\mathbf{x}_{i}$ is a p-dimensional vector of inputs (independent variables) and $y_{i}$ denotes a scalar response variable (dependent variable), and $n\gg{p}$.  Further, we model the dataset $\mathcal{D}$ using the linear regression model:
 
 ```{math}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}
@@ -175,7 +175,7 @@ Many optimization algorithms can solve least-squares problems, including gradien
 
 
 (content:references:ols-constrained-problem)=
-## Constrained repression problems
+## Constrained regression problems
 Constrained least squares estimates the parameters of a linear regression model subject to one or more constraints on the values the parameters can take, e.g., 
 there exists prior knowledge or physical relationships that must be satisfied by the parameter estimates. 
 
