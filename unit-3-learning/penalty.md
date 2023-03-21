@@ -37,8 +37,16 @@ where $\mathbf{x}_{i}$ is a p-dimensional vector of inputs, $\mathbf{\beta}$ is 
 
 Linear reagression models are widely used to model physical, chemical or economic phenomena, e.g., a model of the rate of a chemical reaction, the return of a stock, the relationship between the home price and square footage, etc.
 
+```{figure} ./figs/Fig-LinearRegression-Schematic.pdf
+---
+height: 320px
+name: fig-linear-regression-schematic
+---
+Schematic of linear regression. Unknown model parameters $\mathbf{\beta}$ are chosen so that the squared difference (residual) between model predicted $\hat{y}_{i}=\mathbf{x}_{i}^{T}\mathbf{\beta}$ and observed $y_{i}$ output variables is minimized.
+```
+
 ### Sum of squared errors loss function
-Starting from observations, [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) estimates the value of the unknown parameters $\mathbf{\beta}$ that appear in a linear regression model by _minimizing_ the sum of squared errors  between model estimates and observed values ({prf:ref}`defn-sum-squared-error`):
+Starting from observations, [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) estimates the value of the unknown parameters $\mathbf{\beta}$ that appear in a linear regression model by _minimizing_ the sum of squared errors between model estimates and observed values as illustrated in {numref}`fig-linear-regression-schematic` and defined in ({prf:ref}`defn-sum-squared-error`):
 
 
 ````{prf:definition} Sum of squared error loss function
@@ -180,6 +188,37 @@ Constrained least squares estimates the parameters of a linear regression model 
 there exists prior knowledge or physical relationships that must be satisfied by the parameter estimates. 
 
 <!-- To solve constrained least squares problems, we first define the linear regression model and the constraints on the parameters. We then define a loss function that measures the model’s fit to the data subject to the constraints. We minimize the loss function to find the estimates of the parameters that best fit the data while satisfying the constraints. -->
+
+### Lagrange multipliers
+Lagrange multipliers are a mathematical tool used in optimization to find a function’s maximum or minimum value subject to constraints. The [method of Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) involves introducing additional variables, called Lagrange multipliers, which convert the constraints into equations that can be included in the loss function. The sum of the loss function and the constraints is called the Lagrangian function.
+
+The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero ({prf:ref}`defn-method-l-multipliers`):
+
+````{prf:definition} Method of Lagrange multipliers
+:label: defn-method-l-multipliers
+
+To find the maximum or minimum of a function $f(x)$ subject to the equality constraint $g(x)$, we can form the Lagrangian function:
+
+```{math}
+:label: eqn-lagrangian-1d
+\mathcal{L}(x,\lambda) = f(x) + \lambda\cdot{g}(x)
+```
+
+where $\lambda$ is the Lagrange multiplier for constraint $g(x)$. At a critical point (maximum or minimum), the partial derivatives of the 
+Lagrangian function with respect to $x$ and $\lambda$ vanish:
+
+```{math}
+:label: eqn-first-order-condition-lagrange
+
+\begin{eqnarray}
+\frac{\partial\mathcal{L}}{\partial{x}} & = & 0\\
+\frac{\partial\mathcal{L}}{\partial{\lambda}} & = & 0\\
+\end{eqnarray}
+```
+
+The system of equations defined by Eqn. {eq}`eqn-first-order-condition-lagrange` is known as the Lagrange equations, which can be solved to find the critical points and, thus, the maximum or minimum value of the objective function.
+````
+
 
 ### Penalty methods
 A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.
