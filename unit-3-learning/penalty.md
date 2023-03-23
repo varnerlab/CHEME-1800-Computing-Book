@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Julia
+  language: julia
+  name: julia-1.8
+---
+
 # Ordinary Least Squares Problems
 
 ## Introduction
@@ -123,6 +135,27 @@ Then, the value of the unknown parameter vector $\mathbf{\beta}$ that minimizes 
 The matrix $\mathbf{X}^{T}\mathbf{X}$ is called the normal matrix, while $\mathbf{X}^{T}\mathbf{y}$ is called the moment matrix. The existence of the normal solution $\hat{\mathbf{\beta}}$ requires that the normal matrix inverse $\left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}$ exists.
 ````
 
+#### Computation of the overdetermined matrix inverse
+Assuming the normal matrix inverse $\left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}$ exists, we can compute it directly by computing the matrix product and inverting using the `inv` function. Alternatively, we can use the [pinv](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv) function included in the `LinearAlgebra` package in [Julia](https://julialang.org):
+
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
+
+# Define a random overdetermined array
+A = rand(10,8) 
+
+# compute the pinverse 
+LI = pinv(A); # this will be an 8 x 10 matrix
+
+# Test -
+IM = LI*A; 
+println("Is IM the identity matrix -> check the trace: $(tr(IM))")
+```
+
+This matrix inverse is called a [left Moore-Penrose inverse](https://en.wikipedia.org/wiki/Moore–Penrose_inverse).
+
+
 ### Underdetermined regression problems
 If the number of observations (rows) in the data matrix $\mathbf{X}$ is less than the number of columns, i.e., the number of unknown parameters, the system is underdetermined. In general, there will be infinitely many solutions for an underdetermined system. How do we choose which solution to use?
 
@@ -131,9 +164,8 @@ The classic strategy to solve an underdetermined system is to estimate the _smal
 
 ````{math}
 \begin{eqnarray}
-\text{minimize}~& ||~\mathbf{\beta}~|| &  &\\
-\text{subject to} & & & \\
-\mathbf{X}\mathbf{\beta} & = & \mathbf{y}
+\text{minimize}~& & ||~\mathbf{\beta}~|| \\
+\text{subject to} & & \mathbf{X}\mathbf{\beta} = \mathbf{y} \\
 \end{eqnarray}
 ````
 
@@ -177,6 +209,27 @@ Then, the smallest values of the unknown parameter vector $\mathbf{\beta}$ that 
 ```
 ````
 
+
+#### Computation of the underdetermined matrix inverse
+We can compute  $\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}$, assuming it exists, by computing the matrix product and inverting using the `inv` function. Alternatively, we can use the [pinv](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv) function included in the `LinearAlgebra` package in [Julia](https://julialang.org):
+
+```{code-cell} julia
+# load the LinearAlgebra package
+using LinearAlgebra
+
+# Define a random undetermined array
+A = rand(8,10) 
+
+# compute the pinverse 
+RI = pinv(A); # this will be an 10 x 8 matrix
+
+# Test -
+IM = A*RI; 
+println("Is IM the identity matrix -> check the trace: $(tr(IM))")
+```
+
+This matrix inverse is called a [right Moore-Penrose inverse](https://en.wikipedia.org/wiki/Moore–Penrose_inverse).
+
 <!-- This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.
 
 Many optimization algorithms can solve least-squares problems, including gradient descent, Levenberg-Marquardt, and Gauss-Newton algorithms. The choice of algorithm will depend on the problem being solved and the characteristics of the data. -->
@@ -216,6 +269,53 @@ Lagrangian function with respect to $x$ and $\lambda$ vanish:
 
 The system of equations defined by Eqn. {eq}`eqn-first-order-condition-lagrange` callled the Lagrange equations, can be solved to find the critical points and, thus, the maximum or minimum value of the objective function.
 ````
+
+Let's show how we can use the [method of Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) to derive the least-norm solution for the underdetermined learning problem ({prf:ref}`example-lagrange-multipliers-lns`):
+
+````{prf:example} Derivation least norm solution
+:label: example-lagrange-multipliers-lns
+:class: dropdown
+
+Derive the least norm solution to the optimization problem:
+
+```{math}
+\begin{eqnarray}
+\text{minimize} & & \mathbf{\beta}^{T}\mathbf{\beta} \\
+\text{subject to} & & \mathbf{X}\mathbf{\beta} = \mathbf{y}
+\end{eqnarray}
+```
+
+using the [method of Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) to compute an estimate of the regression parameters $\mathbf{\beta}$.
+
+__Solution__: The first step is to form the Lagrangian function:
+
+```{math}
+\mathcal{L}(\mathbf{\beta},\lambda) = \mathbf{\beta}^{T}\mathbf{\beta} + \lambda\left(\mathbf{X}\mathbf{\beta} - \mathbf{y}\right)
+```
+
+which can differentiate with respect to $\mathbf{\beta}$ and the Lagrange multipliers $\lambda$:
+
+```{math}
+\begin{eqnarray}
+\frac{\partial\mathcal{L}}{\partial{\mathbf{\beta}}} & = & 2\mathbf{\beta} + \mathbf{X}^{T}\lambda = 0 \\
+\frac{\partial\mathcal{L}}{\partial{\lambda}} & = & \left(\mathbf{X}\mathbf{\beta} - \mathbf{y}\right) = 0\\
+\end{eqnarray}
+```
+
+We can solve the first equation for $\mathbf{\beta}$ in terms of $\lambda$:
+
+```{math}
+\mathbf{\beta} = -\mathbf{X}^{T}\left(\frac{\lambda}{2}\right)
+```
+
+which we can then substitute into the second equation to get an expression for $\lambda = -2\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\mathbf{y}$. Substituting the $\lambda$ expression into the expression for $\beta$, i.e., eliminating the [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) gives the least norm solution for $\mathbf{\beta}$:
+
+```{math}
+\mathbf{\beta} = \mathbf{X}^{T}\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\mathbf{y}
+```
+````
+
+
 <!-- 
 The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero. -->
 
@@ -271,13 +371,75 @@ where $\lambda$ is a _hyper-parameter_ (a parameter associated with the method, 
 For a penalty method, we start with a small $\lambda$ and repeat the $x$ estimation problem with larger and larger values of $\lambda$. This makes constraint violation more expensive for each subsequent refinement of the estimate of $x$.
 ```
 
-With a penalty method, we can choose any value for the starting value of $x$. Let's do an example penalty method calculation ({prf:ref}`example-quad-penalty-method`):
+With a penalty method, we can choose any value for the starting value of $x$. Let's do an example penalty method calculation that uses a [simple evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) to generate new guesses for $x$ ({prf:ref}`example-quad-penalty-method`):
 
 ````{prf:example} Penalty method example
 :label: example-quad-penalty-method
 :class: dropdown
 
-Solve the minimization problem for $x$ given by Eqn. {eq}`eqn-example-pmethod` using a quadratic penalty method for an initial guess of $x = 20$ for $\lambda = 1,100,1000,10000$.
+Solve the minimization problem for $x$ given by Eqn. {eq}`eqn-example-pmethod` using a quadratic penalty method for an initial guess of $x = 20$ for $\lambda = 1e3,1e6,1e9$.
+
+```julia
+"""
+    _loss(x::Float64; λ::Float64 = 1.0) -> Float64
+
+Loss function for penalty method example. 
+"""
+function _loss(x::Float64; λ::Float64 = 1.0)::Float64
+
+    # compute the f(x) and the penalty -
+    f = 100.0/x;
+    P = (max(0.0, x - 5.0))^2;
+
+    # return -
+    return f + λ*P;
+end
+
+"""
+    main() -> Float64
+Runs an evolutionary algorithm to estimate x̂ (min of loss function). 
+"""
+function main()::Float64
+
+    # initialize -
+    Λ = [1e3,1e6,1e9];
+    xₒ = 20.0;
+    best_loss = Inf;
+    x̂ = xₒ;
+    max_number_of_iterations = 1000;
+
+    # use a simple evolutionary algorithm -
+    for λ ∈ Λ
+
+        x′ = x̂ # initialize the current x, with the best value we have so far
+
+        # refine our best guess
+        for _ ∈ 1:max_number_of_iterations
+            
+            # compute the loss -
+            l = _loss(x′, λ = λ);
+            
+            # is this loss *better* than our best solution so far?
+            if (l < best_loss)
+                x̂ = x′;
+                best_loss = l;
+            end
+
+            # generate a new guess for x -
+            x′ = x̂ + 0.1*randn()
+        end
+    end
+
+    # return -
+    return x̂;
+end
+
+# call the main -
+x = main();
+```
+
+__source__: [Source for penalty method example](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/penalty_method)
+
 ````
 
 #### Barrier functions
@@ -300,16 +462,88 @@ The challenge of the barrier method shown in Eqn. {eq}`eqn-final-barrier-method`
 
 ```{prf:observation} $\lambda$-policy barrier method
 :label: obs-barrier-method-lambda-policy
-For a barrier method, we start with a small $\lambda$ and repeat the $x$ estimation problem with larger and larger values of $\lambda$. This allows us to move closer to the barrier (explore closer to the barrier for the bset $x$) for each subsequent refinement of the estimate of $x$.
+For a barrier method, we start with a large $\lambda$ and repeat the $x$ estimation problem with smaller and smaller values of $\lambda$. This allows us to solve the problem near the solution with limited input from the barrier. When
+we gradually reduce $\lambda$, using our previous solution as a starting point, we move closer and closer to the barrier.
 ```
 
-Let's do an example barrier method calculation ({prf:ref}`example-barrier-method`):
+Barrier methods have on critical pathology ({prf:ref}`remark-barrier-method`):
+
+```{prf:remark} Barrier method pathology
+:label: remark-barrier-method
+
+If, for some reason, we jump over the barrier, e.g., we start outside the feasible region (the set of $x$ values allowed by the constraints), or during the calculation, we generate a candidate solution outside the barrier, this approach can fail.
+```
+
+Let's do an example barrier method calculation that uses a [simple evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_algorithm) to generate new guesses for $x$ ({prf:ref}`example-barrier-method`):
 
 ````{prf:example} Barrier method example
 :label: example-barrier-method
 :class: dropdown
 
-Solve the minimization problem for $x$ given by Eqn. {eq}`eqn-example-pmethod` using a quadratic penalty method for an initial guess of $x = 20$ for $\lambda = 1,100,1000,10000$.
+Solve the minimization problem for $x$ given by Eqn. {eq}`eqn-example-pmethod` using a barrier method for an initial guess of $x = 2.0$ for $\lambda = 10,1,0.1$.
+
+
+```julia
+"""
+    _loss(x::Float64; λ::Float64 = 1.0) -> Float64
+
+Loss function for barrier method example. 
+"""
+function _loss(x::Float64; λ::Float64 = 1.0)::Float64
+
+    # compute the f(x) and the penalty -
+    f = 100.0/x;
+    B = -1/(x-5)
+
+    # return -
+    return f + (1/λ)*B;
+end
+
+"""
+    main() -> Float64
+Runs an evolutionary algorithm to estimate x̂ (min of loss function). 
+"""
+function main()::Float64
+
+    # initialize -
+    Λ = [10,1.0,0.01];
+    xₒ = 2.0;
+    best_loss = Inf;
+    x̂ = xₒ;
+    max_number_of_iterations = 1000;
+
+    # use a simple evolutionary algorithm -
+    for λ ∈ Λ
+
+        x′ = x̂ # initialize the current x, with the best value we have so far
+
+        # refine our best guess
+        for _ ∈ 1:max_number_of_iterations
+            
+            # compute the loss -
+            l = _loss(x′, λ = λ);
+            
+            # is this loss *better* than our best solution so far?
+            if (l < best_loss)
+                x̂ = x′;
+                best_loss = l;
+            end
+
+            # generate a new guess for x -
+            x′ = x̂ + 0.1*randn()
+        end
+    end
+
+    # return -
+    return x̂;
+end
+
+# call the main -
+x = main();
+```
+
+__source__: [Source for barrier method example](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/barrier_method)
+
 ````
 
 #### Application of penalty and barrier methods
