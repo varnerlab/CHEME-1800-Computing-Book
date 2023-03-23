@@ -221,7 +221,87 @@ The system of equations defined by Eqn. {eq}`eqn-first-order-condition-lagrange`
 
 
 ### Penalty methods
-A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.
+A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution. 
+
+#### Quadratic penalty functions
+Before we look at the applications of penalty methods, let's consider a simple example to work out the basic strategy. This example was reproduced from the [Mathematical Optimization course at Stanford](https://web.stanford.edu/group/sisl/k12/optimization/#!index.md). Suppose we wanted to solve the problem:
+
+```{math}
+:label: eqn-example-pmethod
+\begin{eqnarray}
+\arg \min_{x} \left(f(x) = \frac{100}{x}\right) & &  \\
+\text{subject to} & & \\
+x\leq{5} & &   
+\end{eqnarray}
+```
+Before starting, convert any constraints into the form (expression) $\leq{0}$, so the $x\leq{5}$ becomes:
+
+```{math}
+x - 5 \leq{0}
+```
+
+Once the constraints have been converted, the next step is to start charging a penalty for violating them. Since we’re trying to minimize $f(x)$, we need to _add value_ when the constraint is violated. If you are trying to maximize, the penalty will _subtract value_. With the constraint $x-5\leq{0}$ we need a penalty that is:
+* __Constraint satisfied__: 0 when $x-5\leq{0}$
+* __Constraint violated__: postive when $x-5>0$.
+
+This can be done by using a penalty $P\left(x\right)$ of the form:
+
+```{math}
+:label: eqn-quad-penalty
+P(x) = \max\left(0,x-5\right)^{2}
+```
+
+Eqn. {eq}`eqn-quad-penalty` is a quadratic penalty (loss) function. This approach works for equality constraints as well. For example, suppose we had the constraint $h(x) = c$, where $c$ is a constant. We can convert this type of constraint into a penalty of the form:
+
+```{math}
+:label: eqn-equality-constraint-pm
+P(x) = \left(h(x) - c\right)^{2}
+```
+
+The lowest penalty value in {eq}`eqn-equality-constraint-pm` will occur when $h(x) = c$; thus, we satisfy the constraint. Once we have converted the constraints into penalty functions, we add all the penalty functions to the original objective function $f(x) + \lambda\cdot{P(x)}$ and minimize the total function (objective plus penalties). For example, the original problem in {eq}`eqn-example-pmethod` becomes:
+
+```{math}
+:label: eqn-final-penality-form
+\arg \min_{x} \left(\frac{100}{x} +\lambda\cdot\max\left(0,x-5\right)^{2}\right)
+```
+
+where $\lambda$ is a _hyper-parameter_ (a parameter associated with the method, not the problem) that is adjusted during the process to estimate the unknown value of $x$ according to the policy ({prf:ref}`obs-lambda-policy`):
+
+```{prf:observation} $\lambda$-policy penalty method
+:label: obs-lambda-policy
+For a penalty method, we start with a small $\lambda$ and repeat the $x$ estimation problem with larger and larger values of $\lambda$. This makes constraint violation more expensive for each subsequent refinement of the estimate of $x$.
+```
+
+With a penalty method, we can choose any value for the starting value of $x$.
+
+
+
+#### Barrier functions
+Let's rethink the problem shown in Eqn. {eq}`eqn-example-pmethod`. Suppose, instead of developing the penality function shown in Eqn. {eq}`eqn-quad-penalty` to minimize $f(x)$, for a ccontraint of the form $g(x)\leq{0}$ we developed a barrier function:
+
+```{math}
+:label: eqn-barrier-function
+B\left(x\right) = - \frac{1}{g(x)}
+```
+
+As the $g(x)\rightarrow{0}$, i.e., we approach constraint violation, the value of $B\left(x\right)\rightarrow\infty$. In a similar way to penality approach shown in Eqn. {eq}`eqn-final-penality-form`, we could augment the objective (loss) function:
+
+```{math}
+:label: eqn-final-barrier-method
+\arg \min_{x}\left(f(x) -\frac{1}{\lambda}\cdot{B(x)}\right)
+```
+
+
+The challenge of the barrier method shown in Eqn. {eq}`eqn-final-barrier-method` is selecting a starting point. The initial guess of the $x$ must be inside the barrier. If this is true, we adjust the hyperparameter $\lambda$ using the policy ({prf:ref}`obs-barrier-method-lambda-policy`):
+
+```{prf:observation} $\lambda$-policy barrier method
+:label: obs-barrier-method-lambda-policy
+For a barrier method, we start with a small $\lambda$ and repeat the $x$ estimation problem with larger and larger values of $\lambda$. This allows us to move closer to the barrier (explore closer to the barrier for the bset $x$) for each subsequent refinement of the estimate of $x$.
+```
+
+
+#### Application of penalty and barrier methods
+In the context of statistical modeling, penalty, and barrier methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability
 
 Several different types of penalty methods are commonly used in statistical modeling, including:
 * [Ridge regression](https://en.wikipedia.org/wiki/Ridge_regression) adds a penalty term to the loss function, which is the sum of the squares of the model parameters. This has the effect of shrinking the parameters towards zero and can help reduce the model’s variance.

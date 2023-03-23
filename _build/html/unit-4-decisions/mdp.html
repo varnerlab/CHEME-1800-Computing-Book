@@ -581,13 +581,13 @@ title="Print to PDF"
 <span id="content-references-discrete-time-markov-chains"></span><h3>Discrete-time Markov chains<a class="headerlink" href="#discrete-time-markov-chains" title="Permalink to this headline">#</a></h3>
 <p>A discrete-time Markov chain is a sequence of random variables <span class="math notranslate nohighlight">\(X_{1}\)</span>, <span class="math notranslate nohighlight">\(X_{2}\)</span>, <span class="math notranslate nohighlight">\(X_{3}\)</span>, …, <span class="math notranslate nohighlight">\(X_{n}\)</span> that have the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_property">Markov property</a>, i.e., the probability of moving to the <em>next state</em> depends only on the <em>present state</em> and not on the <em>previous states</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-markov-property">
-<span class="eqno">(80)<a class="headerlink" href="#equation-eqn-markov-property" title="Permalink to this equation">#</a></span>\[P(X_{n+1} = x | X_{1}=x_{1}, \dots, X_{n}=x_{n}) = P(X_{n+1} = x | X_{n}=y)\]</div>
+<span class="eqno">(86)<a class="headerlink" href="#equation-eqn-markov-property" title="Permalink to this equation">#</a></span>\[P(X_{n+1} = x | X_{1}=x_{1}, \dots, X_{n}=x_{n}) = P(X_{n+1} = x | X_{n}=y)\]</div>
 <p>where <em>states</em> refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span>, can be encoded in the transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Elements of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, denoted as <span class="math notranslate nohighlight">\(p_{ij}\)</span>, encode the probability of moving from state <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span> during the next time step:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-transition-prob-matrix">
-<span class="eqno">(81)<a class="headerlink" href="#equation-eqn-transition-prob-matrix" title="Permalink to this equation">#</a></span>\[p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)\]</div>
-<p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties. First, the rows of transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is time-invariant, then <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the same at each step. This leads to <a class="reference internal" href="#obs-n-transition">Observation 8</a>:</p>
+<span class="eqno">(87)<a class="headerlink" href="#equation-eqn-transition-prob-matrix" title="Permalink to this equation">#</a></span>\[p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)\]</div>
+<p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties. First, the rows of transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is time-invariant, then <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the same at each step. This leads to <a class="reference internal" href="#obs-n-transition">Observation 10</a>:</p>
 <div class="proof observation admonition" id="obs-n-transition">
-<p class="admonition-title"><span class="caption-number">Observation 8 </span> (Time-invariant state transition)</p>
+<p class="admonition-title"><span class="caption-number">Observation 10 </span> (Time-invariant state transition)</p>
 <section class="observation-content" id="proof-content">
 <p>A Markov chain have finite state set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and the time-invariant state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Further, let the state vector at time <span class="math notranslate nohighlight">\(j\)</span> be given by <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span>, where <span class="math notranslate nohighlight">\(x_{s,j}\geq{0},\forall{s}\in\mathcal{S}\)</span> and:</p>
 <div class="math notranslate nohighlight">
@@ -703,7 +703,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. Then, the utility of the policy function <span class="math notranslate nohighlight">\(\pi\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-converged-policy-eval">
-<span class="eqno">(82)<a class="headerlink" href="#equation-eqn-converged-policy-eval" title="Permalink to this equation">#</a></span>\[U^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U^{\pi}(s^{\prime})\]</div>
+<span class="eqno">(88)<a class="headerlink" href="#equation-eqn-converged-policy-eval" title="Permalink to this equation">#</a></span>\[U^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U^{\pi}(s^{\prime})\]</div>
 </section>
 </div><p>Let’s do an example to illustrate policy evaluation:</p>
 <div class="proof example admonition" id="example-MDP-line">
@@ -733,13 +733,13 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 However, suppose we were given the utility and wanted to estimate the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> from that utility.
 Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can estimate a policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> using the <span class="math notranslate nohighlight">\(Q\)</span>-function (action-value function):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-action-value-function">
-<span class="eqno">(83)<a class="headerlink" href="#equation-eqn-action-value-function" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
-<p>Equation <a class="reference internal" href="#equation-eqn-action-value-function">(83)</a> gives a <span class="math notranslate nohighlight">\(|\mathcal{S}|\times|\mathcal{A}|\)</span> array, where the utility is given by:</p>
+<span class="eqno">(89)<a class="headerlink" href="#equation-eqn-action-value-function" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
+<p>Equation <a class="reference internal" href="#equation-eqn-action-value-function">(89)</a> gives a <span class="math notranslate nohighlight">\(|\mathcal{S}|\times|\mathcal{A}|\)</span> array, where the utility is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-utility-from-q">
-<span class="eqno">(84)<a class="headerlink" href="#equation-eqn-utility-from-q" title="Permalink to this equation">#</a></span>\[U(s) = \max_{a} Q(s,a)\]</div>
+<span class="eqno">(90)<a class="headerlink" href="#equation-eqn-utility-from-q" title="Permalink to this equation">#</a></span>\[U(s) = \max_{a} Q(s,a)\]</div>
 <p>and the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> is:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-policy-from-q">
-<span class="eqno">(85)<a class="headerlink" href="#equation-eqn-policy-from-q" title="Permalink to this equation">#</a></span>\[\pi(s) = \text{arg}\max_{a}Q(s,a)\]</div>
+<span class="eqno">(91)<a class="headerlink" href="#equation-eqn-policy-from-q" title="Permalink to this equation">#</a></span>\[\pi(s) = \text{arg}\max_{a}Q(s,a)\]</div>
 </section>
 <section id="value-iteration">
 <h3>Value iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">#</a></h3>
