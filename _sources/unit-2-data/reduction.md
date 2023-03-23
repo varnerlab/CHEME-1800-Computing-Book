@@ -335,7 +335,7 @@ The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{
 <!-- * The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix $\mathbf{U}$ obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains.  -->
 
 (content:compute-PCA)=
-### Principle component analysis (PCA)
+### Principal component analysis (PCA)
 Principal Component Analysis (PCA) is a statistical technique that reduces the dimensionality of a dataset while retaining as much of its variation as possible. PCA transforms the original dataset into a new set of uncorrelated variables called principal components, ranked by importance. 
 
 * Principal components are the directions in which the data varies the most and are the eigenvectors of the 

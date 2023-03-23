@@ -481,6 +481,23 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#penalty-methods">
      Penalty methods
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quadratic-penalty-functions">
+       Quadratic penalty functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#barrier-functions">
+       Barrier functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#application-of-penalty-and-barrier-methods">
+       Application of penalty and barrier methods
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -568,6 +585,23 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#penalty-methods">
      Penalty methods
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quadratic-penalty-functions">
+       Quadratic penalty functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#barrier-functions">
+       Barrier functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#application-of-penalty-and-barrier-methods">
+       Application of penalty and barrier methods
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -721,27 +755,216 @@ there exists prior knowledge or physical relationships that must be satisfied by
 <!-- To solve constrained least squares problems, we first define the linear regression model and the constraints on the parameters. We then define a loss function that measures the model’s fit to the data subject to the constraints. We minimize the loss function to find the estimates of the parameters that best fit the data while satisfying the constraints. -->
 <section id="lagrange-multipliers">
 <h3>Lagrange multipliers<a class="headerlink" href="#lagrange-multipliers" title="Permalink to this headline">#</a></h3>
-<p>Lagrange multipliers are a mathematical tool used in optimization to find a function’s maximum or minimum value subject to constraints. The <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> involves introducing additional variables, called Lagrange multipliers, which convert the constraints into equations that can be included in the loss function. The sum of the loss function and the constraints is called the Lagrangian function.</p>
-<p>The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero (<a class="reference internal" href="#defn-method-l-multipliers">Definition 39</a>):</p>
+<p>Lagrange multipliers are a mathematical tool used in optimization to find a function’s maximum or minimum value subject to constraints. The <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> involves introducing additional variables, called Lagrange multipliers, which integrate the constraints into the loss function (<a class="reference internal" href="#defn-method-l-multipliers">Definition 39</a>):</p>
 <div class="proof definition admonition" id="defn-method-l-multipliers">
 <p class="admonition-title"><span class="caption-number">Definition 39 </span> (Method of Lagrange multipliers)</p>
 <section class="definition-content" id="proof-content">
 <p>To find the maximum or minimum of a function <span class="math notranslate nohighlight">\(f(x)\)</span> subject to the equality constraint <span class="math notranslate nohighlight">\(g(x)\)</span>, we can form the Lagrangian function:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-lagrangian-1d">
 <span class="eqno">(73)<a class="headerlink" href="#equation-eqn-lagrangian-1d" title="Permalink to this equation">#</a></span>\[\mathcal{L}(x,\lambda) = f(x) + \lambda\cdot{g}(x)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the Lagrange multiplier for constraint <span class="math notranslate nohighlight">\(g(x)\)</span>. At a critical point (maximum or minimum), the partial derivatives of the
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the Lagrange multiplier for constraint <span class="math notranslate nohighlight">\(g(x)\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{L}(x,\lambda)\)</span> is called the Lagrangian function. At a critical point (maximum or minimum), the partial derivatives of the
 Lagrangian function with respect to <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> vanish:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-first-order-condition-lagrange">
 <span class="eqno">(74)<a class="headerlink" href="#equation-eqn-first-order-condition-lagrange" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
 \frac{\partial\mathcal{L}}{\partial{x}} &amp; = &amp; 0\\
 \frac{\partial\mathcal{L}}{\partial{\lambda}} &amp; = &amp; 0\\
 \end{eqnarray}\end{split}\]</div>
-<p>The system of equations defined by Eqn. <a class="reference internal" href="#equation-eqn-first-order-condition-lagrange">(74)</a> is known as the Lagrange equations, which can be solved to find the critical points and, thus, the maximum or minimum value of the objective function.</p>
+<p>The system of equations defined by Eqn. <a class="reference internal" href="#equation-eqn-first-order-condition-lagrange">(74)</a> callled the Lagrange equations, can be solved to find the critical points and, thus, the maximum or minimum value of the objective function.</p>
 </section>
-</div></section>
+</div><!-- 
+The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero. -->
+</section>
 <section id="penalty-methods">
 <h3>Penalty methods<a class="headerlink" href="#penalty-methods" title="Permalink to this headline">#</a></h3>
-<p>A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution. In the context of statistical modeling, penalty methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability.</p>
+<p>A penalty method transforms a constrained least squares problem into an unconstrained problem that can be solved. In a penalty method, a penalty is added to the loss function to encourage specific desirable properties of the solution.</p>
+<section id="quadratic-penalty-functions">
+<h4>Quadratic penalty functions<a class="headerlink" href="#quadratic-penalty-functions" title="Permalink to this headline">#</a></h4>
+<p>Before we look at the applications of penalty methods, let’s consider a simple example to work out the basic strategy. This example was reproduced from the <a class="reference external" href="https://web.stanford.edu/group/sisl/k12/optimization/#%21index.md">Mathematical Optimization course at Stanford</a>. Suppose we wanted to solve the problem:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-example-pmethod">
+<span class="eqno">(75)<a class="headerlink" href="#equation-eqn-example-pmethod" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\arg \min_{x} \left(f(x) = \frac{100}{x}\right) &amp; &amp;  \\
+\text{subject to} &amp; &amp; \\
+x\leq{5} &amp; &amp;   
+\end{eqnarray}\end{split}\]</div>
+<p>Before starting, convert any constraints into the form (expression) <span class="math notranslate nohighlight">\(\leq{0}\)</span>, so the <span class="math notranslate nohighlight">\(x\leq{5}\)</span> becomes:</p>
+<div class="math notranslate nohighlight">
+\[x - 5 \leq{0}\]</div>
+<p>Once the constraints have been converted, the next step is to start charging a penalty for violating them. Since we’re trying to minimize <span class="math notranslate nohighlight">\(f(x)\)</span>, we need to <em>add value</em> when the constraint is violated. If you are trying to maximize, the penalty will <em>subtract value</em>. With the constraint <span class="math notranslate nohighlight">\(x-5\leq{0}\)</span> we need a penalty that is:</p>
+<ul class="simple">
+<li><p><strong>Constraint satisfied</strong>: 0 when <span class="math notranslate nohighlight">\(x-5\leq{0}\)</span></p></li>
+<li><p><strong>Constraint violated</strong>: postive when <span class="math notranslate nohighlight">\(x-5&gt;0\)</span>.</p></li>
+</ul>
+<p>This can be done by using a penalty <span class="math notranslate nohighlight">\(P\left(x\right)\)</span> of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-quad-penalty">
+<span class="eqno">(76)<a class="headerlink" href="#equation-eqn-quad-penalty" title="Permalink to this equation">#</a></span>\[P(x) = \max\left(0,x-5\right)^{2}\]</div>
+<p>Eqn. <a class="reference internal" href="#equation-eqn-quad-penalty">(76)</a> is a quadratic penalty (loss) function. This approach works for equality constraints as well. For example, suppose we had the constraint <span class="math notranslate nohighlight">\(h(x) = c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant. We can convert this type of constraint into a penalty of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-equality-constraint-pm">
+<span class="eqno">(77)<a class="headerlink" href="#equation-eqn-equality-constraint-pm" title="Permalink to this equation">#</a></span>\[P(x) = \left(h(x) - c\right)^{2}\]</div>
+<p>The lowest penalty value in <a class="reference internal" href="#equation-eqn-equality-constraint-pm">(77)</a> will occur when <span class="math notranslate nohighlight">\(h(x) = c\)</span>; thus, we satisfy the constraint. Once we have converted the constraints into penalty functions, we add all the penalty functions to the original objective function <span class="math notranslate nohighlight">\(f(x) + \lambda\cdot{P(x)}\)</span> and minimize the total function (objective plus penalties). For example, the original problem in <a class="reference internal" href="#equation-eqn-example-pmethod">(75)</a> becomes:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-final-penality-form">
+<span class="eqno">(78)<a class="headerlink" href="#equation-eqn-final-penality-form" title="Permalink to this equation">#</a></span>\[\arg \min_{x} \left(\frac{100}{x} +\lambda\cdot\max\left(0,x-5\right)^{2}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a <em>hyper-parameter</em> (a parameter associated with the method, not the problem) that is adjusted during the process to estimate the unknown value of <span class="math notranslate nohighlight">\(x\)</span> according to the policy (<a class="reference internal" href="#obs-lambda-policy">Observation 6</a>):</p>
+<div class="proof observation admonition" id="obs-lambda-policy">
+<p class="admonition-title"><span class="caption-number">Observation 6 </span> (<span class="math notranslate nohighlight">\(\lambda\)</span>-policy penalty method)</p>
+<section class="observation-content" id="proof-content">
+<p>For a penalty method, we start with a small <span class="math notranslate nohighlight">\(\lambda\)</span> and repeat the <span class="math notranslate nohighlight">\(x\)</span> estimation problem with larger and larger values of <span class="math notranslate nohighlight">\(\lambda\)</span>. This makes constraint violation more expensive for each subsequent refinement of the estimate of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+</div><p>With a penalty method, we can choose any value for the starting value of <span class="math notranslate nohighlight">\(x\)</span>. Let’s do an example penalty method calculation (<a class="reference internal" href="#example-quad-penalty-method">Example 21</a>):</p>
+<div class="proof example dropdown admonition" id="example-quad-penalty-method">
+<p class="admonition-title"><span class="caption-number">Example 21 </span> (Penalty method example)</p>
+<section class="example-content" id="proof-content">
+<p>Solve the minimization problem for <span class="math notranslate nohighlight">\(x\)</span> given by Eqn. <a class="reference internal" href="#equation-eqn-example-pmethod">(75)</a> using a quadratic penalty method for an initial guess of <span class="math notranslate nohighlight">\(x = 20\)</span> for <span class="math notranslate nohighlight">\(\lambda = 1e3,1e6,1e9\)</span>.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    _loss(x::Float64; λ::Float64 = 1.0) -&gt; Float64</span>
+
+<span class="s">Loss function for penalty method example. </span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">_loss</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">λ</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">::</span><span class="kt">Float64</span>
+
+    <span class="c"># compute the f(x) and the penalty -</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">/</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">5.0</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">f</span> <span class="o">+</span> <span class="n">λ</span><span class="o">*</span><span class="n">P</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    main() -&gt; Float64</span>
+<span class="s">Runs an evolutionary algorithm to estimate x̂ (min of loss function). </span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">main</span><span class="p">()</span><span class="o">::</span><span class="kt">Float64</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">Λ</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e3</span><span class="p">,</span><span class="mf">1e6</span><span class="p">,</span><span class="mf">1e9</span><span class="p">];</span>
+    <span class="n">xₒ</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">;</span>
+    <span class="n">best_loss</span> <span class="o">=</span> <span class="nb">Inf</span><span class="p">;</span>
+    <span class="n">x̂</span> <span class="o">=</span> <span class="n">xₒ</span><span class="p">;</span>
+    <span class="n">max_number_of_iterations</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+
+    <span class="c"># use a simple evolutionary algorithm -</span>
+    <span class="k">for</span> <span class="n">λ</span> <span class="o">∈</span> <span class="n">Λ</span>
+
+        <span class="n">x′</span> <span class="o">=</span> <span class="n">x̂</span> <span class="c"># initialize the current x, with the best value we have so far</span>
+
+        <span class="c"># refine our best guess</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">max_number_of_iterations</span>
+            
+            <span class="c"># compute the loss -</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">_loss</span><span class="p">(</span><span class="n">x′</span><span class="p">,</span> <span class="n">λ</span> <span class="o">=</span> <span class="n">λ</span><span class="p">);</span>
+            
+            <span class="c"># is this loss *better* than our best solution so far?</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">)</span>
+                <span class="n">x̂</span> <span class="o">=</span> <span class="n">x′</span><span class="p">;</span>
+                <span class="n">best_loss</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+            <span class="k">end</span>
+
+            <span class="c"># generate a new guess for x -</span>
+            <span class="n">x′</span> <span class="o">=</span> <span class="n">x̂</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">randn</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">x̂</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c"># call the main -</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">main</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/penalty_method">Source for penalty method example</a></p>
+</section>
+</div></section>
+<section id="barrier-functions">
+<h4>Barrier functions<a class="headerlink" href="#barrier-functions" title="Permalink to this headline">#</a></h4>
+<p>Let’s rethink the problem shown in Eqn. <a class="reference internal" href="#equation-eqn-example-pmethod">(75)</a>. Suppose, instead of developing the penality function shown in Eqn. <a class="reference internal" href="#equation-eqn-quad-penalty">(76)</a> to minimize <span class="math notranslate nohighlight">\(f(x)\)</span>, for a ccontraint of the form <span class="math notranslate nohighlight">\(g(x)\leq{0}\)</span> we developed a barrier function:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-barrier-function">
+<span class="eqno">(79)<a class="headerlink" href="#equation-eqn-barrier-function" title="Permalink to this equation">#</a></span>\[B\left(x\right) = - \frac{1}{g(x)}\]</div>
+<p>As the <span class="math notranslate nohighlight">\(g(x)\rightarrow{0}\)</span>, i.e., we approach constraint violation, the value of <span class="math notranslate nohighlight">\(B\left(x\right)\rightarrow\infty\)</span>. In a similar way to penality approach shown in Eqn. <a class="reference internal" href="#equation-eqn-final-penality-form">(78)</a>, we could augment the objective (loss) function:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-final-barrier-method">
+<span class="eqno">(80)<a class="headerlink" href="#equation-eqn-final-barrier-method" title="Permalink to this equation">#</a></span>\[\arg \min_{x}\left(f(x) -\frac{1}{\lambda}\cdot{B(x)}\right)\]</div>
+<p>The challenge of the barrier method shown in Eqn. <a class="reference internal" href="#equation-eqn-final-barrier-method">(80)</a> is selecting a starting point. The initial guess of the <span class="math notranslate nohighlight">\(x\)</span> must be inside the barrier. If this is true, we adjust the hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span> using the policy (<a class="reference internal" href="#obs-barrier-method-lambda-policy">Observation 7</a>):</p>
+<div class="proof observation admonition" id="obs-barrier-method-lambda-policy">
+<p class="admonition-title"><span class="caption-number">Observation 7 </span> (<span class="math notranslate nohighlight">\(\lambda\)</span>-policy barrier method)</p>
+<section class="observation-content" id="proof-content">
+<p>For a barrier method, we start with a large <span class="math notranslate nohighlight">\(\lambda\)</span> and repeat the <span class="math notranslate nohighlight">\(x\)</span> estimation problem with smaller and smaller values of <span class="math notranslate nohighlight">\(\lambda\)</span>. This allows us to solve the problem near the solution with limited input from the barrier. When
+we gradually reduce <span class="math notranslate nohighlight">\(\lambda\)</span>, using our previous solution as a starting point, we move closer and closer to the barrier.</p>
+</section>
+</div><p>Barrier methods have on critical pathology (<a class="reference internal" href="#remark-barrier-method">Remark 3</a>):</p>
+<div class="proof remark admonition" id="remark-barrier-method">
+<p class="admonition-title"><span class="caption-number">Remark 3 </span> (Barrier method pathology)</p>
+<section class="remark-content" id="proof-content">
+<p>If, for some reason, we jump over the barrier, e.g., we start outside the feasible region (the set of <span class="math notranslate nohighlight">\(x\)</span> values allowed by the constraints), or during the calculation, we generate a candidate solution outside the barrier, this approach can fail.</p>
+</section>
+</div><p>Let’s do an example barrier method calculation (<a class="reference internal" href="#example-barrier-method">Example 22</a>):</p>
+<div class="proof example dropdown admonition" id="example-barrier-method">
+<p class="admonition-title"><span class="caption-number">Example 22 </span> (Barrier method example)</p>
+<section class="example-content" id="proof-content">
+<p>Solve the minimization problem for <span class="math notranslate nohighlight">\(x\)</span> given by Eqn. <a class="reference internal" href="#equation-eqn-example-pmethod">(75)</a> using a barrier method for an initial guess of <span class="math notranslate nohighlight">\(x = 2.0\)</span> for <span class="math notranslate nohighlight">\(\lambda = 10,1,0.1\)</span>.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    _loss(x::Float64; λ::Float64 = 1.0) -&gt; Float64</span>
+
+<span class="s">Loss function for barrier method example. </span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">_loss</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Float64</span><span class="p">;</span> <span class="n">λ</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">::</span><span class="kt">Float64</span>
+
+    <span class="c"># compute the f(x) and the penalty -</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">/</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">f</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">λ</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">    main() -&gt; Float64</span>
+<span class="s">Runs an evolutionary algorithm to estimate x̂ (min of loss function). </span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span> <span class="n">main</span><span class="p">()</span><span class="o">::</span><span class="kt">Float64</span>
+
+    <span class="c"># initialize -</span>
+    <span class="n">Λ</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">];</span>
+    <span class="n">xₒ</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+    <span class="n">best_loss</span> <span class="o">=</span> <span class="nb">Inf</span><span class="p">;</span>
+    <span class="n">x̂</span> <span class="o">=</span> <span class="n">xₒ</span><span class="p">;</span>
+    <span class="n">max_number_of_iterations</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+
+    <span class="c"># use a simple evolutionary algorithm -</span>
+    <span class="k">for</span> <span class="n">λ</span> <span class="o">∈</span> <span class="n">Λ</span>
+
+        <span class="n">x′</span> <span class="o">=</span> <span class="n">x̂</span> <span class="c"># initialize the current x, with the best value we have so far</span>
+
+        <span class="c"># refine our best guess</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">max_number_of_iterations</span>
+            
+            <span class="c"># compute the loss -</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">_loss</span><span class="p">(</span><span class="n">x′</span><span class="p">,</span> <span class="n">λ</span> <span class="o">=</span> <span class="n">λ</span><span class="p">);</span>
+            
+            <span class="c"># is this loss *better* than our best solution so far?</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">)</span>
+                <span class="n">x̂</span> <span class="o">=</span> <span class="n">x′</span><span class="p">;</span>
+                <span class="n">best_loss</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+            <span class="k">end</span>
+
+            <span class="c"># generate a new guess for x -</span>
+            <span class="n">x′</span> <span class="o">=</span> <span class="n">x̂</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">randn</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="c"># return -</span>
+    <span class="k">return</span> <span class="n">x̂</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c"># call the main -</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">main</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/barrier_method">Source for barrier method example</a></p>
+</section>
+</div></section>
+<section id="application-of-penalty-and-barrier-methods">
+<h4>Application of penalty and barrier methods<a class="headerlink" href="#application-of-penalty-and-barrier-methods" title="Permalink to this headline">#</a></h4>
+<p>In the context of statistical modeling, penalty, and barrier methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability</p>
 <p>Several different types of penalty methods are commonly used in statistical modeling, including:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ridge_regression">Ridge regression</a> adds a penalty term to the loss function, which is the sum of the squares of the model parameters. This has the effect of shrinking the parameters towards zero and can help reduce the model’s variance.</p></li>
@@ -771,6 +994,7 @@ where $\mu_{i}$ denotes the mean of the points in set $\mathcal{S}_{i}$.
 ````
 
 --- -->
+</section>
 </section>
 </section>
 <section id="summary">
