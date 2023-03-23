@@ -797,7 +797,7 @@ However, for this approach to be applicable, the inverse of the data matrix must
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is IM the identity matrix -&gt; check the trace: 8.000000000000002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is IM the identity matrix -&gt; check the trace: 7.999999999999997
 </pre></div>
 </div>
 </div>
@@ -842,7 +842,7 @@ However, for this approach to be applicable, the inverse of the data matrix must
 </div></section>
 <section id="computation-of-the-underdetermined-matrix-inverse">
 <h4>Computation of the underdetermined matrix inverse<a class="headerlink" href="#computation-of-the-underdetermined-matrix-inverse" title="Permalink to this headline">#</a></h4>
-<p>We can compute  <span class="math notranslate nohighlight">\(\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\)</span>, assuming it exists, by computing the matrix product and inverting using the <code class="docutils literal notranslate"><span class="pre">inv</span></code> function. Alternatively, we can use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv">pinv</a> function included in the <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package in <a class="reference external" href="https://julialang.org">Julia</a>:</p>
+<p>We can compute the matrix inverse <span class="math notranslate nohighlight">\(\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\)</span>, assuming it exists, by computing the matrix product and inverting using the <code class="docutils literal notranslate"><span class="pre">inv</span></code> function. Alternatively, we can use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv">pinv</a> function included in the <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package in <a class="reference external" href="https://julialang.org">Julia</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the LinearAlgebra package</span>
@@ -861,7 +861,7 @@ However, for this approach to be applicable, the inverse of the data matrix must
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is IM the identity matrix -&gt; check the trace: 7.999999999999998
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is IM the identity matrix -&gt; check the trace: 7.999999999999999
 </pre></div>
 </div>
 </div>

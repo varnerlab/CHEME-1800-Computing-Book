@@ -211,7 +211,7 @@ Then, the smallest values of the unknown parameter vector $\mathbf{\beta}$ that 
 
 
 #### Computation of the underdetermined matrix inverse
-We can compute  $\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}$, assuming it exists, by computing the matrix product and inverting using the `inv` function. Alternatively, we can use the [pinv](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv) function included in the `LinearAlgebra` package in [Julia](https://julialang.org):
+We can compute the matrix inverse $\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}$, assuming it exists, by computing the matrix product and inverting using the `inv` function. Alternatively, we can use the [pinv](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv) function included in the `LinearAlgebra` package in [Julia](https://julialang.org):
 
 ```{code-cell} julia
 # load the LinearAlgebra package
