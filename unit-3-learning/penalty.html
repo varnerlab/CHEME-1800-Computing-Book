@@ -295,6 +295,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/varnerlab/CHEME-1800-Computing-Book/main?urlpath=tree/unit-3-learning/penalty.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -361,6 +390,23 @@ title="Open an issue"
   </button>
   <div class="menu-dropdown__content">
     <ul>
+      <li>
+        <a href="../_sources/unit-3-learning/penalty.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
       <li>
         <a href="../_sources/unit-3-learning/penalty.md"
    class="headerbtn"
@@ -452,6 +498,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#overdetermined-regression-problems">
      Overdetermined regression problems
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computation-of-the-overdetermined-matrix-inverse">
+       Computation of the overdetermined matrix inverse
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#underdetermined-regression-problems">
@@ -461,6 +514,11 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#least-norm-solutions">
        Least-norm solutions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computation-of-the-underdetermined-matrix-inverse">
+       Computation of the underdetermined matrix inverse
       </a>
      </li>
     </ul>
@@ -556,6 +614,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#overdetermined-regression-problems">
      Overdetermined regression problems
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computation-of-the-overdetermined-matrix-inverse">
+       Computation of the overdetermined matrix inverse
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#underdetermined-regression-problems">
@@ -565,6 +630,11 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#least-norm-solutions">
        Least-norm solutions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computation-of-the-underdetermined-matrix-inverse">
+       Computation of the underdetermined matrix inverse
       </a>
      </li>
     </ul>
@@ -706,7 +776,35 @@ However, for this approach to be applicable, the inverse of the data matrix must
 <span class="eqno">(71)<a class="headerlink" href="#equation-eqn-loss-function-soln" title="Permalink to this equation">#</a></span>\[\hat{\mathbf{\beta}} = \left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\mathbf{X}^{T}\mathbf{y} - \left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\mathbf{X}^{T}\mathbf{\epsilon}\]</div>
 <p>The matrix <span class="math notranslate nohighlight">\(\mathbf{X}^{T}\mathbf{X}\)</span> is called the normal matrix, while <span class="math notranslate nohighlight">\(\mathbf{X}^{T}\mathbf{y}\)</span> is called the moment matrix. The existence of the normal solution <span class="math notranslate nohighlight">\(\hat{\mathbf{\beta}}\)</span> requires that the normal matrix inverse <span class="math notranslate nohighlight">\(\left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\)</span> exists.</p>
 </section>
-</div></section>
+</div><section id="computation-of-the-overdetermined-matrix-inverse">
+<h4>Computation of the overdetermined matrix inverse<a class="headerlink" href="#computation-of-the-overdetermined-matrix-inverse" title="Permalink to this headline">#</a></h4>
+<p>Assuming the normal matrix inverse <span class="math notranslate nohighlight">\(\left(\mathbf{X}^{T}\mathbf{X}\right)^{-1}\)</span> exists, we can compute it directly by computing the matrix product and inverting using the <code class="docutils literal notranslate"><span class="pre">inv</span></code> function. Alternatively, we can use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv">pinv</a> function included in the <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package in <a class="reference external" href="https://julialang.org">Julia</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the LinearAlgebra package</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+
+<span class="c"># Define a random overdetermined array</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span> 
+
+<span class="c"># compute the pinverse </span>
+<span class="n">LI</span> <span class="o">=</span> <span class="n">pinv</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c"># this will be an 8 x 10 matrix</span>
+
+<span class="c"># Test -</span>
+<span class="n">IM</span> <span class="o">=</span> <span class="n">LI</span><span class="o">*</span><span class="n">A</span><span class="p">;</span> 
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Is IM the identity matrix -&gt; check the trace: </span><span class="si">$</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="n">IM</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is IM the identity matrix -&gt; check the trace: 8.000000000000002
+</pre></div>
+</div>
+</div>
+</div>
+<p>This matrix inverse is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">left Moore-Penrose inverse</a>.</p>
+</section>
+</section>
 <section id="underdetermined-regression-problems">
 <h3>Underdetermined regression problems<a class="headerlink" href="#underdetermined-regression-problems" title="Permalink to this headline">#</a></h3>
 <p>If the number of observations (rows) in the data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is less than the number of columns, i.e., the number of unknown parameters, the system is underdetermined. In general, there will be infinitely many solutions for an underdetermined system. How do we choose which solution to use?</p>
@@ -715,9 +813,8 @@ However, for this approach to be applicable, the inverse of the data matrix must
 <p>The classic strategy to solve an underdetermined system is to estimate the <em>smallest</em> values (measured by some norm <span class="math notranslate nohighlight">\(||\star||\)</span>) for the unknown parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> such that they satisfy the original equations:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{eqnarray}
-\text{minimize}~&amp; ||~\mathbf{\beta}~|| &amp;  &amp;\\
-\text{subject to} &amp; &amp; &amp; \\
-\mathbf{X}\mathbf{\beta} &amp; = &amp; \mathbf{y}
+\text{minimize}~&amp; &amp; ||~\mathbf{\beta}~|| \\
+\text{subject to} &amp; &amp; \mathbf{X}\mathbf{\beta} = \mathbf{y} \\
 \end{eqnarray}\end{split}\]</div>
 <p>Thus, the solution of an underdetermined least squares problem is <em>constrained</em>, i.e., the possible values of <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> are restricted somehow. An analytical solution for the parmeter vector <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> can be computed for the underdetermined case (<a class="reference internal" href="#defn-normal-eqn-ols-ln">Definition 37</a>):</p>
 <div class="proof definition admonition" id="defn-normal-eqn-ols-ln">
@@ -742,7 +839,35 @@ However, for this approach to be applicable, the inverse of the data matrix must
 <div class="math notranslate nohighlight">
 \[\hat{\mathbf{\beta}} = \mathbf{V}\mathbf{\Sigma}^{-1}\mathbf{U}^{T}\mathbf{y} - \mathbf{V}\mathbf{\Sigma}^{-1}\mathbf{U}^{T}\mathbf{\epsilon}\]</div>
 </section>
-</div><!-- This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.
+</div></section>
+<section id="computation-of-the-underdetermined-matrix-inverse">
+<h4>Computation of the underdetermined matrix inverse<a class="headerlink" href="#computation-of-the-underdetermined-matrix-inverse" title="Permalink to this headline">#</a></h4>
+<p>We can compute  <span class="math notranslate nohighlight">\(\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\)</span>, assuming it exists, by computing the matrix product and inverting using the <code class="docutils literal notranslate"><span class="pre">inv</span></code> function. Alternatively, we can use the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv">pinv</a> function included in the <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package in <a class="reference external" href="https://julialang.org">Julia</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the LinearAlgebra package</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+
+<span class="c"># Define a random undetermined array</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> 
+
+<span class="c"># compute the pinverse </span>
+<span class="n">RI</span> <span class="o">=</span> <span class="n">pinv</span><span class="p">(</span><span class="n">A</span><span class="p">);</span> <span class="c"># this will be an 10 x 8 matrix</span>
+
+<span class="c"># Test -</span>
+<span class="n">IM</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">RI</span><span class="p">;</span> 
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Is IM the identity matrix -&gt; check the trace: </span><span class="si">$</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="n">IM</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is IM the identity matrix -&gt; check the trace: 7.999999999999998
+</pre></div>
+</div>
+</div>
+</div>
+<p>This matrix inverse is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">right Moore-Penrose inverse</a>.</p>
+<!-- This is done by defining a cost function that measures the difference between the predictions and the experimental data and then finding the parameter values that minimize this cost function. Least-squares problems are commonly used in linear regression, where the goal is to find the line of best fit for a set of data points. They are also used in many other applications, such as curve fitting, signal processing, and control systems.
 
 Many optimization algorithms can solve least-squares problems, including gradient descent, Levenberg-Marquardt, and Gauss-Newton algorithms. The choice of algorithm will depend on the problem being solved and the characteristics of the data. -->
 </section>
@@ -770,6 +895,33 @@ Lagrangian function with respect to <span class="math notranslate nohighlight">\
 \frac{\partial\mathcal{L}}{\partial{\lambda}} &amp; = &amp; 0\\
 \end{eqnarray}\end{split}\]</div>
 <p>The system of equations defined by Eqn. <a class="reference internal" href="#equation-eqn-first-order-condition-lagrange">(74)</a> callled the Lagrange equations, can be solved to find the critical points and, thus, the maximum or minimum value of the objective function.</p>
+</section>
+</div><p>Let’s show how we can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> to derive the least-norm solution for the underdetermined learning problem (<a class="reference internal" href="#example-lagrange-multipliers-lns">Example 21</a>):</p>
+<div class="proof example dropdown admonition" id="example-lagrange-multipliers-lns">
+<p class="admonition-title"><span class="caption-number">Example 21 </span> (Derivation least norm solution)</p>
+<section class="example-content" id="proof-content">
+<p>Derive the least norm solution to the optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+\text{minimize} &amp; &amp; \mathbf{\beta}^{T}\mathbf{\beta} \\
+\text{subject to} &amp; &amp; \mathbf{X}\mathbf{\beta} = \mathbf{y}
+\end{eqnarray}\end{split}\]</div>
+<p>using the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> to compute an estimate of the regression parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span>.</p>
+<p><strong>Solution</strong>: The first step is to form the Lagrangian function:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\mathbf{\beta},\lambda) = \mathbf{\beta}^{T}\mathbf{\beta} + \lambda\left(\mathbf{X}\mathbf{\beta} - \mathbf{y}\right)\]</div>
+<p>which can differentiate with respect to <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> and the Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+\frac{\partial\mathcal{L}}{\partial{\mathbf{\beta}}} &amp; = &amp; 2\mathbf{\beta} + \mathbf{X}^{T}\lambda = 0 \\
+\frac{\partial\mathcal{L}}{\partial{\lambda}} &amp; = &amp; \left(\mathbf{X}\mathbf{\beta} - \mathbf{y}\right) = 0\\
+\end{eqnarray}\end{split}\]</div>
+<p>We can solve the first equation for <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> in terms of <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{\beta} = -\mathbf{X}^{T}\left(\frac{\lambda}{2}\right)\]</div>
+<p>which we can then substitute into the second equation to get an expression for <span class="math notranslate nohighlight">\(\lambda = -2\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\mathbf{y}\)</span>. Substituting the <span class="math notranslate nohighlight">\(\lambda\)</span> expression into the expression for <span class="math notranslate nohighlight">\(\beta\)</span>, i.e., eliminating the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multipliers</a> gives the least norm solution for <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{\beta} = \mathbf{X}^{T}\left(\mathbf{X}\mathbf{X}^{T}\right)^{-1}\mathbf{y}\]</div>
 </section>
 </div><!-- 
 The Lagrangian, which is the sum of the objective function and the product of the Lagrange multipliers and the constraints, is used to find the critical points of the objective function subject to the constraints by taking the partial derivatives with respect to both the variables and the Lagrange multipliers and setting them to zero. -->
@@ -809,9 +961,9 @@ x\leq{5} &amp; &amp;
 <section class="observation-content" id="proof-content">
 <p>For a penalty method, we start with a small <span class="math notranslate nohighlight">\(\lambda\)</span> and repeat the <span class="math notranslate nohighlight">\(x\)</span> estimation problem with larger and larger values of <span class="math notranslate nohighlight">\(\lambda\)</span>. This makes constraint violation more expensive for each subsequent refinement of the estimate of <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </section>
-</div><p>With a penalty method, we can choose any value for the starting value of <span class="math notranslate nohighlight">\(x\)</span>. Let’s do an example penalty method calculation (<a class="reference internal" href="#example-quad-penalty-method">Example 21</a>):</p>
+</div><p>With a penalty method, we can choose any value for the starting value of <span class="math notranslate nohighlight">\(x\)</span>. Let’s do an example penalty method calculation that uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Evolutionary_algorithm">simple evolutionary algorithm</a> to generate new guesses for <span class="math notranslate nohighlight">\(x\)</span> (<a class="reference internal" href="#example-quad-penalty-method">Example 22</a>):</p>
 <div class="proof example dropdown admonition" id="example-quad-penalty-method">
-<p class="admonition-title"><span class="caption-number">Example 21 </span> (Penalty method example)</p>
+<p class="admonition-title"><span class="caption-number">Example 22 </span> (Penalty method example)</p>
 <section class="example-content" id="proof-content">
 <p>Solve the minimization problem for <span class="math notranslate nohighlight">\(x\)</span> given by Eqn. <a class="reference internal" href="#equation-eqn-example-pmethod">(75)</a> using a quadratic penalty method for an initial guess of <span class="math notranslate nohighlight">\(x = 20\)</span> for <span class="math notranslate nohighlight">\(\lambda = 1e3,1e6,1e9\)</span>.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
@@ -896,9 +1048,9 @@ we gradually reduce <span class="math notranslate nohighlight">\(\lambda\)</span
 <section class="remark-content" id="proof-content">
 <p>If, for some reason, we jump over the barrier, e.g., we start outside the feasible region (the set of <span class="math notranslate nohighlight">\(x\)</span> values allowed by the constraints), or during the calculation, we generate a candidate solution outside the barrier, this approach can fail.</p>
 </section>
-</div><p>Let’s do an example barrier method calculation (<a class="reference internal" href="#example-barrier-method">Example 22</a>):</p>
+</div><p>Let’s do an example barrier method calculation that uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Evolutionary_algorithm">simple evolutionary algorithm</a> to generate new guesses for <span class="math notranslate nohighlight">\(x\)</span> (<a class="reference internal" href="#example-barrier-method">Example 23</a>):</p>
 <div class="proof example dropdown admonition" id="example-barrier-method">
-<p class="admonition-title"><span class="caption-number">Example 22 </span> (Barrier method example)</p>
+<p class="admonition-title"><span class="caption-number">Example 23 </span> (Barrier method example)</p>
 <section class="example-content" id="proof-content">
 <p>Solve the minimization problem for <span class="math notranslate nohighlight">\(x\)</span> given by Eqn. <a class="reference internal" href="#equation-eqn-example-pmethod">(75)</a> using a barrier method for an initial guess of <span class="math notranslate nohighlight">\(x = 2.0\)</span> for <span class="math notranslate nohighlight">\(\lambda = 10,1,0.1\)</span>.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
@@ -1017,16 +1169,16 @@ where $\mu_{i}$ denotes the mean of the points in set $\mathcal{S}_{i}$.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.8"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "julia-1.8",
             path: "./unit-3-learning"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.8'</script>
 
               </div>
               
