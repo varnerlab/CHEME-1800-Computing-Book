@@ -272,9 +272,14 @@ where $\lambda$ is a _hyper-parameter_ (a parameter associated with the method, 
 For a penalty method, we start with a small $\lambda$ and repeat the $x$ estimation problem with larger and larger values of $\lambda$. This makes constraint violation more expensive for each subsequent refinement of the estimate of $x$.
 ```
 
-With a penalty method, we can choose any value for the starting value of $x$.
+With a penalty method, we can choose any value for the starting value of $x$. Let's do an example penalty method calculation ({prf:ref}`example-quad-penalty-method`):
 
+````{prf:example} Penalty method example
+:label: example-quad-penalty-method
+:class: dropdown
 
+Solve the minimization problem for $x$ given by Eqn. {eq}`eqn-example-pmethod` using a quadratic penalty method for an initial guess of $x = 20$ for $\lambda = 1,100,1000,10000$.
+````
 
 #### Barrier functions
 Let's rethink the problem shown in Eqn. {eq}`eqn-example-pmethod`. Suppose, instead of developing the penality function shown in Eqn. {eq}`eqn-quad-penalty` to minimize $f(x)$, for a ccontraint of the form $g(x)\leq{0}$ we developed a barrier function:
@@ -299,6 +304,14 @@ The challenge of the barrier method shown in Eqn. {eq}`eqn-final-barrier-method`
 For a barrier method, we start with a small $\lambda$ and repeat the $x$ estimation problem with larger and larger values of $\lambda$. This allows us to move closer to the barrier (explore closer to the barrier for the bset $x$) for each subsequent refinement of the estimate of $x$.
 ```
 
+Let's do an example barrier method calculation ({prf:ref}`example-barrier-method`):
+
+````{prf:example} Barrier method example
+:label: example-barrier-method
+:class: dropdown
+
+Solve the minimization problem for $x$ given by Eqn. {eq}`eqn-example-pmethod` using a quadratic penalty method for an initial guess of $x = 20$ for $\lambda = 1,100,1000,10000$.
+````
 
 #### Application of penalty and barrier methods
 In the context of statistical modeling, penalty, and barrier methods are often used to regularize the model, which means imposing constraints on the model parameters to prevent overfitting and improve the model’s generalization ability
