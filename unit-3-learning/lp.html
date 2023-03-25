@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/lp.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Decision Problem: Probability, Random Processes, and Decisions" href="../unit-4-decisions/decisions-landing.html" />
-    <link rel="prev" title="Combinatorial Optimization" href="combitorial.html" />
+    <link rel="next" title="Combinatorial Optimization" href="combitorial.html" />
+    <link rel="prev" title="Ordinary Least Squares Problems" href="penalty.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -200,14 +200,14 @@ const thebe_selector_output = ".output, .cell_output"
      Ordinary Least Squares Problems
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="combitorial.html">
-     Combinatorial Optimization
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Linear Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="combitorial.html">
+     Combinatorial Optimization
     </a>
    </li>
   </ul>
@@ -435,18 +435,49 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#simplex-algorithm">
      Simplex algorithm
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-does-the-simplex-algorithm-work">
+       How does the simplex algorithm work
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aside-showing-up-late-is-not-always-bad">
+       Aside: Showing up late is not always bad
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#duality">
-   Duality
+  <a class="reference internal nav-link" href="#dual-linear-programs">
+   Dual linear programs
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flux-balance-analyis">
+   Flux balance analyis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mole-based-problem-formulation">
+     Mole-based problem formulation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional resources
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -481,18 +512,49 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#simplex-algorithm">
      Simplex algorithm
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-does-the-simplex-algorithm-work">
+       How does the simplex algorithm work
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aside-showing-up-late-is-not-always-bad">
+       Aside: Showing up late is not always bad
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#duality">
-   Duality
+  <a class="reference internal nav-link" href="#dual-linear-programs">
+   Dual linear programs
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flux-balance-analyis">
+   Flux balance analyis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mole-based-problem-formulation">
+     Mole-based problem formulation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional resources
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -508,48 +570,142 @@ title="Print to PDF"
 <h1>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Simplex_algorithm">The development of the simplex algorithm</a>, an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.</p>
-</section>
+<p>In this lecture, we’ll disucss linear programming.  Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.</p>
+<p>First, we’ll introduce the mathematical structure of linear programs, and then move to an important application area within chemical Engineering, namely flux balance analysis:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.</p></li>
+<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analyis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
+</ul>
 <hr class="docutils" />
+</section>
 <section id="primal-linear-programs">
-<h2>Primal linear programs<a class="headerlink" href="#primal-linear-programs" title="Permalink to this headline">#</a></h2>
-<p>Linear programs maximize (or minimize) a <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> subject to <em>linear</em> constraints and bounds on the variables we are searching over.</p>
+<span id="content-references-primal-linear-problem"></span><h2>Primal linear programs<a class="headerlink" href="#primal-linear-programs" title="Permalink to this headline">#</a></h2>
+<p>Linear programs maximize (or minimize) a <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> subject to <em>linear</em> constraints and bounds on the variables we are searching over (<a class="reference internal" href="#defn-primael-linear program">Definition 40</a>):</p>
 <div class="proof definition admonition" id="defn-primael-linear program">
 <p class="admonition-title"><span class="caption-number">Definition 40 </span> (Primal Linear Program)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose we wish to estimate the value of an M-dimensional (continuous) decision variable vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, e.g., the best possible allocation of some scarce resource such as cars to people in a ride-sharing application, or money to stocks. Further, our problem can be represented as a system of linear equations.</p>
-<p>Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by solving the linear program (canonical form):</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> denote a linear function of continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m}\)</span> whose values are constrained by a system of linear equations with system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span>, and bounded. Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by solving the linear program (canonical form):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\text{maximize/minimize}~\mathcal{O} &amp;=&amp; \sum_{i=1}^{M} c_{i}x_{i}\\
+\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{i=1}^{m} c_{i}x_{i}\\
 \text{subject to}~\mathbf{Ax} &amp;\leq&amp;\mathbf{b}\\
-\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,M}
+\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,m}
 \end{eqnarray}
 \end{split}\]</div>
-<p>The components of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are the variables to be determined, <span class="math notranslate nohighlight">\(c_{i}\)</span> are constant coefficients in the <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(N\times{M}\)</span> matrix and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is a <span class="math notranslate nohighlight">\(N\times{1}\)</span> (constant) vector.</p>
+<p>The components of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are the variables to be determined, <span class="math notranslate nohighlight">\(c_{i}\)</span> are constant coefficients in the <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span> is the constraint matrix and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n}\)</span> is a constant vector.</p>
+<p>Any linear program can be converted into this standard form.</p>
 </section>
-</div><section id="simplex-algorithm">
+</div><p>Because of its general structure, linear programming provides a powerful tool for optimizing complex decision-making problems in various industries, allowing for better resource utilization, efficiency, and increased profitability.</p>
+<section id="simplex-algorithm">
 <h3>Simplex algorithm<a class="headerlink" href="#simplex-algorithm" title="Permalink to this headline">#</a></h3>
-<p>Fill me in.</p>
+<p>Linear programs, even those with thousands of decisions variables, can be efficently solved using simple off-the-shelf hardware, e.g., your laptop using the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a>. The simplex algorithm is a widely-used algorithm to solve the Linear Programming (LP) optimization problems first developed by <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">George Dantzig</a>.</p>
+<section id="how-does-the-simplex-algorithm-work">
+<h4>How does the simplex algorithm work<a class="headerlink" href="#how-does-the-simplex-algorithm-work" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> is an iterative procedure for solving linear programming problems. The basic idea behind the simplex algorithm is to start with an initial feasible solution (i.e., a point that satisfies all constraints) and then iteratively improve it by moving along the edges of the feasible region (i.e., the region defined by the constraints). At each iteration, the algorithm selects a non-basic variable (i.e., a variable not currently part of the solution). It determines whether increasing or decreasing it will improve the objective function. If such an improvement can be made, the algorithm swaps the non-basic variable into the solution and updates the values of the basic variables (i.e., the variables already part of the solution). The process is repeated until no further improvement can be made, at which point the algorithm terminates, and the current solution is deemed optimal.</p>
+</section>
+<section id="aside-showing-up-late-is-not-always-bad">
+<h4>Aside: Showing up late is not always bad<a class="headerlink" href="#aside-showing-up-late-is-not-always-bad" title="Permalink to this headline">#</a></h4>
+<p>As an aside, the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> resulted from <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> showing up late to class. In 1939, near the beginning of a class, <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a>, an instructor for a class that <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> was taking, wrote two problems on the blackboard. <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> arrived late and assumed they were homework problems. According to <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a>, the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late.</p>
+<p>However, six weeks later, an excited <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a> told <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; the simplex algorithm was born!</p>
+<!-- [The development of the simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm), an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.  -->
 </section>
 </section>
-<section id="duality">
-<h2>Duality<a class="headerlink" href="#duality" title="Permalink to this headline">#</a></h2>
-<p>Every linear programming problem, referred to as a primal problem, can be converted into a dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
-<p>The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical “resource allocation” problem, then its dual can be interpreted as a “resource valuation” problem.</p>
+</section>
+<section id="dual-linear-programs">
+<span id="content-references-dual-linear-problem"></span><h2>Dual linear programs<a class="headerlink" href="#dual-linear-programs" title="Permalink to this headline">#</a></h2>
+<p>The dual linear program, which is derived from the primal linear program, provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
 <p>The dual of a given linear program (LP) is another linear program that is derived from the original (the primal problem) in using the scheme:</p>
 <ul class="simple">
 <li><p>Each variable in the primal linear program becomes a constraint in the dual linear program</p></li>
 <li><p>Each constraint in the primal linear program becomes a variable in the dual linear program</p></li>
 <li><p>The objective direction is inversed – maximum in the primal becomes minimum in the dual and vice versa</p></li>
 </ul>
+<p>Given the primal linear programming problem above, the dual problem is given by (<a class="reference internal" href="#defn-dual-linear program">Definition 41</a>):</p>
+<div class="proof definition admonition" id="defn-dual-linear program">
+<p class="admonition-title"><span class="caption-number">Definition 41 </span> (Dual linear program)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}\)</span> denote a linear function of continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{n}\)</span> whose values are constrained by a system of linear equations, and bounded. Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> of the dual problem by solving the linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}^{\prime} &amp;=&amp; \sum_{i=1}^{n} b_{i}y_{i}\\
+\text{subject to}~\mathbf{A}^{T}\mathbf{y} &amp;\geq&amp;\mathbf{c}\\
+\text{and}~y_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
+\end{eqnarray}
+\end{split}\]</div>
+<p><strong>Differences between the primal and the dual problems</strong>: The vectors <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> switch places, where the
+<span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector in the dual, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.</p>
+</section>
+</div><p>The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem.</p>
+</section>
+<section id="flux-balance-analyis">
+<span id="content-references-flux-balance-analysis"></span><h2>Flux balance analyis<a class="headerlink" href="#flux-balance-analyis" title="Permalink to this headline">#</a></h2>
+<p>Flux balance analysis is a general tool to estimate <em>flows</em> through <a class="reference internal" href="../unit-2-data/trees.html"><span class="doc std std-doc">trees and graphs</span></a>, e.g., social graphs, communication networks, or other structures that can be represented as a network. In chemical engineering, flux balance analysis estimates chemical reaction rates (called <em>fluxes</em>) throughout <em>steady state</em> reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead.</p>
+<section id="mole-based-problem-formulation">
+<h3>Mole-based problem formulation<a class="headerlink" href="#mole-based-problem-formulation" title="Permalink to this headline">#</a></h3>
+<p>We know from our <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html"><span class="doc std std-doc">earlier discussion of material balances</span></a> that the open species mole balance around component <span class="math notranslate nohighlight">\(i\)</span> in a steady-state system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{s\in\mathcal{S}}v_{s}\dot{n}_{is} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}\]</div>
+<p>If we don’t have <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_equation">kinetic rate laws</a>, or we are not approaching this problem from the <a class="reference external" href="https://en.wikipedia.org/wiki/Chemical_equilibrium">equilibrium or energy perspective</a>, then we need some other way to estimate the extent of reaction <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span>, consider <a class="reference internal" href="#obs-simple-mole-based case">Observation 8</a>:</p>
+<div class="proof observation admonition" id="obs-simple-mole-based case">
+<p class="admonition-title"><span class="caption-number">Observation 8 </span> (Mole based problem formulation)</p>
+<section class="observation-content" id="proof-content">
+<p>Suppose we have an open steady-state system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, but qith only a single stream entering (s = 1) and exiting (s = 2) the system. Further, suppose we want to maximize/minimize an objective of the form:</p>
+<div class="math notranslate nohighlight">
+\[\text{maximize/minimze}~\mathcal{O}=\sum_{i\in\mathcal{R}}c_{i}\dot{\epsilon}_{i}\]</div>
+<p>In other words, we want to estimate the open extent such that some <em>technological</em> objective is met, e.g., we maximize the production of a valuable product. For the case of a single input and output, the open mole balance becomes:</p>
+<div class="math notranslate nohighlight">
+\[\dot{n}_{i,2} = \dot{n}_{i,1} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}\qquad\forall{i}\in\mathcal{M}\]</div>
+<p>Of course, when searching for the optimal set of reaction extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> we have to select values that give physically realistic answers, e.g., we can’t have a negative mole flow rates: <span class="math notranslate nohighlight">\(\dot{n}_{i,j}\geq{0}\)</span> for all <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. Thus, the species mole balances are linear constraints governing  the open extent:</p>
+<div class="math notranslate nohighlight">
+\[\dot{n}_{i,1} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}\geq{0}\qquad\forall{i}\in\mathcal{M}\]</div>
+<p>Next, the <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> terms must be bounded, i.e., we can’t have infinite values for the open reaction extent, nor can irreversible reactions be chosen to run backward. Thus, the extents are <em>bounded</em> from above and below:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{j}\leq\dot{\epsilon}_{j}\leq\mathcal{U}_{j}\qquad{j=1,2\dots,\mathcal{R}}\]</div>
+<p>The <span class="math notranslate nohighlight">\(\mathcal{L}_{j}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{U}_{j}\)</span> denote the lower and upper bounds that <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> can take. Open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are just reaction rates times the volume; the lower and upper bounds describe the permissible range we expect the rate <em>could</em> take.</p>
+</section>
+</div><p>Putting these ideas together for the general case of multiple input and output streams gives a general problem formulation to compute the flux through a reaction network using mole based units (<a class="reference internal" href="#defn-mol-based-units">Definition 42</a>):</p>
+<div class="proof definition admonition" id="defn-mol-based-units">
+<p class="admonition-title"><span class="caption-number">Definition 42 </span> (Mole based flux problem)</p>
+<section class="definition-content" id="proof-content">
+<p>We have an open system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, we partition the stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> into streams entering the system <span class="math notranslate nohighlight">\(\mathcal{S}^{+}\)</span>, and streams leaving the system <span class="math notranslate nohighlight">\(\mathcal{S}^{-}\)</span>.  Then, the steady-state species mole balances are given by:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{s\in\mathcal{S}^{+}}\dot{n}_{is} - \sum_{k\in\mathcal{S}^{-}}\dot{n}_{ik} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}\]</div>
+<p>Finally, <span class="math notranslate nohighlight">\(\dot{n}_{i,j}\geq{0}\)</span> for every <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>; species mole flows must be non-negative. Then, the (unknown) open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are the solution of a linear programming problem in which the linear objective <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\text{maximize/minimize}~\mathcal{O} = \sum_{j\in\mathcal{R}}c_{j}\dot{\epsilon}_{j}\]</div>
+<p>is minimized (or maximized) subject to the linear constraints:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+\sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}&amp;\geq&amp;{-\sum_{s\in\mathcal{S}^{+}}\dot{n}_{si}}\qquad\forall{i}\in\mathcal{M}\\
+\sum_{k\in\mathcal{S}^{-}}\dot{n}_{ki}&amp;\geq&amp;{0}\qquad\forall{i}\in\mathcal{M}\\
+\mathcal{L}_{j}&amp;\leq\dot{\epsilon}_{j}\leq&amp;\mathcal{U}_{j}\qquad\forall{j}\in\mathcal{R}
+\end{eqnarray}\end{split}\]</div>
+</section>
+</div></section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>In this lecture, we disucssed linear programming (LP).  Linear programming is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.</p>
+<p>First, we introduced the mathematical structure of linear programs, the dual problem, and then moved to an important application area within chemical Engineering, namely flux balance analysis:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.</p></li>
+<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analyis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
+</ul>
+<section id="additional-resources">
+<h3>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h3>
+<p>Background resources for biochemical network information, and computational tools for working with flux balance analysis models:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.genome.jp/kegg/">Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi: 10.1093/nar/28.1.27. PMID: 10592173; PMCID: PMC102409.</a></p></li>
+<li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29447345/">Karp, Peter D et al. “The BioCyc collection of microbial genomes and metabolic pathways.” Briefings in bioinformatics vol. 20,4 (2019): 1085-1093. doi:10.1093/bib/bbx085</a></p></li>
+<li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26527724/">Gama-Castro, Socorro et al. “RegulonDB version 9.0: high-level integration of gene regulation, coexpression, motif clustering and beyond.” Nucleic acids research vol. 44,D1 (2016): D133-43. doi:10.1093/nar/gkv1156</a></p></li>
+<li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/30787451/">Heirendt, Laurent et al. “Creation and analysis of biochemical constraint-based models using the COBRA Toolbox v.3.0.” Nature protocols vol. 14,3 (2019): 639-702. doi:10.1038/s41596-018-0098-2</a></p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -580,17 +736,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="combitorial.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="penalty.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Combinatorial Optimization</p>
+            <p class="prev-next-title">Ordinary Least Squares Problems</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../unit-4-decisions/decisions-landing.html" title="next page">
+    <a class='right-next' id="next-link" href="combitorial.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Decision Problem: Probability, Random Processes, and Decisions</p>
+        <p class="prev-next-title">Combinatorial Optimization</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
