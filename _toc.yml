@@ -22,8 +22,8 @@ chapters:
   title: Unit 3. Learning
   sections: 
   - file: unit-3-learning/penalty
-  - file: unit-3-learning/combitorial
   - file: unit-3-learning/lp
+  - file: unit-3-learning/combitorial
 - file: unit-4-decisions/decisions-landing
   title: Unit 4. Decisions
   sections:
