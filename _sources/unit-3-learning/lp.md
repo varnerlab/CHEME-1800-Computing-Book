@@ -140,6 +140,8 @@ end
 println("Objective is: ", objective_value(model), " \$ per week")
 ```
 
+__Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
+
 ````
 
 
