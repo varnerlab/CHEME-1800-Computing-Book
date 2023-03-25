@@ -52,6 +52,47 @@ However, six weeks later, an excited [Professor Neyman](https://en.wikipedia.org
 
 <!-- [The development of the simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm), an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.  -->
 
+Let's explore linear programming by doing a classic linear programming problem, namely the optimal allocation of a scarce resource ({prf:ref}`example-resource-allocation-primal`):
+
+````{prf:example} Product mix primal problem
+:label: example-resource-allocation-primal
+:class: dropdown
+
+Consider a manufacturing facility that produces five different chemical products $C_{i}$ using four manufacturing processes $P_{j}$. The process requirements in hours per unit product, and the profit for each product are shown in the table:
+
+| Process | Capacity | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
+| :---: | :---: | --- | --- | --- | --- | --- |
+P$_{1}$ | 4 | 1.2 | 1.3 | 0.7 | 0.0 | 0.5
+P$_{2}$ | 5 | 0.7 | 2.2 | 1.6 | 0.5 | 1.0 |
+P$_{3}$ | 3 | 0.9 | 0.7 | 1.3 | 1.0 | 0.8 |
+P$_{4}$ | 7 | 1.4 | 2.8 | 0.5 | 1.2 | 0.6 |
+Unit profit $ | -- | 18 | 25 | 10 | 12 | 15
+
+Each manufacturing process operates 40 hours per week. Determine the optimum weekly production quantities for the chemical products $C_{j}$ to maximize the total profit.
+
+__Solution__: Let's define the decision variables, the objective function, and the problem constraints, then solve the problem in [Julia](https://julialang.org) using the [JuMP](https://jump.dev/JuMP.jl/stable/) package and the [GLPK](https://github.com/jump-dev/GLPK.jl) linear programming solver.
+
+Let $x_{i}\geq{0}$ denote the amount of compound $i$ produced per week (decision variable). Then, the objective function $\mathcal{O}$, which is to maximize profit, is then given by:
+
+```{math}
+\mathcal{O} = 18x_{1} + 25x_{2} + 10x_{3} + 12x_{4} + 15x_{5} 
+```
+
+The number of hours available per week for each process is 40 times the capacity. Thus, each process is governed by the constraints:
+
+```{math}
+\begin{eqnarray}
+P_{1} & : & 1.2x_{1}+1.3x_{2}+0.7x_{3}+0.0x_{4} + 0.5x_{5} & \leq & 160 \\
+P_{2} & : & 0.7x_{1}+2.2x_{2}+1.6x_{3}+0.5x_{4} + 1.0x_{5} & \leq & 200 \\
+P_{3} & : & 0.9x_{1}+0.7x_{2}+1.3x_{3}+1.0x_{4} + 0.8x_{5} & \leq & 120 \\
+P_{4} & : & 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} & \leq & 280 \\
+\end{eqnarray}
+```
+
+````
+
+
+
 (content:references:dual-linear-problem)=
 ## Dual linear programs
 The dual linear program, which is derived from the primal linear program, provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem. 
@@ -81,7 +122,16 @@ __Differences between the primal and the dual problems__: The vectors $\mathbf{c
 $c_{j}$ coefficients become the right-hand side vector in the dual, while the $b_{i}$ are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.
 ````
 
-The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem.
+The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. To see this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
+
+````{prf:example} Product mix dual problem
+:label: example-resource-allocation-dual
+:class: dropdown
+
+Fill me in. 
+
+````
+
 
 (content:references:flux-balance-analysis)=
 ## Flux balance analyis
