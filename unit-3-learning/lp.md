@@ -58,35 +58,34 @@ Let's explore linear programming by doing a classic linear programming problem, 
 :label: example-resource-allocation-primal
 :class: dropdown
 
-Consider a manufacturing facility that produces five different chemical products $C_{i}$ using four processes $P_{j}$. 
-The process requirements in hours per unit product, and the profit for each product, are shown in the table:
+Consider a manufacturing facility that produces a mixture of five different chemical products $C_{i}$ using four feedstocks $F_{j}$ weekly. The process requirements for each feedstock per unit product, and the profit for each product, are shown in the table:
 
-| Process | Capacity | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
+| Feedstocks | Required | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
 | :---: | :---: | --- | --- | --- | --- | --- |
-P$_{1}$ | 4 | 1.2 | 1.3 | 0.7 | 0.0 | 0.5
-P$_{2}$ | 5 | 0.7 | 2.2 | 1.6 | 0.5 | 1.0 |
-P$_{3}$ | 3 | 0.9 | 0.7 | 1.3 | 1.0 | 0.8 |
-P$_{4}$ | 7 | 1.4 | 2.8 | 0.5 | 1.2 | 0.6 |
+F$_{1}$ | 160 | 1.2 | 1.3 | 0.7 | 0.0 | 0.5
+F$_{2}$ | 200 | 0.7 | 2.2 | 1.6 | 0.5 | 1.0 |
+F$_{3}$ | 120 | 0.9 | 0.7 | 1.3 | 1.0 | 0.8 |
+F$_{4}$ | 280 | 1.4 | 2.8 | 0.5 | 1.2 | 0.6 |
 Unit profit $ | -- | 18 | 25 | 10 | 12 | 15
 
-Each manufacturing process operates 40 hours per week. Determine the optimum weekly production quantities for the chemical products $C_{j}$ to maximize the total profit.
+Determine the optimum production quantities for the chemical products $C_{j}$ to maximize the total profit.
 
 __Solution__: Let's define the decision variables, the objective function, and the problem constraints, then solve the problem in [Julia](https://julialang.org) using the [JuMP](https://jump.dev/JuMP.jl/stable/) package and the [GLPK](https://github.com/jump-dev/GLPK.jl) linear programming solver.
 
-Let $x_{i}\geq{0}$ denote the amount of compound $i$ produced per week (decision variable). Then, the objective function $\mathcal{O}$, which is to maximize profit, is then given by:
+Let $x_{i}\geq{0}$ denote the amount of compound $i$ produced per week (decision variable). The objective function $\mathcal{O}$, which is to maximize profit, is then given by:
 
 ```{math}
 \mathcal{O} = 18x_{1} + 25x_{2} + 10x_{3} + 12x_{4} + 15x_{5} 
 ```
 
-The number of hours available per week for each process is 40 times the capacity. Thus, each process is governed by the constraints:
+where the coefficients are the unit profit for each product. Each process is governed by feedstock constraints:
 
 ```{math}
 \begin{eqnarray}
-P_{1} & : & 1.2x_{1}+1.3x_{2}+0.7x_{3}+0.0x_{4} + 0.5x_{5} & \leq & 160 \\
-P_{2} & : & 0.7x_{1}+2.2x_{2}+1.6x_{3}+0.5x_{4} + 1.0x_{5} & \leq & 200 \\
-P_{3} & : & 0.9x_{1}+0.7x_{2}+1.3x_{3}+1.0x_{4} + 0.8x_{5} & \leq & 120 \\
-P_{4} & : & 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} & \leq & 280 \\
+F_{1} & : & 1.2x_{1}+1.3x_{2}+0.7x_{3}+0.0x_{4} + 0.5x_{5} & \leq & 160 \\
+F_{2} & : & 0.7x_{1}+2.2x_{2}+1.6x_{3}+0.5x_{4} + 1.0x_{5} & \leq & 200 \\
+F_{3} & : & 0.9x_{1}+0.7x_{2}+1.3x_{3}+1.0x_{4} + 0.8x_{5} & \leq & 120 \\
+F_{4} & : & 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} & \leq & 280 \\
 \end{eqnarray}
 ```
 
@@ -191,7 +190,7 @@ To explore this interpretation, let's formulate and solve the dual of the resour
 :label: example-resource-allocation-dual
 :class: dropdown
 
-Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the entire capacity of the previous factory. In this case, the dual decision variables $y_{i}$ are the offer prices per unit capacity.  For the offer to be accepted, $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.
+Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the production capacity of the previous factory. In this case, the dual decision variables $y_{i}$ are the offer prices per unit capacity.  For the offer to be accepted, $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.
 
 The dual of {prf:ref}`example-resource-allocation-primal`, which computes the capacity prices $y_{i}$, can be solved as:
 
