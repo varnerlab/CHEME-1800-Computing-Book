@@ -183,7 +183,7 @@ If we interpret the primal linear program as a classical resource allocation pro
 
 * The primal problem in {prf:ref}`example-resource-allocation-primal` deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities, and with the quantities of products (outputs) that should be produced to maximize total revenue. 
 
-* On the other hand, the dual problem deals with economic values. With floor guarantees on all output unit prices, and assuming the available quantity of all inputs is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.
+* On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices, and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.
 
 To explore this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
 
