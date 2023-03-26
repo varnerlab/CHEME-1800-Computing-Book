@@ -454,6 +454,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#dual-linear-programs">
    Dual linear programs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#duality-interpretation">
+     Duality interpretation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flux-balance-analyis">
@@ -531,6 +538,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#dual-linear-programs">
    Dual linear programs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#duality-interpretation">
+     Duality interpretation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flux-balance-analyis">
@@ -614,7 +628,8 @@ title="Print to PDF"
 <div class="proof example dropdown admonition" id="example-resource-allocation-primal">
 <p class="admonition-title"><span class="caption-number">Example 24 </span> (Product mix primal problem)</p>
 <section class="example-content" id="proof-content">
-<p>Consider a manufacturing facility that produces five different chemical products <span class="math notranslate nohighlight">\(C_{i}\)</span> using four manufacturing processes <span class="math notranslate nohighlight">\(P_{j}\)</span>. The process requirements in hours per unit product, and the profit for each product are shown in the table:</p>
+<p>Consider a manufacturing facility that produces five different chemical products <span class="math notranslate nohighlight">\(C_{i}\)</span> using four processes <span class="math notranslate nohighlight">\(P_{j}\)</span>.
+The process requirements in hours per unit product, and the profit for each product, are shown in the table:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p>Process</p></th>
@@ -689,18 +704,9 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 
 <span class="c"># setup some constants -</span>
 <span class="n">number_of_products</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">number_of_processes</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 
-<span class="c"># build a model -</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">GLPK</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
-
-<span class="c"># add decision variables to the model -</span>
-<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_products</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># this sets up 5 variables</span>
-
-<span class="c"># Set the objective =&gt; maximize the profit -</span>
-<span class="n">c_vector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">25.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">12.0</span><span class="p">,</span><span class="mf">15.0</span><span class="p">];</span> <span class="c"># profits for each product</span>
-<span class="nd">@objective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Max</span><span class="p">,</span> <span class="n">transpose</span><span class="p">(</span><span class="n">c_vector</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
-
-<span class="c"># Setup the constraints -</span>
+<span class="c"># Setup the system A, b and c -</span>
 <span class="c"># Define the system matrix -</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">[</span>
     <span class="mf">1.2</span> <span class="mf">1.3</span> <span class="mf">0.7</span> <span class="mf">0.0</span> <span class="mf">0.5</span> <span class="p">;</span>
@@ -709,10 +715,19 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
     <span class="mf">1.4</span> <span class="mf">2.8</span> <span class="mf">0.5</span> <span class="mf">1.2</span> <span class="mf">0.6</span> <span class="p">;</span>
 <span class="p">];</span>
 
-<span class="c"># Setup the right hand side vector</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">];</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">];</span> <span class="c"># Setup the right hand side vector</span>
+<span class="n">c_vector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">25.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">12.0</span><span class="p">,</span><span class="mf">15.0</span><span class="p">];</span> <span class="c"># profits for each product</span>
 
-<span class="c"># add the constraints to the model </span>
+<span class="c"># build a model -</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">GLPK</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
+
+<span class="c"># add decision variables to the model -</span>
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_products</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># this sets up 5 variables</span>
+
+<span class="c"># Set the objective =&gt; maximize profit</span>
+<span class="nd">@objective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Max</span><span class="p">,</span> <span class="n">transpose</span><span class="p">(</span><span class="n">c_vector</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
+
+<span class="c"># Setup the constraints - add them to the model </span>
 <span class="nd">@constraints</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> 
     <span class="k">begin</span>
         <span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">.&lt;=</span> <span class="n">b</span>
@@ -729,9 +744,10 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <span class="k">end</span>
 
 <span class="c"># print objective value -</span>
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective is: &quot;</span><span class="p">,</span> <span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">),</span> <span class="s">&quot; </span><span class="se">\$</span><span class="s"> per week&quot;</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value for the primal is: &quot;</span><span class="p">,</span> <span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">),</span> <span class="s">&quot; </span><span class="se">\$</span><span class="s"> per week&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>The maximum profit per week: $2988.24 per week.</p>
 <p><strong>Source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp">Unit 3 examples, CHEME-1800 GitHub repository</a>.</p>
 </section>
 </div></section>
@@ -762,13 +778,75 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <p><strong>Differences between the primal and the dual problems</strong>: The vectors <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> switch places, where the
 <span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector in the dual, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.</p>
 </section>
-</div><p>The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. To see this interpretation, let’s formulate and solve the dual of the resource allocation problem above (<a class="reference internal" href="#example-resource-allocation-dual">Example 25</a>):</p>
+</div><section id="duality-interpretation">
+<h3>Duality interpretation<a class="headerlink" href="#duality-interpretation" title="Permalink to this headline">#</a></h3>
+<p>If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:</p>
+<ul class="simple">
+<li><p>The primal problem in <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a> deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities, and with the quantities of products (outputs) that should be produced to maximize total revenue.</p></li>
+<li><p>On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices, and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.</p></li>
+</ul>
+<p>To explore this interpretation, let’s formulate and solve the dual of the resource allocation problem above (<a class="reference internal" href="#example-resource-allocation-dual">Example 25</a>):</p>
 <div class="proof example dropdown admonition" id="example-resource-allocation-dual">
 <p class="admonition-title"><span class="caption-number">Example 25 </span> (Product mix dual problem)</p>
 <section class="example-content" id="proof-content">
-<p>Fill me in.</p>
+<p>Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the entire capacity of the previous factory. In this case, the dual decision variables <span class="math notranslate nohighlight">\(y_{i}\)</span> are the offer prices per unit capacity.  For the offer to be accepted, <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}\)</span>, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.</p>
+<p>The dual of <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>, which computes the capacity prices <span class="math notranslate nohighlight">\(y_{i}\)</span>, can be solved as:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># include </span>
+<span class="k">using</span> <span class="n">JuMP</span>
+<span class="k">using</span> <span class="n">GLPK</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+
+<span class="c"># setup some constants -</span>
+<span class="n">number_of_products</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">number_of_processes</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="c"># Setuo system -</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">25.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">12.0</span><span class="p">,</span><span class="mf">15.0</span><span class="p">];</span> <span class="c"># profits for each product</span>
+
+<span class="c"># System constraint matrix</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">1.2</span> <span class="mf">1.3</span> <span class="mf">0.7</span> <span class="mf">0.0</span> <span class="mf">0.5</span> <span class="p">;</span>
+    <span class="mf">0.7</span> <span class="mf">2.2</span> <span class="mf">1.6</span> <span class="mf">0.5</span> <span class="mf">1.0</span> <span class="p">;</span>
+    <span class="mf">0.9</span> <span class="mf">0.7</span> <span class="mf">1.3</span> <span class="mf">1.0</span> <span class="mf">0.8</span> <span class="p">;</span>
+    <span class="mf">1.4</span> <span class="mf">2.8</span> <span class="mf">0.5</span> <span class="mf">1.2</span> <span class="mf">0.6</span> <span class="p">;</span>
+<span class="p">];</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">];</span> <span class="c"># Setup the right hand side vector</span>
+
+<span class="c"># build a model -</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">GLPK</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
+
+<span class="c"># add decision variables to the model -</span>
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_processes</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># this sets up 5 variables</span>
+
+<span class="c"># Set the objective =&gt; maximize the profit -</span>
+<span class="nd">@objective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Min</span><span class="p">,</span> <span class="n">transpose</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">);</span>
+
+<span class="c"># Setup the constraints - add them to the model </span>
+<span class="nd">@constraints</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> 
+    <span class="k">begin</span>
+        <span class="n">transpose</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">y</span> <span class="o">.&gt;=</span> <span class="n">c</span> <span class="c"># what is the .&gt;= doing?</span>
+    <span class="k">end</span>
+<span class="p">);</span>
+
+<span class="c"># solve the model</span>
+<span class="n">optimize!</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">solution_summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c"># show the solution</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">number_of_processes</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;y</span><span class="si">$i</span><span class="s"> = &quot;</span><span class="p">,</span><span class="n">value</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="s">&quot; units per week.&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># print objective value -</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value for the dual is: &quot;</span><span class="p">,</span> <span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">),</span> <span class="s">&quot; </span><span class="se">\$</span><span class="s"> per week&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The objective value of the dual problem is: $2988.72 per week</p>
+<p><strong>Source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp">Unit 3 examples, CHEME-1800 GitHub repository</a>.</p>
 </section>
 </div></section>
+</section>
 <section id="flux-balance-analyis">
 <span id="content-references-flux-balance-analysis"></span><h2>Flux balance analyis<a class="headerlink" href="#flux-balance-analyis" title="Permalink to this headline">#</a></h2>
 <p>Flux balance analysis is a general tool to estimate <em>flows</em> through <a class="reference internal" href="../unit-2-data/trees.html"><span class="doc std std-doc">trees and graphs</span></a>, e.g., social graphs, communication networks, or other structures that can be represented as a network. In chemical engineering, flux balance analysis estimates chemical reaction rates (called <em>fluxes</em>) throughout <em>steady state</em> reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead.</p>

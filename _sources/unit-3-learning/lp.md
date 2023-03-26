@@ -58,7 +58,8 @@ Let's explore linear programming by doing a classic linear programming problem, 
 :label: example-resource-allocation-primal
 :class: dropdown
 
-Consider a manufacturing facility that produces five different chemical products $C_{i}$ using four manufacturing processes $P_{j}$. The process requirements in hours per unit product, and the profit for each product are shown in the table:
+Consider a manufacturing facility that produces five different chemical products $C_{i}$ using four processes $P_{j}$. 
+The process requirements in hours per unit product, and the profit for each product, are shown in the table:
 
 | Process | Capacity | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
 | :---: | :---: | --- | --- | --- | --- | --- |
@@ -97,18 +98,9 @@ using LinearAlgebra
 
 # setup some constants -
 number_of_products = 5;
+number_of_processes = 4;
 
-# build a model -
-model = model = Model(GLPK.Optimizer)
-
-# add decision variables to the model -
-@variable(model, x[i=1:number_of_products] >= 0) # this sets up 5 variables
-
-# Set the objective => maximize the profit -
-c_vector = [18.0,25.0,10.0,12.0,15.0]; # profits for each product
-@objective(model, Max, transpose(c_vector)*x);
-
-# Setup the constraints -
+# Setup the system A, b and c -
 # Define the system matrix -
 A = [
     1.2 1.3 0.7 0.0 0.5 ;
@@ -117,10 +109,19 @@ A = [
     1.4 2.8 0.5 1.2 0.6 ;
 ];
 
-# Setup the right hand side vector
-b = [160, 200, 120, 280];
+b = [160, 200, 120, 280]; # Setup the right hand side vector
+c_vector = [18.0,25.0,10.0,12.0,15.0]; # profits for each product
 
-# add the constraints to the model 
+# build a model -
+model = Model(GLPK.Optimizer)
+
+# add decision variables to the model -
+@variable(model, x[i=1:number_of_products] >= 0) # this sets up 5 variables
+
+# Set the objective => maximize profit
+@objective(model, Max, transpose(c_vector)*x);
+
+# Setup the constraints - add them to the model 
 @constraints(model, 
     begin
         A*x .<= b
@@ -137,8 +138,10 @@ for i in 1:number_of_products
 end
 
 # print objective value -
-println("Objective is: ", objective_value(model), " \$ per week")
+println("Objective value for the primal is: ", objective_value(model), " \$ per week")
 ```
+
+The maximum profit per week: $2988.24 per week.
 
 __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
 
@@ -175,15 +178,83 @@ __Differences between the primal and the dual problems__: The vectors $\mathbf{c
 $c_{j}$ coefficients become the right-hand side vector in the dual, while the $b_{i}$ are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.
 ````
 
-The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. To see this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
+### Duality interpretation
+If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:
+
+* The primal problem in {prf:ref}`example-resource-allocation-primal` deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities, and with the quantities of products (outputs) that should be produced to maximize total revenue. 
+
+* On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices, and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.
+
+To explore this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
 
 ````{prf:example} Product mix dual problem
 :label: example-resource-allocation-dual
 :class: dropdown
 
-Fill me in. 
+Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the entire capacity of the previous factory. In this case, the dual decision variables $y_{i}$ are the offer prices per unit capacity.  For the offer to be accepted, $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.
+
+The dual of {prf:ref}`example-resource-allocation-primal`, which computes the capacity prices $y_{i}$, can be solved as:
+
+```julia
+# include 
+using JuMP
+using GLPK
+using LinearAlgebra
+
+# setup some constants -
+number_of_products = 5;
+number_of_processes = 4;
+
+# Setuo system -
+c = [18.0,25.0,10.0,12.0,15.0]; # profits for each product
+
+# System constraint matrix
+A = [
+    1.2 1.3 0.7 0.0 0.5 ;
+    0.7 2.2 1.6 0.5 1.0 ;
+    0.9 0.7 1.3 1.0 0.8 ;
+    1.4 2.8 0.5 1.2 0.6 ;
+];
+
+b = [160, 200, 120, 280]; # Setup the right hand side vector
+
+# build a model -
+model = Model(GLPK.Optimizer)
+
+# add decision variables to the model -
+@variable(model, y[i=1:number_of_processes] >= 0) # this sets up 5 variables
+
+# Set the objective => maximize the profit -
+@objective(model, Min, transpose(b)*y);
+
+# Setup the constraints - add them to the model 
+@constraints(model, 
+    begin
+        transpose(A)*y .>= c # what is the .>= doing?
+    end
+);
+
+# solve the model
+optimize!(model)
+solution_summary(model)
+
+# show the solution
+for i in 1:number_of_processes
+    println("y$i = ",value(y[i]), " units per week.")
+end
+
+# print objective value -
+println("Objective value for the dual is: ", objective_value(model), " \$ per week")
+```
+
+The objective value of the dual problem is: $2988.72 per week
+
+__Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
 
 ````
+
+
+
 
 
 (content:references:flux-balance-analysis)=
