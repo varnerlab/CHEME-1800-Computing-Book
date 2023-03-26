@@ -58,7 +58,8 @@ Let's explore linear programming by doing a classic linear programming problem, 
 :label: example-resource-allocation-primal
 :class: dropdown
 
-Consider a manufacturing facility that produces five different chemical products $C_{i}$ using four manufacturing processes $P_{j}$. The process requirements in hours per unit product, and the profit for each product are shown in the table:
+Consider a manufacturing facility that produces five different chemical products $C_{i}$ using four processes $P_{j}$. 
+The process requirements in hours per unit product, and the profit for each product, are shown in the table:
 
 | Process | Capacity | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
 | :---: | :---: | --- | --- | --- | --- | --- |
@@ -177,13 +178,20 @@ __Differences between the primal and the dual problems__: The vectors $\mathbf{c
 $c_{j}$ coefficients become the right-hand side vector in the dual, while the $b_{i}$ are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.
 ````
 
-The duality theorem has an economic interpretation. If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. To see this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
+### Duality interpretation
+If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:
+
+* The primal problem in {prf:ref}`example-resource-allocation-primal` deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities, and with the quantities of products (outputs) that should be produced to maximize total revenue. 
+
+* On the other hand, the dual problem deals with economic values. With floor guarantees on all output unit prices, and assuming the available quantity of all inputs is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.
+
+To explore this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
 
 ````{prf:example} Product mix dual problem
 :label: example-resource-allocation-dual
 :class: dropdown
 
-Consider another facility with no chemical process manufacturing capacity. Instead, the second facility wishes to purchase the entire capacity from the previous factory. The dual decision variables $y_{i}$ are then the offer prices per unit capacity.  For the offer to be accepted, it should be the case that $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., that facility one can make at least as much by selling the capacity versus manufacturing the chemical products. 
+Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the entire capacity of the previous factory. In this case, the dual decision variables $y_{i}$ are the offer prices per unit capacity.  For the offer to be accepted, $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.
 
 The dual of {prf:ref}`example-resource-allocation-primal`, which computes the capacity prices $y_{i}$, can be solved as:
 
