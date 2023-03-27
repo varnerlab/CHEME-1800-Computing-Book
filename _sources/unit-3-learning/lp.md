@@ -15,7 +15,8 @@ First, we'll introduce the mathematical structure of linear programs, and then m
 
 (content:references:primal-linear-problem)=
 ## Primal linear programs
-Linear programs maximize (or minimize) a _linear_ objective function $\mathcal{O}$ subject to _linear_ constraints and bounds on the variables we are searching over ({prf:ref}`defn-primael-linear program`): 
+Linear programs maximize (or minimize) a _linear_ objective function $\mathcal{O}$ subject to _linear_ constraints and bounds on the decision variables $x$ we are searching over. Decision variables can be continuous values $x\in\mathbb{R}$, but they can also be integers, e.g., $x\in{0,1}$. We'll start with the continuous problem ({prf:ref}`defn-primael-linear program`):  
+
 
 ````{prf:definition} Primal Linear Program
 :label: defn-primael-linear program
@@ -45,9 +46,9 @@ Linear programs, even those with thousands of decisions variables, can be effice
 The [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm) is an iterative procedure for solving linear programming problems. The basic idea behind the simplex algorithm is to start with an initial feasible solution (i.e., a point that satisfies all constraints) and then iteratively improve it by moving along the edges of the feasible region (i.e., the region defined by the constraints). At each iteration, the algorithm selects a non-basic variable (i.e., a variable not currently part of the solution). It determines whether increasing or decreasing it will improve the objective function. If such an improvement can be made, the algorithm swaps the non-basic variable into the solution and updates the values of the basic variables (i.e., the variables already part of the solution). The process is repeated until no further improvement can be made, at which point the algorithm terminates, and the current solution is deemed optimal.
 
 #### Aside: Showing up late is not always bad
-As an aside, the [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm) resulted from [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) showing up late to class. In 1939, near the beginning of a class, [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman), an instructor for a class that [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) was taking, wrote two problems on the blackboard. [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) arrived late and assumed they were homework problems. According to [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig), the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late. 
+As an aside, the [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm) resulted from [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) showing up late to class. In 1939, near the beginning of a class, [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman), an instructor for a course that [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) was taking, wrote two problems on the blackboard. [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) arrived late and assumed they were homework problems. According to [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig), the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late. 
 
-However, six weeks later, an excited [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) told [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; the simplex algorithm was born!
+However, six weeks later, an excited [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) told [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) got his Ph.D. in 1946 and then developed the simplex algorithm in 1947, and linear programming was born!
 
 
 <!-- [The development of the simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm), an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.  -->
@@ -251,9 +252,6 @@ The objective value of the dual problem is: $2988.72 per week
 __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
 
 ````
-
-
-
 
 
 (content:references:flux-balance-analysis)=
