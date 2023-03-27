@@ -36,7 +36,7 @@ The components of $\mathbf{x}$ are the variables to be determined, $c_{i}$ are c
 Any linear program can be converted into this standard form.
 ````
 
-Because of its general structure, linear programming provides a powerful tool for optimizing complex decision-making problems in various industries, allowing for better resource utilization, efficiency, and increased profitability. 
+The feasible solutions of a linear program form a [polyhedron](https://en.wikipedia.org/wiki/Polyhedron), and the solution of the objective function lies on [extreme points of the polyhedron](https://en.wikipedia.org/wiki/Extreme_point). Because of its general structure, linear programming provides a powerful tool for optimizing complex decision-making problems in various industries, allowing for better resource utilization, efficiency, and increased profitability.  
 
 ### Simplex algorithm
 Linear programs, even those with thousands of decisions variables, can be efficently solved using simple off-the-shelf hardware, e.g., your laptop using the [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm). The simplex algorithm is a widely-used algorithm to solve the Linear Programming (LP) optimization problems first developed by [George Dantzig](https://en.wikipedia.org/wiki/George_Dantzig).
