@@ -59,14 +59,14 @@ Let's explore linear programming by doing a classic linear programming problem, 
 :label: example-resource-allocation-primal
 :class: dropdown
 
-Consider a manufacturing facility that produces a mixture of five different chemical products $C_{i}$ using four feedstocks $F_{j}$ weekly. The process requirements for each feedstock per unit product, and the profit for each product, are shown in the table:
+Consider a manufacturing facility that produces a mixture of five different chemical products $C_{i}$ using four processes $P_{j}$ weekly. The process requirements for each feedstock per unit product, and the profit for each product, are shown in the table:
 
 | Feedstocks | Required | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
 | :---: | :---: | --- | --- | --- | --- | --- |
-F$_{1}$ | 160 | 1.2 | 1.3 | 0.7 | 0.0 | 0.5
-F$_{2}$ | 200 | 0.7 | 2.2 | 1.6 | 0.5 | 1.0 |
-F$_{3}$ | 120 | 0.9 | 0.7 | 1.3 | 1.0 | 0.8 |
-F$_{4}$ | 280 | 1.4 | 2.8 | 0.5 | 1.2 | 0.6 |
+P$_{1}$ | 160 | 1.2 | 1.3 | 0.7 | 0.0 | 0.5
+P$_{2}$ | 200 | 0.7 | 2.2 | 1.6 | 0.5 | 1.0 |
+P$_{3}$ | 120 | 0.9 | 0.7 | 1.3 | 1.0 | 0.8 |
+P$_{4}$ | 280 | 1.4 | 2.8 | 0.5 | 1.2 | 0.6 |
 Unit profit $ | -- | 18 | 25 | 10 | 12 | 15
 
 Determine the optimum production quantities for the chemical products $C_{j}$ to maximize the total profit.
