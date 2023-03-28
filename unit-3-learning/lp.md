@@ -59,9 +59,9 @@ Let's explore linear programming by doing a classic linear programming problem, 
 :label: example-resource-allocation-primal
 :class: dropdown
 
-Consider a manufacturing facility that produces a mixture of five different chemical products $C_{i}$ using four processes $P_{j}$ weekly. The process requirements for each feedstock per unit product, and the profit for each product, are shown in the table:
+Consider a manufacturing facility that produces a mixture of five different chemical products $C_{i}$ using four processes $P_{j}$ weekly. The process yeilds for each product, and the profit for each product, are shown in the table:
 
-| Feedstocks | Required | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
+| Process | Capacity | C$_{1}$ |  C$_{2}$ | C$_{3}$ | C$_{4}$ | C$_{5}$ |
 | :---: | :---: | --- | --- | --- | --- | --- |
 P$_{1}$ | 160 | 1.2 | 1.3 | 0.7 | 0.0 | 0.5
 P$_{2}$ | 200 | 0.7 | 2.2 | 1.6 | 0.5 | 1.0 |
