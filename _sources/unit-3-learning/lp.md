@@ -177,12 +177,9 @@ This problem structure is highly adaptable and widely used for various applicati
 
 (content:references:dual-linear-problem)=
 ## Dual linear programs
-The dual linear program, derived from the primal program, is an alternative way of looking at the same problem. 
-The dual linear program (LP) is derived from the original (the primal problem) using the scheme:
+The dual linear program, derived from the primal program, is an alternative way of looking at the same problem ({prf:ref}`defn-dual-linear program`). The dual linear program (LP) is derived from the original (the primal problem) using the scheme:
 
 * Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.
-
-Formally, the dual program is defined as ({prf:ref}`defn-dual-linear program`):
 
 ````{prf:definition} Dual linear program
 :label: defn-dual-linear program
