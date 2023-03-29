@@ -83,10 +83,10 @@ where the coefficients are the unit profit for each product. Each process is gov
 
 ```{math}
 \begin{eqnarray}
-F_{1} & : & 1.2x_{1}+1.3x_{2}+0.7x_{3}+0.0x_{4} + 0.5x_{5} & \leq & 160 \\
-F_{2} & : & 0.7x_{1}+2.2x_{2}+1.6x_{3}+0.5x_{4} + 1.0x_{5} & \leq & 200 \\
-F_{3} & : & 0.9x_{1}+0.7x_{2}+1.3x_{3}+1.0x_{4} + 0.8x_{5} & \leq & 120 \\
-F_{4} & : & 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} & \leq & 280 \\
+P_{1} & : & 1.2x_{1}+1.3x_{2}+0.7x_{3}+0.0x_{4} + 0.5x_{5} & \leq & 160 \\
+P_{2} & : & 0.7x_{1}+2.2x_{2}+1.6x_{3}+0.5x_{4} + 1.0x_{5} & \leq & 200 \\
+P_{3} & : & 0.9x_{1}+0.7x_{2}+1.3x_{3}+1.0x_{4} + 0.8x_{5} & \leq & 120 \\
+P_{4} & : & 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} & \leq & 280 \\
 \end{eqnarray}
 ```
 
@@ -277,11 +277,11 @@ __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/v
 
 
 (content:references:flux-balance-analysis)=
-## Flux balance analyis
-Flux balance analysis is a general tool to estimate _flows_ through [trees and graphs](../unit-2-data/trees.md), e.g., social graphs, communication networks, or other structures that can be represented as a network. In chemical engineering, flux balance analysis estimates chemical reaction rates (called _fluxes_) throughout _steady state_ reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead.
+## Flux balance analysis
+Flux balance analysis (FBA) is an approach to estimate _flows_ through [trees and graphs](../unit-2-data/trees.md), e.g., social graphs, communication networks, or other structures that can be represented as a network. Flux balance analysis is a type of a [maximum flow problem](https://en.wikipedia.org/wiki/Maximum_flow_problem). 
 
-### Mole-based problem formulation
-We know from our [earlier discussion of material balances](../unit-2-data/vectors-matricies-nla.md) that the open species mole balance around component $i$ in a steady-state system with species $\mathcal{M}$, streams $\mathcal{S}$ and reactions $\mathcal{R}$ is given by:
+### Mole-based FBA formulation
+In chemical engineering, flux balance analysis estimates chemical reaction rates (called _fluxes_) operating in _steady-state_ reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead. We know from our [earlier discussion of material balances](../unit-2-data/vectors-matricies-nla.md) that the open species mole balance around component $i$ in a steady-state system with species $\mathcal{M}$, streams $\mathcal{S}$ and reactions $\mathcal{R}$ is given by:
 
 $$\sum_{s\in\mathcal{S}}v_{s}\dot{n}_{is} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}$$
 
