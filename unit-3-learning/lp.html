@@ -468,13 +468,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flux-balance-analyis">
-   Flux balance analyis
+  <a class="reference internal nav-link" href="#flux-balance-analysis">
+   Flux balance analysis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mole-based-problem-formulation">
-     Mole-based problem formulation
+    <a class="reference internal nav-link" href="#mole-based-fba-formulation">
+     Mole-based FBA formulation
     </a>
    </li>
   </ul>
@@ -557,13 +557,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flux-balance-analyis">
-   Flux balance analyis
+  <a class="reference internal nav-link" href="#flux-balance-analysis">
+   Flux balance analysis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mole-based-problem-formulation">
-     Mole-based problem formulation
+    <a class="reference internal nav-link" href="#mole-based-fba-formulation">
+     Mole-based FBA formulation
     </a>
    </li>
   </ul>
@@ -599,7 +599,7 @@ title="Print to PDF"
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.</p></li>
 <li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.</p></li>
-<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analyis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
 </ul>
 <hr class="docutils" />
 </section>
@@ -878,12 +878,12 @@ F_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 </section>
 </div></section>
 </section>
-<section id="flux-balance-analyis">
-<span id="content-references-flux-balance-analysis"></span><h2>Flux balance analyis<a class="headerlink" href="#flux-balance-analyis" title="Permalink to this headline">#</a></h2>
-<p>Flux balance analysis is a general tool to estimate <em>flows</em> through <a class="reference internal" href="../unit-2-data/trees.html"><span class="doc std std-doc">trees and graphs</span></a>, e.g., social graphs, communication networks, or other structures that can be represented as a network. In chemical engineering, flux balance analysis estimates chemical reaction rates (called <em>fluxes</em>) throughout <em>steady state</em> reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead.</p>
-<section id="mole-based-problem-formulation">
-<h3>Mole-based problem formulation<a class="headerlink" href="#mole-based-problem-formulation" title="Permalink to this headline">#</a></h3>
-<p>We know from our <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html"><span class="doc std std-doc">earlier discussion of material balances</span></a> that the open species mole balance around component <span class="math notranslate nohighlight">\(i\)</span> in a steady-state system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is given by:</p>
+<section id="flux-balance-analysis">
+<span id="content-references-flux-balance-analysis"></span><h2>Flux balance analysis<a class="headerlink" href="#flux-balance-analysis" title="Permalink to this headline">#</a></h2>
+<p>Flux balance analysis (FBA) is an approach to estimate <em>flows</em> through <a class="reference internal" href="../unit-2-data/trees.html"><span class="doc std std-doc">trees and graphs</span></a>, e.g., social graphs, communication networks, or other structures that can be represented as a network. Flux balance analysis is a type of a <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_flow_problem">maximum flow problem</a>.</p>
+<section id="mole-based-fba-formulation">
+<h3>Mole-based FBA formulation<a class="headerlink" href="#mole-based-fba-formulation" title="Permalink to this headline">#</a></h3>
+<p>In chemical engineering, flux balance analysis estimates chemical reaction rates (called <em>fluxes</em>) operating in <em>steady-state</em> reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead. We know from our <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html"><span class="doc std std-doc">earlier discussion of material balances</span></a> that the open species mole balance around component <span class="math notranslate nohighlight">\(i\)</span> in a steady-state system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\sum_{s\in\mathcal{S}}v_{s}\dot{n}_{is} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}\]</div>
 <p>If we don’t have <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_equation">kinetic rate laws</a>, or we are not approaching this problem from the <a class="reference external" href="https://en.wikipedia.org/wiki/Chemical_equilibrium">equilibrium or energy perspective</a>, then we need some other way to estimate the extent of reaction <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span>, consider <a class="reference internal" href="#obs-simple-mole-based case">Observation 8</a>:</p>
@@ -932,7 +932,7 @@ F_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.</p></li>
 <li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.</p></li>
-<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analyis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
 </ul>
 <section id="additional-resources">
 <h3>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h3>
