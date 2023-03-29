@@ -147,19 +147,39 @@ __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/v
 
 ````
 
+(content:references:resource-allocation-linear-problem)=
+### General resource allocation problem structure
+The classic application of linear programming, as shown in ({prf:ref}`example-resource-allocation-primal`), is to solve optimal resource allocation problems. However, before we discuss duality, which was typically described in economic terms, let's look at the general form of a resource allocation problem ({prf:ref}`defn-general-resource-allocation-struct`):
 
+````{prf:definition} Resource allocation problem structure
+:label: defn-general-resource-allocation-struct
+
+In a general resource allocation problem, we optimally allocate $n$ scarce resources, e.g., time, money, etc., to $m$ competing activities. This type of problem can be posed and solved as a linear problem of the form:
+
+$$
+\begin{eqnarray}
+\text{maximize}~\mathcal{O} &=& \sum_{i=j}^{m} c_{j}x_{j}\\
+\text{subject to}~\sum_{j=1}^{n}a_{ij}x_{j} &\leq & {b}_{i}\qquad{i=1,2,\dots,n}\\
+\text{and}~x_{i}&\geq&{0}\qquad{i=1,2,\dots,m}
+\end{eqnarray}
+$$
+
+where the components of the problem now have particular meanings:
+
+* The decision variables $\left\{x_{i}\right\}_{i=1}^{m}$ represent the amount of activity $i$, of $m$ possible activities.
+* Elements of the constraint matrix $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ describe the amount of resource $i$  consumed by a unit of activity $j$.
+* The right hand side elements $b_{i}$ describe the amount of resource $i$, from a set of $n$ possible resources, that is available to be allocated.
+* The terms $c_{j}$ describe the payoff experienced by doing a unit of activity $i$.
+
+This problem structure is highly adaptable and widely used for various applications. 
+
+````
 
 (content:references:dual-linear-problem)=
 ## Dual linear programs
-The dual linear program, which is derived from the primal linear program, provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem. 
+The dual linear program, derived from the primal program, is an alternative way of looking at the same problem ({prf:ref}`defn-dual-linear program`). The dual linear program (LP) is derived from the original (the primal problem) using the scheme:
 
-The dual of a given linear program (LP) is another linear program that is derived from the original (the primal problem) in using the scheme:
-
-* Each variable in the primal linear program becomes a constraint in the dual linear program
-* Each constraint in the primal linear program becomes a variable in the dual linear program
-* The objective direction is inversed – maximum in the primal becomes minimum in the dual and vice versa
-
-Given the primal linear programming problem above, the dual problem is given by ({prf:ref}`defn-dual-linear program`):
+* Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.
 
 ````{prf:definition} Dual linear program
 :label: defn-dual-linear program
@@ -175,7 +195,9 @@ $$
 $$
 
 __Differences between the primal and the dual problems__: The vectors $\mathbf{c}$ and $\mathbf{b}$ switch places, where the 
-$c_{j}$ coefficients become the right-hand side vector in the dual, while the $b_{i}$ are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.
+$c_{j}$ coefficients become the right-hand side vector in the dual, while the $b_{i}$ are now in the objective function. Finally, the less than or equal to constraints in the primal problem become greater than or equal to constraints in the dual problem.
+
+Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.
 ````
 
 ### Duality interpretation
