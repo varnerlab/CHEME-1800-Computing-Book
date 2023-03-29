@@ -448,6 +448,11 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-resource-allocation-problem-structure">
+     General resource allocation problem structure
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -531,6 +536,11 @@ title="Print to PDF"
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-resource-allocation-problem-structure">
+     General resource allocation problem structure
+    </a>
    </li>
   </ul>
  </li>
@@ -751,19 +761,44 @@ F_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 </section>
 </div></section>
 </section>
+<section id="general-resource-allocation-problem-structure">
+<span id="content-references-resource-allocation-linear-problem"></span><h3>General resource allocation problem structure<a class="headerlink" href="#general-resource-allocation-problem-structure" title="Permalink to this headline">#</a></h3>
+<p>The classic application of linear programming, as shown in (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>), is to solve optimal resource allocation problems. However, before we discuss duality, which was typically described in economic terms, let’s look at the general form of a resource allocation problem (<a class="reference internal" href="#defn-general-resource-allocation-struct">Definition 41</a>):</p>
+<div class="proof definition admonition" id="defn-general-resource-allocation-struct">
+<p class="admonition-title"><span class="caption-number">Definition 41 </span> (Resource allocation problem structure)</p>
+<section class="definition-content" id="proof-content">
+<p>In a general resource allocation problem, we optimally allocate <span class="math notranslate nohighlight">\(n\)</span> scarce resources, e.g., time, money, etc., to <span class="math notranslate nohighlight">\(m\)</span> competing activities. This type of problem can be posed and solved as a linear problem of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{i=j}^{m} c_{j}x_{j}\\
+\text{subject to}~\sum_{j=1}^{n}a_{ij}x_{j} &amp;\leq &amp; {b}_{i}\qquad{i=1,2,\dots,n}\\
+\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,m}
+\end{eqnarray}
+\end{split}\]</div>
+<p>where the components of the problem now have particular meanings:</p>
+<ul class="simple">
+<li><p>The decision variables <span class="math notranslate nohighlight">\(\left\{x_{i}\right\}_{i=1}^{m}\)</span> represent the amount of activity <span class="math notranslate nohighlight">\(i\)</span>, of <span class="math notranslate nohighlight">\(m\)</span> possible activities.</p></li>
+<li><p>Elements of the constraint matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span> describe the amount of resource <span class="math notranslate nohighlight">\(i\)</span>  consumed by a unit of activity <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p>The right hand side elements <span class="math notranslate nohighlight">\(b_{i}\)</span> describe the amount of resource <span class="math notranslate nohighlight">\(i\)</span>, from a set of <span class="math notranslate nohighlight">\(n\)</span> possible resources, that is available to be allocated.</p></li>
+<li><p>The terms <span class="math notranslate nohighlight">\(c_{j}\)</span> describe the payoff experienced by doing a unit of activity <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+</ul>
+<p>This problem structure is highly adaptable and widely used for various applications.</p>
+</section>
+</div></section>
 </section>
 <section id="dual-linear-programs">
 <span id="content-references-dual-linear-problem"></span><h2>Dual linear programs<a class="headerlink" href="#dual-linear-programs" title="Permalink to this headline">#</a></h2>
-<p>The dual linear program, which is derived from the primal linear program, provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
-<p>The dual of a given linear program (LP) is another linear program that is derived from the original (the primal problem) in using the scheme:</p>
+<p>The dual linear program, derived from the primal program, is an alternative way of looking at the same problem.
+The dual linear program (LP) is derived from the original (the primal problem) using the scheme:</p>
 <ul class="simple">
 <li><p>Each variable in the primal linear program becomes a constraint in the dual linear program</p></li>
 <li><p>Each constraint in the primal linear program becomes a variable in the dual linear program</p></li>
-<li><p>The objective direction is inversed – maximum in the primal becomes minimum in the dual and vice versa</p></li>
+<li><p>The objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa</p></li>
 </ul>
-<p>Given the primal linear programming problem above, the dual problem is given by (<a class="reference internal" href="#defn-dual-linear program">Definition 41</a>):</p>
+<p>Formally, the dual program is defined as (<a class="reference internal" href="#defn-dual-linear program">Definition 42</a>):</p>
 <div class="proof definition admonition" id="defn-dual-linear program">
-<p class="admonition-title"><span class="caption-number">Definition 41 </span> (Dual linear program)</p>
+<p class="admonition-title"><span class="caption-number">Definition 42 </span> (Dual linear program)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}\)</span> denote a linear function of continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{n}\)</span> whose values are constrained by a system of linear equations, and bounded. Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> of the dual problem by solving the linear program:</p>
 <div class="math notranslate nohighlight">
@@ -775,7 +810,8 @@ F_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 \end{eqnarray}
 \end{split}\]</div>
 <p><strong>Differences between the primal and the dual problems</strong>: The vectors <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> switch places, where the
-<span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector in the dual, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function. Finally, the less than or equal to constraints in the primal problem becomes greater than or equal to in the dual problem.</p>
+<span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector in the dual, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function. Finally, the less than or equal to constraints in the primal problem become greater than or equal to constraints in the dual problem.</p>
+<p>Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
 </section>
 </div><section id="duality-interpretation">
 <h3>Duality interpretation<a class="headerlink" href="#duality-interpretation" title="Permalink to this headline">#</a></h3>
@@ -872,9 +908,9 @@ F_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 \[\mathcal{L}_{j}\leq\dot{\epsilon}_{j}\leq\mathcal{U}_{j}\qquad{j=1,2\dots,\mathcal{R}}\]</div>
 <p>The <span class="math notranslate nohighlight">\(\mathcal{L}_{j}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{U}_{j}\)</span> denote the lower and upper bounds that <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> can take. Open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are just reaction rates times the volume; the lower and upper bounds describe the permissible range we expect the rate <em>could</em> take.</p>
 </section>
-</div><p>Putting these ideas together for the general case of multiple input and output streams gives a general problem formulation to compute the flux through a reaction network using mole based units (<a class="reference internal" href="#defn-mol-based-units">Definition 42</a>):</p>
+</div><p>Putting these ideas together for the general case of multiple input and output streams gives a general problem formulation to compute the flux through a reaction network using mole based units (<a class="reference internal" href="#defn-mol-based-units">Definition 43</a>):</p>
 <div class="proof definition admonition" id="defn-mol-based-units">
-<p class="admonition-title"><span class="caption-number">Definition 42 </span> (Mole based flux problem)</p>
+<p class="admonition-title"><span class="caption-number">Definition 43 </span> (Mole based flux problem)</p>
 <section class="definition-content" id="proof-content">
 <p>We have an open system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, we partition the stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> into streams entering the system <span class="math notranslate nohighlight">\(\mathcal{S}^{+}\)</span>, and streams leaving the system <span class="math notranslate nohighlight">\(\mathcal{S}^{-}\)</span>.  Then, the steady-state species mole balances are given by:</p>
 <div class="math notranslate nohighlight">
