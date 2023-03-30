@@ -141,7 +141,7 @@ end
 println("Objective value for the primal is: ", objective_value(model), " \$ per week")
 ```
 
-The maximum profit per week: $2988.24 per week.
+The maximum profit per week: $2988.72 per week.
 
 __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
 
@@ -159,7 +159,7 @@ In a general resource allocation problem, we optimally allocate $n$ scarce resou
 $$
 \begin{eqnarray}
 \text{maximize}~\mathcal{O} &=& \sum_{i=j}^{m} c_{j}x_{j}\\
-\text{subject to}~\sum_{j=1}^{n}a_{ij}x_{j} &\leq & {b}_{i}\qquad{i=1,2,\dots,n}\\
+\text{subject to}~\sum_{j=1}^{m}a_{ij}x_{j} &\leq & {b}_{i}\qquad{i=1,2,\dots,n}\\
 \text{and}~x_{i}&\geq&{0}\qquad{i=1,2,\dots,m}
 \end{eqnarray}
 $$
@@ -266,7 +266,7 @@ for i in 1:number_of_processes
 end
 
 # print objective value -
-println("Objective value for the dual is: ", objective_value(model), " \$ per week")
+println("Objective value for the dual is: ", objective_value(model))
 ```
 
 The objective value of the dual problem is: $2988.72 per week
