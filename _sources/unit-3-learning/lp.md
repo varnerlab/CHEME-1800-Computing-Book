@@ -166,9 +166,9 @@ $$
 
 where the components of the problem now have particular meanings:
 
-* The decision variables $\left\{x_{i}\right\}_{i=1}^{m}$ represent the amount of activity $i$, of $m$ possible activities.
+* The decision variables $\left\{x_{i}\right\}_{i=1}^{m}$ represent the amount of activity $i$, of $m$ possible activities, that we allocate.
 * Elements of the constraint matrix $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ describe the amount of resource $i$  consumed by a unit of activity $j$.
-* The right hand side elements $b_{i}$ describe the amount of resource $i$, from a set of $n$ possible resources, that is available to be allocated.
+* The right hand side elements $b_{i}$ describe the amount of resource $i$ that is available to be allocated.
 * The terms $c_{j}$ describe the payoff experienced by doing a unit of activity $i$.
 
 This problem structure is highly adaptable and widely used for various applications. 
