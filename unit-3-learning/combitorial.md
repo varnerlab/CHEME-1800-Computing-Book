@@ -1,11 +1,9 @@
 # Combinatorial Optimization
 
 ## Introduction
-Combinatorial optimization is a branch of computer science and mathematics that deals with the optimization of combinatorial objects, such as graphs, functions, and strings. It involves finding the best solution to a problem among a finite or countably infinite set of possible solutions. Combinatorial optimization has many applications in computer science, engineering, and other fields.
+Combinatorial optimization is a branch of computer science and mathematics that deals with the optimization of combinatorial objects, such as graphs, functions, and strings. It involves finding the best solution to a problem among a finite or countably infinite set of possible solutions. Combinatorial optimization has many applications in computer science, engineering, and other fields. There are many different approaches to solving combinatorial optimization problems, including exact algorithms, approximation algorithms, and heuristics.
 
-There are many different approaches to solving combinatorial optimization problems, including exact algorithms, approximation algorithms, and heuristics. The choice of method depends on the specific problem and the desired level of accuracy and efficiency. 
-
-In this lecture we'll introduce two approaches for the solution of Combinatorial optimization problems:
+In this lecture we'll introduce two approaches for the solution of combinatorial optimization problems:
 
 * {ref}`content:references:dynamic-programming` solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.
 
@@ -59,4 +57,10 @@ the minimum function value $\mathcal{B}$
 ---
 
 ## Summary
-Fill me in
+Combinatorial optimization is a branch of computer science and mathematics that deals with the optimization of combinatorial objects, such as graphs, functions, and strings. It involves finding the best solution to a problem among a finite or countably infinite set of possible solutions. Combinatorial optimization has many applications in computer science, engineering, and other fields. There are many different approaches to solving combinatorial optimization problems, including exact algorithms, approximation algorithms, and heuristics. 
+
+In this lecture we introduced two approaches for the solution of combinatorial optimization problems:
+
+* {ref}`content:references:dynamic-programming` solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.
+
+* {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.
