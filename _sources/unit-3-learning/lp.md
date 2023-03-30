@@ -158,7 +158,7 @@ In a general resource allocation problem, we optimally allocate $n$ scarce resou
 
 $$
 \begin{eqnarray}
-\text{maximize}~\mathcal{O} &=& \sum_{i=j}^{m} c_{j}x_{j}\\
+\text{maximize}~\mathcal{O} &=& \sum_{j=1}^{m} c_{j}x_{j}\\
 \text{subject to}~\sum_{j=1}^{m}a_{ij}x_{j} &\leq & {b}_{i}\qquad{i=1,2,\dots,n}\\
 \text{and}~x_{i}&\geq&{0}\qquad{i=1,2,\dots,m}
 \end{eqnarray}
