@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Combinatorial Optimization &#8212; CHEME 1800/4800</title>
+    <title>Dynamic Progamming and Heuristic Optimization &#8212; CHEME 1800/4800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/combitorial.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linear Programming" href="lp.html" />
-    <link rel="prev" title="Ordinary Least Squares" href="penalty.html" />
+    <link rel="next" title="The Decision Problem: Probability, Random Processes, and Decisions" href="../unit-4-decisions/decisions-landing.html" />
+    <link rel="prev" title="Linear Programming" href="lp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -197,17 +197,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="penalty.html">
-     Ordinary Least Squares
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Combinatorial Optimization
+     Ordinary Least Squares Problems
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="lp.html">
      Linear Programming
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Dynamic Progamming and Heuristic Optimization
     </a>
    </li>
   </ul>
@@ -430,6 +430,30 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#dynamic-programming">
    Dynamic programming
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-decision-problems">
+     Dynamic decision problems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heuristic-optimization">
+   Heuristic optimization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulated-annealing">
+     Simulated annealing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#genetic-algortihms">
+     Genetic algortihms
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#branch-and-bound">
@@ -450,7 +474,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Combinatorial Optimization</h1>
+                <h1>Dynamic Progamming and Heuristic Optimization</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -469,6 +493,30 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#dynamic-programming">
    Dynamic programming
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-decision-problems">
+     Dynamic decision problems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heuristic-optimization">
+   Heuristic optimization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulated-annealing">
+     Simulated annealing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#genetic-algortihms">
+     Genetic algortihms
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#branch-and-bound">
@@ -490,32 +538,153 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="combinatorial-optimization">
-<h1>Combinatorial Optimization<a class="headerlink" href="#combinatorial-optimization" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="dynamic-progamming-and-heuristic-optimization">
+<h1>Dynamic Progamming and Heuristic Optimization<a class="headerlink" href="#dynamic-progamming-and-heuristic-optimization" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Combinatorial optimization is a branch of computer science and mathematics that deals with the optimization of combinatorial objects, such as graphs, functions, and strings. It involves finding the best solution to a problem among a finite or countably infinite set of possible solutions. Combinatorial optimization has many applications in computer science, engineering, and other fields.</p>
-<p>There are many different approaches to solving combinatorial optimization problems, including exact algorithms, approximation algorithms, and heuristics. The choice of method depends on the specific problem and the desired level of accuracy and efficiency.</p>
-<p>In this lecture we’ll introduce two approaches for the solution of Combinatorial optimization problems:</p>
+<p>Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems. In this lecture we’ll introduce:</p>
+<!-- Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics. -->
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-dynamic-programming"><span class="std std-ref">Dynamic programming</span></a> solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.</p></li>
+<li><p><a class="reference internal" href="#content-references-heuristic-optimization"><span class="std std-ref">Heuristic optimization</span></a> is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.</p></li>
 <li><p><a class="reference internal" href="#content-references-branch-and-bound"><span class="std std-ref">Branch and Bound</span></a> is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.</p></li>
 </ul>
 <hr class="docutils" />
 </section>
 <section id="dynamic-programming">
 <span id="content-references-dynamic-programming"></span><h2>Dynamic programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this headline">#</a></h2>
-<p>Dynamic programming is an approach developed by <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman in the 1950s</a> that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency. Dynamic programming is used in numerous fields ranging from engineering to economics.</p>
-<p>Dynamic programming is typically used for problems that can be divided into overlapping subproblems, which means that the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have <em>optimal substructure</em>.</p>
-<p>If dynamic programming methods are applicable, then there is a relationship between the value of the larger problem and the values of the subproblems; this relationship is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Bellman_equation">Bellman equation</a>.</p>
-<p>Dynamic programming can be a valuable tool for solving many problems, but it can be computationally intensive and may only sometimes be the most efficient solution. When deciding whether to use dynamic programming, it is essential to consider the trade-offs between the algorithm’s efficiency and the problem’s complexity.</p>
+<p>Dynamic programming is an approach developed by <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman in the 1950s</a> that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency.</p>
+<p>Dynamic programming is typically used for problems that can be divided into overlapping subproblems, which means that the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. It is also true for <em>sequential decision problems</em>.</p>
+<section id="dynamic-decision-problems">
+<h3>Dynamic decision problems<a class="headerlink" href="#dynamic-decision-problems" title="Permalink to this headline">#</a></h3>
+<p>Imagine we have a decision making agent, in some state <span class="math notranslate nohighlight">\(x_{t}\)</span>, at time <span class="math notranslate nohighlight">\(t\)</span>. At time <span class="math notranslate nohighlight">\(t\)</span>, the agent takes an action <span class="math notranslate nohighlight">\(a_{t}\)</span> from a set of possible actions <span class="math notranslate nohighlight">\(a_{t}\in\mathcal{A}\left(x_{t}\right)\)</span> that leads to a new state <span class="math notranslate nohighlight">\(x_{t+1} = T(x_{t},a_{t})\)</span> and a payoff <span class="math notranslate nohighlight">\(F(x_{t},a_{t})\)</span>. In this situation, an infinite-horizon descision problem takes the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+V(x_{\circ}) &amp; = &amp; \max_{a\in\mathcal{A}} \sum_{t=0}^{\infty}
+\beta^{t}F(x_{t},a_{t}) \\
+\text{subject to}&amp;~&amp; a_{t}\in\mathcal{A}(x_{t}) \\
+\text{and} &amp;~&amp; x_{t+1} = T(x_{t},a_{t})
+\end{eqnarray}
+\end{split}\]</div>
+<p>where the function <span class="math notranslate nohighlight">\(V(x_{\circ})\)</span> is the <em>value function</em>, <span class="math notranslate nohighlight">\(x_{\circ}\)</span> is the initial state of the agent and <span class="math notranslate nohighlight">\(0\leq\beta\leq{1}\)</span> denotes the discount factor. Dynamic programming breaks this decision problem into smaller subproblems using Bellman’s principle of optimality (<a class="reference internal" href="#obs-bellman-principle-of-optimality">Observation 9</a>):</p>
+<div class="proof observation admonition" id="obs-bellman-principle-of-optimality">
+<p class="admonition-title"><span class="caption-number">Observation 9 </span> (Bellman’s principle of optimality)</p>
+<section class="observation-content" id="proof-content">
+<p><strong>Principle of optimality</strong>: An optimal policy has the property that whatever the initial state and initial decision are, the remaining decisions must constitute an optimal policy with regard to the state resulting from the first decision.</p>
+</section>
+</div><p>The optimality principle suggests that we can pull the first decision from the sum, which gives a value function of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\left[\max_{a_{t}\mathcal{A}}\sum_{t=1}^{\infty}\beta^{t-1}F(x_{t},a_{t})\right]\right\}\\
+\text{subject to}&amp;~&amp; a_{t}\in\mathcal{A}(x_{t}) \\
+\text{and} &amp;~&amp; x_{t+1} = T(x_{t},a_{t})
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</section>
+<section id="heuristic-optimization">
+<span id="content-references-heuristic-optimization"></span><h2>Heuristic optimization<a class="headerlink" href="#heuristic-optimization" title="Permalink to this headline">#</a></h2>
+<p>Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.</p>
+<section id="simulated-annealing">
+<h3>Simulated annealing<a class="headerlink" href="#simulated-annealing" title="Permalink to this headline">#</a></h3>
+<p>Simulated annealing is a heuristic optimization algorithm inspired by the annealing process in metallurgy. It solves complex optimization problems by iteratively exploring the search space and gradually reducing the search space size. Simulated annealing works by randomly selecting a new solution and evaluating its fitness compared to the current best solution and then accepting or rejecting the new solution based on a probability function. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.</p>
+<p>Pseudo code for a simulated annealing algorithm is given in <a class="reference internal" href="#algo-simulated-annealing">Algorithm 12</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-simulated-annealing">
+<p class="admonition-title"><span class="caption-number">Algorithm 12 </span> (Simulated Annealing)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> The objective function <span class="math notranslate nohighlight">\(f\)</span>, temperature, neighbor, and accept functions, initial guess <span class="math notranslate nohighlight">\(x_{\circ}\)</span>, initial temperature <span class="math notranslate nohighlight">\(T\)</span>, and max iterations <span class="math notranslate nohighlight">\(\mathcal{M}_{\infty}\)</span></p>
+<p><strong>Outputs</strong> the <span class="math notranslate nohighlight">\(\min_{x}f(x)\)</span> and <span class="math notranslate nohighlight">\(\arg\min_{x}f(x)\)</span>.</p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>Set current solution <span class="math notranslate nohighlight">\(x^{\prime}\leftarrow{x}_{\circ}\)</span></p></li>
+<li><p>Set best solution <span class="math notranslate nohighlight">\(\hat{x}\leftarrow{x}_{\circ}\)</span></p></li>
+<li><p>Set initial temperature <span class="math notranslate nohighlight">\(T_{0}\leftarrow{T}\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in\left\{1,\dots,\mathcal{M}_{\infty}\right\}\)</span></p>
+<ol class="simple">
+<li><p>update temperature <span class="math notranslate nohighlight">\(T_{i}\leftarrow\text{temperature}(T_{i-1},i)\)</span></p></li>
+<li><p>generate new solution <span class="math notranslate nohighlight">\(x^{\dagger}\leftarrow\text{neighbor}(x^{\prime})\)</span></p></li>
+<li><p>compute objective function difference <span class="math notranslate nohighlight">\(\Delta_{i} = f(x^{\dagger}) - f(x^{\prime})\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\Delta&lt;0 ~\text{or}~\text{accept}(\Delta_{i},T_{i}) = \text{true}\)</span></p>
+<ol class="simple">
+<li><p>update the current solution <span class="math notranslate nohighlight">\({x^{\prime}}\leftarrow{x}^{\dagger}\)</span></p></li>
+</ol>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(f(x^{\prime}) &lt; f(\hat{x})\)</span></p>
+<ol class="simple">
+<li><p>update the best solution <span class="math notranslate nohighlight">\(\hat{x}\leftarrow{x}^{\prime}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong>
+the tuple <span class="math notranslate nohighlight">\(f(\hat{x})\)</span> and <span class="math notranslate nohighlight">\(\hat{x}\)</span>.</p>
+</section>
+</div><p>The performance of simulated annealing depends upon the choice of the temperature, neighbor, and accept functions. Example pseudo code implementations for these functions is shown in <a class="reference internal" href="#algo-simulated-annealing-other-functions">Algorithm 13</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-simulated-annealing-other-functions">
+<p class="admonition-title"><span class="caption-number">Algorithm 13 </span> (Example temperature, neighbor, and accept functions)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Temperature function</strong></p>
+<ol class="simple">
+<li><p>function temperature(<span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(i\)</span>):</p>
+<ol class="simple">
+<li><p>return <span class="math notranslate nohighlight">\(T\leftarrow\alpha\times{T}~\)</span> where <span class="math notranslate nohighlight">\(\alpha&lt;1\)</span></p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Accept function</strong></p>
+<ol class="simple">
+<li><p>function accept(<span class="math notranslate nohighlight">\(\Delta\)</span>, <span class="math notranslate nohighlight">\(T\)</span>):</p>
+<ol class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(\Delta &lt; 0\)</span>:</p>
+<ol class="simple">
+<li><p>return true</p></li>
+</ol>
+</li>
+<li><p>if random(0, 1) &lt; <span class="math notranslate nohighlight">\(\exp\left(-\Delta/T\right)\)</span>:</p>
+<ol class="simple">
+<li><p>return true</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>return false</p></li>
+</ol>
+<p><strong>Neighbor function</strong></p>
+<ol class="simple">
+<li><p>function neighbor(solution):</p>
+<ol class="simple">
+<li><p>set new_solution = copy(solution)</p></li>
+<li><p>select random move</p></li>
+<li><p>perform move on new_solution</p></li>
+</ol>
+</li>
+<li><p>return new_solution</p></li>
+</ol>
+</section>
+</div></section>
+<section id="genetic-algortihms">
+<h3>Genetic algortihms<a class="headerlink" href="#genetic-algortihms" title="Permalink to this headline">#</a></h3>
+<p>Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. The algorithm’s performance depends on the population size, selection operators, and genetic operators used, and it can find reasonable solutions quickly in large and complex search spaces. Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning.</p>
+<!-- 
+While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have _optimal substructure_.
+
+If dynamic programming methods are applicable, then there is a relationship between the value of the larger problem and the values of the subproblems; this relationship is called the [Bellman equation](https://en.wikipedia.org/wiki/Bellman_equation). 
+
+Dynamic programming can be a valuable tool for solving many problems, but it can be computationally intensive and may only sometimes be the most efficient solution. When deciding whether to use dynamic programming, it is essential to consider the trade-offs between the algorithm’s efficiency and the problem’s complexity. -->
+</section>
 </section>
 <section id="branch-and-bound">
 <span id="content-references-branch-and-bound"></span><h2>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this headline">#</a></h2>
 <p>Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.</p>
 <p>Let’s consider minimizing an arbitrary objective function <span class="math notranslate nohighlight">\(f\)</span>:</p>
-<div class="proof algorithm admonition" id="algo-branch-bound-generic">
-<p class="admonition-title"><span class="caption-number">Algorithm 12 </span> (Branch and Bound Algorithm)</p>
+<div class="proof algorithm dropdown admonition" id="algo-branch-bound-generic">
+<p class="admonition-title"><span class="caption-number">Algorithm 14 </span> (Branch and Bound Algorithm)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> the objective function <span class="math notranslate nohighlight">\(f\)</span>, a branch function, and a bound function</p>
 <p><strong>Outputs</strong> the minimum function value <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>
@@ -559,7 +728,16 @@ the minimum function value <span class="math notranslate nohighlight">\(\mathcal
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in</p>
+<p>Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems:</p>
+<!-- 
+Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics.
+
+In this lecture we introduced several optimization approaches: -->
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-dynamic-programming"><span class="std std-ref">Dynamic programming</span></a> solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.</p></li>
+<li><p><a class="reference internal" href="#content-references-heuristic-optimization"><span class="std std-ref">Heuristic optimization</span></a> is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.</p></li>
+<li><p><a class="reference internal" href="#content-references-branch-and-bound"><span class="std std-ref">Branch and Bound</span></a> is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.</p></li>
+</ul>
 </section>
 </section>
 
@@ -590,17 +768,17 @@ the minimum function value <span class="math notranslate nohighlight">\(\mathcal
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="penalty.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="lp.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Ordinary Least Squares</p>
+            <p class="prev-next-title">Linear Programming</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="lp.html" title="next page">
+    <a class='right-next' id="next-link" href="../unit-4-decisions/decisions-landing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Programming</p>
+        <p class="prev-next-title">The Decision Problem: Probability, Random Processes, and Decisions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
