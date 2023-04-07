@@ -3,7 +3,7 @@
 ## Description
 Engineering practice increasingly relies on computational tools and data analysis approaches. This one-semester course introduces computational thinking into engineering analysis. We integrate data science and statistics, artificial intelligence, and mathematical modeling approaches into the context of contemporary problems in the design and analysis of processes, products, and systems. The course is agnostic to platforms and tools; we’ll focus on paradigms, not syntax. However, we’ll use the [Julia programming language](https://julialang.org) and its associated toolchain when transitioning from idea to implementation. In addition, we’ll use cloud computing resources for course materials, assignments, and projects. Weekly labs provide guided practice on the computer, with teaching staff present. Course assignments use data sets and examples to develop fluency and understanding of real-life problems. 
 
-### Time, place and website
+### Times, places and websites
 * __Credits__: 4-credits
 * __Lectures and discussions__: Lecture at TuTh 9:05 AM - 9:55 AM and Discussion at TuTh 1:30 PM - 2:20 PM in Olin 245
 * __Website__: Canvas and GitHub. Examples, labs, and other codes used throughout the course are available on our GitHub repository: [https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23.git).
