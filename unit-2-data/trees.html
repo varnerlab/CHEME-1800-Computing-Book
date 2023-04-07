@@ -197,17 +197,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/penalty.html">
-     Ordinary Least Squares
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../unit-3-learning/combitorial.html">
-     Combinatorial Optimization
+     Ordinary Least Squares Problems
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../unit-3-learning/lp.html">
      Linear Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/combitorial.html">
+     Dynamic Progamming and Heuristic Optimization
     </a>
    </li>
   </ul>
@@ -1271,8 +1271,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="738a5ea6-be38-47d4-8a61-13136b66da4b" name="2e413db1-1286-4f4e-bbfd-658eeff6376e" type="radio">
-</input><label class="sd-tab-label" for="738a5ea6-be38-47d4-8a61-13136b66da4b">
+<input checked="checked" id="01aede34-4669-4d83-afe6-bd485b90c29f" name="48bd853e-0a44-42fa-a831-dcf1bde27e93" type="radio">
+</input><label class="sd-tab-label" for="01aede34-4669-4d83-afe6-bd485b90c29f">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1284,8 +1284,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e94e02fc-f912-4f11-9b1f-90df1436dfc5" name="2e413db1-1286-4f4e-bbfd-658eeff6376e" type="radio">
-</input><label class="sd-tab-label" for="e94e02fc-f912-4f11-9b1f-90df1436dfc5">
+<input id="86688823-60e3-421f-8226-50cc197344d0" name="48bd853e-0a44-42fa-a831-dcf1bde27e93" type="radio">
+</input><label class="sd-tab-label" for="86688823-60e3-421f-8226-50cc197344d0">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1301,8 +1301,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="c7be8b17-481f-472b-9aba-75c7a4f7caa3" name="4c1b93a3-f071-4929-9195-2e85a88ab1cb" type="radio">
-</input><label class="sd-tab-label" for="c7be8b17-481f-472b-9aba-75c7a4f7caa3">
+<input checked="checked" id="4126bb98-86e9-402f-8771-f133a7454716" name="d3aef71f-d182-40ba-9b1c-f08e3692956f" type="radio">
+</input><label class="sd-tab-label" for="4126bb98-86e9-402f-8771-f133a7454716">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1314,8 +1314,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="74fac342-9740-4194-8a43-b91f38271cfb" name="4c1b93a3-f071-4929-9195-2e85a88ab1cb" type="radio">
-</input><label class="sd-tab-label" for="74fac342-9740-4194-8a43-b91f38271cfb">
+<input id="1ca0e460-2cdb-46fd-b6fe-b184c1d23d5d" name="d3aef71f-d182-40ba-9b1c-f08e3692956f" type="radio">
+</input><label class="sd-tab-label" for="1ca0e460-2cdb-46fd-b6fe-b184c1d23d5d">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
