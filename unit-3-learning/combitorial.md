@@ -121,6 +121,93 @@ The performance of simulated annealing depends upon the choice of the temperatur
 ### Genetic algortihms
 Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. The algorithm’s performance depends on the population size, selection operators, and genetic operators used, and it can find reasonable solutions quickly in large and complex search spaces. Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning.
 
+````{prf:algorithm} Genetic Algorithm
+:label: algo-genetic-algorithm
+:class: dropdown
+
+**Initialize** 
+1. set $\mathcal{P}\leftarrow\text{initialize_population()}$
+1. set $\mathcal{F}\leftarrow\text{evaluate_fitness}(\mathcal{P})$
+
+**Main**
+1. while not termination_condition_met():
+    1. set $x\leftarrow\text{select_parents()}$
+    1. set $x^{\prime}\leftarrow\text{create_offspring}(x)$
+    1. set $\mathcal{F}^{\prime}\leftarrow\text{evaluate_fitness}(x^{\prime})$
+    1. replace_least_fit()
+
+1. return_best()
+
+function initialize_population():
+    // create population of individuals with random genes
+    population = []
+    for i in range(population_size):
+        individual = create_random_individual()
+        population.append(individual)
+
+function evaluate_fitness():
+    // evaluate fitness of each individual in the population
+    for individual in population:
+        fitness = calculate_fitness(individual)
+        individual.fitness = fitness
+
+function select_parents():
+    // select parents for reproduction
+    parents = []
+    for i in range(parent_selection_size):
+        parent = tournament_selection(population, tournament_size)
+        parents.append(parent)
+    return parents
+
+function create_offspring():
+    // create offspring through crossover and mutation
+    offspring = []
+    for i in range(offspring_size):
+        parent1, parent2 = select_parents()
+        child = crossover(parent1, parent2)
+        child = mutate(child)
+        offspring.append(child)
+    return offspring
+
+function replace_least_fit():
+    // replace least fit individuals in the population with offspring
+    offspring_fitness = [individual.fitness for individual in offspring]
+    for i in range(replacement_size):
+        least_fit_index = population_fitness.index(min(population_fitness))
+        population[least_fit_index] = offspring[i]
+        population_fitness[least_fit_index] = offspring_fitness[i]
+
+function return_best():
+    // return individual with best fitness
+    best_individual = max(population, key=lambda individual: individual.fitness)
+    return best_individual
+
+function tournament_selection(population, tournament_size):
+    // select individual with highest fitness in tournament
+    tournament = random.sample(population, tournament_size)
+    winner = max(tournament, key=lambda individual: individual.fitness)
+    return winner
+
+function crossover(parent1, parent2):
+    // combine genes of parents to create child
+    child = Individual()
+    for i in range(gene_count):
+        if random.random() < crossover_probability:
+            child.genes[i] = parent1.genes[i]
+        else:
+            child.genes[i] = parent2.genes[i]
+    return child
+
+function mutate(individual):
+    // randomly mutate genes of individual
+    for i in range(gene_count):
+        if random.random() < mutation_probability:
+            individual.genes[i] = random.uniform(min_gene_value, max_gene_value)
+    return individual
+
+````
+
+
 
 <!-- 
 While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have _optimal substructure_.
