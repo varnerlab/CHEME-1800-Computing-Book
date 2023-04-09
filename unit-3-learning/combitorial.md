@@ -55,9 +55,11 @@ $$
 Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.
 
 ### Simulated annealing 
-Simulated annealing is a heuristic optimization algorithm inspired by the annealing process in metallurgy. It solves complex optimization problems by iteratively exploring the search space and gradually reducing the search space size. Simulated annealing works by randomly selecting a new solution and evaluating its fitness compared to the current best solution and then accepting or rejecting the new solution based on a probability function. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.
+Simulated annealing (SA) is a heuristic optimization algorithm inspired by the annealing process in metallurgy {cite}`SIMAN1983`. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.
 
-Pseudo code for a simulated annealing algorithm is given in {prf:ref}`algo-simulated-annealing`:
+Simulated annealing solves complex optimization problems by randomly selecting a candidate and evaluating its fitness compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution found so far are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.
+
+A pseudo-code implementation for a simulated annealing routine is given in {prf:ref}`algo-simulated-annealing`:
 
 ````{prf:algorithm} Simulated Annealing
 :label: algo-simulated-annealing
@@ -108,11 +110,10 @@ The performance of simulated annealing depends upon the choice of the temperatur
 
 **Neighbor function**
 1. function neighbor(solution):
-    1. set new_solution = copy(solution)
+    1. set new_solution $\leftarrow$ copy(solution)
     1. select random move
     1. perform move on new_solution
 1. return new_solution
-
 
 ````
 
