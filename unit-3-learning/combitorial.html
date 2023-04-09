@@ -589,8 +589,9 @@ V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{
 <p>Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.</p>
 <section id="simulated-annealing">
 <h3>Simulated annealing<a class="headerlink" href="#simulated-annealing" title="Permalink to this headline">#</a></h3>
-<p>Simulated annealing is a heuristic optimization algorithm inspired by the annealing process in metallurgy. It solves complex optimization problems by iteratively exploring the search space and gradually reducing the search space size. Simulated annealing works by randomly selecting a new solution and evaluating its fitness compared to the current best solution and then accepting or rejecting the new solution based on a probability function. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.</p>
-<p>Pseudo code for a simulated annealing algorithm is given in <a class="reference internal" href="#algo-simulated-annealing">Algorithm 12</a>:</p>
+<p>Simulated annealing (SA) is a heuristic optimization algorithm inspired by the annealing process in metallurgy <span id="id1">[<a class="reference internal" href="../References.html#id2" title="S Kirkpatrick and M. P. Vecchi. Optimization by Simulated Annealing. Science, 1983.">Kirkpatrick and Vecchi, 1983</a>]</span>. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.</p>
+<p>Simulated annealing solves complex optimization problems by randomly selecting a candidate and evaluating its fitness compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution found so far are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.</p>
+<p>A pseudo-code implementation for a simulated annealing routine is given in <a class="reference internal" href="#algo-simulated-annealing">Algorithm 12</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-simulated-annealing">
 <p class="admonition-title"><span class="caption-number">Algorithm 12 </span> (Simulated Annealing)</p>
 <section class="algorithm-content" id="proof-content">
@@ -627,7 +628,7 @@ the tuple <span class="math notranslate nohighlight">\(f(\hat{x})\)</span> and <
 </section>
 </div><p>The performance of simulated annealing depends upon the choice of the temperature, neighbor, and accept functions. Example pseudo code implementations for these functions is shown in <a class="reference internal" href="#algo-simulated-annealing-other-functions">Algorithm 13</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-simulated-annealing-other-functions">
-<p class="admonition-title"><span class="caption-number">Algorithm 13 </span> (Example temperature, neighbor, and accept functions)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 13 </span> (Temperature, neighbor, and accept functions)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Temperature function</strong></p>
 <ol class="simple">
@@ -659,7 +660,7 @@ the tuple <span class="math notranslate nohighlight">\(f(\hat{x})\)</span> and <
 <ol class="simple">
 <li><p>function neighbor(solution):</p>
 <ol class="simple">
-<li><p>set new_solution = copy(solution)</p></li>
+<li><p>set new_solution <span class="math notranslate nohighlight">\(\leftarrow\)</span> copy(solution)</p></li>
 <li><p>select random move</p></li>
 <li><p>perform move on new_solution</p></li>
 </ol>
@@ -670,8 +671,171 @@ the tuple <span class="math notranslate nohighlight">\(f(\hat{x})\)</span> and <
 </div></section>
 <section id="genetic-algortihms">
 <h3>Genetic algortihms<a class="headerlink" href="#genetic-algortihms" title="Permalink to this headline">#</a></h3>
-<p>Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. The algorithm’s performance depends on the population size, selection operators, and genetic operators used, and it can find reasonable solutions quickly in large and complex search spaces. Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning.</p>
-<!-- 
+<p>Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions.</p>
+<p>Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning. A pseudocode implementation of a genetic algorithm is given in <a class="reference internal" href="#algo-genetic-algorithm">Algorithm 14</a>:</p>
+<div class="proof algorithm dropdown admonition" id="algo-genetic-algorithm">
+<p class="admonition-title"><span class="caption-number">Algorithm 14 </span> (Genetic Algorithm)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(\mathcal{P}\leftarrow\text{initialize_population()}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathcal{F}\leftarrow\text{evaluate_fitness}(\mathcal{P})\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>while not termination_condition_met():</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(x\leftarrow\text{select_parents()}\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x^{\prime}\leftarrow\text{create_offspring}(x)\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(\mathcal{F}^{\prime}\leftarrow\text{evaluate_fitness}(x^{\prime})\)</span></p></li>
+<li><p>replace_least_fit()</p></li>
+</ol>
+</li>
+<li><p>return_best()</p></li>
+</ol>
+<p><strong>Initialize populattion</strong>
+// create population of individuals with random genes</p>
+<ol class="simple">
+<li><p>function initialize_population():</p>
+<ol class="simple">
+<li><p>set population = []</p></li>
+<li><p>for <span class="math notranslate nohighlight">\(i\in {1,2,\dots,\text{population_size}}\)</span>:</p>
+<ol class="simple">
+<li><p>individual = create_random_individual()</p></li>
+<li><p>population.append(individual)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Evaluate fitness</strong>
+// evaluate fitness of each individual in the population</p>
+<ol class="simple">
+<li><p>function evaluate_fitness():</p>
+<ol class="simple">
+<li><p>for individual in population:</p>
+<ol class="simple">
+<li><p>set individual.fitness <span class="math notranslate nohighlight">\(\leftarrow\)</span> calculate_fitness(individual)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Select parents</strong>
+// select parents for reproduction</p>
+<ol class="simple">
+<li><p>function select_parents():</p>
+<ol class="simple">
+<li><p>set parents <span class="math notranslate nohighlight">\(\leftarrow\)</span> []</p></li>
+<li><p>for i <span class="math notranslate nohighlight">\(\in{1:\text{parent_selection_size}}\)</span>:</p>
+<ol class="simple">
+<li><p>set parent <span class="math notranslate nohighlight">\(\leftarrow\)</span> tournament_selection(population, tournament_size)</p></li>
+<li><p>parents.append(parent)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>return parents</p></li>
+</ol>
+<p><strong>Create offspring</strong>
+// create offspring through crossover and mutation</p>
+<ol class="simple">
+<li><p>function create_offspring():</p>
+<ol class="simple">
+<li><p>offspring <span class="math notranslate nohighlight">\(\leftarrow\)</span> []</p></li>
+<li><p>for i in range(offspring_size):</p>
+<ol class="simple">
+<li><p>parent1, parent2 = select_parents()</p></li>
+<li><p>child = crossover(parent1, parent2)</p></li>
+<li><p>child = mutate(child)</p></li>
+<li><p>offspring.append(child)</p></li>
+</ol>
+</li>
+<li><p>return offspring</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Replace</strong>
+// replace least fit individuals in the population with offspring</p>
+<ol class="simple">
+<li><p>function replace_least_fit():</p>
+<ol class="simple">
+<li><p>set offspring_fitness = [individual.fitness for individual in offspring]</p></li>
+<li><p>for i in range(replacement_size):</p>
+<ol class="simple">
+<li><p>set least_fit_index <span class="math notranslate nohighlight">\(\leftarrow\)</span> population_fitness.index(min(population_fitness))</p></li>
+<li><p>set population[least_fit_index] <span class="math notranslate nohighlight">\(\leftarrow\)</span> offspring[i]</p></li>
+<li><p>set population_fitness[least_fit_index] <span class="math notranslate nohighlight">\(\leftarrow\)</span> offspring_fitness[i]</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Best individual</strong>
+// return individual with best fitness</p>
+<ol class="simple">
+<li><p>function return_best():</p>
+<ol class="simple">
+<li><p>set best_individual <span class="math notranslate nohighlight">\(\leftarrow\)</span> max(population, key=lambda individual: individual.fitness)</p></li>
+</ol>
+</li>
+<li><p>return best_individual</p></li>
+</ol>
+<p><strong>Tournament selection</strong>
+// select individual with highest fitness in tournament</p>
+<ol class="simple">
+<li><p>function tournament_selection(population, tournament_size):</p>
+<ol class="simple">
+<li><p>set tournament <span class="math notranslate nohighlight">\(\leftarrow\)</span> random.sample(population, tournament_size)</p></li>
+<li><p>set winner <span class="math notranslate nohighlight">\(\leftarrow\)</span> max(tournament, key=lambda individual: individual.fitness)</p></li>
+</ol>
+</li>
+<li><p>return winner</p></li>
+</ol>
+<p><strong>Crossover</strong>
+// combine genes of parents to create child</p>
+<ol class="simple">
+<li><p>function crossover(parent1, parent2):</p>
+<ol class="simple">
+<li><p>set child <span class="math notranslate nohighlight">\(\leftarrow\)</span> Individual()</p></li>
+<li><p>for i in range(gene_count):</p>
+<ol class="simple">
+<li><p>if random.random() &lt; crossover_probability:</p>
+<ol class="simple">
+<li><p>child.genes[i] <span class="math notranslate nohighlight">\(\leftarrow\)</span> parent1.genes[i]</p></li>
+</ol>
+</li>
+<li><p>else:</p>
+<ol class="simple">
+<li><p>child.genes[i] <span class="math notranslate nohighlight">\(\leftarrow\)</span> parent2.genes[i]</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>return child</p></li>
+</ol>
+<p><strong>Mutate</strong>
+// randomly mutate genes of individual</p>
+<ol class="simple">
+<li><p>function mutate(individual):</p>
+<ol class="simple">
+<li><p>for <span class="math notranslate nohighlight">\(i\in{1,2,\dots\text{gene_count}}\)</span>:</p>
+<ol class="simple">
+<li><p>if random.random() &lt; mutation_probability:</p>
+<ol class="simple">
+<li><p>individual.genes[i] <span class="math notranslate nohighlight">\(\leftarrow\mathcal{U}\)</span>(min_gene_value, max_gene_value)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>return individual</p></li>
+</ol>
+</section>
+</div><!-- 
 While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have _optimal substructure_.
 
 If dynamic programming methods are applicable, then there is a relationship between the value of the larger problem and the values of the subproblems; this relationship is called the [Bellman equation](https://en.wikipedia.org/wiki/Bellman_equation). 
@@ -684,7 +848,7 @@ Dynamic programming can be a valuable tool for solving many problems, but it can
 <p>Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.</p>
 <p>Let’s consider minimizing an arbitrary objective function <span class="math notranslate nohighlight">\(f\)</span>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-branch-bound-generic">
-<p class="admonition-title"><span class="caption-number">Algorithm 14 </span> (Branch and Bound Algorithm)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 15 </span> (Branch and Bound Algorithm)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong> the objective function <span class="math notranslate nohighlight">\(f\)</span>, a branch function, and a bound function</p>
 <p><strong>Outputs</strong> the minimum function value <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>

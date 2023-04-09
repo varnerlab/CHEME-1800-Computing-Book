@@ -55,9 +55,11 @@ $$
 Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.
 
 ### Simulated annealing 
-Simulated annealing is a heuristic optimization algorithm inspired by the annealing process in metallurgy. It solves complex optimization problems by iteratively exploring the search space and gradually reducing the search space size. Simulated annealing works by randomly selecting a new solution and evaluating its fitness compared to the current best solution and then accepting or rejecting the new solution based on a probability function. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.
+Simulated annealing (SA) is a heuristic optimization algorithm inspired by the annealing process in metallurgy {cite}`SIMAN1983`. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.
 
-Pseudo code for a simulated annealing algorithm is given in {prf:ref}`algo-simulated-annealing`:
+Simulated annealing solves complex optimization problems by randomly selecting a candidate and evaluating its fitness compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution found so far are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.
+
+A pseudo-code implementation for a simulated annealing routine is given in {prf:ref}`algo-simulated-annealing`:
 
 ````{prf:algorithm} Simulated Annealing
 :label: algo-simulated-annealing
@@ -90,7 +92,7 @@ the tuple $f(\hat{x})$ and $\hat{x}$.
 
 The performance of simulated annealing depends upon the choice of the temperature, neighbor, and accept functions. Example pseudo code implementations for these functions is shown in {prf:ref}`algo-simulated-annealing-other-functions`:
 
-````{prf:algorithm} Example temperature, neighbor, and accept functions
+````{prf:algorithm} Temperature, neighbor, and accept functions
 :label: algo-simulated-annealing-other-functions
 :class: dropdown
 
@@ -108,18 +110,113 @@ The performance of simulated annealing depends upon the choice of the temperatur
 
 **Neighbor function**
 1. function neighbor(solution):
-    1. set new_solution = copy(solution)
+    1. set new_solution $\leftarrow$ copy(solution)
     1. select random move
     1. perform move on new_solution
 1. return new_solution
-
 
 ````
 
 
 
 ### Genetic algortihms
-Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. The algorithm’s performance depends on the population size, selection operators, and genetic operators used, and it can find reasonable solutions quickly in large and complex search spaces. Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning.
+Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. 
+
+Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning. A pseudocode implementation of a genetic algorithm is given in {prf:ref}`algo-genetic-algorithm`:
+
+````{prf:algorithm} Genetic Algorithm
+:label: algo-genetic-algorithm
+:class: dropdown
+
+**Initialize** 
+1. set $\mathcal{P}\leftarrow\text{initialize_population()}$
+1. set $\mathcal{F}\leftarrow\text{evaluate_fitness}(\mathcal{P})$
+
+**Main**
+1. while not termination_condition_met():
+    1. set $x\leftarrow\text{select_parents()}$
+    1. set $x^{\prime}\leftarrow\text{create_offspring}(x)$
+    1. set $\mathcal{F}^{\prime}\leftarrow\text{evaluate_fitness}(x^{\prime})$
+    1. replace_least_fit()
+
+1. return_best()
+
+**Initialize populattion**
+// create population of individuals with random genes
+1. function initialize_population():
+    1. set population = []
+    1. for $i\in {1,2,\dots,\text{population_size}}$:
+        1. individual = create_random_individual()
+        1. population.append(individual)
+
+**Evaluate fitness**
+// evaluate fitness of each individual in the population
+1. function evaluate_fitness():
+    1. for individual in population:
+        1. set individual.fitness $\leftarrow$ calculate_fitness(individual)
+
+**Select parents**
+// select parents for reproduction
+1. function select_parents():
+    1. set parents $\leftarrow$ []
+    1. for i $\in{1:\text{parent_selection_size}}$:
+        1. set parent $\leftarrow$ tournament_selection(population, tournament_size)
+        1. parents.append(parent)
+1. return parents
+
+**Create offspring**
+// create offspring through crossover and mutation
+1. function create_offspring():
+    1. offspring $\leftarrow$ []
+    1. for i in range(offspring_size):
+        1. parent1, parent2 = select_parents()
+        1. child = crossover(parent1, parent2)
+        1. child = mutate(child)
+        1. offspring.append(child)
+    1. return offspring
+
+**Replace**
+// replace least fit individuals in the population with offspring
+1. function replace_least_fit():
+    1. set offspring_fitness = [individual.fitness for individual in offspring]
+    1. for i in range(replacement_size):
+        1. set least_fit_index $\leftarrow$ population_fitness.index(min(population_fitness))
+        1. set population[least_fit_index] $\leftarrow$ offspring[i]
+        1. set population_fitness[least_fit_index] $\leftarrow$ offspring_fitness[i]
+
+**Best individual**
+// return individual with best fitness
+1. function return_best():
+    1. set best_individual $\leftarrow$ max(population, key=lambda individual: individual.fitness)
+1. return best_individual
+
+**Tournament selection**
+// select individual with highest fitness in tournament
+1. function tournament_selection(population, tournament_size):
+    1. set tournament $\leftarrow$ random.sample(population, tournament_size)
+    1. set winner $\leftarrow$ max(tournament, key=lambda individual: individual.fitness)
+1. return winner
+
+**Crossover**
+// combine genes of parents to create child
+1. function crossover(parent1, parent2):
+    1. set child $\leftarrow$ Individual()
+    1. for i in range(gene_count):
+        1. if random.random() < crossover_probability:
+            1. child.genes[i] $\leftarrow$ parent1.genes[i]
+        1. else:
+            1. child.genes[i] $\leftarrow$ parent2.genes[i]
+1. return child
+
+**Mutate**
+// randomly mutate genes of individual
+1. function mutate(individual):
+    1. for $i\in{1,2,\dots\text{gene_count}}$:
+        1. if random.random() < mutation_probability:
+            1. individual.genes[i] $\leftarrow\mathcal{U}$(min_gene_value, max_gene_value)
+1. return individual
+````
+
 
 
 <!-- 

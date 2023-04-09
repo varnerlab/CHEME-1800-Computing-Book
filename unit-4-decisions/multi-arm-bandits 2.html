@@ -556,10 +556,10 @@ title="Print to PDF"
 </section>
 </div><p>There are multiple heuristic strategies to solve the Binary Bernoulli bandit problem described in <a class="reference internal" href="#defn-multi-arm-bernoulli-bandit-problem">Definition 61</a>:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> which is shown in <a class="reference internal" href="#algo-thompson-sampling">Algorithm 16</a> consists of choosing the action that maximizes the expected reward with respect to a randomly drawn belief, where the belief distribution follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> which is shown in <a class="reference internal" href="#algo-thompson-sampling">Algorithm 15</a> consists of choosing the action that maximizes the expected reward with respect to a randomly drawn belief, where the belief distribution follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a>.</p></li>
 </ul>
 <div class="proof algorithm admonition" id="algo-thompson-sampling">
-<p class="admonition-title"><span class="caption-number">Algorithm 16 </span> (Thompson-sampling)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 15 </span> (Thompson-sampling)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong>  number of time periods in the horizon <span class="math notranslate nohighlight">\(T\)</span>, the dimension of the action space <span class="math notranslate nohighlight">\(K = |\mathcal{A}|\)</span>, and
 <span class="math notranslate nohighlight">\(\alpha_{1},\dots,\alpha_{K}\)</span> and <span class="math notranslate nohighlight">\(\beta_{1},\dots,\beta_{K}\)</span> the initial values (prior) for the parameters that appear in the
@@ -590,10 +590,10 @@ a Beta-distribution for each action using initial values <span class="math notra
 <span class="math notranslate nohighlight">\((\alpha_{1},\dots,\alpha_{K})\)</span> and <span class="math notranslate nohighlight">\((\beta_{1},\dots,\beta_{K})\)</span></p>
 </section>
 </div><ul class="simple">
-<li><p>An obvious (but naive) alternative approach is to allocate a fixed fraction of the time steps in the time horizon, say <span class="math notranslate nohighlight">\(\epsilon\)</span>, to explore purely random actions. In contrast, in the remaining periods, only successful actions are chosen via <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> or another exploitation approach. This strategy, called <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration, is shown in <a class="reference internal" href="#algo-e-greedy">Algorithm 17</a> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> exploitation step:</p></li>
+<li><p>An obvious (but naive) alternative approach is to allocate a fixed fraction of the time steps in the time horizon, say <span class="math notranslate nohighlight">\(\epsilon\)</span>, to explore purely random actions. In contrast, in the remaining periods, only successful actions are chosen via <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> or another exploitation approach. This strategy, called <span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration, is shown in <a class="reference internal" href="#algo-e-greedy">Algorithm 16</a> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson sampling</a> exploitation step:</p></li>
 </ul>
 <div class="proof algorithm admonition" id="algo-e-greedy">
-<p class="admonition-title"><span class="caption-number">Algorithm 17 </span> (<span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 16 </span> (<span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy exploration)</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Inputs</strong>  the pure exploration parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, the number of time periods in the horizon <span class="math notranslate nohighlight">\(T\)</span>, the dimension of the action space <span class="math notranslate nohighlight">\(K = |\mathcal{A}|\)</span>, and
 <span class="math notranslate nohighlight">\(\alpha_{1},\dots,\alpha_{K}\)</span> and <span class="math notranslate nohighlight">\(\beta_{1},\dots,\beta_{K}\)</span> the initial values (prior) for the parameters that appear in the
