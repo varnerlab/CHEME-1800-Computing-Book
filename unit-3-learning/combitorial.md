@@ -90,7 +90,7 @@ the tuple $f(\hat{x})$ and $\hat{x}$.
 
 The performance of simulated annealing depends upon the choice of the temperature, neighbor, and accept functions. Example pseudo code implementations for these functions is shown in {prf:ref}`algo-simulated-annealing-other-functions`:
 
-````{prf:algorithm} Example temperature, neighbor, and accept functions
+````{prf:algorithm} Temperature, neighbor, and accept functions
 :label: algo-simulated-annealing-other-functions
 :class: dropdown
 
@@ -119,7 +119,9 @@ The performance of simulated annealing depends upon the choice of the temperatur
 
 
 ### Genetic algortihms
-Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. The algorithm’s performance depends on the population size, selection operators, and genetic operators used, and it can find reasonable solutions quickly in large and complex search spaces. Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning.
+Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. 
+
+Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning. A pseudocode implementation of a genetic algorithm is given in {prf:ref}`algo-genetic-algorithm`:
 
 ````{prf:algorithm} Genetic Algorithm
 :label: algo-genetic-algorithm
@@ -138,73 +140,80 @@ Genetic algorithms are heuristic optimization algorithms inspired by natural sel
 
 1. return_best()
 
-function initialize_population():
-    // create population of individuals with random genes
-    population = []
-    for i in range(population_size):
-        individual = create_random_individual()
-        population.append(individual)
+**Initialize populattion**
+// create population of individuals with random genes
+1. function initialize_population():
+    1. set population = []
+    1. for $i\in {1,2,\dots,\text{population_size}}$:
+        1. individual = create_random_individual()
+        1. population.append(individual)
 
-function evaluate_fitness():
-    // evaluate fitness of each individual in the population
-    for individual in population:
-        fitness = calculate_fitness(individual)
-        individual.fitness = fitness
+**Evaluate fitness**
+// evaluate fitness of each individual in the population
+1. function evaluate_fitness():
+    1. for individual in population:
+        1. set individual.fitness $\leftarrow$ calculate_fitness(individual)
 
-function select_parents():
-    // select parents for reproduction
-    parents = []
-    for i in range(parent_selection_size):
-        parent = tournament_selection(population, tournament_size)
-        parents.append(parent)
-    return parents
+**Select parents**
+// select parents for reproduction
+1. function select_parents():
+    1. set parents $\leftarrow$ []
+    1. for i $\in{1:\text{parent_selection_size}}$:
+        1. set parent $\leftarrow$ tournament_selection(population, tournament_size)
+        1. parents.append(parent)
+1. return parents
 
-function create_offspring():
-    // create offspring through crossover and mutation
-    offspring = []
-    for i in range(offspring_size):
-        parent1, parent2 = select_parents()
-        child = crossover(parent1, parent2)
-        child = mutate(child)
-        offspring.append(child)
-    return offspring
+**Create offspring**
+// create offspring through crossover and mutation
+1. function create_offspring():
+    1. offspring $\leftarrow$ []
+    1. for i in range(offspring_size):
+        1. parent1, parent2 = select_parents()
+        1. child = crossover(parent1, parent2)
+        1. child = mutate(child)
+        1. offspring.append(child)
+    1. return offspring
 
-function replace_least_fit():
-    // replace least fit individuals in the population with offspring
-    offspring_fitness = [individual.fitness for individual in offspring]
-    for i in range(replacement_size):
-        least_fit_index = population_fitness.index(min(population_fitness))
-        population[least_fit_index] = offspring[i]
-        population_fitness[least_fit_index] = offspring_fitness[i]
+**Replace**
+// replace least fit individuals in the population with offspring
+1. function replace_least_fit():
+    1. set offspring_fitness = [individual.fitness for individual in offspring]
+    1. for i in range(replacement_size):
+        1. set least_fit_index $\leftarrow$ population_fitness.index(min(population_fitness))
+        1. set population[least_fit_index] $\leftarrow$ offspring[i]
+        1. set population_fitness[least_fit_index] $\leftarrow$ offspring_fitness[i]
 
-function return_best():
-    // return individual with best fitness
-    best_individual = max(population, key=lambda individual: individual.fitness)
-    return best_individual
+**Best individual**
+// return individual with best fitness
+1. function return_best():
+    1. set best_individual $\leftarrow$ max(population, key=lambda individual: individual.fitness)
+1. return best_individual
 
-function tournament_selection(population, tournament_size):
-    // select individual with highest fitness in tournament
-    tournament = random.sample(population, tournament_size)
-    winner = max(tournament, key=lambda individual: individual.fitness)
-    return winner
+**Tournament selection**
+// select individual with highest fitness in tournament
+1. function tournament_selection(population, tournament_size):
+    1. set tournament $\leftarrow$ random.sample(population, tournament_size)
+    1. set winner $\leftarrow$ max(tournament, key=lambda individual: individual.fitness)
+1. return winner
 
-function crossover(parent1, parent2):
-    // combine genes of parents to create child
-    child = Individual()
-    for i in range(gene_count):
-        if random.random() < crossover_probability:
-            child.genes[i] = parent1.genes[i]
-        else:
-            child.genes[i] = parent2.genes[i]
-    return child
+**Crossover**
+// combine genes of parents to create child
+1. function crossover(parent1, parent2):
+    1. set child $\leftarrow$ Individual()
+    1. for i in range(gene_count):
+        1. if random.random() < crossover_probability:
+            1. child.genes[i] $\leftarrow$ parent1.genes[i]
+        1. else:
+            1. child.genes[i] $\leftarrow$ parent2.genes[i]
+1. return child
 
-function mutate(individual):
-    // randomly mutate genes of individual
-    for i in range(gene_count):
-        if random.random() < mutation_probability:
-            individual.genes[i] = random.uniform(min_gene_value, max_gene_value)
-    return individual
-
+**Mutate**
+// randomly mutate genes of individual
+1. function mutate(individual):
+    1. for $i\in{1,2,\dots\text{gene_count}}$:
+        1. if random.random() < mutation_probability:
+            1. individual.genes[i] $\leftarrow\mathcal{U}$(min_gene_value, max_gene_value)
+1. return individual
 ````
 
 
