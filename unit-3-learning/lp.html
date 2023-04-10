@@ -789,10 +789,7 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 </section>
 <section id="dual-linear-programs">
 <span id="content-references-dual-linear-problem"></span><h2>Dual linear programs<a class="headerlink" href="#dual-linear-programs" title="Permalink to this headline">#</a></h2>
-<p>The dual linear program, derived from the primal program, is an alternative way of looking at the same problem (<a class="reference internal" href="#defn-dual-linear program">Definition 42</a>). The dual linear program (LP) is derived from the original (the primal problem) using the scheme:</p>
-<ul class="simple">
-<li><p>Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.</p></li>
-</ul>
+<p>The dual linear program, derived from the primal program, is an alternative way of looking at the same problem (<a class="reference internal" href="#defn-dual-linear program">Definition 42</a>):</p>
 <div class="proof definition admonition" id="defn-dual-linear program">
 <p class="admonition-title"><span class="caption-number">Definition 42 </span> (Dual linear program)</p>
 <section class="definition-content" id="proof-content">
@@ -809,7 +806,11 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector in the dual, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function. Finally, the less than or equal to constraints in the primal problem become greater than or equal to constraints in the dual problem.</p>
 <p>Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
 </section>
-</div><section id="duality-interpretation">
+</div><p>The dual linear program (LP) is derived from the original (the primal problem) using the scheme:</p>
+<ul class="simple">
+<li><p>Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.</p></li>
+</ul>
+<section id="duality-interpretation">
 <h3>Duality interpretation<a class="headerlink" href="#duality-interpretation" title="Permalink to this headline">#</a></h3>
 <p>If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:</p>
 <ul class="simple">
