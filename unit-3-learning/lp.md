@@ -177,9 +177,7 @@ This problem structure is highly adaptable and widely used for various applicati
 
 (content:references:dual-linear-problem)=
 ## Dual linear programs
-The dual linear program, derived from the primal program, is an alternative way of looking at the same problem ({prf:ref}`defn-dual-linear program`). The dual linear program (LP) is derived from the original (the primal problem) using the scheme:
-
-* Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.
+The dual linear program, derived from the primal program, is an alternative way of looking at the same problem ({prf:ref}`defn-dual-linear program`):
 
 ````{prf:definition} Dual linear program
 :label: defn-dual-linear program
@@ -199,6 +197,10 @@ $c_{j}$ coefficients become the right-hand side vector in the dual, while the $b
 
 Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.
 ````
+
+The dual linear program (LP) is derived from the original (the primal problem) using the scheme:
+
+* Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.
 
 ### Duality interpretation
 If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:
