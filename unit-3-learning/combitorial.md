@@ -1,27 +1,30 @@
 # Dynamic Progamming and Heuristic Optimization
 
 ## Introduction
+
 Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems. In this lecture we'll introduce:
 
 <!-- Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics. -->
 
-
 * {ref}`content:references:dynamic-programming` solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.
 
-* {ref}`content:references:heuristic-optimization` is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute. 
+* {ref}`content:references:heuristic-optimization` is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.
 
-* {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.
+<!-- * {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions. -->
 
 ---
 
 (content:references:dynamic-programming)=
-## Dynamic programming
-Dynamic programming is an approach developed by [Richard Bellman in the 1950s](https://en.wikipedia.org/wiki/Richard_E._Bellman) that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency. 
 
-Dynamic programming is typically used for problems that can be divided into overlapping subproblems, which means that the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. It is also true for _sequential decision problems_.
+## Dynamic programming
+
+Dynamic programming is an approach developed by [Richard Bellman in the 1950s](https://en.wikipedia.org/wiki/Richard_E._Bellman) that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency.
+
+Dynamic programming is typically used for problems that can be divided into [overlapping subproblems](https://en.wikipedia.org/wiki/Overlapping_subproblems), i.e., the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. It is also true for _sequential decision problems_.
 
 ### Dynamic decision problems
-Imagine we have a decision making agent, in some state $x_{t}$, at time $t$. At time $t$, the agent takes an action $a_{t}$ from a set of possible actions $a_{t}\in\mathcal{A}\left(x_{t}\right)$ that leads to a new state $x_{t+1} = T(x_{t},a_{t})$ and a payoff $F(x_{t},a_{t})$. In this situation, an infinite-horizon descision problem takes the form:
+
+Imagine we have a decision making agent, in some state $x_{t}$, at time $t$. At time $t$, the agent takes an action $a_{t}$ from a set of possible actions $a_{t}\in\mathcal{A}\left(x_{t}\right)$ that leads to a new state $x_{t+1} = T(x_{t},a_{t})$ and a payoff $F(x_{t},a_{t})$. In this situation, an infinite-horizon decision problem takes the form:
 
 $$
 \begin{eqnarray}
@@ -32,7 +35,8 @@ V(x_{\circ}) & = & \max_{a\in\mathcal{A}} \sum_{t=0}^{\infty}
 \end{eqnarray}
 $$
 
-where the function $V(x_{\circ})$ is the _value function_, $x_{\circ}$ is the initial state of the agent and $0\leq\beta\leq{1}$ denotes the discount factor. Dynamic programming breaks this decision problem into smaller subproblems using Bellman's principle of optimality ({prf:ref}`obs-bellman-principle-of-optimality`):
+where the function $V(x_{\circ})$ is the _value function_, $x_{\circ}$ is the initial state of the agent and $0\leq\beta\leq{1}$ denotes the discount factor. 
+Dynamic programming breaks this decision problem into smaller subproblems using Bellman's principle of optimality ({prf:ref}`obs-bellman-principle-of-optimality`):
 
 ````{prf:observation} Bellman's principle of optimality
 :label: obs-bellman-principle-of-optimality
@@ -44,17 +48,55 @@ The optimality principle suggests that we can pull the first decision from the s
 
 $$
 \begin{eqnarray}
-V(x_{\circ}) & = & \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\left[\max_{a_{t}\mathcal{A}}\sum_{t=1}^{\infty}\beta^{t-1}F(x_{t},a_{t})\right]\right\}\\
+V(x_{\circ}) & = & \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\cdot\left[\max_{a_{t}\mathcal{A}}\sum_{t=1}^{\infty}\beta^{t-1}F(x_{t},a_{t})\right]\right\}\\
 \text{subject to}&~& a_{t}\in\mathcal{A}(x_{t}) \\
 \text{and} &~& x_{t+1} = T(x_{t},a_{t})
 \end{eqnarray}
 $$
 
+However, the quantity inside the brackets of the $V(x_{\circ})$ expression is just $V(x_{1})$, i.e., the decision problem starting at time step `1` instead of time step `0`. Thus, we can re-write the expression above as:
+
+$$
+\begin{eqnarray}
+V(x_{\circ}) & = & \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\cdot{V(x_{1})}\right\}\\
+\text{subject to}&~& a_{t}\in\mathcal{A}(x_{t}) \\
+\text{and} &~& x_{t+1} = T(x_{t},a_{t})
+\end{eqnarray}
+$$
+
+Dropping the subscripts gives rise to a [Bellman decision equation](https://en.wikipedia.org/wiki/Bellman_equation) of the form shown in {prf:ref}`defn-bellman-decision-eqn`:
+
+````{prf:definition} Bellman equation
+:label: defn-bellman-decision-eqn
+
+The optimal value of a state $x$ denoted by $V(x)$ is governed by a Bellman equation of the form:
+
+```{math}
+:label: eqn-bellman-decision-eqn
+V(x) = \max_{a\in\mathcal{A}} \left\{F(x,a) + \beta\cdot{V(T(x,a))}\right\}
+```
+
+where $\mathcal{A}$ denotes the set of possible actions open to the decision maker, and $0\leq\beta\leq{1}$ denotes the discount factor. Equation {eq}`eqn-bellman-decision-eqn` is a [functional equation](https://en.wikipedia.org/wiki/Functional_equation), i.e., an equation in which one or several functions appear as unknowns. 
+
+````
+
 (content:references:heuristic-optimization)=
+
 ## Heuristic optimization
+
 Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.
 
-### Simulated annealing 
+There are several types of heuristic optimization algorithms, including:
+
+* [Simulated Annealing (SA)](https://en.wikipedia.org/wiki/Simulated_annealing) is inspired by the process of annealing in metallurgy. It starts with an initial solution and gradually changes it by randomly perturbing it and accepting or rejecting the new solution based on a probability function. SA is commonly used for problems that involve finding the global minimum of a non-convex function.
+* [Genetic Algorithms (GA)](https://en.wikipedia.org/wiki/Genetic_algorithm) are inspired by the process of natural selection in biology. It starts with a population of potential solutions represented as chromosomes, which evolve through a series of selection, crossover, and mutation operations to create a new generation of solutions. GA is commonly used for problems that involve a large number of variables and constraints.
+* [Particle Swarm Optimization (PSO)](https://en.wikipedia.org/wiki/Particle_swarm_optimization) simulates the behavior of a swarm of particles moving in a multi-dimensional search space. Each particle represents a potential solution to the problem, and it adjusts its position and velocity based on the best solution found so far by the swarm. PSO is commonly used for problems that require continuous optimization.
+* [Ant Colony Optimization (ACO)](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) is inspired by the behavior of ant colonies. It involves a set of artificial ants that communicate with each other using pheromone trails to find the best path between a start and end point. ACO is commonly used for problems that involve finding the shortest path in a graph.
+* [Artificial Bee Colony (ABC)](https://en.wikipedia.org/wiki/Artificial_bee_colony_algorithm) simulates the behavior of a colony of artificial honey bees. Each bee represents a potential solution to the problem, and it adjusts its position based on the quality of the nectar source it has found. ABC is commonly used for problems that involve finding the optimal solution in a continuous search space.
+* [Tabu Search (TS)](https://en.wikipedia.org/wiki/Tabu_search) uses a memory-based search strategy to avoid revisiting previously explored solutions. It maintains a list of tabu moves, which are forbidden moves, to ensure that the search space is explored efficiently. TS is commonly used for problems that involve finding the optimal solution in a combinatorial search space.
+
+### Simulated annealing
+
 Simulated annealing (SA) is a heuristic optimization algorithm inspired by the annealing process in metallurgy {cite}`SIMAN1983`. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.
 
 Simulated annealing solves complex optimization problems by randomly selecting a candidate and evaluating its fitness compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution found so far are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.
@@ -117,10 +159,9 @@ The performance of simulated annealing depends upon the choice of the temperatur
 
 ````
 
+<!-- ### Genetic algortihms
 
-
-### Genetic algortihms
-Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions. 
+Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions.
 
 Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning. A pseudocode implementation of a genetic algorithm is given in {prf:ref}`algo-genetic-algorithm`:
 
@@ -215,9 +256,7 @@ Genetic algorithms can handle continuous and discrete search spaces and are ofte
         1. if random.random() < mutation_probability:
             1. individual.genes[i] $\leftarrow\mathcal{U}$(min_gene_value, max_gene_value)
 1. return individual
-````
-
-
+```` -->
 
 <!-- 
 While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have _optimal substructure_.
@@ -226,9 +265,10 @@ If dynamic programming methods are applicable, then there is a relationship betw
 
 Dynamic programming can be a valuable tool for solving many problems, but it can be computationally intensive and may only sometimes be the most efficient solution. When deciding whether to use dynamic programming, it is essential to consider the trade-offs between the algorithm’s efficiency and the problem’s complexity. -->
 
-(content:references:branch-and-bound)=
+<!-- (content:references:branch-and-bound)=
 ## Branch and Bound
-Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root. 
+
+Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.
 
 Let's consider minimizing an arbitrary objective function $f$:
 
@@ -258,13 +298,14 @@ Let's consider minimizing an arbitrary objective function $f$:
 
 **Return**
 the minimum function value $\mathcal{B}$
-```
+``` -->
 
 ---
 
 ## Summary
-Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems:
 
+Dynamic programming, heuristic optimization, and other combinatorial optimization techniques can all be used to solve optimization problems.
+In this lecture we introduced several optimization approaches:
 
 <!-- 
 Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics.
@@ -273,6 +314,6 @@ In this lecture we introduced several optimization approaches: -->
 
 * {ref}`content:references:dynamic-programming` solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.
 
-* {ref}`content:references:heuristic-optimization` is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute. 
+* {ref}`content:references:heuristic-optimization` is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.
 
-* {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.
+<!-- * {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions. -->
