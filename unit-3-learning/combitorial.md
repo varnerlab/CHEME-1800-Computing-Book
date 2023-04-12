@@ -64,24 +64,24 @@ V(x_{\circ}) & = & \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) 
 \end{eqnarray}
 $$
 
-Dropping the subscripts gives rise to a [Bellman decision equation](https://en.wikipedia.org/wiki/Bellman_equation) of the form shown in {prf:ref}`defn-bellman-decision-eqn`:
+Dropping the subscripts gives rise to a [Bellman equation](https://en.wikipedia.org/wiki/Bellman_equation) of the form shown in {prf:ref}`defn-bellman-decision-eqn`:
 
 ````{prf:definition} Bellman equation
 :label: defn-bellman-decision-eqn
 
-The optimal value of a state $x$ denoted by $V(x)$ is governed by a Bellman equation of the form:
+The optimal value of a state $x$, denoted by $V(x)$, is governed by a Bellman equation of the form:
 
 ```{math}
 :label: eqn-bellman-decision-eqn
 V(x) = \max_{a\in\mathcal{A}} \left\{F(x,a) + \beta\cdot{V(T(x,a))}\right\}
 ```
 
-where $\mathcal{A}$ denotes the set of possible actions open to the decision maker, and $0\leq\beta\leq{1}$ denotes the discount factor. Equation {eq}`eqn-bellman-decision-eqn` is a [functional equation](https://en.wikipedia.org/wiki/Functional_equation), i.e., an equation in which one or several functions appear as unknowns. 
-
+where $\mathcal{A}$ denotes the set of possible actions open to the decision maker, and $0\leq\beta\leq{1}$ denotes the discount factor. 
 ````
 
-(content:references:heuristic-optimization)=
+Equation {eq}`eqn-bellman-decision-eqn` is a [functional equation](https://en.wikipedia.org/wiki/Functional_equation), i.e., an equation in which functions appear as unknowns. Thus, solving Eqn. {eq}`eqn-bellman-decision-eqn` gives the unknown value function $V(x)$. Further, by calculating the value function, we will also find the _policy function_ $a(x)$ that describes the optimal action as a function of the system state $x$.
 
+(content:references:heuristic-optimization)=
 ## Heuristic optimization
 
 Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.
@@ -99,7 +99,7 @@ There are several types of heuristic optimization algorithms, including:
 
 Simulated annealing (SA) is a heuristic optimization algorithm inspired by the annealing process in metallurgy {cite}`SIMAN1983`. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.
 
-Simulated annealing solves complex optimization problems by randomly selecting a candidate and evaluating its fitness compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution found so far are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.
+Simulated annealing solves complex optimization problems by randomly selecting a candidate solution, and evaluating the fitness of this candidate compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.
 
 A pseudo-code implementation for a simulated annealing routine is given in {prf:ref}`algo-simulated-annealing`:
 
@@ -158,6 +158,8 @@ The performance of simulated annealing depends upon the choice of the temperatur
 1. return new_solution
 
 ````
+
+
 
 <!-- ### Genetic algortihms
 
