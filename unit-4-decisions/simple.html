@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Probability and Simple Choices under Uncertainty &#8212; CHEME 1800/4800</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-4-decisions/simple.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Markov Decision Processes" href="mdp.html" />
+    <link rel="prev" title="The Decision Problem: Probability, Random Processes, and Decisions" href="decisions-landing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VQRVBL1C02"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-VQRVBL1C02');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/cornell_seal_simple_black.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CHEME 1800/4800</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Principles of Computational Thinking for Engineers
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-1-basics/basics-landing.html">
+   Unit 1. Basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/types.html">
+     Expressions, Variables and Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/functions.html">
+     Functions, Control Statements, and Recursion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/programs.html">
+     Programs and Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-1-basics/data-file-io.html">
+     Data Input and Output
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-2-data/data-landing.html">
+   Unit 2. Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/trees.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">
+     Vectors, Matrices and Linear Algebraic Equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-2-data/reduction.html">
+     Dimensionality Reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unit-3-learning/learning-landing.html">
+   Unit 3. Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/penalty.html">
+     Ordinary Least Squares Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/lp.html">
+     Linear Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unit-3-learning/combitorial.html">
+     Dynamic Progamming and Heuristic Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="decisions-landing.html">
+   Unit 4. Decisions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Probability and Simple Choices under Uncertainty
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mdp.html">
+     Markov Decision Processes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="multi-arm-bandits.html">
+     Multiple Arm Bandit Problems and Reinforcement Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../References.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-1800-Computing-Book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/varnerlab/CHEME-1800-Computing-Book/issues/new?title=Issue%20on%20page%20%2Funit-4-decisions/simple.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/unit-4-decisions/simple.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probability and Simple Choices under Uncertainty
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-maximization">
+     Utility maximization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties-of-utility-functions">
+       Properties of utility functions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indifference-curves-and-optimal-choices">
+       Indifference curves and optimal choices
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-choices-under-uncertainty">
+     Simple choices under uncertainty
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#moments-of-discrete-random-variables">
+       Moments of discrete random variables
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#expectation">
+         Expectation
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#variance">
+         Variance
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-mass-functions">
+       Probability mass functions
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#bernoulli-random-variable">
+         Bernoulli random variable
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#binomial-random-variable">
+         Binomial random variable
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#geometric-random-variable">
+         Geometric random variable
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#poisson-random-variable">
+         Poisson random variable
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Probability and Simple Choices under Uncertainty</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probability and Simple Choices under Uncertainty
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-maximization">
+     Utility maximization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties-of-utility-functions">
+       Properties of utility functions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indifference-curves-and-optimal-choices">
+       Indifference curves and optimal choices
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-choices-under-uncertainty">
+     Simple choices under uncertainty
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#moments-of-discrete-random-variables">
+       Moments of discrete random variables
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#expectation">
+         Expectation
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#variance">
+         Variance
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-mass-functions">
+       Probability mass functions
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#bernoulli-random-variable">
+         Bernoulli random variable
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#binomial-random-variable">
+         Binomial random variable
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#geometric-random-variable">
+         Geometric random variable
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#poisson-random-variable">
+         Poisson random variable
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="probability-and-simple-choices-under-uncertainty">
+<h1>Probability and Simple Choices under Uncertainty<a class="headerlink" href="#probability-and-simple-choices-under-uncertainty" title="Permalink to this headline">#</a></h1>
+<p>Uncertain decisions are those that involve a certain degree of risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship. Making uncertain decisions involves weighing each option’s potential benefits and drawbacks and considering the likelihood of different outcomes.</p>
+<p>In this lecture, we introduce tools to model and analyze simple uncertain decisions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-utility-and-utlity-max"><span class="std std-ref">Utility maximization</span></a> is the process of selecting the option that provides the highest level of satisfaction, or utility, based on the individual’s preferences and constraints. This concept is often used in economics to model consumer behavior and in decision theory to analyze choices under uncertainty.</p></li>
+<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Simple choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
+</ul>
+<hr class="docutils" />
+<section id="utility-maximization">
+<span id="content-references-utility-and-utlity-max"></span><h2>Utility maximization<a class="headerlink" href="#utility-maximization" title="Permalink to this headline">#</a></h2>
+<p>A utility function is a mathematical expression that represents an individual’s preferences over different choices or outcomes. It assigns a numerical value, called “utility,” to each possible choice or outcome, based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have different preferences.</p>
+<section id="properties-of-utility-functions">
+<h3>Properties of utility functions<a class="headerlink" href="#properties-of-utility-functions" title="Permalink to this headline">#</a></h3>
+<p>The mathematical properties of a <em>proper</em> utility function include:</p>
+<ul class="simple">
+<li><p><strong>Continuity</strong>: A small change in the input variable should lead to a small change in the output value of the function.
+Monotonicity: The utility function should be non-decreasing, meaning that as the input variable increases, the output value of the function also increases.</p></li>
+<li><p><strong>Convexity</strong>: The utility function should exhibit a diminishing marginal utility, meaning that the additional satisfaction gained from an additional unit of the input variable decreases as the input variable increases.</p></li>
+<li><p><strong>Independence:</strong> The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.</p></li>
+<li><p><strong>Substitutability</strong>: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.</p></li>
+</ul>
+<p>These mathematical properties ensure that the utility function is a well-behaved mathematical function that accurately represents an individual’s preferences over different options.</p>
+</section>
+<section id="indifference-curves-and-optimal-choices">
+<h3>Indifference curves and optimal choices<a class="headerlink" href="#indifference-curves-and-optimal-choices" title="Permalink to this headline">#</a></h3>
+<p>An indifference curve is a graphical representation of a combination of choices that provide an individual with the same level of satisfaction or utility. Each point on the indifference curve represents a combination of choices that provides the same satisfaction or utility. The curve slopes downwards because the individual is willing to give up some of one good to obtain more of the other while remaining indifferent. Indifference curves are valuable tools in economics for analyzing consumer preferences and making predictions about consumer behavior in response to changes in prices or income.</p>
+<p>Utility maximization is the process of choosing the option that provides the highest level of utility, given a set of available options and the individual’s preferences. It involves evaluating each option using a utility function, and selecting the one that maximizes the utility subject to constraints.</p>
+</section>
+</section>
+<section id="simple-choices-under-uncertainty">
+<span id="content-references-utility-and-uncetain-decisions"></span><h2>Simple choices under uncertainty<a class="headerlink" href="#simple-choices-under-uncertainty" title="Permalink to this headline">#</a></h2>
+<p>Fill me in.</p>
+<section id="moments-of-discrete-random-variables">
+<h3>Moments of discrete random variables<a class="headerlink" href="#moments-of-discrete-random-variables" title="Permalink to this headline">#</a></h3>
+<p>It is often helpful to extract characteristics such as the mean, standard deviation, or other quantities of interest from random variables.  We compute these parameters of interest from random market data using a concept called the <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments of a random variable</a>. The mean, variance, skew, kurtosis, etc., are all examples of the <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments of a random variable</a>. We’ll only focus on the first two moments, the expectation and the variance.</p>
+<section id="expectation">
+<h4>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> measures the central tendency of the values of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation is defined as a weighted sum (for discrete <span class="math notranslate nohighlight">\(X\)</span>):</p>
+<div class="math notranslate nohighlight" id="equation-eqn-expectation">
+<span class="eqno">(82)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability mass function evaluated at <span class="math notranslate nohighlight">\(X=x\)</span>; a A probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value.</p>
+<div class="proof observation admonition" id="obs-expectation-props">
+<p class="admonition-title"><span class="caption-number">Observation 10 </span> (Properties of expectation)</p>
+<section class="observation-content" id="proof-content">
+<p>The expectation of a random variable <span class="math notranslate nohighlight">\(X\)</span> (discrete or continuous) has several useful (and important) properties:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(c\right) = c\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(cX\right) = c\times\mathbb{E}\left(X\right)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(g(X)\right) = \sum_{x\in{X(\Omega)}}g(x)p_{X}(x)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(g(X)+h(X)\right) = \mathbb{E}(g(X)) + \mathbb{E}(h(X))\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(X+c\right) = \mathbb{E}(X) + c\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
+</ol>
+</section>
+</div></section>
+<section id="variance">
+<h4>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> measures the expected dispersion for
+individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (mean). The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-variance">
+<span class="eqno">(83)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="proof observation admonition" id="obs-variances-var">
+<p class="admonition-title"><span class="caption-number">Observation 11 </span> (Properties of variance)</p>
+<section class="observation-content" id="proof-content">
+<p>Like the expected value, the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> has a few interesting (and important) properties:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \left(\mu\right)^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(cX) = {c^2}\text{Var}(X)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(X+c) = \text{Var}(X)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
+</ul>
+</section>
+</div><p>The more common quantity that is used to measure dispersion, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>, is related to the variance: <span class="math notranslate nohighlight">\(\sigma_{X} = \sqrt{\text{Var}(X)}\)</span>.</p>
+</section>
+</section>
+<section id="probability-mass-functions">
+<h3>Probability mass functions<a class="headerlink" href="#probability-mass-functions" title="Permalink to this headline">#</a></h3>
+<p>In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function (PMF)</a>.</p>
+<div class="proof definition admonition" id="defn-pmf">
+<p class="admonition-title"><span class="caption-number">Definition 45 </span> (Probability Mass Function)</p>
+<section class="definition-content" id="proof-content">
+<p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of
+obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(x) = P\left(X=x\right)\]</div>
+<p>The set of all possible outcomes for a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is denoted as <span class="math notranslate nohighlight">\(X\left(\Omega\right)\)</span>. A PMF must satisfy the condition:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{x\in{X(\Omega)}}p_{X}(x)=1\]</div>
+</section>
+</div><p>The PMF is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.</p>
+<section id="bernoulli-random-variable">
+<h4>Bernoulli random variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this headline">#</a></h4>
+<p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
+outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of 0 is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
+<div class="proof definition admonition" id="defn-pmf-bernouli">
+<p class="admonition-title"><span class="caption-number">Definition 46 </span> (Bernoulli Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}p_{X}(x) =
+\begin{cases}
+  p &amp; \text{if } x = 1 \\
+  1 - p &amp; \text{if } x = 0
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> is called the Bernoulli parameter. For a Bernoulli random variable <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]\)</span> the expectation is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = p\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = p(1-p)\]</div>
+</section>
+</div></section>
+<section id="binomial-random-variable">
+<h4>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h4>
+<p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses.</p>
+<div class="proof definition admonition" id="defn-pmf-binomial">
+<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Binomial Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we do repeated Bernoulli trials <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]^n\)</span>, i.e., <span class="math notranslate nohighlight">\(n\)</span> trials of an independent binary experiment.
+The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is governed by the binomial probability mass function:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> denotes the number of successes in <span class="math notranslate nohighlight">\(n\)</span> independent experiments, the binomial parameter <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> is the probability
+of a successful trial and:</p>
+<div class="math notranslate nohighlight">
+\[\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}\]</div>
+<p>The expectation of a binomial random variable is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = np\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = np(1-p)\]</div>
+</section>
+</div></section>
+<section id="geometric-random-variable">
+<h4>Geometric random variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this headline">#</a></h4>
+<p>We may be interested in doing a binary experiment, e.g., a coin flip until a specified outcome is obtained.
+A geometric random variable governs the outcome of this type of experiment;
+a geometric random variable gives the probability that the first occurrence of success requires <span class="math notranslate nohighlight">\(k\)</span> independent trials, each with success probability <span class="math notranslate nohighlight">\(p\)</span>. In other words,
+a geometric random variable describes the number of failures obtained before final success.</p>
+<div class="proof definition admonition" id="defn-pmf-geometric">
+<p class="admonition-title"><span class="caption-number">Definition 48 </span> (Geometric Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a geometric random variable. The probability mass function for a geometric random variable is given by:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> denotes the geometric parameter <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span>. The expectation of a geometric random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = \frac{1}{p}\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = \frac{1-p}{p^2}\]</div>
+</section>
+</div></section>
+<section id="poisson-random-variable">
+<h4>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h4>
+<p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen <code class="docutils literal notranslate"><span class="pre">X</span></code> number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.</p>
+<div class="proof definition admonition" id="defn-pmf-poisson">
+<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Poisson Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Poisson random variable. The probability mass function for a Poisson random variable is given by:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span> denotes the Poisson parameter, and <span class="math notranslate nohighlight">\(!\)</span> denotes the factorial function. The expectation of a Poisson random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = \lambda\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = \lambda\]</div>
+</section>
+</div></section>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
+<p>Uncertain decisions are those that involve risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship.</p>
+<p>In this lecture, we introduced tools to model and analyze simple uncertain decisions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-utility-and-utlity-max"><span class="std std-ref">Utility maximization</span></a> is the process of selecting the option that provides the highest level of satisfaction, or utility, based on the individual’s preferences and constraints. This concept is often used in economics to model consumer behavior and in decision theory to analyze choices under uncertainty.</p></li>
+<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Simple choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./unit-4-decisions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="decisions-landing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The Decision Problem: Probability, Random Processes, and Decisions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mdp.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markov Decision Processes</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varner<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
