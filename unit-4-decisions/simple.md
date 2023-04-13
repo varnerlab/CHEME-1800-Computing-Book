@@ -40,33 +40,46 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 * __Independence:__ The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.
 * __Substitutability__: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.
 
-These mathematical properties ensure that the utility function is a well-behaved mathematical function that accurately represents an individual's preferences over different options.
+These mathematical properties ensure that the utility function is a well-behaved mathematical function that represents an individual's preferences over different options. Let's consider a specific example utility function ({prf:ref}`example-cobb-douglas-uf`):
 
-#### Example
-For example, consider a utility function governing the satisfaction gained by purchasing two goods $(x_{1},x_{2})$ of the form:
+````{prf:example} Cobb–Douglas utility function
+:label: example-cobb-douglas-uf
+:class: dropdown
+
+The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) governing the satisfaction gained by purchasing $n$ goods $(x_{1},x_{2},\dots,x_{n})$ is given by:
 
 ```{math}
 :label: eqn-simple-utility-function
-
-U(x_{1},x_{2}) = \sqrt{x_{1}\cdot{x_{2}}}
+U(x)  = \prod_{i=1}^{n}x_{i}^{\alpha_{i}} 
 ```
 
-Equation {eq}`eqn-simple-utility-function` is continuous, so the first condition is satisfied. To explore the convexity property, compute the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility), i.e., the partial derivative of $U(\dots)$ with respect to goods $x_{1}$ and $x_{2}$:
+where the coefficients $\alpha_{i}$ are governed by:
+
+```{math}
+\sum_{i=1}^{n}\alpha_{i}  = 1
+```
+
+Show the [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) satisfies the first two utility function properties (continuity and convexity). 
+
+__Solution__: Equation {eq}`eqn-simple-utility-function` is continuous, so the first condition is satisfied. To explore the convexity property, compute the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility), i.e., the partial derivative of $U(\dots)$ with respect to $x_{i}$:
 
 ```{math}
 :label: eqn-mu-u-function
 
-\begin{eqnarray}
-\text{MU}_{x_{1}} = \frac{\partial{U}}{\partial{x_{1}}} & = & \left(\frac{1}{2}\right)\frac{x_{2}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
-\text{MU}_{x_{2}} = \frac{\partial{U}}{\partial{x_{2}}} & = & \left(\frac{1}{2}\right)\frac{x_{1}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
-\end{eqnarray}
-
+\text{MU}_{x_{i}} = \left(\alpha_{i}x^{\alpha_{i}-1}\right)\cdot\left(\prod_{j=1,i}^{n}x_{j}^{\alpha_{j}}\right)
 ```
 
-As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$, thus, the convexity property is satisfied.  
+where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$.
+
+````
 
 ### Indifference curves and optimal choices
-An indifference curve is a graphical representation of a combination of choices that provide an individual with the same level of satisfaction or utility. Each point on the indifference curve represents a combination of choices that provides the same satisfaction or utility. The curve slopes downwards because the individual is willing to give up some of one good to obtain more of the other while remaining indifferent. Indifference curves are valuable tools in economics for analyzing consumer preferences and making predictions about consumer behavior in response to changes in prices or income.
+An indifference curve is a graphical representation of a combination of choices that provide an individual with the same level of satisfaction or utility. Each point on the indifference curve represents a combination of choices that provides the same satisfaction or utility (XXX). 
+
+
+
+
+The curve slopes downwards because the individual is willing to give up some of one good to obtain more of the other while remaining indifferent. Indifference curves are valuable tools in economics for analyzing consumer preferences and making predictions about consumer behavior in response to changes in prices or income.
 
 Utility maximization is the process of choosing the option that provides the highest level of utility, given a set of available options and the individual's preferences. It involves evaluating each option using a utility function, and selecting the one that maximizes the utility subject to constraints.
 
