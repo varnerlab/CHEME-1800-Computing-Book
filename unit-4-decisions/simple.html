@@ -435,6 +435,13 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#properties-of-utility-functions">
        Properties of utility functions
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example">
+         Example
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indifference-curves-and-optimal-choices">
@@ -534,6 +541,13 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#properties-of-utility-functions">
        Properties of utility functions
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example">
+         Example
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indifference-curves-and-optimal-choices">
@@ -621,10 +635,20 @@ title="Print to PDF"
 <hr class="docutils" />
 <section id="utility-maximization">
 <span id="content-references-utility-and-utlity-max"></span><h2>Utility maximization<a class="headerlink" href="#utility-maximization" title="Permalink to this headline">#</a></h2>
-<p>A utility function is a mathematical expression that represents an individual’s preferences over different choices or outcomes. It assigns a numerical value, called “utility,” to each possible choice or outcome, based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have different preferences.</p>
-<section id="properties-of-utility-functions">
+<p>A utility function is a mathematical expression representing an individual’s preferences over different choices or outcomes. It assigns a numerical value, called <em>utility</em>, to each possible choice based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.</p>
+<p>Let’s begin our discussion of utility by introducing the classical application of this concept, namely, the choice of how much of <span class="math notranslate nohighlight">\(n\)</span> goods to purchase (<a class="reference internal" href="#defn-individual-utility">Definition 45</a>):</p>
+<div class="proof definition admonition" id="defn-individual-utility">
+<p class="admonition-title"><span class="caption-number">Definition 45 </span> (Utility)</p>
+<section class="definition-content" id="proof-content">
+<p>The preferences of individual decision-making agents for <span class="math notranslate nohighlight">\(n\)</span> goods are assumed to be represented by a utility function:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-utility-function-generic">
+<span class="eqno">(82)<a class="headerlink" href="#equation-eqn-utility-function-generic" title="Permalink to this equation">#</a></span>\[U(x_{1},x_{2},\dots,x_{n})\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_{1},x_{2},\dots,x_{n}\)</span> are the quantities of <span class="math notranslate nohighlight">\(n\)</span> goods consumed in time period <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>. The utility
+function <span class="math notranslate nohighlight">\(U(\dots)\)</span> is unique only up to an order-preserving transformation.</p>
+</section>
+</div><section id="properties-of-utility-functions">
 <h3>Properties of utility functions<a class="headerlink" href="#properties-of-utility-functions" title="Permalink to this headline">#</a></h3>
-<p>The mathematical properties of a <em>proper</em> utility function include:</p>
+<p>The mathematical properties of a <em>proper</em> utility function <span class="math notranslate nohighlight">\(U(\dots)\)</span> include:</p>
 <ul class="simple">
 <li><p><strong>Continuity</strong>: A small change in the input variable should lead to a small change in the output value of the function.
 Monotonicity: The utility function should be non-decreasing, meaning that as the input variable increases, the output value of the function also increases.</p></li>
@@ -633,6 +657,19 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 <li><p><strong>Substitutability</strong>: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.</p></li>
 </ul>
 <p>These mathematical properties ensure that the utility function is a well-behaved mathematical function that accurately represents an individual’s preferences over different options.</p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h4>
+<p>For example, consider a utility function governing the satisfaction gained by purchasing two goods <span class="math notranslate nohighlight">\((x_{1},x_{2})\)</span> of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-simple-utility-function">
+<span class="eqno">(83)<a class="headerlink" href="#equation-eqn-simple-utility-function" title="Permalink to this equation">#</a></span>\[U(x_{1},x_{2}) = \sqrt{x_{1}\cdot{x_{2}}}\]</div>
+<p>Equation <a class="reference internal" href="#equation-eqn-simple-utility-function">(83)</a> is continuous, so the first condition is satisfied. To explore the convexity property, compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_utility">marginal utility</a>, i.e., the partial derivative of <span class="math notranslate nohighlight">\(U(\dots)\)</span> with respect to goods <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-mu-u-function">
+<span class="eqno">(84)<a class="headerlink" href="#equation-eqn-mu-u-function" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\text{MU}_{x_{1}} = \frac{\partial{U}}{\partial{x_{1}}} &amp; = &amp; \left(\frac{1}{2}\right)\frac{x_{2}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
+\text{MU}_{x_{2}} = \frac{\partial{U}}{\partial{x_{2}}} &amp; = &amp; \left(\frac{1}{2}\right)\frac{x_{1}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
+\end{eqnarray}\end{split}\]</div>
+<p>As <span class="math notranslate nohighlight">\(x_{i}\rightarrow\infty\)</span>, the marginal utility <span class="math notranslate nohighlight">\(\text{MU}_{x_{i}}\rightarrow{0}\)</span>, thus, the convexity property is satisfied.</p>
+</section>
 </section>
 <section id="indifference-curves-and-optimal-choices">
 <h3>Indifference curves and optimal choices<a class="headerlink" href="#indifference-curves-and-optimal-choices" title="Permalink to this headline">#</a></h3>
@@ -650,7 +687,7 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 <h4>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> measures the central tendency of the values of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation is defined as a weighted sum (for discrete <span class="math notranslate nohighlight">\(X\)</span>):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-expectation">
-<span class="eqno">(82)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
+<span class="eqno">(85)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
 <p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability mass function evaluated at <span class="math notranslate nohighlight">\(X=x\)</span>; a A probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value.</p>
 <div class="proof observation admonition" id="obs-expectation-props">
 <p class="admonition-title"><span class="caption-number">Observation 10 </span> (Properties of expectation)</p>
@@ -670,7 +707,7 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> measures the expected dispersion for
 individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (mean). The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-variance">
-<span class="eqno">(83)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
+<span class="eqno">(86)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <div class="proof observation admonition" id="obs-variances-var">
 <p class="admonition-title"><span class="caption-number">Observation 11 </span> (Properties of variance)</p>
@@ -689,7 +726,7 @@ individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.
 <h3>Probability mass functions<a class="headerlink" href="#probability-mass-functions" title="Permalink to this headline">#</a></h3>
 <p>In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function (PMF)</a>.</p>
 <div class="proof definition admonition" id="defn-pmf">
-<p class="admonition-title"><span class="caption-number">Definition 45 </span> (Probability Mass Function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 46 </span> (Probability Mass Function)</p>
 <section class="definition-content" id="proof-content">
 <p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of
 obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
@@ -705,7 +742,7 @@ obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <sp
 <p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
 outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of 0 is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
 <div class="proof definition admonition" id="defn-pmf-bernouli">
-<p class="admonition-title"><span class="caption-number">Definition 46 </span> (Bernoulli Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Bernoulli Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -726,7 +763,7 @@ outcome. Bernoulli random variable have two states: either 1 or 0. The probabili
 <h4>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses.</p>
 <div class="proof definition admonition" id="defn-pmf-binomial">
-<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Binomial Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 48 </span> (Binomial Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we do repeated Bernoulli trials <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]^n\)</span>, i.e., <span class="math notranslate nohighlight">\(n\)</span> trials of an independent binary experiment.
 The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is governed by the binomial probability mass function:</p>
@@ -751,7 +788,7 @@ A geometric random variable governs the outcome of this type of experiment;
 a geometric random variable gives the probability that the first occurrence of success requires <span class="math notranslate nohighlight">\(k\)</span> independent trials, each with success probability <span class="math notranslate nohighlight">\(p\)</span>. In other words,
 a geometric random variable describes the number of failures obtained before final success.</p>
 <div class="proof definition admonition" id="defn-pmf-geometric">
-<p class="admonition-title"><span class="caption-number">Definition 48 </span> (Geometric Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Geometric Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a geometric random variable. The probability mass function for a geometric random variable is given by:</p>
 <div class="math notranslate nohighlight">
@@ -768,7 +805,7 @@ a geometric random variable describes the number of failures obtained before fin
 <h4>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen <code class="docutils literal notranslate"><span class="pre">X</span></code> number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.</p>
 <div class="proof definition admonition" id="defn-pmf-poisson">
-<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Poisson Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Poisson Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Poisson random variable. The probability mass function for a Poisson random variable is given by:</p>
 <div class="math notranslate nohighlight">

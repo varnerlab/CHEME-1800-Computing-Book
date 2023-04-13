@@ -12,10 +12,27 @@ In this lecture, we introduce tools to model and analyze simple uncertain decisi
 
 (content:references:utility-and-utlity-max)=
 ## Utility maximization
-A utility function is a mathematical expression that represents an individual's preferences over different choices or outcomes. It assigns a numerical value, called "utility," to each possible choice or outcome, based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have different preferences.
+A utility function is a mathematical expression representing an individual's preferences over different choices or outcomes. It assigns a numerical value, called _utility_, to each possible choice based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.
+
+Let's begin our discussion of utility by introducing the classical application of this concept, namely, the choice of how much of $n$ goods to purchase ({prf:ref}`defn-individual-utility`):
+
+````{prf:definition} Utility
+:label: defn-individual-utility
+
+The preferences of individual decision-making agents for $n$ goods are assumed to be represented by a utility function:
+
+```{math}
+:label: eqn-utility-function-generic
+U(x_{1},x_{2},\dots,x_{n})
+```
+
+where $x_{1},x_{2},\dots,x_{n}$ are the quantities of $n$ goods consumed in time period $t\rightarrow{t+dt}$. The utility
+function $U(\dots)$ is unique only up to an order-preserving transformation.
+
+````
 
 ### Properties of utility functions
-The mathematical properties of a _proper_ utility function include:
+The mathematical properties of a _proper_ utility function $U(\dots)$ include:
 
 * __Continuity__: A small change in the input variable should lead to a small change in the output value of the function.
 Monotonicity: The utility function should be non-decreasing, meaning that as the input variable increases, the output value of the function also increases.
@@ -24,6 +41,29 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 * __Substitutability__: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.
 
 These mathematical properties ensure that the utility function is a well-behaved mathematical function that accurately represents an individual's preferences over different options.
+
+#### Example
+For example, consider a utility function governing the satisfaction gained by purchasing two goods $(x_{1},x_{2})$ of the form:
+
+```{math}
+:label: eqn-simple-utility-function
+
+U(x_{1},x_{2}) = \sqrt{x_{1}\cdot{x_{2}}}
+```
+
+Equation {eq}`eqn-simple-utility-function` is continuous, so the first condition is satisfied. To explore the convexity property, compute the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility), i.e., the partial derivative of $U(\dots)$ with respect to goods $x_{1}$ and $x_{2}$:
+
+```{math}
+:label: eqn-mu-u-function
+
+\begin{eqnarray}
+\text{MU}_{x_{1}} = \frac{\partial{U}}{\partial{x_{1}}} & = & \left(\frac{1}{2}\right)\frac{x_{2}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
+\text{MU}_{x_{2}} = \frac{\partial{U}}{\partial{x_{2}}} & = & \left(\frac{1}{2}\right)\frac{x_{1}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
+\end{eqnarray}
+
+```
+
+As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$, thus, the convexity property is satisfied.  
 
 ### Indifference curves and optimal choices
 An indifference curve is a graphical representation of a combination of choices that provide an individual with the same level of satisfaction or utility. Each point on the indifference curve represents a combination of choices that provides the same satisfaction or utility. The curve slopes downwards because the individual is willing to give up some of one good to obtain more of the other while remaining indifferent. Indifference curves are valuable tools in economics for analyzing consumer preferences and making predictions about consumer behavior in response to changes in prices or income.
