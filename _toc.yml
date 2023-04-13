@@ -27,7 +27,7 @@ chapters:
 - file: unit-4-decisions/decisions-landing
   title: Unit 4. Decisions
   sections:
-  - file: unit-4-decisions/probability-random-variables
+  - file: unit-4-decisions/simple
   - file: unit-4-decisions/mdp
   - file: unit-4-decisions/multi-arm-bandits
 

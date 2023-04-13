@@ -3,7 +3,7 @@ The decision problem is a framework for making choices involving uncertainty. De
 
 In this unit, we discuss some of the key concepts and classic problems that are related to decision problems:
 
-* [Probability](./probability-random-variables.md) is a measure of the likelihood of an event occurring. It is expressed as a number between 0 and 1, with 0 representing an impossible event and 1 representing a particular event. Probability can be used to help make decisions when the outcomes of a decision are uncertain.
+* [Probability and simple decision](./simple.md) is a measure of the likelihood of an event occurring. It is expressed as a number between 0 and 1, with 0 representing an impossible event and 1 representing a particular event. Probability can be used to help make decisions when the outcomes of a decision are uncertain.
 
 * [A Markov decision process (MDP)](./mdp.md) is a mathematical framework for modeling decision-making in situations where the outcomes are uncertain. It consists of a set of states, actions, and rewards and a probabilistic transition function that determines the next state given the current state and action. MDPs are used to model and solve optimization problems where an agent must make decisions to maximize some reward or utility. They are commonly used in artificial intelligence and control theory to design optimal policies for decision-making problems.
 

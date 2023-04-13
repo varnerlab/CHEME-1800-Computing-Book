@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Multiple Arm Bandit Problems and Reinforcement Learning" href="multi-arm-bandits.html" />
-    <link rel="prev" title="Probability, Random Variables and Stochastic Processes" href="probability-random-variables.html" />
+    <link rel="prev" title="Probability and Simple Choices under Uncertainty" href="simple.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -223,8 +223,8 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="probability-random-variables.html">
-     Probability, Random Variables and Stochastic Processes
+    <a class="reference internal" href="simple.html">
+     Probability and Simple Choices under Uncertainty
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -602,7 +602,7 @@ title="Print to PDF"
 \[\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of all 1’s. Let’s consider an example to make these ideas less abstract.</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain">
-<p class="admonition-title"><span class="caption-number">Example 29 </span> (Discrete Markov chain simulation)</p>
+<p class="admonition-title"><span class="caption-number">Example 27 </span> (Discrete Markov chain simulation)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Markov-Model.pdf" style="height: 120px;" /></a>
@@ -628,9 +628,9 @@ title="Print to PDF"
 <section id="hidden-markov-models-hmms">
 <span id="content-references-structure-of-an-hmm"></span><h3>Hidden Markov Models (HMMs)<a class="headerlink" href="#hidden-markov-models-hmms" title="Permalink to this headline">#</a></h3>
 <p>Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations.</p>
-<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 29</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
+<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 27</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain-hmm">
-<p class="admonition-title"><span class="caption-number">Example 30 </span> (Stationary hidden Markov model)</p>
+<p class="admonition-title"><span class="caption-number">Example 28 </span> (Stationary hidden Markov model)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-hidden-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" style="height: 280px;" /></a>
@@ -673,7 +673,7 @@ The trajectory was computed by sampling a <code class="docutils literal notransl
 <p>A Markov decision process (MDP) is an approach for modeling decision-making in situations where outcomes are partly random but also partly under the control of a <em>decision-maker</em> who receives a reward (or penalty) for each decision. Thus, unlike <a class="reference internal" href="#content-references-discrete-time-markov-chains"><span class="std std-ref">Discrete-time Markov chains</span></a>, Markov decision processes (MDPs) involve actions, which allow choice, and rewards that motivate the decision maker.</p>
 <p>At each time step, let’s assume the system in some state <span class="math notranslate nohighlight">\(s\)</span> in a set of possible states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> and the decision maker may choose any action <span class="math notranslate nohighlight">\(a\)</span> from a set of possible actions <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> that are available in state <span class="math notranslate nohighlight">\(s\)</span>. The system responds at the next time step by <em>potentially</em> moving into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> and rewarding the decision maker <span class="math notranslate nohighlight">\(R_{a}\left(s, s^{\prime}\right)\)</span>. The probability that the system moves into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> depends upon the chosen action <span class="math notranslate nohighlight">\(a\)</span> and the current state <span class="math notranslate nohighlight">\(s\)</span>; this probability is governed by a state transition function <span class="math notranslate nohighlight">\(P_{a}\left(s,s^{\prime}\right)\)</span>.</p>
 <div class="proof definition admonition" id="defn-formal-mdp">
-<p class="admonition-title"><span class="caption-number">Definition 60 </span> (Markov decision tuple )</p>
+<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Markov decision tuple )</p>
 <section class="definition-content" id="proof-content">
 <p>A Markov decision process is the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span> where:</p>
 <ul class="simple">
@@ -699,7 +699,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 \[U_{k+1}^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U_{k}^{\pi}(s^{\prime})\]</div>
 <p>As <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span> the lookahead utility converges to a stationary value <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>:</p>
 <div class="proof definition admonition" id="defn-policy-evalution">
-<p class="admonition-title"><span class="caption-number">Definition 61 </span> (Value function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Value function)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. Then, the utility of the policy function <span class="math notranslate nohighlight">\(\pi\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-converged-policy-eval">
@@ -707,7 +707,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 </section>
 </div><p>Let’s do an example to illustrate policy evaluation:</p>
 <div class="proof example admonition" id="example-MDP-line">
-<p class="admonition-title"><span class="caption-number">Example 31 </span> (Tiger problem)</p>
+<p class="admonition-title"><span class="caption-number">Example 29 </span> (Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-linear-mdp-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Linear-MDP-Schematic.pdf"><img alt="../_images/Fig-Linear-MDP-Schematic.pdf" src="../_images/Fig-Linear-MDP-Schematic.pdf" style="height: 110px;" /></a>
@@ -729,7 +729,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 </section>
 <section id="value-function-policies">
 <h3>Value function policies<a class="headerlink" href="#value-function-policies" title="Permalink to this headline">#</a></h3>
-<p><a class="reference internal" href="#defn-policy-evalution">Definition 61</a> gives us a method to compute the utility for a particular policy <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>.
+<p><a class="reference internal" href="#defn-policy-evalution">Definition 52</a> gives us a method to compute the utility for a particular policy <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>.
 However, suppose we were given the utility and wanted to estimate the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> from that utility.
 Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can estimate a policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> using the <span class="math notranslate nohighlight">\(Q\)</span>-function (action-value function):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-action-value-function">
@@ -749,7 +749,7 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
 \[U_{k+1}(s) = \max_{a}\left(R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U_{k}(s^{\prime})\right)\]</div>
 <p>This procedure is guaranteed to converge to the optimal utility vector (value function).</p>
 <div class="proof example admonition" id="example-MDP-line-mod">
-<p class="admonition-title"><span class="caption-number">Example 32 </span> (Modified Tiger problem)</p>
+<p class="admonition-title"><span class="caption-number">Example 30 </span> (Modified Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-branched-mdp-schematic-mod">
 <a class="reference internal image-reference" href="../_images/Fig-Branched-MDP-Schematic.pdf"><img alt="../_images/Fig-Branched-MDP-Schematic.pdf" src="../_images/Fig-Branched-MDP-Schematic.pdf" style="height: 300px;" /></a>
@@ -809,11 +809,11 @@ introduced tools to compute the utility of a decision-making policy and the valu
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="probability-random-variables.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="simple.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Probability, Random Variables and Stochastic Processes</p>
+            <p class="prev-next-title">Probability and Simple Choices under Uncertainty</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="multi-arm-bandits.html" title="next page">
