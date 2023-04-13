@@ -448,17 +448,7 @@ title="Print to PDF"
      Simulated annealing
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#genetic-algortihms">
-     Genetic algortihms
-    </a>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#branch-and-bound">
-   Branch and Bound
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -511,17 +501,7 @@ title="Print to PDF"
      Simulated annealing
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#genetic-algortihms">
-     Genetic algortihms
-    </a>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#branch-and-bound">
-   Branch and Bound
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -542,22 +522,22 @@ title="Print to PDF"
 <h1>Dynamic Progamming and Heuristic Optimization<a class="headerlink" href="#dynamic-progamming-and-heuristic-optimization" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems. In this lecture we’ll introduce:</p>
+<p>Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems. In this lecture, we’ll introduce the following:</p>
 <!-- Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics. -->
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-dynamic-programming"><span class="std std-ref">Dynamic programming</span></a> solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.</p></li>
-<li><p><a class="reference internal" href="#content-references-heuristic-optimization"><span class="std std-ref">Heuristic optimization</span></a> is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.</p></li>
-<li><p><a class="reference internal" href="#content-references-branch-and-bound"><span class="std std-ref">Branch and Bound</span></a> is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.</p></li>
+<li><p><a class="reference internal" href="#content-references-heuristic-optimization"><span class="std std-ref">Heuristic optimization</span></a> is a class of algorithms used to solve complex optimization problems inspired by natural phenomena, or human, insect or animal behavior.</p></li>
 </ul>
+<!-- * {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions. -->
 <hr class="docutils" />
 </section>
 <section id="dynamic-programming">
 <span id="content-references-dynamic-programming"></span><h2>Dynamic programming<a class="headerlink" href="#dynamic-programming" title="Permalink to this headline">#</a></h2>
 <p>Dynamic programming is an approach developed by <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman in the 1950s</a> that solves problems by breaking them down into smaller subproblems and storing the solutions to these subproblems. This allows the program to avoid recomputing the solution to the same subproblem multiple times and instead reuse the stored solutions, which can significantly improve the algorithm’s efficiency.</p>
-<p>Dynamic programming is typically used for problems that can be divided into overlapping subproblems, which means that the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. It is also true for <em>sequential decision problems</em>.</p>
+<p>Dynamic programming is typically used for problems that can be divided into <a class="reference external" href="https://en.wikipedia.org/wiki/Overlapping_subproblems">overlapping subproblems</a>, i.e., the solution to one subproblem can be used to solve other subproblems. This is often the case with optimization problems, where the goal is to find the optimal solution among a set of possible solutions. It is also true for <em>sequential decision problems</em>.</p>
 <section id="dynamic-decision-problems">
 <h3>Dynamic decision problems<a class="headerlink" href="#dynamic-decision-problems" title="Permalink to this headline">#</a></h3>
-<p>Imagine we have a decision making agent, in some state <span class="math notranslate nohighlight">\(x_{t}\)</span>, at time <span class="math notranslate nohighlight">\(t\)</span>. At time <span class="math notranslate nohighlight">\(t\)</span>, the agent takes an action <span class="math notranslate nohighlight">\(a_{t}\)</span> from a set of possible actions <span class="math notranslate nohighlight">\(a_{t}\in\mathcal{A}\left(x_{t}\right)\)</span> that leads to a new state <span class="math notranslate nohighlight">\(x_{t+1} = T(x_{t},a_{t})\)</span> and a payoff <span class="math notranslate nohighlight">\(F(x_{t},a_{t})\)</span>. In this situation, an infinite-horizon descision problem takes the form:</p>
+<p>Imagine we have a decision-making agent in some state <span class="math notranslate nohighlight">\(x_{t}\)</span>, at time <span class="math notranslate nohighlight">\(t\)</span>. At time <span class="math notranslate nohighlight">\(t\)</span>, the agent takes an action <span class="math notranslate nohighlight">\(a_{t}\)</span> from a set of possible actions <span class="math notranslate nohighlight">\(a_{t}\in\mathcal{A}\left(x_{t}\right)\)</span> that leads to a new state <span class="math notranslate nohighlight">\(x_{t+1} = T(x_{t},a_{t})\)</span> and a payoff <span class="math notranslate nohighlight">\(F(x_{t},a_{t})\)</span>. In this situation, an infinite-horizon decision problem takes the form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -567,7 +547,8 @@ V(x_{\circ}) &amp; = &amp; \max_{a\in\mathcal{A}} \sum_{t=0}^{\infty}
 \text{and} &amp;~&amp; x_{t+1} = T(x_{t},a_{t})
 \end{eqnarray}
 \end{split}\]</div>
-<p>where the function <span class="math notranslate nohighlight">\(V(x_{\circ})\)</span> is the <em>value function</em>, <span class="math notranslate nohighlight">\(x_{\circ}\)</span> is the initial state of the agent and <span class="math notranslate nohighlight">\(0\leq\beta\leq{1}\)</span> denotes the discount factor. Dynamic programming breaks this decision problem into smaller subproblems using Bellman’s principle of optimality (<a class="reference internal" href="#obs-bellman-principle-of-optimality">Observation 9</a>):</p>
+<p>where the function <span class="math notranslate nohighlight">\(V(x_{\circ})\)</span> is the <em>value function</em>, <span class="math notranslate nohighlight">\(x_{\circ}\)</span> is the initial state of the agent and <span class="math notranslate nohighlight">\(0\leq\beta\leq{1}\)</span> denotes the discount factor.
+Dynamic programming breaks this decision problem into smaller subproblems using Bellman’s principle of optimality (<a class="reference internal" href="#obs-bellman-principle-of-optimality">Observation 9</a>):</p>
 <div class="proof observation admonition" id="obs-bellman-principle-of-optimality">
 <p class="admonition-title"><span class="caption-number">Observation 9 </span> (Bellman’s principle of optimality)</p>
 <section class="observation-content" id="proof-content">
@@ -577,20 +558,48 @@ V(x_{\circ}) &amp; = &amp; \max_{a\in\mathcal{A}} \sum_{t=0}^{\infty}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\left[\max_{a_{t}\mathcal{A}}\sum_{t=1}^{\infty}\beta^{t-1}F(x_{t},a_{t})\right]\right\}\\
+V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\cdot\left[\max_{a_{t}\mathcal{A}}\sum_{t=1}^{\infty}\beta^{t-1}F(x_{t},a_{t})\right]\right\}\\
 \text{subject to}&amp;~&amp; a_{t}\in\mathcal{A}(x_{t}) \\
 \text{and} &amp;~&amp; x_{t+1} = T(x_{t},a_{t})
 \end{eqnarray}
 \end{split}\]</div>
+<p>However, the quantity inside the brackets of the <span class="math notranslate nohighlight">\(V(x_{\circ})\)</span> expression is just <span class="math notranslate nohighlight">\(V(x_{1})\)</span>, i.e., the decision problem starting at time step <code class="docutils literal notranslate"><span class="pre">1</span></code> instead of time step <code class="docutils literal notranslate"><span class="pre">0</span></code>. Thus, we can re-write the expression above as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{\circ}) + \beta\cdot{V(x_{1})}\right\}\\
+\text{subject to}&amp;~&amp; a_{t}\in\mathcal{A}(x_{t}) \\
+\text{and} &amp;~&amp; x_{t+1} = T(x_{t},a_{t})
+\end{eqnarray}
+\end{split}\]</div>
+<p>Dropping the subscripts gives rise to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bellman_equation">Bellman equation</a> of the form shown in <a class="reference internal" href="#defn-bellman-decision-eqn">Definition 44</a>:</p>
+<div class="proof definition admonition" id="defn-bellman-decision-eqn">
+<p class="admonition-title"><span class="caption-number">Definition 44 </span> (Bellman equation)</p>
+<section class="definition-content" id="proof-content">
+<p>The optimal value of a state <span class="math notranslate nohighlight">\(x\)</span>, denoted by <span class="math notranslate nohighlight">\(V(x)\)</span>, is governed by a Bellman equation of the form:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-bellman-decision-eqn">
+<span class="eqno">(81)<a class="headerlink" href="#equation-eqn-bellman-decision-eqn" title="Permalink to this equation">#</a></span>\[V(x) = \max_{a\in\mathcal{A}} \left\{F(x,a) + \beta\cdot{V(T(x,a))}\right\}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> denotes the set of possible actions open to the decision maker and <span class="math notranslate nohighlight">\(0\leq\beta\leq{1}\)</span> represents the discount factor.</p>
+</section>
+</div><p>Equation <a class="reference internal" href="#equation-eqn-bellman-decision-eqn">(81)</a> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Functional_equation">functional equation</a>, i.e., an equation in which functions appear as unknowns. Thus, solving Eqn. <a class="reference internal" href="#equation-eqn-bellman-decision-eqn">(81)</a> gives the unknown value function <span class="math notranslate nohighlight">\(V(x)\)</span>. Further, by calculating the value function, we will also find the <em>policy function</em> <span class="math notranslate nohighlight">\(a(x)\)</span> that describes the optimal action as a function of the system state <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </section>
 </section>
 <section id="heuristic-optimization">
 <span id="content-references-heuristic-optimization"></span><h2>Heuristic optimization<a class="headerlink" href="#heuristic-optimization" title="Permalink to this headline">#</a></h2>
-<p>Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.</p>
+<p>Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution.</p>
+<p>There are several types of heuristic optimization algorithms, including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Simulated_annealing">Simulated Annealing (SA)</a> is inspired by the process of annealing in metallurgy. It starts with an initial solution and gradually changes it by randomly perturbing it and accepting or rejecting the new solution based on a probability function. SA is commonly used for problems that involve finding the global minimum of a non-convex function.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Genetic_algorithm">Genetic Algorithms (GA)</a> are inspired by the process of natural selection in biology. It starts with a population of potential solutions represented as chromosomes, which evolve through a series of selection, crossover, and mutation operations to create a new generation of solutions. GA is commonly used for problems that involve a large number of variables and constraints.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Particle_swarm_optimization">Particle Swarm Optimization (PSO)</a> simulates the behavior of a swarm of particles moving in a multi-dimensional search space. Each particle represents a potential solution to the problem, and it adjusts its position and velocity based on the best solution found by the swarm. PSO is commonly used for problems that require continuous optimization.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms">Ant Colony Optimization (ACO)</a> is inspired by the behavior of ant colonies. It involves a set of artificial ants that communicate with each other using pheromone trails to find the best path between a start and end point. ACO is commonly used for problems that find the shortest path in a graph.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Artificial_bee_colony_algorithm">Artificial Bee Colony (ABC)</a> simulates the behavior of a colony of artificial honey bees. ABC is commonly used for problems that involve finding the optimal solution in a continuous search space. Each bee represents a potential solution to the problem and adjusts its position based on the quality of the nectar source it has found.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Tabu_search">Tabu Search (TS)</a> uses a memory-based search strategy to avoid revisiting previously explored solutions. TS is commonly used for problems that involve finding the optimal solution in a combinatorial search space. It maintains a list of tabu moves, which are forbidden moves, to ensure that the search space is explored efficiently.</p></li>
+</ul>
 <section id="simulated-annealing">
 <h3>Simulated annealing<a class="headerlink" href="#simulated-annealing" title="Permalink to this headline">#</a></h3>
 <p>Simulated annealing (SA) is a heuristic optimization algorithm inspired by the annealing process in metallurgy <span id="id1">[<a class="reference internal" href="../References.html#id2" title="S Kirkpatrick and M. P. Vecchi. Optimization by Simulated Annealing. Science, 1983.">Kirkpatrick and Vecchi, 1983</a>]</span>. Simulated annealing is especially good at finding near-optimal solutions to problems with many local optima.</p>
-<p>Simulated annealing solves complex optimization problems by randomly selecting a candidate and evaluating its fitness compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution found so far are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.</p>
+<p>Simulated annealing solves complex optimization problems by randomly selecting a candidate solution, and evaluating the fitness of this candidate compared to the current best solution. The candidate solution is accepted or rejected based on a probability function; candidate solutions far away from the best solution are less likely to be selected. However, the willingness of the simulated annealing algorithm to choose a candidate far away from the best solution changes over time; in the beginning, the SA algorithm is more willing to take a chance. However, as time progresses, the SA algorithm only bets on sure things, i.e., new solutions that are strictly better than the best solution found so far.</p>
 <p>A pseudo-code implementation for a simulated annealing routine is given in <a class="reference internal" href="#algo-simulated-annealing">Algorithm 12</a>:</p>
 <div class="proof algorithm dropdown admonition" id="algo-simulated-annealing">
 <p class="admonition-title"><span class="caption-number">Algorithm 12 </span> (Simulated Annealing)</p>
@@ -599,7 +608,6 @@ V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{
 <p><strong>Outputs</strong> the <span class="math notranslate nohighlight">\(\min_{x}f(x)\)</span> and <span class="math notranslate nohighlight">\(\arg\min_{x}f(x)\)</span>.</p>
 <p><strong>Initialize</strong></p>
 <ol class="simple">
-<li><p>Set current solution <span class="math notranslate nohighlight">\(x^{\prime}\leftarrow{x}_{\circ}\)</span></p></li>
 <li><p>Set best solution <span class="math notranslate nohighlight">\(\hat{x}\leftarrow{x}_{\circ}\)</span></p></li>
 <li><p>Set initial temperature <span class="math notranslate nohighlight">\(T_{0}\leftarrow{T}\)</span></p></li>
 </ol>
@@ -608,16 +616,11 @@ V(x_{\circ}) &amp; = &amp; \max_{a_{\circ}\in\mathcal{A}} \left\{F(x_{\circ},a_{
 <li><p>for <span class="math notranslate nohighlight">\(i\in\left\{1,\dots,\mathcal{M}_{\infty}\right\}\)</span></p>
 <ol class="simple">
 <li><p>update temperature <span class="math notranslate nohighlight">\(T_{i}\leftarrow\text{temperature}(T_{i-1},i)\)</span></p></li>
-<li><p>generate new solution <span class="math notranslate nohighlight">\(x^{\dagger}\leftarrow\text{neighbor}(x^{\prime})\)</span></p></li>
-<li><p>compute objective function difference <span class="math notranslate nohighlight">\(\Delta_{i} = f(x^{\dagger}) - f(x^{\prime})\)</span></p></li>
-<li><p>if <span class="math notranslate nohighlight">\(\Delta&lt;0 ~\text{or}~\text{accept}(\Delta_{i},T_{i}) = \text{true}\)</span></p>
+<li><p>generate new solution <span class="math notranslate nohighlight">\(x^{\prime}\leftarrow\text{neighbor}(\hat{x})\)</span></p></li>
+<li><p>compute objective function difference <span class="math notranslate nohighlight">\(\Delta_{i} = f(x^{\prime}) - f(\hat{x})\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\text{accept}(\Delta_{i},T_{i}) = \text{true}\)</span></p>
 <ol class="simple">
-<li><p>update the current solution <span class="math notranslate nohighlight">\({x^{\prime}}\leftarrow{x}^{\dagger}\)</span></p></li>
-</ol>
-</li>
-<li><p>if <span class="math notranslate nohighlight">\(f(x^{\prime}) &lt; f(\hat{x})\)</span></p>
-<ol class="simple">
-<li><p>update the best solution <span class="math notranslate nohighlight">\(\hat{x}\leftarrow{x}^{\prime}\)</span></p></li>
+<li><p>update the current best solution <span class="math notranslate nohighlight">\({\hat{x}}\leftarrow{x}^{\prime}\)</span></p></li>
 </ol>
 </li>
 </ol>
@@ -668,231 +671,161 @@ the tuple <span class="math notranslate nohighlight">\(f(\hat{x})\)</span> and <
 <li><p>return new_solution</p></li>
 </ol>
 </section>
-</div></section>
-<section id="genetic-algortihms">
-<h3>Genetic algortihms<a class="headerlink" href="#genetic-algortihms" title="Permalink to this headline">#</a></h3>
-<p>Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions.</p>
-<p>Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning. A pseudocode implementation of a genetic algorithm is given in <a class="reference internal" href="#algo-genetic-algorithm">Algorithm 14</a>:</p>
-<div class="proof algorithm dropdown admonition" id="algo-genetic-algorithm">
-<p class="admonition-title"><span class="caption-number">Algorithm 14 </span> (Genetic Algorithm)</p>
-<section class="algorithm-content" id="proof-content">
-<p><strong>Initialize</strong></p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(\mathcal{P}\leftarrow\text{initialize_population()}\)</span></p></li>
-<li><p>set <span class="math notranslate nohighlight">\(\mathcal{F}\leftarrow\text{evaluate_fitness}(\mathcal{P})\)</span></p></li>
-</ol>
-<p><strong>Main</strong></p>
-<ol class="simple">
-<li><p>while not termination_condition_met():</p>
-<ol class="simple">
-<li><p>set <span class="math notranslate nohighlight">\(x\leftarrow\text{select_parents()}\)</span></p></li>
-<li><p>set <span class="math notranslate nohighlight">\(x^{\prime}\leftarrow\text{create_offspring}(x)\)</span></p></li>
-<li><p>set <span class="math notranslate nohighlight">\(\mathcal{F}^{\prime}\leftarrow\text{evaluate_fitness}(x^{\prime})\)</span></p></li>
-<li><p>replace_least_fit()</p></li>
-</ol>
-</li>
-<li><p>return_best()</p></li>
-</ol>
-<p><strong>Initialize populattion</strong>
-// create population of individuals with random genes</p>
-<ol class="simple">
-<li><p>function initialize_population():</p>
-<ol class="simple">
-<li><p>set population = []</p></li>
-<li><p>for <span class="math notranslate nohighlight">\(i\in {1,2,\dots,\text{population_size}}\)</span>:</p>
-<ol class="simple">
-<li><p>individual = create_random_individual()</p></li>
-<li><p>population.append(individual)</p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><strong>Evaluate fitness</strong>
-// evaluate fitness of each individual in the population</p>
-<ol class="simple">
-<li><p>function evaluate_fitness():</p>
-<ol class="simple">
-<li><p>for individual in population:</p>
-<ol class="simple">
-<li><p>set individual.fitness <span class="math notranslate nohighlight">\(\leftarrow\)</span> calculate_fitness(individual)</p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><strong>Select parents</strong>
-// select parents for reproduction</p>
-<ol class="simple">
-<li><p>function select_parents():</p>
-<ol class="simple">
-<li><p>set parents <span class="math notranslate nohighlight">\(\leftarrow\)</span> []</p></li>
-<li><p>for i <span class="math notranslate nohighlight">\(\in{1:\text{parent_selection_size}}\)</span>:</p>
-<ol class="simple">
-<li><p>set parent <span class="math notranslate nohighlight">\(\leftarrow\)</span> tournament_selection(population, tournament_size)</p></li>
-<li><p>parents.append(parent)</p></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>return parents</p></li>
-</ol>
-<p><strong>Create offspring</strong>
-// create offspring through crossover and mutation</p>
-<ol class="simple">
-<li><p>function create_offspring():</p>
-<ol class="simple">
-<li><p>offspring <span class="math notranslate nohighlight">\(\leftarrow\)</span> []</p></li>
-<li><p>for i in range(offspring_size):</p>
-<ol class="simple">
-<li><p>parent1, parent2 = select_parents()</p></li>
-<li><p>child = crossover(parent1, parent2)</p></li>
-<li><p>child = mutate(child)</p></li>
-<li><p>offspring.append(child)</p></li>
-</ol>
-</li>
-<li><p>return offspring</p></li>
-</ol>
-</li>
-</ol>
-<p><strong>Replace</strong>
-// replace least fit individuals in the population with offspring</p>
-<ol class="simple">
-<li><p>function replace_least_fit():</p>
-<ol class="simple">
-<li><p>set offspring_fitness = [individual.fitness for individual in offspring]</p></li>
-<li><p>for i in range(replacement_size):</p>
-<ol class="simple">
-<li><p>set least_fit_index <span class="math notranslate nohighlight">\(\leftarrow\)</span> population_fitness.index(min(population_fitness))</p></li>
-<li><p>set population[least_fit_index] <span class="math notranslate nohighlight">\(\leftarrow\)</span> offspring[i]</p></li>
-<li><p>set population_fitness[least_fit_index] <span class="math notranslate nohighlight">\(\leftarrow\)</span> offspring_fitness[i]</p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><strong>Best individual</strong>
-// return individual with best fitness</p>
-<ol class="simple">
-<li><p>function return_best():</p>
-<ol class="simple">
-<li><p>set best_individual <span class="math notranslate nohighlight">\(\leftarrow\)</span> max(population, key=lambda individual: individual.fitness)</p></li>
-</ol>
-</li>
-<li><p>return best_individual</p></li>
-</ol>
-<p><strong>Tournament selection</strong>
-// select individual with highest fitness in tournament</p>
-<ol class="simple">
-<li><p>function tournament_selection(population, tournament_size):</p>
-<ol class="simple">
-<li><p>set tournament <span class="math notranslate nohighlight">\(\leftarrow\)</span> random.sample(population, tournament_size)</p></li>
-<li><p>set winner <span class="math notranslate nohighlight">\(\leftarrow\)</span> max(tournament, key=lambda individual: individual.fitness)</p></li>
-</ol>
-</li>
-<li><p>return winner</p></li>
-</ol>
-<p><strong>Crossover</strong>
-// combine genes of parents to create child</p>
-<ol class="simple">
-<li><p>function crossover(parent1, parent2):</p>
-<ol class="simple">
-<li><p>set child <span class="math notranslate nohighlight">\(\leftarrow\)</span> Individual()</p></li>
-<li><p>for i in range(gene_count):</p>
-<ol class="simple">
-<li><p>if random.random() &lt; crossover_probability:</p>
-<ol class="simple">
-<li><p>child.genes[i] <span class="math notranslate nohighlight">\(\leftarrow\)</span> parent1.genes[i]</p></li>
-</ol>
-</li>
-<li><p>else:</p>
-<ol class="simple">
-<li><p>child.genes[i] <span class="math notranslate nohighlight">\(\leftarrow\)</span> parent2.genes[i]</p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>return child</p></li>
-</ol>
-<p><strong>Mutate</strong>
-// randomly mutate genes of individual</p>
-<ol class="simple">
-<li><p>function mutate(individual):</p>
-<ol class="simple">
-<li><p>for <span class="math notranslate nohighlight">\(i\in{1,2,\dots\text{gene_count}}\)</span>:</p>
-<ol class="simple">
-<li><p>if random.random() &lt; mutation_probability:</p>
-<ol class="simple">
-<li><p>individual.genes[i] <span class="math notranslate nohighlight">\(\leftarrow\mathcal{U}\)</span>(min_gene_value, max_gene_value)</p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>return individual</p></li>
-</ol>
+</div><p>Let’s explore the performance of a simulated annealing implementation in <a class="reference internal" href="#example-sa-impl-spehere-function">Example 26</a>:</p>
+<div class="proof example dropdown admonition" id="example-sa-impl-spehere-function">
+<p class="admonition-title"><span class="caption-number">Example 26 </span> (Minimization of the Sphere function)</p>
+<section class="example-content" id="proof-content">
+<p>Minimize the d-dimensional sphere function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \sum_{i=1}^{d}x_{i}^{2}\]</div>
+<p>subject to the bounds constraints <span class="math notranslate nohighlight">\(x_{i}\in\left[-5.12,5.12\right]\)</span> using simulated annealing.
+The solution code for this example can be found <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/simulated_annealing">here</a>.</p>
 </section>
-</div><!-- 
+</div><!-- ### Genetic algortihms
+
+Genetic algorithms are heuristic optimization algorithms inspired by natural selection and genetic inheritance. Genetic algorithms solve problems by iteratively generating and evaluating a population of candidate solutions, then applying selection, crossover, and mutation operators to evolve the population toward better solutions.
+
+Genetic algorithms can handle continuous and discrete search spaces and are often used in complex optimization problems such as scheduling, routing, and machine learning. A pseudocode implementation of a genetic algorithm is given in {prf:ref}`algo-genetic-algorithm`:
+
+````{prf:algorithm} Genetic Algorithm
+:label: algo-genetic-algorithm
+:class: dropdown
+
+**Initialize** 
+1. set $\mathcal{P}\leftarrow\text{initialize_population()}$
+1. set $\mathcal{F}\leftarrow\text{evaluate_fitness}(\mathcal{P})$
+
+**Main**
+1. while not termination_condition_met():
+    1. set $x\leftarrow\text{select_parents()}$
+    1. set $x^{\prime}\leftarrow\text{create_offspring}(x)$
+    1. set $\mathcal{F}^{\prime}\leftarrow\text{evaluate_fitness}(x^{\prime})$
+    1. replace_least_fit()
+
+1. return_best()
+
+**Initialize populattion**
+// create population of individuals with random genes
+1. function initialize_population():
+    1. set population = []
+    1. for $i\in {1,2,\dots,\text{population_size}}$:
+        1. individual = create_random_individual()
+        1. population.append(individual)
+
+**Evaluate fitness**
+// evaluate fitness of each individual in the population
+1. function evaluate_fitness():
+    1. for individual in population:
+        1. set individual.fitness $\leftarrow$ calculate_fitness(individual)
+
+**Select parents**
+// select parents for reproduction
+1. function select_parents():
+    1. set parents $\leftarrow$ []
+    1. for i $\in{1:\text{parent_selection_size}}$:
+        1. set parent $\leftarrow$ tournament_selection(population, tournament_size)
+        1. parents.append(parent)
+1. return parents
+
+**Create offspring**
+// create offspring through crossover and mutation
+1. function create_offspring():
+    1. offspring $\leftarrow$ []
+    1. for i in range(offspring_size):
+        1. parent1, parent2 = select_parents()
+        1. child = crossover(parent1, parent2)
+        1. child = mutate(child)
+        1. offspring.append(child)
+    1. return offspring
+
+**Replace**
+// replace least fit individuals in the population with offspring
+1. function replace_least_fit():
+    1. set offspring_fitness = [individual.fitness for individual in offspring]
+    1. for i in range(replacement_size):
+        1. set least_fit_index $\leftarrow$ population_fitness.index(min(population_fitness))
+        1. set population[least_fit_index] $\leftarrow$ offspring[i]
+        1. set population_fitness[least_fit_index] $\leftarrow$ offspring_fitness[i]
+
+**Best individual**
+// return individual with best fitness
+1. function return_best():
+    1. set best_individual $\leftarrow$ max(population, key=lambda individual: individual.fitness)
+1. return best_individual
+
+**Tournament selection**
+// select individual with highest fitness in tournament
+1. function tournament_selection(population, tournament_size):
+    1. set tournament $\leftarrow$ random.sample(population, tournament_size)
+    1. set winner $\leftarrow$ max(tournament, key=lambda individual: individual.fitness)
+1. return winner
+
+**Crossover**
+// combine genes of parents to create child
+1. function crossover(parent1, parent2):
+    1. set child $\leftarrow$ Individual()
+    1. for i in range(gene_count):
+        1. if random.random() < crossover_probability:
+            1. child.genes[i] $\leftarrow$ parent1.genes[i]
+        1. else:
+            1. child.genes[i] $\leftarrow$ parent2.genes[i]
+1. return child
+
+**Mutate**
+// randomly mutate genes of individual
+1. function mutate(individual):
+    1. for $i\in{1,2,\dots\text{gene_count}}$:
+        1. if random.random() < mutation_probability:
+            1. individual.genes[i] $\leftarrow\mathcal{U}$(min_gene_value, max_gene_value)
+1. return individual
+```` -->
+<!-- 
 While some problems cannot be decomposed in this way, problems that span several time points or naturally structured in stages can often be decomposed recursively. If a problem can be solved optimally by breaking it into subproblems and then recursively finding the optimal solutions to the subproblems, then it is said to have _optimal substructure_.
 
 If dynamic programming methods are applicable, then there is a relationship between the value of the larger problem and the values of the subproblems; this relationship is called the [Bellman equation](https://en.wikipedia.org/wiki/Bellman_equation). 
 
 Dynamic programming can be a valuable tool for solving many problems, but it can be computationally intensive and may only sometimes be the most efficient solution. When deciding whether to use dynamic programming, it is essential to consider the trade-offs between the algorithm’s efficiency and the problem’s complexity. -->
+<!-- (content:references:branch-and-bound)=
+## Branch and Bound
+
+Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.
+
+Let's consider minimizing an arbitrary objective function $f$:
+
+```{prf:algorithm} Branch and Bound Algorithm
+:label: algo-branch-bound-generic
+:class: dropdown
+
+**Inputs** the objective function $f$, a branch function, and a bound function
+
+**Outputs** the minimum function value $\mathcal{B}$
+
+**Initialize** 
+1. Set $\mathcal{B}\leftarrow\infty$ where $\mathcal{B}$ is the best solution found so far
+2. Initialize $Q$, a queue holding problem variables
+
+**Main**
+1. while $Q$ is not empty
+    1. Take a node $N$ from the queue: $N\leftarrow\text{dequeue}(Q)$
+    1. Evaluate the objective function value of node $N$: $B_{N}\leftarrow{f(x_{N})}$  
+    1. if $B_{N}<\mathcal{B}$
+        1. Update best solution: $\mathcal{B}\leftarrow{B_{N}}$
+    1. else
+        1. Branch on node $N$ to produce new candidate nodes: $(N_{1},\dots) \leftarrow\text{branch}(N)$
+        1. for N $\in\left(N_{1},\dots\right)$
+            1. if bound(N) $\leq\mathcal{B}$
+                1. Q $\leftarrow$ enqueue(Q, N)
+
+**Return**
+the minimum function value $\mathcal{B}$
+``` -->
 </section>
 </section>
-<section id="branch-and-bound">
-<span id="content-references-branch-and-bound"></span><h2>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this headline">#</a></h2>
-<p>Branch and bound is an approach to solve a variety of discrete and combinatorial optimization problems. A branch-and-bound algorithm enumerates candidate solutions by means of state space search: the set of candidate solutions forms a rooted tree with the full set at the root.</p>
-<p>Let’s consider minimizing an arbitrary objective function <span class="math notranslate nohighlight">\(f\)</span>:</p>
-<div class="proof algorithm dropdown admonition" id="algo-branch-bound-generic">
-<p class="admonition-title"><span class="caption-number">Algorithm 15 </span> (Branch and Bound Algorithm)</p>
-<section class="algorithm-content" id="proof-content">
-<p><strong>Inputs</strong> the objective function <span class="math notranslate nohighlight">\(f\)</span>, a branch function, and a bound function</p>
-<p><strong>Outputs</strong> the minimum function value <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>
-<p><strong>Initialize</strong></p>
-<ol class="simple">
-<li><p>Set <span class="math notranslate nohighlight">\(\mathcal{B}\leftarrow\infty\)</span> where <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is the best solution found so far</p></li>
-<li><p>Initialize <span class="math notranslate nohighlight">\(Q\)</span>, a queue holding problem variables</p></li>
-</ol>
-<p><strong>Main</strong></p>
-<ol class="simple">
-<li><p>while <span class="math notranslate nohighlight">\(Q\)</span> is not empty</p>
-<ol class="simple">
-<li><p>Take a node <span class="math notranslate nohighlight">\(N\)</span> from the queue: <span class="math notranslate nohighlight">\(N\leftarrow\text{dequeue}(Q)\)</span></p></li>
-<li><p>Evaluate the objective function value of node <span class="math notranslate nohighlight">\(N\)</span>: <span class="math notranslate nohighlight">\(B_{N}\leftarrow{f(x_{N})}\)</span></p></li>
-<li><p>if <span class="math notranslate nohighlight">\(B_{N}&lt;\mathcal{B}\)</span></p>
-<ol class="simple">
-<li><p>Update best solution: <span class="math notranslate nohighlight">\(\mathcal{B}\leftarrow{B_{N}}\)</span></p></li>
-</ol>
-</li>
-<li><p>else</p>
-<ol class="simple">
-<li><p>Branch on node <span class="math notranslate nohighlight">\(N\)</span> to produce new candidate nodes: <span class="math notranslate nohighlight">\((N_{1},\dots) \leftarrow\text{branch}(N)\)</span></p></li>
-<li><p>for N <span class="math notranslate nohighlight">\(\in\left(N_{1},\dots\right)\)</span></p>
-<ol class="simple">
-<li><p>if bound(N) <span class="math notranslate nohighlight">\(\leq\mathcal{B}\)</span></p>
-<ol class="simple">
-<li><p>Q <span class="math notranslate nohighlight">\(\leftarrow\)</span> enqueue(Q, N)</p></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><strong>Return</strong>
-the minimum function value <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>
-</section>
-</div></section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems:</p>
+<p>Dynamic programming, heuristic optimization, and other combinatorial optimization techniques can all be used to solve optimization problems.
+In this lecture we introduced several optimization approaches:</p>
 <!-- 
 Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics.
 
@@ -900,8 +833,8 @@ In this lecture we introduced several optimization approaches: -->
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-dynamic-programming"><span class="std std-ref">Dynamic programming</span></a> solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.</p></li>
 <li><p><a class="reference internal" href="#content-references-heuristic-optimization"><span class="std std-ref">Heuristic optimization</span></a> is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.</p></li>
-<li><p><a class="reference internal" href="#content-references-branch-and-bound"><span class="std std-ref">Branch and Bound</span></a> is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions.</p></li>
 </ul>
+<!-- * {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions. -->
 </section>
 </section>
 

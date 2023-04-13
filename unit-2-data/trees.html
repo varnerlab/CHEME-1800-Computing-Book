@@ -1271,8 +1271,8 @@ A linked list is a linear data structure where each element, called a node, is a
 <p>Dictionaries are implemented in both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> as a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type; we’ve already seen several examples of <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries when working with <a class="reference internal" href="../unit-1-basics/data-file-io.html"><span class="doc std std-doc">JSON, TOML and YAML files</span></a> or other examples. <a class="reference external" href="https://www.python.org">Python</a> dictionaries behave in a similar way as thier <a class="reference external" href="https://docs.julialang.org">Julia</a> counterparts, with one important exception: in <a class="reference external" href="https://www.python.org">Python &gt; 3.7</a> dictionaries are <em>ordered</em>, while <a class="reference external" href="https://docs.julialang.org">Julia</a> dictionaries are always <em>unordered</em>.</p>
 <p>Dictionaries are included in the standard libraries of Julia and Python; thus, they are available without importing external modules. Let’s look at an examples of dictionaries in <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="01aede34-4669-4d83-afe6-bd485b90c29f" name="48bd853e-0a44-42fa-a831-dcf1bde27e93" type="radio">
-</input><label class="sd-tab-label" for="01aede34-4669-4d83-afe6-bd485b90c29f">
+<input checked="checked" id="0fb72fc6-52c5-44ae-b81a-5169654d8f20" name="15831324-8101-4305-8026-be0846b24acb" type="radio">
+</input><label class="sd-tab-label" for="0fb72fc6-52c5-44ae-b81a-5169654d8f20">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty dictionary, keys are strings, values can be anything</span>
 <span class="n">car</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}()</span>
@@ -1284,8 +1284,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="86688823-60e3-421f-8226-50cc197344d0" name="48bd853e-0a44-42fa-a831-dcf1bde27e93" type="radio">
-</input><label class="sd-tab-label" for="86688823-60e3-421f-8226-50cc197344d0">
+<input id="75f70f66-ea17-4b35-904e-676ac8074177" name="15831324-8101-4305-8026-be0846b24acb" type="radio">
+</input><label class="sd-tab-label" for="75f70f66-ea17-4b35-904e-676ac8074177">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and empty dictionary</span>
 <span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1301,8 +1301,8 @@ python</label><div class="sd-tab-content docutils">
 <!-- Data can be accessed by passing the key value into the dictionary, e.g., `car["brand"]` would return `Ford`. -->
 <p>Like dictionaries, both <a class="reference external" href="https://docs.julialang.org">Julia</a> and <a class="reference external" href="https://www.python.org">Python</a> implement a <code class="docutils literal notranslate"><span class="pre">Set</span></code> type in their respective standard libraries. The <code class="docutils literal notranslate"><span class="pre">Set</span></code> type holds a unique collection of keys but does not associate these keys with any data:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4126bb98-86e9-402f-8771-f133a7454716" name="d3aef71f-d182-40ba-9b1c-f08e3692956f" type="radio">
-</input><label class="sd-tab-label" for="4126bb98-86e9-402f-8771-f133a7454716">
+<input checked="checked" id="31fa2c12-5fd8-4b14-964f-59b4187b25b5" name="8fb8e1cf-bd52-44f2-8cf1-559e240badcc" type="radio">
+</input><label class="sd-tab-label" for="31fa2c12-5fd8-4b14-964f-59b4187b25b5">
 julia</label><div class="sd-tab-content docutils">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
@@ -1314,8 +1314,8 @@ julia</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1ca0e460-2cdb-46fd-b6fe-b184c1d23d5d" name="d3aef71f-d182-40ba-9b1c-f08e3692956f" type="radio">
-</input><label class="sd-tab-label" for="1ca0e460-2cdb-46fd-b6fe-b184c1d23d5d">
+<input id="4b06cfda-f1b6-49e7-910f-6b8a237f9a0f" name="8fb8e1cf-bd52-44f2-8cf1-559e240badcc" type="radio">
+</input><label class="sd-tab-label" for="4b06cfda-f1b6-49e7-910f-6b8a237f9a0f">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
