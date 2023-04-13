@@ -2,13 +2,14 @@
 
 ## Introduction
 
-Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems. In this lecture we'll introduce:
+
+Dynamic programming, heuristic optimization, and combinatorial optimization are all techniques used to solve optimization problems. In this lecture, we'll introduce the following:
 
 <!-- Dynamic programming is a method that solves problems by breaking them down into smaller subproblems and solving them independently, then combining the solutions to the subproblems to solve the original problem. On the other hand, heuristic optimization algorithms are a family of algorithms inspired by natural phenomena and human behavior. They explore the search space using rules of thumb, intuition, and trial-and-error methods to find the best solution to a problem. Finally, combinatorial optimization is a field that deals with discrete optimization problems, where the search space consists of discrete objects or structures. There are many different approaches to solving these optimization problems, including exact algorithms, approximation algorithms, and heuristics. -->
 
 * {ref}`content:references:dynamic-programming` solves optimization problems by breaking them down into smaller subproblems, solving each subproblem once, and storing the solutions in a table or array. It is typically used for problems that can be divided into similar subproblems and for which the optimal solution can be constructed from optimal solutions to the subproblems.
 
-* {ref}`content:references:heuristic-optimization` is a class of algorithms used to solve complex optimization problems, inspired by natural phenomena and human behavior. These algorithms are particularly useful when mathematical models are not available or are too expensive to compute.
+* {ref}`content:references:heuristic-optimization` is a class of algorithms used to solve complex optimization problems inspired by natural phenomena, or human, insect or animal behavior. 
 
 <!-- * {ref}`content:references:branch-and-bound` is an algorithmic technique for solving combinatorial optimization problems. It involves dividing the search space into smaller subproblems and then using bounds on the optimal solutions to prune the search space and avoid considering suboptimal solutions. -->
 
@@ -24,7 +25,7 @@ Dynamic programming is typically used for problems that can be divided into [ove
 
 ### Dynamic decision problems
 
-Imagine we have a decision making agent, in some state $x_{t}$, at time $t$. At time $t$, the agent takes an action $a_{t}$ from a set of possible actions $a_{t}\in\mathcal{A}\left(x_{t}\right)$ that leads to a new state $x_{t+1} = T(x_{t},a_{t})$ and a payoff $F(x_{t},a_{t})$. In this situation, an infinite-horizon decision problem takes the form:
+Imagine we have a decision-making agent in some state $x_{t}$, at time $t$. At time $t$, the agent takes an action $a_{t}$ from a set of possible actions $a_{t}\in\mathcal{A}\left(x_{t}\right)$ that leads to a new state $x_{t+1} = T(x_{t},a_{t})$ and a payoff $F(x_{t},a_{t})$. In this situation, an infinite-horizon decision problem takes the form:
 
 $$
 \begin{eqnarray}
@@ -76,24 +77,25 @@ The optimal value of a state $x$, denoted by $V(x)$, is governed by a Bellman eq
 V(x) = \max_{a\in\mathcal{A}} \left\{F(x,a) + \beta\cdot{V(T(x,a))}\right\}
 ```
 
-where $\mathcal{A}$ denotes the set of possible actions open to the decision maker, and $0\leq\beta\leq{1}$ denotes the discount factor. 
+where $\mathcal{A}$ denotes the set of possible actions open to the decision maker and $0\leq\beta\leq{1}$ represents the discount factor. 
 ````
 
 Equation {eq}`eqn-bellman-decision-eqn` is a [functional equation](https://en.wikipedia.org/wiki/Functional_equation), i.e., an equation in which functions appear as unknowns. Thus, solving Eqn. {eq}`eqn-bellman-decision-eqn` gives the unknown value function $V(x)$. Further, by calculating the value function, we will also find the _policy function_ $a(x)$ that describes the optimal action as a function of the system state $x$.
 
+
 (content:references:heuristic-optimization)=
 ## Heuristic optimization
 
-Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist.
+Heuristic optimization is a family of algorithms inspired by natural phenomena and human behavior. Heuristic methods are often used to solve complex, real-world problems where exact solutions are difficult to obtain or may not even exist. Unlike traditional optimization methods, heuristic approaches use rules of thumb, intuition, and trial-and-error to explore the search space and find the best solution.
 
 There are several types of heuristic optimization algorithms, including:
 
 * [Simulated Annealing (SA)](https://en.wikipedia.org/wiki/Simulated_annealing) is inspired by the process of annealing in metallurgy. It starts with an initial solution and gradually changes it by randomly perturbing it and accepting or rejecting the new solution based on a probability function. SA is commonly used for problems that involve finding the global minimum of a non-convex function.
 * [Genetic Algorithms (GA)](https://en.wikipedia.org/wiki/Genetic_algorithm) are inspired by the process of natural selection in biology. It starts with a population of potential solutions represented as chromosomes, which evolve through a series of selection, crossover, and mutation operations to create a new generation of solutions. GA is commonly used for problems that involve a large number of variables and constraints.
-* [Particle Swarm Optimization (PSO)](https://en.wikipedia.org/wiki/Particle_swarm_optimization) simulates the behavior of a swarm of particles moving in a multi-dimensional search space. Each particle represents a potential solution to the problem, and it adjusts its position and velocity based on the best solution found so far by the swarm. PSO is commonly used for problems that require continuous optimization.
-* [Ant Colony Optimization (ACO)](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) is inspired by the behavior of ant colonies. It involves a set of artificial ants that communicate with each other using pheromone trails to find the best path between a start and end point. ACO is commonly used for problems that involve finding the shortest path in a graph.
-* [Artificial Bee Colony (ABC)](https://en.wikipedia.org/wiki/Artificial_bee_colony_algorithm) simulates the behavior of a colony of artificial honey bees. Each bee represents a potential solution to the problem, and it adjusts its position based on the quality of the nectar source it has found. ABC is commonly used for problems that involve finding the optimal solution in a continuous search space.
-* [Tabu Search (TS)](https://en.wikipedia.org/wiki/Tabu_search) uses a memory-based search strategy to avoid revisiting previously explored solutions. It maintains a list of tabu moves, which are forbidden moves, to ensure that the search space is explored efficiently. TS is commonly used for problems that involve finding the optimal solution in a combinatorial search space.
+* [Particle Swarm Optimization (PSO)](https://en.wikipedia.org/wiki/Particle_swarm_optimization) simulates the behavior of a swarm of particles moving in a multi-dimensional search space. Each particle represents a potential solution to the problem, and it adjusts its position and velocity based on the best solution found by the swarm. PSO is commonly used for problems that require continuous optimization.
+* [Ant Colony Optimization (ACO)](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) is inspired by the behavior of ant colonies. It involves a set of artificial ants that communicate with each other using pheromone trails to find the best path between a start and end point. ACO is commonly used for problems that find the shortest path in a graph.
+* [Artificial Bee Colony (ABC)](https://en.wikipedia.org/wiki/Artificial_bee_colony_algorithm) simulates the behavior of a colony of artificial honey bees. ABC is commonly used for problems that involve finding the optimal solution in a continuous search space. Each bee represents a potential solution to the problem and adjusts its position based on the quality of the nectar source it has found.
+* [Tabu Search (TS)](https://en.wikipedia.org/wiki/Tabu_search) uses a memory-based search strategy to avoid revisiting previously explored solutions. TS is commonly used for problems that involve finding the optimal solution in a combinatorial search space. It maintains a list of tabu moves, which are forbidden moves, to ensure that the search space is explored efficiently.
 
 ### Simulated annealing
 
@@ -112,21 +114,18 @@ A pseudo-code implementation for a simulated annealing routine is given in {prf:
 **Outputs** the $\min_{x}f(x)$ and $\arg\min_{x}f(x)$.
 
 **Initialize** 
-1. Set current solution $x^{\prime}\leftarrow{x}_{\circ}$
 1. Set best solution $\hat{x}\leftarrow{x}_{\circ}$
 1. Set initial temperature $T_{0}\leftarrow{T}$
+
 
 **Main**
 1. for $i\in\left\{1,\dots,\mathcal{M}_{\infty}\right\}$
     1. update temperature $T_{i}\leftarrow\text{temperature}(T_{i-1},i)$
-    1. generate new solution $x^{\dagger}\leftarrow\text{neighbor}(x^{\prime})$
-    1. compute objective function difference $\Delta_{i} = f(x^{\dagger}) - f(x^{\prime})$
+    1. generate new solution $x^{\prime}\leftarrow\text{neighbor}(\hat{x})$
+    1. compute objective function difference $\Delta_{i} = f(x^{\prime}) - f(\hat{x})$
     
-    1. if $\Delta<0 ~\text{or}~\text{accept}(\Delta_{i},T_{i}) = \text{true}$
-        1. update the current solution ${x^{\prime}}\leftarrow{x}^{\dagger}$
-    
-    1. if $f(x^{\prime}) < f(\hat{x})$
-        1. update the best solution $\hat{x}\leftarrow{x}^{\prime}$
+    1. if $\text{accept}(\Delta_{i},T_{i}) = \text{true}$
+        1. update the current best solution ${\hat{x}}\leftarrow{x}^{\prime}$
 
 **Return**
 the tuple $f(\hat{x})$ and $\hat{x}$.
@@ -157,6 +156,22 @@ The performance of simulated annealing depends upon the choice of the temperatur
     1. perform move on new_solution
 1. return new_solution
 
+````
+
+Let's explore the performance of a simulated annealing implementation in {prf:ref}`example-sa-impl-spehere-function`:
+
+````{prf:example} Minimization of the Sphere function
+:label: example-sa-impl-spehere-function
+:class: dropdown
+
+Minimize the d-dimensional sphere function $f(x)$:
+
+```{math}
+f(x) = \sum_{i=1}^{d}x_{i}^{2}
+```
+
+subject to the bounds constraints $x_{i}\in\left[-5.12,5.12\right]$ using simulated annealing. 
+The solution code for this example can be found [here](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/simulated_annealing).
 ````
 
 
