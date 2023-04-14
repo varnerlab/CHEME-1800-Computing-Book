@@ -14,7 +14,7 @@ In this lecture, we introduce tools to model and analyze simple uncertain decisi
 ## Utility maximization
 A utility function is a mathematical expression representing an individual's preferences over different choices or outcomes. It assigns a numerical value, called _utility_, to each possible choice based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.
 
-Let's begin our discussion of utility by introducing the classical application of this concept, namely, the choice of how much of $n$ goods to purchase ({prf:ref}`defn-individual-utility`):
+Let's begin our discussion of utility by introducing the classical application of this concept, namely, the choice governings the choice of which combination of $n$ goods (or services) to consume ({prf:ref}`defn-individual-utility`):
 
 ````{prf:definition} Utility
 :label: defn-individual-utility
@@ -27,9 +27,16 @@ U(x_{1},x_{2},\dots,x_{n})
 ```
 
 where $x_{1},x_{2},\dots,x_{n}$ are the quantities of $n$ goods consumed in time period $t\rightarrow{t+dt}$. The utility
-function $U(\dots)$ is unique only up to an order-preserving transformation.
+function $U(\dots)$ is unique only up to an order-preserving transformation. 
 
 ````
+
+{prf:ref}`defn-individual-utility` does not give specifics about the properties of a utility function. However, it does establish a critical concept; the utility can be used to rank order the preference for different choices. For example, suppose we have two options, $A$ and $B$:
+
+* If $A\succ{B}$, the decision maker _strictly prefers_ $A$ to $B$. Then, the utility of choice $A$ is greater than $B$, or $U(A)>U(B)$.
+* If $A\sim{B}$, the decision maker is _indifferent_ between $A$ to $B$. Then, the utility of choice $A$ is the same as $B$, or $U(A)=U(B)$.
+* If $A\succsim{B}$, the decision maker _weakly prefers_ $A$ over $B$, or they are indifferent. Then, the utility of choice $A$ is greater than or equal to $B$, or $U(A)\geq{U(A)}$.
+
 
 ### Properties of utility functions
 The mathematical properties of a _proper_ utility function $U(\dots)$ include:
@@ -40,34 +47,91 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 * __Independence:__ The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.
 * __Substitutability__: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.
 
-These mathematical properties ensure that the utility function is a well-behaved mathematical function that accurately represents an individual's preferences over different options.
+These properties ensure that the utility function is well-behaved and represents an individual's preferences over different options. Let's consider a specific example utility function ({prf:ref}`example-cobb-douglas-uf`):
 
-#### Example
-For example, consider a utility function governing the satisfaction gained by purchasing two goods $(x_{1},x_{2})$ of the form:
+````{prf:example} Cobb–Douglas utility function
+:label: example-cobb-douglas-uf
+:class: dropdown
+
+The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) governing the satisfaction gained by purchasing $n$ goods $(x_{1},x_{2},\dots,x_{n})$ is given by:
 
 ```{math}
 :label: eqn-simple-utility-function
-
-U(x_{1},x_{2}) = \sqrt{x_{1}\cdot{x_{2}}}
+U(x)  = \prod_{i=1}^{n}x_{i}^{\alpha_{i}} 
 ```
 
-Equation {eq}`eqn-simple-utility-function` is continuous, so the first condition is satisfied. To explore the convexity property, compute the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility), i.e., the partial derivative of $U(\dots)$ with respect to goods $x_{1}$ and $x_{2}$:
+where the coefficients $\alpha_{i}$ are governed by:
+
+```{math}
+\sum_{i=1}^{n}\alpha_{i}  = 1
+```
+
+Show the [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) satisfies the first two utility function properties (continuity and convexity). 
+
+__Solution__: Equation {eq}`eqn-simple-utility-function` is continuous, so the first condition is satisfied. To explore the convexity property, compute the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility), i.e., the partial derivative of $U(\dots)$ with respect to $x_{i}$:
 
 ```{math}
 :label: eqn-mu-u-function
 
-\begin{eqnarray}
-\text{MU}_{x_{1}} = \frac{\partial{U}}{\partial{x_{1}}} & = & \left(\frac{1}{2}\right)\frac{x_{2}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
-\text{MU}_{x_{2}} = \frac{\partial{U}}{\partial{x_{2}}} & = & \left(\frac{1}{2}\right)\frac{x_{1}}{\sqrt{x_{1}\cdot{x_{2}}}} \\
-\end{eqnarray}
-
+\text{MU}_{x_{i}} = \left(\alpha_{i}x^{\alpha_{i}-1}\right)\cdot\left(\prod_{j=1,i}^{n}x_{j}^{\alpha_{j}}\right)
 ```
 
-As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$, thus, the convexity property is satisfied.  
+where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$.
 
-### Indifference curves and optimal choices
-An indifference curve is a graphical representation of a combination of choices that provide an individual with the same level of satisfaction or utility. Each point on the indifference curve represents a combination of choices that provides the same satisfaction or utility. The curve slopes downwards because the individual is willing to give up some of one good to obtain more of the other while remaining indifferent. Indifference curves are valuable tools in economics for analyzing consumer preferences and making predictions about consumer behavior in response to changes in prices or income.
+````
 
+### Indifference curves
+Indifference curves are graphical representations of combinations of choices that provide a decision making agent with the same level of satisfaction or utility ({numref}`fig-cobb-douglas-ic`). Thus, decision makers are _indifferent_ to the consumption of different combinations of goods (or services) that are on the same indifference curve. 
+
+ ```{figure} ./figs/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf
+---
+height: 400px
+name: fig-cobb-douglas-ic
+---
+Two-dimensional indifference curves generated using the Cobb–Douglas utility function with $\alpha_{1} = \alpha_{2} = 0.5$. The decision maker is indifferent to a choice between point $A$ and $B$, i.e., $A\sim{B}$ or $C\sim{D}$. However, the decision maker strictly prefers $C$ and $D$ compared to $A$ and $B$, i.e., $C\sim{D}\succ{A}\sim{B}$.
+```
+
+For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
+
+### Marginal rate of substution
+Indifference curves slope downwards because the individual is willing to trade one good or service, for the other good or service, while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or serice is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
+
+````{prf:definition} Marginal Rate of Substitution
+:label: defn-marginal-rate-of-sub
+
+A decision maker is analyzing the consumption of different combinations of $n$ goods or services $x_{1},\dots,x_{n}$. The utility 
+function governing the decision maker $U(\dots)$ can be expanded by computing the [total differential](https://en.wikipedia.org/wiki/Differential_of_a_function#Differentials_in_several_variables) around some point $\left(x_{1}^{\star},\dots,x_{n}^{\star}\right)$ on an indifference curve with utility $c$:
+
+```{math}
+:label: eqn-total-differential-ic
+
+dU = \sum_{i=1}^{n}\left(\frac{\partial{U}}{\partial{x_{i}}}\right)dx_{i}
+```
+
+The partial derivative of the utility with respect to a change in the consumption of good or service $i$ is defined as the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility):
+
+```{math}
+\text{MU}_{i} \equiv \frac{\partial{U}}{\partial{x_{i}}}\qquad{i=1,2,\dots,n}
+```
+
+The utility is constant $U(\dots)=c$ on an indifference curve, $dU = 0$. The marginal rate of substitution of good or service $i$ for $j$ (all other quantities held constant):
+
+```{math}
+:label: eqn-total-differential-ic-constant
+
+\text{MU}_{i}dx_{i} + \text{MU}_{j}dx_{j} = 0\qquad{i\neq{j}}
+```
+
+can be computed for good $i$ and $j$:
+
+```{math}
+:label: eqn-total-differential-ic-mrs
+\text{MRS}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}_{i}}{\text{MU}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}
+```
+
+````
+
+### Optimal choices
 Utility maximization is the process of choosing the option that provides the highest level of utility, given a set of available options and the individual's preferences. It involves evaluating each option using a utility function, and selecting the one that maximizes the utility subject to constraints.
 
 (content:references:utility-and-uncetain-decisions)=
