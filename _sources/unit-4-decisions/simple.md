@@ -81,7 +81,7 @@ where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\right
 ````
 
 ### Indifference curves
-Indifference curves are graphical representations of combinations of choices that provide a decision making agent with the same level of satisfaction or utility ({numref}`fig-cobb-douglas-ic`). Thus, decision makers are _indifferent_ to the consumption of different combinations of goods (or services) that are on the same indifference curve. 
+Indifference curves are graphical representations of combinations of choices that provide a decision making agent with the same level of utility ({numref}`fig-cobb-douglas-ic`). Thus, decision makers are _indifferent_ to the consumption of different combinations of goods (or services) on an indifference curve. 
 
  ```{figure} ./figs/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf
 ---
@@ -94,7 +94,7 @@ Two-dimensional indifference curves generated using the Cobb–Douglas utility f
 For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
 
 ### Marginal rate of substution
-Indifference curves slope downwards because the individual is willing to trade one good or service, for the other good or service, while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or serice is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
+Indifference curves slope downwards because the individual is typically willing to trade one good or service, for another good or service, while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or serice is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
 
 ````{prf:definition} Marginal Rate of Substitution
 :label: defn-marginal-rate-of-sub
@@ -105,16 +105,16 @@ function governing the decision maker $U(\dots)$ can be expanded by computing th
 ```{math}
 :label: eqn-total-differential-ic
 
-dU = \sum_{i=1}^{n}\left(\frac{\partial{U}}{\partial{x_{i}}}\right)dx_{i}
+dU = \sum_{i=1}^{n}\left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}dx_{i}
 ```
 
 The partial derivative of the utility with respect to a change in the consumption of good or service $i$ is defined as the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility):
 
 ```{math}
-\text{MU}_{i} \equiv \frac{\partial{U}}{\partial{x_{i}}}\qquad{i=1,2,\dots,n}
+\text{MU}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}
 ```
 
-The utility is constant $U(\dots)=c$ on an indifference curve, $dU = 0$. The marginal rate of substitution of good or service $i$ for $j$ (all other quantities held constant):
+The utility $U(\dots)=c$ on an indifference curve; thus, along an indifference curve $dU = 0$. The marginal rate of substitution of good or service $i$ for $j$ (all other quantities held constant):
 
 ```{math}
 :label: eqn-total-differential-ic-constant
