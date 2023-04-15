@@ -173,7 +173,7 @@ can be computed for good $i$ and $j$:
 ````
 
 #### Calculation of marginal utility and the marginal rate of substitution 
-Fill me in
+Fill me in. Talk about
 
 ### Optimal choices
 Optimal choices are ones that provide the highest level of utility, subject to potentailly important constraints, e.g., budget constaints.
