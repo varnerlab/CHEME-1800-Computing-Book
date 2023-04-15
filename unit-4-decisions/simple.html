@@ -442,8 +442,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#marginal-rate-of-substution">
-       Marginal rate of substution
+      <a class="reference internal nav-link" href="#marginal-rate-of-substitution">
+       Marginal rate of substitution
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h4 nav-item toc-entry">
@@ -558,8 +558,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#marginal-rate-of-substution">
-       Marginal rate of substution
+      <a class="reference internal nav-link" href="#marginal-rate-of-substitution">
+       Marginal rate of substitution
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h4 nav-item toc-entry">
@@ -701,18 +701,57 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 </div></section>
 <section id="indifference-curves">
 <h3>Indifference curves<a class="headerlink" href="#indifference-curves" title="Permalink to this headline">#</a></h3>
-<p>Indifference curves are graphical representations of combinations of choices that provide a decision making agent with the same level of utility (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>). Thus, decision makers are <em>indifferent</em> to the consumption of different combinations of goods (or services) on an indifference curve.</p>
+<p>Indifference curves are graphical representations of combinations of choices that provide a decision-making agent with the same level of utility (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>). Thus, decision-makers are <em>indifferent</em> to the consumption of different combinations of goods (or services) on an indifference curve.</p>
 <figure class="align-default" id="fig-cobb-douglas-ic">
 <a class="reference internal image-reference" href="../_images/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf"><img alt="../_images/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf" src="../_images/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Two-dimensional indifference curves generated using the Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>. The decision maker is indifferent to a choice between point <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(A\sim{B}\)</span> or <span class="math notranslate nohighlight">\(C\sim{D}\)</span>. However, the decision maker strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> compared to <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(C\sim{D}\succ{A}\sim{B}\)</span>.</span><a class="headerlink" href="#fig-cobb-douglas-ic" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Two-dimensional indifference curves were generated using the Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>. The decision maker is indifferent to a choice between point <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(A\sim{B}\)</span> or <span class="math notranslate nohighlight">\(C\sim{D}\)</span>. However, the decision maker strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> compared to <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(C\sim{D}\succ{A}\sim{B}\)</span>.</span><a class="headerlink" href="#fig-cobb-douglas-ic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For example, the decision agent with the Cobb–Douglas utility function shown in (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>) is <em>indifferent</em> to a choice between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, but strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to either <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>Code sample to compute the Cobb–Douglas utility function for <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize</span>
+<span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span> 
+<span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
+
+<span class="c"># Storage: holds indifference curves </span>
+<span class="n">results</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}}()</span>
+
+<span class="c"># Set values for the good and service 1</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span><span class="n">step</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span><span class="p">;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">X1</span><span class="p">);</span>
+
+<span class="c"># Set utility values</span>
+<span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">,</span> <span class="mf">36.0</span><span class="p">,</span> <span class="mf">48.0</span><span class="p">];</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">U</span><span class="p">);</span>
+
+<span class="c"># simulation loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+
+    <span class="c"># Allocate storage for the indifference curve </span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">U_val</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+    <span class="c"># compute X2 from the X1 values</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">d</span>
+
+        <span class="c"># compute the log-transformed utility</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">α₂</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">U_val</span><span class="p">)</span> <span class="o">-</span> <span class="n">α₁</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">X1</span><span class="p">[</span><span class="n">j</span><span class="p">]));</span>
+
+        <span class="c"># store</span>
+        <span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X1</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span> <span class="c"># inverse transform</span>
+    <span class="k">end</span>
+
+    <span class="c"># store -</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
 </section>
-<section id="marginal-rate-of-substution">
-<h3>Marginal rate of substution<a class="headerlink" href="#marginal-rate-of-substution" title="Permalink to this headline">#</a></h3>
-<p>Indifference curves slope downwards because the individual is typically willing to trade one good or service, for another good or service, while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or serice is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_rate_of_substitution">marginal rate of substution</a> (<a class="reference internal" href="#defn-marginal-rate-of-sub">Definition 46</a>):</p>
+<section id="marginal-rate-of-substitution">
+<h3>Marginal rate of substitution<a class="headerlink" href="#marginal-rate-of-substitution" title="Permalink to this headline">#</a></h3>
+<p>Indifference curves slope downwards because the individual is typically willing to trade one good or service for another while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or service is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_rate_of_substitution">marginal rate of substution</a> (<a class="reference internal" href="#defn-marginal-rate-of-sub">Definition 46</a>):</p>
 <div class="proof definition admonition" id="defn-marginal-rate-of-sub">
 <p class="admonition-title"><span class="caption-number">Definition 46 </span> (Marginal Rate of Substitution)</p>
 <section class="definition-content" id="proof-content">
@@ -737,18 +776,18 @@ function governing the decision maker <span class="math notranslate nohighlight"
 </section>
 <section id="optimal-choices-and-budgets">
 <h3>Optimal choices and budgets<a class="headerlink" href="#optimal-choices-and-budgets" title="Permalink to this headline">#</a></h3>
-<p>To estimate optimal choices, a decision making agent <em>maximizes</em> a utlity function, i.e., the agent searchs for a combinations of goods and services that gives it the highest satisfaction subject to various constraints, e.g., a budget constraint (<a class="reference internal" href="#eqn-budget-constraint">Definition 47</a>):</p>
+<p>To estimate optimal choices, a decision-making agent <em>maximizes</em> a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint (<a class="reference internal" href="#eqn-budget-constraint">Definition 47</a>):</p>
 <div class="proof definition admonition" id="eqn-budget-constraint">
-<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Maximum utlity and budget constraints)</p>
+<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Maximum utility and budget constraints)</p>
 <section class="definition-content" id="proof-content">
-<p>A decision making agent has a utility function <span class="math notranslate nohighlight">\(U\left(x_{1},\dots,x_{n}\right)\)</span> and <span class="math notranslate nohighlight">\(I\)</span> dollars to spend between <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>. An optimal agents maximizes it’s utlility subject to its budget:</p>
+<p>A decision making agent has a utility function <span class="math notranslate nohighlight">\(U\left(x_{1},\dots,x_{n}\right)\)</span> and <span class="math notranslate nohighlight">\(I\)</span> dollars to spend between <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>. An optimal agent maximizes its utility subject to its budget:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-max-ulity-problem">
 <span class="eqno">(88)<a class="headerlink" href="#equation-eqn-max-ulity-problem" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
 \text{maximize}~\mathcal{O} &amp;=&amp; U\left(x_{1},\dots,x_{n}\right) \\
 \text{subject to}~\sum_{i=1}^{n}c_{i}x_{i} &amp; \leq &amp; I\\
 \text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
 \end{eqnarray}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of good or service <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\)</span> denotes the amount of good or service purchased or consumed by the agent.</p>
+<p>where <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of good or service <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\)</span> represents the amount of good or service purchased or consumed by the agent.</p>
 </section>
 </div></section>
 </section>
