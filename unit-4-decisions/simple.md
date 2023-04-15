@@ -1,4 +1,4 @@
-# Probability and Simple Choices under Uncertainty
+# Probability and Choices under Uncertainty
 
 Uncertain decisions are those that involve a certain degree of risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship. Making uncertain decisions involves weighing each option’s potential benefits and drawbacks and considering the likelihood of different outcomes.
 
@@ -93,6 +93,47 @@ Two-dimensional indifference curves generated using the Cobb–Douglas utility f
 
 For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
 
+
+Code sample to compute the Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
+```julia
+# initialize
+α₁ = 0.5 
+α₂ = 1.0 - α₁
+
+# storage: holds indiffernce curves 
+results = Dict{Int64,Array{Float64,2}}()
+
+# set values for the good and service 1
+X1 = range(0.001,stop=100.0,step = 0.001) |> collect;
+d = length(X1);
+
+# set utility values
+U = [12.0, 24.0, 36.0, 48.0];
+n = length(U);
+
+# simulation loop
+for i ∈ 1:n
+
+    # allocate storage for the indifference curve 
+    Y = Array{Float64,2}(undef,d,2);
+    U_val = U[i];
+
+    # compute X2 for the X1 values
+    for j ∈ 1:d
+
+        # compute the log transformed utility
+        tmp = (1/α₂)*(log(U_val) - α₁*log(X1[j]));
+
+        # store
+        Y[j,1] = X1[j];
+        Y[j,2] = exp(tmp); # inverse transform
+    end
+
+    # store -
+    results[i] = Y;
+end
+```
+
 ### Marginal rate of substution
 Indifference curves slope downwards because the individual is typically willing to trade one good or service, for another good or service, while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or serice is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
 
@@ -131,6 +172,9 @@ can be computed for good $i$ and $j$:
 
 ````
 
+#### Calculation of marginal utility and the marginal rate of substitution 
+Fill me in
+
 ### Optimal choices
 Optimal choices are ones that provide the highest level of utility, subject to potentailly important constraints, e.g., budget constaints.
 
@@ -138,8 +182,8 @@ Optimal choices are ones that provide the highest level of utility, subject to p
 
 
 (content:references:utility-and-uncetain-decisions)=
-## Simple choices under uncertainty
-Fill me in.
+## Choice under uncertainty
+Choice under uncertainty refers to decision-making scenarios where the outcomes of available options are not known with certainty. Instead, there is a level of risk or uncertainty associated with each potential outcome. This type of decision-making is common in various areas, including finance, economics, psychology, and everyday life.
 
 ### Moments of discrete random variables
 It is often helpful to extract characteristics such as the mean, standard deviation, or other quantities of interest from random variables.  We compute these parameters of interest from random market data using a concept called the [moments of a random variable](https://en.wikipedia.org/wiki/Moment_(mathematics)). The mean, variance, skew, kurtosis, etc., are all examples of the [moments of a random variable](https://en.wikipedia.org/wiki/Moment_(mathematics)). We'll only focus on the first two moments, the expectation and the variance.
