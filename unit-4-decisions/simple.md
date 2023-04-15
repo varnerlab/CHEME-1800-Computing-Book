@@ -81,20 +81,60 @@ where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\right
 ````
 
 ### Indifference curves
-Indifference curves are graphical representations of combinations of choices that provide a decision making agent with the same level of utility ({numref}`fig-cobb-douglas-ic`). Thus, decision makers are _indifferent_ to the consumption of different combinations of goods (or services) on an indifference curve. 
+Indifference curves are graphical representations of combinations of choices that provide a decision-making agent with the same level of utility ({numref}`fig-cobb-douglas-ic`). Thus, decision-makers are _indifferent_ to the consumption of different combinations of goods (or services) on an indifference curve. 
 
  ```{figure} ./figs/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf
 ---
 height: 400px
 name: fig-cobb-douglas-ic
 ---
-Two-dimensional indifference curves generated using the Cobb–Douglas utility function with $\alpha_{1} = \alpha_{2} = 0.5$. The decision maker is indifferent to a choice between point $A$ and $B$, i.e., $A\sim{B}$ or $C\sim{D}$. However, the decision maker strictly prefers $C$ and $D$ compared to $A$ and $B$, i.e., $C\sim{D}\succ{A}\sim{B}$.
+Two-dimensional indifference curves were generated using the Cobb–Douglas utility function with $\alpha_{1} = \alpha_{2} = 0.5$. The decision maker is indifferent to a choice between point $A$ and $B$, i.e., $A\sim{B}$ or $C\sim{D}$. However, the decision maker strictly prefers $C$ and $D$ compared to $A$ and $B$, i.e., $C\sim{D}\succ{A}\sim{B}$.
 ```
 
 For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
 
-### Marginal rate of substution
-Indifference curves slope downwards because the individual is typically willing to trade one good or service, for another good or service, while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or serice is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
+Code sample to compute the Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
+```julia
+# initialize
+α₁ = 0.5 
+α₂ = 1.0 - α₁
+
+# Storage: holds indifference curves 
+results = Dict{Int64,Array{Float64,2}}()
+
+# Set values for the good and service 1
+X1 = range(0.001,stop=100.0,step = 0.001) |> collect;
+d = length(X1);
+
+# Set utility values
+U = [12.0, 24.0, 36.0, 48.0];
+n = length(U);
+
+# simulation loop
+for i ∈ 1:n
+
+    # Allocate storage for the indifference curve 
+    Y = Array{Float64,2}(undef,d,2);
+    U_val = U[i];
+
+    # compute X2 from the X1 values
+    for j ∈ 1:d
+
+        # compute the log-transformed utility
+        tmp = (1/α₂)*(log(U_val) - α₁*log(X1[j]));
+
+        # store
+        Y[j,1] = X1[j];
+        Y[j,2] = exp(tmp); # inverse transform
+    end
+
+    # store -
+    results[i] = Y;
+end
+```
+
+### Marginal rate of substitution
+Indifference curves slope downwards because the individual is typically willing to trade one good or service for another while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or service is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
 
 ````{prf:definition} Marginal Rate of Substitution
 :label: defn-marginal-rate-of-sub
@@ -135,12 +175,12 @@ can be computed for good $i$ and $j$:
 Fill me in. Talk about
 
 ### Optimal choices and budgets
-To estimate optimal choices, a decision making agent _maximizes_ a utlity function, i.e., the agent searchs for a combinations of goods and services that gives it the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
+To estimate optimal choices, a decision-making agent _maximizes_ a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
 
-````{prf:definition} Maximum utlity and budget constraints
+````{prf:definition} Maximum utility and budget constraints
 :label: eqn-budget-constraint
 
-A decision making agent has a utility function $U\left(x_{1},\dots,x_{n}\right)$ and $I$ dollars to spend between $t\rightarrow{t+dt}$. An optimal agents maximizes it's utlility subject to its budget:
+A decision making agent has a utility function $U\left(x_{1},\dots,x_{n}\right)$ and $I$ dollars to spend between $t\rightarrow{t+dt}$. An optimal agent maximizes its utility subject to its budget:
 
 ```{math}
 :label: eqn-max-ulity-problem
@@ -153,7 +193,7 @@ A decision making agent has a utility function $U\left(x_{1},\dots,x_{n}\right)$
 
 ```
 
-where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_{i}$ denotes the amount of good or service purchased or consumed by the agent.
+where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_{i}$ represents the amount of good or service purchased or consumed by the agent.
 
 ````
 
