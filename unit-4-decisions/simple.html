@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Probability and Simple Choices under Uncertainty &#8212; CHEME 1800/4800</title>
+    <title>Probability and Choices under Uncertainty &#8212; CHEME 1800/4800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -224,7 +224,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Probability and Simple Choices under Uncertainty
+     Probability and Choices under Uncertainty
     </a>
    </li>
    <li class="toctree-l2">
@@ -423,7 +423,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Probability and Simple Choices under Uncertainty
+   Probability and Choices under Uncertainty
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -445,6 +445,13 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#marginal-rate-of-substution">
        Marginal rate of substution
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#calculation-of-marginal-utility-and-the-marginal-rate-of-substitution">
+         Calculation of marginal utility and the marginal rate of substitution
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optimal-choices">
@@ -454,8 +461,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-choices-under-uncertainty">
-     Simple choices under uncertainty
+    <a class="reference internal nav-link" href="#choice-under-uncertainty">
+     Choice under uncertainty
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -520,7 +527,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Probability and Simple Choices under Uncertainty</h1>
+                <h1>Probability and Choices under Uncertainty</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -532,7 +539,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Probability and Simple Choices under Uncertainty
+   Probability and Choices under Uncertainty
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -554,6 +561,13 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#marginal-rate-of-substution">
        Marginal rate of substution
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#calculation-of-marginal-utility-and-the-marginal-rate-of-substitution">
+         Calculation of marginal utility and the marginal rate of substitution
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optimal-choices">
@@ -563,8 +577,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-choices-under-uncertainty">
-     Simple choices under uncertainty
+    <a class="reference internal nav-link" href="#choice-under-uncertainty">
+     Choice under uncertainty
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -630,13 +644,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="probability-and-simple-choices-under-uncertainty">
-<h1>Probability and Simple Choices under Uncertainty<a class="headerlink" href="#probability-and-simple-choices-under-uncertainty" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="probability-and-choices-under-uncertainty">
+<h1>Probability and Choices under Uncertainty<a class="headerlink" href="#probability-and-choices-under-uncertainty" title="Permalink to this headline">#</a></h1>
 <p>Uncertain decisions are those that involve a certain degree of risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship. Making uncertain decisions involves weighing each option’s potential benefits and drawbacks and considering the likelihood of different outcomes.</p>
 <p>In this lecture, we introduce tools to model and analyze simple uncertain decisions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-utility-and-utlity-max"><span class="std std-ref">Utility maximization</span></a> is the process of selecting the option that provides the highest level of satisfaction, or utility, based on the individual’s preferences and constraints. This concept is often used in economics to model consumer behavior and in decision theory to analyze choices under uncertainty.</p></li>
-<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Simple choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
+<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Choice under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
 </ul>
 <hr class="docutils" />
 <section id="utility-maximization">
@@ -695,6 +709,45 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 </figcaption>
 </figure>
 <p>For example, the decision agent with the Cobb–Douglas utility function shown in (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>) is <em>indifferent</em> to a choice between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, but strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to either <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>Code sample to compute the Cobb–Douglas utility function for <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize</span>
+<span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span> 
+<span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
+
+<span class="c"># storage: holds indiffernce curves </span>
+<span class="n">results</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}}()</span>
+
+<span class="c"># set values for the good and service 1</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span><span class="n">step</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">collect</span><span class="p">;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">X1</span><span class="p">);</span>
+
+<span class="c"># set utility values</span>
+<span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">,</span> <span class="mf">36.0</span><span class="p">,</span> <span class="mf">48.0</span><span class="p">];</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">U</span><span class="p">);</span>
+
+<span class="c"># simulation loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+
+    <span class="c"># allocate storage for the indifference curve </span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">U_val</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+    <span class="c"># compute X2 for the X1 values</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">d</span>
+
+        <span class="c"># compute the log transformed utility</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">α₂</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">U_val</span><span class="p">)</span> <span class="o">-</span> <span class="n">α₁</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">X1</span><span class="p">[</span><span class="n">j</span><span class="p">]));</span>
+
+        <span class="c"># store</span>
+        <span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X1</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span> <span class="c"># inverse transform</span>
+    <span class="k">end</span>
+
+    <span class="c"># store -</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
 </section>
 <section id="marginal-rate-of-substution">
 <h3>Marginal rate of substution<a class="headerlink" href="#marginal-rate-of-substution" title="Permalink to this headline">#</a></h3>
@@ -716,15 +769,19 @@ function governing the decision maker <span class="math notranslate nohighlight"
 <div class="math notranslate nohighlight" id="equation-eqn-total-differential-ic-mrs">
 <span class="eqno">(87)<a class="headerlink" href="#equation-eqn-total-differential-ic-mrs" title="Permalink to this equation">#</a></span>\[\text{MRS}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}_{i}}{\text{MU}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}\]</div>
 </section>
-</div></section>
+</div><section id="calculation-of-marginal-utility-and-the-marginal-rate-of-substitution">
+<h4>Calculation of marginal utility and the marginal rate of substitution<a class="headerlink" href="#calculation-of-marginal-utility-and-the-marginal-rate-of-substitution" title="Permalink to this headline">#</a></h4>
+<p>Fill me in</p>
+</section>
+</section>
 <section id="optimal-choices">
 <h3>Optimal choices<a class="headerlink" href="#optimal-choices" title="Permalink to this headline">#</a></h3>
-<p>Utility maximization is the process of choosing the option that provides the highest level of utility, given a set of available options and the individual’s preferences. It involves evaluating each option using a utility function, and selecting the one that maximizes the utility subject to constraints.</p>
+<p>Optimal choices are ones that provide the highest level of utility, subject to potentailly important constraints, e.g., budget constaints.</p>
 </section>
 </section>
-<section id="simple-choices-under-uncertainty">
-<span id="content-references-utility-and-uncetain-decisions"></span><h2>Simple choices under uncertainty<a class="headerlink" href="#simple-choices-under-uncertainty" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<section id="choice-under-uncertainty">
+<span id="content-references-utility-and-uncetain-decisions"></span><h2>Choice under uncertainty<a class="headerlink" href="#choice-under-uncertainty" title="Permalink to this headline">#</a></h2>
+<p>Choice under uncertainty refers to decision-making scenarios where the outcomes of available options are not known with certainty. Instead, there is a level of risk or uncertainty associated with each potential outcome. This type of decision-making is common in various areas, including finance, economics, psychology, and everyday life.</p>
 <section id="moments-of-discrete-random-variables">
 <h3>Moments of discrete random variables<a class="headerlink" href="#moments-of-discrete-random-variables" title="Permalink to this headline">#</a></h3>
 <p>It is often helpful to extract characteristics such as the mean, standard deviation, or other quantities of interest from random variables.  We compute these parameters of interest from random market data using a concept called the <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments of a random variable</a>. The mean, variance, skew, kurtosis, etc., are all examples of the <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments of a random variable</a>. We’ll only focus on the first two moments, the expectation and the variance.</p>
@@ -873,7 +930,7 @@ a geometric random variable describes the number of failures obtained before fin
 <p>In this lecture, we introduced tools to model and analyze simple uncertain decisions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-utility-and-utlity-max"><span class="std std-ref">Utility maximization</span></a> is the process of selecting the option that provides the highest level of satisfaction, or utility, based on the individual’s preferences and constraints. This concept is often used in economics to model consumer behavior and in decision theory to analyze choices under uncertainty.</p></li>
-<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Simple choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
+<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Choice under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
 </ul>
 </section>
 
