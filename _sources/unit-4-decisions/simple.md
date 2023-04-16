@@ -93,7 +93,7 @@ Two-dimensional indifference curves were generated using the Cobb–Douglas util
 
 For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
 
-Code sample to compute the Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
+Sample code to compute the two-dimensional Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
 ```julia
 # initialize
 α₁ = 0.5 
@@ -171,8 +171,29 @@ can be computed for good $i$ and $j$:
 
 ````
 
-#### Calculation of marginal utility and the marginal rate of substitution 
-Fill me in. Talk about
+#### Calculating the marginal utility and the marginal rate of substitution 
+The marginal utility and the marginal rate of substitution can be computed by directly differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated, you can approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), 
+or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation). 
+
+```julia
+# load the ForwardDiff package
+using ForwardDiff
+
+# Cobb-Douglas utility function
+function U(x)
+
+    # initialize
+    α₁ = 0.5;
+    α₂ = 1.0 - α₁
+    
+    # return
+    return (x[1]^α₁)*(x[2]^α₂)
+end
+
+# Estimate the MU -
+x = [20.0,7.20]; # point A 
+MU = ForwardDiff.gradient(U,x);
+```
 
 ### Optimal choices and budgets
 To estimate optimal choices, a decision-making agent _maximizes_ a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
@@ -193,7 +214,7 @@ A decision making agent has a utility function $U\left(x_{1},\dots,x_{n}\right)$
 
 ```
 
-where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_{i}$ represents the amount of good or service purchased or consumed by the agent.
+where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_{i}$ represents the amount of good or service purchased or consumed by the agent during time period $t\rightarrow{t+dt}$.
 
 ````
 

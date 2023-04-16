@@ -447,8 +447,8 @@ title="Print to PDF"
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#calculation-of-marginal-utility-and-the-marginal-rate-of-substitution">
-         Calculation of marginal utility and the marginal rate of substitution
+        <a class="reference internal nav-link" href="#calculating-the-marginal-utility-and-the-marginal-rate-of-substitution">
+         Calculating the marginal utility and the marginal rate of substitution
         </a>
        </li>
       </ul>
@@ -563,8 +563,8 @@ title="Print to PDF"
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#calculation-of-marginal-utility-and-the-marginal-rate-of-substitution">
-         Calculation of marginal utility and the marginal rate of substitution
+        <a class="reference internal nav-link" href="#calculating-the-marginal-utility-and-the-marginal-rate-of-substitution">
+         Calculating the marginal utility and the marginal rate of substitution
         </a>
        </li>
       </ul>
@@ -709,7 +709,7 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 </figcaption>
 </figure>
 <p>For example, the decision agent with the Cobb–Douglas utility function shown in (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>) is <em>indifferent</em> to a choice between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, but strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to either <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
-<p>Code sample to compute the Cobb–Douglas utility function for <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
+<p>Sample code to compute the two-dimensional Cobb–Douglas utility function for <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize</span>
 <span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span> 
 <span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
@@ -769,9 +769,29 @@ function governing the decision maker <span class="math notranslate nohighlight"
 <div class="math notranslate nohighlight" id="equation-eqn-total-differential-ic-mrs">
 <span class="eqno">(87)<a class="headerlink" href="#equation-eqn-total-differential-ic-mrs" title="Permalink to this equation">#</a></span>\[\text{MRS}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}_{i}}{\text{MU}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}\]</div>
 </section>
-</div><section id="calculation-of-marginal-utility-and-the-marginal-rate-of-substitution">
-<h4>Calculation of marginal utility and the marginal rate of substitution<a class="headerlink" href="#calculation-of-marginal-utility-and-the-marginal-rate-of-substitution" title="Permalink to this headline">#</a></h4>
-<p>Fill me in. Talk about</p>
+</div><section id="calculating-the-marginal-utility-and-the-marginal-rate-of-substitution">
+<h4>Calculating the marginal utility and the marginal rate of substitution<a class="headerlink" href="#calculating-the-marginal-utility-and-the-marginal-rate-of-substitution" title="Permalink to this headline">#</a></h4>
+<p>The marginal utility and the marginal rate of substitution can be computed by directly differentiating the utility function (as shown in <a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated, you can approximate the marginal utility using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">finite difference approximation</a>,
+or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a>.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the ForwardDiff package</span>
+<span class="k">using</span> <span class="n">ForwardDiff</span>
+
+<span class="c"># Cobb-Douglas utility function</span>
+<span class="k">function</span> <span class="n">U</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c"># initialize</span>
+    <span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
+    
+    <span class="c"># return</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="n">α₁</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="n">α₂</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Estimate the MU -</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.0</span><span class="p">,</span><span class="mf">7.20</span><span class="p">];</span> <span class="c"># point A </span>
+<span class="n">MU</span> <span class="o">=</span> <span class="n">ForwardDiff</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="optimal-choices-and-budgets">
@@ -787,7 +807,7 @@ function governing the decision maker <span class="math notranslate nohighlight"
 \text{subject to}~\sum_{i=1}^{n}c_{i}x_{i} &amp; \leq &amp; I\\
 \text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
 \end{eqnarray}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of good or service <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\)</span> represents the amount of good or service purchased or consumed by the agent.</p>
+<p>where <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of good or service <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\)</span> represents the amount of good or service purchased or consumed by the agent during time period <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>.</p>
 </section>
 </div></section>
 </section>
