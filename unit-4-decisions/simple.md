@@ -93,7 +93,7 @@ Two-dimensional indifference curves were generated using the Cobb–Douglas util
 
 For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
 
-Code sample to compute the Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
+Sample code to compute the two-dimensional Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
 ```julia
 # initialize
 α₁ = 0.5 
@@ -171,8 +171,35 @@ can be computed for good $i$ and $j$:
 
 ````
 
-#### Calculation of marginal utility and the marginal rate of substitution 
-Fill me in. Talk about
+#### Calculating the marginal utility and the marginal rate of substitution 
+The marginal utility and the marginal rate of substitution can be computed by differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, if for some reason it is not possible to compute the derivative, e.g., the utility function is complicated, you can compute a numerical estimate of the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference) of the derivative. 
+
+##### Forward, backward and center differences
+A forward difference of a function $f$ evaluted at $x$, denoted by $\Delta_{h}f(x)$, is defined as:
+
+```{math}
+\Delta_{h}f(x) = f(x+h) - f(x)
+```
+
+where $h$ is known as the step size. The derivative of function $f$ at $x$, denoted by $f^{\prime}(x)$, is then approximated as:
+
+```{math}
+f^{\prime}(x) \simeq \frac{\Delta_{h}f(x)}{h} 
+```
+
+Similarly, the derivative could also be approximated using a backward difference:
+
+```{math}
+f^{\prime}(x) \simeq \frac{\Delta_{h}f(x-h)}{h} 
+```
+
+of a central difference:
+
+
+```{math}
+f^{\prime}(x) \simeq \frac{\Delta_{h/2}f(x) + \Delta_{h/2}f(x-h)}{2h} 
+```
+
 
 ### Optimal choices and budgets
 To estimate optimal choices, a decision-making agent _maximizes_ a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
@@ -193,7 +220,7 @@ A decision making agent has a utility function $U\left(x_{1},\dots,x_{n}\right)$
 
 ```
 
-where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_{i}$ represents the amount of good or service purchased or consumed by the agent.
+where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_{i}$ represents the amount of good or service purchased or consumed by the agent during time period $t\rightarrow{t+dt}$.
 
 ````
 
