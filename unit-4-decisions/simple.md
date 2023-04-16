@@ -1,4 +1,4 @@
-# Probability and Simple Choices under Uncertainty
+# Probability and Uncertain Choices
 
 Uncertain decisions are those that involve a certain degree of risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship. Making uncertain decisions involves weighing each option’s potential benefits and drawbacks and considering the likelihood of different outcomes.
 
@@ -12,26 +12,25 @@ In this lecture, we introduce tools to model and analyze simple uncertain decisi
 
 (content:references:utility-and-utlity-max)=
 ## Utility maximization
-A utility function is a mathematical expression representing an individual's preferences over different choices or outcomes. It assigns a numerical value, called _utility_, to each possible choice based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.
+A utility function is a mathematical expression representing an individual's preferences over different choices or outcomes. It assigns a numerical value, called _utility_, to each possible option based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.
 
-Let's begin our discussion of utility by introducing the classical application of this concept, namely, the choice governings the choice of which combination of $n$ goods (or services) to consume ({prf:ref}`defn-individual-utility`):
+[Rational choice theory](https://en.wikipedia.org/wiki/Rational_choice_theory) assumes individuals make rational decisions based on their preferences and available information. [Rational choice theory](https://en.wikipedia.org/wiki/Rational_choice_theory) is based on computing the utility of actions or outcomes. Thus, utility functions are a crucial component of this theory, as they describe how individuals assign values to different results or choices ({prf:ref}`defn-individual-utility`):
 
-````{prf:definition} Utility
+````{prf:definition} Ordinal utility function
 :label: defn-individual-utility
 
-The preferences of individual decision-making agents for $n$ goods are assumed to be represented by a utility function:
+An individual decision-making agent is presented with a bundle of $n$ objects $x_{1},\dots,x_{n}$. A utility function represents the preference of the agent for combinations of these $n$ objects:
 
 ```{math}
 :label: eqn-utility-function-generic
 U(x_{1},x_{2},\dots,x_{n})
 ```
 
-where $x_{1},x_{2},\dots,x_{n}$ are the quantities of $n$ goods consumed in time period $t\rightarrow{t+dt}$. The utility
-function $U(\dots)$ is unique only up to an order-preserving transformation. 
+The utility function $U(\dots)$ is unique only up to an order-preserving transformation in period $t\rightarrow{t+dt}$. Further, utility functions are ordinal, i.e., they rank-order bundles but do not indicate how much better a bundle is compared to another.
 
 ````
 
-{prf:ref}`defn-individual-utility` does not give specifics about the properties of a utility function. However, it does establish a critical concept; the utility can be used to rank order the preference for different choices. For example, suppose we have two options, $A$ and $B$:
+{prf:ref}`defn-individual-utility` does not give specifics about the properties of a utility function. However, it does establish a critical concept; the utility can be used to rank order the preference for different choices. For example, suppose we have two choices, $A$ and $B$:
 
 * If $A\succ{B}$, the decision maker _strictly prefers_ $A$ to $B$. Then, the utility of choice $A$ is greater than $B$, or $U(A)>U(B)$.
 * If $A\sim{B}$, the decision maker is _indifferent_ between $A$ to $B$. Then, the utility of choice $A$ is the same as $B$, or $U(A)=U(B)$.
@@ -47,7 +46,38 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 * __Independence:__ The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.
 * __Substitutability__: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.
 
-These properties ensure that the utility function is well-behaved and represents an individual's preferences over different options. Let's consider a specific example utility function ({prf:ref}`example-cobb-douglas-uf`):
+These properties ensure that the utility function is well-behaved and represents an individual's preferences over different options. 
+
+#### Marginal utility
+The marginal utility is the additional satisfaction or usefulness an agent derives from consuming one additional unit of a good or service. Mathematically, the marginal utility is the partial derivative of the utility with respect to the amount of item $i$ ({prf:ref}`defn-marginal-utility-math`):
+
+````{prf:definition} Marginal utility
+:label: defn-marginal-utility-math
+
+The preferences of a bundle of objects $x_{1},\dots,x_{n}$ are described by the utility function $U(x_{1},\dots,x_{n})$. Then, the value or satisfaction experienced by the agent from one additional unit of object $i$ is the marginal utility of object $i$ is given by:
+
+```{math}
+\text{MU}^{\star}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}
+```
+
+where all other objects are held constant at level $\star$.
+````
+
+##### Marginal utility of wealth
+The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent ({numref}`fig-wealth-schematic-simple-model`). 
+
+
+ ```{figure} ./figs/Fig-Wealth-Utility-Schematic.pdf
+---
+height: 400px
+name: fig-wealth-schematic-simple-model
+---
+Wealth utility function $U(W) = W/(W+b)$ as a function of choices for the parameter $b$. The abundance of wealth is inversely proportional to the value of the parameter $b$. For example, the agent at $A$ values each additional wealth unit less than the agent at $D$.
+```
+
+The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.
+
+Let's consider a specific example utility function that we'll use later ({prf:ref}`example-cobb-douglas-uf`):
 
 ````{prf:example} Cobb–Douglas utility function
 :label: example-cobb-douglas-uf
@@ -79,6 +109,32 @@ __Solution__: Equation {eq}`eqn-simple-utility-function` is continuous, so the f
 where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$.
 
 ````
+
+The marginal utility can be computed by directly differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), 
+or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) approach.
+
+Sample code for [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) of the Cobb-Douglas utility function using the 
+[ForwardDiff.jl](https://juliadiff.org/ForwardDiff.jl/stable/) package:
+```julia
+# load the ForwardDiff package
+using ForwardDiff
+
+# Cobb-Douglas utility function
+function U(x)
+
+    # initialize
+    α₁ = 0.5;
+    α₂ = 1.0 - α₁
+    
+    # return
+    return (x[1]^α₁)*(x[2]^α₂)
+end
+
+# Estimate the MU -
+x = [20.0,7.20]; # point A 
+MU = ForwardDiff.gradient(U,x);
+```
+
 
 ### Indifference curves
 Indifference curves are graphical representations of combinations of choices that provide a decision-making agent with the same level of utility ({numref}`fig-cobb-douglas-ic`). Thus, decision-makers are _indifferent_ to the consumption of different combinations of goods (or services) on an indifference curve. 
@@ -148,10 +204,10 @@ function governing the decision maker $U(\dots)$ can be expanded by computing th
 dU = \sum_{i=1}^{n}\left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}dx_{i}
 ```
 
-The partial derivative of the utility with respect to a change in the consumption of good or service $i$ is defined as the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility):
+The partial derivative of the utility with respect to a change in the consumption of good or service $i$ is the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility):
 
 ```{math}
-\text{MU}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}
+dU = \sum_{i=1}^{n}\left(\text{MU}_{i}^{\star}\right){dx_{i}}
 ```
 
 The utility $U(\dots)=c$ on an indifference curve; thus, along an indifference curve $dU = 0$. The marginal rate of substitution of good or service $i$ for $j$ (all other quantities held constant):
@@ -159,45 +215,21 @@ The utility $U(\dots)=c$ on an indifference curve; thus, along an indifference c
 ```{math}
 :label: eqn-total-differential-ic-constant
 
-\text{MU}_{i}dx_{i} + \text{MU}_{j}dx_{j} = 0\qquad{i\neq{j}}
+\text{MU}^{\star}_{i}dx_{i} + \text{MU}^{\star}_{j}dx_{j} = 0\qquad{i\neq{j}}
 ```
 
 can be computed for good $i$ and $j$:
 
 ```{math}
 :label: eqn-total-differential-ic-mrs
-\text{MRS}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}_{i}}{\text{MU}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}
+\text{MRS}^{\star}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}^{\star}_{i}}{\text{MU}^{\star}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}
 ```
 
 ````
 
-#### Calculating the marginal utility and the marginal rate of substitution 
-The marginal utility and the marginal rate of substitution can be computed by directly differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), 
-or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation). 
-
-Sample code for [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) of the Cobb-Douglas utility function:
-```julia
-# load the ForwardDiff package
-using ForwardDiff
-
-# Cobb-Douglas utility function
-function U(x)
-
-    # initialize
-    α₁ = 0.5;
-    α₂ = 1.0 - α₁
-    
-    # return
-    return (x[1]^α₁)*(x[2]^α₂)
-end
-
-# Estimate the MU -
-x = [20.0,7.20]; # point A 
-MU = ForwardDiff.gradient(U,x);
-```
 
 ### Optimal choices and budgets
-To estimate optimal choices, a decision-making agent _maximizes_ a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
+An optimal decision-making agent _maximizes_ its utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
 
 ````{prf:definition} Maximum utility and budget constraints
 :label: eqn-budget-constraint
@@ -219,10 +251,21 @@ where $c_{i}\geq{0}~\forall{i}$ denotes the cost of good or service $i$, and $x_
 
 ````
 
+The problem in {prf:ref}`eqn-budget-constraint` can be solved for the unknown consumption levels of $x_{i}$ using various techniques. For example, we could use the [method of Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) or a [penalty method](https://en.wikipedia.org/wiki/Penalty_method) in combination with any number of heuristic optimization approaches, e.g., [simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing). Of course, if the utility function in {prf:ref}`eqn-budget-constraint` is linear, we could also use [linear programming](https://en.wikipedia.org/wiki/Linear_programming).
+
+Let's do an example of a decision between two goods using a Cobb–Douglas utility function subject to a budget constraint ({prf:ref}`example-utility-max-budget`):
+
+````{prf:example} Maximize utility subject to budget
+:label: example-utility-max-budget
+:class: dropdown
+
+__Problem__: A decision making agent must decide how much of two goods to consume, $x_{1}$ and $x_{2}$, subject to a budget constraint. Good one costs 18.0 USD per unit, while good two costs 36.0 USD per unit. The agent has 100.0 USD to spend and is governed by a Cobb–Douglas utility function with $\alpha_{1} = 0.45$ and  $\alpha_{2} = 0.55$. Compute the optimal mixture of $x_{1}$ and $x_{2}$.
+
+````
 
 
 (content:references:utility-and-uncetain-decisions)=
-## Simple choices under uncertainty
+## Choices under uncertainty
 Fill me in.
 
 ### Moments of discrete random variables
