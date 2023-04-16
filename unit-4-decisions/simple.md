@@ -134,7 +134,7 @@ end
 ```
 
 ### Marginal rate of substitution
-Indifference curves slope downwards because the individual is typically willing to trade one good or service for another while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or service is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
+How much of one good or service a decision maker is willing to trade for another is called the [marginal rate of substution](https://en.wikipedia.org/wiki/Marginal_rate_of_substitution) ({prf:ref}`defn-marginal-rate-of-sub`):
 
 ````{prf:definition} Marginal Rate of Substitution
 :label: defn-marginal-rate-of-sub
@@ -172,34 +172,29 @@ can be computed for good $i$ and $j$:
 ````
 
 #### Calculating the marginal utility and the marginal rate of substitution 
-The marginal utility and the marginal rate of substitution can be computed by differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, if for some reason it is not possible to compute the derivative, e.g., the utility function is complicated, you can compute a numerical estimate of the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference) of the derivative. 
+The marginal utility and the marginal rate of substitution can be computed by directly differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), 
+or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation). 
 
-##### Forward, backward and center differences
-A forward difference of a function $f$ evaluted at $x$, denoted by $\Delta_{h}f(x)$, is defined as:
+Sample code for [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) of the Cobb-Douglas utility function:
+```julia
+# load the ForwardDiff package
+using ForwardDiff
 
-```{math}
-\Delta_{h}f(x) = f(x+h) - f(x)
+# Cobb-Douglas utility function
+function U(x)
+
+    # initialize
+    α₁ = 0.5;
+    α₂ = 1.0 - α₁
+    
+    # return
+    return (x[1]^α₁)*(x[2]^α₂)
+end
+
+# Estimate the MU -
+x = [20.0,7.20]; # point A 
+MU = ForwardDiff.gradient(U,x);
 ```
-
-where $h$ is known as the step size. The derivative of function $f$ at $x$, denoted by $f^{\prime}(x)$, is then approximated as:
-
-```{math}
-f^{\prime}(x) \simeq \frac{\Delta_{h}f(x)}{h} 
-```
-
-Similarly, the derivative could also be approximated using a backward difference:
-
-```{math}
-f^{\prime}(x) \simeq \frac{\Delta_{h}f(x-h)}{h} 
-```
-
-of a central difference:
-
-
-```{math}
-f^{\prime}(x) \simeq \frac{\Delta_{h/2}f(x) + \Delta_{h/2}f(x-h)}{2h} 
-```
-
 
 ### Optimal choices and budgets
 To estimate optimal choices, a decision-making agent _maximizes_ a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
