@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Multiple Arm Bandit Problems and Reinforcement Learning" href="multi-arm-bandits.html" />
-    <link rel="prev" title="Probability and Simple Choices under Uncertainty" href="simple.html" />
+    <link rel="prev" title="Probability and Uncertain Choices" href="simple.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -224,7 +224,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="simple.html">
-     Probability and Simple Choices under Uncertainty
+     Probability and Uncertain Choices
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -602,12 +602,12 @@ title="Print to PDF"
 \[\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of all 1’s. Let’s consider an example to make these ideas less abstract.</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain">
-<p class="admonition-title"><span class="caption-number">Example 28 </span> (Discrete Markov chain simulation)</p>
+<p class="admonition-title"><span class="caption-number">Example 29 </span> (Discrete Markov chain simulation)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Markov-Model.pdf" style="height: 120px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
@@ -618,7 +618,7 @@ title="Print to PDF"
 0.6 &amp; 0.4 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>shown in (<a class="reference internal" href="#fig-discrete-markov-model"><span class="std std-numref">Fig. 17</span></a>). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations <span class="math notranslate nohighlight">\(n\)</span> becomes large the system state converges to a stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>; for <span class="math notranslate nohighlight">\(n&gt;13\)</span> the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> is given by:</p>
+<p>shown in (<a class="reference internal" href="#fig-discrete-markov-model"><span class="std std-numref">Fig. 18</span></a>). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations <span class="math notranslate nohighlight">\(n\)</span> becomes large the system state converges to a stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>; for <span class="math notranslate nohighlight">\(n&gt;13\)</span> the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\pi = (0.8571, 0.1428)\]</div>
 <p>Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
@@ -628,14 +628,14 @@ title="Print to PDF"
 <section id="hidden-markov-models-hmms">
 <span id="content-references-structure-of-an-hmm"></span><h3>Hidden Markov Models (HMMs)<a class="headerlink" href="#hidden-markov-models-hmms" title="Permalink to this headline">#</a></h3>
 <p>Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations.</p>
-<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 28</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
+<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 29</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain-hmm">
-<p class="admonition-title"><span class="caption-number">Example 29 </span> (Stationary hidden Markov model)</p>
+<p class="admonition-title"><span class="caption-number">Example 30 </span> (Stationary hidden Markov model)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-discrete-hidden-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" style="height: 280px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Schematic of a discrete two-state time-invariant hidden Markov model (HMM); <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Schematic of a discrete two-state time-invariant hidden Markov model (HMM); <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
@@ -646,7 +646,7 @@ title="Print to PDF"
 0.6 &amp; 0.4 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>shown in (<a class="reference internal" href="#fig-discrete-hidden-markov-model"><span class="std std-numref">Fig. 18</span></a>). Let <span class="math notranslate nohighlight">\(Y_{1}\)</span> denote the observable value for state 1, while <span class="math notranslate nohighlight">\(Y_{2}\)</span> denotes the observable value of
+<p>shown in (<a class="reference internal" href="#fig-discrete-hidden-markov-model"><span class="std std-numref">Fig. 19</span></a>). Let <span class="math notranslate nohighlight">\(Y_{1}\)</span> denote the observable value for state 1, while <span class="math notranslate nohighlight">\(Y_{2}\)</span> denotes the observable value of
 state 2. The transition matrix admits the stationary (non-periodic) stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> given by:</p>
 <div class="math notranslate nohighlight">
 \[\pi = (0.66, 0.33)\]</div>
@@ -660,7 +660,7 @@ state 2. The transition matrix admits the stationary (non-periodic) stationary d
 <figure class="align-default" id="fig-discrete-hidden-markov-model-sim-up">
 <a class="reference internal image-reference" href="../_images/Fig-HMM-up-SRA-N250.pdf"><img alt="../_images/Fig-HMM-up-SRA-N250.pdf" src="../_images/Fig-HMM-up-SRA-N250.pdf" style="height: 360px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Simulation of an asset price governed by <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. The solid line denotes the mean predicted price; shaded regions denote the 68% and 95% confidence regions. <em>parameters</em>: <span class="math notranslate nohighlight">\(S_{o}\)</span> = 100, <span class="math notranslate nohighlight">\(\Delta{T}\)</span> = (1/365), <span class="math notranslate nohighlight">\(T\)</span> = 45 days and IV = 24.20%.
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Simulation of an asset price governed by <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. The solid line denotes the mean predicted price; shaded regions denote the 68% and 95% confidence regions. <em>parameters</em>: <span class="math notranslate nohighlight">\(S_{o}\)</span> = 100, <span class="math notranslate nohighlight">\(\Delta{T}\)</span> = (1/365), <span class="math notranslate nohighlight">\(T\)</span> = 45 days and IV = 24.20%.
 The trajectory was computed by sampling a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> distribution constructed from the HMM stationary distribution.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model-sim-up" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
@@ -673,7 +673,7 @@ The trajectory was computed by sampling a <code class="docutils literal notransl
 <p>A Markov decision process (MDP) is an approach for modeling decision-making in situations where outcomes are partly random but also partly under the control of a <em>decision-maker</em> who receives a reward (or penalty) for each decision. Thus, unlike <a class="reference internal" href="#content-references-discrete-time-markov-chains"><span class="std std-ref">Discrete-time Markov chains</span></a>, Markov decision processes (MDPs) involve actions, which allow choice, and rewards that motivate the decision maker.</p>
 <p>At each time step, let’s assume the system in some state <span class="math notranslate nohighlight">\(s\)</span> in a set of possible states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> and the decision maker may choose any action <span class="math notranslate nohighlight">\(a\)</span> from a set of possible actions <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> that are available in state <span class="math notranslate nohighlight">\(s\)</span>. The system responds at the next time step by <em>potentially</em> moving into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> and rewarding the decision maker <span class="math notranslate nohighlight">\(R_{a}\left(s, s^{\prime}\right)\)</span>. The probability that the system moves into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> depends upon the chosen action <span class="math notranslate nohighlight">\(a\)</span> and the current state <span class="math notranslate nohighlight">\(s\)</span>; this probability is governed by a state transition function <span class="math notranslate nohighlight">\(P_{a}\left(s,s^{\prime}\right)\)</span>.</p>
 <div class="proof definition admonition" id="defn-formal-mdp">
-<p class="admonition-title"><span class="caption-number">Definition 53 </span> (Markov decision tuple )</p>
+<p class="admonition-title"><span class="caption-number">Definition 54 </span> (Markov decision tuple )</p>
 <section class="definition-content" id="proof-content">
 <p>A Markov decision process is the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span> where:</p>
 <ul class="simple">
@@ -699,7 +699,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 \[U_{k+1}^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U_{k}^{\pi}(s^{\prime})\]</div>
 <p>As <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span> the lookahead utility converges to a stationary value <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>:</p>
 <div class="proof definition admonition" id="defn-policy-evalution">
-<p class="admonition-title"><span class="caption-number">Definition 54 </span> (Value function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 55 </span> (Value function)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. Then, the utility of the policy function <span class="math notranslate nohighlight">\(\pi\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-converged-policy-eval">
@@ -707,15 +707,15 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 </section>
 </div><p>Let’s do an example to illustrate policy evaluation:</p>
 <div class="proof example admonition" id="example-MDP-line">
-<p class="admonition-title"><span class="caption-number">Example 30 </span> (Tiger problem)</p>
+<p class="admonition-title"><span class="caption-number">Example 31 </span> (Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-linear-mdp-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Linear-MDP-Schematic.pdf"><img alt="../_images/Fig-Linear-MDP-Schematic.pdf" src="../_images/Fig-Linear-MDP-Schematic.pdf" style="height: 110px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, two-action Markov decision process. A tiger hides behind the red door while freedom awaits behind the green door.</span><a class="headerlink" href="#fig-linear-mdp-schematic" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, two-action Markov decision process. A tiger hides behind the red door while freedom awaits behind the green door.</span><a class="headerlink" href="#fig-linear-mdp-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>An agent trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-linear-mdp-schematic"><span class="std std-numref">Fig. 20</span></a>). Behind the red door is a tiger (and certain death), while behind the green door is freedom. If the agent opens the red door, the agent is eaten (and receives a large negative reward). However, if the agent opens the green door, it escapes and gets a positive reward.</p>
+<p>An agent trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-linear-mdp-schematic"><span class="std std-numref">Fig. 21</span></a>). Behind the red door is a tiger (and certain death), while behind the green door is freedom. If the agent opens the red door, the agent is eaten (and receives a large negative reward). However, if the agent opens the green door, it escapes and gets a positive reward.</p>
 <p>For this problem, the MDP has the tuple components:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \left\{1,2,\dots,N\right\}\)</span> while the action set is <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{a_{1},a_{2}\right\}\)</span>; action <span class="math notranslate nohighlight">\(a_{1}\)</span> moves the agent one state to the right, action <span class="math notranslate nohighlight">\(a_{2}\)</span> moves the agent one state to the left.</p></li>
@@ -729,7 +729,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 </section>
 <section id="value-function-policies">
 <h3>Value function policies<a class="headerlink" href="#value-function-policies" title="Permalink to this headline">#</a></h3>
-<p><a class="reference internal" href="#defn-policy-evalution">Definition 54</a> gives us a method to compute the utility for a particular policy <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>.
+<p><a class="reference internal" href="#defn-policy-evalution">Definition 55</a> gives us a method to compute the utility for a particular policy <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>.
 However, suppose we were given the utility and wanted to estimate the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> from that utility.
 Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can estimate a policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> using the <span class="math notranslate nohighlight">\(Q\)</span>-function (action-value function):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-action-value-function">
@@ -749,15 +749,15 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
 \[U_{k+1}(s) = \max_{a}\left(R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U_{k}(s^{\prime})\right)\]</div>
 <p>This procedure is guaranteed to converge to the optimal utility vector (value function).</p>
 <div class="proof example admonition" id="example-MDP-line-mod">
-<p class="admonition-title"><span class="caption-number">Example 31 </span> (Modified Tiger problem)</p>
+<p class="admonition-title"><span class="caption-number">Example 32 </span> (Modified Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-branched-mdp-schematic-mod">
 <a class="reference internal image-reference" href="../_images/Fig-Branched-MDP-Schematic.pdf"><img alt="../_images/Fig-Branched-MDP-Schematic.pdf" src="../_images/Fig-Branched-MDP-Schematic.pdf" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, four-action (left, right, up, down) Markov decision process. The hallway has three types of paths: unobstructed (white, free), mildly obstructed (light gray, small cost), and obstructed (dark gray, large cost).</span><a class="headerlink" href="#fig-branched-mdp-schematic-mod" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, four-action (left, right, up, down) Markov decision process. The hallway has three types of paths: unobstructed (white, free), mildly obstructed (light gray, small cost), and obstructed (dark gray, large cost).</span><a class="headerlink" href="#fig-branched-mdp-schematic-mod" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>An agent is trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-branched-mdp-schematic-mod"><span class="std std-numref">Fig. 21</span></a>). Behind the green door is a tiger (and certain death), while behind the red door is freedom. If the agent opens the green door, the agent is eaten (and receives a large negative reward). However, if the agent opens the red door, it escapes and gets a positive reward.</p>
+<p>An agent is trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-branched-mdp-schematic-mod"><span class="std std-numref">Fig. 22</span></a>). Behind the green door is a tiger (and certain death), while behind the red door is freedom. If the agent opens the green door, the agent is eaten (and receives a large negative reward). However, if the agent opens the red door, it escapes and gets a positive reward.</p>
 <p>For this problem, the MDP has the tuple components:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \left\{1,2,\dots,N\right\}\)</span> while the action set is <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{a_{1},a_{2}, a_{3}, a_{4}\right\}\)</span>; action <span class="math notranslate nohighlight">\(a_{1}\)</span> moves the agent one state to the left, action <span class="math notranslate nohighlight">\(a_{2}\)</span> moves the agent one state to the right, action <span class="math notranslate nohighlight">\(a_{3}\)</span> moves the agent one stop up, and action <span class="math notranslate nohighlight">\(a_{4}\)</span> moves the agent one step down.</p></li>
@@ -813,7 +813,7 @@ introduced tools to compute the utility of a decision-making policy and the valu
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Probability and Simple Choices under Uncertainty</p>
+            <p class="prev-next-title">Probability and Uncertain Choices</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="multi-arm-bandits.html" title="next page">

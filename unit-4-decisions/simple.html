@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Probability and Simple Choices under Uncertainty &#8212; CHEME 1800/4800</title>
+    <title>Probability and Uncertain Choices &#8212; CHEME 1800/4800</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -224,7 +224,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Probability and Simple Choices under Uncertainty
+     Probability and Uncertain Choices
     </a>
    </li>
    <li class="toctree-l2">
@@ -423,7 +423,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Probability and Simple Choices under Uncertainty
+   Probability and Uncertain Choices
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -435,6 +435,20 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#properties-of-utility-functions">
        Properties of utility functions
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#marginal-utility">
+         Marginal utility
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#marginal-utility-of-wealth">
+           Marginal utility of wealth
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indifference-curves">
@@ -445,13 +459,6 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#marginal-rate-of-substitution">
        Marginal rate of substitution
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#calculating-the-marginal-utility-and-the-marginal-rate-of-substitution">
-         Calculating the marginal utility and the marginal rate of substitution
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optimal-choices-and-budgets">
@@ -461,8 +468,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-choices-under-uncertainty">
-     Simple choices under uncertainty
+    <a class="reference internal nav-link" href="#choices-under-uncertainty">
+     Choices under uncertainty
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -527,7 +534,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Probability and Simple Choices under Uncertainty</h1>
+                <h1>Probability and Uncertain Choices</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -539,7 +546,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Probability and Simple Choices under Uncertainty
+   Probability and Uncertain Choices
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -551,6 +558,20 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#properties-of-utility-functions">
        Properties of utility functions
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#marginal-utility">
+         Marginal utility
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#marginal-utility-of-wealth">
+           Marginal utility of wealth
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#indifference-curves">
@@ -561,13 +582,6 @@ title="Print to PDF"
       <a class="reference internal nav-link" href="#marginal-rate-of-substitution">
        Marginal rate of substitution
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#calculating-the-marginal-utility-and-the-marginal-rate-of-substitution">
-         Calculating the marginal utility and the marginal rate of substitution
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optimal-choices-and-budgets">
@@ -577,8 +591,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-choices-under-uncertainty">
-     Simple choices under uncertainty
+    <a class="reference internal nav-link" href="#choices-under-uncertainty">
+     Choices under uncertainty
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -644,29 +658,28 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="probability-and-simple-choices-under-uncertainty">
-<h1>Probability and Simple Choices under Uncertainty<a class="headerlink" href="#probability-and-simple-choices-under-uncertainty" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="probability-and-uncertain-choices">
+<h1>Probability and Uncertain Choices<a class="headerlink" href="#probability-and-uncertain-choices" title="Permalink to this headline">#</a></h1>
 <p>Uncertain decisions are those that involve a certain degree of risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship. Making uncertain decisions involves weighing each option’s potential benefits and drawbacks and considering the likelihood of different outcomes.</p>
 <p>In this lecture, we introduce tools to model and analyze simple uncertain decisions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-utility-and-utlity-max"><span class="std std-ref">Utility maximization</span></a> is the process of selecting the option that provides the highest level of satisfaction, or utility, based on the individual’s preferences and constraints. This concept is often used in economics to model consumer behavior and in decision theory to analyze choices under uncertainty.</p></li>
-<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Simple choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
+<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
 </ul>
 <hr class="docutils" />
 <section id="utility-maximization">
 <span id="content-references-utility-and-utlity-max"></span><h2>Utility maximization<a class="headerlink" href="#utility-maximization" title="Permalink to this headline">#</a></h2>
-<p>A utility function is a mathematical expression representing an individual’s preferences over different choices or outcomes. It assigns a numerical value, called <em>utility</em>, to each possible choice based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.</p>
-<p>Let’s begin our discussion of utility by introducing the classical application of this concept, namely, the choice governings the choice of which combination of <span class="math notranslate nohighlight">\(n\)</span> goods (or services) to consume (<a class="reference internal" href="#defn-individual-utility">Definition 45</a>):</p>
+<p>A utility function is a mathematical expression representing an individual’s preferences over different choices or outcomes. It assigns a numerical value, called <em>utility</em>, to each possible option based on how much the individual values it. A utility function is subjective and can vary from person to person, as different individuals may have other preferences.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Rational_choice_theory">Rational choice theory</a> assumes individuals make rational decisions based on their preferences and available information. <a class="reference external" href="https://en.wikipedia.org/wiki/Rational_choice_theory">Rational choice theory</a> is based on computing the utility of actions or outcomes. Thus, utility functions are a crucial component of this theory, as they describe how individuals assign values to different results or choices (<a class="reference internal" href="#defn-individual-utility">Definition 45</a>):</p>
 <div class="proof definition admonition" id="defn-individual-utility">
-<p class="admonition-title"><span class="caption-number">Definition 45 </span> (Utility)</p>
+<p class="admonition-title"><span class="caption-number">Definition 45 </span> (Ordinal utility function)</p>
 <section class="definition-content" id="proof-content">
-<p>The preferences of individual decision-making agents for <span class="math notranslate nohighlight">\(n\)</span> goods are assumed to be represented by a utility function:</p>
+<p>An individual decision-making agent is presented with a bundle of <span class="math notranslate nohighlight">\(n\)</span> objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>. A utility function represents the preference of the agent for combinations of these <span class="math notranslate nohighlight">\(n\)</span> objects:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-utility-function-generic">
 <span class="eqno">(82)<a class="headerlink" href="#equation-eqn-utility-function-generic" title="Permalink to this equation">#</a></span>\[U(x_{1},x_{2},\dots,x_{n})\]</div>
-<p>where <span class="math notranslate nohighlight">\(x_{1},x_{2},\dots,x_{n}\)</span> are the quantities of <span class="math notranslate nohighlight">\(n\)</span> goods consumed in time period <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>. The utility
-function <span class="math notranslate nohighlight">\(U(\dots)\)</span> is unique only up to an order-preserving transformation.</p>
+<p>The utility function <span class="math notranslate nohighlight">\(U(\dots)\)</span> is unique only up to an order-preserving transformation in period <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>. Further, utility functions are ordinal, i.e., they rank-order bundles but do not indicate how much better a bundle is compared to another.</p>
 </section>
-</div><p><a class="reference internal" href="#defn-individual-utility">Definition 45</a> does not give specifics about the properties of a utility function. However, it does establish a critical concept; the utility can be used to rank order the preference for different choices. For example, suppose we have two options, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>:</p>
+</div><p><a class="reference internal" href="#defn-individual-utility">Definition 45</a> does not give specifics about the properties of a utility function. However, it does establish a critical concept; the utility can be used to rank order the preference for different choices. For example, suppose we have two choices, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>:</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(A\succ{B}\)</span>, the decision maker <em>strictly prefers</em> <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(B\)</span>. Then, the utility of choice <span class="math notranslate nohighlight">\(A\)</span> is greater than <span class="math notranslate nohighlight">\(B\)</span>, or <span class="math notranslate nohighlight">\(U(A)&gt;U(B)\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(A\sim{B}\)</span>, the decision maker is <em>indifferent</em> between <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(B\)</span>. Then, the utility of choice <span class="math notranslate nohighlight">\(A\)</span> is the same as <span class="math notranslate nohighlight">\(B\)</span>, or <span class="math notranslate nohighlight">\(U(A)=U(B)\)</span>.</p></li>
@@ -682,7 +695,29 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 <li><p><strong>Independence:</strong> The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.</p></li>
 <li><p><strong>Substitutability</strong>: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.</p></li>
 </ul>
-<p>These properties ensure that the utility function is well-behaved and represents an individual’s preferences over different options. Let’s consider a specific example utility function (<a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>):</p>
+<p>These properties ensure that the utility function is well-behaved and represents an individual’s preferences over different options.</p>
+<section id="marginal-utility">
+<h4>Marginal utility<a class="headerlink" href="#marginal-utility" title="Permalink to this headline">#</a></h4>
+<p>The marginal utility is the additional satisfaction or usefulness an agent derives from consuming one additional unit of a good or service. Mathematically, the marginal utility is the partial derivative of the utility with respect to the amount of item <span class="math notranslate nohighlight">\(i\)</span> (<a class="reference internal" href="#defn-marginal-utility-math">Definition 46</a>):</p>
+<div class="proof definition admonition" id="defn-marginal-utility-math">
+<p class="admonition-title"><span class="caption-number">Definition 46 </span> (Marginal utility)</p>
+<section class="definition-content" id="proof-content">
+<p>The preferences of a bundle of objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span> are described by the utility function <span class="math notranslate nohighlight">\(U(x_{1},\dots,x_{n})\)</span>. Then, the value or satisfaction experienced by the agent from one additional unit of object <span class="math notranslate nohighlight">\(i\)</span> is the marginal utility of object <span class="math notranslate nohighlight">\(i\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{MU}^{\star}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}\]</div>
+<p>where all other objects are held constant at level <span class="math notranslate nohighlight">\(\star\)</span>.</p>
+</section>
+</div><section id="marginal-utility-of-wealth">
+<h5>Marginal utility of wealth<a class="headerlink" href="#marginal-utility-of-wealth" title="Permalink to this headline">#</a></h5>
+<p>The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent (<a class="reference internal" href="#fig-wealth-schematic-simple-model"><span class="std std-numref">Fig. 16</span></a>).</p>
+<figure class="align-default" id="fig-wealth-schematic-simple-model">
+<a class="reference internal image-reference" href="../_images/Fig-Wealth-Utility-Schematic.pdf"><img alt="../_images/Fig-Wealth-Utility-Schematic.pdf" src="../_images/Fig-Wealth-Utility-Schematic.pdf" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Wealth utility function <span class="math notranslate nohighlight">\(U(W) = W/(W+b)\)</span> as a function of choices for the parameter <span class="math notranslate nohighlight">\(b\)</span>. The abundance of wealth is inversely proportional to the value of the parameter <span class="math notranslate nohighlight">\(b\)</span>. For example, the agent at <span class="math notranslate nohighlight">\(A\)</span> values each additional wealth unit less than the agent at <span class="math notranslate nohighlight">\(D\)</span>.</span><a class="headerlink" href="#fig-wealth-schematic-simple-model" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person’s wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.</p>
+<p>Let’s consider a specific example utility function that we’ll use later (<a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>):</p>
 <div class="proof example dropdown admonition" id="example-cobb-douglas-uf">
 <p class="admonition-title"><span class="caption-number">Example 27 </span> (Cobb–Douglas utility function)</p>
 <section class="example-content" id="proof-content">
@@ -698,17 +733,42 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 <span class="eqno">(84)<a class="headerlink" href="#equation-eqn-mu-u-function" title="Permalink to this equation">#</a></span>\[\text{MU}_{x_{i}} = \left(\alpha_{i}x^{\alpha_{i}-1}\right)\cdot\left(\prod_{j=1,i}^{n}x_{j}^{\alpha_{j}}\right)\]</div>
 <p>where the <span class="math notranslate nohighlight">\(j=1,i\)</span> notation denotes the <em>exclusion</em> of index <span class="math notranslate nohighlight">\(i\)</span>. As <span class="math notranslate nohighlight">\(x_{i}\rightarrow\infty\)</span>, the marginal utility <span class="math notranslate nohighlight">\(\text{MU}_{x_{i}}\rightarrow{0}\)</span> if <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>. Thus, the convexity property is satisfied for <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>.</p>
 </section>
-</div></section>
+</div><p>The marginal utility can be computed by directly differentiating the utility function (as shown in <a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">finite difference approximation</a>,
+or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> approach.</p>
+<p>Sample code for <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> of the Cobb-Douglas utility function using the
+<a class="reference external" href="https://juliadiff.org/ForwardDiff.jl/stable/">ForwardDiff.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the ForwardDiff package</span>
+<span class="k">using</span> <span class="n">ForwardDiff</span>
+
+<span class="c"># Cobb-Douglas utility function</span>
+<span class="k">function</span> <span class="n">U</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c"># initialize</span>
+    <span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
+    
+    <span class="c"># return</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="n">α₁</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="n">α₂</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Estimate the MU -</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.0</span><span class="p">,</span><span class="mf">7.20</span><span class="p">];</span> <span class="c"># point A </span>
+<span class="n">MU</span> <span class="o">=</span> <span class="n">ForwardDiff</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
 <section id="indifference-curves">
 <h3>Indifference curves<a class="headerlink" href="#indifference-curves" title="Permalink to this headline">#</a></h3>
-<p>Indifference curves are graphical representations of combinations of choices that provide a decision-making agent with the same level of utility (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>). Thus, decision-makers are <em>indifferent</em> to the consumption of different combinations of goods (or services) on an indifference curve.</p>
+<p>Indifference curves are graphical representations of combinations of choices that provide a decision-making agent with the same level of utility (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 17</span></a>). Thus, decision-makers are <em>indifferent</em> to the consumption of different combinations of goods (or services) on an indifference curve.</p>
 <figure class="align-default" id="fig-cobb-douglas-ic">
 <a class="reference internal image-reference" href="../_images/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf"><img alt="../_images/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf" src="../_images/Fig-CobbDouglas-IndifferenceCurves-Sqrt.pdf" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Two-dimensional indifference curves were generated using the Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>. The decision maker is indifferent to a choice between point <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(A\sim{B}\)</span> or <span class="math notranslate nohighlight">\(C\sim{D}\)</span>. However, the decision maker strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> compared to <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(C\sim{D}\succ{A}\sim{B}\)</span>.</span><a class="headerlink" href="#fig-cobb-douglas-ic" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Two-dimensional indifference curves were generated using the Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>. The decision maker is indifferent to a choice between point <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(A\sim{B}\)</span> or <span class="math notranslate nohighlight">\(C\sim{D}\)</span>. However, the decision maker strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> compared to <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, i.e., <span class="math notranslate nohighlight">\(C\sim{D}\succ{A}\sim{B}\)</span>.</span><a class="headerlink" href="#fig-cobb-douglas-ic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>For example, the decision agent with the Cobb–Douglas utility function shown in (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 16</span></a>) is <em>indifferent</em> to a choice between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, but strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to either <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>For example, the decision agent with the Cobb–Douglas utility function shown in (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 17</span></a>) is <em>indifferent</em> to a choice between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, but strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to either <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <p>Sample code to compute the two-dimensional Cobb–Douglas utility function for <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize</span>
 <span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span> 
@@ -751,54 +811,30 @@ Monotonicity: The utility function should be non-decreasing, meaning that as the
 </section>
 <section id="marginal-rate-of-substitution">
 <h3>Marginal rate of substitution<a class="headerlink" href="#marginal-rate-of-substitution" title="Permalink to this headline">#</a></h3>
-<p>Indifference curves slope downwards because the individual is typically willing to trade one good or service for another while remaining indifferent. How much of one good or service a decision maker is willing to trade for another good or service is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_rate_of_substitution">marginal rate of substution</a> (<a class="reference internal" href="#defn-marginal-rate-of-sub">Definition 46</a>):</p>
+<p>How much of one good or service a decision maker is willing to trade for another is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_rate_of_substitution">marginal rate of substution</a> (<a class="reference internal" href="#defn-marginal-rate-of-sub">Definition 47</a>):</p>
 <div class="proof definition admonition" id="defn-marginal-rate-of-sub">
-<p class="admonition-title"><span class="caption-number">Definition 46 </span> (Marginal Rate of Substitution)</p>
+<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Marginal Rate of Substitution)</p>
 <section class="definition-content" id="proof-content">
 <p>A decision maker is analyzing the consumption of different combinations of <span class="math notranslate nohighlight">\(n\)</span> goods or services <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>. The utility
 function governing the decision maker <span class="math notranslate nohighlight">\(U(\dots)\)</span> can be expanded by computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Differential_of_a_function#Differentials_in_several_variables">total differential</a> around some point <span class="math notranslate nohighlight">\(\left(x_{1}^{\star},\dots,x_{n}^{\star}\right)\)</span> on an indifference curve with utility <span class="math notranslate nohighlight">\(c\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-total-differential-ic">
 <span class="eqno">(85)<a class="headerlink" href="#equation-eqn-total-differential-ic" title="Permalink to this equation">#</a></span>\[dU = \sum_{i=1}^{n}\left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}dx_{i}\]</div>
-<p>The partial derivative of the utility with respect to a change in the consumption of good or service <span class="math notranslate nohighlight">\(i\)</span> is defined as the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_utility">marginal utility</a>:</p>
+<p>The partial derivative of the utility with respect to a change in the consumption of good or service <span class="math notranslate nohighlight">\(i\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_utility">marginal utility</a>:</p>
 <div class="math notranslate nohighlight">
-\[\text{MU}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}\]</div>
+\[dU = \sum_{i=1}^{n}\left(\text{MU}_{i}^{\star}\right){dx_{i}}\]</div>
 <p>The utility <span class="math notranslate nohighlight">\(U(\dots)=c\)</span> on an indifference curve; thus, along an indifference curve <span class="math notranslate nohighlight">\(dU = 0\)</span>. The marginal rate of substitution of good or service <span class="math notranslate nohighlight">\(i\)</span> for <span class="math notranslate nohighlight">\(j\)</span> (all other quantities held constant):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-total-differential-ic-constant">
-<span class="eqno">(86)<a class="headerlink" href="#equation-eqn-total-differential-ic-constant" title="Permalink to this equation">#</a></span>\[\text{MU}_{i}dx_{i} + \text{MU}_{j}dx_{j} = 0\qquad{i\neq{j}}\]</div>
+<span class="eqno">(86)<a class="headerlink" href="#equation-eqn-total-differential-ic-constant" title="Permalink to this equation">#</a></span>\[\text{MU}^{\star}_{i}dx_{i} + \text{MU}^{\star}_{j}dx_{j} = 0\qquad{i\neq{j}}\]</div>
 <p>can be computed for good <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-total-differential-ic-mrs">
-<span class="eqno">(87)<a class="headerlink" href="#equation-eqn-total-differential-ic-mrs" title="Permalink to this equation">#</a></span>\[\text{MRS}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}_{i}}{\text{MU}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}\]</div>
+<span class="eqno">(87)<a class="headerlink" href="#equation-eqn-total-differential-ic-mrs" title="Permalink to this equation">#</a></span>\[\text{MRS}^{\star}_{ij} = -\frac{dx_{j}}{dx_{i}} = \frac{\text{MU}^{\star}_{i}}{\text{MU}^{\star}_{j}}\qquad\forall\left(i,j\right)_{i\neq{j}}\]</div>
 </section>
-</div><section id="calculating-the-marginal-utility-and-the-marginal-rate-of-substitution">
-<h4>Calculating the marginal utility and the marginal rate of substitution<a class="headerlink" href="#calculating-the-marginal-utility-and-the-marginal-rate-of-substitution" title="Permalink to this headline">#</a></h4>
-<p>The marginal utility and the marginal rate of substitution can be computed by directly differentiating the utility function (as shown in <a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated, you can approximate the marginal utility using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">finite difference approximation</a>,
-or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a>.</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the ForwardDiff package</span>
-<span class="k">using</span> <span class="n">ForwardDiff</span>
-
-<span class="c"># Cobb-Douglas utility function</span>
-<span class="k">function</span> <span class="n">U</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="c"># initialize</span>
-    <span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
-    <span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
-    
-    <span class="c"># return</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="n">α₁</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="n">α₂</span><span class="p">)</span>
-<span class="k">end</span>
-
-<span class="c"># Estimate the MU -</span>
-<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.0</span><span class="p">,</span><span class="mf">7.20</span><span class="p">];</span> <span class="c"># point A </span>
-<span class="n">MU</span> <span class="o">=</span> <span class="n">ForwardDiff</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
-</pre></div>
-</div>
-</section>
-</section>
+</div></section>
 <section id="optimal-choices-and-budgets">
 <h3>Optimal choices and budgets<a class="headerlink" href="#optimal-choices-and-budgets" title="Permalink to this headline">#</a></h3>
-<p>To estimate optimal choices, a decision-making agent <em>maximizes</em> a utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint (<a class="reference internal" href="#eqn-budget-constraint">Definition 47</a>):</p>
+<p>An optimal decision-making agent <em>maximizes</em> its utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint (<a class="reference internal" href="#eqn-budget-constraint">Definition 48</a>):</p>
 <div class="proof definition admonition" id="eqn-budget-constraint">
-<p class="admonition-title"><span class="caption-number">Definition 47 </span> (Maximum utility and budget constraints)</p>
+<p class="admonition-title"><span class="caption-number">Definition 48 </span> (Maximum utility and budget constraints)</p>
 <section class="definition-content" id="proof-content">
 <p>A decision making agent has a utility function <span class="math notranslate nohighlight">\(U\left(x_{1},\dots,x_{n}\right)\)</span> and <span class="math notranslate nohighlight">\(I\)</span> dollars to spend between <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>. An optimal agent maximizes its utility subject to its budget:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-max-ulity-problem">
@@ -809,10 +845,17 @@ or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_d
 \end{eqnarray}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of good or service <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\)</span> represents the amount of good or service purchased or consumed by the agent during time period <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>.</p>
 </section>
+</div><p>The problem in <a class="reference internal" href="#eqn-budget-constraint">Definition 48</a> can be solved for the unknown consumption levels of <span class="math notranslate nohighlight">\(x_{i}\)</span> using various techniques. For example, we could use the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> or a <a class="reference external" href="https://en.wikipedia.org/wiki/Penalty_method">penalty method</a> in combination with any number of heuristic optimization approaches, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Simulated_annealing">simulated annealing</a>. Of course, if the utility function in <a class="reference internal" href="#eqn-budget-constraint">Definition 48</a> is linear, we could also use <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_programming">linear programming</a>.</p>
+<p>Let’s do an example of a decision between two goods using a Cobb–Douglas utility function subject to a budget constraint (<a class="reference internal" href="#example-utility-max-budget">Example 28</a>):</p>
+<div class="proof example dropdown admonition" id="example-utility-max-budget">
+<p class="admonition-title"><span class="caption-number">Example 28 </span> (Maximize utility subject to budget)</p>
+<section class="example-content" id="proof-content">
+<p><strong>Problem</strong>: A decision making agent must decide how much of two goods to consume, <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span>, subject to a budget constraint. Good one costs 18.0 USD per unit, while good two costs 36.0 USD per unit. The agent has 100.0 USD to spend and is governed by a Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = 0.45\)</span> and  <span class="math notranslate nohighlight">\(\alpha_{2} = 0.55\)</span>. Compute the optimal mixture of <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span>.</p>
+</section>
 </div></section>
 </section>
-<section id="simple-choices-under-uncertainty">
-<span id="content-references-utility-and-uncetain-decisions"></span><h2>Simple choices under uncertainty<a class="headerlink" href="#simple-choices-under-uncertainty" title="Permalink to this headline">#</a></h2>
+<section id="choices-under-uncertainty">
+<span id="content-references-utility-and-uncetain-decisions"></span><h2>Choices under uncertainty<a class="headerlink" href="#choices-under-uncertainty" title="Permalink to this headline">#</a></h2>
 <p>Fill me in.</p>
 <section id="moments-of-discrete-random-variables">
 <h3>Moments of discrete random variables<a class="headerlink" href="#moments-of-discrete-random-variables" title="Permalink to this headline">#</a></h3>
@@ -860,7 +903,7 @@ individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.
 <h3>Probability mass functions<a class="headerlink" href="#probability-mass-functions" title="Permalink to this headline">#</a></h3>
 <p>In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function (PMF)</a>.</p>
 <div class="proof definition admonition" id="defn-pmf">
-<p class="admonition-title"><span class="caption-number">Definition 48 </span> (Probability Mass Function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Probability Mass Function)</p>
 <section class="definition-content" id="proof-content">
 <p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of
 obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
@@ -876,7 +919,7 @@ obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <sp
 <p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
 outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of 0 is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
 <div class="proof definition admonition" id="defn-pmf-bernouli">
-<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Bernoulli Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Bernoulli Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -897,7 +940,7 @@ outcome. Bernoulli random variable have two states: either 1 or 0. The probabili
 <h4>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses.</p>
 <div class="proof definition admonition" id="defn-pmf-binomial">
-<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Binomial Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Binomial Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we do repeated Bernoulli trials <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]^n\)</span>, i.e., <span class="math notranslate nohighlight">\(n\)</span> trials of an independent binary experiment.
 The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is governed by the binomial probability mass function:</p>
@@ -922,7 +965,7 @@ A geometric random variable governs the outcome of this type of experiment;
 a geometric random variable gives the probability that the first occurrence of success requires <span class="math notranslate nohighlight">\(k\)</span> independent trials, each with success probability <span class="math notranslate nohighlight">\(p\)</span>. In other words,
 a geometric random variable describes the number of failures obtained before final success.</p>
 <div class="proof definition admonition" id="defn-pmf-geometric">
-<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Geometric Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Geometric Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a geometric random variable. The probability mass function for a geometric random variable is given by:</p>
 <div class="math notranslate nohighlight">
@@ -939,7 +982,7 @@ a geometric random variable describes the number of failures obtained before fin
 <h4>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen <code class="docutils literal notranslate"><span class="pre">X</span></code> number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.</p>
 <div class="proof definition admonition" id="defn-pmf-poisson">
-<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Poisson Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 53 </span> (Poisson Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Poisson random variable. The probability mass function for a Poisson random variable is given by:</p>
 <div class="math notranslate nohighlight">
@@ -962,7 +1005,7 @@ a geometric random variable describes the number of failures obtained before fin
 <p>In this lecture, we introduced tools to model and analyze simple uncertain decisions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-utility-and-utlity-max"><span class="std std-ref">Utility maximization</span></a> is the process of selecting the option that provides the highest level of satisfaction, or utility, based on the individual’s preferences and constraints. This concept is often used in economics to model consumer behavior and in decision theory to analyze choices under uncertainty.</p></li>
-<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Simple choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
+<li><p><a class="reference internal" href="#content-references-utility-and-uncetain-decisions"><span class="std std-ref">Choices under uncertainty</span></a> are decision-making situations where the outcomes of different options are unknown or uncertain. These types of decisions often involve risk and involve balancing the potential rewards and risks of different options. To make optimal choices under uncertainty, decision-makers may use probabilistic tools such as expected utility theory to analyze the expected outcomes of different options.</p></li>
 </ul>
 </section>
 
