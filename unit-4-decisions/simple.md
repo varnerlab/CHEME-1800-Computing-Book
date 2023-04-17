@@ -227,7 +227,6 @@ can be computed for good $i$ and $j$:
 
 ````
 
-
 ### Optimal choices and budgets
 An optimal decision-making agent _maximizes_ its utility function, i.e., the agent searches for a combination of goods and services that gives the highest satisfaction subject to various constraints, e.g., a budget constraint ({prf:ref}`eqn-budget-constraint`):
 
@@ -266,24 +265,35 @@ __Problem__: A decision making agent must decide how much of two goods to consum
 
 (content:references:utility-and-uncetain-decisions)=
 ## Choices under uncertainty
-Fill me in.
+In the previous section, we developed tools to make optimal choices when the outcomes were sure, and the level of satisfaction derived from those choices was known, e.g., the utility of purchasing a particular bundle of goods or services could be computed using a utility function. However, in many real-world situations, the assumption of certainty is invalid. For example, betting, buying an insurance policy or investing in a new business, or the stock market all or _uncertain_. 
 
-### Moments of discrete random variables
-It is often helpful to extract characteristics such as the mean, standard deviation, or other quantities of interest from random variables.  We compute these parameters of interest from random market data using a concept called the [moments of a random variable](https://en.wikipedia.org/wiki/Moment_(mathematics)). The mean, variance, skew, kurtosis, etc., are all examples of the [moments of a random variable](https://en.wikipedia.org/wiki/Moment_(mathematics)). We'll only focus on the first two moments, the expectation and the variance.
+To understand how optimal agents behave when faced with uncertain situations, we introduce two critical concepts, random variables, and probability:
 
-#### Expectation
-The [expectation](https://en.wikipedia.org/wiki/Expected_value) measures the central tendency of the values of a random variable $X$. The expectation is defined as a weighted sum (for discrete $X$):
+* A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a variable that takes on different numerical values according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. A discrete random variable can take on a countable number of distinct values, while a continuous random variable can take on any value in a continuous range. 
+* [Probability](https://en.wikipedia.org/wiki/Probability) is a measure of the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance.
+
+### Expectation
+The [expectation](https://en.wikipedia.org/wiki/Expected_value) of a discrete random variable $X$ measures the central tendency of the values of that random variable ({prf:ref}`defn-discrete-random-variable-expectation`):
+
+````{prf:definition} Expectation discrete random variable
+:label: defn-discrete-random-variable-expectation
+
+Let $X$ denote a discere random variable with the probability space $\left(\Omega,\mathcal{F},P\right)$, where $\Omega$ denotes the sample space, $\mathcal{F}$ denotes the event space, and $P$ denotes the probability measure. Then, the expected value of the random variable $X$ is given by:
 
 ```{math}
 :label: eqn-expectation
-\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)
+\mathbb{E}\left[X\right] = \sum_{x\in\Omega}xp_{X}(x)
 ```
 
-where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability mass function evaluated at $X=x$; a A probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value.
+where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability of $X=x$. The value of $p_{X}(x)$ is governed by a [Probability Mass Function](https://en.wikipedia.org/wiki/Probability_mass_function).
+
+````
+
+The expectation of a discrete random variable has a few interesting properties ({prf:ref}`obs-expectation-props`):
 
 ````{prf:observation} Properties of expectation
 :label: obs-expectation-props
-The expectation of a random variable $X$ (discrete or continuous) has several useful (and important) properties: 
+The expectation of a random variable $X$ has several useful (and important) properties: 
 1. $\mathbb{E}\left(c\right) = c$ for any constant $c$
 1. $\mathbb{E}\left(cX\right) = c\times\mathbb{E}\left(X\right)$ for any constant $c$
 1. $\mathbb{E}\left(g(X)\right) = \sum_{x\in{X(\Omega)}}g(x)p_{X}(x)$
@@ -291,10 +301,14 @@ The expectation of a random variable $X$ (discrete or continuous) has several us
 1. $\mathbb{E}\left(X+c\right) = \mathbb{E}(X) + c$ for any constant $c$
 ````
 
-#### Variance
-
+### Variance
 The [variance](https://en.wikipedia.org/wiki/Variance) measures the expected dispersion for
-individual values of $X$, i.e., the average distance that values of $X$ are spread out from their expected value (mean). The [variance](https://en.wikipedia.org/wiki/Variance) is given by:
+individual values of a random variable $X$, i.e., the average distance that values of $X$ are spread out from their expected value ({prf:ref}`defn-discrete-random-variable-variance`):
+
+````{prf:definition} Expectation discrete random variable
+:label: defn-discrete-random-variable-variance
+
+Let $X$ denote a discrete random variable with the probability space $\left(\Omega,\mathcal{F},P\right)$, where $\Omega$ denotes the sample space, $\mathcal{F}$ denotes the event space, and $P$ denotes the probability measure. Then, the variance of the random variable $X$ is given by:
 
 ```{math}
 :label: eqn-variance
@@ -303,16 +317,21 @@ individual values of $X$, i.e., the average distance that values of $X$ are spre
 
 where $\mu = \mathbb{E}(X)$ denotes the expected value of the random variable $X$.
 
+````
+
+The variance of a discrete random variable has a few interesting properties ({prf:ref}`obs-variances-var`):
+
 ````{prf:observation} Properties of variance
 :label: obs-variances-var
 
-Like the expected value, the variance $\text{Var}(X)$ has a few interesting (and important) properties:
+The variance of a random variable $X$ has a few interesting (and important) properties:
 
-* $\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \left(\mu\right)^2$
+* $\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \mathbb{E}\left(X\right)^2$
 * $\text{Var}(cX) = {c^2}\text{Var}(X)$ for any constant $c$
 * $\text{Var}(X+c) = \text{Var}(X)$ for any constant $c$
 
 ````
+
 The more common quantity that is used to measure dispersion, the standard deviation $\sigma$, is related to the variance: $\sigma_{X} = \sqrt{\text{Var}(X)}$.
 
 ### Probability mass functions
@@ -398,8 +417,7 @@ while the variance $\text{Var}(X)$ is given by:
 #### Geometric random variable
 We may be interested in doing a binary experiment, e.g., a coin flip until a specified outcome is obtained.
 A geometric random variable governs the outcome of this type of experiment; 
-a geometric random variable gives the probability that the first occurrence of success requires $k$ independent trials, each with success probability $p$. In other words, 
-a geometric random variable describes the number of failures obtained before final success.
+a geometric random variable gives the probability that the first occurrence of success requires $k$ independent trials, each with success probability $p$. In other words, a geometric random variable describes the number of failures obtained before final success.
 
 ````{prf:definition} Geometric Random Variable
 :label: defn-pmf-geometric
@@ -445,6 +463,36 @@ while the variance $\text{Var}(X)$ is given by:
 \text{Var}\left[X\right] = \lambda
 ```
 ````
+
+### The von Neumann - Morgenstern theorem
+The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), also known as the [expected utility hypothesis](https://en.wikipedia.org/wiki/Expected_utility_hypothesis), is a fundamental result in decision theory that provides a framework for making _rational choices_ under uncertainty {cite}`vonneumann1947`. 
+
+
+If an individual has preferences over a set of possible outcomes, and these preferences satisfy certain axioms, then there exists a unique function that assigns a numerical value to each outcome, known as its [expected utility](https://en.wikipedia.org/wiki/Expected_utility_hypothesis), such that the individual will choose the option with the highest expected utility. 
+
+
+````{prf:definition} Expected utility hypothesis
+:label: defn-expected-utility-hypothesis
+
+An agent chooses amongst $n$ possible uncertain objects, $x_{1},\dots,x_{n}$. Object $k$ has probability $p_{k}$ and a utility payoff of $U(x_{k})$. Then, a rational decision maker maximizes the expected utility subject to constraints ({prf:ref}`defn-expected-utility-hypothesis`):
+
+
+```{math}
+:label: eqn-max-expected-ulity-problem
+
+\begin{eqnarray}
+\text{maximize}~\mathcal{O} &=& \sum_{k=1}^{n}p_{k}U(x_{k}) \\
+\text{subject to}~g(x)~& \leq & 0\\
+\text{and}~x_{k}&\geq&{0}\qquad{k=1,2,\dots,n}
+\end{eqnarray}
+
+```
+
+where $p_{k}$ denotes the probability of object $k$, and $g(x)$ denotes constraints governing the objects $x_{1},\dots,x_{n}$.
+````
+
+
+This [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) provides a basis for understanding how people make decisions in uncertain situations.
 
 ---
 
