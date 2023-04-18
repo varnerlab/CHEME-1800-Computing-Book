@@ -442,8 +442,18 @@ title="Print to PDF"
         </a>
         <ul class="nav section-nav flex-column">
          <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#marginal-utility-of-wealth">
-           Marginal utility of wealth
+          <a class="reference internal nav-link" href="#analytical-marginal-utility">
+           Analytical marginal utility
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#numerical-marginal-utility">
+           Numerical marginal utility
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#aside-marginal-utility-of-wealth">
+           Aside: Marginal utility of wealth
           </a>
          </li>
         </ul>
@@ -473,21 +483,14 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#moments-of-discrete-random-variables">
-       Moments of discrete random variables
+      <a class="reference internal nav-link" href="#expectation">
+       Expectation
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#expectation">
-         Expectation
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#variance">
-         Variance
-        </a>
-       </li>
-      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variance">
+       Variance
+      </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#probability-mass-functions">
@@ -515,6 +518,11 @@ title="Print to PDF"
         </a>
        </li>
       </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-von-neumann-morgenstern-theorem">
+       The von Neumann - Morgenstern theorem
+      </a>
      </li>
     </ul>
    </li>
@@ -565,8 +573,18 @@ title="Print to PDF"
         </a>
         <ul class="nav section-nav flex-column">
          <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#marginal-utility-of-wealth">
-           Marginal utility of wealth
+          <a class="reference internal nav-link" href="#analytical-marginal-utility">
+           Analytical marginal utility
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#numerical-marginal-utility">
+           Numerical marginal utility
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#aside-marginal-utility-of-wealth">
+           Aside: Marginal utility of wealth
           </a>
          </li>
         </ul>
@@ -596,21 +614,14 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#moments-of-discrete-random-variables">
-       Moments of discrete random variables
+      <a class="reference internal nav-link" href="#expectation">
+       Expectation
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#expectation">
-         Expectation
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#variance">
-         Variance
-        </a>
-       </li>
-      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variance">
+       Variance
+      </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#probability-mass-functions">
@@ -638,6 +649,11 @@ title="Print to PDF"
         </a>
        </li>
       </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-von-neumann-morgenstern-theorem">
+       The von Neumann - Morgenstern theorem
+      </a>
      </li>
     </ul>
    </li>
@@ -687,56 +703,43 @@ title="Print to PDF"
 </ul>
 <section id="properties-of-utility-functions">
 <h3>Properties of utility functions<a class="headerlink" href="#properties-of-utility-functions" title="Permalink to this headline">#</a></h3>
-<p>The mathematical properties of a <em>proper</em> utility function <span class="math notranslate nohighlight">\(U(\dots)\)</span> include:</p>
+<p>A utility function is a mathematical representation of a person’s preferences over different outcomes or alternatives. Here are some properties that a utility function should possess:</p>
 <ul class="simple">
-<li><p><strong>Continuity</strong>: A small change in the input variable should lead to a small change in the output value of the function.
-Monotonicity: The utility function should be non-decreasing, meaning that as the input variable increases, the output value of the function also increases.</p></li>
-<li><p><strong>Convexity</strong>: The utility function should exhibit a diminishing marginal utility, meaning that the additional satisfaction gained from an additional unit of the input variable decreases as the input variable increases.</p></li>
-<li><p><strong>Independence:</strong> The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.</p></li>
-<li><p><strong>Substitutability</strong>: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.</p></li>
+<li><p><strong>Completeness</strong>: A utility function should be able to rank all possible outcomes or alternatives. In other words, for any two outcomes, the utility function should tell us which one is preferred or whether they are equally preferred.</p></li>
+<li><p><strong>Transitivity</strong>: If outcome A is preferred to outcome B, and outcome B is preferred to outcome C, then outcome A must be preferred to outcome C. This is known as the transitivity property.</p></li>
+<li><p><strong>Monotonicity</strong>: If more of a good is always preferred to less, then the utility function should increase in that good. Conversely, if less of a bad is always preferred to more, then the utility function should decrease in that bad.</p></li>
+<li><p><strong>Continuity</strong>: Small changes in the outcome or alternatives should result in small changes in the utility function. This is known as the continuity property.</p></li>
+<li><p><strong>Concavity</strong>: The utility function should be concave if the person exhibits diminishing marginal utility. This means that as a person consumes more of a good, the additional satisfaction gained from each unit consumed decreases.</p></li>
 </ul>
-<p>These properties ensure that the utility function is well-behaved and represents an individual’s preferences over different options.</p>
+<p>These properties help ensure that a utility function accurately represents a person’s preferences and can be used to make rational choices between alternatives.</p>
 <section id="marginal-utility">
 <h4>Marginal utility<a class="headerlink" href="#marginal-utility" title="Permalink to this headline">#</a></h4>
 <p>The marginal utility is the additional satisfaction or usefulness an agent derives from consuming one additional unit of a good or service. Mathematically, the marginal utility is the partial derivative of the utility with respect to the amount of item <span class="math notranslate nohighlight">\(i\)</span> (<a class="reference internal" href="#defn-marginal-utility-math">Definition 46</a>):</p>
 <div class="proof definition admonition" id="defn-marginal-utility-math">
 <p class="admonition-title"><span class="caption-number">Definition 46 </span> (Marginal utility)</p>
 <section class="definition-content" id="proof-content">
-<p>The preferences of a bundle of objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span> are described by the utility function <span class="math notranslate nohighlight">\(U(x_{1},\dots,x_{n})\)</span>. Then, the value or satisfaction experienced by the agent from one additional unit of object <span class="math notranslate nohighlight">\(i\)</span> is the marginal utility of object <span class="math notranslate nohighlight">\(i\)</span> is given by:</p>
+<p>The preference or satisfaction derived from a bundle of objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span> is described by the utility function <span class="math notranslate nohighlight">\(U(x_{1},\dots,x_{n})\)</span>. Then, the satisfaction experienced by the agent from one additional unit of the object <span class="math notranslate nohighlight">\(i\)</span> in the bundle is defined as the marginal utility of object <span class="math notranslate nohighlight">\(i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\text{MU}^{\star}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}\]</div>
 <p>where all other objects are held constant at level <span class="math notranslate nohighlight">\(\star\)</span>.</p>
 </section>
-</div><section id="marginal-utility-of-wealth">
-<h5>Marginal utility of wealth<a class="headerlink" href="#marginal-utility-of-wealth" title="Permalink to this headline">#</a></h5>
-<p>The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent (<a class="reference internal" href="#fig-wealth-schematic-simple-model"><span class="std std-numref">Fig. 16</span></a>).</p>
-<figure class="align-default" id="fig-wealth-schematic-simple-model">
-<a class="reference internal image-reference" href="../_images/Fig-Wealth-Utility-Schematic.pdf"><img alt="../_images/Fig-Wealth-Utility-Schematic.pdf" src="../_images/Fig-Wealth-Utility-Schematic.pdf" style="height: 400px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Wealth utility function <span class="math notranslate nohighlight">\(U(W) = W/(W+b)\)</span> as a function of choices for the parameter <span class="math notranslate nohighlight">\(b\)</span>. The abundance of wealth is inversely proportional to the value of the parameter <span class="math notranslate nohighlight">\(b\)</span>. For example, the agent at <span class="math notranslate nohighlight">\(A\)</span> values each additional wealth unit less than the agent at <span class="math notranslate nohighlight">\(D\)</span>.</span><a class="headerlink" href="#fig-wealth-schematic-simple-model" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person’s wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.</p>
-<p>Let’s consider a specific example utility function that we’ll use later (<a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>):</p>
-<div class="proof example dropdown admonition" id="example-cobb-douglas-uf">
-<p class="admonition-title"><span class="caption-number">Example 27 </span> (Cobb–Douglas utility function)</p>
-<section class="example-content" id="proof-content">
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb–Douglas utility function</a> governing the satisfaction gained by purchasing <span class="math notranslate nohighlight">\(n\)</span> goods <span class="math notranslate nohighlight">\((x_{1},x_{2},\dots,x_{n})\)</span> is given by:</p>
-<div class="math notranslate nohighlight" id="equation-eqn-simple-utility-function">
-<span class="eqno">(83)<a class="headerlink" href="#equation-eqn-simple-utility-function" title="Permalink to this equation">#</a></span>\[U(x)  = \prod_{i=1}^{n}x_{i}^{\alpha_{i}} \]</div>
+</div><section id="analytical-marginal-utility">
+<h5>Analytical marginal utility<a class="headerlink" href="#analytical-marginal-utility" title="Permalink to this headline">#</a></h5>
+<p>The marginal utility can be computed by directly differentiating the utility function. For example, consider an example utility function that we’ll use later, the <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb-Douglas utility function</a>. The <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb–Douglas utility function</a> governing the satisfaction gained by consuming a bundle of <span class="math notranslate nohighlight">\(n\)</span> goods <span class="math notranslate nohighlight">\((x_{1},x_{2},\dots,x_{n})\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-cobb-douglas-u-function">
+<span class="eqno">(83)<a class="headerlink" href="#equation-eqn-cobb-douglas-u-function" title="Permalink to this equation">#</a></span>\[U(x)  = \prod_{i=1}^{n}x_{i}^{\alpha_{i}} \]</div>
 <p>where the coefficients <span class="math notranslate nohighlight">\(\alpha_{i}\)</span> are governed by:</p>
 <div class="math notranslate nohighlight">
 \[\sum_{i=1}^{n}\alpha_{i}  = 1\]</div>
-<p>Show the <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb–Douglas utility function</a> satisfies the first two utility function properties (continuity and convexity).</p>
-<p><strong>Solution</strong>: Equation <a class="reference internal" href="#equation-eqn-simple-utility-function">(83)</a> is continuous, so the first condition is satisfied. To explore the convexity property, compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_utility">marginal utility</a>, i.e., the partial derivative of <span class="math notranslate nohighlight">\(U(\dots)\)</span> with respect to <span class="math notranslate nohighlight">\(x_{i}\)</span>:</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb–Douglas utility function</a> satisfies the utility function properties, where the marginal utility is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-mu-u-function">
 <span class="eqno">(84)<a class="headerlink" href="#equation-eqn-mu-u-function" title="Permalink to this equation">#</a></span>\[\text{MU}_{x_{i}} = \left(\alpha_{i}x^{\alpha_{i}-1}\right)\cdot\left(\prod_{j=1,i}^{n}x_{j}^{\alpha_{j}}\right)\]</div>
 <p>where the <span class="math notranslate nohighlight">\(j=1,i\)</span> notation denotes the <em>exclusion</em> of index <span class="math notranslate nohighlight">\(i\)</span>. As <span class="math notranslate nohighlight">\(x_{i}\rightarrow\infty\)</span>, the marginal utility <span class="math notranslate nohighlight">\(\text{MU}_{x_{i}}\rightarrow{0}\)</span> if <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>. Thus, the convexity property is satisfied for <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>.</p>
 </section>
-</div><p>The marginal utility can be computed by directly differentiating the utility function (as shown in <a class="reference internal" href="#example-cobb-douglas-uf">Example 27</a>). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">finite difference approximation</a>,
-or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> approach.</p>
-<p>Sample code for <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> of the Cobb-Douglas utility function using the
-<a class="reference external" href="https://juliadiff.org/ForwardDiff.jl/stable/">ForwardDiff.jl</a> package:</p>
+<section id="numerical-marginal-utility">
+<h5>Numerical marginal utility<a class="headerlink" href="#numerical-marginal-utility" title="Permalink to this headline">#</a></h5>
+<p>However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">finite difference approximation</a>, or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> approach.</p>
+<p>Sample code for <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> of the Cobb-Douglas utility function using the <a class="reference external" href="https://juliadiff.org/ForwardDiff.jl/stable/">ForwardDiff.jl</a> package:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the ForwardDiff package</span>
 <span class="k">using</span> <span class="n">ForwardDiff</span>
 
@@ -756,6 +759,17 @@ or <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_d
 <span class="n">MU</span> <span class="o">=</span> <span class="n">ForwardDiff</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
 </pre></div>
 </div>
+</section>
+<section id="aside-marginal-utility-of-wealth">
+<h5>Aside: Marginal utility of wealth<a class="headerlink" href="#aside-marginal-utility-of-wealth" title="Permalink to this headline">#</a></h5>
+<p>The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent (<a class="reference internal" href="#fig-wealth-schematic-simple-model"><span class="std std-numref">Fig. 16</span></a>).</p>
+<figure class="align-default" id="fig-wealth-schematic-simple-model">
+<a class="reference internal image-reference" href="../_images/Fig-Wealth-Utility-Schematic.pdf"><img alt="../_images/Fig-Wealth-Utility-Schematic.pdf" src="../_images/Fig-Wealth-Utility-Schematic.pdf" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Wealth utility function <span class="math notranslate nohighlight">\(U(W) = W/(W+b)\)</span> as a function of choices for the parameter <span class="math notranslate nohighlight">\(b\)</span>. The abundance of wealth is inversely proportional to the value of the parameter <span class="math notranslate nohighlight">\(b\)</span>. For example, the agent at <span class="math notranslate nohighlight">\(A\)</span> values each additional wealth unit less than the agent at <span class="math notranslate nohighlight">\(D\)</span>.</span><a class="headerlink" href="#fig-wealth-schematic-simple-model" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person’s wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.</p>
 </section>
 </section>
 </section>
@@ -846,9 +860,9 @@ function governing the decision maker <span class="math notranslate nohighlight"
 <p>where <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of good or service <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\)</span> represents the amount of good or service purchased or consumed by the agent during time period <span class="math notranslate nohighlight">\(t\rightarrow{t+dt}\)</span>.</p>
 </section>
 </div><p>The problem in <a class="reference internal" href="#eqn-budget-constraint">Definition 48</a> can be solved for the unknown consumption levels of <span class="math notranslate nohighlight">\(x_{i}\)</span> using various techniques. For example, we could use the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">method of Lagrange multipliers</a> or a <a class="reference external" href="https://en.wikipedia.org/wiki/Penalty_method">penalty method</a> in combination with any number of heuristic optimization approaches, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Simulated_annealing">simulated annealing</a>. Of course, if the utility function in <a class="reference internal" href="#eqn-budget-constraint">Definition 48</a> is linear, we could also use <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_programming">linear programming</a>.</p>
-<p>Let’s do an example of a decision between two goods using a Cobb–Douglas utility function subject to a budget constraint (<a class="reference internal" href="#example-utility-max-budget">Example 28</a>):</p>
+<p>Let’s do an example of a decision between two goods using a Cobb–Douglas utility function subject to a budget constraint (<a class="reference internal" href="#example-utility-max-budget">Example 27</a>):</p>
 <div class="proof example dropdown admonition" id="example-utility-max-budget">
-<p class="admonition-title"><span class="caption-number">Example 28 </span> (Maximize utility subject to budget)</p>
+<p class="admonition-title"><span class="caption-number">Example 27 </span> (Maximize utility subject to budget)</p>
 <section class="example-content" id="proof-content">
 <p><strong>Problem</strong>: A decision making agent must decide how much of two goods to consume, <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span>, subject to a budget constraint. Good one costs 18.0 USD per unit, while good two costs 36.0 USD per unit. The agent has 100.0 USD to spend and is governed by a Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = 0.45\)</span> and  <span class="math notranslate nohighlight">\(\alpha_{2} = 0.55\)</span>. Compute the optimal mixture of <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span>.</p>
 </section>
@@ -856,20 +870,28 @@ function governing the decision maker <span class="math notranslate nohighlight"
 </section>
 <section id="choices-under-uncertainty">
 <span id="content-references-utility-and-uncetain-decisions"></span><h2>Choices under uncertainty<a class="headerlink" href="#choices-under-uncertainty" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
-<section id="moments-of-discrete-random-variables">
-<h3>Moments of discrete random variables<a class="headerlink" href="#moments-of-discrete-random-variables" title="Permalink to this headline">#</a></h3>
-<p>It is often helpful to extract characteristics such as the mean, standard deviation, or other quantities of interest from random variables.  We compute these parameters of interest from random market data using a concept called the <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments of a random variable</a>. The mean, variance, skew, kurtosis, etc., are all examples of the <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">moments of a random variable</a>. We’ll only focus on the first two moments, the expectation and the variance.</p>
+<p>In the previous section, we developed tools to make optimal choices when the outcomes were sure, and the level of satisfaction derived from those choices was known, e.g., the utility of purchasing a particular bundle of goods or services could be computed using a utility function. However, in many real-world situations, the assumption of certainty is invalid. For example, betting, buying an insurance policy or investing in a new business, or the stock market all or <em>uncertain</em>.</p>
+<p>To understand how optimal agents behave when faced with uncertain situations, we introduce two critical concepts, random variables, and probability:</p>
+<ul class="simple">
+<li><p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">random variable</a> is a variable that takes on different numerical values according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. A discrete random variable can take on a countable number of distinct values, while a continuous random variable can take on any value in a continuous range.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Probability">Probability</a> is a measure of the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance.</p></li>
+</ul>
 <section id="expectation">
-<h4>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h4>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> measures the central tendency of the values of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation is defined as a weighted sum (for discrete <span class="math notranslate nohighlight">\(X\)</span>):</p>
+<h3>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> measures the central tendency of the values of that random variable (<a class="reference internal" href="#defn-discrete-random-variable-expectation">Definition 49</a>):</p>
+<div class="proof definition admonition" id="defn-discrete-random-variable-expectation">
+<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Expectation discrete random variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> denote a discere random variable with the probability space <span class="math notranslate nohighlight">\(\left(\Omega,\mathcal{F},P\right)\)</span>, where <span class="math notranslate nohighlight">\(\Omega\)</span> denotes the sample space, <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> denotes the event space, and <span class="math notranslate nohighlight">\(P\)</span> denotes the probability measure. Then, the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-expectation">
-<span class="eqno">(89)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in{X}(\Omega)}xp_{X}(x)\]</div>
-<p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability mass function evaluated at <span class="math notranslate nohighlight">\(X=x\)</span>; a A probability mass function (PMF) is a function that describes the probability of a discrete random variable taking on a particular value.</p>
+<span class="eqno">(89)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in\Omega}xp_{X}(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability of <span class="math notranslate nohighlight">\(X=x\)</span>. The value of <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> is governed by a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">Probability Mass Function</a>.</p>
+</section>
+</div><p>The expectation of a discrete random variable has a few interesting properties (<a class="reference internal" href="#obs-expectation-props">Observation 10</a>):</p>
 <div class="proof observation admonition" id="obs-expectation-props">
 <p class="admonition-title"><span class="caption-number">Observation 10 </span> (Properties of expectation)</p>
 <section class="observation-content" id="proof-content">
-<p>The expectation of a random variable <span class="math notranslate nohighlight">\(X\)</span> (discrete or continuous) has several useful (and important) properties:</p>
+<p>The expectation of a random variable <span class="math notranslate nohighlight">\(X\)</span> has several useful (and important) properties:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(c\right) = c\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}\left(cX\right) = c\times\mathbb{E}\left(X\right)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
@@ -880,30 +902,35 @@ function governing the decision maker <span class="math notranslate nohighlight"
 </section>
 </div></section>
 <section id="variance">
-<h4>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h4>
+<h3>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> measures the expected dispersion for
-individual values of <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (mean). The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> is given by:</p>
+individual values of a random variable <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (<a class="reference internal" href="#defn-discrete-random-variable-variance">Definition 50</a>):</p>
+<div class="proof definition admonition" id="defn-discrete-random-variable-variance">
+<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Expectation discrete random variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> denote a discrete random variable with the probability space <span class="math notranslate nohighlight">\(\left(\Omega,\mathcal{F},P\right)\)</span>, where <span class="math notranslate nohighlight">\(\Omega\)</span> denotes the sample space, <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> denotes the event space, and <span class="math notranslate nohighlight">\(P\)</span> denotes the probability measure. Then, the variance of the random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-variance">
 <span class="eqno">(90)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</section>
+</div><p>The variance of a discrete random variable has a few interesting properties (<a class="reference internal" href="#obs-variances-var">Observation 11</a>):</p>
 <div class="proof observation admonition" id="obs-variances-var">
 <p class="admonition-title"><span class="caption-number">Observation 11 </span> (Properties of variance)</p>
 <section class="observation-content" id="proof-content">
-<p>Like the expected value, the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> has a few interesting (and important) properties:</p>
+<p>The variance of a random variable <span class="math notranslate nohighlight">\(X\)</span> has a few interesting (and important) properties:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \left(\mu\right)^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}(X) = \mathbb{E}\left(X^{2}\right) - \mathbb{E}\left(X\right)^2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{Var}(cX) = {c^2}\text{Var}(X)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{Var}(X+c) = \text{Var}(X)\)</span> for any constant <span class="math notranslate nohighlight">\(c\)</span></p></li>
 </ul>
 </section>
 </div><p>The more common quantity that is used to measure dispersion, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>, is related to the variance: <span class="math notranslate nohighlight">\(\sigma_{X} = \sqrt{\text{Var}(X)}\)</span>.</p>
 </section>
-</section>
 <section id="probability-mass-functions">
 <h3>Probability mass functions<a class="headerlink" href="#probability-mass-functions" title="Permalink to this headline">#</a></h3>
 <p>In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function (PMF)</a>.</p>
 <div class="proof definition admonition" id="defn-pmf">
-<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Probability Mass Function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Probability Mass Function)</p>
 <section class="definition-content" id="proof-content">
 <p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of
 obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
@@ -919,7 +946,7 @@ obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <sp
 <p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
 outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of 0 is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
 <div class="proof definition admonition" id="defn-pmf-bernouli">
-<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Bernoulli Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Bernoulli Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -940,7 +967,7 @@ outcome. Bernoulli random variable have two states: either 1 or 0. The probabili
 <h4>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses.</p>
 <div class="proof definition admonition" id="defn-pmf-binomial">
-<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Binomial Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 53 </span> (Binomial Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we do repeated Bernoulli trials <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]^n\)</span>, i.e., <span class="math notranslate nohighlight">\(n\)</span> trials of an independent binary experiment.
 The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is governed by the binomial probability mass function:</p>
@@ -962,10 +989,9 @@ of a successful trial and:</p>
 <h4>Geometric random variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this headline">#</a></h4>
 <p>We may be interested in doing a binary experiment, e.g., a coin flip until a specified outcome is obtained.
 A geometric random variable governs the outcome of this type of experiment;
-a geometric random variable gives the probability that the first occurrence of success requires <span class="math notranslate nohighlight">\(k\)</span> independent trials, each with success probability <span class="math notranslate nohighlight">\(p\)</span>. In other words,
-a geometric random variable describes the number of failures obtained before final success.</p>
+a geometric random variable gives the probability that the first occurrence of success requires <span class="math notranslate nohighlight">\(k\)</span> independent trials, each with success probability <span class="math notranslate nohighlight">\(p\)</span>. In other words, a geometric random variable describes the number of failures obtained before final success.</p>
 <div class="proof definition admonition" id="defn-pmf-geometric">
-<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Geometric Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 54 </span> (Geometric Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a geometric random variable. The probability mass function for a geometric random variable is given by:</p>
 <div class="math notranslate nohighlight">
@@ -982,7 +1008,7 @@ a geometric random variable describes the number of failures obtained before fin
 <h4>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen <code class="docutils literal notranslate"><span class="pre">X</span></code> number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.</p>
 <div class="proof definition admonition" id="defn-pmf-poisson">
-<p class="admonition-title"><span class="caption-number">Definition 53 </span> (Poisson Random Variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 55 </span> (Poisson Random Variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Poisson random variable. The probability mass function for a Poisson random variable is given by:</p>
 <div class="math notranslate nohighlight">
@@ -995,6 +1021,24 @@ a geometric random variable describes the number of failures obtained before fin
 \[\text{Var}\left[X\right] = \lambda\]</div>
 </section>
 </div></section>
+</section>
+<section id="the-von-neumann-morgenstern-theorem">
+<h3>The von Neumann - Morgenstern theorem<a class="headerlink" href="#the-von-neumann-morgenstern-theorem" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a>, also known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_utility_hypothesis">expected utility hypothesis</a>, is a fundamental result in decision theory that provides a framework for making <em>rational choices</em> under uncertainty <span id="id1">[<a class="reference internal" href="../References.html#id2" title="J. von Neumann and O. Morgenstern. Theory of games and economic behavior. Princeton University Press, 1944.">von Neumann and Morgenstern, 1944</a>]</span>.</p>
+<p>If an individual has preferences over a set of possible outcomes, and these preferences satisfy certain axioms, then there exists a unique function that assigns a numerical value to each outcome, known as its <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_utility_hypothesis">expected utility</a>, such that the individual will choose the option with the highest expected utility.</p>
+<div class="proof definition admonition" id="defn-expected-utility-hypothesis">
+<p class="admonition-title"><span class="caption-number">Definition 56 </span> (Expected utility hypothesis)</p>
+<section class="definition-content" id="proof-content">
+<p>An agent chooses amongst <span class="math notranslate nohighlight">\(n\)</span> possible uncertain objects, <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>. Object <span class="math notranslate nohighlight">\(k\)</span> has probability <span class="math notranslate nohighlight">\(p_{k}\)</span> and a utility payoff of <span class="math notranslate nohighlight">\(U(x_{k})\)</span>. Then, a rational decision maker maximizes the expected utility subject to constraints (<a class="reference internal" href="#defn-expected-utility-hypothesis">Definition 56</a>):</p>
+<div class="math notranslate nohighlight" id="equation-eqn-max-expected-ulity-problem">
+<span class="eqno">(91)<a class="headerlink" href="#equation-eqn-max-expected-ulity-problem" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{k=1}^{n}p_{k}U(x_{k}) \\
+\text{subject to}~g(x)~&amp; \leq &amp; 0\\
+\text{and}~x_{k}&amp;\geq&amp;{0}\qquad{k=1,2,\dots,n}
+\end{eqnarray}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_{k}\)</span> denotes the probability of object <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(g(x)\)</span> denotes constraints governing the objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>.</p>
+</section>
+</div><p>This <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a> provides a basis for understanding how people make decisions in uncertain situations.</p>
 </section>
 </section>
 </section>
