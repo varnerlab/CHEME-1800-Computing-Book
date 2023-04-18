@@ -36,17 +36,16 @@ The utility function $U(\dots)$ is unique only up to an order-preserving transfo
 * If $A\sim{B}$, the decision maker is _indifferent_ between $A$ to $B$. Then, the utility of choice $A$ is the same as $B$, or $U(A)=U(B)$.
 * If $A\succsim{B}$, the decision maker _weakly prefers_ $A$ over $B$, or they are indifferent. Then, the utility of choice $A$ is greater than or equal to $B$, or $U(A)\geq{U(A)}$.
 
-
 ### Properties of utility functions
-The mathematical properties of a _proper_ utility function $U(\dots)$ include:
+A utility function is a mathematical representation of a person's preferences over different outcomes or alternatives. Here are some properties that a utility function should possess:
 
-* __Continuity__: A small change in the input variable should lead to a small change in the output value of the function.
-Monotonicity: The utility function should be non-decreasing, meaning that as the input variable increases, the output value of the function also increases.
-* __Convexity__: The utility function should exhibit a diminishing marginal utility, meaning that the additional satisfaction gained from an additional unit of the input variable decreases as the input variable increases.
-* __Independence:__ The utility function should be independent of irrelevant alternatives, meaning that adding or removing irrelevant options should not affect the ordering of preferences.
-* __Substitutability__: The utility function should exhibit substitution, meaning that if one option becomes unavailable, the utility can be derived from a substitute option.
+* __Completeness__: A utility function should be able to rank all possible outcomes or alternatives. In other words, for any two outcomes, the utility function should tell us which one is preferred or whether they are equally preferred.
+* __Transitivity__: If outcome A is preferred to outcome B, and outcome B is preferred to outcome C, then outcome A must be preferred to outcome C. This is known as the transitivity property.
+* __Monotonicity__: If more of a good is always preferred to less, then the utility function should increase in that good. Conversely, if less of a bad is always preferred to more, then the utility function should decrease in that bad.
+* __Continuity__: Small changes in the outcome or alternatives should result in small changes in the utility function. This is known as the continuity property.
+* __Concavity__: The utility function should be concave if the person exhibits diminishing marginal utility. This means that as a person consumes more of a good, the additional satisfaction gained from each unit consumed decreases.
 
-These properties ensure that the utility function is well-behaved and represents an individual's preferences over different options. 
+These properties help ensure that a utility function accurately represents a person's preferences and can be used to make rational choices between alternatives.
 
 #### Marginal utility
 The marginal utility is the additional satisfaction or usefulness an agent derives from consuming one additional unit of a good or service. Mathematically, the marginal utility is the partial derivative of the utility with respect to the amount of item $i$ ({prf:ref}`defn-marginal-utility-math`):
@@ -54,7 +53,7 @@ The marginal utility is the additional satisfaction or usefulness an agent deriv
 ````{prf:definition} Marginal utility
 :label: defn-marginal-utility-math
 
-The preferences of a bundle of objects $x_{1},\dots,x_{n}$ are described by the utility function $U(x_{1},\dots,x_{n})$. Then, the value or satisfaction experienced by the agent from one additional unit of object $i$ is the marginal utility of object $i$ is given by:
+The preference or satisfaction derived from a bundle of objects $x_{1},\dots,x_{n}$ is described by the utility function $U(x_{1},\dots,x_{n})$. Then, the satisfaction experienced by the agent from one additional unit of the object $i$ in the bundle is defined as the marginal utility of object $i$:
 
 ```{math}
 \text{MU}^{\star}_{i} \equiv \left(\frac{\partial{U}}{\partial{x_{i}}}\right)_{\star}\qquad{i=1,2,\dots,n}
@@ -63,30 +62,11 @@ The preferences of a bundle of objects $x_{1},\dots,x_{n}$ are described by the 
 where all other objects are held constant at level $\star$.
 ````
 
-##### Marginal utility of wealth
-The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent ({numref}`fig-wealth-schematic-simple-model`). 
-
-
- ```{figure} ./figs/Fig-Wealth-Utility-Schematic.pdf
----
-height: 400px
-name: fig-wealth-schematic-simple-model
----
-Wealth utility function $U(W) = W/(W+b)$ as a function of choices for the parameter $b$. The abundance of wealth is inversely proportional to the value of the parameter $b$. For example, the agent at $A$ values each additional wealth unit less than the agent at $D$.
-```
-
-The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.
-
-Let's consider a specific example utility function that we'll use later ({prf:ref}`example-cobb-douglas-uf`):
-
-````{prf:example} Cobb–Douglas utility function
-:label: example-cobb-douglas-uf
-:class: dropdown
-
-The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) governing the satisfaction gained by purchasing $n$ goods $(x_{1},x_{2},\dots,x_{n})$ is given by:
+##### Analytical marginal utility 
+The marginal utility can be computed by directly differentiating the utility function. For example, consider an example utility function that we'll use later, the [Cobb-Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function). The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) governing the satisfaction gained by consuming a bundle of $n$ goods $(x_{1},x_{2},\dots,x_{n})$ is given by:
 
 ```{math}
-:label: eqn-simple-utility-function
+:label: eqn-cobb-douglas-u-function
 U(x)  = \prod_{i=1}^{n}x_{i}^{\alpha_{i}} 
 ```
 
@@ -96,9 +76,7 @@ where the coefficients $\alpha_{i}$ are governed by:
 \sum_{i=1}^{n}\alpha_{i}  = 1
 ```
 
-Show the [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) satisfies the first two utility function properties (continuity and convexity). 
-
-__Solution__: Equation {eq}`eqn-simple-utility-function` is continuous, so the first condition is satisfied. To explore the convexity property, compute the [marginal utility](https://en.wikipedia.org/wiki/Marginal_utility), i.e., the partial derivative of $U(\dots)$ with respect to $x_{i}$:
+The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) satisfies the utility function properties, where the marginal utility is given by: 
 
 ```{math}
 :label: eqn-mu-u-function
@@ -108,13 +86,11 @@ __Solution__: Equation {eq}`eqn-simple-utility-function` is continuous, so the f
 
 where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$.
 
-````
+##### Numerical marginal utility 
+However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) approach.
 
-The marginal utility can be computed by directly differentiating the utility function (as shown in {prf:ref}`example-cobb-douglas-uf`). However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), 
-or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) approach.
+Sample code for [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) of the Cobb-Douglas utility function using the [ForwardDiff.jl](https://juliadiff.org/ForwardDiff.jl/stable/) package:
 
-Sample code for [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) of the Cobb-Douglas utility function using the 
-[ForwardDiff.jl](https://juliadiff.org/ForwardDiff.jl/stable/) package:
 ```julia
 # load the ForwardDiff package
 using ForwardDiff
@@ -134,6 +110,20 @@ end
 x = [20.0,7.20]; # point A 
 MU = ForwardDiff.gradient(U,x);
 ```
+
+##### Aside: Marginal utility of wealth
+The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent ({numref}`fig-wealth-schematic-simple-model`). 
+
+
+ ```{figure} ./figs/Fig-Wealth-Utility-Schematic.pdf
+---
+height: 400px
+name: fig-wealth-schematic-simple-model
+---
+Wealth utility function $U(W) = W/(W+b)$ as a function of choices for the parameter $b$. The abundance of wealth is inversely proportional to the value of the parameter $b$. For example, the agent at $A$ values each additional wealth unit less than the agent at $D$.
+```
+
+The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.
 
 
 ### Indifference curves
