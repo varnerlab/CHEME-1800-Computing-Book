@@ -315,10 +315,138 @@ An agent chooses amongst $n$ possible uncertain objects, $x_{1},\dots,x_{n}$ whe
 where $p_{k}$ denotes the probability of object $k$, and $g(x)$ denotes potentially non-linear constraints governing the objects $x_{1},\dots,x_{n}$.
 ````
 
-The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) depends upon an understanding of two critical concepts, random variables and probability:
+The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) depends upon an understanding of two critical concepts, random variables, and probability:
 
-* A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a variable that takes on different numerical values according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. A discrete random variable can take on a countable number of distinct values, while a continuous random variable can take on any value in a continuous range. 
-* [Probability](https://en.wikipedia.org/wiki/Probability) measures the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance.
+* A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a variable $X$ that takes on different values $x$ according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. Discrete random variables can take on a countable number of distinct values, while continuous random variables can take on any value in a continuous range. 
+* [Probability](https://en.wikipedia.org/wiki/Probability) measures the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance. For a discrete random variable, the likelihood that $X=x$ is described by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) and a [Probability Density Function (PDF)](https://en.wikipedia.org/wiki/Probability_density_function) for continuous random variables.  
+
+#### Probability mass functions
+In the case of discrete random variables, for example, dice roles, coin flips etc, the likelihood that $X=x$ is described by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) ({prf:ref}`defn-pmf`):
+
+
+````{prf:definition} Probability Mass Function
+:label: defn-pmf
+
+The probability mass function (PMF) of a discrete random variable $X$ is a function that specifies the probability of obtaining $X = x$, where $x$ is a particular event:
+
+$$p_{X}(x) = P\left(X=x\right)$$
+
+The set of all possible outcomes for a discrete random variable $X$ is denoted as $X\left(\Omega\right)$. A probability mass function must satisfy the condition:
+
+$$\sum_{x\in{X(\Omega)}}p_{X}(x)=1$$
+````
+
+The probability mass function is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.
+
+##### Bernoulli random variable
+A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
+outcome ({prf:ref}`defn-pmf-bernouli`):
+
+````{prf:definition} Bernoulli Random Variable
+:label: defn-pmf-bernouli
+
+Let $X$ be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable $X$ is:
+
+```{math}
+p_{X}(x) =
+\begin{cases}
+  p & \text{if } x = 1 \\
+  1 - p & \text{if } x = 0
+\end{cases}
+```
+
+where $0<p<1$ is called the Bernoulli parameter. For a Bernoulli random variable $X(\Omega) \in [0,1]$ the expectation is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = p
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = p(1-p)
+```
+````
+
+Bernoulli random variables have two states: either `1` or `0`. The probability of getting `1` is $p$, while the probability of getting a value of `0` is $1 − p$. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc
+
+##### Binomial random variable
+The binomial distribution is the probability of getting exactly $k$ successes in $n$ independent Bernoulli trials, e.g., the chance of getting four heads in 6 coin tosses ({prf:ref}`defn-pmf-binomial`):
+
+````{prf:definition} Binomial Random Variable
+:label: defn-pmf-binomial
+
+Suppose we perform repeated Bernoulli trials $X(\Omega) \in [0,1]^n$, i.e., $n$ trials of an independent binary experiment. The probability of getting exactly $k$ successes in $n$ independent Bernoulli trials is governed by the binomial probability mass function:
+
+$$p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}$$
+
+where $k$ denotes the number of successes in $n$ independent experiments, the binomial parameter $0<p<1$ is the probability 
+of a successful trial and:
+
+$$\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}$$
+
+The expectation of a binomial random variable is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = np
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = np(1-p)
+```
+````
+
+##### Geometric random variable
+Geometric random variables are a type of discrete probability distribution that models the number of trials required to obtain the first success in a sequence of independent Bernoulli trials ({prf:ref}`defn-pmf-geometric`):
+
+````{prf:definition} Geometric Random Variable
+:label: defn-pmf-geometric
+
+Let $X$ be a geometric random variable. The probability mass function for a geometric random variable is given by:
+
+$$p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}$$
+
+where $p$ denotes the geometric parameter $0<p<1$. The expectation of a geometric random variable $X$ is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = \frac{1}{p}
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = \frac{1-p}{p^2}
+```
+````
+
+##### Poisson random variable
+Poisson random variables are a type of discrete probability distribution that models the number of occurrences of an event in a fixed interval of time or space ({prf:ref}`defn-pmf-poisson`): 
+
+````{prf:definition} Poisson Random Variable
+:label: defn-pmf-poisson
+
+Let $X$ be a Poisson random variable. The probability mass function for a Poisson random variable is given by:
+
+```{math}
+p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)
+```
+
+where $\lambda>0$ denotes the Poisson parameter, and $!$ denotes the factorial function. The expectation of a Poisson random variable $X$ is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = \lambda
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = \lambda
+```
+````
+
+Poisson random variables estimate how likely something will happen $x$ number of times in a fixed interval, e.g., the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.
 
 #### Expectation
 The [expectation](https://en.wikipedia.org/wiki/Expected_value) of a discrete random variable $X$ measures the central tendency of the values of that random variable ({prf:ref}`defn-discrete-random-variable-expectation`):
@@ -333,7 +461,7 @@ Let $X$ denote a discere random variable with the probability space $\left(\Omeg
 \mathbb{E}\left[X\right] = \sum_{x\in\Omega}xp_{X}(x)
 ```
 
-where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability of $X=x$. The value of $p_{X}(x)$ is governed by a [Probability Mass Function](https://en.wikipedia.org/wiki/Probability_mass_function).
+where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability of $X=x$. The value of $p_{X}(x)$ is governed by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function).
 
 ````
 
@@ -382,135 +510,7 @@ The variance of a random variable $X$ has a few interesting (and important) prop
 
 The more common quantity that is used to measure dispersion, the standard deviation $\sigma$, is related to the variance: $\sigma_{X} = \sqrt{\text{Var}(X)}$.
 
-#### Probability mass functions
-In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a [probability mass function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function). 
 
-
-````{prf:definition} Probability Mass Function
-:label: defn-pmf
-
-The probability mass function (PMF) of a discrete random variable $X$ is a function that specifies the probability of 
-obtaining $X = x$, where $x$ is a particular event:
-
-$$p_{X}(x) = P\left(X=x\right)$$
-
-The set of all possible outcomes for a discrete random variable $X$ is denoted as $X\left(\Omega\right)$. A PMF must satisfy the condition:
-
-$$\sum_{x\in{X(\Omega)}}p_{X}(x)=1$$
-````
-
-The PMF is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.
-
-##### Bernoulli random variable
-A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
-outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is $p$, while the probability of getting a value of 0 is $1 − p$. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.
-
-````{prf:definition} Bernoulli Random Variable
-:label: defn-pmf-bernouli
-
-Let $X$ be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable $X$ is:
-
-```{math}
-p_{X}(x) =
-\begin{cases}
-  p & \text{if } x = 1 \\
-  1 - p & \text{if } x = 0
-\end{cases}
-```
-
-where $0<p<1$ is called the Bernoulli parameter. For a Bernoulli random variable $X(\Omega) \in [0,1]$ the expectation is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = p
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = p(1-p)
-```
-
-````
-
-##### Binomial random variable
-The binomial distribution is the probability of getting exactly $k$ successes in $n$ independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses. 
-
-````{prf:definition} Binomial Random Variable
-:label: defn-pmf-binomial
-
-Suppose we do repeated Bernoulli trials $X(\Omega) \in [0,1]^n$, i.e., $n$ trials of an independent binary experiment.
-The probability of getting exactly $k$ successes in $n$ independent Bernoulli trials is governed by the binomial probability mass function:
-
-$$p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}$$
-
-where $k$ denotes the number of successes in $n$ independent experiments, the binomial parameter $0<p<1$ is the probability 
-of a successful trial and:
-
-$$\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}$$
-
-The expectation of a binomial random variable is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = np
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = np(1-p)
-```
-
-````
-
-##### Geometric random variable
-We may be interested in doing a binary experiment, e.g., a coin flip until a specified outcome is obtained.
-A geometric random variable governs the outcome of this type of experiment; 
-a geometric random variable gives the probability that the first occurrence of success requires $k$ independent trials, each with success probability $p$. In other words, a geometric random variable describes the number of failures obtained before final success.
-
-````{prf:definition} Geometric Random Variable
-:label: defn-pmf-geometric
-
-Let $X$ be a geometric random variable. The probability mass function for a geometric random variable is given by:
-
-$$p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}$$
-
-where $p$ denotes the geometric parameter $0<p<1$. The expectation of a geometric random variable $X$ is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = \frac{1}{p}
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = \frac{1-p}{p^2}
-```
-````
-
-##### Poisson random variable
-The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen `X` number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.
-
-````{prf:definition} Poisson Random Variable
-:label: defn-pmf-poisson
-
-Let $X$ be a Poisson random variable. The probability mass function for a Poisson random variable is given by:
-
-```{math}
-p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)
-```
-
-where $\lambda>0$ denotes the Poisson parameter, and $!$ denotes the factorial function. The expectation of a Poisson random variable $X$ is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = \lambda
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = \lambda
-```
-````
 ---
 
 # Summary
