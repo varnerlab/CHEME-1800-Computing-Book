@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Julia
+  language: julia
+  name: julia-1.8
+---
+
 # Probability and Uncertain Choices
 
 Uncertain decisions are those that involve a certain degree of risk or ambiguity. Uncertain decisions arise in many situations, such as investing in the stock market, choosing a career path, making technical choices, or deciding whether to pursue a romantic relationship. Making uncertain decisions involves weighing each option’s potential benefits and drawbacks and considering the likelihood of different outcomes.
@@ -84,7 +96,29 @@ The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Dougl
 \text{MU}_{x_{i}} = \left(\alpha_{i}x^{\alpha_{i}-1}\right)\cdot\left(\prod_{j=1,i}^{n}x_{j}^{\alpha_{j}}\right)
 ```
 
-where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$.
+where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$. Alternatively, to compute analytical expressions for the marginal utility, instead of remembering the [differentiation rules from calculus](https://en.wikipedia.org/wiki/Differentiation_rules), we can use one of many [Computer Algebra Systems (CAS)](https://en.wikipedia.org/wiki/Computer_algebra_system), e.g., the [Symbolics.jl](https://github.com/JuliaSymbolics/Symbolics.jl) package in [Julia](https://julialang.org) or the [SymPy](https://www.sympy.org/en/index.html) library in [Python](https://www.python.org).
+
+Sample code to compute the marginal utility for the two-dimensional [Cobb-Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Douglas_production_function) using the [Symbolics.jl](https://github.com/JuliaSymbolics/Symbolics.jl) package:
+
+```julia
+# load the Symbolics.jl package (assumed to be installed)
+using Symbolics
+
+# declare variables (symbols in the eqn)
+@variables x,y,α,β
+
+# Build differential operators for x
+Dₓ = Differential(x);
+
+# define the utility function
+U = (x^α)*(y^β)
+
+# compute the derivative -
+∂Uₓ = Dₓ(U) |> expand_derivatives;
+
+# print -
+println("The value of ∂U/∂x = ",∂Uₓ)
+```
 
 ##### Numerical marginal utility 
 However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) approach.
@@ -112,8 +146,7 @@ MU = ForwardDiff.gradient(U,x);
 ```
 
 ##### Aside: Marginal utility of wealth
-The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent ({numref}`fig-wealth-schematic-simple-model`). 
-
+The marginal utility quantifies the satisfaction gained by an agent from an additional unit of consumption of a good or service ({numref}`fig-wealth-schematic-simple-model`).
 
  ```{figure} ./figs/Fig-Wealth-Utility-Schematic.pdf
 ---
@@ -123,8 +156,7 @@ name: fig-wealth-schematic-simple-model
 Wealth utility function $U(W) = W/(W+b)$ as a function of choices for the parameter $b$. The abundance of wealth is inversely proportional to the value of the parameter $b$. For example, the agent at $A$ values each additional wealth unit less than the agent at $D$.
 ```
 
-The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.
-
+The relationship between overall resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. Marginal utility is basic to how an agent values a good or service, including wealth. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional wealth unit decreases due to the [diminishing marginal utility of money](https://en.wikipedia.org/wiki/Marginal_utility).
 
 ### Indifference curves
 Indifference curves are graphical representations of combinations of choices that provide a decision-making agent with the same level of utility ({numref}`fig-cobb-douglas-ic`). Thus, decision-makers are _indifferent_ to the consumption of different combinations of goods (or services) on an indifference curve. 
@@ -139,7 +171,7 @@ Two-dimensional indifference curves were generated using the Cobb–Douglas util
 
 For example, the decision agent with the Cobb–Douglas utility function shown in ({numref}`fig-cobb-douglas-ic`) is _indifferent_ to a choice between $A$ and $B$, but strictly prefers $C$ and $D$ to either $A$ or $B$. 
 
-Sample code to compute the two-dimensional Cobb–Douglas utility function for $\alpha_{1} = \alpha_{2} = 0.5$:
+Sample code to compute the two-dimensional indifference curve for a Cobb–Douglas utility function with $\alpha_{1} = \alpha_{2} = 0.5$:
 ```julia
 # initialize
 α₁ = 0.5 
@@ -257,12 +289,166 @@ __Problem__: A decision making agent must decide how much of two goods to consum
 ## Choices under uncertainty
 In the previous section, we developed tools to make optimal choices when the outcomes were sure, and the level of satisfaction derived from those choices was known, e.g., the utility of purchasing a particular bundle of goods or services could be computed using a utility function. However, in many real-world situations, the assumption of certainty is invalid. For example, betting, buying an insurance policy or investing in a new business, or the stock market all or _uncertain_. 
 
-To understand how optimal agents behave when faced with uncertain situations, we introduce two critical concepts, random variables, and probability:
 
-* A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a variable that takes on different numerical values according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. A discrete random variable can take on a countable number of distinct values, while a continuous random variable can take on any value in a continuous range. 
-* [Probability](https://en.wikipedia.org/wiki/Probability) is a measure of the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance.
+To understand how optimal agents behave when faced with uncertain situations, we define the [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), which provides a basis for computing an optimal decision in an uncertain situation. 
 
-### Expectation
+### The von Neumann - Morgenstern theorem
+The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), also known as the [expected utility hypothesis](https://en.wikipedia.org/wiki/Expected_utility_hypothesis), is a fundamental result in decision theory that provides a framework for making _rational choices_ under uncertainty {cite}`vonneumann1947` ({prf:ref}`defn-expected-utility-hypothesis`):
+
+````{prf:definition} Expected utility hypothesis
+:label: defn-expected-utility-hypothesis
+
+An agent chooses amongst $n$ possible uncertain objects, $x_{1},\dots,x_{n}$ where object $k$ has a probability $p_{k}$ of occuring and a utility payoff of $U(x_{k})$. A _rational decision maker_ maximizes the expected utility subject to constraints:
+
+
+```{math}
+:label: eqn-max-expected-ulity-problem
+
+\begin{eqnarray}
+\text{maximize}~\mathcal{O} &=& \sum_{k=1}^{n}p_{k}U(x_{k}) \\
+\text{subject to}~g(x)~& \leq & 0\\
+\text{and}~x_{k}&\geq&{0}\qquad{k=1,2,\dots,n}
+\end{eqnarray}
+
+```
+
+where $p_{k}$ denotes the probability of object $k$, and $g(x)$ denotes potentially non-linear constraints governing the objects $x_{1},\dots,x_{n}$.
+````
+
+The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) depends upon an understanding of two critical concepts, random variables, and probability:
+
+* A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a variable $X$ that takes on different values $x$ according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. Discrete random variables can take on a countable number of distinct values, while continuous random variables can take on any value in a continuous range. 
+* [Probability](https://en.wikipedia.org/wiki/Probability) measures the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance. For a discrete random variable, the likelihood that $X=x$ is described by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) and a [Probability Density Function (PDF)](https://en.wikipedia.org/wiki/Probability_density_function) for continuous random variables.  
+
+#### Probability mass functions
+In the case of discrete random variables, for example, dice roles, coin flips etc, the likelihood that $X=x$ is described by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) ({prf:ref}`defn-pmf`):
+
+
+````{prf:definition} Probability Mass Function
+:label: defn-pmf
+
+The probability mass function (PMF) of a discrete random variable $X$ is a function that specifies the probability of obtaining $X = x$, where $x$ is a particular event:
+
+$$p_{X}(x) = P\left(X=x\right)$$
+
+The set of all possible outcomes for a discrete random variable $X$ is denoted as $X\left(\Omega\right)$. A probability mass function must satisfy the condition:
+
+$$\sum_{x\in{X(\Omega)}}p_{X}(x)=1$$
+````
+
+The probability mass function is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.
+
+##### Bernoulli random variable
+A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
+outcome ({prf:ref}`defn-pmf-bernouli`):
+
+````{prf:definition} Bernoulli Random Variable
+:label: defn-pmf-bernouli
+
+Let $X$ be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable $X$ is:
+
+```{math}
+p_{X}(x) =
+\begin{cases}
+  p & \text{if } x = 1 \\
+  1 - p & \text{if } x = 0
+\end{cases}
+```
+
+where $0<p<1$ is called the Bernoulli parameter. For a Bernoulli random variable $X(\Omega) \in [0,1]$ the expectation is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = p
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = p(1-p)
+```
+````
+
+Bernoulli random variables have two states: either `1` or `0`. The probability of getting `1` is $p$, while the probability of getting a value of `0` is $1 − p$. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc
+
+##### Binomial random variable
+The binomial distribution is the probability of getting exactly $k$ successes in $n$ independent Bernoulli trials, e.g., the chance of getting four heads in 6 coin tosses ({prf:ref}`defn-pmf-binomial`):
+
+````{prf:definition} Binomial Random Variable
+:label: defn-pmf-binomial
+
+Suppose we perform repeated Bernoulli trials $X(\Omega) \in [0,1]^n$, i.e., $n$ trials of an independent binary experiment. The probability of getting exactly $k$ successes in $n$ independent Bernoulli trials is governed by the binomial probability mass function:
+
+$$p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}$$
+
+where $k$ denotes the number of successes in $n$ independent experiments, the binomial parameter $0<p<1$ is the probability 
+of a successful trial and:
+
+$$\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}$$
+
+The expectation of a binomial random variable is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = np
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = np(1-p)
+```
+````
+
+##### Geometric random variable
+Geometric random variables are a type of discrete probability distribution that models the number of trials required to obtain the first success in a sequence of independent Bernoulli trials ({prf:ref}`defn-pmf-geometric`):
+
+````{prf:definition} Geometric Random Variable
+:label: defn-pmf-geometric
+
+Let $X$ be a geometric random variable. The probability mass function for a geometric random variable is given by:
+
+$$p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}$$
+
+where $p$ denotes the geometric parameter $0<p<1$. The expectation of a geometric random variable $X$ is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = \frac{1}{p}
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = \frac{1-p}{p^2}
+```
+````
+
+##### Poisson random variable
+Poisson random variables are a type of discrete probability distribution that models the number of occurrences of an event in a fixed interval of time or space ({prf:ref}`defn-pmf-poisson`): 
+
+````{prf:definition} Poisson Random Variable
+:label: defn-pmf-poisson
+
+Let $X$ be a Poisson random variable. The probability mass function for a Poisson random variable is given by:
+
+```{math}
+p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)
+```
+
+where $\lambda>0$ denotes the Poisson parameter, and $!$ denotes the factorial function. The expectation of a Poisson random variable $X$ is given by:
+
+```{math}
+\mathbb{E}\left[X\right] = \lambda
+```
+
+while the variance $\text{Var}(X)$ is given by:
+
+```{math}
+\text{Var}\left[X\right] = \lambda
+```
+````
+
+Poisson random variables estimate how likely something will happen $x$ number of times in a fixed interval, e.g., the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.
+
+#### Expectation
 The [expectation](https://en.wikipedia.org/wiki/Expected_value) of a discrete random variable $X$ measures the central tendency of the values of that random variable ({prf:ref}`defn-discrete-random-variable-expectation`):
 
 ````{prf:definition} Expectation discrete random variable
@@ -275,7 +461,7 @@ Let $X$ denote a discere random variable with the probability space $\left(\Omeg
 \mathbb{E}\left[X\right] = \sum_{x\in\Omega}xp_{X}(x)
 ```
 
-where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability of $X=x$. The value of $p_{X}(x)$ is governed by a [Probability Mass Function](https://en.wikipedia.org/wiki/Probability_mass_function).
+where $x$ denotes a value for the discrete random variable $X$, and $p_{X}(x)$ denotes the probability of $X=x$. The value of $p_{X}(x)$ is governed by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function).
 
 ````
 
@@ -291,7 +477,7 @@ The expectation of a random variable $X$ has several useful (and important) prop
 1. $\mathbb{E}\left(X+c\right) = \mathbb{E}(X) + c$ for any constant $c$
 ````
 
-### Variance
+#### Variance
 The [variance](https://en.wikipedia.org/wiki/Variance) measures the expected dispersion for
 individual values of a random variable $X$, i.e., the average distance that values of $X$ are spread out from their expected value ({prf:ref}`defn-discrete-random-variable-variance`):
 
@@ -324,165 +510,6 @@ The variance of a random variable $X$ has a few interesting (and important) prop
 
 The more common quantity that is used to measure dispersion, the standard deviation $\sigma$, is related to the variance: $\sigma_{X} = \sqrt{\text{Var}(X)}$.
 
-### Probability mass functions
-In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a [probability mass function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function). 
-
-
-````{prf:definition} Probability Mass Function
-:label: defn-pmf
-
-The probability mass function (PMF) of a discrete random variable $X$ is a function that specifies the probability of 
-obtaining $X = x$, where $x$ is a particular event:
-
-$$p_{X}(x) = P\left(X=x\right)$$
-
-The set of all possible outcomes for a discrete random variable $X$ is denoted as $X\left(\Omega\right)$. A PMF must satisfy the condition:
-
-$$\sum_{x\in{X(\Omega)}}p_{X}(x)=1$$
-````
-
-The PMF is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.
-
-#### Bernoulli random variable
-A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
-outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is $p$, while the probability of getting a value of 0 is $1 − p$. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.
-
-````{prf:definition} Bernoulli Random Variable
-:label: defn-pmf-bernouli
-
-Let $X$ be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable $X$ is:
-
-```{math}
-p_{X}(x) =
-\begin{cases}
-  p & \text{if } x = 1 \\
-  1 - p & \text{if } x = 0
-\end{cases}
-```
-
-where $0<p<1$ is called the Bernoulli parameter. For a Bernoulli random variable $X(\Omega) \in [0,1]$ the expectation is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = p
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = p(1-p)
-```
-
-````
-
-#### Binomial random variable
-The binomial distribution is the probability of getting exactly $k$ successes in $n$ independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses. 
-
-````{prf:definition} Binomial Random Variable
-:label: defn-pmf-binomial
-
-Suppose we do repeated Bernoulli trials $X(\Omega) \in [0,1]^n$, i.e., $n$ trials of an independent binary experiment.
-The probability of getting exactly $k$ successes in $n$ independent Bernoulli trials is governed by the binomial probability mass function:
-
-$$p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}$$
-
-where $k$ denotes the number of successes in $n$ independent experiments, the binomial parameter $0<p<1$ is the probability 
-of a successful trial and:
-
-$$\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}$$
-
-The expectation of a binomial random variable is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = np
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = np(1-p)
-```
-
-````
-
-#### Geometric random variable
-We may be interested in doing a binary experiment, e.g., a coin flip until a specified outcome is obtained.
-A geometric random variable governs the outcome of this type of experiment; 
-a geometric random variable gives the probability that the first occurrence of success requires $k$ independent trials, each with success probability $p$. In other words, a geometric random variable describes the number of failures obtained before final success.
-
-````{prf:definition} Geometric Random Variable
-:label: defn-pmf-geometric
-
-Let $X$ be a geometric random variable. The probability mass function for a geometric random variable is given by:
-
-$$p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}$$
-
-where $p$ denotes the geometric parameter $0<p<1$. The expectation of a geometric random variable $X$ is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = \frac{1}{p}
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = \frac{1-p}{p^2}
-```
-````
-
-#### Poisson random variable
-The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen `X` number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.
-
-````{prf:definition} Poisson Random Variable
-:label: defn-pmf-poisson
-
-Let $X$ be a Poisson random variable. The probability mass function for a Poisson random variable is given by:
-
-```{math}
-p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)
-```
-
-where $\lambda>0$ denotes the Poisson parameter, and $!$ denotes the factorial function. The expectation of a Poisson random variable $X$ is given by:
-
-```{math}
-\mathbb{E}\left[X\right] = \lambda
-```
-
-while the variance $\text{Var}(X)$ is given by:
-
-```{math}
-\text{Var}\left[X\right] = \lambda
-```
-````
-
-### The von Neumann - Morgenstern theorem
-The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), also known as the [expected utility hypothesis](https://en.wikipedia.org/wiki/Expected_utility_hypothesis), is a fundamental result in decision theory that provides a framework for making _rational choices_ under uncertainty {cite}`vonneumann1947`. 
-
-
-If an individual has preferences over a set of possible outcomes, and these preferences satisfy certain axioms, then there exists a unique function that assigns a numerical value to each outcome, known as its [expected utility](https://en.wikipedia.org/wiki/Expected_utility_hypothesis), such that the individual will choose the option with the highest expected utility. 
-
-
-````{prf:definition} Expected utility hypothesis
-:label: defn-expected-utility-hypothesis
-
-An agent chooses amongst $n$ possible uncertain objects, $x_{1},\dots,x_{n}$. Object $k$ has probability $p_{k}$ and a utility payoff of $U(x_{k})$. Then, a rational decision maker maximizes the expected utility subject to constraints ({prf:ref}`defn-expected-utility-hypothesis`):
-
-
-```{math}
-:label: eqn-max-expected-ulity-problem
-
-\begin{eqnarray}
-\text{maximize}~\mathcal{O} &=& \sum_{k=1}^{n}p_{k}U(x_{k}) \\
-\text{subject to}~g(x)~& \leq & 0\\
-\text{and}~x_{k}&\geq&{0}\qquad{k=1,2,\dots,n}
-\end{eqnarray}
-
-```
-
-where $p_{k}$ denotes the probability of object $k$, and $g(x)$ denotes constraints governing the objects $x_{1},\dots,x_{n}$.
-````
-
-
-This [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) provides a basis for understanding how people make decisions in uncertain situations.
 
 ---
 

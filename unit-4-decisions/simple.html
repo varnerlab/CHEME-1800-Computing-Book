@@ -295,6 +295,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/varnerlab/CHEME-1800-Computing-Book/main?urlpath=tree/unit-4-decisions/simple.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -361,6 +390,23 @@ title="Open an issue"
   </button>
   <div class="menu-dropdown__content">
     <ul>
+      <li>
+        <a href="../_sources/unit-4-decisions/simple.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
       <li>
         <a href="../_sources/unit-4-decisions/simple.md"
    class="headerbtn"
@@ -483,46 +529,48 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#expectation">
-       Expectation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#variance">
-       Variance
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#probability-mass-functions">
-       Probability mass functions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#bernoulli-random-variable">
-         Bernoulli random variable
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#binomial-random-variable">
-         Binomial random variable
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#geometric-random-variable">
-         Geometric random variable
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#poisson-random-variable">
-         Poisson random variable
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-von-neumann-morgenstern-theorem">
        The von Neumann - Morgenstern theorem
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#probability-mass-functions">
+         Probability mass functions
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#bernoulli-random-variable">
+           Bernoulli random variable
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#binomial-random-variable">
+           Binomial random variable
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#geometric-random-variable">
+           Geometric random variable
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#poisson-random-variable">
+           Poisson random variable
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#expectation">
+         Expectation
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#variance">
+         Variance
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -614,46 +662,48 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#expectation">
-       Expectation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#variance">
-       Variance
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#probability-mass-functions">
-       Probability mass functions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#bernoulli-random-variable">
-         Bernoulli random variable
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#binomial-random-variable">
-         Binomial random variable
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#geometric-random-variable">
-         Geometric random variable
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#poisson-random-variable">
-         Poisson random variable
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-von-neumann-morgenstern-theorem">
        The von Neumann - Morgenstern theorem
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#probability-mass-functions">
+         Probability mass functions
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#bernoulli-random-variable">
+           Bernoulli random variable
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#binomial-random-variable">
+           Binomial random variable
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#geometric-random-variable">
+           Geometric random variable
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#poisson-random-variable">
+           Poisson random variable
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#expectation">
+         Expectation
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#variance">
+         Variance
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -734,7 +784,27 @@ title="Print to PDF"
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb–Douglas utility function</a> satisfies the utility function properties, where the marginal utility is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-mu-u-function">
 <span class="eqno">(84)<a class="headerlink" href="#equation-eqn-mu-u-function" title="Permalink to this equation">#</a></span>\[\text{MU}_{x_{i}} = \left(\alpha_{i}x^{\alpha_{i}-1}\right)\cdot\left(\prod_{j=1,i}^{n}x_{j}^{\alpha_{j}}\right)\]</div>
-<p>where the <span class="math notranslate nohighlight">\(j=1,i\)</span> notation denotes the <em>exclusion</em> of index <span class="math notranslate nohighlight">\(i\)</span>. As <span class="math notranslate nohighlight">\(x_{i}\rightarrow\infty\)</span>, the marginal utility <span class="math notranslate nohighlight">\(\text{MU}_{x_{i}}\rightarrow{0}\)</span> if <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>. Thus, the convexity property is satisfied for <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>.</p>
+<p>where the <span class="math notranslate nohighlight">\(j=1,i\)</span> notation denotes the <em>exclusion</em> of index <span class="math notranslate nohighlight">\(i\)</span>. As <span class="math notranslate nohighlight">\(x_{i}\rightarrow\infty\)</span>, the marginal utility <span class="math notranslate nohighlight">\(\text{MU}_{x_{i}}\rightarrow{0}\)</span> if <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>. Thus, the convexity property is satisfied for <span class="math notranslate nohighlight">\(\alpha_{i}&lt;1\)</span>. Alternatively, to compute analytical expressions for the marginal utility, instead of remembering the <a class="reference external" href="https://en.wikipedia.org/wiki/Differentiation_rules">differentiation rules from calculus</a>, we can use one of many <a class="reference external" href="https://en.wikipedia.org/wiki/Computer_algebra_system">Computer Algebra Systems (CAS)</a>, e.g., the <a class="reference external" href="https://github.com/JuliaSymbolics/Symbolics.jl">Symbolics.jl</a> package in <a class="reference external" href="https://julialang.org">Julia</a> or the <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a> library in <a class="reference external" href="https://www.python.org">Python</a>.</p>
+<p>Sample code to compute the marginal utility for the two-dimensional <a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb-Douglas utility function</a> using the <a class="reference external" href="https://github.com/JuliaSymbolics/Symbolics.jl">Symbolics.jl</a> package:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the Symbolics.jl package (assumed to be installed)</span>
+<span class="k">using</span> <span class="n">Symbolics</span>
+
+<span class="c"># declare variables (symbols in the eqn)</span>
+<span class="nd">@variables</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">α</span><span class="p">,</span><span class="n">β</span>
+
+<span class="c"># Build differential operators for x</span>
+<span class="n">Dₓ</span> <span class="o">=</span> <span class="n">Differential</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="c"># define the utility function</span>
+<span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="n">α</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">^</span><span class="n">β</span><span class="p">)</span>
+
+<span class="c"># compute the derivative -</span>
+<span class="n">∂Uₓ</span> <span class="o">=</span> <span class="n">Dₓ</span><span class="p">(</span><span class="n">U</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">expand_derivatives</span><span class="p">;</span>
+
+<span class="c"># print -</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The value of ∂U/∂x = &quot;</span><span class="p">,</span><span class="n">∂Uₓ</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="numerical-marginal-utility">
 <h5>Numerical marginal utility<a class="headerlink" href="#numerical-marginal-utility" title="Permalink to this headline">#</a></h5>
@@ -762,14 +832,14 @@ title="Print to PDF"
 </section>
 <section id="aside-marginal-utility-of-wealth">
 <h5>Aside: Marginal utility of wealth<a class="headerlink" href="#aside-marginal-utility-of-wealth" title="Permalink to this headline">#</a></h5>
-<p>The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent (<a class="reference internal" href="#fig-wealth-schematic-simple-model"><span class="std std-numref">Fig. 16</span></a>).</p>
+<p>The marginal utility quantifies the satisfaction gained by an agent from an additional unit of consumption of a good or service (<a class="reference internal" href="#fig-wealth-schematic-simple-model"><span class="std std-numref">Fig. 16</span></a>).</p>
 <figure class="align-default" id="fig-wealth-schematic-simple-model">
 <a class="reference internal image-reference" href="../_images/Fig-Wealth-Utility-Schematic.pdf"><img alt="../_images/Fig-Wealth-Utility-Schematic.pdf" src="../_images/Fig-Wealth-Utility-Schematic.pdf" style="height: 400px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 16 </span><span class="caption-text">Wealth utility function <span class="math notranslate nohighlight">\(U(W) = W/(W+b)\)</span> as a function of choices for the parameter <span class="math notranslate nohighlight">\(b\)</span>. The abundance of wealth is inversely proportional to the value of the parameter <span class="math notranslate nohighlight">\(b\)</span>. For example, the agent at <span class="math notranslate nohighlight">\(A\)</span> values each additional wealth unit less than the agent at <span class="math notranslate nohighlight">\(D\)</span>.</span><a class="headerlink" href="#fig-wealth-schematic-simple-model" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person’s wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.</p>
+<p>The relationship between overall resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. Marginal utility is basic to how an agent values a good or service, including wealth. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person’s wealth increases, the marginal utility of each additional wealth unit decreases due to the <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_utility">diminishing marginal utility of money</a>.</p>
 </section>
 </section>
 </section>
@@ -783,7 +853,7 @@ title="Print to PDF"
 </figcaption>
 </figure>
 <p>For example, the decision agent with the Cobb–Douglas utility function shown in (<a class="reference internal" href="#fig-cobb-douglas-ic"><span class="std std-numref">Fig. 17</span></a>) is <em>indifferent</em> to a choice between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, but strictly prefers <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to either <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
-<p>Sample code to compute the two-dimensional Cobb–Douglas utility function for <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
+<p>Sample code to compute the two-dimensional indifference curve for a Cobb–Douglas utility function with <span class="math notranslate nohighlight">\(\alpha_{1} = \alpha_{2} = 0.5\)</span>:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># initialize</span>
 <span class="n">α₁</span> <span class="o">=</span> <span class="mf">0.5</span> 
 <span class="n">α₂</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">α₁</span>
@@ -871,21 +941,131 @@ function governing the decision maker <span class="math notranslate nohighlight"
 <section id="choices-under-uncertainty">
 <span id="content-references-utility-and-uncetain-decisions"></span><h2>Choices under uncertainty<a class="headerlink" href="#choices-under-uncertainty" title="Permalink to this headline">#</a></h2>
 <p>In the previous section, we developed tools to make optimal choices when the outcomes were sure, and the level of satisfaction derived from those choices was known, e.g., the utility of purchasing a particular bundle of goods or services could be computed using a utility function. However, in many real-world situations, the assumption of certainty is invalid. For example, betting, buying an insurance policy or investing in a new business, or the stock market all or <em>uncertain</em>.</p>
-<p>To understand how optimal agents behave when faced with uncertain situations, we introduce two critical concepts, random variables, and probability:</p>
+<p>To understand how optimal agents behave when faced with uncertain situations, we define the <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a>, which provides a basis for computing an optimal decision in an uncertain situation.</p>
+<section id="the-von-neumann-morgenstern-theorem">
+<h3>The von Neumann - Morgenstern theorem<a class="headerlink" href="#the-von-neumann-morgenstern-theorem" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a>, also known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_utility_hypothesis">expected utility hypothesis</a>, is a fundamental result in decision theory that provides a framework for making <em>rational choices</em> under uncertainty <span id="id1">[<a class="reference internal" href="../References.html#id2" title="J. von Neumann and O. Morgenstern. Theory of games and economic behavior. Princeton University Press, 1944.">von Neumann and Morgenstern, 1944</a>]</span> (<a class="reference internal" href="#defn-expected-utility-hypothesis">Definition 49</a>):</p>
+<div class="proof definition admonition" id="defn-expected-utility-hypothesis">
+<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Expected utility hypothesis)</p>
+<section class="definition-content" id="proof-content">
+<p>An agent chooses amongst <span class="math notranslate nohighlight">\(n\)</span> possible uncertain objects, <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span> where object <span class="math notranslate nohighlight">\(k\)</span> has a probability <span class="math notranslate nohighlight">\(p_{k}\)</span> of occuring and a utility payoff of <span class="math notranslate nohighlight">\(U(x_{k})\)</span>. A <em>rational decision maker</em> maximizes the expected utility subject to constraints:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-max-expected-ulity-problem">
+<span class="eqno">(89)<a class="headerlink" href="#equation-eqn-max-expected-ulity-problem" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{k=1}^{n}p_{k}U(x_{k}) \\
+\text{subject to}~g(x)~&amp; \leq &amp; 0\\
+\text{and}~x_{k}&amp;\geq&amp;{0}\qquad{k=1,2,\dots,n}
+\end{eqnarray}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_{k}\)</span> denotes the probability of object <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(g(x)\)</span> denotes potentially non-linear constraints governing the objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>.</p>
+</section>
+</div><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a> depends upon an understanding of two critical concepts, random variables, and probability:</p>
 <ul class="simple">
-<li><p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">random variable</a> is a variable that takes on different numerical values according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. A discrete random variable can take on a countable number of distinct values, while a continuous random variable can take on any value in a continuous range.</p></li>
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Probability">Probability</a> is a measure of the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance.</p></li>
+<li><p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">random variable</a> is a variable <span class="math notranslate nohighlight">\(X\)</span> that takes on different values <span class="math notranslate nohighlight">\(x\)</span> according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. Discrete random variables can take on a countable number of distinct values, while continuous random variables can take on any value in a continuous range.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Probability">Probability</a> measures the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance. For a discrete random variable, the likelihood that <span class="math notranslate nohighlight">\(X=x\)</span> is described by a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">Probability Mass Function (PMF)</a> and a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">Probability Density Function (PDF)</a> for continuous random variables.</p></li>
 </ul>
+<section id="probability-mass-functions">
+<h4>Probability mass functions<a class="headerlink" href="#probability-mass-functions" title="Permalink to this headline">#</a></h4>
+<p>In the case of discrete random variables, for example, dice roles, coin flips etc, the likelihood that <span class="math notranslate nohighlight">\(X=x\)</span> is described by a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">Probability Mass Function (PMF)</a> (<a class="reference internal" href="#defn-pmf">Definition 50</a>):</p>
+<div class="proof definition admonition" id="defn-pmf">
+<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Probability Mass Function)</p>
+<section class="definition-content" id="proof-content">
+<p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(x) = P\left(X=x\right)\]</div>
+<p>The set of all possible outcomes for a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is denoted as <span class="math notranslate nohighlight">\(X\left(\Omega\right)\)</span>. A probability mass function must satisfy the condition:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{x\in{X(\Omega)}}p_{X}(x)=1\]</div>
+</section>
+</div><p>The probability mass function is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.</p>
+<section id="bernoulli-random-variable">
+<h5>Bernoulli random variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this headline">#</a></h5>
+<p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
+outcome (<a class="reference internal" href="#defn-pmf-bernouli">Definition 51</a>):</p>
+<div class="proof definition admonition" id="defn-pmf-bernouli">
+<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Bernoulli Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}p_{X}(x) =
+\begin{cases}
+  p &amp; \text{if } x = 1 \\
+  1 - p &amp; \text{if } x = 0
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> is called the Bernoulli parameter. For a Bernoulli random variable <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]\)</span> the expectation is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = p\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = p(1-p)\]</div>
+</section>
+</div><p>Bernoulli random variables have two states: either <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>. The probability of getting <code class="docutils literal notranslate"><span class="pre">1</span></code> is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc</p>
+</section>
+<section id="binomial-random-variable">
+<h5>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h5>
+<p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials, e.g., the chance of getting four heads in 6 coin tosses (<a class="reference internal" href="#defn-pmf-binomial">Definition 52</a>):</p>
+<div class="proof definition admonition" id="defn-pmf-binomial">
+<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Binomial Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we perform repeated Bernoulli trials <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]^n\)</span>, i.e., <span class="math notranslate nohighlight">\(n\)</span> trials of an independent binary experiment. The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is governed by the binomial probability mass function:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> denotes the number of successes in <span class="math notranslate nohighlight">\(n\)</span> independent experiments, the binomial parameter <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> is the probability
+of a successful trial and:</p>
+<div class="math notranslate nohighlight">
+\[\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}\]</div>
+<p>The expectation of a binomial random variable is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = np\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = np(1-p)\]</div>
+</section>
+</div></section>
+<section id="geometric-random-variable">
+<h5>Geometric random variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this headline">#</a></h5>
+<p>Geometric random variables are a type of discrete probability distribution that models the number of trials required to obtain the first success in a sequence of independent Bernoulli trials (<a class="reference internal" href="#defn-pmf-geometric">Definition 53</a>):</p>
+<div class="proof definition admonition" id="defn-pmf-geometric">
+<p class="admonition-title"><span class="caption-number">Definition 53 </span> (Geometric Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a geometric random variable. The probability mass function for a geometric random variable is given by:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> denotes the geometric parameter <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span>. The expectation of a geometric random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = \frac{1}{p}\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = \frac{1-p}{p^2}\]</div>
+</section>
+</div></section>
+<section id="poisson-random-variable">
+<h5>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h5>
+<p>Poisson random variables are a type of discrete probability distribution that models the number of occurrences of an event in a fixed interval of time or space (<a class="reference internal" href="#defn-pmf-poisson">Definition 54</a>):</p>
+<div class="proof definition admonition" id="defn-pmf-poisson">
+<p class="admonition-title"><span class="caption-number">Definition 54 </span> (Poisson Random Variable)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Poisson random variable. The probability mass function for a Poisson random variable is given by:</p>
+<div class="math notranslate nohighlight">
+\[p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span> denotes the Poisson parameter, and <span class="math notranslate nohighlight">\(!\)</span> denotes the factorial function. The expectation of a Poisson random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}\left[X\right] = \lambda\]</div>
+<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}\left[X\right] = \lambda\]</div>
+</section>
+</div><p>Poisson random variables estimate how likely something will happen <span class="math notranslate nohighlight">\(x\)</span> number of times in a fixed interval, e.g., the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.</p>
+</section>
+</section>
 <section id="expectation">
-<h3>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h3>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> measures the central tendency of the values of that random variable (<a class="reference internal" href="#defn-discrete-random-variable-expectation">Definition 49</a>):</p>
+<h4>Expectation<a class="headerlink" href="#expectation" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expectation</a> of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> measures the central tendency of the values of that random variable (<a class="reference internal" href="#defn-discrete-random-variable-expectation">Definition 55</a>):</p>
 <div class="proof definition admonition" id="defn-discrete-random-variable-expectation">
-<p class="admonition-title"><span class="caption-number">Definition 49 </span> (Expectation discrete random variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 55 </span> (Expectation discrete random variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> denote a discere random variable with the probability space <span class="math notranslate nohighlight">\(\left(\Omega,\mathcal{F},P\right)\)</span>, where <span class="math notranslate nohighlight">\(\Omega\)</span> denotes the sample space, <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> denotes the event space, and <span class="math notranslate nohighlight">\(P\)</span> denotes the probability measure. Then, the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-expectation">
-<span class="eqno">(89)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in\Omega}xp_{X}(x)\]</div>
-<p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability of <span class="math notranslate nohighlight">\(X=x\)</span>. The value of <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> is governed by a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">Probability Mass Function</a>.</p>
+<span class="eqno">(90)<a class="headerlink" href="#equation-eqn-expectation" title="Permalink to this equation">#</a></span>\[\mathbb{E}\left[X\right] = \sum_{x\in\Omega}xp_{X}(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> denotes a value for the discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> denotes the probability of <span class="math notranslate nohighlight">\(X=x\)</span>. The value of <span class="math notranslate nohighlight">\(p_{X}(x)\)</span> is governed by a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">Probability Mass Function (PMF)</a>.</p>
 </section>
 </div><p>The expectation of a discrete random variable has a few interesting properties (<a class="reference internal" href="#obs-expectation-props">Observation 10</a>):</p>
 <div class="proof observation admonition" id="obs-expectation-props">
@@ -902,15 +1082,15 @@ function governing the decision maker <span class="math notranslate nohighlight"
 </section>
 </div></section>
 <section id="variance">
-<h3>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h3>
+<h4>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variance">variance</a> measures the expected dispersion for
-individual values of a random variable <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (<a class="reference internal" href="#defn-discrete-random-variable-variance">Definition 50</a>):</p>
+individual values of a random variable <span class="math notranslate nohighlight">\(X\)</span>, i.e., the average distance that values of <span class="math notranslate nohighlight">\(X\)</span> are spread out from their expected value (<a class="reference internal" href="#defn-discrete-random-variable-variance">Definition 56</a>):</p>
 <div class="proof definition admonition" id="defn-discrete-random-variable-variance">
-<p class="admonition-title"><span class="caption-number">Definition 50 </span> (Expectation discrete random variable)</p>
+<p class="admonition-title"><span class="caption-number">Definition 56 </span> (Expectation discrete random variable)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> denote a discrete random variable with the probability space <span class="math notranslate nohighlight">\(\left(\Omega,\mathcal{F},P\right)\)</span>, where <span class="math notranslate nohighlight">\(\Omega\)</span> denotes the sample space, <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> denotes the event space, and <span class="math notranslate nohighlight">\(P\)</span> denotes the probability measure. Then, the variance of the random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-variance">
-<span class="eqno">(90)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
+<span class="eqno">(91)<a class="headerlink" href="#equation-eqn-variance" title="Permalink to this equation">#</a></span>\[\text{Var}(X) = \mathbb{E}\Bigl[(X-\mu)^{2}\Bigr]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> denotes the expected value of the random variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </section>
 </div><p>The variance of a discrete random variable has a few interesting properties (<a class="reference internal" href="#obs-variances-var">Observation 11</a>):</p>
@@ -926,119 +1106,6 @@ individual values of a random variable <span class="math notranslate nohighlight
 </section>
 </div><p>The more common quantity that is used to measure dispersion, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>, is related to the variance: <span class="math notranslate nohighlight">\(\sigma_{X} = \sqrt{\text{Var}(X)}\)</span>.</p>
 </section>
-<section id="probability-mass-functions">
-<h3>Probability mass functions<a class="headerlink" href="#probability-mass-functions" title="Permalink to this headline">#</a></h3>
-<p>In the case of discrete random variables, for example, dice roles, coin flips etc, this is done using a concept called a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function (PMF)</a>.</p>
-<div class="proof definition admonition" id="defn-pmf">
-<p class="admonition-title"><span class="caption-number">Definition 51 </span> (Probability Mass Function)</p>
-<section class="definition-content" id="proof-content">
-<p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of
-obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
-<div class="math notranslate nohighlight">
-\[p_{X}(x) = P\left(X=x\right)\]</div>
-<p>The set of all possible outcomes for a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is denoted as <span class="math notranslate nohighlight">\(X\left(\Omega\right)\)</span>. A PMF must satisfy the condition:</p>
-<div class="math notranslate nohighlight">
-\[\sum_{x\in{X(\Omega)}}p_{X}(x)=1\]</div>
-</section>
-</div><p>The PMF is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.</p>
-<section id="bernoulli-random-variable">
-<h4>Bernoulli random variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this headline">#</a></h4>
-<p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
-outcome. Bernoulli random variable have two states: either 1 or 0. The probability of getting 1 is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of 0 is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
-<div class="proof definition admonition" id="defn-pmf-bernouli">
-<p class="admonition-title"><span class="caption-number">Definition 52 </span> (Bernoulli Random Variable)</p>
-<section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}p_{X}(x) =
-\begin{cases}
-  p &amp; \text{if } x = 1 \\
-  1 - p &amp; \text{if } x = 0
-\end{cases}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> is called the Bernoulli parameter. For a Bernoulli random variable <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]\)</span> the expectation is given by:</p>
-<div class="math notranslate nohighlight">
-\[\mathbb{E}\left[X\right] = p\]</div>
-<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{Var}\left[X\right] = p(1-p)\]</div>
-</section>
-</div></section>
-<section id="binomial-random-variable">
-<h4>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h4>
-<p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials. For example, the chance of getting four heads in 6 coin tosses.</p>
-<div class="proof definition admonition" id="defn-pmf-binomial">
-<p class="admonition-title"><span class="caption-number">Definition 53 </span> (Binomial Random Variable)</p>
-<section class="definition-content" id="proof-content">
-<p>Suppose we do repeated Bernoulli trials <span class="math notranslate nohighlight">\(X(\Omega) \in [0,1]^n\)</span>, i.e., <span class="math notranslate nohighlight">\(n\)</span> trials of an independent binary experiment.
-The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is governed by the binomial probability mass function:</p>
-<div class="math notranslate nohighlight">
-\[p_{X}(k) = \binom{n}{k}p^{k}\left(1-p\right)^{n-k}\qquad{k=0,1,\dots,n}\]</div>
-<p>where <span class="math notranslate nohighlight">\(k\)</span> denotes the number of successes in <span class="math notranslate nohighlight">\(n\)</span> independent experiments, the binomial parameter <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span> is the probability
-of a successful trial and:</p>
-<div class="math notranslate nohighlight">
-\[\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}\]</div>
-<p>The expectation of a binomial random variable is given by:</p>
-<div class="math notranslate nohighlight">
-\[\mathbb{E}\left[X\right] = np\]</div>
-<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{Var}\left[X\right] = np(1-p)\]</div>
-</section>
-</div></section>
-<section id="geometric-random-variable">
-<h4>Geometric random variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this headline">#</a></h4>
-<p>We may be interested in doing a binary experiment, e.g., a coin flip until a specified outcome is obtained.
-A geometric random variable governs the outcome of this type of experiment;
-a geometric random variable gives the probability that the first occurrence of success requires <span class="math notranslate nohighlight">\(k\)</span> independent trials, each with success probability <span class="math notranslate nohighlight">\(p\)</span>. In other words, a geometric random variable describes the number of failures obtained before final success.</p>
-<div class="proof definition admonition" id="defn-pmf-geometric">
-<p class="admonition-title"><span class="caption-number">Definition 54 </span> (Geometric Random Variable)</p>
-<section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a geometric random variable. The probability mass function for a geometric random variable is given by:</p>
-<div class="math notranslate nohighlight">
-\[p_{X}(k) = (1-p)^{(k-1)}p\qquad{k=1,2,\dots}\]</div>
-<p>where <span class="math notranslate nohighlight">\(p\)</span> denotes the geometric parameter <span class="math notranslate nohighlight">\(0&lt;p&lt;1\)</span>. The expectation of a geometric random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\mathbb{E}\left[X\right] = \frac{1}{p}\]</div>
-<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{Var}\left[X\right] = \frac{1-p}{p^2}\]</div>
-</section>
-</div></section>
-<section id="poisson-random-variable">
-<h4>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h4>
-<p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring during a fixed interval if these events occur with a known constant mean rate and independently of the time since the last event. In other words, a Poisson distribution can be used to estimate how likely it is that something will happen <code class="docutils literal notranslate"><span class="pre">X</span></code> number of times. For example, the number of car crashes in a city of a given size or the number of cheeseburgers sold at a fast-food chain on a Friday night.</p>
-<div class="proof definition admonition" id="defn-pmf-poisson">
-<p class="admonition-title"><span class="caption-number">Definition 55 </span> (Poisson Random Variable)</p>
-<section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Poisson random variable. The probability mass function for a Poisson random variable is given by:</p>
-<div class="math notranslate nohighlight">
-\[p_{X}(x) = \frac{\lambda^{x}}{x!}\exp\left(-\lambda\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span> denotes the Poisson parameter, and <span class="math notranslate nohighlight">\(!\)</span> denotes the factorial function. The expectation of a Poisson random variable <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\mathbb{E}\left[X\right] = \lambda\]</div>
-<p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{Var}\left[X\right] = \lambda\]</div>
-</section>
-</div></section>
-</section>
-<section id="the-von-neumann-morgenstern-theorem">
-<h3>The von Neumann - Morgenstern theorem<a class="headerlink" href="#the-von-neumann-morgenstern-theorem" title="Permalink to this headline">#</a></h3>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a>, also known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_utility_hypothesis">expected utility hypothesis</a>, is a fundamental result in decision theory that provides a framework for making <em>rational choices</em> under uncertainty <span id="id1">[<a class="reference internal" href="../References.html#id2" title="J. von Neumann and O. Morgenstern. Theory of games and economic behavior. Princeton University Press, 1944.">von Neumann and Morgenstern, 1944</a>]</span>.</p>
-<p>If an individual has preferences over a set of possible outcomes, and these preferences satisfy certain axioms, then there exists a unique function that assigns a numerical value to each outcome, known as its <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_utility_hypothesis">expected utility</a>, such that the individual will choose the option with the highest expected utility.</p>
-<div class="proof definition admonition" id="defn-expected-utility-hypothesis">
-<p class="admonition-title"><span class="caption-number">Definition 56 </span> (Expected utility hypothesis)</p>
-<section class="definition-content" id="proof-content">
-<p>An agent chooses amongst <span class="math notranslate nohighlight">\(n\)</span> possible uncertain objects, <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>. Object <span class="math notranslate nohighlight">\(k\)</span> has probability <span class="math notranslate nohighlight">\(p_{k}\)</span> and a utility payoff of <span class="math notranslate nohighlight">\(U(x_{k})\)</span>. Then, a rational decision maker maximizes the expected utility subject to constraints (<a class="reference internal" href="#defn-expected-utility-hypothesis">Definition 56</a>):</p>
-<div class="math notranslate nohighlight" id="equation-eqn-max-expected-ulity-problem">
-<span class="eqno">(91)<a class="headerlink" href="#equation-eqn-max-expected-ulity-problem" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
-\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{k=1}^{n}p_{k}U(x_{k}) \\
-\text{subject to}~g(x)~&amp; \leq &amp; 0\\
-\text{and}~x_{k}&amp;\geq&amp;{0}\qquad{k=1,2,\dots,n}
-\end{eqnarray}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(p_{k}\)</span> denotes the probability of object <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(g(x)\)</span> denotes constraints governing the objects <span class="math notranslate nohighlight">\(x_{1},\dots,x_{n}\)</span>.</p>
-</section>
-</div><p>This <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a> provides a basis for understanding how people make decisions in uncertain situations.</p>
 </section>
 </section>
 </section>
@@ -1062,16 +1129,16 @@ a geometric random variable gives the probability that the first occurrence of s
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.8"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "julia-1.8",
             path: "./unit-4-decisions"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.8'</script>
 
               </div>
               
