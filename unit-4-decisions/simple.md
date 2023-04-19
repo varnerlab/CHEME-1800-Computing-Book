@@ -86,6 +86,11 @@ The [Cobb–Douglas utility function](https://en.wikipedia.org/wiki/Cobb–Dougl
 
 where the $j=1,i$ notation denotes the _exclusion_ of index $i$. As $x_{i}\rightarrow\infty$, the marginal utility $\text{MU}_{x_{i}}\rightarrow{0}$ if $\alpha_{i}<1$. Thus, the convexity property is satisfied for $\alpha_{i}<1$.
 
+To compute analytical expressions for the marginal utility, we could remember the [differentiation rules from calculus](https://en.wikipedia.org/wiki/Differentiation_rules), or we can have the computer do it for us, using one of many [Computer Algebra Systems (CAS)](https://en.wikipedia.org/wiki/Computer_algebra_system), e.g., the [Symbolics.jl](https://github.com/JuliaSymbolics/Symbolics.jl) package in [Julia](https://julialang.org) or the [SymPy](https://www.sympy.org/en/index.html) library in [Python](https://www.python.org).
+
+```julia
+```
+
 ##### Numerical marginal utility 
 However, sometimes it may not be convenient to analytically compute the derivative, e.g., the utility function is complicated. You can always approximate the marginal utility using a [finite difference approximation](https://en.wikipedia.org/wiki/Finite_difference), or [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) approach.
 
@@ -112,8 +117,7 @@ MU = ForwardDiff.gradient(U,x);
 ```
 
 ##### Aside: Marginal utility of wealth
-The marginal utility explains how consumers make decisions about allocating their limited resources among various goods and services based on their subjective preferences. However, marginal utility is more fundamental than how an agent values a good or service. For example, the marginal utility also plays a role in how agents value resources, e.g., how a resource-rich agent value an additional unit of resource compared to a resource-constrained agent ({numref}`fig-wealth-schematic-simple-model`). 
-
+The marginal utility quantifies the satisfaction gained by an agent from an additional unit of consumption of a good or service ({numref}`fig-wealth-schematic-simple-model`).
 
  ```{figure} ./figs/Fig-Wealth-Utility-Schematic.pdf
 ---
@@ -123,7 +127,7 @@ name: fig-wealth-schematic-simple-model
 Wealth utility function $U(W) = W/(W+b)$ as a function of choices for the parameter $b$. The abundance of wealth is inversely proportional to the value of the parameter $b$. For example, the agent at $A$ values each additional wealth unit less than the agent at $D$.
 ```
 
-The relationship between resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional unit of wealth decreases due to the diminishing marginal utility of money.
+The relationship between overall resource level (wealth) and the marginal utility of resources is a fundamental concept in economics that explains how individuals value resources and other material possessions. Marginal utility is basic to how an agent values a good or service, including wealth. According to this concept, the more wealth a person has, the less value each additional unit of wealth provides in terms of satisfaction or well-being. This is because as a person's wealth increases, the marginal utility of each additional wealth unit decreases due to the [diminishing marginal utility of money](https://en.wikipedia.org/wiki/Marginal_utility).
 
 
 ### Indifference curves
