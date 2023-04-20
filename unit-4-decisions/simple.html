@@ -543,11 +543,13 @@ title="Print to PDF"
            Bernoulli random variable
           </a>
          </li>
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#binomial-random-variable">
-           Binomial random variable
-          </a>
-         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#binomial-random-variable">
+         Binomial random variable
+        </a>
+        <ul class="nav section-nav flex-column">
          <li class="toc-h5 nav-item toc-entry">
           <a class="reference internal nav-link" href="#geometric-random-variable">
            Geometric random variable
@@ -676,11 +678,13 @@ title="Print to PDF"
            Bernoulli random variable
           </a>
          </li>
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#binomial-random-variable">
-           Binomial random variable
-          </a>
-         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#binomial-random-variable">
+         Binomial random variable
+        </a>
+        <ul class="nav section-nav flex-column">
          <li class="toc-h5 nav-item toc-entry">
           <a class="reference internal nav-link" href="#geometric-random-variable">
            Geometric random variable
@@ -968,22 +972,23 @@ function governing the decision maker <span class="math notranslate nohighlight"
 <div class="proof definition admonition" id="defn-pmf">
 <p class="admonition-title"><span class="caption-number">Definition 50 </span> (Probability Mass Function)</p>
 <section class="definition-content" id="proof-content">
-<p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event:</p>
+<p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is a function that specifies the probability of obtaining <span class="math notranslate nohighlight">\(X = x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a particular event in the set of possible events we’re interested in <span class="math notranslate nohighlight">\(\mathcal{F}\subseteq{X\left(\Omega\right)}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[p_{X}(x) = P\left(X=x\right)\]</div>
-<p>The set of all possible outcomes for a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is denoted as <span class="math notranslate nohighlight">\(X\left(\Omega\right)\)</span>. A probability mass function must satisfy the condition:</p>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is the event space, and <span class="math notranslate nohighlight">\(\Omega\)</span> is the sample space. A probability mass function must satisfy the condition:</p>
 <div class="math notranslate nohighlight">
 \[\sum_{x\in{X(\Omega)}}p_{X}(x)=1\]</div>
 </section>
-</div><p>The probability mass function is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.</p>
+</div><p>Thus, in the context of the <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Morgenstern_utility_theorem">von Neumann-Morgenstern theorem</a>, the probability mass function is a weight for discrete random variables which model uncertain payoffs.</p>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a>, probability mass (or density) functions can be constructed and sampled using the <a class="reference external" href="https://juliastats.org/Distributions.jl/stable/">Distributions.jl</a> package. Let’s look at a few common probability mass functions.</p>
 <section id="bernoulli-random-variable">
 <h5>Bernoulli random variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this headline">#</a></h5>
-<p>A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
+<p>A Bernoulli random variable, the simplest random variable, models a coin flip or some other type of binary
 outcome (<a class="reference internal" href="#defn-pmf-bernouli">Definition 51</a>):</p>
 <div class="proof definition admonition" id="defn-pmf-bernouli">
 <p class="admonition-title"><span class="caption-number">Definition 51 </span> (Bernoulli Random Variable)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable <span class="math notranslate nohighlight">\(X\)</span> is:</p>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a Bernoulli random variable. Then, the probability mass function of <span class="math notranslate nohighlight">\(X\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}p_{X}(x) =
 \begin{cases}
@@ -997,10 +1002,45 @@ outcome (<a class="reference internal" href="#defn-pmf-bernouli">Definition 51</
 <div class="math notranslate nohighlight">
 \[\text{Var}\left[X\right] = p(1-p)\]</div>
 </section>
-</div><p>Bernoulli random variables have two states: either <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>. The probability of getting <code class="docutils literal notranslate"><span class="pre">1</span></code> is <span class="math notranslate nohighlight">\(p\)</span>, while the probability of getting a value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc</p>
+</div><p>Bernoulli random variables, named after the Swiss mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/Jacob_Bernoulli">Jacob Bernoulli</a>, have two states: either <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>. The probability of getting <code class="docutils literal notranslate"><span class="pre">1</span></code> is <span class="math notranslate nohighlight">\(p\)</span>, while the likelihood of getting a value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is <span class="math notranslate nohighlight">\(1 − p\)</span>. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the distributions package, and some other stuff</span>
+<span class="k">using</span> <span class="n">Distributions</span>
+<span class="k">using</span> <span class="n">Statistics</span>
+<span class="k">using</span> <span class="n">PrettyTables</span>
+
+<span class="c"># Details of Bernoulli distribution: </span>
+<span class="c"># https://juliastats.org/Distributions.jl/stable/univariate/#Discrete-Distributions</span>
+
+<span class="c"># setup constants -</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.64</span><span class="p">;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="c"># build a Bernoulli distribution</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c"># sample (check expectation, and variance)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">number_of_samples</span><span class="p">);</span>
+
+<span class="c"># build a table -</span>
+<span class="n">data_for_table</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Any</span><span class="p">,</span><span class="mi">2</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">table_header</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;E(X)&quot;</span><span class="p">,</span> <span class="s">&quot;Var(X)&quot;</span><span class="p">]</span>
+
+<span class="c"># row 1: model</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;model&quot;</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+
+<span class="c"># row 2: samples</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;samples&quot;</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+<span class="n">pretty_table</span><span class="p">(</span><span class="n">data_for_table</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">table_header</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="binomial-random-variable">
-<h5>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h5>
+<h4>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h4>
 <p>The binomial distribution is the probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials, e.g., the chance of getting four heads in 6 coin tosses (<a class="reference internal" href="#defn-pmf-binomial">Definition 52</a>):</p>
 <div class="proof definition admonition" id="defn-pmf-binomial">
 <p class="admonition-title"><span class="caption-number">Definition 52 </span> (Binomial Random Variable)</p>
@@ -1012,14 +1052,48 @@ outcome (<a class="reference internal" href="#defn-pmf-bernouli">Definition 51</
 of a successful trial and:</p>
 <div class="math notranslate nohighlight">
 \[\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}\]</div>
-<p>The expectation of a binomial random variable is given by:</p>
+<p>is the binomial coefficient. The expectation of a binomial random variable is given by:</p>
 <div class="math notranslate nohighlight">
 \[\mathbb{E}\left[X\right] = np\]</div>
 <p>while the variance <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\text{Var}\left[X\right] = np(1-p)\]</div>
 </section>
-</div></section>
+</div><div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load the distributions package, and some other stuff</span>
+<span class="k">using</span> <span class="n">Distributions</span>
+<span class="k">using</span> <span class="n">Statistics</span>
+<span class="k">using</span> <span class="n">PrettyTables</span>
+
+<span class="c"># Details of Binomial distribution: </span>
+<span class="c"># https://juliastats.org/Distributions.jl/stable/univariate/#Distributions.Binomial</span>
+
+<span class="c"># setup constants -</span>
+<span class="n">number_of_trials</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.64</span><span class="p">;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="c"># build a Bernoulli distribution</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="n">number_of_trials</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c"># sample (check expectation, and variance)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">number_of_samples</span><span class="p">);</span>
+
+<span class="c"># build a table -</span>
+<span class="n">data_for_table</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Any</span><span class="p">,</span><span class="mi">2</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">table_header</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;E(X)&quot;</span><span class="p">,</span> <span class="s">&quot;Var(X)&quot;</span><span class="p">]</span>
+
+<span class="c"># row 1: model</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;model&quot;</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+
+<span class="c"># row 2: samples</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;samples&quot;</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+<span class="n">data_for_table</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+<span class="n">pretty_table</span><span class="p">(</span><span class="n">data_for_table</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">table_header</span><span class="p">);</span>
+</pre></div>
+</div>
 <section id="geometric-random-variable">
 <h5>Geometric random variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this headline">#</a></h5>
 <p>Geometric random variables are a type of discrete probability distribution that models the number of trials required to obtain the first success in a sequence of independent Bernoulli trials (<a class="reference internal" href="#defn-pmf-geometric">Definition 53</a>):</p>

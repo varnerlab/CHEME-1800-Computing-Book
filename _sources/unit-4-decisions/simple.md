@@ -323,29 +323,30 @@ The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann�
 #### Probability mass functions
 In the case of discrete random variables, for example, dice roles, coin flips etc, the likelihood that $X=x$ is described by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) ({prf:ref}`defn-pmf`):
 
-
 ````{prf:definition} Probability Mass Function
 :label: defn-pmf
 
-The probability mass function (PMF) of a discrete random variable $X$ is a function that specifies the probability of obtaining $X = x$, where $x$ is a particular event:
+The probability mass function (PMF) of a discrete random variable $X$ is a function that specifies the probability of obtaining $X = x$, where $x$ is a particular event in the set of possible events we're interested in $\mathcal{F}\subseteq{X\left(\Omega\right)}$:
 
 $$p_{X}(x) = P\left(X=x\right)$$
 
-The set of all possible outcomes for a discrete random variable $X$ is denoted as $X\left(\Omega\right)$. A probability mass function must satisfy the condition:
+where $\mathcal{F}$ is the event space, and $\Omega$ is the sample space. A probability mass function must satisfy the condition: 
 
 $$\sum_{x\in{X(\Omega)}}p_{X}(x)=1$$
 ````
 
-The probability mass function is the weighing function for discrete random variables. To illustrate this idea, let’s discuss some probability mass functions and associated examples.
+Thus, in the context of the [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), the probability mass function is a weight for discrete random variables which model uncertain payoffs. 
+
+In [Julia](https://julialang.org), probability mass (or density) functions can be constructed and sampled using the [Distributions.jl](https://juliastats.org/Distributions.jl/stable/) package. Let's look at a few common probability mass functions.
 
 ##### Bernoulli random variable
-A Bernoulli random variable, the simplest random variable, models a coin-flip or some other type of binary
+A Bernoulli random variable, the simplest random variable, models a coin flip or some other type of binary
 outcome ({prf:ref}`defn-pmf-bernouli`):
 
 ````{prf:definition} Bernoulli Random Variable
 :label: defn-pmf-bernouli
 
-Let $X$ be a Bernoulli random variable. Then, the probability mass function of the Bernoulli random variable $X$ is:
+Let $X$ be a Bernoulli random variable. Then, the probability mass function of $X$ is given by:
 
 ```{math}
 p_{X}(x) =
@@ -368,9 +369,44 @@ while the variance $\text{Var}(X)$ is given by:
 ```
 ````
 
-Bernoulli random variables have two states: either `1` or `0`. The probability of getting `1` is $p$, while the probability of getting a value of `0` is $1 − p$. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc
+Bernoulli random variables, named after the Swiss mathematician [Jacob Bernoulli](https://en.wikipedia.org/wiki/Jacob_Bernoulli), have two states: either `1` or `0`. The probability of getting `1` is $p$, while the likelihood of getting a value of `0` is $1 − p$. Bernoulli random variables model many binary events: coin flips (H or T), binary bits (1 or 0), true or false, yes or no, present or absent, etc.
 
-##### Binomial random variable
+```julia
+# load the distributions package, and some other stuff
+using Distributions
+using Statistics
+using PrettyTables
+
+# Details of Bernoulli distribution: 
+# https://juliastats.org/Distributions.jl/stable/univariate/#Discrete-Distributions
+
+# setup constants -
+p = 0.64;
+number_of_samples = 100;
+
+# build a Bernoulli distribution
+d = Bernoulli(p)
+
+# sample (check expectation, and variance)
+samples = rand(d,number_of_samples);
+
+# build a table -
+data_for_table = Array{Any,2}(undef, 2, 3)
+table_header = ["", "E(X)", "Var(X)"]
+
+# row 1: model
+data_for_table[1,1] = "model"
+data_for_table[1,2] = mean(d);
+data_for_table[1,3] = var(d);
+
+# row 2: samples
+data_for_table[2,1] = "samples"
+data_for_table[2,2] = mean(samples);
+data_for_table[2,3] = var(samples);
+pretty_table(data_for_table, header=table_header);
+```
+
+#### Binomial random variable
 The binomial distribution is the probability of getting exactly $k$ successes in $n$ independent Bernoulli trials, e.g., the chance of getting four heads in 6 coin tosses ({prf:ref}`defn-pmf-binomial`):
 
 ````{prf:definition} Binomial Random Variable
@@ -385,7 +421,7 @@ of a successful trial and:
 
 $$\binom{n}{k} = \frac{n!}{k!\left(n-k\right)!}$$
 
-The expectation of a binomial random variable is given by:
+is the binomial coefficient. The expectation of a binomial random variable is given by:
 
 ```{math}
 \mathbb{E}\left[X\right] = np
@@ -397,6 +433,42 @@ while the variance $\text{Var}(X)$ is given by:
 \text{Var}\left[X\right] = np(1-p)
 ```
 ````
+
+```julia
+# load the distributions package, and some other stuff
+using Distributions
+using Statistics
+using PrettyTables
+
+# Details of Binomial distribution: 
+# https://juliastats.org/Distributions.jl/stable/univariate/#Distributions.Binomial
+
+# setup constants -
+number_of_trials = 100;
+p = 0.64;
+number_of_samples = 100;
+
+# build a Bernoulli distribution
+d = Binomial(number_of_trials,p)
+
+# sample (check expectation, and variance)
+samples = rand(d,number_of_samples);
+
+# build a table -
+data_for_table = Array{Any,2}(undef, 2, 3)
+table_header = ["", "E(X)", "Var(X)"]
+
+# row 1: model
+data_for_table[1,1] = "model"
+data_for_table[1,2] = mean(d);
+data_for_table[1,3] = var(d);
+
+# row 2: samples
+data_for_table[2,1] = "samples"
+data_for_table[2,2] = mean(samples);
+data_for_table[2,3] = var(samples);
+pretty_table(data_for_table, header=table_header);
+```
 
 ##### Geometric random variable
 Geometric random variables are a type of discrete probability distribution that models the number of trials required to obtain the first success in a sequence of independent Bernoulli trials ({prf:ref}`defn-pmf-geometric`):
