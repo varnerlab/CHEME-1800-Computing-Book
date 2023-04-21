@@ -582,7 +582,6 @@ The variance of a random variable $X$ has a few interesting (and important) prop
 
 The more common quantity that is used to measure dispersion, the standard deviation $\sigma$, is related to the variance: $\sigma_{X} = \sqrt{\text{Var}(X)}$.
 
-
 ---
 
 # Summary
