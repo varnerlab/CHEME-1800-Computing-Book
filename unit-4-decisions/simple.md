@@ -284,10 +284,9 @@ __Problem__: A decision making agent must decide how much of two goods to consum
 
 ````
 
-
 (content:references:utility-and-uncetain-decisions)=
 ## Choices under uncertainty
-In the previous section, we developed tools to make optimal choices when the outcomes were sure, and the level of satisfaction derived from those choices was known, e.g., the utility of purchasing a particular bundle of goods or services could be computed using a utility function. However, in many real-world situations, the assumption of certainty is invalid. For example, betting, buying an insurance policy or investing in a new business, or the stock market all or _uncertain_. 
+In the previous section, we developed tools to make optimal choices when the outcomes were sure, and the level of satisfaction derived from those choices was known, e.g., the utility of purchasing a particular bundle of goods or services could be computed using a utility function. However, in many real-world situations, the assumption of certainty is invalid. For example, betting, buying an insurance policy, investing in a new business, or the stock market all or _uncertain_. 
 
 
 To understand how optimal agents behave when faced with uncertain situations, we define the [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), which provides a basis for computing an optimal decision in an uncertain situation. 
@@ -295,27 +294,56 @@ To understand how optimal agents behave when faced with uncertain situations, we
 ### The von Neumann - Morgenstern theorem
 The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem), also known as the [expected utility hypothesis](https://en.wikipedia.org/wiki/Expected_utility_hypothesis), is a fundamental result in decision theory that provides a framework for making _rational choices_ under uncertainty {cite}`vonneumann1947` ({prf:ref}`defn-expected-utility-hypothesis`):
 
-````{prf:definition} Expected utility hypothesis
+````{prf:definition} Continuous expected utility hypothesis
 :label: defn-expected-utility-hypothesis
 
-An agent chooses amongst $n$ possible uncertain objects, $x_{1},\dots,x_{n}$ where object $k$ has a probability $p_{k}$ of occuring and a utility payoff of $U(x_{k})$. A _rational decision maker_ maximizes the expected utility subject to constraints:
-
+A rational agent chooses amongst $n$ possible uncertain objects, $x_{1},\dots,x_{n}$ where object $x_{k}\in\mathbb{R}$ has a probability $p_{k}$ of occuring and a utility payoff of $U(x_{k})$. A rational agent maximizes its expected utility subject to constraints:
 
 ```{math}
 :label: eqn-max-expected-ulity-problem
 
 \begin{eqnarray}
-\text{maximize}~\mathcal{O} &=& \sum_{k=1}^{n}p_{k}U(x_{k}) \\
-\text{subject to}~g(x)~& \leq & 0\\
+\text{maximize}~\mathbb{E}(U(x)) &=& \sum_{k=1}^{n}p_{k}U(x_{k}) \\
+\text{subject to}~\sum_{k=1}^{n}p_{k} & = & 1\\
+\text{and}~g(x)~& \leq & 0\\
 \text{and}~x_{k}&\geq&{0}\qquad{k=1,2,\dots,n}
 \end{eqnarray}
 
 ```
 
-where $p_{k}$ denotes the probability of object $k$, and $g(x)$ denotes potentially non-linear constraints governing the objects $x_{1},\dots,x_{n}$.
+The constraint(s) $g(x)$ denote potentially non-linear constraints governing the objects $x_{1},\dots,x_{n}$.
 ````
 
-The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) depends upon an understanding of two critical concepts, random variables, and probability:
+{prf:ref}`defn-expected-utility-hypothesis` is written for choices where the decision variables are continuous, e.g., the number of left in a bag. However, we can also think about discrete decisions, e.g., should we pack sandals for a trip. In this case, we can write a discrete form of the expected utility hypothesis.
+
+In discrete problems, the decision maker is categorical decisions, e.g., should they pack an umbrella on a trip if the forecast calls for rain. In these cases, the world exists in discrete states $\mathcal{S}$, agents make discrete observations $\mathcal{O}$ and take discrete actions $\mathcal{A}$.  The utility of state $s\in\mathcal{S}$, described by $U(s)$, where the utility function $U$ follows the [properties of the utility functions](https://varnerlab.github.io/CHEME-1800-Computing-Book/unit-4-decisions/simple.html). Further, an agent makes observations $o\in\mathcal{O}$ and takes actions $a\in\mathcal{A}$. Then, a rational agent solves the expected utility problem ({prf:ref}`defn-expected-utility-hypothesis-discrete`):
+
+````{prf:definition} Discrete expected utility problem
+:label: defn-expected-utility-hypothesis-discrete
+
+An agent has a model $P(s^{\prime}|o,a)$, which represents the probability of the world being in state $s^{\prime}$ given that the agent observes $o$ and takes action $a$. The payoff of state $s^{\prime}$ is given by $U(s^{\prime})$. A _rational agent_ maximizes the expected utility subject to constraints:
+
+```{math}
+:label: eqn-max-expected-ulity-problem-discrete
+
+\begin{eqnarray}
+\text{maximize}~\mathbb{E}(U(a|o)) &=& \sum_{s^{\prime}}P(s^{\prime}|a,o)U(s^{\prime}) \\
+\text{subject to}~\sum_{s^{\prime}} P(s^{\prime}|a,o)U(s^{\prime}) & = & 1 \\
+\text{and}~s&\in&\mathcal{S} \\
+\text{and}~a&\in&\mathcal{A} \\
+\text{and}~o&\in&\mathcal{O} \\
+\end{eqnarray}
+```
+
+The principle of maximum expected utility says that a rational agent should choose the action that maximizes expected utility:
+
+```{math}
+a^{\star} = \text{arg}\max_{a} \mathbb{E}(U(a|o))
+```
+
+````
+
+Regardless of whether the problem is continuous or discrete, The [von Neumann-Morgenstern theorem](https://en.wikipedia.org/wiki/Von_Neumann–Morgenstern_utility_theorem) depends upon an understanding of two critical concepts, random variables and probability:
 
 * A [random variable](https://en.wikipedia.org/wiki/Random_variable) is a variable $X$ that takes on different values $x$ according to the outcome of a random event or process. There are two types of random variables: discrete random variables and continuous random variables. Discrete random variables can take on a countable number of distinct values, while continuous random variables can take on any value in a continuous range. 
 * [Probability](https://en.wikipedia.org/wiki/Probability) measures the likelihood that a particular event or outcome will occur and is commonly used to quantify uncertainty in various fields, such as science, engineering, economics, and finance. For a discrete random variable, the likelihood that $X=x$ is described by a [Probability Mass Function (PMF)](https://en.wikipedia.org/wiki/Probability_mass_function) and a [Probability Density Function (PDF)](https://en.wikipedia.org/wiki/Probability_density_function) for continuous random variables.  
