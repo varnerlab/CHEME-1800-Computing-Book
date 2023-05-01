@@ -593,13 +593,24 @@ title="Print to PDF"
 <p>A Markov chain is a stochastic model describing a sequence of possible events where the probability of each of these events depends only on the system’s current state and not on past system states. A system’s state space and time (much like a probability) can be either discrete or continuous; for most of the applications we’ll be interested in, we’ll focus on discrete time and discrete finite state spaces.</p>
 <section id="discrete-time-markov-chains">
 <span id="content-references-discrete-time-markov-chains"></span><h3>Discrete-time Markov chains<a class="headerlink" href="#discrete-time-markov-chains" title="Permalink to this headline">#</a></h3>
+<figure class="align-default" id="fig-discrete-markov-model">
+<a class="reference internal image-reference" href="../_images/Fig-Discrete-MarkovChain-Schematic.pdf"><img alt="../_images/Fig-Discrete-MarkovChain-Schematic.pdf" src="../_images/Fig-Discrete-MarkovChain-Schematic.pdf" style="height: 120px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>A discrete-time Markov chain is a sequence of random variables <span class="math notranslate nohighlight">\(X_{1}\)</span>, <span class="math notranslate nohighlight">\(X_{2}\)</span>, <span class="math notranslate nohighlight">\(X_{3}\)</span>, …, <span class="math notranslate nohighlight">\(X_{n}\)</span> that have the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_property">Markov property</a>, i.e., the probability of moving to the <em>next state</em> depends only on the <em>present state</em> and not on the <em>previous states</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-markov-property">
 <span class="eqno">(93)<a class="headerlink" href="#equation-eqn-markov-property" title="Permalink to this equation">#</a></span>\[P(X_{n+1} = x | X_{1}=x_{1}, \dots, X_{n}=x_{n}) = P(X_{n+1} = x | X_{n}=y)\]</div>
 <p>where <em>states</em> refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span>, can be encoded in the transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Elements of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, denoted as <span class="math notranslate nohighlight">\(p_{ij}\)</span>, encode the probability of moving from state <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span> during the next time step:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-transition-prob-matrix">
 <span class="eqno">(94)<a class="headerlink" href="#equation-eqn-transition-prob-matrix" title="Permalink to this equation">#</a></span>\[p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)\]</div>
-<p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties. First, the rows of transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is time-invariant, then <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the same at each step (<a class="reference internal" href="#defn-n-transition">Definition 58</a>):</p>
+<p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties:</p>
+<ul class="simple">
+<li><p>First, the rows of transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one.</p></li>
+<li><p>Second, if the transition matrix  <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is time-invariant, then <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the same at each step, i.e., <span class="math notranslate nohighlight">\(p_{ij}\)</span> doesn’t change as <span class="math notranslate nohighlight">\(n\rightarrow{n+1}~\forall{n}\)</span>.</p></li>
+</ul>
+<p>Putting these ideas together gives (<a class="reference internal" href="#defn-n-transition">Definition 58</a>):</p>
 <div class="proof definition admonition" id="defn-n-transition">
 <p class="admonition-title"><span class="caption-number">Definition 58 </span> (Time-invariant state transition)</p>
 <section class="definition-content" id="proof-content">
@@ -618,12 +629,6 @@ title="Print to PDF"
 <div class="proof example dropdown admonition" id="example-dicrete-mchain">
 <p class="admonition-title"><span class="caption-number">Example 28 </span> (Discrete Markov chain stationary distribution)</p>
 <section class="example-content" id="proof-content">
-<figure class="align-default" id="fig-discrete-markov-model">
-<a class="reference internal image-reference" href="../_images/Fig-Discrete-MarkovChain-Schematic.pdf"><img alt="../_images/Fig-Discrete-MarkovChain-Schematic.pdf" src="../_images/Fig-Discrete-MarkovChain-Schematic.pdf" style="height: 120px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
 <p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -632,8 +637,8 @@ title="Print to PDF"
 0.6 &amp; 0.4 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>shown in (<a class="reference internal" href="#fig-discrete-markov-model"><span class="std std-numref">Fig. 18</span></a>). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations <span class="math notranslate nohighlight">\(n\)</span> becomes large the system state converges to a stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
-<p>Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+<p>shown in (<a class="reference internal" href="#fig-discrete-markov-model"><span class="std std-numref">Fig. 18</span></a>). This transition matrix admits a stationary (non-periodic) solution. As the number of iterations <span class="math notranslate nohighlight">\(n\)</span> becomes large the system state converges to a stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>. Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+<p>Develop a script to compute the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load package -</span>
 <span class="k">using</span> <span class="n">LinearAlgebra</span>
 
@@ -718,17 +723,24 @@ distribution (<a class="reference internal" href="#example-categorical-dist">Exa
 </section>
 <section id="hidden-markov-models-hmms">
 <span id="content-references-structure-of-an-hmm"></span><h3>Hidden Markov Models (HMMs)<a class="headerlink" href="#hidden-markov-models-hmms" title="Permalink to this headline">#</a></h3>
-<p>Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations.</p>
-<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 28</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model">CRR binomial lattice</a>:</p>
+<p>Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> but observable outcomes <span class="math notranslate nohighlight">\(o\in\mathcal{O}\)</span>. HMMs have the same structural components as a standard Markov chain model. However, each hidden state can be considered sending an observable single, with the emission probability.</p>
+<figure class="align-default" id="fig-discrete-hidden-markov-model">
+<a class="reference internal image-reference" href="../_images/Fig-HMM-Schematic-23.pdf"><img alt="../_images/Fig-HMM-Schematic-23.pdf" src="../_images/Fig-HMM-Schematic-23.pdf" style="height: 280px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Schematic of a discrete two-state time-invariant hidden Markov model (HMM); <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> while <span class="math notranslate nohighlight">\(t_{ij}\)</span> denotes the emission probability for state <span class="math notranslate nohighlight">\(i\)</span> and observation <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The emission probability refers to the likelihood of observing a particular output <span class="math notranslate nohighlight">\(Y = o_{t}\)</span>, given the current state of the Markov chain <span class="math notranslate nohighlight">\(X = s_{t}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-hmm-output">
+<span class="eqno">(96)<a class="headerlink" href="#equation-eqn-hmm-output" title="Permalink to this equation">#</a></span>\[P(Y = o_{t} | X = s_{t})\]</div>
+<p>Similar to the transition probability, the emission probability must sum to unity:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{o\in\mathcal{O}} P(Y = o | X = s) = 1\qquad\forall{s\in\mathcal{S}}\]</div>
+<p>The emission probability plays a crucial role in HMMs, as it is used to calculate the likelihood of a sequence of observed symbols, given the current state of the hidden Markov chain. This likelihood is then used in various applications, including speech recognition, natural language processing, and bioinformatics. The emission probability can be computed using different methods, including maximum likelihood estimation or Bayesian inference.</p>
+<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 28</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Trinomial_tree">trinomial lattice model of Boyle</a>:</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain-hmm">
 <p class="admonition-title"><span class="caption-number">Example 30 </span> (Stationary hidden Markov model)</p>
 <section class="example-content" id="proof-content">
-<figure class="align-default" id="fig-discrete-hidden-markov-model">
-<a class="reference internal image-reference" href="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf"><img alt="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" src="../_images/Fig-Ex-Discrete-Hidden-Markov-Model.pdf" style="height: 280px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Schematic of a discrete two-state time-invariant hidden Markov model (HMM); <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
 <p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -794,7 +806,7 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. Then, the utility of the policy function <span class="math notranslate nohighlight">\(\pi\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-converged-policy-eval">
-<span class="eqno">(96)<a class="headerlink" href="#equation-eqn-converged-policy-eval" title="Permalink to this equation">#</a></span>\[U^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U^{\pi}(s^{\prime})\]</div>
+<span class="eqno">(97)<a class="headerlink" href="#equation-eqn-converged-policy-eval" title="Permalink to this equation">#</a></span>\[U^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U^{\pi}(s^{\prime})\]</div>
 </section>
 </div><p>Let’s do an example to illustrate policy evaluation:</p>
 <div class="proof example admonition" id="example-MDP-line">
@@ -824,13 +836,13 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 However, suppose we were given the utility and wanted to estimate the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> from that utility.
 Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can estimate a policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> using the <span class="math notranslate nohighlight">\(Q\)</span>-function (action-value function):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-action-value-function">
-<span class="eqno">(97)<a class="headerlink" href="#equation-eqn-action-value-function" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
-<p>Equation <a class="reference internal" href="#equation-eqn-action-value-function">(97)</a> gives a <span class="math notranslate nohighlight">\(|\mathcal{S}|\times|\mathcal{A}|\)</span> array, where the utility is given by:</p>
+<span class="eqno">(98)<a class="headerlink" href="#equation-eqn-action-value-function" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
+<p>Equation <a class="reference internal" href="#equation-eqn-action-value-function">(98)</a> gives a <span class="math notranslate nohighlight">\(|\mathcal{S}|\times|\mathcal{A}|\)</span> array, where the utility is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-utility-from-q">
-<span class="eqno">(98)<a class="headerlink" href="#equation-eqn-utility-from-q" title="Permalink to this equation">#</a></span>\[U(s) = \max_{a} Q(s,a)\]</div>
+<span class="eqno">(99)<a class="headerlink" href="#equation-eqn-utility-from-q" title="Permalink to this equation">#</a></span>\[U(s) = \max_{a} Q(s,a)\]</div>
 <p>and the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> is:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-policy-from-q">
-<span class="eqno">(99)<a class="headerlink" href="#equation-eqn-policy-from-q" title="Permalink to this equation">#</a></span>\[\pi(s) = \text{arg}\max_{a}Q(s,a)\]</div>
+<span class="eqno">(100)<a class="headerlink" href="#equation-eqn-policy-from-q" title="Permalink to this equation">#</a></span>\[\pi(s) = \text{arg}\max_{a}Q(s,a)\]</div>
 </section>
 <section id="value-iteration">
 <h3>Value iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">#</a></h3>

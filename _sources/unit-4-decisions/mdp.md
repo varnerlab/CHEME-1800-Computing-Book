@@ -14,8 +14,19 @@ In this lecture:
 ## Markov chains
 A Markov chain is a stochastic model describing a sequence of possible events where the probability of each of these events depends only on the system’s current state and not on past system states. A system's state space and time (much like a probability) can be either discrete or continuous; for most of the applications we'll be interested in, we'll focus on discrete time and discrete finite state spaces.
 
+
 (content:references:discrete-time-markov-chains)=
 ### Discrete-time Markov chains
+
+
+ ```{figure} ./figs/Fig-Discrete-MarkovChain-Schematic.pdf
+---
+height: 120px
+name: fig-discrete-markov-model
+---
+Schematic of a discrete two-state time-invariant Markov model; $p_{ij}$ denotes the time-invariant transition probability between state $i$ and $j$.
+```
+
 A discrete-time Markov chain is a sequence of random variables $X_{1}$, $X_{2}$, $X_{3}$, ..., $X_{n}$ that have the [Markov property](https://en.wikipedia.org/wiki/Markov_property), i.e., the probability of moving to the _next state_ depends only on the _present state_ and not on the _previous states_:
 
 ```{math}
@@ -30,7 +41,11 @@ where _states_ refer to a finite set of discrete values in which the system can 
 p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)
 ```
 
-The transition matrix $\mathbf{P}$ has interesting properties. First, the rows of transition matrix $\mathbf{P}$ must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  $\mathbf{P}$ is time-invariant, then $\mathbf{P}$ is the same at each step ({prf:ref}`defn-n-transition`):
+The transition matrix $\mathbf{P}$ has interesting properties: 
+* First, the rows of transition matrix $\mathbf{P}$ must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. 
+* Second, if the transition matrix  $\mathbf{P}$ is time-invariant, then $\mathbf{P}$ is the same at each step, i.e., $p_{ij}$ doesn't change as $n\rightarrow{n+1}~\forall{n}$.
+
+Putting these ideas together gives ({prf:ref}`defn-n-transition`):
 
 ````{prf:definition} Time-invariant state transition
 :label: defn-n-transition
@@ -61,14 +76,6 @@ where $\mathbf{1}$ is a column vector of all 1's. Let's consider an example to m
 :class: dropdown
 :label: example-dicrete-mchain
 
- ```{figure} ./figs/Fig-Discrete-MarkovChain-Schematic.pdf
----
-height: 120px
-name: fig-discrete-markov-model
----
-Schematic of a discrete two-state time-invariant Markov model; $p_{ij}$ denotes the time-invariant transition probability between state $i$ and $j$.
-```
-
 Consider the time-invariant two-state Discrete Markov chain with state transition matrix $\mathbf{P}$:
 
 $$
@@ -78,9 +85,9 @@ $$
 \end{bmatrix}
 $$
 
-shown in ({numref}`fig-discrete-markov-model`). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations $n$ becomes large the system state converges to a stationary distribution $\pi$. 
+shown in ({numref}`fig-discrete-markov-model`). This transition matrix admits a stationary (non-periodic) solution. As the number of iterations $n$ becomes large the system state converges to a stationary distribution $\pi$. Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution $\pi$.
 
-Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution $\pi$.
+Develop a script to compute the stationary distribution $\pi$:
 
 ```julia
 # load package -
@@ -179,24 +186,40 @@ println("Fraction of state 1: $(number_of_1/number_of_samples) and state 2: $(nu
 
 ````
 
-
 (content:references:structure-of-an-hmm)=
 ### Hidden Markov Models (HMMs)
-Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states but observable outcomes. HMMs have the same structural components as a standard Markov chain model, but each hidden state can be thought of as sending an observable single. HMMs are widely used in many disciplines to model uncertain systems and situations. 
+Hidden Markov models (HMMs) are statistical models in which the system being modeled is assumed to be a Markov process with unobservable states $s\in\mathcal{S}$ but observable outcomes $o\in\mathcal{O}$. HMMs have the same structural components as a standard Markov chain model. However, each hidden state can be considered sending an observable single, with the emission probability. 
 
-Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [CRR binomial lattice](https://en.wikipedia.org/wiki/Binomial_options_pricing_model):
 
-````{prf:example} Stationary hidden Markov model
-:class: dropdown
-:label: example-dicrete-mchain-hmm
-
- ```{figure} ./figs/Fig-Ex-Discrete-Hidden-Markov-Model.pdf
+ ```{figure} ./figs/Fig-HMM-Schematic-23.pdf
 ---
 height: 280px
 name: fig-discrete-hidden-markov-model
 ---
-Schematic of a discrete two-state time-invariant hidden Markov model (HMM); $p_{ij}$ denotes the time-invariant transition probability between state $i$ and $j$.
+Schematic of a discrete two-state time-invariant hidden Markov model (HMM); $p_{ij}$ denotes the time-invariant transition probability between state $i$ and $j$ while $t_{ij}$ denotes the emission probability for state $i$ and observation $j$.
 ```
+
+
+The emission probability refers to the likelihood of observing a particular output $Y = o_{t}$, given the current state of the Markov chain $X = s_{t}$:
+
+```{math}
+:label: eqn-hmm-output
+P(Y = o_{t} | X = s_{t})
+```
+
+Similar to the transition probability, the emission probability must sum to unity:
+
+```{math}
+\sum_{o\in\mathcal{O}} P(Y = o | X = s) = 1\qquad\forall{s\in\mathcal{S}}
+```
+
+The emission probability plays a crucial role in HMMs, as it is used to calculate the likelihood of a sequence of observed symbols, given the current state of the hidden Markov chain. This likelihood is then used in various applications, including speech recognition, natural language processing, and bioinformatics. The emission probability can be computed using different methods, including maximum likelihood estimation or Bayesian inference.
+
+Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [trinomial lattice model of Boyle](https://en.wikipedia.org/wiki/Trinomial_tree):
+
+````{prf:example} Stationary hidden Markov model
+:class: dropdown
+:label: example-dicrete-mchain-hmm
 
 Consider the time-invariant two-state Discrete Markov chain with state transition matrix $\mathbf{P}$:
 
