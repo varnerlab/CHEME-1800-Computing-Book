@@ -30,12 +30,12 @@ where _states_ refer to a finite set of discrete values in which the system can 
 p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)
 ```
 
-The transition matrix $\mathbf{P}$ has interesting properties. First, the rows of transition matrix $\mathbf{P}$ must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  $\mathbf{P}$ is time-invariant, then $\mathbf{P}$ is the same at each step. This leads to {prf:ref}`obs-n-transition`:
+The transition matrix $\mathbf{P}$ has interesting properties. First, the rows of transition matrix $\mathbf{P}$ must sum to unity, i.e., each row encodes the probability of all possible outcomes. Thus, it must sum to one. Second, if the transition matrix  $\mathbf{P}$ is time-invariant, then $\mathbf{P}$ is the same at each step ({prf:ref}`defn-n-transition`):
 
-````{prf:observation} Time-invariant state transition
-:label: obs-n-transition
+````{prf:definition} Time-invariant state transition
+:label: defn-n-transition
 
-A Markov chain have finite state set $\mathcal{S}$ and the time-invariant state transition matrix $\mathbf{P}$. Further, let the state vector at time $j$ be given by $\mathbf{x}_{j}$, where $x_{s,j}\geq{0},\forall{s}\in\mathcal{S}$ and:
+A Markov chain has finite state set $\mathcal{S}$ and the time-invariant state transition matrix $\mathbf{P}$. Let the state vector at time $j$ be given by $\mathbf{x}_{j}$, where $x_{s,j}\geq{0},\forall{s}\in\mathcal{S}$ and:
 
 ```{math}
 \sum_{s\in\mathcal{S}}x_{s,j} = 1\qquad\forall{j}
@@ -48,20 +48,20 @@ $$\mathbf{x}_{n+1} = \mathbf{x}_{n}\mathbf{P}^n$$
 where $\mathbf{x}_{n}$ denotes the system state vector at time step $n$. 
 ````
 
-Finally, suppose the Markov chain is both time-invariant and non-periodic. In that case, there exists a unique stationary distribution $\pi$ such that $\mathbf{P}^{k}$ converges to a rank-one matrix in which each row is the stationary distribution $\pi$:
+Finally, suppose that a Markov chain is both time-invariant and non-periodic. Then, there exists a unique stationary distribution $\pi$ such that $\mathbf{P}^{k}$ converges to a rank-one matrix in which each row is the stationary distribution $\pi$:
 
 ```{math}
 \lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi
 ```
 
-where $\mathbf{1}$ is a column vector of all 1's. Let's consider an example to make these ideas less abstract. 
+where $\mathbf{1}$ is a column vector of all 1's. Let's consider an example to make these ideas less abstract ({prf:ref}`example-dicrete-mchain`): 
 
 
-````{prf:example} Discrete Markov chain simulation
+````{prf:example} Discrete Markov chain stationary distribution
 :class: dropdown
 :label: example-dicrete-mchain
 
- ```{figure} ./figs/Fig-Ex-Discrete-Markov-Model.pdf
+ ```{figure} ./figs/Fig-Discrete-MarkovChain-Schematic.pdf
 ---
 height: 120px
 name: fig-discrete-markov-model
@@ -78,14 +78,107 @@ $$
 \end{bmatrix}
 $$
 
-shown in ({numref}`fig-discrete-markov-model`). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations $n$ becomes large the system state converges to a stationary distribution $\pi$; for $n>13$ the stationary distribution $\pi$ is given by:
-
-$$\pi = (0.8571, 0.1428)$$
+shown in ({numref}`fig-discrete-markov-model`). The transition matrix admits a stationary (non-periodic) solution. As the number of iterations $n$ becomes large the system state converges to a stationary distribution $\pi$. 
 
 Thus, regardless of the starting state of this Markov chain, the long-term behavior is given by the stationary distribution $\pi$.
 
-__source__: Fill me in.
+```julia
+# load package -
+using LinearAlgebra
+
+"""
+    iterate(P::Array{Float64,2}, counter::Int; 
+        maxcount::Int = 100, ϵ::Float64 = 0.1) -> Array{Float64,2}
+
+Recursively computes a stationary distribution. 
+Computation stops if ||P_new - P|| < ϵ or the max number of iterations is hit. 
+"""
+function iterate(P::Array{Float64,2}, counter::Int; maxcount::Int = 100, ϵ::Float64 = 0.1)::Array{Float64,2}
+
+    # base case -
+    if (counter == maxcount)
+        return P
+    else
+        # generate a new P -
+        P_new = P^(counter+1)
+        err = P_new - P;
+        if (norm(err)<=ϵ)
+            return P_new
+        else
+            # we have NOT hit the error target, or the max iterations
+            iterate(P_new, (counter+1), maxcount=maxcount, ϵ = ϵ)
+        end
+    end
+end
+
+# Setup the transition probability matrix -
+P = [
+    0.9 0.1;
+    0.6 0.4;
+];
+
+# compute -
+counter = 1
+P_stationary = iterate(P, counter;  maxcount = 10, ϵ = 0.001)
+```
 ````
+
+#### Sampling the stationary distribution
+Once the stationary distribution $\pi$ of the Markov chain has been estimated, we can use it to generate samples from that chain. 
+For example, the stationary distribution for the two-state Markov chain in {prf:ref}`example-dicrete-mchain` is given by:
+
+```{math}
+\pi = (0.857,0.143)
+```
+
+We model this system as a [Categorical distribution](https://en.wikipedia.org/wiki/Categorical_distribution). A categorical distribution is a discrete probability distribution that models the probability of a random variable taking on one of a finite set of possible outcomes:
+
+```{math}
+:label: eqn-categorical-dist
+
+P(X = k) = \pi\left[k\right]
+```
+
+Sampling a categorical distribution constructed from the stationary distribution $\pi$ will return the stationary 
+distribution ({prf:ref}`example-categorical-dist`):
+
+````{prf:example} Categorical distribution
+:class: dropdown
+:label: example-categorical-dist
+
+Sample a categorical distribution constructed using the stationary distribution:
+
+```{math}
+\pi = (0.857,0.143)
+```
+
+Generate $N = 1000$ samples and compute the fraction of state `1` and state `2`.
+
+
+```julia
+# include -
+include("Include.jl")
+
+# setup -
+π = [ 0.857, 0.143];
+number_of_samples = 1000;
+
+# build a categorical distribution 
+d = Categorical(π);
+
+# sample -
+samples = rand(d, number_of_samples)
+
+# how many 1's -
+number_of_1 = findall(x-> x == 1, samples) |> length;
+number_of_2 = findall(x-> x == 2, samples) |> length;
+
+# println -
+println("Fraction of state 1: $(number_of_1/number_of_samples) and state 2: $(number_of_2/number_of_samples)")
+``` 
+
+````
+
 
 (content:references:structure-of-an-hmm)=
 ### Hidden Markov Models (HMMs)
