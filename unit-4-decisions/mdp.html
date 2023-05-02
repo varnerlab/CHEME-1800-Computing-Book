@@ -737,37 +737,105 @@ distribution (<a class="reference internal" href="#example-categorical-dist">Exa
 <div class="math notranslate nohighlight">
 \[\sum_{o\in\mathcal{O}} P(Y = o | X = s) = 1\qquad\forall{s\in\mathcal{S}}\]</div>
 <p>The emission probability plays a crucial role in HMMs, as it is used to calculate the likelihood of a sequence of observed symbols, given the current state of the hidden Markov chain. This likelihood is then used in various applications, including speech recognition, natural language processing, and bioinformatics. The emission probability can be computed using different methods, including maximum likelihood estimation or Bayesian inference.</p>
-<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 28</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Trinomial_tree">trinomial lattice model of Boyle</a>:</p>
+<p>Let’s build upon <a class="reference internal" href="#example-dicrete-mchain">Example 28</a> and construct an HMM that mimics a <a class="reference external" href="https://en.wikipedia.org/wiki/Trinomial_tree">trinomial lattice model of Boyle</a> (<a class="reference internal" href="#example-dicrete-mchain-hmm">Example 30</a>):</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain-hmm">
 <p class="admonition-title"><span class="caption-number">Example 30 </span> (Stationary hidden Markov model)</p>
 <section class="example-content" id="proof-content">
-<p>Consider the time-invariant two-state Discrete Markov chain with state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
+<p>Model the share price of a stock <code class="docutils literal notranslate"><span class="pre">XYZ</span></code> using a time-invariant two-state Discrete Markov chain with the state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{P} = \begin{bmatrix}
-0.7 &amp; 0.3 \\
-0.6 &amp; 0.4 \\
+0.60 &amp; 0.40 \\
+0.35 &amp; 0.65 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>shown in (<a class="reference internal" href="#fig-discrete-hidden-markov-model"><span class="std std-numref">Fig. 19</span></a>). Let <span class="math notranslate nohighlight">\(Y_{1}\)</span> denote the observable value for state 1, while <span class="math notranslate nohighlight">\(Y_{2}\)</span> denotes the observable value of
-state 2. The transition matrix admits the stationary (non-periodic) stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> given by:</p>
+<p>and an emission probability matrix <span class="math notranslate nohighlight">\(\mathbf{E}\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\pi = (0.66, 0.33)\]</div>
-<p>Suppose the unobservable state <span class="math notranslate nohighlight">\(X_{1}\)</span> was the <code class="docutils literal notranslate"><span class="pre">up</span></code> state; when the system is in state 1, we observe an up move of size:</p>
-<div class="math notranslate nohighlight">
-\[u = \exp(\sigma\sqrt{\Delta{t}})\]</div>
-<p>On the other hand, let state 2 denote the <code class="docutils literal notranslate"><span class="pre">down</span></code> state; when the system is in state 2, we observe a down move of size:</p>
-<div class="math notranslate nohighlight">
-\[d = \exp(-\sigma\sqrt{\Delta{t}})\]</div>
-<p><strong>Simulation</strong></p>
-<figure class="align-default" id="fig-discrete-hidden-markov-model-sim-up">
-<a class="reference internal image-reference" href="../_images/Fig-HMM-up-SRA-N250.pdf"><img alt="../_images/Fig-HMM-up-SRA-N250.pdf" src="../_images/Fig-HMM-up-SRA-N250.pdf" style="height: 360px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Simulation of an asset price governed by <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. The solid line denotes the mean predicted price; shaded regions denote the 68% and 95% confidence regions. <em>parameters</em>: <span class="math notranslate nohighlight">\(S_{o}\)</span> = 100, <span class="math notranslate nohighlight">\(\Delta{T}\)</span> = (1/365), <span class="math notranslate nohighlight">\(T\)</span> = 45 days and IV = 24.20%.
-The trajectory was computed by sampling a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> distribution constructed from the HMM stationary distribution.</span><a class="headerlink" href="#fig-discrete-hidden-markov-model-sim-up" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p><strong>source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Example-Notebooks">download the live Jupyter notebook from GitHub</a></p>
+\[\begin{split}
+\mathbf{E} = \begin{bmatrix}
+0.70 &amp; 0.20 &amp; 0.1 \\
+0.10 &amp; 0.20 &amp; 0.7 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(Y_{i}\)</span> denote the observable value for state <span class="math notranslate nohighlight">\(i\)</span>. Assume output state <code class="docutils literal notranslate"><span class="pre">1</span></code> is an up move (a 1% increase), state <code class="docutils literal notranslate"><span class="pre">2</span></code> the price stays the same, and state <code class="docutils literal notranslate"><span class="pre">3</span></code> indicates a price drop (a 1% decrease).</p>
+<p>Simulation script:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># include the include -</span>
+<span class="n">include</span><span class="p">(</span><span class="s">&quot;Include.jl&quot;</span><span class="p">);</span> <span class="c"># load paths, packages and codes</span>
+
+<span class="c"># PHASE 1: Setup the calculation</span>
+<span class="c"># Setup/initialize</span>
+<span class="n">number_of_hidden_states</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">number_of_output_states</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">number_of_simulation_steps</span> <span class="o">=</span> <span class="mi">480</span>
+<span class="n">emission_probability_dict</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="kt">Categorical</span><span class="p">}()</span>
+<span class="n">simulation_dict</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="kt">Int</span><span class="p">}()</span>
+
+<span class="c"># Transition matrix for the MC</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.60</span> <span class="mf">0.40</span><span class="p">;</span>
+    <span class="mf">0.35</span> <span class="mf">0.65</span><span class="p">;</span>
+<span class="p">];</span>
+
+<span class="c"># Emission probability matrix -</span>
+<span class="n">EPM</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">0.70</span> <span class="mf">0.20</span> <span class="mf">0.1</span> <span class="p">;</span>
+    <span class="mf">0.10</span> <span class="mf">0.20</span> <span class="mf">0.7</span> <span class="p">;</span>
+<span class="p">]</span>
+
+<span class="c"># compute the stationary distribution for the MC -</span>
+<span class="nb">π</span> <span class="o">=</span> <span class="n">iterate</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span>  <span class="n">maxcount</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">ϵ</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">)[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="c"># assumption: iterate converges</span>
+<span class="n">mcd</span> <span class="o">=</span> <span class="n">Categorical</span><span class="p">(</span><span class="nb">π</span><span class="p">);</span> <span class="c"># Markov-chain distribution</span>
+
+<span class="c"># construct emission probability dictionary -</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">number_of_hidden_states</span>
+    <span class="n">emission_probability_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Categorical</span><span class="p">(</span><span class="n">EPM</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">])</span>
+<span class="k">end</span>
+
+<span class="c"># PHASE 2: Simulation </span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">number_of_simulation_steps</span>
+    
+    <span class="c"># which state is the mc in?</span>
+    <span class="n">hidden_state</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">mcd</span><span class="p">);</span>
+    
+    <span class="c"># grab the emission probability model from the emission_probability_dict -</span>
+    <span class="n">epd</span> <span class="o">=</span> <span class="n">emission_probability_dict</span><span class="p">[</span><span class="n">hidden_state</span><span class="p">];</span>
+    
+    <span class="c"># role for a random ouput -</span>
+    <span class="n">simulation_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="n">epd</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Plotting script:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># runme -</span>
+<span class="n">include</span><span class="p">(</span><span class="s">&quot;runme.jl&quot;</span><span class="p">)</span> <span class="c"># loads packages, computes simulation_dict -</span>
+
+<span class="c"># Setup -</span>
+<span class="n">Sₒ</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">;</span>
+<span class="n">Δ</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">];</span>
+<span class="n">S</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="kt">Float64</span><span class="p">}()</span>
+<span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Sₒ</span>
+
+<span class="c"># setup colors -</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="kt">RGB</span><span class="p">}();</span>
+<span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sa">colorant</span><span class="s">&quot;#0077BB&quot;</span>
+
+<span class="c"># sim loop -</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">number_of_simulation_steps</span>
+
+    <span class="c"># market state -</span>
+    <span class="n">market_state_index</span> <span class="o">=</span> <span class="n">simulation_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c"># get previous price -</span>
+    <span class="n">S_old</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S_old</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="n">Δ</span><span class="p">[</span><span class="n">market_state_index</span><span class="p">]);</span>
+<span class="k">end</span>
+
+<span class="c"># make a plot -</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;Time index (AU)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;Share price (USD/share)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </div></section>
 </section>
@@ -815,10 +883,10 @@ The trajectory was computed by sampling a <code class="docutils literal notransl
 <figure class="align-default" id="fig-linear-mdp-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Linear-MDP-Schematic.pdf"><img alt="../_images/Fig-Linear-MDP-Schematic.pdf" src="../_images/Fig-Linear-MDP-Schematic.pdf" style="height: 110px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, two-action Markov decision process. A tiger hides behind the red door while freedom awaits behind the green door.</span><a class="headerlink" href="#fig-linear-mdp-schematic" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, two-action Markov decision process. A tiger hides behind the red door while freedom awaits behind the green door.</span><a class="headerlink" href="#fig-linear-mdp-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>An agent trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-linear-mdp-schematic"><span class="std std-numref">Fig. 21</span></a>). Behind the red door is a tiger (and certain death), while behind the green door is freedom. If the agent opens the red door, the agent is eaten (and receives a large negative reward). However, if the agent opens the green door, it escapes and gets a positive reward.</p>
+<p>An agent trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-linear-mdp-schematic"><span class="std std-numref">Fig. 20</span></a>). Behind the red door is a tiger (and certain death), while behind the green door is freedom. If the agent opens the red door, the agent is eaten (and receives a large negative reward). However, if the agent opens the green door, it escapes and gets a positive reward.</p>
 <p>For this problem, the MDP has the tuple components:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \left\{1,2,\dots,N\right\}\)</span> while the action set is <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{a_{1},a_{2}\right\}\)</span>; action <span class="math notranslate nohighlight">\(a_{1}\)</span> moves the agent one state to the right, action <span class="math notranslate nohighlight">\(a_{2}\)</span> moves the agent one state to the left.</p></li>
@@ -856,10 +924,10 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
 <figure class="align-default" id="fig-branched-mdp-schematic-mod">
 <a class="reference internal image-reference" href="../_images/Fig-Branched-MDP-Schematic.pdf"><img alt="../_images/Fig-Branched-MDP-Schematic.pdf" src="../_images/Fig-Branched-MDP-Schematic.pdf" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, four-action (left, right, up, down) Markov decision process. The hallway has three types of paths: unobstructed (white, free), mildly obstructed (light gray, small cost), and obstructed (dark gray, large cost).</span><a class="headerlink" href="#fig-branched-mdp-schematic-mod" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Schematic of the Tiger problem modeled as an N-state, four-action (left, right, up, down) Markov decision process. The hallway has three types of paths: unobstructed (white, free), mildly obstructed (light gray, small cost), and obstructed (dark gray, large cost).</span><a class="headerlink" href="#fig-branched-mdp-schematic-mod" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>An agent is trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-branched-mdp-schematic-mod"><span class="std std-numref">Fig. 22</span></a>). Behind the green door is a tiger (and certain death), while behind the red door is freedom. If the agent opens the green door, the agent is eaten (and receives a large negative reward). However, if the agent opens the red door, it escapes and gets a positive reward.</p>
+<p>An agent is trapped in a long hallway with two doors at either end (<a class="reference internal" href="#fig-branched-mdp-schematic-mod"><span class="std std-numref">Fig. 21</span></a>). Behind the green door is a tiger (and certain death), while behind the red door is freedom. If the agent opens the green door, the agent is eaten (and receives a large negative reward). However, if the agent opens the red door, it escapes and gets a positive reward.</p>
 <p>For this problem, the MDP has the tuple components:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \left\{1,2,\dots,N\right\}\)</span> while the action set is <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{a_{1},a_{2}, a_{3}, a_{4}\right\}\)</span>; action <span class="math notranslate nohighlight">\(a_{1}\)</span> moves the agent one state to the left, action <span class="math notranslate nohighlight">\(a_{2}\)</span> moves the agent one state to the right, action <span class="math notranslate nohighlight">\(a_{3}\)</span> moves the agent one stop up, and action <span class="math notranslate nohighlight">\(a_{4}\)</span> moves the agent one step down.</p></li>
