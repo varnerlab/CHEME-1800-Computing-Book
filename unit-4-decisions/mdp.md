@@ -215,51 +215,113 @@ Similar to the transition probability, the emission probability must sum to unit
 
 The emission probability plays a crucial role in HMMs, as it is used to calculate the likelihood of a sequence of observed symbols, given the current state of the hidden Markov chain. This likelihood is then used in various applications, including speech recognition, natural language processing, and bioinformatics. The emission probability can be computed using different methods, including maximum likelihood estimation or Bayesian inference.
 
-Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [trinomial lattice model of Boyle](https://en.wikipedia.org/wiki/Trinomial_tree):
+Let's build upon {prf:ref}`example-dicrete-mchain` and construct an HMM that mimics a [trinomial lattice model of Boyle](https://en.wikipedia.org/wiki/Trinomial_tree) ({prf:ref}`example-dicrete-mchain-hmm`):
 
 ````{prf:example} Stationary hidden Markov model
 :class: dropdown
 :label: example-dicrete-mchain-hmm
 
-Consider the time-invariant two-state Discrete Markov chain with state transition matrix $\mathbf{P}$:
+Model the share price of a stock `XYZ` using a time-invariant two-state Discrete Markov chain with the state transition matrix $\mathbf{P}$:
 
 $$
 \mathbf{P} = \begin{bmatrix}
-0.7 & 0.3 \\
-0.6 & 0.4 \\
+0.60 & 0.40 \\
+0.35 & 0.65 \\
 \end{bmatrix}
 $$
 
-shown in ({numref}`fig-discrete-hidden-markov-model`). Let $Y_{1}$ denote the observable value for state 1, while $Y_{2}$ denotes the observable value of
-state 2. The transition matrix admits the stationary (non-periodic) stationary distribution $\pi$ given by:
+and an emission probability matrix $\mathbf{E}$:
 
-$$\pi = (0.66, 0.33)$$
+$$
+\mathbf{E} = \begin{bmatrix}
+0.70 & 0.20 & 0.1 \\
+0.10 & 0.20 & 0.7 \\
+\end{bmatrix}
+$$
 
-Suppose the unobservable state $X_{1}$ was the `up` state; when the system is in state 1, we observe an up move of size:
+Let $Y_{i}$ denote the observable value for state $i$. Assume output state `1` is an up move (a 1% increase), state `2` the price stays the same, and state `3` indicates a price drop (a 1% decrease).
 
-```{math}
-u = \exp(\sigma\sqrt{\Delta{t}})
+Simulation script:
+
+```julia
+# include the include -
+include("Include.jl"); # load paths, packages and codes
+
+# PHASE 1: Setup the calculation
+# Setup/initialize
+number_of_hidden_states = 2
+number_of_output_states = 3
+number_of_simulation_steps = 480
+emission_probability_dict = Dict{Int,Categorical}()
+simulation_dict = Dict{Int,Int}()
+
+# Transition matrix for the MC
+P = [
+    0.60 0.40;
+    0.35 0.65;
+];
+
+# Emission probability matrix -
+EPM = [
+    0.70 0.20 0.1 ;
+    0.10 0.20 0.7 ;
+]
+
+# compute the stationary distribution for the MC -
+π = iterate(P, 1;  maxcount = 10, ϵ = 0.001)[1,:] # assumption: iterate converges
+mcd = Categorical(π); # Markov-chain distribution
+
+# construct emission probability dictionary -
+for i ∈ 1:number_of_hidden_states
+    emission_probability_dict[i] = Categorical(EPM[i,:])
+end
+
+# PHASE 2: Simulation 
+for i ∈ 1:number_of_simulation_steps
+    
+    # which state is the mc in?
+    hidden_state = rand(mcd);
+    
+    # grab the emission probability model from the emission_probability_dict -
+    epd = emission_probability_dict[hidden_state];
+    
+    # role for a random ouput -
+    simulation_dict[i] = rand(epd);
+end
 ```
 
-On the other hand, let state 2 denote the `down` state; when the system is in state 2, we observe a down move of size:
+Plotting script:
 
-```{math}
-d = \exp(-\sigma\sqrt{\Delta{t}})
+```julia
+# runme -
+include("runme.jl") # loads packages, computes simulation_dict -
+
+# Setup -
+Sₒ = 100.0;
+Δ = [0.01, 0.0, -0.01];
+S = Dict{Int,Float64}()
+S[0] = Sₒ
+
+# setup colors -
+colors = Dict{Int,RGB}();
+colors[1] = colorant"#0077BB"
+
+# sim loop -
+for i ∈ 1:number_of_simulation_steps
+
+    # market state -
+    market_state_index = simulation_dict[i]
+
+    # get previous price -
+    S_old = S[i-1];
+    S[i] = S_old*exp(Δ[market_state_index]);
+end
+
+# make a plot -
+plot!(S,lw=3,c=colors[1],label="")
+xlabel!("Time index (AU)", fontsize=18)
+ylabel!("Share price (USD/share)", fontsize=18)
 ```
-
-__Simulation__
-
-
- ```{figure} ./figs/Fig-HMM-up-SRA-N250.pdf
----
-height: 360px
-name: fig-discrete-hidden-markov-model-sim-up
----
-Simulation of an asset price governed by $\mathbf{P}$. The solid line denotes the mean predicted price; shaded regions denote the 68% and 95% confidence regions. _parameters_: $S_{o}$ = 100, $\Delta{T}$ = (1/365), $T$ = 45 days and IV = 24.20%. 
-The trajectory was computed by sampling a `Categorical` distribution constructed from the HMM stationary distribution.
-```
-
-__source__: [download the live Jupyter notebook from GitHub](https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Example-Notebooks)
 
 ````
 
@@ -336,7 +398,7 @@ For this problem, the MDP has the tuple components:
 
 Let's compute $U^{\pi}(s)$ for different choices for the policy function $\pi$.
 
-__source__: [download the live Jupyter notebook from GitHub](https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Example-Notebooks)
+__source__: [download the live Jupyter notebook from GitHub](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23)
 ````
 
 ### Value function policies
