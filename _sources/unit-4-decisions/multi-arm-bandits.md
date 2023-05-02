@@ -1,9 +1,14 @@
 # Multiple Arm Bandit Problems and Reinforcement Learning
 
-## Introduction
-[Reinforcement Learning (RL)](https://en.wikipedia.org/wiki/Reinforcement_learning) agents learn by performing actions in the world and then analyzing the rewards they receive ({numref}`fig-rl-schematic`). Thus, reinforcement learning differs from other machine learning approaches, e.g., [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) because labeled input/output pairs, e.g., what actions lead to positive rewards are not presented to the agent _a priori_.  Instead, reinforcement learning agents learn what is good or bad by trying different actions. 
+[Reinforcement Learning (RL)](https://en.wikipedia.org/wiki/Reinforcement_learning) agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.
 
-Reinforcement learning agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.
+In this lecture, we'll discuss methods to solve [Bandit problems](https://en.wikipedia.org/wiki/Multi-armed_bandit) and tools for [model-free reinforcement learning problems](https://en.wikipedia.org/wiki/Model-free_(reinforcement_learning)):
+
+* {ref}`content:references:exploration-explotation-bandit-problems` are a type of sequential decision-making problem in which an agent balances the exploration of their world versus exploiting their current understanding to maximize their cumulative reward. In these problems, the agent must choose between actions with unknown reward distributions to learn about the distributions and select the action with the highest expected reward. Bandit problems have a wide range of applications, including clinical trials, online advertising, and recommender systems.
+
+* {ref}`content:references:model-free-reinforcement-learning` is a class of reinforcement learning algorithms that do not require a model of the environment. In these algorithms, the agent learns from direct experience by interacting with the environment and receiving feedback in the form of rewards. The goal of model-free reinforcement learning is to find a policy that maximizes the expected cumulative reward over a sequence of actions. 
+Model-free methods such a [Q-learning](https://en.wikipedia.org/wiki/Q-learning), [SARSA](https://en.wikipedia.org/wiki/State–action–reward–state–action), and [temporal difference methods](https://en.wikipedia.org/wiki/Temporal_difference_learning) have been successfully applied to a wide range of problems, including game-playing, robotics, and recommendation systems.
+
 
 ---
 
@@ -15,7 +20,8 @@ name: fig-rl-schematic
 Schematic of the reinforcement learning (RL) process. An agent takes action $a$ and then observes reward $r$ and changes in the state of the environment ($s\rightarrow{s^{\prime}}$) following the action $a$. 
 ```
 
-## Exploration, exploitation and bandit problems
+(content:references:exploration-explotation-bandit-problems)=
+## Bandit problems
 Learning agents must balance exploration of the environment, e.g., taking random actions with exploiting knowledge already obtained through interacting with the world. Pure exploration allows agents to construct a comprehensive model of their environment, but likely at the expense of positive reward. On the other hand, pure exploitation has the agent continually choosing the action it thinks best to accumulate reward, but different, better actions could be taken. 
 
 A classic approach to understanding the exploration and exploitation tradeoff, which itself has many real-world applications, is the [multi arm bandit problem](https://en.wikipedia.org/wiki/Multi-armed_bandit). A general bandit problem is a sequential game played between an agent and the environment. The game is played over $n$ rounds called the _horizon_. In each round the agent chooses an action $a\in\mathcal{A}$ and the environment then reveals a reward $r$. 
@@ -98,12 +104,10 @@ $(\alpha_{1},\dots,\alpha_{K})$ and $(\beta_{1},\dots,\beta_{K})$
 
 (content:references:model-free-reinforcement-learning)=
 ## Model-free reinforcement learning
-Model-free reinforcement learning does not require transition or reward models. Instead, model-free methods, like bandit problems, iteratively construct a policy by interacting with the world. However, unlike bandit problems, model-free reinforcement learning builds the action value function $Q(s, a)$ directly, e.g., by incrementally estimating the action value function $Q(s, a)$ from samples using the _Q-learning_ approach. 
+Model-free reinforcement learning does not require transition or reward models. Instead, model-free methods, like bandit problems, iteratively construct a policy by interacting with the world. However, unlike bandit problems, model-free reinforcement learning builds the action value function $Q(s, a)$ directly, e.g., by incrementally estimating the action value function $Q(s, a)$ from samples using the [Q-learning approach](https://en.wikipedia.org/wiki/Q-learning). 
 
 ### Incremental updates
-Model-free methods incrementally estimate the action value function $Q(s, a)$ by sampling the world. To understand the structure of the update procedures, which we'll discuss later, let's take a quick detour and look at how we incrementally estimate the mean of a single variable $X$. 
-
-Suppose we are interested in computing the mean of $X$ from $m$ samples:
+Model-free methods incrementally estimate the action value function $Q(s, a)$ by sampling the world. To understand the structure of the update procedures, which we'll discuss later, let's take a quick detour and look at how we incrementally estimate the mean of a single variable $X$. Suppose we are interested in computing the mean of $X$ from $m$ samples:
 
 ```{math}
 :label: eqn-simple-mean
@@ -169,14 +173,11 @@ thus:
 :label: eqn-bellman-expectation-eqn
 Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)\left(\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right)
 ```
-
-Here's the catch: in a model-free universe, we don't know the rewards or physics of the world, i.e., we don't know the rewards $R(s,a)$ or the probability array $T(s^{\prime} | s, a)$ that appear in Eqn. {eq}`eqn-bellman-expectation-eqn`. Instead of computing the rewards and transitions from a model we develop, we estimate them from samples received:
+Here's the catch: in a model-free universe, we don't know the rewards or physics of the world, i.e., we don't know the rewards $R(s, a)$ or the probability array $T(s^{\prime} | s, a)$ that appear in Eqn. {eq}`eqn-bellman-expectation-eqn`. Instead of computing the rewards and transitions from a model, we must estimate them from samples received:
 
 ```{math}
 Q(s,a) = \mathbb{E}_{r,s^{\prime}}\left[r+\gamma\cdot\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right]
 ```
-
-#### Incremental Q-table updates
 We can use the incremental update rule shown in Eqn. {eq}`eqn-next-sample-mean` to develop an an expression that incrementally updates our estimate of $Q(s,a)$ as more data becomes available: 
 
 ```{math}
@@ -184,10 +185,33 @@ We can use the incremental update rule shown in Eqn. {eq}`eqn-next-sample-mean` 
 Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)
 ```
 
-where $\alpha$ denotes a _learning rate hyperparameter_. 
+where $\alpha$ denotes a _learning rate hyperparameter_. Putting all these ideas together, gives a Q-learning definition ({prf:ref}`defn-q-learning-defn`):
+
+````{prf:definition} Q-learning 
+:label: defn-q-learning-defn
+
+There exists states $s\in\mathcal{S}$ and actions $a\in\mathcal{A}$. The action value function $Q(s,a)$ can be iteratively estimated using the update rule:
+
+```{math}
+Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)
+```
+
+where $\alpha$ denotes the learning rate hyperparameter, and $\gamma$ denotes the discount rate. The policy $\pi(s)$ can be estimated from the action value function:
+
+```{math}
+\pi(s) = \text{arg}\max_{a}Q(s,a)
+```
+````
 
 
 ---
 
 ## Summary 
-Fill me in.
+[Reinforcement Learning (RL)](https://en.wikipedia.org/wiki/Reinforcement_learning) agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.
+
+In this lecture, we'll discussed:
+
+* {ref}`content:references:exploration-explotation-bandit-problems` are a type of sequential decision-making problem in which an agent balances the exploration of their world versus exploiting their current understanding to maximize their cumulative reward. In these problems, the agent must choose between actions with unknown reward distributions to learn about the distributions and select the action with the highest expected reward. Bandit problems have a wide range of applications, including clinical trials, online advertising, and recommender systems.
+
+* {ref}`content:references:model-free-reinforcement-learning` is a class of reinforcement learning algorithms that do not require a model of the environment. In these algorithms, the agent learns from direct experience by interacting with the environment and receiving feedback in the form of rewards. The goal of model-free reinforcement learning is to find a policy that maximizes the expected cumulative reward over a sequence of actions. 
+Model-free methods such a [Q-learning](https://en.wikipedia.org/wiki/Q-learning), [SARSA](https://en.wikipedia.org/wiki/State–action–reward–state–action), and [temporal difference methods](https://en.wikipedia.org/wiki/Temporal_difference_learning) have been successfully applied to a wide range of problems, including game-playing, robotics, and recommendation systems.

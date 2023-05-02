@@ -422,13 +422,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exploration-exploitation-and-bandit-problems">
-   Exploration, exploitation and bandit problems
+  <a class="reference internal nav-link" href="#bandit-problems">
+   Bandit problems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -445,13 +440,6 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#q-learning">
      Q-learning
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#incremental-q-table-updates">
-       Incremental Q-table updates
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -480,13 +468,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exploration-exploitation-and-bandit-problems">
-   Exploration, exploitation and bandit problems
+  <a class="reference internal nav-link" href="#bandit-problems">
+   Bandit problems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -503,13 +486,6 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#q-learning">
      Q-learning
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#incremental-q-table-updates">
-       Incremental Q-table updates
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -530,10 +506,13 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="multiple-arm-bandit-problems-and-reinforcement-learning">
 <h1>Multiple Arm Bandit Problems and Reinforcement Learning<a class="headerlink" href="#multiple-arm-bandit-problems-and-reinforcement-learning" title="Permalink to this headline">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning (RL)</a> agents learn by performing actions in the world and then analyzing the rewards they receive (<a class="reference internal" href="#fig-rl-schematic"><span class="std std-numref">Fig. 22</span></a>). Thus, reinforcement learning differs from other machine learning approaches, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> because labeled input/output pairs, e.g., what actions lead to positive rewards are not presented to the agent <em>a priori</em>.  Instead, reinforcement learning agents learn what is good or bad by trying different actions.</p>
-<p>Reinforcement learning agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning (RL)</a> agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.</p>
+<p>In this lecture, we’ll discuss methods to solve <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">Bandit problems</a> and tools for <a class="reference external" href="https://en.wikipedia.org/wiki/Model-free_(reinforcement_learning)">model-free reinforcement learning problems</a>:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-exploration-explotation-bandit-problems"><span class="std std-ref">Bandit problems</span></a> are a type of sequential decision-making problem in which an agent balances the exploration of their world versus exploiting their current understanding to maximize their cumulative reward. In these problems, the agent must choose between actions with unknown reward distributions to learn about the distributions and select the action with the highest expected reward. Bandit problems have a wide range of applications, including clinical trials, online advertising, and recommender systems.</p></li>
+<li><p><a class="reference internal" href="#content-references-model-free-reinforcement-learning"><span class="std std-ref">Model-free reinforcement learning</span></a> is a class of reinforcement learning algorithms that do not require a model of the environment. In these algorithms, the agent learns from direct experience by interacting with the environment and receiving feedback in the form of rewards. The goal of model-free reinforcement learning is to find a policy that maximizes the expected cumulative reward over a sequence of actions.
+Model-free methods such a <a class="reference external" href="https://en.wikipedia.org/wiki/Q-learning">Q-learning</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/State%E2%80%93action%E2%80%93reward%E2%80%93state%E2%80%93action">SARSA</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Temporal_difference_learning">temporal difference methods</a> have been successfully applied to a wide range of problems, including game-playing, robotics, and recommendation systems.</p></li>
+</ul>
 <hr class="docutils" />
 <figure class="align-default" id="fig-rl-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Schematic-RL.pdf"><img alt="../_images/Fig-Schematic-RL.pdf" src="../_images/Fig-Schematic-RL.pdf" style="height: 260px;" /></a>
@@ -541,9 +520,8 @@ title="Print to PDF"
 <p><span class="caption-number">Fig. 22 </span><span class="caption-text">Schematic of the reinforcement learning (RL) process. An agent takes action <span class="math notranslate nohighlight">\(a\)</span> and then observes reward <span class="math notranslate nohighlight">\(r\)</span> and changes in the state of the environment (<span class="math notranslate nohighlight">\(s\rightarrow{s^{\prime}}\)</span>) following the action <span class="math notranslate nohighlight">\(a\)</span>.</span><a class="headerlink" href="#fig-rl-schematic" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
-<section id="exploration-exploitation-and-bandit-problems">
-<h2>Exploration, exploitation and bandit problems<a class="headerlink" href="#exploration-exploitation-and-bandit-problems" title="Permalink to this headline">#</a></h2>
+<section id="bandit-problems">
+<span id="content-references-exploration-explotation-bandit-problems"></span><h2>Bandit problems<a class="headerlink" href="#bandit-problems" title="Permalink to this headline">#</a></h2>
 <p>Learning agents must balance exploration of the environment, e.g., taking random actions with exploiting knowledge already obtained through interacting with the world. Pure exploration allows agents to construct a comprehensive model of their environment, but likely at the expense of positive reward. On the other hand, pure exploitation has the agent continually choosing the action it thinks best to accumulate reward, but different, better actions could be taken.</p>
 <p>A classic approach to understanding the exploration and exploitation tradeoff, which itself has many real-world applications, is the <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">multi arm bandit problem</a>. A general bandit problem is a sequential game played between an agent and the environment. The game is played over <span class="math notranslate nohighlight">\(n\)</span> rounds called the <em>horizon</em>. In each round the agent chooses an action <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> and the environment then reveals a reward <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <p>Let’s look at a particular sub-type of multi-arm bandit problem, namely, the Bernoulli bandit problem and Thompson sampling, a particular solution approach to this class of problem <span id="id1">[<a class="reference internal" href="../References.html#id5" title="Daniel Russo, Benjamin Van Roy, Abbas Kazerouni, Ian Osband, and Zheng Wen. A tutorial on thompson sampling. Foundations and Trends in Machine Learning, 11(1):1-96, 2017. URL: https://arxiv.org/abs/1707.02038, doi:10.48550/ARXIV.1707.02038.">Russo <em>et al.</em>, 2017</a>]</span>:</p>
@@ -635,11 +613,10 @@ A Beta-distribution for each action using initial values <span class="math notra
 </div></section>
 <section id="model-free-reinforcement-learning">
 <span id="content-references-model-free-reinforcement-learning"></span><h2>Model-free reinforcement learning<a class="headerlink" href="#model-free-reinforcement-learning" title="Permalink to this headline">#</a></h2>
-<p>Model-free reinforcement learning does not require transition or reward models. Instead, model-free methods, like bandit problems, iteratively construct a policy by interacting with the world. However, unlike bandit problems, model-free reinforcement learning builds the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> directly, e.g., by incrementally estimating the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> from samples using the <em>Q-learning</em> approach.</p>
+<p>Model-free reinforcement learning does not require transition or reward models. Instead, model-free methods, like bandit problems, iteratively construct a policy by interacting with the world. However, unlike bandit problems, model-free reinforcement learning builds the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> directly, e.g., by incrementally estimating the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> from samples using the <a class="reference external" href="https://en.wikipedia.org/wiki/Q-learning">Q-learning approach</a>.</p>
 <section id="incremental-updates">
 <h3>Incremental updates<a class="headerlink" href="#incremental-updates" title="Permalink to this headline">#</a></h3>
-<p>Model-free methods incrementally estimate the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> by sampling the world. To understand the structure of the update procedures, which we’ll discuss later, let’s take a quick detour and look at how we incrementally estimate the mean of a single variable <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<p>Suppose we are interested in computing the mean of <span class="math notranslate nohighlight">\(X\)</span> from <span class="math notranslate nohighlight">\(m\)</span> samples:</p>
+<p>Model-free methods incrementally estimate the action value function <span class="math notranslate nohighlight">\(Q(s, a)\)</span> by sampling the world. To understand the structure of the update procedures, which we’ll discuss later, let’s take a quick detour and look at how we incrementally estimate the mean of a single variable <span class="math notranslate nohighlight">\(X\)</span>. Suppose we are interested in computing the mean of <span class="math notranslate nohighlight">\(X\)</span> from <span class="math notranslate nohighlight">\(m\)</span> samples:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-simple-mean">
 <span class="eqno">(101)<a class="headerlink" href="#equation-eqn-simple-mean" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \frac{1}{m}\sum_{i=1}^{m}x^{(i)}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x^{(i)}\)</span> denotes the ith sample. However, model-free RL incrementally updates <span class="math notranslate nohighlight">\(Q(s,a)\)</span>; thus, we need to develop an incremental estimation calculation.
@@ -676,22 +653,35 @@ From our discussion of <a class="reference internal" href="mdp.html"><span class
 <p>thus:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-bellman-expectation-eqn">
 <span class="eqno">(106)<a class="headerlink" href="#equation-eqn-bellman-expectation-eqn" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)\left(\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right)\]</div>
-<p>Here’s the catch: in a model-free universe, we don’t know the rewards or physics of the world, i.e., we don’t know the rewards <span class="math notranslate nohighlight">\(R(s,a)\)</span> or the probability array <span class="math notranslate nohighlight">\(T(s^{\prime} | s, a)\)</span> that appear in Eqn. <a class="reference internal" href="#equation-eqn-bellman-expectation-eqn">(106)</a>. Instead of computing the rewards and transitions from a model we develop, we estimate them from samples received:</p>
+<p>Here’s the catch: in a model-free universe, we don’t know the rewards or physics of the world, i.e., we don’t know the rewards <span class="math notranslate nohighlight">\(R(s, a)\)</span> or the probability array <span class="math notranslate nohighlight">\(T(s^{\prime} | s, a)\)</span> that appear in Eqn. <a class="reference internal" href="#equation-eqn-bellman-expectation-eqn">(106)</a>. Instead of computing the rewards and transitions from a model, we must estimate them from samples received:</p>
 <div class="math notranslate nohighlight">
 \[Q(s,a) = \mathbb{E}_{r,s^{\prime}}\left[r+\gamma\cdot\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right]\]</div>
-<section id="incremental-q-table-updates">
-<h4>Incremental Q-table updates<a class="headerlink" href="#incremental-q-table-updates" title="Permalink to this headline">#</a></h4>
 <p>We can use the incremental update rule shown in Eqn. <a class="reference internal" href="#equation-eqn-next-sample-mean">(105)</a> to develop an an expression that incrementally updates our estimate of <span class="math notranslate nohighlight">\(Q(s,a)\)</span> as more data becomes available:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-q-learning-update-rule">
 <span class="eqno">(107)<a class="headerlink" href="#equation-eqn-q-learning-update-rule" title="Permalink to this equation">#</a></span>\[Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> denotes a <em>learning rate hyperparameter</em>.</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> denotes a <em>learning rate hyperparameter</em>. Putting all these ideas together, gives a Q-learning definition (<a class="reference internal" href="#defn-q-learning-defn">Definition 62</a>):</p>
+<div class="proof definition admonition" id="defn-q-learning-defn">
+<p class="admonition-title"><span class="caption-number">Definition 62 </span> (Q-learning)</p>
+<section class="definition-content" id="proof-content">
+<p>There exists states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> and actions <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span>. The action value function <span class="math notranslate nohighlight">\(Q(s,a)\)</span> can be iteratively estimated using the update rule:</p>
+<div class="math notranslate nohighlight">
+\[Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> denotes the learning rate hyperparameter, and <span class="math notranslate nohighlight">\(\gamma\)</span> denotes the discount rate. The policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> can be estimated from the action value function:</p>
+<div class="math notranslate nohighlight">
+\[\pi(s) = \text{arg}\max_{a}Q(s,a)\]</div>
 </section>
-</section>
+</div></section>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
-<p>Fill me in.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning (RL)</a> agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.</p>
+<p>In this lecture, we’ll discussed:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-exploration-explotation-bandit-problems"><span class="std std-ref">Bandit problems</span></a> are a type of sequential decision-making problem in which an agent balances the exploration of their world versus exploiting their current understanding to maximize their cumulative reward. In these problems, the agent must choose between actions with unknown reward distributions to learn about the distributions and select the action with the highest expected reward. Bandit problems have a wide range of applications, including clinical trials, online advertising, and recommender systems.</p></li>
+<li><p><a class="reference internal" href="#content-references-model-free-reinforcement-learning"><span class="std std-ref">Model-free reinforcement learning</span></a> is a class of reinforcement learning algorithms that do not require a model of the environment. In these algorithms, the agent learns from direct experience by interacting with the environment and receiving feedback in the form of rewards. The goal of model-free reinforcement learning is to find a policy that maximizes the expected cumulative reward over a sequence of actions.
+Model-free methods such a <a class="reference external" href="https://en.wikipedia.org/wiki/Q-learning">Q-learning</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/State%E2%80%93action%E2%80%93reward%E2%80%93state%E2%80%93action">SARSA</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Temporal_difference_learning">temporal difference methods</a> have been successfully applied to a wide range of problems, including game-playing, robotics, and recommendation systems.</p></li>
+</ul>
 </section>
 </section>
 
