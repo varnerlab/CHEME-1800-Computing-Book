@@ -773,8 +773,7 @@ The trajectory was computed by sampling a <code class="docutils literal notransl
 </section>
 <section id="markov-decision-processes-mdps">
 <span id="content-references-structure-of-an-mdp"></span><h2>Markov decision processes (MDPs)<a class="headerlink" href="#markov-decision-processes-mdps" title="Permalink to this headline">#</a></h2>
-<p>A Markov decision process (MDP) is an approach for modeling decision-making in situations where outcomes are partly random but also partly under the control of a <em>decision-maker</em> who receives a reward (or penalty) for each decision. Thus, unlike <a class="reference internal" href="#content-references-discrete-time-markov-chains"><span class="std std-ref">Discrete-time Markov chains</span></a>, Markov decision processes (MDPs) involve actions, which allow choice, and rewards that motivate the decision maker.</p>
-<p>At each time step, let’s assume the system in some state <span class="math notranslate nohighlight">\(s\)</span> in a set of possible states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> and the decision maker may choose any action <span class="math notranslate nohighlight">\(a\)</span> from a set of possible actions <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> that are available in state <span class="math notranslate nohighlight">\(s\)</span>. The system responds at the next time step by <em>potentially</em> moving into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> and rewarding the decision maker <span class="math notranslate nohighlight">\(R_{a}\left(s, s^{\prime}\right)\)</span>. The probability that the system moves into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> depends upon the chosen action <span class="math notranslate nohighlight">\(a\)</span> and the current state <span class="math notranslate nohighlight">\(s\)</span>; this probability is governed by a state transition function <span class="math notranslate nohighlight">\(P_{a}\left(s,s^{\prime}\right)\)</span>.</p>
+<p>A Markov decision process (MDP) is a way to model decision-making where outcomes are partly random and partly controlled by a decision-maker who receives a reward or penalty for each decision (<a class="reference internal" href="#defn-formal-mdp">Definition 59</a>):</p>
 <div class="proof definition admonition" id="defn-formal-mdp">
 <p class="admonition-title"><span class="caption-number">Definition 59 </span> (Markov decision tuple )</p>
 <section class="definition-content" id="proof-content">
@@ -788,28 +787,29 @@ The trajectory was computed by sampling a <code class="docutils literal notransl
 </ul>
 <p>Finally, a policy function <span class="math notranslate nohighlight">\(\pi\)</span> is the (potentially probabilistic) mapping from states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> to actions <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> used by the agent to solve the decision task.</p>
 </section>
-</div><section id="policy-evaluation">
+</div><p>At each time step, the system is in state <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> and the decision maker may choose any action <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span> that are available in state <span class="math notranslate nohighlight">\(s\)</span>. The system responds at the next time step by <em>potentially</em> moving into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> and rewarding the decision maker <span class="math notranslate nohighlight">\(R_{a}\left(s, s^{\prime}\right)\)</span>. The probability that the system moves into a new state <span class="math notranslate nohighlight">\(s^{\prime}\)</span> depends upon the chosen action <span class="math notranslate nohighlight">\(a\)</span> and the current state <span class="math notranslate nohighlight">\(s\)</span>; this probability is governed by a state transition function <span class="math notranslate nohighlight">\(P_{a}\left(s,s^{\prime}\right)\)</span>.</p>
+<section id="policy-evaluation">
 <h3>Policy evaluation<a class="headerlink" href="#policy-evaluation" title="Permalink to this headline">#</a></h3>
-<p>One immediate question that jumps out is what is a policy function <span class="math notranslate nohighlight">\(\pi\)</span>, and how do we find the best possible policy for our decision problem? To do this, we need a way to estimate how good (or bad) a particular policy is; the approach we use is called <em>policy evaluation</em>. Let’s denote the expected utility gained by executing some policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> from state <span class="math notranslate nohighlight">\(s\)</span> as <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>. Then, an <em>optimal policy</em> function <span class="math notranslate nohighlight">\(\pi^{\star}\)</span> is one that maximizes the expected utility:</p>
+<p>When determining the best policy for a decision problem, we first need to understand what a policy function <span class="math notranslate nohighlight">\(\pi\)</span> is and how to evaluate it. This process is known as policy evaluation. We calculate the expected utility gained by executing a policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> from state <span class="math notranslate nohighlight">\(s\)</span> and denote it as <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>. An optimal policy function <span class="math notranslate nohighlight">\(\pi^{\star}\)</span> maximizes the expected utility and can be defined as:</p>
 <div class="math notranslate nohighlight">
 \[\pi^{\star}\left(s\right) = \text{arg max}~U^{\pi}(s)\]</div>
-<p>for all <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span>. We can iteratively compute the utility of a policy <span class="math notranslate nohighlight">\(\pi\)</span>. If the agent makes a single move, the utility will be the reward the agent receives by implementing policy <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
+<p>for all <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span>. To determine the utility of a policy <span class="math notranslate nohighlight">\(\pi\)</span>, we can iteratively calculate it. If the agent makes a single move, the utility is the reward received by implementing policy <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[U_{1}^{\pi}(s) = R(s,\pi(s))\]</div>
-<p>However, if we let the agent perform two, three, or <span class="math notranslate nohighlight">\(k\)</span> possible iterations, we get a <em>lookahead</em> equation which relates the value of
-the utility at iteration <span class="math notranslate nohighlight">\(k\)</span> to <span class="math notranslate nohighlight">\(k+1\)</span>:</p>
+<p>However, if the agent performs two, three, or <span class="math notranslate nohighlight">\(k\)</span> possible iterations, we use a lookahead equation that relates the utility value at iteration <span class="math notranslate nohighlight">\(k\)</span> to <span class="math notranslate nohighlight">\(k+1\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[U_{k+1}^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U_{k}^{\pi}(s^{\prime})\]</div>
-<p>As <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span> the lookahead utility converges to a stationary value <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>:</p>
+\[U_{k+1}^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s,\pi(s))U_{k}^{\pi}(s^{\prime})\]</div>
+<p>As <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span> the lookahead utility converges to a stationary value <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span> (<a class="reference internal" href="#defn-policy-evalution">Definition 60</a>):</p>
 <div class="proof definition admonition" id="defn-policy-evalution">
 <p class="admonition-title"><span class="caption-number">Definition 60 </span> (Value function)</p>
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. Then, the utility of the policy function <span class="math notranslate nohighlight">\(\pi\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-converged-policy-eval">
 <span class="eqno">(97)<a class="headerlink" href="#equation-eqn-converged-policy-eval" title="Permalink to this equation">#</a></span>\[U^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U^{\pi}(s^{\prime})\]</div>
+<p>The utility associated with an optimal policy <span class="math notranslate nohighlight">\(\pi^{\star}\)</span> is called the optimal utility <span class="math notranslate nohighlight">\(U^{\star}\)</span>.</p>
 </section>
-</div><p>Let’s do an example to illustrate policy evaluation:</p>
-<div class="proof example admonition" id="example-MDP-line">
+</div><p>Let’s do an example to illustrate policy evaluation (<a class="reference internal" href="#example-MDP-line">Example 31</a>):</p>
+<div class="proof example dropdown admonition" id="example-MDP-line">
 <p class="admonition-title"><span class="caption-number">Example 31 </span> (Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-linear-mdp-schematic">
@@ -826,10 +826,9 @@ the utility at iteration <span class="math notranslate nohighlight">\(k\)</span>
 <li><p>Let the probability of correctly executing the action <span class="math notranslate nohighlight">\(a_{j}\)</span> be <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
 </ul>
 <p>Let’s compute <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span> for different choices for the policy function <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
-<p><strong>source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-5660-Markets-Mayhem-Example-Notebooks">download the live Jupyter notebook from GitHub</a></p>
+<p><strong>source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23">download the live Jupyter notebook from GitHub</a></p>
 </section>
-</div><p>The utility associated with an optimal policy <span class="math notranslate nohighlight">\(\pi^{\star}\)</span> is called the optimal utility <span class="math notranslate nohighlight">\(U^{\star}\)</span>.</p>
-</section>
+</div></section>
 <section id="value-function-policies">
 <h3>Value function policies<a class="headerlink" href="#value-function-policies" title="Permalink to this headline">#</a></h3>
 <p><a class="reference internal" href="#defn-policy-evalution">Definition 60</a> gives us a method to compute the utility for a particular policy <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span>.
@@ -837,7 +836,7 @@ However, suppose we were given the utility and wanted to estimate the policy <sp
 Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can estimate a policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> using the <span class="math notranslate nohighlight">\(Q\)</span>-function (action-value function):</p>
 <div class="math notranslate nohighlight" id="equation-eqn-action-value-function">
 <span class="eqno">(98)<a class="headerlink" href="#equation-eqn-action-value-function" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
-<p>Equation <a class="reference internal" href="#equation-eqn-action-value-function">(98)</a> gives a <span class="math notranslate nohighlight">\(|\mathcal{S}|\times|\mathcal{A}|\)</span> array, where the utility is given by:</p>
+<p>Equation <a class="reference internal" href="#equation-eqn-action-value-function">(98)</a> gives a <span class="math notranslate nohighlight">\(|\mathcal{S}|\times|\mathcal{A}|\)</span> array (states on the rows, actions on the columns), where the utility is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-utility-from-q">
 <span class="eqno">(99)<a class="headerlink" href="#equation-eqn-utility-from-q" title="Permalink to this equation">#</a></span>\[U(s) = \max_{a} Q(s,a)\]</div>
 <p>and the policy <span class="math notranslate nohighlight">\(\pi(s)\)</span> is:</p>
@@ -847,11 +846,11 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
 <section id="value-iteration">
 <h3>Value iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">#</a></h3>
 <p>In the previous section, we saw how we could develop <em>a policy</em> <span class="math notranslate nohighlight">\(\pi(s)\)</span> by looking at the values in the <span class="math notranslate nohighlight">\(Q\)</span>-array. However, this required the utility vector; thus, we needed to hypothesize a policy that may not be the <em>optimal policy</em>. There are two techniques to compute optimal policies, and we’ll explore the simpler of the two, namely <em>value iteration</em>.</p>
-<p>In <em>value iteration</em>, the value function (the vector of utility values) is updated iteratively using the <em>Bellman update</em>_ procedure:</p>
+<p>In <em>value iteration</em>, the value function (the vector of utility values) is updated iteratively using the <em>Bellman update</em> procedure:</p>
 <div class="math notranslate nohighlight">
 \[U_{k+1}(s) = \max_{a}\left(R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U_{k}(s^{\prime})\right)\]</div>
 <p>This procedure is guaranteed to converge to the optimal utility vector (value function).</p>
-<div class="proof example admonition" id="example-MDP-line-mod">
+<div class="proof example dropdown admonition" id="example-MDP-line-mod">
 <p class="admonition-title"><span class="caption-number">Example 32 </span> (Modified Tiger problem)</p>
 <section class="example-content" id="proof-content">
 <figure class="align-default" id="fig-branched-mdp-schematic-mod">
