@@ -669,6 +669,47 @@ From our discussion of <a class="reference internal" href="mdp.html"><span class
 <div class="math notranslate nohighlight">
 \[\pi(s) = \text{arg}\max_{a}Q(s,a)\]</div>
 </section>
+</div><p>An algorithm to incrementally update the <span class="math notranslate nohighlight">\(Q\)</span>-function is given by (<a class="reference internal" href="#algo-e-greedy-q-learning">Algorithm 16</a>):</p>
+<div class="proof algorithm admonition" id="algo-e-greedy-q-learning">
+<p class="admonition-title"><span class="caption-number">Algorithm 16 </span> (<span class="math notranslate nohighlight">\(\epsilon\)</span>-greedy Q-learning)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong>  the pure exploration parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, the number of time periods in the horizon <span class="math notranslate nohighlight">\(T\)</span>, the state space <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, the action space <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> and the initial state <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<p><strong>Outputs</strong> the <span class="math notranslate nohighlight">\(Q(s,a)\)</span> array</p>
+<p><strong>Initialize</strong></p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(Q(s,a)\leftarrow\text{zeros}(|\mathcal{S}|,|\mathcal{A}|)\)</span></p></li>
+</ol>
+<p><strong>Main</strong></p>
+<ol class="simple">
+<li><p>for t <span class="math notranslate nohighlight">\(\in\)</span> 1 to T</p>
+<ol class="simple">
+<li><p>if rand() <span class="math notranslate nohighlight">\(&lt;\epsilon\)</span></p>
+<ol class="simple">
+<li><p>Select random action: <span class="math notranslate nohighlight">\(a_{t}\sim\text{Uniform}(\mathcal{A})\)</span></p></li>
+</ol>
+</li>
+<li><p>else</p>
+<ol class="simple">
+<li><p>Select action: <span class="math notranslate nohighlight">\(a_{t}\leftarrow\text{arg}\max_{a}Q(s,a)\)</span></p></li>
+</ol>
+</li>
+<li><p>Apply <span class="math notranslate nohighlight">\(a_{t}\)</span>: observe the reward <span class="math notranslate nohighlight">\(r_{t}\)</span> and the state <span class="math notranslate nohighlight">\(s^{\prime}\)</span></p></li>
+<li><p>Update <span class="math notranslate nohighlight">\(Q(s,a)\)</span>:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)\)</span></p></li>
+</ol>
+</li>
+<li><p>Update state:</p>
+<ol class="simple">
+<li><p>set <span class="math notranslate nohighlight">\(s\leftarrow{s}^{\prime}\)</span></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Return</strong>
+<span class="math notranslate nohighlight">\(Q(s,a)\)</span></p>
+</section>
 </div></section>
 </section>
 <hr class="docutils" />
