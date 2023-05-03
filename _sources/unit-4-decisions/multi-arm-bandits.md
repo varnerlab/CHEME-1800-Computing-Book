@@ -1,4 +1,4 @@
-# Multiple Arm Bandit Problems and Reinforcement Learning
+# Bandit Problems and Reinforcement Learning
 
 [Reinforcement Learning (RL)](https://en.wikipedia.org/wiki/Reinforcement_learning) agents learn optimal choices in different situations by balancing the exploration of their environment, e.g., by taking random actions and watching what happens, with the exploitation of the knowledge they have built up so far, i.e., choosing what the agent thinks is an optimal action based upon previous experience. The balance between exploration and exploitation is one of the critical concepts in reinforcement learning.
 
