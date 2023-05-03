@@ -364,7 +364,7 @@ As $k\rightarrow\infty$ the lookahead utility converges to a stationary value $U
 ````{prf:definition} Value function
 :label: defn-policy-evalution
 
-Suppose we have a Markov decision process with the tuple $\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)$. Then, the utility of the policy function $\pi$ equals:
+We have a Markov decision process with the tuple $\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)$. The utility of the policy function $\pi:\mathcal{S}\rightarrow\mathcal{A}$ equals:
 
 ```{math}
 :label: eqn-converged-policy-eval

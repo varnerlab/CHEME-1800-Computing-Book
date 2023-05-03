@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-4-decisions/mdp.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multiple Arm Bandit Problems and Reinforcement Learning" href="multi-arm-bandits.html" />
+    <link rel="next" title="Bandit Problems and Reinforcement Learning" href="multi-arm-bandits.html" />
     <link rel="prev" title="Probability and Uncertain Choices" href="simple.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -234,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="multi-arm-bandits.html">
-     Multiple Arm Bandit Problems and Reinforcement Learning
+     Bandit Problems and Reinforcement Learning
     </a>
    </li>
   </ul>
@@ -871,7 +871,7 @@ distribution (<a class="reference internal" href="#example-categorical-dist">Exa
 <div class="proof definition admonition" id="defn-policy-evalution">
 <p class="admonition-title"><span class="caption-number">Definition 60 </span> (Value function)</p>
 <section class="definition-content" id="proof-content">
-<p>Suppose we have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. Then, the utility of the policy function <span class="math notranslate nohighlight">\(\pi\)</span> equals:</p>
+<p>We have a Markov decision process with the tuple <span class="math notranslate nohighlight">\(\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)\)</span>. The utility of the policy function <span class="math notranslate nohighlight">\(\pi:\mathcal{S}\rightarrow\mathcal{A}\)</span> equals:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-converged-policy-eval">
 <span class="eqno">(97)<a class="headerlink" href="#equation-eqn-converged-policy-eval" title="Permalink to this equation">#</a></span>\[U^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, \pi(s))U^{\pi}(s^{\prime})\]</div>
 <p>The utility associated with an optimal policy <span class="math notranslate nohighlight">\(\pi^{\star}\)</span> is called the optimal utility <span class="math notranslate nohighlight">\(U^{\star}\)</span>.</p>
@@ -989,7 +989,7 @@ introduced tools to compute the utility of a decision-making policy and the valu
     <a class='right-next' id="next-link" href="multi-arm-bandits.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Multiple Arm Bandit Problems and Reinforcement Learning</p>
+        <p class="prev-next-title">Bandit Problems and Reinforcement Learning</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
