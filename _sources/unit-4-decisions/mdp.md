@@ -351,7 +351,7 @@ When determining the best policy for a decision problem, we first need to unders
 
 $$\pi^{\star}\left(s\right) = \text{arg max}~U^{\pi}(s)$$
 
-for all $s\in\mathcal{S}$. To determine the utility of a policy $\pi$, we can iteratively calculate it. If the agent makes a single move, the utility is the reward received by implementing policy $\pi$:
+for all $s\in\mathcal{S}$. To determine the utility of a policy $\pi$, we can iteratively calculate it. If the agent makes a single move, the utility is the reward received by implementing policy $\pi:\mathcal{S}\rightarrow\mathcal{A}$:
 
 $$U_{1}^{\pi}(s) = R(s,\pi(s))$$
 
