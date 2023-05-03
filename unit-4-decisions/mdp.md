@@ -361,7 +361,7 @@ $$U_{k+1}^{\pi}(s) = R(s,\pi(s)) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\pr
 
 As $k\rightarrow\infty$ the lookahead utility converges to a stationary value $U^{\pi}(s)$ ({prf:ref}`defn-policy-evalution`):
 
-````{prf:definition} Value function
+````{prf:definition} Policy evaluation
 :label: defn-policy-evalution
 
 We have a Markov decision process with the tuple $\left(\mathcal{S}, \mathcal{A}, R_{a}\left(s, s^{\prime}\right), T_{a}\left(s,s^{\prime}\right), \gamma\right)$. The utility of the policy function $\pi:\mathcal{S}\rightarrow\mathcal{A}$ equals:
