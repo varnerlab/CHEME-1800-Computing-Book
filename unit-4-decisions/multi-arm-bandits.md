@@ -203,6 +203,35 @@ where $\alpha$ denotes the learning rate hyperparameter, and $\gamma$ denotes th
 ```
 ````
 
+An algorithm to incrementally update the $Q$-function is given by ({prf:ref}`algo-e-greedy-q-learning`):
+
+```{prf:algorithm} $\epsilon$-greedy Q-learning
+:label: algo-e-greedy-q-learning
+
+**Inputs**  the pure exploration parameter $\epsilon$, the number of time periods in the horizon $T$, the state space $\mathcal{S}$, the action space $\mathcal{A}$ and the initial state $s$.
+
+**Outputs** the $Q(s,a)$ array
+
+**Initialize**
+1. set $Q(s,a)\leftarrow\text{zeros}(|\mathcal{S}|,|\mathcal{A}|)$
+
+**Main**
+1. for t $\in$ 1 to T
+    1. if rand() $<\epsilon$
+        1. Select random action: $a_{t}\sim\text{Uniform}(\mathcal{A})$
+    1. else
+        1. Select action: $a_{t}\leftarrow\text{arg}\max_{a}Q(s,a)$
+    
+    1. Apply $a_{t}$: observe the reward $r_{t}$ and the state $s^{\prime}$
+    1. Update $Q(s,a)$:
+        1. $Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)$
+    1. Update state:
+        1. set $s\leftarrow{s}^{\prime}$
+
+**Return**
+$Q(s,a)$
+```
+
 
 ---
 
