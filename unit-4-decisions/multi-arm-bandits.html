@@ -629,15 +629,14 @@ Equation <a class="reference internal" href="#equation-eqn-simple-mean">(101)</a
 <p>which can be rearranged to give the incremental update expression:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-simple-mean-3">
 <span class="eqno">(104)<a class="headerlink" href="#equation-eqn-simple-mean-3" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \hat{x}_{m-1} + \frac{1}{m}\left(x^{(m)}-\hat{x}_{m-1}\right)\]</div>
-<p>Equation <a class="reference internal" href="#equation-eqn-simple-mean-3">(104)</a> can be generalized to give the incremental update rule:</p>
-<div class="proof observation admonition" id="obs-incremental-update-rule">
-<p class="admonition-title"><span class="caption-number">Observation 12 </span> (Incremental update rule)</p>
-<section class="observation-content" id="proof-content">
+<p>Equation <a class="reference internal" href="#equation-eqn-simple-mean-3">(104)</a> can be generalized to give the incremental update rule (<a class="reference internal" href="#defn-incremental-update-rule">Definition 62</a>):</p>
+<div class="proof definition admonition" id="defn-incremental-update-rule">
+<p class="admonition-title"><span class="caption-number">Definition 62 </span> (Incremental update rule)</p>
+<section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\hat{x}_{m-1}\)</span> denote the mean value computed from <span class="math notranslate nohighlight">\(m-1\)</span> samples. The value of <span class="math notranslate nohighlight">\(\hat{x}_{m}\)</span> given the the next sample <span class="math notranslate nohighlight">\(x^{(m)}\)</span> can be written as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-next-sample-mean">
 <span class="eqno">(105)<a class="headerlink" href="#equation-eqn-next-sample-mean" title="Permalink to this equation">#</a></span>\[\hat{x}_{m} = \hat{x}_{m-1} + \alpha\left(m\right)\left(x^{(m)}-\hat{x}_{m-1}\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> is the <em>learning rate</em> function.</p>
-<p>The learning rate can be any function of <span class="math notranslate nohighlight">\(m\)</span>; however, to ensure convergence
+<p>where <span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> is the learning rate function. The learning rate can be any function of <span class="math notranslate nohighlight">\(m\)</span>; however, to ensure convergence
 <span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> must have the properties: the sum of <span class="math notranslate nohighlight">\(\alpha\left(m\right)\)</span> as <span class="math notranslate nohighlight">\(m\rightarrow\infty\)</span> can be unbounded, but the sum of <span class="math notranslate nohighlight">\(\alpha\left(m\right)^{2}\)</span> as <span class="math notranslate nohighlight">\(m\rightarrow\infty\)</span> is bounded.</p>
 </section>
 </div></section>
@@ -647,21 +646,21 @@ Equation <a class="reference internal" href="#equation-eqn-simple-mean">(101)</a
 From our discussion of <a class="reference internal" href="mdp.html"><span class="doc std std-doc">Markov decision process (MDPs)</span></a>, we know that the action-value function (the <span class="math notranslate nohighlight">\(Q\)</span>-function) is defined as:</p>
 <div class="math notranslate nohighlight">
 \[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})\]</div>
-<p>However, we do know that:</p>
+<p>However, we know that:</p>
 <div class="math notranslate nohighlight">
 \[U(s) = \max_{a} Q(s,a)\]</div>
 <p>thus:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-bellman-expectation-eqn">
 <span class="eqno">(106)<a class="headerlink" href="#equation-eqn-bellman-expectation-eqn" title="Permalink to this equation">#</a></span>\[Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)\left(\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right)\]</div>
-<p>Here’s the catch: in a model-free universe, we don’t know the rewards or physics of the world, i.e., we don’t know the rewards <span class="math notranslate nohighlight">\(R(s, a)\)</span> or the probability array <span class="math notranslate nohighlight">\(T(s^{\prime} | s, a)\)</span> that appear in Eqn. <a class="reference internal" href="#equation-eqn-bellman-expectation-eqn">(106)</a>. Instead of computing the rewards and transitions from a model, we must estimate them from samples received:</p>
+<p>Here’s the catch: in a model-free universe, we don’t know the rewards or physics of the world, i.e., we don’t know the rewards <span class="math notranslate nohighlight">\(R(s, a)\)</span> or the probability array <span class="math notranslate nohighlight">\(T(s^{\prime} | s, a)\)</span> that appear in Eqn. <a class="reference internal" href="#equation-eqn-bellman-expectation-eqn">(106)</a>. Instead of computing the rewards <span class="math notranslate nohighlight">\(r\)</span> and transitions from a model, we must estimate them from samples received:</p>
 <div class="math notranslate nohighlight">
 \[Q(s,a) = \mathbb{E}_{r,s^{\prime}}\left[r+\gamma\cdot\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right]\]</div>
 <p>We can use the incremental update rule shown in Eqn. <a class="reference internal" href="#equation-eqn-next-sample-mean">(105)</a> to develop an an expression that incrementally updates our estimate of <span class="math notranslate nohighlight">\(Q(s,a)\)</span> as more data becomes available:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-q-learning-update-rule">
 <span class="eqno">(107)<a class="headerlink" href="#equation-eqn-q-learning-update-rule" title="Permalink to this equation">#</a></span>\[Q(s,a)\leftarrow{Q(s,a)}+\alpha\left(r+\gamma\max_{a^{\prime}}Q(s^{\prime},a^{\prime}) - Q(s,a)\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> denotes a <em>learning rate hyperparameter</em>. Putting all these ideas together, gives a Q-learning definition (<a class="reference internal" href="#defn-q-learning-defn">Definition 62</a>):</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> denotes a <em>learning rate hyperparameter</em>. Putting all these ideas together, gives a Q-learning definition (<a class="reference internal" href="#defn-q-learning-defn">Definition 63</a>):</p>
 <div class="proof definition admonition" id="defn-q-learning-defn">
-<p class="admonition-title"><span class="caption-number">Definition 62 </span> (Q-learning)</p>
+<p class="admonition-title"><span class="caption-number">Definition 63 </span> (Q-learning)</p>
 <section class="definition-content" id="proof-content">
 <p>There exists states <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> and actions <span class="math notranslate nohighlight">\(a\in\mathcal{A}\)</span>. The action value function <span class="math notranslate nohighlight">\(Q(s,a)\)</span> can be iteratively estimated using the update rule:</p>
 <div class="math notranslate nohighlight">

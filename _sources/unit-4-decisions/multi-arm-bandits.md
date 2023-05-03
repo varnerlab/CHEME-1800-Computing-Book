@@ -136,10 +136,11 @@ which can be rearranged to give the incremental update expression:
 \hat{x}_{m} = \hat{x}_{m-1} + \frac{1}{m}\left(x^{(m)}-\hat{x}_{m-1}\right)
 ```
 
-Equation {eq}`eqn-simple-mean-3` can be generalized to give the incremental update rule:
+Equation {eq}`eqn-simple-mean-3` can be generalized to give the incremental update rule ({prf:ref}`defn-incremental-update-rule`):
 
-````{prf:observation} Incremental update rule
-:label: obs-incremental-update-rule
+````{prf:definition} Incremental update rule
+:label: defn-incremental-update-rule
+
 Let $\hat{x}_{m-1}$ denote the mean value computed from $m-1$ samples. The value of $\hat{x}_{m}$ given the the next sample $x^{(m)}$ can be written as:
 
 ```{math}
@@ -147,9 +148,7 @@ Let $\hat{x}_{m-1}$ denote the mean value computed from $m-1$ samples. The value
 \hat{x}_{m} = \hat{x}_{m-1} + \alpha\left(m\right)\left(x^{(m)}-\hat{x}_{m-1}\right)
 ```
 
-where $\alpha\left(m\right)$ is the _learning rate_ function. 
-
-The learning rate can be any function of $m$; however, to ensure convergence 
+where $\alpha\left(m\right)$ is the learning rate function. The learning rate can be any function of $m$; however, to ensure convergence 
 $\alpha\left(m\right)$ must have the properties: the sum of $\alpha\left(m\right)$ as $m\rightarrow\infty$ can be unbounded, but the sum of $\alpha\left(m\right)^{2}$ as $m\rightarrow\infty$ is bounded. 
 ````
 
@@ -161,7 +160,7 @@ From our discussion of [Markov decision process (MDPs)](./mdp.md), we know that 
 Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)U(s^{\prime})
 ```
 
-However, we do know that:
+However, we know that:
 
 ```{math}
 U(s) = \max_{a} Q(s,a)
@@ -173,7 +172,8 @@ thus:
 :label: eqn-bellman-expectation-eqn
 Q(s,a) = R(s,a) + \gamma\sum_{s^{\prime}\in\mathcal{S}}T(s^{\prime} | s, a)\left(\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right)
 ```
-Here's the catch: in a model-free universe, we don't know the rewards or physics of the world, i.e., we don't know the rewards $R(s, a)$ or the probability array $T(s^{\prime} | s, a)$ that appear in Eqn. {eq}`eqn-bellman-expectation-eqn`. Instead of computing the rewards and transitions from a model, we must estimate them from samples received:
+
+Here's the catch: in a model-free universe, we don't know the rewards or physics of the world, i.e., we don't know the rewards $R(s, a)$ or the probability array $T(s^{\prime} | s, a)$ that appear in Eqn. {eq}`eqn-bellman-expectation-eqn`. Instead of computing the rewards $r$ and transitions from a model, we must estimate them from samples received:
 
 ```{math}
 Q(s,a) = \mathbb{E}_{r,s^{\prime}}\left[r+\gamma\cdot\max_{a^{\prime}}Q(s^{\prime},a^{\prime})\right]
