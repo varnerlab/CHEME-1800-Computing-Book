@@ -217,8 +217,7 @@ How much of one good or service a decision maker is willing to trade for another
 ````{prf:definition} Marginal Rate of Substitution
 :label: defn-marginal-rate-of-sub
 
-A decision maker is analyzing the consumption of different combinations of $n$ goods or services $x_{1},\dots,x_{n}$. The utility 
-function governing the decision maker $U(\dots)$ can be expanded by computing the [total differential](https://en.wikipedia.org/wiki/Differential_of_a_function#Differentials_in_several_variables) around some point $\left(x_{1}^{\star},\dots,x_{n}^{\star}\right)$ on an indifference curve with utility $c$:
+A decision maker is analyzing the consumption of different combinations of $n$ goods or services $x_{1},\dots,x_{n}$. The utility function governing the decision maker $U(\dots)$ can be expanded by computing the [total differential](https://en.wikipedia.org/wiki/Differential_of_a_function#Differentials_in_several_variables) around some point $\left(x_{1}^{\star},\dots,x_{n}^{\star}\right)$ on an indifference curve with utility $c$:
 
 ```{math}
 :label: eqn-total-differential-ic
