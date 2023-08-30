@@ -1,0 +1,34 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: landing.md
+title: Description
+chapters:
+- file: unit-1-basics/basics-landing
+  title: Unit 1. Basics
+  sections:
+  - file: unit-1-basics/types
+  - file: unit-1-basics/functions
+  - file: unit-1-basics/programs
+  - file: unit-1-basics/data-file-io
+- file: unit-2-data/data-landing
+  title: Unit 2. Data
+  sections:
+  - file: unit-2-data/trees
+  - file: unit-2-data/vectors-matricies-nla
+  - file: unit-2-data/reduction
+- file: unit-3-learning/learning-landing
+  title: Unit 3. Learning
+  sections: 
+  - file: unit-3-learning/penalty
+  - file: unit-3-learning/lp
+  - file: unit-3-learning/combitorial
+- file: unit-4-decisions/decisions-landing
+  title: Unit 4. Decisions
+  sections:
+  - file: unit-4-decisions/simple
+  - file: unit-4-decisions/mdp
+  - file: unit-4-decisions/multi-arm-bandits
+
+- file: References
