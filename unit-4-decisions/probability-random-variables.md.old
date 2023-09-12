@@ -184,7 +184,8 @@ Then, for any set $B\subseteq\Omega$ we can decompose $B$ into smaller disjoint 
 A probability space is completley described by the tuple $(\Omega,\mathcal{F},P)$:
 
 * Sample space $\Omega$: The set of all possible outcomes from an experiment.
-* Event space $\mathcal{F}$: The collection of all possible events. An event E is a subset in $\Omega$ that defines an outcome or a combination of outcomes.
+* Event space $\mathcal{F}$: The collection of all possible events. 
+An event E is a subset in $\Omega$ that defines an outcome or a combination of outcomes.
 * Probability law $P$: A mapping from an event $A$ to a number $P(A)$ which, measures the _size_ of the event.
 
 ### Sample space $\Omega$
